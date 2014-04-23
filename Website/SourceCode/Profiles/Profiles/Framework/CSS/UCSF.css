@@ -13,12 +13,12 @@
 }
 img { border: none; }
 
-#header-ucsf { background-color: #666; font-family: Arial,Helvetica,sans serif; }
+#header-ucsf { background-color: #16366b; font-family: Arial,Helvetica,sans serif; }
 #header-ucsf img { border: none; }
 #header-ucsf div#ucsfnav-container { background: #000;  width: 100%; }
-#header-ucsf div#ucsfnav { width: 980px; height:30px; margin: 0 auto; padding-left: 20px; }
+#header-ucsf div#ucsfnav { width: 980px; height:30px; margin: 0 auto; padding-left: 17px; }
 * html #header-ucsf div#ucsfnav { width: 972px; }
-#header-ucsf div#ucsfnav a.ucsf-logo{ display: block; float: left; background: transparent url(../images/ucsf.png) no-repeat 0 0; width:43px; height:29px; text-indent: -99999px; }
+#header-ucsf div#ucsfnav a.ucsf-logo { display: block; float: left; background: transparent url(../images/ucsd.png) no-repeat 0 6px; width:115px; height:29px; text-indent: -99999px; }
 #header-ucsf ul{ position: relative; float:left; margin: 3px 0 0; padding-left: 20px; list-style-type: none; }
 #header-ucsf ul li{ display: inline; color:#fff; }
 #header-ucsf div#ucsfnav ul li a { text-decoration: none; font-size:11px; color:#fff; border-left:1px solid #fff; padding:0 5px 0 10px; }
@@ -35,10 +35,10 @@ h1 {
   background: transparent url(../images/ProfilesLogo.gif) no-repeat 325px 14px; 
 }
 h1 a, h1 a:visited { 
-  color: #659191; 
+  color: #2d84af; 
   text-decoration: none;
 }
-h1 a:hover { color: #457272; text-decoration: none; }
+h1 a:hover { color: #267094; text-decoration: none; }
 #tagline { 
   color: #666; 
   font: italic bold 20px Arial, Helvetica, sans serif; 
@@ -49,16 +49,16 @@ h1 a:hover { color: #457272; text-decoration: none; }
   font-family: Arial,Helvetica,sans serif;
 }
 #powered-by-block a, #powered-by-block a:visited {
-  background:url("../images/favicon.gif") no-repeat scroll 0 0 transparent;
+ /* background:url("../images/favicon.gif") no-repeat scroll 0 0 transparent; */
   padding-left: 20px; margin-left: 310px;
-  color: #D18146;
+  color: #2d84af; 
   font-size: 13px;
   font-weight: bold;
   line-height: 20px;
   text-decoration: none;
 }
 #powered-by-block a:hover {
-  color: #D18146;
+  color: #267094;
   text-decoration: underline;
 } 
 #new-features { float: left; width: 237px; margin: 20px 0 0 227px; margin-top: 15px\9; }
@@ -128,14 +128,14 @@ table, tr { border-width: 0; border-spacing: 0; border-color: transparent; } /* 
 #defaultmenu, #minisearch { display: none; } 
 .SupportText { border: none; }
 
-.profiles .profilesFooter { background-color: #849696; text-align: center; font-size: 89%;
+.profiles .profilesFooter { background-color: #2d84af; text-align: center; font-size: 89%;
   width: 980px; border-top: 3px solid #666; margin: 10px auto; }
 #footer-collaboration { background-color: #FFF; }
 #footer-collaboration p { margin: 0; padding: 12px; text-align: left; }
 #footer-contact { padding: 6px; border-top: 3px solid #666; }
 #footer-contact ul li { display: inline; list-display-type: none; padding: 8px 20px; font-weight: bold; }
 #footer-contact ul li a, #footer-contact ul li a:visited, #footer-contact ul li a:hover { color: #FFF !important; }
-#footer-copyright { color: #FFF; border-top: 1px solid #FFF; }
+#footer-copyright { color: #FFF; border-top: 1px solid #666; background-color: #849696; }
 #footer-copyright p { padding: 6px; margin: 0; font-size: 90%; }
 
 .profiles .profilesContentPassive .passiveSectionBody ul.profile-metrics li { line-height: 20px; }
@@ -154,7 +154,7 @@ table, tr { border-width: 0; border-spacing: 0; border-color: transparent; } /* 
 */
 
 #suckerfishmenu {
-	background-color: #849696; 
+	background-color: #2d84af; 
 	line-height: 35px; 
 	width: 980px; height: 37px;
 	font-family: Arial,Sans-Serif; 
@@ -181,7 +181,7 @@ table, tr { border-width: 0; border-spacing: 0; border-color: transparent; } /* 
 #suckerfishmenu li.active-trail li.active-trail a:hover { background: #75A2A2; }
 #suckerfishmenu li.active-trail li a { background: #659191; }  
 #suckerfishmenu li.active-trail li a:active,
-#suckerfishmenu li.active-trail li a:hover { background: #75A2A2; }
+#suckerfishmenu li.active-trail li a:hover { background: #267094; }
 
 #suckerfishmenu	 a {
   display: block;
@@ -190,14 +190,14 @@ table, tr { border-width: 0; border-spacing: 0; border-color: transparent; } /* 
   text-decoration: none;
   font-weight: bold;
   font-size: 1em; color: #FFF;
-  background-color: #849696; 
+  background-color: #2d84af; 
 }
 
 #suckerfishmenu	 a:active,
 #suckerfishmenu	 a:hover {
   text-decoration: none;
   background: #75A2A2;
-  background: #6A7D7D;
+  background: #6a7d7d;
 }
 
 #suckerfishmenu	 li {

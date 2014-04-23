@@ -6,7 +6,7 @@
 #txtSearchFor { padding-left: 2px; height: 30px; height: 22px\9; padding-top: 6px\9; }
 .listTable th { border: 1px solid #CCC !important; }
 #tblSearchResults th { text-align: left; }
-#suckerfishmenu li.item-home a { background-color: #6A7D7D !important; }
+#suckerfishmenu li.item-home a { background-color: #6a7d7d !important; }
 /* we didn't use this filters display
 #filtersContainer { width: 680px; }
 #filtersContainer #filters { display: inline-block; width: 580px; margin-bottom: 5px; white-space: nowrap; }
@@ -23,7 +23,9 @@ image { border: none; }
 .panelActive { margin-top: 29px; margin-top: 35px\9; }
 .profiles .profilesContentPassive { margin-top: 38px; margin-top: 35px\9; } 
 
-input#chkExactphrase, input#institutionallexcept, input#departmentallexcept { display: none; }
+input#ctl00_ContentMain_rptMain_ctl00_ctl00_chkExactphrase,
+input#ctl00_ContentMain_rptMain_ctl00_ctl00_institutionallexcept,
+input#ctl00_ContentMain_rptMain_ctl00_ctl00_departmentallexcept { display: none; }
 .searchForm .inputText { width: 245px; }
 #divChkList { border: 1px solid #CCC !important; margin-top: -5px; width: 248px !important; 
   height: 190px !important; padding-top: 15px !important; }

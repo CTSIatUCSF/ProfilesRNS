@@ -75,7 +75,7 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About\AboutUCSFProfiles.aspx" />
+    <Content Include="About\AboutUCSDProfiles.aspx" />
     <Content Include="About\CloseBrowser.aspx" />
     <Content Include="About\expeditionaryaquili.aspx" />
     <Content Include="About\Optin.aspx" />
@@ -116,7 +116,7 @@
     <Content Include="About\Images\video.JPG" />
     <Content Include="About\JavaScript\UCSF.js" />
     <Content Include="About\NewFeatures.aspx" />
-    <Content Include="About\PresentationXML\AboutUCSFProfiles.xml">
+    <Content Include="About\PresentationXML\AboutUCSDProfiles.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="About\PresentationXML\CloseBrowser.xml" />
@@ -150,6 +150,7 @@
     <Content Include="Edit\Images\icons_red_BlueRow.gif" />
     <Content Include="Edit\Images\Icons_upSort.gif" />
     <Content Include="Edit\Images\Icon_add_item.gif" />
+    <Content Include="Framework\Images\ucsd.png" />
     <Content Include="ORNG\Images\orng-asterisk.png" />
     <Content Include="Edit\Images\sophcat-boat.jpg" />
     <Content Include="Edit\JavaScript\UCSF.js" />
@@ -222,12 +223,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About\AboutUCSFProfiles.aspx.cs">
-      <DependentUpon>AboutUCSFProfiles.aspx</DependentUpon>
+    <Compile Include="About\AboutUCSDProfiles.aspx.cs">
+      <DependentUpon>AboutUCSDProfiles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="About\AboutUCSFProfiles.aspx.designer.cs">
-      <DependentUpon>AboutUCSFProfiles.aspx</DependentUpon>
+    <Compile Include="About\AboutUCSDProfiles.aspx.designer.cs">
+      <DependentUpon>AboutUCSDProfiles.aspx</DependentUpon>
     </Compile>
     <Compile Include="About\CloseBrowser.aspx.cs">
       <DependentUpon>CloseBrowser.aspx</DependentUpon>

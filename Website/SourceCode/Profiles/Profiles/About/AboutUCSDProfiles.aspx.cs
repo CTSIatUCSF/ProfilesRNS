@@ -25,7 +25,7 @@ using Profiles.Framework.Utilities;
 
 namespace Profiles.About
 {
-    public partial class AboutUCSDProfiles : System.Web.UI.Page
+    public partial class AboutProfiles : System.Web.UI.Page
     {
         Profiles.Framework.Template masterpage;
 
@@ -37,7 +37,7 @@ namespace Profiles.About
             masterpage.Tab = "";
             masterpage.RDFData = null;
             XmlDocument presentationxml = new XmlDocument();
-            presentationxml.LoadXml(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/About/PresentationXML/AboutUCSDProfiles.xml"));
+            presentationxml.LoadXml(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/About/PresentationXML/AboutProfiles.xml"));
             masterpage.PresentationXML = presentationxml;
 
         }

@@ -10,6 +10,6 @@
 namespace Profiles.About {
     
     
-    public partial class AboutUCSDProfiles {
+    public partial class AboutProfiles {
     }
 }

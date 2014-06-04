@@ -14,7 +14,7 @@
 <!DOCTYPE html> 
 <html>
 <head id="Head1" runat="server">
-    <title>UCSF Profiles</title>
+    <title>Berkeley Lab Profiles</title>
     
     <%--Force ie out of quirks mode (Catalyst)--%>
     <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' />
@@ -82,35 +82,14 @@
     </script>
 
 	<div id='page-container'>
-    <div id="header-ucsf">
-      <div id="ucsfnav">
-        <a class="ucsf-logo" target="_blank" href="http://www.ucsf.edu/">UCSF</a>
-         <ul>
-         <li class="first">
-           <a title="University of California, San Francisco" href="http://www.ucsf.edu/" target="_blank">University of California, San Francisco</a>
-         </li>
-         <li>
-           <a title="About UCSF" href="http://www.ucsf.edu/about" target="_blank">About UCSF</a>
-         </li>
-         <li>
-           <a title="Search UCSF" href="http://www.ucsf.edu/ucsf/search" target="_blank">Search UCSF</a>
-         </li>
-         <li>
-           <a title="UCSF Medical Center" href="http://www.ucsfhealth.org/" target="_blank">UCSF Medical Center</a>
-         </li>
-         </ul>
-       </div>
-    </div>
     <div class="institutionHeader">
         <div id="site-logo">
-        <h1><a href="<%=GetURLDomain()%>/">UCSF Profiles
-        <div id="tagline">search, discover, network</div></a></h1>
+        <h1><a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/Framework/Images/lbl-logo.png" alt="Berkeley Lab Profiles" /></a></h1>
         </div>
         <div id="powered-by-block">
-          <a id="powered-by-ctsi" href="http://ctsi.ucsf.edu/" target="_blank">Powered by CTSI</a>
-        </div>
-        <div id="new-features">
-          <a href="<%=GetURLDomain()%>/about/NewFeatures.aspx">New Features: Learn more <img src="<%=GetURLDomain()%>/Framework/images/arrow-orgbg.gif" alt=">" style="border:none" width="12" height="16"/></a>
+          <a class="last-item" href="http://map.lbl.gov" target="_blank">MAP</a>
+          <a href="http://www.lbl.gov/lab-index/" target="_blank">A-Z INDEX</a>
+          <a href="http://search.lbl.gov/" target="_blank">SEARCH LBNL</a>
         </div>
     </div>	    
     <div id="suckerfish-container">
@@ -118,7 +97,7 @@
          <div class="content">
            <ul class="menu">
               <li class="item-home"><asp:HyperLink ID="navResearch" runat="server" Text="Search" NavigateUrl="~/"></asp:HyperLink></li>
-              <li id="about"><a href="<%=GetURLDomain()%>/about/AboutProfiles.aspx">About</a></li>
+              <li id="about"><a href="<%=GetURLDomain()%>/about/AboutUCSFProfiles.aspx">About</a></li>
               <li id="data"><a href="<%=GetURLDomain()%>/about/ForDevelopers.aspx">Use our Data</a></li>
               <li id="contact"><a href="<%=GetURLDomain()%>/about/Help.aspx">Help / Contact Us</a></li>                     </ul>
          </div>
@@ -239,24 +218,42 @@
 						</tr>
 					</table>
 				</div>
-			        <div class="profilesFooter">
+			        <div class="profilesFooter" id="footer">
                                         <div id="gadgets-log"></div>
-                                        <div id="footer-collaboration">
-                                          <p>UCSF Profiles is managed by the UCSF 
-                                          <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
-                                          part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
-                                          Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH).</p>
-                                        </div>
-                                        <div id="footer-contact">
-                                           <ul>
-                                              <li><a href="<%=GetURLDomain()%>/">Home</a></li>
-                                              <li><a href="mailto:profiles@ucsf.edu">Contact us</a></li>
-                                           </ul>
-                                        </div>
-                                        <div id="footer-copyright">
-                                           <p>Copyright &copy; 2014 The Regents of the University of California. 
-                                           All Rights Reserved.</p>
-                                        </div>
+<div class="disclaimer-logos">
+  <ul class="disclaimer-logos">
+    <li class="disclaimer-logos item1"></li>
+    <li class="disclaimer-logos item2"></li>
+  </ul>
+</div><div class="disclaimer-text">
+<p>A U.S. Department of Energy National Laboratory Managed by the University of California</p>
+</div>
+<div class="lbl-disclaimer">
+<p>
+<a class="disclaimer-left" href="http://wwwdev.lbl.gov/web-support/">Questions & Comments</a>
+<a class="disclaimer-right" href="http://wwwdev.lbl.gov/disclaimers/">Privacy & Security Notice</a>
+</p>
+</div>
+<div class="social">
+<ul class="social-links">
+<li class="social-links">
+<a class="item1 ir" target="_blank" href="http://twitter.com/BerkeleyLab">twitter</a>
+</li>
+<li class="social-links">
+<a class="item2 ir" target="_blank" href="http://instagram.com/berkeleylab#">instagram</a>
+</li>
+<li class="social-links">
+<a class="item3 ir" target="_blank" href="https://plus.google.com/+BerkeleyLab/posts">google plus</a>
+</li>
+<li class="social-links">
+<a class="item4 ir" target="_blank" href="http://www.facebook.com/BerkeleyLab">facebook</a>
+</li>
+<li class="social-links">
+<a class="item5 ir" target="_blank" href="http://www.youtube.com/user/BerkeleyLab">youtube</a>
+</li>
+</ul>
+</div>
+
 					<asp:ContentPlaceHolder ID="ContentFooter" runat="server">
 						<asp:Repeater runat="server" ID="rptFooter" OnItemDataBound="DrawModule">
 							<ItemTemplate>

@@ -1,7 +1,7 @@
 ﻿<Presentation PresentationClass="profile">
   <PageOptions Columns="2"/>
   <WindowName>About</WindowName>  
-  <PageTitle>What is UCSF Profiles?</PageTitle>
+  <PageTitle>What is Berkeley Lab Profiles?</PageTitle>
   <PageBackLinkName></PageBackLinkName>
   <PageBackLinkURL></PageBackLinkURL>
   <PageSubTitle></PageSubTitle>
@@ -19,14 +19,13 @@
           <Param Name="HTML">
 
 <style type="text/css">
-#suckerfishmenu li#about a { background-color: #6A7D7D !important; }
+#suckerfishmenu li#about a { background-color: #999 !important; }
 </style>
 <h3 style="text-align:center;font-size:20px;padding:10px 0 16px;color:#999;margin:0">
   A Research Networking and Expertise Mining Tool</h3>
-<p class="sautter"><a href="http://ctsi.ucsf.edu/news/about-ctsi/ucsf-profiles-receives-2013-sautter-award" target="_blank">Winner of the 2013 UC Sautter Golden Award</a></p>
 <table cellspacing="0" id="about">
  <tr>
-  <td style="background-color:#B8D0D0;padding:0 8px">
+  <td style="background-color:#CCC;padding:0 8px">
     <h2>Search</h2>
     <img src="images/search-icon.gif" alt="Magnifying Glass" class="sdn" style="margin:0 0 8px 25px" />
     <h3 style="text-align:center;color:#333">Experts, Collaborators, Mentors</h3>
@@ -41,7 +40,7 @@
 
   <td style="padding:0 8px">
     <h2>Discover Networks</h2>
-    <img src="images/profiles.jpg" alt="Discover Networks" class="sdn" style="margin:0 0 8px 30px" />
+    <img src="../Framework/Images/ProfilesLogo.gif" alt="Discover Networks" class="sdn" style="margin:14px 0 20px 50px" />
     <h3 style="text-align:center;color:#333">Peoples' Research Connections</h3>
     <ul class="square">
        <li>Who co-authored together</li>
@@ -49,9 +48,9 @@
     </ul>
   </td>
 
-  <td style="background-color:#B8D0D0;padding:0 8px">
+  <td style="background-color:#CCC;padding:0 8px">
     <h2>Edit Your Profile</h2>
-    <img src="images/develop-profile.gif" alt="Develop Your Profile" class="sdn" style="margin:0 0 8px 20px" />
+    <img src="Images/develop-profile.gif" alt="Develop Your Profile" class="sdn" style="margin:0 0 8px 30px" />
     <h3 style="text-align:center;color:#333">Information about Your Research</h3>
     <ul class="square">
        <li>Overview to describe your work</li>
@@ -72,7 +71,7 @@
   </td>
  </tr>
  <tr>
-  <td style="padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #B8D0D0;
+  <td style="padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #CCC;
     background: transparent url(images/gear.gif) no-repeat 20px 14px;">
     <h3 style="padding: 12px 0 8px 40px">Toolbox</h3> 
     <ul class="square" style="margin-left: 0;">
@@ -80,28 +79,31 @@
       <li><a href="http://www.orng.info/index.html">Profiles OpenSocial extensions</a></li>
     </ul>
   </td>
-  <td style="padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #B8D0D0;
+  <td style="padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #CCC;
     background: transparent url(images/help.gif) no-repeat 20px 12px;">
     <h3 style="padding: 12px 0 8px 40px">Help</h3>
     <ul class="square" style="margin-left: 0;">
       <li><a href="Help.aspx#faq">Frequently Asked Questions</a></li>
-      <li><a href="mailto:profiles@ucsf.edu">Contact us</a></li>
+      <li><a href="mailto:profiles@lbl.gov">Contact us</a></li>
     </ul>
   </td>
-  <td style="padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #B8D0D0;
+  <td style="padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #CCC;
     background: transparent url(images/comment.gif) no-repeat 20px 14px;">
      <h3 style="padding: 12px 0 15px 40px">Feedback</h3> 
-     <p style="margin:0; font-size:12px"><a href="mailto:profiles@ucsf.edu">Contact us</a> to share your ideas and success stories.</p>
+     <p style="margin:0; font-size:12px"><a href="mailto:profiles@lbl.gov">Contact us</a> to share your ideas and success stories.</p>
   </td>
  </tr>
 </table>
 
 <h3 style="padding-top:20px">Acknowledgements</h3>
-<p>UCSF Profiles is UCSF’s version of the ground-breaking, open source "Profiles Research Networking Software" that was developed under the supervision of Griffin M Weber, MD, PhD, with support from Grant Number 1 UL1 RR025758-01 to <a href="http://catalyst.harvard.edu/" target="_new">Harvard Catalyst: The Harvard Clinical and Translational Science Center</a> from the National Center for Research Resources and support from Harvard University and its affiliated academic healthcare centers.</p>
+<p>Berkeley Lab Profiles was developed from <a href="http://connects.catalyst.harvard.edu/Profiles/about/default.aspx" target="_blank">Profiles Research Networking Software</a>, which was created by Griffin M. Weber, MD, PhD, with support from <a href="http://catalyst.harvard.edu/" target="_new">Harvard Catalyst | The Harvard Clinical and Translational Science Center</a> (grant numbers 8UL1 TR000170-05 and 1UL1 TR001102-01).</p>
+
+<p>Berkeley Lab Profiles is hosted by the UCSF <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, part of the Clinical and Translational Science Award program funded by the National Center for Advancing Translational Sciences (grant number UL1 TR000004) at the National Institutes of Health (NIH).</p>
 
 <p>Profiles Research Networking Software is available as an <a href="http://connects.catalyst.harvard.edu/Profiles/about/default.aspx?tab=open" target="_blank">open source platform</a> for institutions seeking a web-based means of facilitating collaboration among their academic researchers. </p>  
 
-<p>Some data on this site is syndicated from <a href="https://search.knodeinc.com/" target="_blank">KNODE Inc.</a></p>      
+<p>Some data on this site is syndicated from <a href="https://search.knodeinc.com/" target="_blank">KNODE Inc.</a></p>
+       
           </Param>
         </ParamList>
       </Module>

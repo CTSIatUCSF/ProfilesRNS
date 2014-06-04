@@ -137,7 +137,7 @@
                                         </th>
                                         <td colspan="2" class="fieldOptions">
                                             <asp:TextBox runat="server" ID="txtSearchFor" CssClass="inputText"></asp:TextBox>
-                                            <asp:CheckBox runat="server" ID="chkExactphrase" />
+                                            <asp:CheckBox runat="server" ID="chkExactphrase" CssClass="except" />
                                         </td>
 <!--  NOTE: checkboxes are hidden in css
                                             Search for exact phrase
@@ -193,11 +193,11 @@
                                 </tr>
                                 <tr runat="server" id="trInstitution">
                                     <th>
-                                        School
+                                        Division
                                     </th>
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litInstitution"></asp:Literal>
-                                        <asp:CheckBox runat="server" ID="institutionallexcept" />
+                                        <asp:CheckBox runat="server" ID="institutionallexcept" CssClass="except" />
 <!--
                                         All <b>except</b> the one selected
 -->
@@ -209,7 +209,7 @@
                                     </th>
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litDepartment"></asp:Literal>
-                                        <asp:CheckBox runat="server" ID="departmentallexcept" />
+                                        <asp:CheckBox runat="server" ID="departmentallexcept" CssClass="except" />
 <!--
                                         All <b>except</b> the one selected
 -->
@@ -249,6 +249,7 @@
                                         <asp:HiddenField ID="hidURIs" runat="server" />
                                     </td>
                                 </tr>
+<!--
                                 <tr>
                                     <th>
                                         More Options
@@ -273,7 +274,6 @@
                                         </table>
                                     </td>
                                 </tr>
-<!--
                                 <tr>
                                     <th>
                                     </th>
@@ -294,6 +294,5 @@
                 </tr>
             </table>
         </div>
-            <p><img src="<%=GetURLDomain()%>/Search/Images/icon_squareArrow.gif" /> <a href="<%=GetURLDomain()%>/direct">Search other institutions</a></p>
     </div>
 </div>

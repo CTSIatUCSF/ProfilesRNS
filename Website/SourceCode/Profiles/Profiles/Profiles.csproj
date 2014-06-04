@@ -150,6 +150,12 @@
     <Content Include="Edit\Images\icons_red_BlueRow.gif" />
     <Content Include="Edit\Images\Icons_upSort.gif" />
     <Content Include="Edit\Images\Icon_add_item.gif" />
+    <Content Include="favicon.ico" />
+    <Content Include="Framework\Images\body-bg.png" />
+    <Content Include="Framework\Images\lbl-logo.png" />
+    <Content Include="Framework\Images\lbl-new-social-iconsB.png" />
+    <Content Include="Framework\Images\seal-department-of-energy.png" />
+    <Content Include="Framework\Images\seal-university-of-california.png" />
     <Content Include="ORNG\Images\orng-asterisk.png" />
     <Content Include="Edit\Images\sophcat-boat.jpg" />
     <Content Include="Edit\JavaScript\UCSF.js" />

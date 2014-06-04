@@ -25,3 +25,9 @@
     </div>
     <div class="activeContainerBottom"></div>
 </div>
+<div class="metrics" style="line-height:21px;padding-left:12px">
+<strong>LBNL Profiles Metrics</strong><br />
+<span class="metric"><%= new Profiles.CustomAPI.Utilities.DataIO().GetPublicationsCount()%></span> Publications<br />
+<span class="metric"><%= new Profiles.CustomAPI.Utilities.DataIO().GetProfilesCount()%></span> Total Profiles<br />
+<span class="metric"><%= new Profiles.CustomAPI.Utilities.DataIO().GetEditedCount()%></span> Edited Profiles
+</div>

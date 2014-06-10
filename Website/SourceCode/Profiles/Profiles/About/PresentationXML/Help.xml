@@ -27,12 +27,12 @@
   <div class="content-block" style="width:470px; padding-right: 50px;">
     <h2 style="font-size:30px">Need Help?</h2>
     <p><strong>Publications</strong>: To add, remove, or fix a publication, 
-       <a href="../login/default.aspx?method=login&amp;edit=true">login to edit</a> your profile page.
+       <a href="../login/default.aspx?method=login&amp;edit=true">sign in to edit</a> your profile page.
     </p>
     <p><strong>Photo</strong>: To add or remove a photo, 
-       <a href="../login/default.aspx?method=login&amp;edit=true">login to edit</a> your profile page.
+       <a href="../login/default.aspx?method=login&amp;edit=true">sign in to edit</a> your profile page.
     </p>
-    <p><strong>Name/Degree/Contact Information</strong>: We get data such as name and organization 	from the LBNL HR system. Changes to this data should be directed to your local HR Center 	contact, which can be found at https://commons.lbl.gov/display/hr/Contact+HR. Contact 	information comes from the LBNL directory, which allows self-service updates at <a 	href="http://www.lbl.gov/ds/index.html">http://www.lbl.gov/ds/index.html</a>. 
+    <p><strong>Name/Degree/Contact Information</strong>: We get data such as name and organization 	from the LBNL HR system. Changes to this data should be directed to your local HR Center 	contact, which can be found at <a href="https://commons.lbl.gov/display/hr/Contact+HR" target="_blank">https://commons.lbl.gov/display/hr/Contact+HR</a>. Contact information comes from the LBNL directory, which allows self-service updates at <a 	href="http://www.lbl.gov/ds/index.html">http://www.lbl.gov/ds/index.html</a>. 
     </p>
     <p><a href="#faq" class="doublearrow">Frequently Asked Questions</a></p>
   </div>
@@ -75,8 +75,8 @@ People working in the same department
   <li><a href="#who">Who is listed in LBNL Profiles?</a></li>
   <li><a href="#view">Who can view LBNL Profiles?</a></li>
   <li><a href="#enhance">How do I edit and enhance a profile page?</a></li>
-  <li><a href="#login">How do I login to LBNL Profiles?</a></li>
-  <li><a href="#why">Why should I login to LBNL Profiles?</a></li>
+  <li><a href="#login">How do I sign in to LBNL Profiles?</a></li>
+  <li><a href="#why">Why should I sign in to LBNL Profiles?</a></li>
   <li><a href="#datasources">Where does the information in LBNL Profiles originate?</a></li>
   <li><a href="#network">What are the lists of networks on the right side of my profile?</a></li>
   <li><a href="#missing">Why are there missing or incorrect publications in my profile? How can I correct this?</a></li>
@@ -120,13 +120,13 @@ your contact info at lbl.</li>
   <li><a href="mailto:profiles@lbl.gov">Contact us</a> if you have questions about editing a profile.</li>
 </ul>
 
-<h3 id="login">How do I login to LBNL Profiles?</h3>
+<h3 id="login">How do I sign in to LBNL Profiles?</h3>
 <p>Click the <strong><a href="../login/default.aspx?method=login&amp;edit=true">Sign in</a></strong> link on any LBNL Profiles page. Then enter your Berkeley Lab (aka LDAP) username and password.</p>
 <ul>
   <li>If you have never used your Berkeley Lab account or for password support, learn about <a href="https://commons.lbl.gov/display/itdivision/Passwords+and+User+Accounts" title="Go to the LBNL IT website" target="_blank">Passwords and User Accounts</a>.</li> 
 </ul>
 
-<h3 id="why">Why should I login to LBNL Profiles?</h3>
+<h3 id="why">Why should I sign in to LBNL Profiles?</h3>
 <ul>
   <li>Many special LBNL Profiles features are available only if you're logged-in. These include:
   <ul>

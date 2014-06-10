@@ -30,11 +30,8 @@
     <img src="images/search-icon.gif" alt="Magnifying Glass" class="sdn" style="margin:0 0 8px 25px" />
     <h3 style="text-align:center;color:#333">Experts, Collaborators, Mentors</h3>
     <ul class="square">
-       <li>100,000+ publications</li>
-       <li>3000+ UCSF faculty</li>
-       <li>1400+ UCSF residents and fellows</li>
-       <li>1000+ UCSF postdocs</li>
-       <li>30 biomedical institutions nationwide</li>
+       <li>20,000+ publications</li>
+       <li>3,100+ LBNL researchers</li>
     </ul>
   </td>
 
@@ -55,7 +52,6 @@
     <ul class="square">
        <li>Overview to describe your work</li>
        <li>Photo, website links, and awards</li>
-       <li>Mentoring information</li>
        <li>Your presentations on SlideShare</li>
        <li>Edit your publications if necessary</li>
     </ul>

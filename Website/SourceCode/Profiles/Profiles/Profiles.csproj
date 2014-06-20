@@ -152,6 +152,7 @@
     <Content Include="Edit\Images\Icon_add_item.gif" />
     <Content Include="favicon.ico" />
     <Content Include="Framework\Images\ucsd.png" />
+    <Content Include="Framework\Images\ucsdhs.png" />
     <Content Include="ORNG\Images\orng-asterisk.png" />
     <Content Include="Edit\Images\sophcat-boat.jpg" />
     <Content Include="Edit\JavaScript\UCSF.js" />
@@ -224,13 +225,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About\AboutUCSDProfiles.aspx.cs">
-      <DependentUpon>AboutUCSDProfiles.aspx</DependentUpon>
+    <Compile Include="About\AboutProfiles.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>AboutProfiles.aspx</DependentUpon>
     </Compile>
-    <Compile Include="About\AboutUCSDProfiles.aspx.designer.cs">
-      <DependentUpon>AboutUCSDProfiles.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="About\AboutProfiles.aspx.designer.cs" />
     <Compile Include="About\CloseBrowser.aspx.cs">
       <DependentUpon>CloseBrowser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

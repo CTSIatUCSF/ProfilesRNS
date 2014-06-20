@@ -82,30 +82,10 @@
     </script>
 
 	<div id='page-container'>
-    <div id="header-ucsf">
-      <div id="ucsfnav">
-        <a class="ucsf-logo" target="_blank" href="http://ucsd.edu/">UCSD</a>
-         <ul>
-         <li class="first">
-<!--
-           <a title="University of California, San Francisco" href="http://ucsd.edu/" target="_blank">University of California, San Francisco</a>
-         </li>
-         <li>
--->
-           <a title="About UCSD" href="http://ucsd.edu/explore/about/index.html" target="_blank">About UCSD</a>
-         </li>
-<!--
-         <li>
-           <a title="Search UCSD" href="http://www.ucsf.edu/ucsf/search" target="_blank">Search UCSD</a>
-         </li>
--->
-         <li>
-           <a title="UCSD Health System" href="http://health.ucsd.edu/Pages/default.aspx" target="_blank">UCSD Health System</a>
-         </li>
-         </ul>
-       </div>
-    </div>
     <div class="institutionHeader">
+        <div id="ucsd">
+           <a target="_blank" href="http://healthsciences.ucsd.edu/"><img src="<%=GetURLDomain()%>/framework/images/ucsdhs.png" alt="UCSD Health Sciences" /></a>
+        </div>
         <div id="site-logo">
         <h1><a href="<%=GetURLDomain()%>/">UCSD Profiles
         <div id="tagline">search, discover, network</div></a></h1>
@@ -124,7 +104,7 @@
          <div class="content">
            <ul class="menu">
               <li class="item-home"><asp:HyperLink ID="navResearch" runat="server" Text="Search" NavigateUrl="~/"></asp:HyperLink></li>
-              <li id="about"><a href="<%=GetURLDomain()%>/about/AboutProfiles.aspx">About</a></li>
+              <li id="about"><a href="<%=GetURLDomain()%>/about/AboutUCSDProfiles.aspx">About</a></li>
               <!-- <li id="data"><a href="<%=GetURLDomain()%>/about/ForDevelopers.aspx">Use our Data</a></li> -->
               <li id="contact"><a href="<%=GetURLDomain()%>/about/Help.aspx">Help / Contact Us</a></li>                     </ul>
          </div>

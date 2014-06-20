@@ -31,9 +31,11 @@
     <h3 style="text-align:center;color:#333">Experts, Collaborators, Mentors</h3>
     <ul class="square">
        <li>100,000+ publications</li>
-       <li>3000+ UCSD faculty</li>
+       <li>1200+ UCSD faculty</li>
+<!--
        <li>1400+ UCSD residents and fellows</li>
        <li>1000+ UCSD postdocs</li>
+-->
        <li>30 biomedical institutions nationwide</li>
     </ul>
   </td>
@@ -66,7 +68,8 @@
  </tr>
  <tr>
   <td colspan="3" align="center" style="padding:5px 0 20px;">
-    <h2>Watch this short introduction video!</h2>
+    <h2 style="line-height:24px" >Watch this short introduction about UCSF Profiles, 
+	<br />the sister site to UCSD Profiles</h2>
     <iframe width="560" height="325" src="//www.youtube.com/embed/YCOA2GWyplY" frameborder="0" allowfullscreen="true"></iframe>
   </td>
  </tr>

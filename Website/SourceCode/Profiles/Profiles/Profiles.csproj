@@ -75,7 +75,7 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About\AboutUCSDProfiles.aspx" />
+    <Content Include="About\AboutProfiles.aspx" />
     <Content Include="About\CloseBrowser.aspx" />
     <Content Include="About\expeditionaryaquili.aspx" />
     <Content Include="About\Optin.aspx" />

@@ -114,16 +114,6 @@ namespace Profiles.ORNG.Utilities
             return gadgetSpec.GetGadgetURL();
         }
 
-        public string GetUnavailableMessage()
-        {
-            return gadgetSpec.GetUnavailableMessage();
-        }
-
-        public bool RequiresRegistration()
-        {
-            return gadgetSpec.RequiresRegitration();
-        }
-
         public bool IsSandboxGadget()
         {
             return gadgetSpec.IsSandboxGadget();
@@ -178,7 +168,10 @@ namespace Profiles.ORNG.Utilities
                 }
                 finally
                 {
-                    sockets.PutSocket(s);
+                    if (s != null)
+                    {
+                        sockets.PutSocket(s);
+                    }
                 }
             }
             return page.TrimEnd();

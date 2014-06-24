@@ -135,6 +135,9 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 litGadget.Text = sandboxDivs;
                 om.LoadAssets();
             }
+
+            litEditHRDataLink.Text = "<a href='http://someplace.ucsd.edu?id=" +
+                    UCSFIDSet.ByNodeId[this.Subject].EmployeeID + "'>Edit HR Data</a>";
         }
 
         protected void repPropertyGroups_OnItemDataBound(object sender, RepeaterItemEventArgs e)

@@ -14,6 +14,7 @@ this website.
 <br />
 -->
 <h3>Components:</h3>
+<asp:Literal runat="server" ID="litEditHRDataLink"></asp:Literal>
 <div id="profile-components">
   <table style="width:100%;margin-bottom:0;">
     <tr style="border-bottom:1px solid #CCC;">

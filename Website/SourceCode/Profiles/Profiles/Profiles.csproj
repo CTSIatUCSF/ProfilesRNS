@@ -75,8 +75,8 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About\AboutProfiles.aspx" />
     <Content Include="About\CloseBrowser.aspx" />
+    <Content Include="About\AboutProfiles.aspx" />
     <Content Include="About\expeditionaryaquili.aspx" />
     <Content Include="About\Optin.aspx" />
     <Content Include="About\CSS\UCSF.css" />
@@ -225,17 +225,19 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About\AboutProfiles.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>AboutProfiles.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="About\AboutProfiles.aspx.designer.cs" />
     <Compile Include="About\CloseBrowser.aspx.cs">
       <DependentUpon>CloseBrowser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="About\CloseBrowser.aspx.designer.cs">
       <DependentUpon>CloseBrowser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="About\AboutProfiles.aspx.cs">
+      <DependentUpon>AboutProfiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About\AboutProfiles.aspx.designer.cs">
+      <DependentUpon>AboutProfiles.aspx</DependentUpon>
     </Compile>
     <Compile Include="About\Optin.aspx.cs">
       <DependentUpon>Optin.aspx</DependentUpon>

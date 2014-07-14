@@ -136,7 +136,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 om.LoadAssets();
             }
 
-            litEditHRDataLink.Text = "<a href='http://someplace.ucsd.edu?id=" +
+            litEditHRDataLink.Text = "<a href='http://169.228.46.140/ProfilesCR/PersonalDataChangeRequest.php?id=" +
                     UCSFIDSet.ByNodeId[this.Subject].EmployeeID + "'>Edit HR Data</a>";
         }
 

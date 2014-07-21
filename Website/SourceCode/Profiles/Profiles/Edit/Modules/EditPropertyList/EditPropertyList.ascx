@@ -13,19 +13,23 @@ this website.
 <br />
 <br />
 -->
-<h3>Components:</h3>
-<asp:Literal runat="server" ID="litEditHRDataLink"></asp:Literal>
+<h3>&nbsp;Components:
+<span id="editHR" style="display:inline-block;padding-left:50px">
+  <asp:Literal runat="server" ID="litEditHRDataLink"></asp:Literal>
+</span></h3>
 <div id="profile-components">
   <table style="width:100%;margin-bottom:0;">
     <tr style="border-bottom:1px solid #CCC;">
-       <td class="padding" id="namedegree">Name and Degrees</td>
-       <td colspan="2">
-         <span id="public"><img src="Images/icons_lock.gif" />&nbsp;Always Public</span>
-         <span id="cls">This info is drawn from the Campus Locator System. 
-         Please contact your HR representative for corrections.</span>
+       <td class="padding" id="Xnamedegree" style="width:226px">Name and Degrees</td>
+       <td style="width:50px">
+<!--         <img src="Images/icons_lock.gif" />   -->
+       </td>
+       <td style="width:100px">
+         <span id="public">Always Public</span>
        </td>
     </tr>
   </table>
+<div id="editable-components">
 <asp:Repeater runat="server" ID="repPropertyGroups" OnItemDataBound="repPropertyGroups_OnItemDataBound">
     <ItemTemplate>
         <asp:GridView runat="server" ID="grdSecurityGroups" AutoGenerateColumns="false" OnRowDataBound="grdSecurityGroups_OnDataBound"
@@ -41,7 +45,7 @@ this website.
                     <ItemTemplate>
                         <asp:Image runat="server" ID="imgBlank" Visible="false" ImageUrl="~/Edit/Images/icons_blank.gif" />
                         <asp:Label runat="server" ID="lblItems"></asp:Label>
-                        <asp:Image runat="server" ID="imgLock" Visible="false" ImageUrl="~/Edit/Images/icons_lock.gif" />
+                        <asp:Image runat="server" ID="imgLock" Visible="false" ImageUrl="~/Edit/Images/icons_blank.gif" />
                         <asp:Image runat="server" ID="imgOrng" Visible="false" ImageUrl="~/ORNG/Images/orng-asterisk.png" />
                     </ItemTemplate>
                 </asp:TemplateField>
@@ -60,6 +64,7 @@ this website.
         <br />
     </ItemTemplate>
 </asp:Repeater>
+</div>
 </div>
 <table id="profile-visibility">
     <tr>

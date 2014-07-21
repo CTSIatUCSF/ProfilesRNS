@@ -137,7 +137,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
             }
 
             litEditHRDataLink.Text = "<a href='http://169.228.46.140/ProfilesCR/PersonalDataChangeRequest.php?id=" +
-                    UCSFIDSet.ByNodeId[this.Subject].EmployeeID + "'>Edit HR Data</a>";
+                    UCSFIDSet.ByNodeId[this.Subject].EmployeeID + "'>Request to change name, address or email</a>";
         }
 
         protected void repPropertyGroups_OnItemDataBound(object sender, RepeaterItemEventArgs e)

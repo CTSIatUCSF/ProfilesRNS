@@ -6,15 +6,17 @@
     el.style.width='900px';
   });
   $('#profile-components table tr td:nth-child(2)').css('color','#FFFFFF');
-  $('#profile-components table tr td:nth-child(1)').addClass('first');  
+  $('#editable-components table tr td:nth-child(1)').addClass('first');  
 //  $('#profile-visibility table tr:nth-child(3)').css('display','none');
   $("#profile-components table tr td:contains('Photo')").addClass('emphasize');
   $("#profile-components table tr td:contains('Awards')").addClass('emphasize');
   $("#profile-components table tr td:contains('Overview')").addClass('emphasize');
   $("#profile-components table tr td:contains('Interests')").addClass('emphasize');
   $("#cls").hide();
+  $('#editHR a').attr('target','_blank');  // UCSD 
 
 
+// disabled by changing id in EditPropertyList.aspx
 $("#namedegree").hover( 
   function () { 
     $("#cls").show(); 

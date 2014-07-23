@@ -87,13 +87,13 @@
     <h3 style="padding: 12px 0 8px 40px">Help</h3>
     <ul class="square" style="margin-left: 0;">
       <li><a href="Help.aspx#faq">Frequently Asked Questions</a></li>
-      <li><a href="mailto:profiles.contact@ucsd.edu">Contact us</a></li>
+      <li><a href="mailto:ctri-support@ucsd.edu">Contact us</a></li>
     </ul>
   </td>
   <td style="padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #B8D0D0;
     background: transparent url(images/comment.gif) no-repeat 20px 14px;">
      <h3 style="padding: 12px 0 15px 40px">Feedback</h3> 
-     <p style="margin:0; font-size:12px"><a href="mailto:profiles.contact@ucsd.edu">Contact us</a> to share your ideas and success stories.</p>
+     <p style="margin:0; font-size:12px"><a href="mailto:ctri-support@ucsd.edu">Contact us</a> to share your ideas and success stories.</p>
   </td>
  </tr>
 </table>

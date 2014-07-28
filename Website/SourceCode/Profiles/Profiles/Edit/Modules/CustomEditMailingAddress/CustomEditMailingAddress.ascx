@@ -44,7 +44,7 @@
 -->
                         <br />
                         <br />
-                         This info is drawn from the Campus Locator System. Please contact your HR representative for corrections.
+                         Mailing Address comes from an automatic data feed.
                     </div>
                 </td>
             </tr>

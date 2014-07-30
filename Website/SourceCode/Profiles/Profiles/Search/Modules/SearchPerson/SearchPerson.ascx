@@ -227,7 +227,7 @@
                                     </td>
                                 </tr>
 -->
-                                <tr runat="server" id="trFacultyType">
+                                <tr runat="server" id="trFacultyType" Visible="false">
                                     <th>
                                         Researcher Type
                                     </th>
@@ -249,7 +249,7 @@
                                         <asp:HiddenField ID="hidURIs" runat="server" />
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr runat="server" id="trMoreOptions" Visible="false">
                                     <th>
                                         More Options
                                     </th>

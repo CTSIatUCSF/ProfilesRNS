@@ -41,7 +41,7 @@
                         </table>
                            <br />
                         <br />
-                         Email Address comes from an automatic data feed from Human Resources.
+                         Email Address comes from an automatic data feed.
                     </div>
                 </td>
             </tr>

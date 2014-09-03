@@ -295,5 +295,7 @@
             </table>
         </div>
             <p><img src="<%=GetURLDomain()%>/Search/Images/icon_squareArrow.gif" /> <a href="<%=GetURLDomain()%>/direct">Search other institutions</a></p>
+	    <p><span class="notice">Important Note: </span>
+If you are a faculty member within Health Sciences and your profile page is not found, it is most likely that your title in Blink is not listed with your academic faculty title. For example, if you listed your department name as your title in blink, you would have to change blink to reflect either Professor, Research Scientists etc. Blink updates have to be initiated either by the UCSD employee directly or their home department. Once blink is updated, your profile will be automatically generated with the next refresh cycle.</p>
     </div>
 </div>

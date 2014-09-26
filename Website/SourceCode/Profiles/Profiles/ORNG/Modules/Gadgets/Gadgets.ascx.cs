@@ -52,6 +52,10 @@ namespace Profiles.ORNG.Modules.Gadgets
                     uri = Root.Domain + "/profile/" + suffix.Split('/')[0];
                 }
             }
+            else if ("True".Equals(base.GetModuleParamString("AllowSetOwnerFromRequest"))) 
+            {
+                uri = Page.Request["owner"];
+            }
             om = OpenSocialManager.GetOpenSocialManager(uri, Page);
         }
 
@@ -59,7 +63,19 @@ namespace Profiles.ORNG.Modules.Gadgets
         {
             if (om.IsVisible())
             {
-                litGadget.Text = base.GetModuleParamXml("HTML").InnerXml;
+                if (!string.Empty.Equals(base.GetModuleParamString("GadgetDiv")))
+                {
+                    String txt = "<div id=\"" + base.GetModuleParamString("GadgetDiv") + "\"";//class="gadgets-gadget-network-parent" />
+                    if (!string.Empty.Equals(base.GetModuleParamString("GadgetClass")))
+                    {
+                        txt += " class=\"" + base.GetModuleParamString("GadgetClass") + "\"";
+                    }
+                    litGadget.Text = txt + "></div>";
+                }
+                else
+                {
+                    litGadget.Text = base.GetModuleParamXml("HTML").InnerXml;
+                }
                 om.LoadAssets();
             }
         }

@@ -209,6 +209,7 @@
     <Content Include="ORNG\PresentationXML\SandboxFormPresentation.xml" />
     <Content Include="Profile\CSS\UCSF.css" />
     <Content Include="Profile\Images\default_img.png" />
+    <Content Include="Profile\Images\ucsf_alumni_blue.jpg" />
     <Content Include="Profile\JavaScript\UCSF.js" />
     <Content Include="Profile\Modules\CustomViewExternalCoauthors\CustomViewExternalCoauthors.ascx" />
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />

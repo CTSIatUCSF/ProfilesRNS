@@ -5,6 +5,7 @@
      
       <div class="education">
         <table>
+<!--
           <thead>
               <tr>
                 <th>
@@ -21,6 +22,7 @@
                 </th>
               </tr>
           </thead>
+-->
           <tbody>
             <xsl:for-each select="rdf:RDF/rdf:Description[1]/vivo:educationalTraining">
               <xsl:variable name="educationalTrainingUri" select="@rdf:resource"/>              

@@ -176,6 +176,14 @@
                     <td colspan='3'>
                         <div class="searchSection" id="div1">
                             <table width="100%" class='searchForm'>
+                                 <tr>
+                                    <th>
+                                        With Clinical Trials
+                                    </th>
+                                    <td colspan="2">
+                                        <input type="checkbox" class="trials2" />
+                                    </td>
+                                </tr>
                                 <tr>
                                     <th>
                                         Last Name

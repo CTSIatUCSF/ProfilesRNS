@@ -48,14 +48,14 @@
 
 <table width="940">
 <tr>
-<td valign="top" style="font-size:11px;line-height:16px;padding-top:90px;">
+<td valign="top" style="font-size:11px;line-height:16px;padding-top:120px;">
 <strong>Information about the individual</strong><br /><br />
 At a minimum, an individual's profile will include the person's name, degrees and basic contact information (sourced from the LBNL Directory). <br /><br /><br /><br />
 Profile owners can edit and enhance their own profiles by providing a research overview, a photo, awards, links to other sites, etc. <br /><br /><br /><br />
 Any published articles available in PubMed are listed, and Profile owners can add additional publications.
 </td>
 <td valign="top" style="padding-bottom:15px;"><img src="images/profilesnapshot.png" /></td>
-<td valign="top" style="font-size:11px;line-height:16px;padding-top:90px;">
+<td valign="top" style="font-size:11px;line-height:16px;padding-top:120px;">
 <strong>Networks &#38; other information about the individual's research</strong><br /><br />
 If the individual has publications available from PubMed, LBNL Profiles builds and displays networks related to their research.<br /><br />
 Lists of research concepts/topics based on PubMed "MeSH" terms<br /><br /><br />
@@ -110,7 +110,7 @@ excluding Affiliates, Student Assistants, and GSRAs) in all Divisions other than
 your contact info at lbl.</li>
   <li>You can upload a photo, add an overview (bio), add/edit awards and many other optional sections.</li>
   <li><em>Interests</em> are research topics that you can add or edit yourself. These are searchable so people can find you if they search using these terms. This is useful for new areas of research on which you haven't published a paper yet.</li>
-  <li>Publications are automatically added from PubMed, and you can also add other publications yourself. Co-authors, Related Authors and Related Concepts are derived from your publications. Note: Keeping your publications updated in LBNL Profiles is important since Advance allows you to import this list. No more manually typing publication details. </li>
+  <li>Publications are automatically added from PubMed, and you can also add other publications yourself. Co-authors, Related Authors and Related Concepts are derived from your publications. </li>
   <li>Sections can be set to the privacy levels of your choice.</li>
   </ul></li>
   <li><a href="mailto:profiles@lbl.gov">Contact us</a> if you have questions about editing a profile.</li>
@@ -126,7 +126,7 @@ your contact info at lbl.</li>
 <ul>
   <li>Many special LBNL Profiles features are available only if you're logged-in. These include:
   <ul>
-  <li>Editing your profile page content to keep it current. Keeping your publications updated is important since you can import this list into Advance.</li>
+  <li>Editing your profile page content to keep it current.</li>
   <li>Designating a proxy to manage your profile page for you.</li>
   <li>Creating a group of individuals based on search results. </li>
   </ul></li>
@@ -155,7 +155,7 @@ your contact info at lbl.</li>
   <li>LBNL Profiles uses a complex mix of names, institution, and manually entered publication information to find your publications in PubMed's repository. Unfortunately, there is no easy way to exactly match all articles in PubMed to LBNL authors with complete precision and accuracy. The algorithm used to find articles from PubMed attempts to minimize the number of publications incorrectly added to a profile; however, this method may result in some missing or incorrectly listed publications.</li>
   <li>People who have common names, who published under multiple names or whose articles were written at other institutions are most likely to have incomplete publication lists. </li>
   <li>You can make corrections by manually searching PubMed from within Profiles to add, edit or delete publications (see <a href="Help.aspx#enhance">How do I edit my Profile?</a> above). By curating publications manually, you are helping LBNL Profiles to identify which concepts and co-authors are correctly associated with your profile, thereby increasing the likelihood of finding the right publications on subsequent attempts. </li>
-  <li>We encourage you to sign in to the site and add any missing publications or remove incorrect ones because these publications can be imported into Advance and many departments pull publication lists from LBNL Profiles for use on their department and faculty website pages.</li>
+  <li>We encourage you to sign in to the site and add any missing publications or remove incorrect ones.</li>
 </ul>
 
 <h3 id="update">How frequently are the data in LBNL Profiles updated?</h3>

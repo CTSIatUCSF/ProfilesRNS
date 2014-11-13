@@ -1,3 +1,6 @@
+TODO:
+Add ontology for UCSF and ORNG to [Ontology.].[Namespace] and [Ontology.].[Import.Owl]
+
 Run:
 
 UCSF_CreateSchema.sql

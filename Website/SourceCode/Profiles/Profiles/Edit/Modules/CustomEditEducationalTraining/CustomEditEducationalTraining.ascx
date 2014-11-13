@@ -58,7 +58,7 @@
                                     <asp:TextBox ID="txtInstitution" runat="server" MaxLength="100" TabIndex="4" Width="220px"></asp:TextBox>
                                 </td>
                                 <td>
-                                    <b>Degree/Credential</b><br />
+                                    <b>Degree/Training</b><br />
                                     <asp:TextBox ID="txtEducationalTrainingDegree" runat="server" MaxLength="100" TabIndex="3" Width="220px"></asp:TextBox>
                                 </td>
                                 <td>
@@ -107,7 +107,7 @@
                                     </ItemTemplate>
                                     <ItemStyle Wrap="true" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Degree/Credential">
+                                <asp:TemplateField HeaderText="Degree/Training">
                                     <EditItemTemplate>
                                         <asp:TextBox ID="txtEducationalTrainingDegree" runat="server" MaxLength="100" Text='<%# Bind("Degree") %>'></asp:TextBox>
                                     </EditItemTemplate>

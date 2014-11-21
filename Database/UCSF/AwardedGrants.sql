@@ -193,6 +193,8 @@ EXEC [RDF.Stage].[ProcessDataMap] @DataMapID = 1005, @ShowCounts = 1
 EXEC [RDF.Stage].[ProcessDataMap] @DataMapID = 1006, @ShowCounts = 1	
 EXEC [RDF.Stage].[ProcessDataMap] @DataMapID = 1007, @ShowCounts = 1	-- swapped out with old one, should delete old one first!	
 
+EXEC [Ontology.].[CleanUp] @Action = 'UpdateIDs';
+
 -- test
 DECLARE @PersonNodeID BIGINT
 SELECT @PersonNodeID = NodeID

@@ -43,7 +43,7 @@
   $("#tblSearchResults th:contains('Researcher Type')").css("text-align","left");
 
   //clone clinical trials checkbox for promotion
-  $("#divOtherOptions label[for='ctcFirst_rMaster_ctl00_rDetail_ctl05_checkDetailText']").parent().addClass('trials1');
+  $("#divOtherOptions label[for='ctcFirst_rMaster_ctl00_rDetail_ctl07_checkDetailText']").parent().addClass('trials1');
   $('.trials2').click(function() { 
      if ($('.trials2').is(':checked')) {
         $('#ctcFirst_rMaster_ctl00_divDetail .trials1 :checkbox').attr("checked", true)[0].onclick();

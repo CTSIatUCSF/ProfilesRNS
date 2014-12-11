@@ -133,7 +133,7 @@
                             <div class="searchSection" id="divSearchSection">
                                 <table width="100%" class='searchForm'>
                                     <tr>
-                                        <th style="width: 140px">
+                                        <th style="width: 150px">
                                             Research Topics
                                         </th>
                                         <td colspan="2" class="fieldOptions">
@@ -162,7 +162,7 @@
                         </td>
                     </tr>
             </table>
-            <div id="andor"><span>and/or</span></div>
+            <div id="andor"><span style="left: 160px">and/or</span></div>
             <table width="100%" id="searchOptions">
 <!--
                 <tr>
@@ -177,8 +177,8 @@
                         <div class="searchSection" id="div1">
                             <table width="100%" class='searchForm'>
                                  <tr>
-                                    <th>
-                                        With Clinical Trials
+                                    <th style="width: 150px">
+                                        With Clinical Trials <span class="notice">New!</span>
                                     </th>
                                     <td colspan="2">
                                         <input type="checkbox" class="trials2" />

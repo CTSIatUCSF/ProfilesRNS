@@ -178,7 +178,7 @@
                             <table width="100%" class='searchForm'>
                                  <tr>
                                     <th>
-                                        With Clinical Trials
+                                        Clinical Trials <span class="notice">New!</span>
                                     </th>
                                     <td colspan="2">
                                         <input type="checkbox" class="trials2" />

@@ -24,6 +24,7 @@
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,6 +36,8 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
     </DocumentationFile>
+    <DeployIisAppPath>Default Web Site/profiles_uci</DeployIisAppPath>
+    <PackageAsSingleFile>false</PackageAsSingleFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -46,7 +49,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit, Version=3.5.51116.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL" />
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>App_Data\bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
@@ -1047,7 +1052,9 @@
     <Content Include="About\Modules\ModuleCatalogue.xml" />
     <Content Include="About\PresentationXML\AboutPresentation.xml" />
     <Content Include="ActiveNetwork\Default.aspx" />
-    <Content Include="ActiveNetwork\Modules\ModuleCatalogue.xml" />
+    <Content Include="ActiveNetwork\Modules\ModuleCatalogue.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ActiveNetwork\Modules\MyNetwork\MyNetwork.ascx" />
     <Content Include="ActiveNetwork\PresentationXML\MyNetwork.xml" />
     <Content Include="ApplicationModuleCatalogue.xml" />
@@ -1213,7 +1220,9 @@
     <Content Include="Search\JavaScript\comboTreeCheck.js" />
     <Content Include="Search\Modules\SearchEverythingFacets\SearchEverythingFacets.ascx" />
     <Content Include="Search\Modules\SearchEverythingFacets\SearchEverythingFacets.xslt" />
-    <Content Include="Search\Modules\SearchResults\PeopleResults.xslt" />
+    <Content Include="Search\Modules\SearchResults\PeopleResults.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Search\Modules\SearchResults\SearchResults.ascx" />
     <Content Include="Search\Modules\TopSearchPhrase\TopSearchPhrase.ascx" />
     <Content Include="Search\Modules\MiniSearch\MiniSearch.ascx" />
@@ -1358,9 +1367,9 @@
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
-          <AutoAssignPort>False</AutoAssignPort>
-          <DevelopmentServerPort>55956</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>80</DevelopmentServerPort>
+          <DevelopmentServerVPath>/profiles_uci</DevelopmentServerVPath>
           <IISUrl>http://localhost/Profiles</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
           <IISAppRootUrl>http://localhost/Profiles</IISAppRootUrl>

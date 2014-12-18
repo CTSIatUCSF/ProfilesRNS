@@ -193,6 +193,8 @@ EXEC [RDF.Stage].[ProcessDataMap] @DataMapID = 1005, @ShowCounts = 1
 EXEC [RDF.Stage].[ProcessDataMap] @DataMapID = 1006, @ShowCounts = 1	
 EXEC [RDF.Stage].[ProcessDataMap] @DataMapID = 1007, @ShowCounts = 1	-- swapped out with old one, should delete old one first!	
 
+EXEC [Ontology.].[CleanUp] @Action = 'UpdateIDs';
+
 -- test
 DECLARE @PersonNodeID BIGINT
 SELECT @PersonNodeID = NodeID
@@ -214,7 +216,7 @@ UPDATE [Ontology.].[ClassProperty] set EditExistingSecurityGroup = -40, IsDetail
       </Module>',
 		EditSecurityGroup = -20, EditPermissionsSecurityGroup = -40, -- was -20's
 		EditAddNewSecurityGroup = -40, EditAddExistingSecurityGroup = -40, EditDeleteSecurityGroup = -40, 
-		_PropertyLabel = 'Awarded Grants'
+		_PropertyLabel = 'NIH Grants Awarded'
 where 
 property = 'http://vivoweb.org/ontology/core#hasPrincipalInvestigatorRole';
 ---- note, above stuff seems like it might be all wrong :)
@@ -230,14 +232,14 @@ UPDATE [Ontology.].[ClassProperty] set EditExistingSecurityGroup = -20, IsDetail
    --   </Module>',
 		CustomEdit = 1, CustomEditModule = '<Module ID="EditOntologyGadget" >
         <ParamList>
-          <Param Name="GadgetName">Awarded Grants</Param>
+          <Param Name="GadgetName">NIH Grants Awarded</Param>
           <Param Name="View">home</Param>
           <Param Name="OptParams">{}</Param>
         </ParamList>
       </Module>',
 		EditSecurityGroup = -20, EditPermissionsSecurityGroup = -20, -- was -20's
 		EditAddNewSecurityGroup = -20, EditAddExistingSecurityGroup = -20, EditDeleteSecurityGroup = -20, 
-		_PropertyLabel = 'Awarded Grants Test'
+		_PropertyLabel = 'NIH Grants Awarded Test'
 where 
 property = 'http://vivoweb.org/ontology/core#hasPrincipalInvestigatorRole';
 

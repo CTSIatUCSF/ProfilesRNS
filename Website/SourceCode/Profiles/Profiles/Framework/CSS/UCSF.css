@@ -23,7 +23,7 @@ img { border: none; }
 #header-ucsf ul li{ display: inline; color:#fff; }
 #header-ucsf div#ucsfnav ul li a { text-decoration: none; font-size:11px; color:#fff; border-left:1px solid #fff; padding:0 5px 0 10px; }
 #header-ucsf div#ucsfnav ul li a:hover { text-decoration: underline; }
-#header-ucsf div#ucsfnav ul li.first a { border: none; }
+#header-ucsf div#ucsfnav ul li.first a { border: none; padding-left: 0; }
 .institutionHeader { background-color: #FFFFFF; height: 95px; border-bottom: none; padding: 0; }
 #site-logo { width: 515px; float: left; }
 h1 {

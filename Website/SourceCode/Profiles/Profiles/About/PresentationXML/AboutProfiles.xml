@@ -15,7 +15,7 @@
           <Param Name="HTML">
 
 <style type="text/css">
-#suckerfishmenu li#about a { background-color: #6A7D7D !important; }
+#suckerfishmenu li#about a { color: #FFDE00; }
 </style>
 <h3 style="text-align:center;font-size:20px;padding:10px 0 16px;color:#999;margin:0">
   A Research Networking and Expertise Mining Tool</h3>

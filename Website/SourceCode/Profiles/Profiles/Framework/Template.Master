@@ -99,7 +99,7 @@
     </div>
     <div class="institutionHeader">
         <div id="site-logo">
-        <h1><a href="<%=GetURLDomain()%>/">UCI Profiles
+        <h1><a href="<%=GetURLDomain()%>/">UC Irvine Profiles
         <div id="tagline">search, discover, network</div></a></h1>
         </div>
         <div id="powered-by-block">

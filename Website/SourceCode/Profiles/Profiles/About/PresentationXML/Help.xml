@@ -15,7 +15,7 @@
           <Param Name="HTML">
 
 <style type="text/css">
-#suckerfishmenu li#contact a { background-color: #6A7D7D !important; }
+#suckerfishmenu li#contact a { color: #FFDE00; }
 .profiles .profilesContentMain .pageTitle h2 { display: none; }
 * html .profiles .profilesContentMain { margin-right: 0 !important; }
 *+html .profiles .profilesContentMain { margin-right: 0 !important; }

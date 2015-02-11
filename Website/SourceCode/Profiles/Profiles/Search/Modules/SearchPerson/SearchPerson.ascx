@@ -28,7 +28,7 @@
     function showdiv() {
         document.getElementById("divChkList").style.display = "block";
 
-        document.getElementById('chkLstItem_0').focus()
+        // document.getElementById('chkLstItem_0').focus()  [see Unfuddle #450]
     }
 
     function showdivonClick() {
@@ -118,7 +118,7 @@
 
 <asp:HiddenField ID="hdnSearch" runat="server" Value="hdnSearch"></asp:HiddenField>
 <div class="content_container">
-    <div class="tabContainer" style="margin-top: 0px;">
+    <div class="tabContainer" style="margin-top: 0px; margin-bottom: 50px;">
         <div class="searchForm nonavbar">
             <table onkeypress="JavaScript:runScript(event);" width="100%">
                 <tbody align="left">

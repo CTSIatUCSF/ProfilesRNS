@@ -62,11 +62,16 @@ h1 a:hover { color: #457272; text-decoration: none; }
   text-decoration: underline;
 } 
 #new-features { float: left; width: 237px; margin: 20px 0 0 227px; margin-top: 15px\9; }
-#new-features a, #new-features a:visited,
-#new-features a:hover { background-color: #D18146; color: #FFF; padding: 6px 6px 6px 9px; margin: 0;
+.button-link { padding-top: 20px; padding-bottom: 20px; }
+.profiles .button-link a, .profiles .button-link a:visited, .profiles .button-link a:hover,
+#new-features a, #new-features a:visited, #new-features a:hover {
+  background-color: #D18146; color: #FFF; padding: 6px 6px 6px 9px; margin: 0;
   font-family: Arial, Helvetica, sans serif; font-size: 14px; text-decoration: none;
+}
+#new-features a, #new-features a:visited, #new-features a:hover { 
   display: inline-block\9;
 }
+.profiles .button-link a:hover,
 #new-features a:hover { text-decoration: underline; }
 #new-features a img { vertical-align: top; }
 
@@ -93,6 +98,7 @@ table, tr { border-width: 0; border-spacing: 0; border-color: transparent; } /* 
 .profiles .profilesPageColumnLeft { padding-top: 6px; }
 .profiles a, .profiles a:visited { text-decoration: none; color: #0088CC !important; }
 .profiles a:hover { color: #005580 !important; }
+.profiles .button-link a, .profiles .button-link a:visited, .profiles .button-link a:hover { color: #FFF !important; }
 .EditMenuTopRow, .topRow, .editPage .topRow td, .profiles .profilesContentActive .activeSectionHead, .listTable th { background-color: #EEE; }
 .searchForm .searchSection { background-color: #EEEEEE; padding: 18px 0\9; }
 .listTable .evenRow { background-color: #F2F7F7; }

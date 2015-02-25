@@ -75,8 +75,8 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About\CloseBrowser.aspx" />
     <Content Include="About\AboutProfiles.aspx" />
+    <Content Include="About\CloseBrowser.aspx" />
     <Content Include="About\expeditionaryaquili.aspx" />
     <Content Include="About\Optin.aspx" />
     <Content Include="About\CSS\UCSF.css" />
@@ -123,7 +123,9 @@
     <Content Include="About\PresentationXML\Optin.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="About\PresentationXML\ForDevelopers.xml" />
+    <Content Include="About\PresentationXML\ForDevelopers.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="About\PresentationXML\GadgetLibrary.xml" />
     <Content Include="About\PresentationXML\Help.xml" />
     <Content Include="About\PresentationXML\HowProfilesWorks.xml">
@@ -152,8 +154,6 @@
     <Content Include="Edit\Images\Icon_add_item.gif" />
     <Content Include="Edit\Modules\CustomEditEducationalTraining\CustomEditEducationalTraining.ascx" />
     <Content Include="favicon.ico" />
-    <Content Include="Framework\Images\ucsd.png" />
-    <Content Include="Framework\Images\ucsdhs.png" />
     <Content Include="ORNG\Images\orng-asterisk.png" />
     <Content Include="Edit\Images\sophcat-boat.jpg" />
     <Content Include="Edit\JavaScript\UCSF.js" />
@@ -211,6 +211,7 @@
     <Content Include="ORNG\PresentationXML\SandboxFormPresentation.xml" />
     <Content Include="Profile\CSS\UCSF.css" />
     <Content Include="Profile\Images\default_img.png" />
+    <Content Include="Profile\Images\ucsf_alumni_blue.jpg" />
     <Content Include="Profile\JavaScript\UCSF.js" />
     <Content Include="Profile\Modules\CustomViewExternalCoauthors\CustomViewExternalCoauthors.ascx" />
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />
@@ -227,19 +228,19 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About\CloseBrowser.aspx.cs">
-      <DependentUpon>CloseBrowser.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About\CloseBrowser.aspx.designer.cs">
-      <DependentUpon>CloseBrowser.aspx</DependentUpon>
-    </Compile>
     <Compile Include="About\AboutProfiles.aspx.cs">
       <DependentUpon>AboutProfiles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="About\AboutProfiles.aspx.designer.cs">
       <DependentUpon>AboutProfiles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="About\CloseBrowser.aspx.cs">
+      <DependentUpon>CloseBrowser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About\CloseBrowser.aspx.designer.cs">
+      <DependentUpon>CloseBrowser.aspx</DependentUpon>
     </Compile>
     <Compile Include="About\Optin.aspx.cs">
       <DependentUpon>Optin.aspx</DependentUpon>
@@ -1196,7 +1197,9 @@
     <Content Include="Profile\Modules\CustomViewPersonSameDepartment\CustomViewPersonSameDepartment.ascx" />
     <Content Include="Profile\Profile.aspx" />
     <Content Include="Profile\XSLT\Awards.xslt" />
-    <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\CustomViewPersonGeneralInfo.xslt" />
+    <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\CustomViewPersonGeneralInfo.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Profile\XSLT\CoAuthorDetail.xslt" />
     <Content Include="Profile\XSLT\ConceptDetail.xslt" />
     <Content Include="Profile\XSLT\Narrative.xslt" />

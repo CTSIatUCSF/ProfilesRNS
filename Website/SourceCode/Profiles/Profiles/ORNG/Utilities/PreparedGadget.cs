@@ -114,9 +114,9 @@ namespace Profiles.ORNG.Utilities
             return gadgetSpec.GetGadgetURL();
         }
 
-        public bool IsSandboxGadget()
+        public bool Unrecognized()
         {
-            return gadgetSpec.IsSandboxGadget();
+            return gadgetSpec.Unrecognized();
         }
 
         #region Socket Communications

@@ -203,7 +203,9 @@
     <Content Include="ORNG\Modules\EditPersonalGadget\EditPersonalGadget.ascx" />
     <Content Include="ORNG\Modules\GadgetSandbox\GadgetSandbox.ascx" />
     <Content Include="ORNG\Modules\Gadgets\Gadgets.ascx" />
-    <Content Include="ORNG\Modules\ModuleCatalogue.xml" />
+    <Content Include="ORNG\Modules\ModuleCatalogue.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ORNG\Modules\SearchGadgets\SearchGadgets.ascx" />
     <Content Include="ORNG\PresentationXML\GadgetDetailsPresentation.xml" />
     <Content Include="ORNG\PresentationXML\SandboxFormPresentation.xml" />

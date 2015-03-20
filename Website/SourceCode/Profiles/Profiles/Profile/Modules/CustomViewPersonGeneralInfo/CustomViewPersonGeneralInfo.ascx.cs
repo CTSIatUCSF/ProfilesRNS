@@ -77,7 +77,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
             {
                 litGadget.Visible = true;
                 string sandboxDivs = "";
-                foreach (PreparedGadget gadget in om.GetSandboxGadgets())
+                foreach (PreparedGadget gadget in om.GetUnrecognizedGadgets())
                 {
                     sandboxDivs += "<div id='" + gadget.GetChromeId() + "' class='gadgets-gadget-parent'></div>";
                 }

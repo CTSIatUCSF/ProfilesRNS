@@ -83,7 +83,7 @@ namespace Profiles.Profile.Modules
                 Label lblPublication = (Label)e.Item.FindControl("lblPublication");
                 Literal litViewIn = (Literal)e.Item.FindControl("litViewIn");
 
-                lblPublication.Text = pub.prns_informaitonResourceReference;
+                string lblPubTxt = pub.prns_informaitonResourceReference;
                 if (pub.bibo_pmid != string.Empty && pub.bibo_pmid != null)
                 {
                     litViewIn.Text = "View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/" + pub.bibo_pmid + "' target='_blank'>PubMed</a>";
@@ -91,15 +91,24 @@ namespace Profiles.Profile.Modules
                     {
                         if (pub.vivo_pmcid.Contains("PMC"))
                         {
-                            litViewIn.Text = litViewIn.Text + "<br>PMCID: " + pub.vivo_pmcid + "&nbsp; View in: <a href='//www.ncbi.nlm.nih.gov/pmc/articles/" + pub.vivo_pmcid + "' target='_blank'>PubMed Central</a>";
+                            lblPubTxt = lblPubTxt + "; PMCID: " + pub.vivo_pmcid;
+                            string pmcid = pub.vivo_pmcid;
+                            int len = pmcid.IndexOf(' ');
+                            if (len != -1) pmcid = pmcid.Substring(0, len);
+                            litViewIn.Text = litViewIn.Text + "<br>View in: <a href='//www.ncbi.nlm.nih.gov/pmc/articles/" + pmcid + "' target='_blank'>PubMed Central</a>";
+                        }
+                        else if (pub.vivo_pmcid.Contains("NIHMS"))
+                        {
+                            lblPubTxt = lblPubTxt + "; NIHMSID: " + pub.vivo_pmcid;
                         }
                     }
-
+                    lblPubTxt = lblPubTxt + ".";
                 }
                 else if (pub.vivo_webpage != string.Empty && pub.vivo_webpage != null)
                 {
                     litViewIn.Text = "<a href='" + pub.vivo_webpage + "' target='_blank'>View Publication</a>";
                 }
+                lblPublication.Text = lblPubTxt;
             }
         }
 

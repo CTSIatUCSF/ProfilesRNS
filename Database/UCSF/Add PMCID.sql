@@ -67,7 +67,7 @@ BEGIN
 							Affiliation=nref.value('Article[1]/Affiliation[1]','varchar(max)') ,
 							AuthorListCompleteYN = nref.value('Article[1]/AuthorList[1]/@CompleteYN[1]','varchar(max)') ,
 							GrantListCompleteYN=nref.value('Article[1]/GrantList[1]/@CompleteYN[1]','varchar(max)'),
-							PMCID=nref.value('(OtherID[@Source="NLM"])[1]','varchar(max)')
+							PMCID=COALESCE(nref.value('(OtherID[@Source="NLM" and text()[contains(.,"PMC")]])[1]', 'varchar(max)'), nref.value('(OtherID[@Source="NLM"][1])','varchar(max)'))
 				FROM  [Profile.Data].[Publication.PubMed.General]  g
 				JOIN  [Profile.Data].[Publication.PubMed.AllXML] a ON a.pmid = g.pmid
 					 CROSS APPLY  x.nodes('//MedlineCitation[1]') as R(nref)
@@ -102,7 +102,7 @@ BEGIN
 					nref.value('Article[1]/Affiliation[1]','varchar(max)') Affiliation,
 					nref.value('Article[1]/AuthorList[1]/@CompleteYN[1]','varchar(max)') AuthorListCompleteYN,
 					nref.value('Article[1]/GrantList[1]/@CompleteYN[1]','varchar(max)') GrantListCompleteYN,
-					nref.value('(OtherID[@Source="NLM"])[1]','varchar(max)')
+					COALESCE(nref.value('(OtherID[@Source="NLM" and text()[contains(.,"PMC")]])[1]', 'varchar(max)'), nref.value('(OtherID[@Source="NLM"][1])','varchar(max)'))
 				from [Profile.Data].[Publication.PubMed.AllXML] cross apply x.nodes('//MedlineCitation[1]') as R(nref)
 				where pmid = @pmid
 	END
@@ -1625,7 +1625,7 @@ select 	a.pmid, Owner= nref.value('@Owner[1]','varchar(max)') ,
 			Affiliation=nref.value('Article[1]/Affiliation[1]','varchar(max)') ,
 			AuthorListCompleteYN = nref.value('Article[1]/AuthorList[1]/@CompleteYN[1]','varchar(max)') ,
 			GrantListCompleteYN=nref.value('Article[1]/GrantList[1]/@CompleteYN[1]','varchar(max)'),
-			PMCID=nref.value('(OtherID[@Source="NLM"])[1]','varchar(max)')
+			PMCID=COALESCE(nref.value('(OtherID[@Source="NLM" and text()[contains(.,"PMC")]])[1]', 'varchar(max)'), nref.value('(OtherID[@Source="NLM"][1])','varchar(max)'))
 			into #tmp
 	FROM  [Profile.Data].[Publication.PubMed.General]  g
 	JOIN  [Profile.Data].[Publication.PubMed.AllXML] a ON a.pmid = g.pmid
@@ -1637,6 +1637,5 @@ select 	a.pmid, Owner= nref.value('@Owner[1]','varchar(max)') ,
 	on g.pmid = t.pmid
 
 DROP TABLE #TMP	
-
 
 	EXEC [Profile.Data].[Publication.Entity.UpdateEntity]

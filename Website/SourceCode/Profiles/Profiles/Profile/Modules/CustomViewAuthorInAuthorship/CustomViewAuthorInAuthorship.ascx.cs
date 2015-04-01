@@ -83,7 +83,6 @@ namespace Profiles.Profile.Modules
                 Label lblPublication = (Label)e.Item.FindControl("lblPublication");
                 Literal litViewIn = (Literal)e.Item.FindControl("litViewIn");
 
-                string lblPubTxt = pub.prns_informaitonResourceReference;
                 if (pub.bibo_pmid != string.Empty && pub.bibo_pmid != null)
                 {
                     litViewIn.Text = "View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/" + pub.bibo_pmid + "' target='_blank'>PubMed</a>";
@@ -94,15 +93,9 @@ namespace Profiles.Profile.Modules
                             string pmcid = pub.vivo_pmcid;
                             int len = pmcid.IndexOf(' ');
                             if (len != -1) pmcid = pmcid.Substring(0, len);
-                            lblPubTxt = lblPubTxt + "; PMCID: " + pmcid;
                             litViewIn.Text = litViewIn.Text + "&nbsp;<a href='//www.ncbi.nlm.nih.gov/pmc/articles/" + pmcid + "' target='_blank'>" + pmcid + "</a>";
                         }
-                        else if (pub.vivo_pmcid.Contains("NIHMS"))
-                        {
-                            lblPubTxt = lblPubTxt + "; NIHMSID: " + pub.vivo_pmcid;
-                        }
                     }
-                    lblPubTxt = lblPubTxt + ".";
                 }
                 else if (pub.vivo_webpage != string.Empty && pub.vivo_webpage != null)
                 {

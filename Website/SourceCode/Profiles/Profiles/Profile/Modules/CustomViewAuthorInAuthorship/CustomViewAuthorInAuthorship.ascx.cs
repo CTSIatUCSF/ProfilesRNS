@@ -44,7 +44,7 @@ namespace Profiles.Profile.Modules
             {
                 while (reader.Read())
                 {
-                    publication.Add(new Publication(reader["bibo_pmid"].ToString(), reader["prns_informationResourceReference"].ToString()));
+                    publication.Add(new Publication(reader["bibo_pmid"].ToString(), reader["vivo_pmcid"].ToString(), reader["prns_informationResourceReference"].ToString(), reader["vivo_webpage"].ToString()));
                 }
 
                 rpPublication.DataSource = publication;
@@ -83,28 +83,51 @@ namespace Profiles.Profile.Modules
                 Label lblPublication = (Label)e.Item.FindControl("lblPublication");
                 Literal litViewIn = (Literal)e.Item.FindControl("litViewIn");
 
-                lblPublication.Text = pub.prns_informaitonResourceReference;
+                string lblPubTxt = pub.prns_informaitonResourceReference;
                 if (pub.bibo_pmid != string.Empty && pub.bibo_pmid != null)
                 {
                     litViewIn.Text = "View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/" + pub.bibo_pmid + "' target='_blank'>PubMed</a>";
-
+                    if (pub.vivo_pmcid != null)
+                    {
+                        if (pub.vivo_pmcid.Contains("PMC"))
+                        {
+                            lblPubTxt = lblPubTxt + "; PMCID: " + pub.vivo_pmcid;
+                            string pmcid = pub.vivo_pmcid;
+                            int len = pmcid.IndexOf(' ');
+                            if (len != -1) pmcid = pmcid.Substring(0, len);
+                            litViewIn.Text = litViewIn.Text + "<br>View in: <a href='//www.ncbi.nlm.nih.gov/pmc/articles/" + pmcid + "' target='_blank'>PubMed Central</a>";
+                        }
+                        else if (pub.vivo_pmcid.Contains("NIHMS"))
+                        {
+                            lblPubTxt = lblPubTxt + "; NIHMSID: " + pub.vivo_pmcid;
+                        }
+                    }
+                    lblPubTxt = lblPubTxt + ".";
                 }
+                else if (pub.vivo_webpage != string.Empty && pub.vivo_webpage != null)
+                {
+                    litViewIn.Text = "<a href='" + pub.vivo_webpage + "' target='_blank'>View Publication</a>";
+                }
+                lblPublication.Text = lblPubTxt;
             }
         }
+
         public class Publication
         {
-            public Publication(string _bibo_pmid, string prns_informationresourcereference)
+            public Publication(string _bibo_pmid, string _vivo_pmcid, string prns_informationresourcereference, string _vivo_webpage)
             {
                 this.bibo_pmid = _bibo_pmid;
+                this.vivo_pmcid = _vivo_pmcid;
                 this.prns_informaitonResourceReference = prns_informationresourcereference;
+                this.vivo_webpage = _vivo_webpage;
             }
 
             public string bibo_pmid { get; set; }
+            public string vivo_pmcid { get; set; }
             public string prns_informaitonResourceReference { get; set; }
-
+            public string vivo_webpage { get; set; }
 
         }
-
 
     }
 }

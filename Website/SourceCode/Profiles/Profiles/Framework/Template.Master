@@ -219,7 +219,7 @@
 <p>A U.S. Department of Energy National Laboratory Managed by the University of California</p>
 </div>
 <div class="lbl-disclaimer">
-<p>
+                                           <p>Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California. 
 <a class="disclaimer-left" href="http://wwwdev.lbl.gov/web-support/">Questions & Comments</a>
 <a class="disclaimer-right" href="http://wwwdev.lbl.gov/disclaimers/">Privacy & Security Notice</a>
 </p>

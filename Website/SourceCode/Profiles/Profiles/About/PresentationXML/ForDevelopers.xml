@@ -22,50 +22,34 @@
 
 
 <h2 class="about">Available Data</h2>
-<!--
-<div style="float:right;width:195px;background-color:#267196;margin-right:1px;margin-top: 4px">
-<p style="padding:6px 0 6px 8px;margin:0;font-size:15px;color:#fff;font-weight:bold">We’re happy to help integrate the API into your website, so it matches your site’s 
-look and feel.</p>
-</div>
--->
+<p>Web developers have full access to the data shown in Profiles through a REST API. This allows you to show all or specific profile information and publications for a researcher on any website by writing client or server side code to incorporate information directly from Profiles. <a href="http://scctsi.github.io/profiles-api" title="Find on GitHub">More information about the REST API</a></p>
 <p>Enhance your website with automated data of the following:</p>
 <ul >
-  <li>Data on 2,400+ USC faculty and academic leaders – <em>Updated daily</em></li>
-  <li>Data on over 40,000 USC publications listed on PubMed – <em>Updated weekly</em></li>
+  <li>Data on 3,200+ USC faculty, postdoctoral scholars, and clinical research coordinators in the health sciences – <em>Updated daily</em></li>
+  <li>Data on over 62,000 USC publications listed on PubMed – <em>Updated weekly</em></li>
+  <li>Data on 350+ clinical trials – updated daily (<a href="http://scctsi.github.io/clinicaltrials-datasource/" title="Find on GitHub">USC Clinical Trials REST API</a>)</li>
   <li>Manually entered data (e.g., photos, research overview descriptions) - <em>Updated either immediately, or daily</em></li>
 </ul>
 
-<div style="width:29%;float:left;">
-<p>General (supported in all APIs)</p>
+<p><strong>Data Types</strong> (supported by REST API)</p>
 <ul>
-    <li>Name</li>
+    <li>Researcher Name</li>
     <li>Photo URL</li>
     <li>School</li>
     <li>Titles</li>
     <li>Email</li>
-    <li>Street address (includes lat/lon)</li>
-    <li>Telephone and Fax</li>
-</ul>
-</div>
-<div style="width:29%;float:left;padding-right:15px;">	
-<p>Research-Related</p>
-<ul>
+    <li>Address</li>
+    <li>Telephone</li>
     <li>Narrative</li>
-    <li>Top research keywords (based on publications)</li>
     <li>Publications (includes source, title, URL)</li>
-    <li>USC Co-authors</li>
-    <li>Similar researchers at USC</li>
-    <li>Websites (JSON API only)</li>
+    <li>Clinical studies</li>
 </ul>
-</div>
-<div style="width:29%;float:left;">	
-<p>Search (supported in XML API)</p>
+		
+<p><strong>Search</strong> (supported by REST API)</p>
 <ul>
     <li>Find people by name</li>
-    <li>Find people by department</li>
-    <li>Find people by faculty rank</li>
+    <li>Find people by school and department</li>
 </ul>
-</div>
 
 
 <h2 style="clear:left;padding-top:15px" class="about" id="gethelp">Have Questions?</h2>

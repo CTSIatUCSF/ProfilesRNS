@@ -28,60 +28,62 @@
 </style>
 
 <ul> 
-  <li><a href="#who">Who is listed in USC Profiles?</a></li>
-  <li><a href="#view">Who can view USC Profiles?</a></li>
+  <li><a href="#who">Who is listed in USC Health Sciences Profiles?</a></li>
+  <li><a href="#view">Who can view USC Health Sciences Profiles?</a></li>
   <li><a href="#enhance">How do I edit and enhance my individual profile?</a></li>
-  <li><a href="#login">How do I login to USC Profiles?</a></li>
-  <li><a href="#why">Why should I login to USC Profiles?</a></li>
-  <li><a href="#datasources">What are the sources of data for USC Profiles?</a></li>
+  <li><a href="#login">How do I login to USC Health Sciences Profiles?</a></li>
+  <li><a href="#why">Why should I login to USC Health Sciences Profiles?</a></li>
+  <li><a href="#datasources">What are the sources of data for USC Health Sciences Profiles?</a></li>
   <li><a href="#network">What are the lists of networks on the right side of my profile?</a></li>
   <li><a href="#missing">Why are there missing or incorrect publications in my profile? How can I correct this?</a></li>
-  <li><a href="#update">How frequently are the data in USC Profiles updated?</a></li>
+  <li><a href="trials">Why are there missing or incorrect clinical studies in my profile? How can I correct this?</a></li>
+  <li><a href="#update">How frequently are the data in USC Health Sciences Profiles updated?</a></li>
   <li><a href="#keyword">Can I add/edit research, career and academic interests?</a></li>
   <li><a href="#mynetwork">Can I edit my co-authors or similar people lists?</a></li>
-<!--  <li><a href="#learn">How can I learn more about USC Profiles?</a></li> -->
+<!--  <li><a href="#learn">How can I learn more about USC Health Sciences Profiles?</a></li> -->
   <li><a href="#ideas">Where should I send my ideas on how to improve the tool?</a></li>
-  <li><a href="#sysreq">What are the system requirements for using USC Profiles?</a></li>
-  <li><a href="#manage">Who manages USC Profiles?</a></li>
+  <li><a href="#sysreq">What are the system requirements for using USC Health Sciences Profiles?</a></li>
+  <li><a href="#manage">Who manages USC Health Sciences Profiles?</a></li>
 </ul>
 
-<h3 id="who">Who is listed in USC Profiles?</h3>
+<h3 id="who">Who is listed in USC Health Sciences Profiles?</h3>
 
 <ul>
-  <li>USC Profiles was created for research networking and initially focused on adding USC faculty members within the health sciences. </li>
-  <li>We are expanding USC Profiles to include academic leadership at USC, fellows and residents, postdoctoral scholars, non-faculty academic researchers, research staff, s and additional groups in the USC community, as requested.</li>
-  <li>Profile creation requires that an individual's data be in the USC GDS System which is connected to the PPBS system (now being replaced by the new HR system Workday).</li>
+  <li>USC Profiles was created for research networking and initially focused on adding USC faculty members within the health sciences.</li>
+  <li>We have expanded the tool to include postdoctoral scholars and clinical research coordinators in the health sciences. In the near future, we plan to include additional groups of the USC community, as requested.</li>
+  <li>The creation of a profiles page requires that an individual's data be in the USC GDS System, which is connected to the USC Workday system.</li>
 </ul>
 
-<h3 id="view">Who can view USC Profiles?</h3>
+<h3 id="view">Who can view USC Health Sciences Profiles?</h3>
 <ul>
-  <li>USC Profiles is a public searchable information resource available to everyone on the web including the general public and the USC community.</li>
+  <li>USC Health Sciences Profiles is a public searchable information resource available to everyone on the web including the general public and the USC community.</li>
 </ul>
 
 <h3 id="enhance">How do I edit and enhance my individual profile?</h3>
 <ul>
   <li>To edit your individual profile, click the <strong>Sign in</strong> link. You will be prompted to login with your USC Net ID.</li>
-  <li>Your profile is divided into several sections: directory information (not editable in Profiles), photo, awards and honors, overview, keywords, publications, and more.
+  <li>Your profile is divided into several sections: directory information (not editable in Profiles), photo, awards and honors, overview, presentations, clinical studies, publications, and more.
   <ul>
-  <li>For directory information, USC Profiles uses the USC GDS System (name, degrees, and contact information). Changes to this information should be directed to the Payroll/Personnel Analyst for your USC campus department. If unsure who this person is, contact your department's Business Officer.</li>
+  <li>For directory information, USC Health Sciences Profiles uses the USC GDS System (name, degrees, and contact information). Changes to this information should be directed to the Payroll/Personnel Analyst for your USC campus department. If unsure who this person is, contact your department's Business Officer.</li>
   <li>You can upload a photo and also add/edit awards, your overview, and more.</li>
-  <li>Keywords are research topics that you can add or edit. These are searchable from within USC Profiles, so if you're focusing on a new area of research and haven't published a paper on it yet, people can still find you if they search using that term.</li>
+  <!-- <li>Keywords are research topics that you can add or edit. These are searchable from within USC Health Sciences Profiles, so if you're focusing on a new area of research and haven't published a paper on it yet, people can still find you if they search using that term.</li> -->
   <li>Publications are automatically added from PubMed. You can edit, delete and add other publications.</li>
+  <li>Clinical studies are automatically added from the Clinical Studies Directory, which uses data from ClinicalTrials.gov, USC True 2, and USC IRB.</li>
   </ul></li>
   <li><a href="mailto:profiles@sc-ctsi.org">Contact us</a> if you have questions about editing your profile.</li>
 </ul>
 
-<h3 id="login">How do I login to USC Profiles?</h3>
-<p>Click the <strong>Login/Edit My Profile</strong> link on any USC Profiles page. Then enter your USC Net ID username and password.</p>
+<h3 id="login">How do I login to USC Health Sciences Profiles?</h3>
+<p>Click the <strong>Login/Edit My Profile</strong> link on any profile page. Then enter your USC Net ID username and password.</p>
 <ul>
   <li>If you have never used your USC Net ID account, or for password support: go to <a href="https://mypassword.usc.edu/" title="Go to the USC Mypassword website" target="_blank">https://mypassword.usc.edu/</a> or call USC ITS at (213) 740-5555.</li> 
   <li><a href="http://www.usc.edu/its/accounts/password" title="Go to the USC ITS website" target="_blank">Learn more about your USC Net ID</a></li>
 </ul>
 
-<h3 id="why">Why should I login to USC Profiles?</h3>
+<h3 id="why">Why should I login to USC Health Sciences Profiles?</h3>
 <ul>
 <!--
-  <li>Many USC Profiles features are available only if you're logged-in. These include:
+  <li>Many USC Health Sciences Profiles features are available only if you're logged-in. These include:
   <ul>
   <li>Export a list of an individual's publications.</li>
   </ul></li>
@@ -89,12 +91,13 @@
   <li>You can edit your profile and manage your designated proxies only if you're logged in.</li>
 </ul>
 
-<h3 id="datasources">What are the sources of data for USC Profiles?</h3> 
+<h3 id="datasources">What are the sources of data for USC Health Sciences Profiles?</h3> 
 <ul>
-  <li>The data that is automatically included in a person’s profile is currently available on other public websites, specifically the USC Directory and PubMed. 
+  <li>The data that is automatically included in a person’s profile is currently available on other public websites, specifically the USC Directory, PubMed, and ClinicalTrials.gov. 
   <ul>
-  <li>Contact information is obtained from the USC GDS System, which also feeds the central USC Directory. This information is updated daily.</li>
+  <li>Contact information is obtained from the USC GDS System, which also informs the central USC Directory. This information is updated daily.</li>
   <li>Publications are derived from the MEDLINE/PubMed citation database. These are retrieved weekly.</li>
+  <li>Clinical studies are derived from the ClinicalTrials.gov database. These are retrieved weekly.</li>
   </ul></li>
   <li>Overview and other personalized data is entered by the profile owner or a designated proxy. </li>
 </ul>
@@ -104,31 +107,42 @@
   <li>The lists at the right side of a profile page provide additional information about the individual. The first three lists are based on MeSH terms assigned to the individual's publications by the National Library of Medicine.
   <ul>
   <li>"Related Concepts" includes the top five research concepts derived from publications' MeSH terms. There is also a link to show all the concepts associated with this person.</li>
-  <li>"Co-Authors" includes those who have published with this person.</li>
-  <li>"Related Authors" includes people who have research concepts/MeSH terms in common with this person.</li>
+  <li>"Co-Authors" includes those at USC who have published with this person.</li>
+  <li>"External Collaborators" includes people at other academic institutions who have co-authored publications with this person.</li>
+  <li>"Related Authors" includes people at USC who have research concepts/MeSH terms in common with this person.</li>
   </ul></li>
   <li>Department lists are determined from USC GDS data (see data sources above) and reflect people in the same department.</li>
 </ul>
 
 <h3 id="missing">Why are there missing or incorrect publications in my profile? How can I correct this?</h3> 
 <ul>
-  <li>USC Profiles uses a complex mix of names, institution, and manually entered publication information to find your publications in PubMed's repository. Unfortunately, there is no easy way to exactly match all articles in PubMed with complete precision and accuracy. The algorithm used to find articles from PubMed attempts to minimize the number of publications incorrectly added to a profile. However, this method may result in some missing or incorrectly listed publications.</li>
+  <li>USC Health Sciences Profiles uses a complex mix of names, institution, and manually entered publication information to find your publications in PubMed's repository. Unfortunately, there is no easy way to exactly match all articles in PubMed with complete precision and accuracy. The algorithm used to find articles from PubMed attempts to minimize the number of publications incorrectly added to a profile. However, this method may result in some missing or incorrectly listed publications.</li>
   <li>People with common names or whose articles were written at other institutions are most likely to have incomplete publication lists.</li>
-  <li>You can make corrections by manually searching PubMed from within Profiles to add, edit or delete publications. By curating publications manually, you are helping USC Profiles to identify which concepts are associated with your profile and increasing the likelihood of finding the right publications on subsequent attempts.</li>
+  <li>You can make corrections by manually searching PubMed from within Profiles to add, edit or delete publications. By curating publications manually, you are helping USC Health Sciences Profiles to identify which concepts are associated with your profile and increasing the likelihood of finding the right publications on subsequent attempts.</li>
   <li>We encourage you to login to the site and add any missing publications or remove incorrect ones.</li>
 </ul>
 
-<h3 id="update">How frequently are the data in USC Profiles updated?</h3>
+<h3 id="trials">Why are there missing or incorrect clinical studies in my profile? How can I correct this?
+<p>USC Health Sciences currently automatically displays clinical studies at USC that fulfill the following criteria:</p>
+<ul>
+  <li>Registered at ClinicalTrials.gov</li>
+  <li>Conducted by a USC PI (Primary Investigator) or a study site is located at USC</li>
+  <li>Approved by the institutional IRB</li>
+</ul>
+<p>Please <a href="mailto:profiles@sc-ctsi.org">Contact us</a> if your trials are missing or incorrect.</p> 
+
+<h3 id="update">How frequently are the data in USC Health Sciences Profiles updated?</h3>
 <ul>
   <li>Publications are derived from the MEDLINE/PubMed citation database. These are retrieved weekly.</li>
+  <li>Cinical studies are derived from the ClinicalTrials.gov database. This data is retrieved weekly.</li>
   <li>Changes made to your directory information via your HR representative, such as names, degrees, and contact information, are automatically updated daily.</li>
   <li>Changes made to a profile manually will be reflected within minutes.</li>
 </ul>
 
 <h3 id="keyword">Can I add/edit research, career and academic interests?</h3>
 <ul>
-  <li>Yes. You can enter interests when you are editing your profile. These are useful to indicate research topics or fields in which you haven’t yet published. Users who search USC Profiles by these topics will find your profile.</li>
-  <li>The new interests feature is different from the concepts associated to your publications (MeSH terms derived by the National Library of Medicine), which are not editable. However, you can ensure these accurately reflect your work by keeping your publications up to date and correct in USC Profiles. Please note that it can take up to 24 hours for the system to update your concepts, co-authors, and similar people after you have modified your publications.</li> 
+  <li>Yes. You can enter interests when you are editing your profile. These are useful to indicate research topics or fields in which you haven’t yet published. Users who search USC Health Sciences Profiles by these topics will find your profile.</li>
+  <li>The new interests feature is different from the concepts associated to your publications (MeSH terms derived by the National Library of Medicine), which are not editable. However, you can ensure these accurately reflect your work by keeping your publications up to date and correct in USC Health Sciences Profiles. Please note that it can take up to 24 hours for the system to update your concepts, co-authors, and similar people after you have modified your publications.</li> 
 </ul>
 
 <h3 id="mynetwork">Can I edit my co-authors or similar people lists?</h3>
@@ -136,22 +150,22 @@
   <li>These networks are derived from the MeSH terms automatically. Keeping your publications accurate and up to date will improve these networks. However, they can't be edited directly.</li>
 </ul>
 <!--
-<h3 id="learn">How can I learn more about USC Profiles?</h3>
+<h3 id="learn">How can I learn more about USC Health Sciences Profiles?</h3>
 <ul>
-  <li><a href="AboutProfiles.aspx">Read more</a> about the USC Profiles tool, ongoing development and exciting collaborations.</li>
+  <li><a href="AboutProfiles.aspx">Read more</a> about the USC Health Sciences Profiles tool, ongoing development and exciting collaborations.</li>
   <li>If you have specific questions not answered here, please <a href="mailto:profiles@sc-ctsi.org">contact us</a>.</li>
 </ul>
 -->
 <h3 id="ideas">Where should I send my ideas on how to improve the tool?</h3> 
 <ul>
-  <li>Contact us and share your comments, feedback, stories on how Profiles helped you: <a href="mailto:profiles@sc-ctsi.org">profiles@sc-ctsi.org</a>.</li>
+  <li><a href="mailto:profiles@sc-ctsi.org">Contact us</a> and share your comments, feedback, success stories on how Profiles helped you.</li>
 </ul>
 
-<h3 id="sysreq">What are the system requirements for using USC Profiles?</h3>
+<h3 id="sysreq">What are the system requirements for using USC Health Sciences Profiles?</h3>
 <ul>
-  <li>USC Profiles works best using any of the following web browsers:
+  <li>USC Health Sciences Profiles works best using any of the following web browsers:
     <ul>
-      <li>Internet Explorer 8 or 9</li>
+      <li>Internet Explorer 8 or later</li>
       <li>Firefox 12 or later</li>
       <li>Chrome</li>
       <li>Safari 5 or later</li>
@@ -159,8 +173,8 @@
   <li>If you are using an older browser or a browser not listed above, you may experience some errors in functionality.</li>
 </ul>
 
-<h3 id="manage">Who manages USC Profiles?</h3>
-<p>USC Profiles is managed by the Southern California <a href="http://sc-ctsi.org/" target="_blank">Clinical and Translational Science Institute (SC CTSI)</a> at USC and CHLA.</p>
+<h3 id="manage">Who manages USC Health Sciences Profiles?</h3>
+<p>USC Health Sciences Profiles is managed by the Southern California <a href="http://sc-ctsi.org/" target="_blank">Clinical and Translational Science Institute (SC CTSI)</a> at USC and CHLA.</p>
 
 
           </Param>

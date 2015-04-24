@@ -30,9 +30,9 @@
                   <img src="images/search-icon.gif" alt="Magnifying Glass" class="sdn" style="margin:4px 0 4px 55px" />
                   <h3 style="text-align:center;color:#333">Experts, Collaborators, Mentors</h3>
                   <ul class="square">
-                    <li>2400+ USC faculty</li>
+                    <li>3200+ USC faculty</li>
                     <li>Researchers at 30 biomedical institutions nationwide</li>
-                    <li>Data on over 40,000+ publications</li>
+                    <li>Data on over 62,000+ publications and 350+ clinical trials</li>
                   </ul>
                 </td>
 
@@ -119,9 +119,6 @@
               Profiles Research Networking Software is available as an <a href="http://connects.catalyst.harvard.edu/Profiles/about/default.aspx?tab=open" target="_blank">open source platform</a> for institutions seeking a web-based means of facilitating collaboration among their academic researchers.
             </p>
 
-            <p>
-              Some data on this site is syndicated from <a href="https://search.knodeinc.com/" target="_blank">KNODE Inc.</a>
-            </p>
 
           </Param>
         </ParamList>

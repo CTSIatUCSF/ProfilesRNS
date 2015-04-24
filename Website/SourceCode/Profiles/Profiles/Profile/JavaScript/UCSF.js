@@ -126,7 +126,7 @@
         $("#publicationListAll li a:contains('PubMed')").each(function () {
             var pmid = $(this).attr('href').match(/(\d+)$/);
             if (pmid && pmid[0]) {
-                $(this).after(
+                $(this).parent().append(
                 " <span class='altmetric-embed' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" +
                 pmid[0] + "'></span>")
             }

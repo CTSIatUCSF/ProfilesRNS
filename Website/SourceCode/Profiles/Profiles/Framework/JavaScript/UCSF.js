@@ -27,6 +27,9 @@
     }
   }
 
+    // copyright year
+    $("#copyright-year").text( (new Date).getFullYear() );
+
     // navbarsearch
     // move & hide on main search pages
   if ($('#navbarsearch') && $('#navbarsearch').length) {

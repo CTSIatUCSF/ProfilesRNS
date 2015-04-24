@@ -49,3 +49,6 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .awardsList table { width: 680px; }
 .atog { color: #990; background-color: #FFF; white-space: nowrap; float: right; }
 .atog:hover { text-decoration: underline; cursor: pointer; }
+
+.viewIn a { display: inline-block; padding-right: 15px; }
+.altmetric-embed img { vertical-align: -2px; }

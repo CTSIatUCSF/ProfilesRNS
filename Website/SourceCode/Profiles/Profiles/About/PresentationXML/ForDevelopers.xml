@@ -14,7 +14,7 @@
         <ParamList>
           <Param Name="HTML">
 <style type="text/css">
-#suckerfishmenu li#data a { background-color: #6A7D7D !important; }
+#suckerfishmenu li#data a { color: #FFDE00; }
 </style>
 <p><a href="https://ucsf.my.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F9A00000004Szj" title="Visit UCSF Chatter">
   <img src="images/cloud.png" alt="cloud" /> Join the UCSF Chatter Profiles Data Consumers group</a></p>

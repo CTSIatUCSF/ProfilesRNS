@@ -135,7 +135,7 @@
                                         <th style="width: 140px">
                                             Research Topics
                                         </th>
-                                        <td colspan="2" class="fieldOptions">
+                                        <td colspan="2" class="fieldOptions noexcept">
                                             <asp:TextBox runat="server" ID="txtSearchFor" CssClass="inputText"></asp:TextBox>
                                             <asp:CheckBox runat="server" ID="chkExactphrase" />
                                         </td>
@@ -195,7 +195,7 @@
                                     <th>
                                         School
                                     </th>
-                                    <td colspan="2">
+                                    <td colspan="2" class="noexcept">
                                         <asp:Literal runat="server" ID="litInstitution"></asp:Literal>
                                         <asp:CheckBox runat="server" ID="institutionallexcept" />
 <!--
@@ -207,7 +207,7 @@
                                     <th>
                                         Department
                                     </th>
-                                    <td colspan="2">
+                                    <td colspan="2" class="noexcept">
                                         <asp:Literal runat="server" ID="litDepartment"></asp:Literal>
                                         <asp:CheckBox runat="server" ID="departmentallexcept" />
 <!--

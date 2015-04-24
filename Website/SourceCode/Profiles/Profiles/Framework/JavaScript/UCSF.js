@@ -124,7 +124,7 @@
     // for individual profile pages
     if ($('.basicInfo').length) {
         var badge = "<ul id='badge'>" + chattergroup + chatterfollow + "</ul>";
-        $(badge).insertAfter('.profilesContentPassive');
+        // $(badge).insertAfter('.profilesContentPassive');  DISABLED FOR UCI
         $(".badge").css('width', '192px');
         var login = $('#signinlink').attr('href');
         $('.chatterlink').attr('href', login);
@@ -134,7 +134,7 @@
     // for search form pages
     if ($('.nonavbar').length && !$('#FSSiteDescription').length) {
         var badge = "<ul id='badge'>" + chattergroup + chatterfollow + mentor + links + videointro + "</ul>";
-        $(badge).insertAfter('.profilesContentPassive');
+        // $(badge).insertAfter('.profilesContentPassive');  DISABLED FOR UCI
         var login = $('#signinlink').attr('href');
         $('.chatterlink').attr('href', login);
         $("#badge li").hide();

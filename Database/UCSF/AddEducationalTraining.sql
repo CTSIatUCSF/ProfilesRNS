@@ -46,6 +46,7 @@ UPDATE [Ontology.].[PropertyGroupProperty] SET CustomDisplayModule = N'<Module I
 	WHERE PropertyURI = 'http://vivoweb.org/ontology/core#educationalTraining';
 
 EXEC [Ontology.].UpdateDerivedFields;
+EXEC [Ontology.].[CleanUp] @Action = 'UpdateIDs';
 
 /****** Object:  StoredProcedure [Edit.Module].[CustomEditEducationalTraining.StoreItem]    Script Date: 08/28/2014 13:23:26 ******/
 SET ANSI_NULLS ON

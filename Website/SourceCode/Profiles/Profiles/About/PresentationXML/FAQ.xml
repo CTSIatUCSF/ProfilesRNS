@@ -38,7 +38,7 @@
   <li><a href="#missing">Why are there missing or incorrect publications in my profile? How can I correct this?</a></li>
   <li><a href="trials">Why are there missing or incorrect clinical studies in my profile? How can I correct this?</a></li>
   <li><a href="#update">How frequently are the data in USC Health Sciences Profiles updated?</a></li>
-  <li><a href="#keyword">Can I add/edit research, career and academic interests?</a></li>
+  <li><a href="#keyword">Can I add/edit research, career and academic interests?</a></li> 
   <li><a href="#mynetwork">Can I edit my co-authors or similar people lists?</a></li>
 <!--  <li><a href="#learn">How can I learn more about USC Health Sciences Profiles?</a></li> -->
   <li><a href="#ideas">Where should I send my ideas on how to improve the tool?</a></li>
@@ -49,7 +49,7 @@
 <h3 id="who">Who is listed in USC Health Sciences Profiles?</h3>
 
 <ul>
-  <li>USC Profiles was created for research networking and initially focused on adding USC faculty members within the health sciences.</li>
+  <li>USC Health Sciences Profiles was created for research networking and initially focused on adding USC faculty members within the health sciences.</li>
   <li>We have expanded the tool to include postdoctoral scholars and clinical research coordinators in the health sciences. In the near future, we plan to include additional groups of the USC community, as requested.</li>
   <li>The creation of a profiles page requires that an individual's data be in the USC GDS System, which is connected to the USC Workday system.</li>
 </ul>
@@ -123,13 +123,15 @@
 </ul>
 
 <h3 id="trials">Why are there missing or incorrect clinical studies in my profile? How can I correct this?</h3>
-<p>USC Health Sciences currently automatically displays clinical studies at USC that fulfill the following criteria:</p>
+<ul>
+  <li>USC Health Sciences currently automatically displays clinical studies at USC that fulfill the following criteria:
 <ul>
   <li>Registered at ClinicalTrials.gov</li>
   <li>Conducted by a USC PI (Primary Investigator) or a study site is located at USC</li>
   <li>Approved by the institutional IRB</li>
+</ul></li>
+<li>Please <a href="mailto:profiles@sc-ctsi.org">contact us</a> if your trials are missing or incorrect.</li> 
 </ul>
-<p>Please <a href="mailto:profiles@sc-ctsi.org">Contact us</a> if your trials are missing or incorrect.</p> 
 
 <h3 id="update">How frequently are the data in USC Health Sciences Profiles updated?</h3>
 <ul>

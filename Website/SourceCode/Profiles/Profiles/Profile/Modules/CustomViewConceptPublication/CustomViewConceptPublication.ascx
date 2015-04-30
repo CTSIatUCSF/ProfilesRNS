@@ -3,7 +3,7 @@
 <div class="PropertyGroupItem"  style='margin-bottom: 10px;margin-top:-30px;'>
 	<div class="PropertyItemHeader">
 		<a href="javascript:toggleBlock('propertyitem','conceptPub')"> 
-			<img id='plusImage' runat='server' style="border: none; text-decoration: none !important" border="0" /></a>
+			<img id='plusImage' runat='server' style="border: none; text-decoration: none !important" border="0" alt="expand / collapse" /></a>
 			Publications
 	</div>
 	<div class="PropertyGroupData">
@@ -16,7 +16,7 @@
 				<a rel="#cited">Most Cited</a> 
 				&nbsp; | &nbsp; 
 				<% } %>
-				<a rel="#newest">Most Recent</a> 
+				<a rel="#newest" tabindex="0">Most Recent</a> 
 				<% if (ShowOtherPub){ %>
 				&nbsp; | &nbsp; 
 				<a rel="#oldest">Earliest</a> 
@@ -27,7 +27,12 @@
 				<div style='padding-right: 3px;'><%= this.GetModuleParamString("TimelineCaption").Replace("@ConceptName", this.ConceptName) %></div>
 				<div id="publicationTimelineGraph">
 					<img id='timeline' runat='server' border='0' width='595' height='100'/>
+                    <div style="text-align:left">To see the data from this visualization as text, <a id="divShowTimelineTable" tabindex="0">click here.</a></div>
 				</div>
+                <div id="divTimelineTable" class="listTable" style="display:none;margin-top:12px;margin-bottom:8px;">
+		            <asp:Literal runat="server" ID="litTimelineTable"></asp:Literal>
+                    To return to the timeline, <a id="dirReturnToTimeline" tabindex="0">click here.</a>
+                </div>
 			</div>	
 			
 			<% if (ShowOtherPub) {%>
@@ -58,25 +63,72 @@
 	</div>
 </div>
 <script type="text/javascript">
-	$(function() {
-		// Add style to the first LI
-		$("div.publications ol").find("li:first").addClass("first");
-		// Remove timeline graph if no image found.
-		if ($('#publicationTimelineGraph img').attr('src') == undefined)
-			$('#publicationTimelineGraph img').remove();
+    $(function () {
+        // Add style to the first LI
+        $("div.publications ol").find("li:first").addClass("first");
+        // Remove timeline graph if no image found.
+        if ($('#publicationTimelineGraph img').attr('src') == undefined)
+            $('#publicationTimelineGraph img').remove();
 
-		$(".publicationList .anchor-tab a").bind("click", function() {
-			var $this = $(this);
-			if ($this.get(0).className != "selected") {
-				// Toggle link classes
-				$this.toggleClass("selected").siblings("a.selected").removeClass("selected");
+        $(".publicationList .anchor-tab a").bind("click", function () {
+            var $this = $(this);
+            if ($this.get(0).className != "selected") {
+                // Toggle link classes
+                $this.toggleClass("selected").siblings("a.selected").removeClass("selected");
 
-				// Show target element hiding currently visible
-				var target = $this.attr('rel');				
-				$("div.publicationList .toggle-vis:visible").hide();
-				$(target).fadeIn("fast");
-			}
-		});
-	});
+                // Show target element hiding currently visible
+                var target = $this.attr('rel');
+                $("div.publicationList .toggle-vis:visible").hide();
+                $(target).fadeIn("fast");
+            }
+        });
+
+        $(".publicationList .anchor-tab a").bind("keypress", function (e) {
+            if (e.keyCode == 13) {
+                var $this = $(this);
+                if ($this.get(0).className != "selected") {
+                    // Toggle link classes
+                    $this.toggleClass("selected").siblings("a.selected").removeClass("selected");
+
+                    // Show target element hiding currently visible
+                    var target = $this.attr('rel');
+                    $("div.publicationList .toggle-vis:visible").hide();
+                    $(target).fadeIn("fast");
+                }
+            }
+        });
+    });
+
+    $(function () {
+        $("#divShowTimelineTable").bind("click", function () {
+
+            $("#divTimelineTable").show();
+            $("#publicationTimelineGraph").hide();
+        });
+
+
+        jQuery("#divShowTimelineTable").bind("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $("#divTimelineTable").show();
+                $("#publicationTimelineGraph").hide();
+            }
+        });
+    });
+
+    $(function () {
+        $("#dirReturnToTimeline").bind("click", function () {
+
+            $("#divTimelineTable").hide();
+            $("#publicationTimelineGraph").show();
+        });
+
+
+        jQuery("#dirReturnToTimeline").bind("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $("#divTimelineTable").hide();
+                $("#publicationTimelineGraph").show();
+            }
+        });
+    });
 </script>
        

@@ -66,7 +66,7 @@
           <tr>
             <td style="width:33%;">
               <div style="float:right">
-                Sort&#160;<select id="selSort" onchange="JavaScript:DropdownSort();">
+                Sort&#160;<select id="selSort" title="Query Relevance" onchange="JavaScript:DropdownSort();">
                   <option value="">Query Relevance</option>
                   <xsl:choose>
                     <xsl:when test="$currentsort='name'">
@@ -159,7 +159,7 @@
               <div style="float: right;">
                 <input type="hidden" id="hiddenToggle" value="off" />
                 Show&#160;
-                <select id="selColSelect" style="width: 149px">
+                <select id="selColSelect" title="choose columns" style="width: 149px">
                   <option value="">(choose columns)</option>
                 </select>
                 <table>
@@ -170,18 +170,18 @@
                                                 background-color: #ffffff;z-index:5;position: absolute;">
                         <xsl:if test="$ShowInstitutions='true'">
                           <br />
-                          <input type="checkbox" id="chkInstitution" name="chkInstitution" value="Institution" class="otherOptionCheckBox"/>
+                          <input type="checkbox" id="chkInstitution" name="chkInstitution" value="Institution" class="otherOptionCheckBox" title="Institution"/>
                           <span>School</span>
                         </xsl:if>
                         <xsl:if test="$ShowDepartments='true'">
                           <br></br>
-                          <input type="checkbox" id="chkDepartment" name="chkDepartment" value="Department" class="otherOptionCheckBox"/>
+                          <input type="checkbox" id="chkDepartment" name="chkDepartment" value="Department" class="otherOptionCheckBox" title="Department"/>
                           <span>Department</span>
                         </xsl:if>
 
                         <xsl:if test="$ShowFacRank='true'">
                           <br></br>
-                          <input type="checkbox" id="chkFacRank" name="chkFacRank" value="Faculty Rank" class="otherOptionCheckBox"/>
+                          <input type="checkbox" id="chkFacRank" name="chkFacRank" value="Faculty Rank" class="otherOptionCheckBox" title="Faculty Rank"/>
                           <span>Researcher Type</span>
                         </xsl:if>
                       </div>
@@ -222,10 +222,10 @@
                             <xsl:when test="$currentsort='name'">
                               <xsl:choose>
                                 <xsl:when test="$currentsortdirection='desc'">
-                                  <img src="{$root}/framework/images/sort_desc.gif" border="0"/>
+                                  <img src="{$root}/framework/images/sort_desc.gif" border="0" alt="sort descending"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                  <img src="{$root}/framework/images/sort_asc.gif" border="0"/>
+                                  <img src="{$root}/framework/images/sort_asc.gif" border="0" alt="sort ascending"/>
                                 </xsl:otherwise>
                               </xsl:choose>
                             </xsl:when>
@@ -240,10 +240,10 @@
                               <xsl:when test="$currentsort='institution'">
                                 <xsl:choose>
                                   <xsl:when test="$currentsortdirection='desc'">
-                                    <img src="{$root}/framework/images/sort_desc.gif" border="0"/>
+                                    <img src="{$root}/framework/images/sort_desc.gif" border="0" alt="sort descending"/>
                                   </xsl:when>
                                   <xsl:otherwise>
-                                    <img src="{$root}/framework/images/sort_asc.gif" border="0"/>
+                                    <img src="{$root}/framework/images/sort_asc.gif" border="0" alt="sort ascending"/>
                                   </xsl:otherwise>
                                 </xsl:choose>
                               </xsl:when>
@@ -259,10 +259,10 @@
                               <xsl:when test="$currentsort='department'">
                                 <xsl:choose>
                                   <xsl:when test="$currentsortdirection='desc'">
-                                    <img src="{$root}/framework/images/sort_desc.gif" border="0"/>
+                                    <img src="{$root}/framework/images/sort_desc.gif" border="0" alt="sort descending"/>
                                   </xsl:when>
                                   <xsl:otherwise>
-                                    <img src="{$root}/framework/images/sort_asc.gif" border="0"/>
+                                    <img src="{$root}/framework/images/sort_asc.gif" border="0" alt="sort ascending"/>
                                   </xsl:otherwise>
                                 </xsl:choose>
                               </xsl:when>
@@ -279,10 +279,10 @@
                               <xsl:when test="$currentsort='facrank'">
                                 <xsl:choose>
                                   <xsl:when test="$currentsortdirection='desc'">
-                                    <img src="{$root}/framework/images/sort_desc.gif" border="0"/>
+                                    <img src="{$root}/framework/images/sort_desc.gif" border="0" alt="sort descending"/>
                                   </xsl:when>
                                   <xsl:otherwise>
-                                    <img src="{$root}/framework/images/sort_asc.gif" border="0"/>
+                                    <img src="{$root}/framework/images/sort_asc.gif" border="0" alt="sort ascending"/>
                                   </xsl:otherwise>
                                 </xsl:choose>
                               </xsl:when>
@@ -308,16 +308,26 @@
                               <xsl:when test="($position mod 2 = 1)">
                                 <xsl:attribute name="class">oddRow</xsl:attribute>
                                 <xsl:attribute name="onmouseout">HideDetails(this,1)</xsl:attribute>
+                                <xsl:attribute name="onblur">HideDetails(this,1)</xsl:attribute>
                                 <xsl:attribute name="onmouseover">
                                   ShowDetails('<xsl:value-of select="$nodeURI"/>',this)
-                                </xsl:attribute>
+                                  </xsl:attribute>
+                                <xsl:attribute name="onfocus">
+                                  ShowDetails('<xsl:value-of select="$nodeURI"/>',this)
+                                  </xsl:attribute>
+                                <xsl:attribute name="tabindex">0</xsl:attribute>
                               </xsl:when>
                               <xsl:otherwise>
                                 <xsl:attribute name="class">evenRow</xsl:attribute>
                                 <xsl:attribute name="onmouseout">HideDetails(this,0)</xsl:attribute>
+                                <xsl:attribute name="onblur">HideDetails(this,0)</xsl:attribute>
                                 <xsl:attribute name="onmouseover">
                                   ShowDetails('<xsl:value-of select="$nodeURI"/>',this)
                                 </xsl:attribute>
+                                <xsl:attribute name="onFocus">
+                                  ShowDetails('<xsl:value-of select="$nodeURI"/>',this)
+                                </xsl:attribute>
+                                <xsl:attribute name="tabindex">0</xsl:attribute>
                               </xsl:otherwise>
                             </xsl:choose>
                             <xsl:choose>
@@ -326,6 +336,18 @@
                                   <xsl:with-param name="doc" select="$document"></xsl:with-param>
                                   <xsl:with-param name="nodeURI" select="$nodeURI"></xsl:with-param>
                                   <xsl:with-param name="weight" select ="$weight"></xsl:with-param>
+                                  <xsl:with-param name="searchfor" select ="$searchfor"></xsl:with-param>
+                                  <xsl:with-param name="exactphrase" select ="$exactphrase"></xsl:with-param>
+                                  <xsl:with-param name="perpage" select ="$perpage"></xsl:with-param>
+                                  <xsl:with-param name="offset" select ="$offset"></xsl:with-param>
+                                  <xsl:with-param name="page" select ="$page"></xsl:with-param>
+                                  <xsl:with-param name="totalpages" select ="$totalpages"></xsl:with-param>
+                                  <xsl:with-param name="searchrequest" select ="$searchrequest"></xsl:with-param>
+                                  <xsl:with-param name="sortby" select ="$currentsort"></xsl:with-param>
+                                  <xsl:with-param name="sortdirection" select ="$currentsortdirection"></xsl:with-param>
+                                  <xsl:with-param name="showcolumns" select ="$showcolumns"></xsl:with-param>
+                                  <xsl:with-param name="root" select ="$root"></xsl:with-param>
+
                                 </xsl:call-template>
                               </xsl:when>
                               <xsl:otherwise>
@@ -346,13 +368,13 @@
             </td>
           </tr>
         </table>
-        
+
         <div class="listTablePagination" style="float: left; margin-left: 1px;">
           <table>
             <tbody>
               <tr>
                 <td>
-                  Per Page&#160;<select id="ddlPerPage" onchange="javascript:ChangePerPage()">
+                  Per Page&#160;<select id="ddlPerPage" title="Results per page" onchange="javascript:ChangePerPage()">
                     <xsl:choose>
                       <xsl:when test="$perpage='15'">
                         <option value="15" selected="true">15</option>
@@ -388,42 +410,42 @@
                   </select>
                 </td>
                 <td>
-                  &#160;&#160;Page&#160;<input size="1" type="textbox" value="{$page}" id="txtPageNumber" onchange="ChangePage()" onkeypress="JavaScript:changePage(event);" />&#160;of&#160;<xsl:value-of select="$totalpages"/>
+                  &#160;&#160;Page&#160;<input size="1" type="textbox" value="{$page}" id="txtPageNumber" onchange="ChangePage()" onkeypress="JavaScript:changePage(event);" title="select page"/>&#160;of&#160;<xsl:value-of select="$totalpages"/>
                 </td>
                 <td>
                   <xsl:choose>
                     <xsl:when test="$page&lt;$totalpages">
                       <a href="JavaScript:GotoLastPage();" class="listTablePaginationFL listTablePaginationA">
-                        <img src="{$root}/framework/images/arrow_last.gif" border="0"/>
+                        <img src="{$root}/framework/images/arrow_last.gif" border="0" alt="last"/>
                       </a>
                       <a href="javascript:GotoNextPage();" class="listTablePaginationPN listTablePaginationN listTablePaginationA">
-                        Next<img src="{$root}/framework/images/arrow_next.gif" border="0"/>
+                        Next<img src="{$root}/framework/images/arrow_next.gif" border="0" alt="next"/>
                       </a>
                     </xsl:when>
                     <xsl:otherwise>
                       <div class="listTablePaginationFL">
-                        <img src="{$root}/framework/images/arrow_last_d.gif" border="0"/>
+                        <img src="{$root}/framework/images/arrow_last_d.gif" border="0" alt=""/>
                       </div>
                       <div class="listTablePaginationPN listTablePaginationN">
-                        Next<img src="{$root}/framework/images/arrow_next_d.gif" border="0"/>
+                        Next<img src="{$root}/framework/images/arrow_next_d.gif" border="0" alt=""/>
                       </div>
                     </xsl:otherwise>
                   </xsl:choose>
                   <xsl:choose>
                     <xsl:when test="$page&gt;1">
                       <a href="JavaScript:GotoPreviousPage();" class="listTablePaginationPN listTablePaginationP listTablePaginationA">
-                        <img src="{$root}/framework/images/arrow_prev.gif" border="0"/>Prev
+                        <img src="{$root}/framework/images/arrow_prev.gif" border="0" alt="previous"/>Prev
                       </a>
                       <a href="JavaScript:GotoFirstPage();" class="listTablePaginationFL listTablePaginationA">
-                        <img src="{$root}/framework/images/arrow_first.gif" border="0"/>
+                        <img src="{$root}/framework/images/arrow_first.gif" border="0" alt="first"/>
                       </a>
                     </xsl:when>
                     <xsl:otherwise>
                       <div class="listTablePaginationPN listTablePaginationP">
-                        <img src="{$root}/framework/images/arrow_prev_d.gif" border="0"/>Prev
+                        <img src="{$root}/framework/images/arrow_prev_d.gif" border="0" alt=""/>Prev
                       </div>
                       <div class="listTablePaginationFL">
-                        <img src="{$root}/framework/images/arrow_first_d.gif" border="0"/>
+                        <img src="{$root}/framework/images/arrow_first_d.gif" border="0" alt=""/>
                       </div>
                     </xsl:otherwise>
                   </xsl:choose>
@@ -437,6 +459,7 @@
         <xsl:text>No matching results.</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
+
     <script language="JavaScript">
 
 
@@ -464,7 +487,7 @@
 
       function changePage(e) {
       if (e.keyCode == 13) {
-      ChangePage();      
+      ChangePage();
       }
       return false;
       }
@@ -528,13 +551,13 @@
       if(document.getElementById("selSort").value==''){
       sortby = document.getElementById("txtCurrentSort").value;
       }else{
-      sortby = document.getElementById("selSort").value;   
+      sortby = document.getElementById("selSort").value;
 
       if(sortby.indexOf("_")!=-1){
       var mySplitResult = sortby.split("_");
       sortby = mySplitResult[0];
       }
-      
+
       }
 
       sortdirection = document.getElementById("txtCurrentSortDirection").value;
@@ -658,13 +681,7 @@
       NavToPage();
       }
 
-      function WhyLink(uri){
-
-      GetPageData();
       window.location = root + '/search/default.aspx?searchtype=whypeople<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>nodeuri=' + uri + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchfor=' + searchfor + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>exactphrase=' + exactphrase + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>perpage=' + perpage + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>offset=' + offset + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>page=' + page + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>totalpages=' + totalpages + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchrequest=' + searchrequest +  '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortby=' + sortby+ '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortdirection=' + sortdirection;
-
-      }
-
       function ShowDetails(nodeURI,obj){
 
       doListTableRowOver(obj);
@@ -865,7 +882,9 @@
 
     <xsl:if test="$department='true'">
       <td class="alignLeft" style="width:250px">
+
         <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$positon]/prns:positionInDepartment/@rdf:resource]/rdfs:label"/>
+
       </td>
     </xsl:if>
 
@@ -874,11 +893,15 @@
       <td class="alignLeft" style="width:250px;">
         <xsl:choose>
           <xsl:when test ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label!=''">
+
             <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label"/>
+
           </xsl:when>
           <xsl:otherwise>
             <center>
+
               --
+
             </center>
           </xsl:otherwise>
         </xsl:choose>
@@ -893,21 +916,34 @@
     <xsl:param name="doc"></xsl:param>
     <xsl:param name="nodeURI"></xsl:param>
     <xsl:param name="weight"></xsl:param>
+    <xsl:param name="searchfor"></xsl:param>
+    <xsl:param name="exactphrase"></xsl:param>
+    <xsl:param name="perpage"></xsl:param>
+    <xsl:param name="offset"></xsl:param>
+    <xsl:param name="page"></xsl:param>
+    <xsl:param name="totalpages"></xsl:param>
+    <xsl:param name="searchrequest"></xsl:param>
+    <xsl:param name="sortby"></xsl:param>
+    <xsl:param name="sortdirection"></xsl:param>
+    <xsl:param name="showcolumns"></xsl:param>
+    <xsl:param name="root"></xsl:param>
+
+
     <xsl:variable name="positon" select="prns:personInPrimaryPosition/@rdf:resource"></xsl:variable>
     <xsl:variable name="bpositon" select="$doc/rdf:Description[@rdf:about=$positon]/vivo:positionInOrganization/@rdf:resource"></xsl:variable>
 
     <xsl:variable name="institutionlabel" select="$doc/rdf:Description[@rdf:about=$positon]/vivo:positionInOrganization/@rdf:resource"></xsl:variable>
-    <td class="alignLeft" style="width:200px" onclick="javascript:GoTo('{$nodeURI}')">
-
-      <xsl:value-of select="prns:fullName"/>
+    <td class="alignLeft" style="width:200px">
+      <a class="listTableLink" href="{$nodeURI}">
+        <xsl:value-of select="prns:fullName"/>
+      </a>
 
     </td>
     <xsl:if test="$institution='true'">
-      <td class="alignLeft" style="width:250px" onclick="javascript:GoTo('{$nodeURI}')">
+      <td class="alignLeft" style="width:250px">
 
         <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$institutionlabel]"/>
 
-        
       </td>
     </xsl:if>
     <xsl:if test="$department='true'">
@@ -923,11 +959,15 @@
       <td class="alignLeft" style="width:250px">
         <xsl:choose>
           <xsl:when test ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label!=''">
+
             <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label"/>
+
           </xsl:when>
           <xsl:otherwise>
             <center>
+
               --
+
             </center>
           </xsl:otherwise>
         </xsl:choose>
@@ -937,7 +977,7 @@
 
 
     <td valign="middle" style="width:100px" >
-      <a class="listTableLink"  href="Javascript:WhyLink('{$nodeURI}');">
+      <a class="listTableLink"  href="{$root}/search/default.aspx?searchtype=whypeople&amp;nodeuri={$nodeURI}&amp;searchfor={$searchfor}&amp;exactphrase={$exactphrase}&amp;perpage={$perpage}&amp;offset={$offset}&amp;page={$page}&amp;totalpages={$totalpages}&amp;searchrequest={$searchrequest}&amp;sortby={$sortby}&amp;sortdirection={$sortdirection}&amp;showcolumns={$showcolumns}">
         Why?
       </a>
 

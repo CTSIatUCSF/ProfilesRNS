@@ -26,10 +26,8 @@
                         </asp:Panel>
                         <br />
                         <asp:Panel runat="server" ID="pnlEditAwards">
-                            <asp:ImageButton runat="server" ID="imbAddArror" ImageUrl="../../../Framework/Images/icon_squareArrow.gif"
-                                OnClick="btnEditAwards_OnClick" />&nbsp;
-                            <asp:LinkButton ID="btnEditAwards" runat="server" OnClick="btnEditAwards_OnClick"
-                                CssClass="profileHypLinks">Add award(s)</asp:LinkButton>
+                            <asp:LinkButton ID="btnEditAwards" runat="server" OnClick="btnEditAwards_OnClick" 
+                                CssClass="profileHypLinks"><asp:Image runat="server" ID="imbAddArror" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;Add award(s)</asp:LinkButton>
                         </asp:Panel>
                     </div>
                 </td>
@@ -58,30 +56,30 @@
                             <tr>
                                 <td>
                                     <b>Award Year(s)</b><br />
-                                    <asp:TextBox ID="txtStartYear" runat="server" MaxLength="4" Width="60px" TabIndex="1"></asp:TextBox>
+                                    <asp:TextBox ID="txtStartYear" runat="server" MaxLength="4" Width="60px" title="start year"></asp:TextBox>
                                     &nbsp;<b>-</b>&nbsp;
-                                    <asp:TextBox ID="txtEndYear" runat="server" MaxLength="4" Width="60px" TabIndex="2"></asp:TextBox>
+                                    <asp:TextBox ID="txtEndYear" runat="server" MaxLength="4" Width="60px" title="end year"></asp:TextBox>
                                 </td>
                                 <td>
                                     <b>Name (required)</b><br />
-                                    <asp:TextBox ID="txtAwardName" runat="server" MaxLength="100" TabIndex="3" Width="220px"></asp:TextBox>
+                                    <asp:TextBox ID="txtAwardName" runat="server" MaxLength="100" Width="220px" title="award name"></asp:TextBox>
                                 </td>
                                 <td>
                                     <b>Institution</b><br />
-                                    <asp:TextBox ID="txtInstitution" runat="server" MaxLength="100" TabIndex="4" Width="220px"></asp:TextBox>
+                                    <asp:TextBox ID="txtInstitution" runat="server" MaxLength="100" Width="220px" title="institution"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="3">
                                     <div style="padding-bottom: 5px; text-align: left;">
                                         <asp:LinkButton ID="btnInsertAward" runat="server" CausesValidation="False" OnClick="btnInsert_OnClick"
-                                            Text="Save and add another" TabIndex="5"></asp:LinkButton>
+                                            Text="Save and add another" ></asp:LinkButton>
                                         &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;
                                         <asp:LinkButton ID="btnInsertAward2" runat="server" CausesValidation="False" OnClick="btnInsertClose_OnClick"
-                                            Text="Save and Close" TabIndex="6"></asp:LinkButton>
+                                            Text="Save and Close" ></asp:LinkButton>
                                         &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;
                                         <asp:LinkButton ID="btnInsertCancel" runat="server" CausesValidation="False" OnClick="btnInsertCancel_OnClick"
-                                            Text="Close" TabIndex="7"></asp:LinkButton>
+                                            Text="Close"></asp:LinkButton>
                                     </div>
                                 </td>
                             </tr>
@@ -99,7 +97,7 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="Year&nbsp;of Award">
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtYr1" runat="server" MaxLength="4" Text='<%# Bind("StartDate") %>'></asp:TextBox>
+                                        <asp:TextBox ID="txtYr1" runat="server" MaxLength="4" Text='<%# Bind("StartDate") %>' title="Year of award"></asp:TextBox>
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="Label1" runat="server" Text='<%# Bind("StartDate") %>'></asp:Label>
@@ -110,7 +108,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Thru Year">
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtYr2" runat="server" MaxLength="4" Text='<%# Bind("EndDate") %>'></asp:TextBox>
+                                        <asp:TextBox ID="txtYr2" runat="server" MaxLength="4" Text='<%# Bind("EndDate") %>' title="Through year"></asp:TextBox>
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="Label2" runat="server" Text='<%# Bind("EndDate") %>'></asp:Label>
@@ -121,7 +119,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Name">
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtAwardName" runat="server" MaxLength="100" Text='<%# Bind("Name") %>'></asp:TextBox>
+                                        <asp:TextBox ID="txtAwardName" runat="server" MaxLength="100" Text='<%# Bind("Name") %>' title="Name"></asp:TextBox>
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="Label3" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
@@ -130,7 +128,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Institution">
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtAwardInst" runat="server" MaxLength="100" Text='<%# Bind("Institution") %>'></asp:TextBox>
+                                        <asp:TextBox ID="txtAwardInst" runat="server" MaxLength="100" Text='<%# Bind("Institution") %>' title="Institution"></asp:TextBox>
                                         <asp:HiddenField runat="server" ID="hdURI" />
                                     </EditItemTemplate>
                                     <ItemTemplate>
@@ -146,11 +144,11 @@
                                             <tr>
                                                 <td>
                                                     <asp:ImageButton ID="lnkUpdate" runat="server" ImageUrl="~/Edit/Images/button_save.gif"
-                                                        CausesValidation="True" CommandName="Update" Text="Update"></asp:ImageButton>
+                                                        CausesValidation="True" CommandName="Update" Text="Update" AlternateText="Update"></asp:ImageButton>
                                                 </td>
                                                 <td>
                                                     <asp:ImageButton ID="lnkCancel" runat="server" ImageUrl="~/Edit/Images/button_cancel.gif"
-                                                        CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:ImageButton>
+                                                        CausesValidation="False" CommandName="Cancel" Text="Cancel" AlternateText="Cancel"></asp:ImageButton>
                                                 </td>
                                             </tr>
                                         </table>
@@ -163,20 +161,20 @@
                                                 <tr>
                                                     <td>
                                                         <asp:ImageButton OnClick="ibUp_Click" runat="server" CommandArgument="up" CommandName="action"
-                                                            ID="ibUp" ImageUrl="~/Edit/Images/icon_up.gif" />
+                                                            ID="ibUp" ImageUrl="~/Edit/Images/icon_up.gif" AlternateText="Move Up" />
                                                     </td>
                                                     <td>
                                                         <asp:ImageButton runat="server" OnClick="ibDown_Click" ID="ibDown" CommandArgument="down"
-                                                            CommandName="action" ImageUrl="~/Edit/Images/icon_down.gif" />
+                                                            CommandName="action" ImageUrl="~/Edit/Images/icon_down.gif" AlternateText="Move Down" />
                                                     </td>
                                                     <td>
                                                         <asp:ImageButton ID="lnkEdit" runat="server" ImageUrl="~/Edit/Images/icon_edit.gif"
-                                                            CausesValidation="False" CommandName="Edit" Text="Edit"></asp:ImageButton>
+                                                            CausesValidation="False" CommandName="Edit" Text="Edit" AlternateText="Edit"></asp:ImageButton>
                                                     </td>
                                                     <td>
                                                         <asp:ImageButton ID="lnkDelete" runat="server" ImageUrl="~/Edit/Images/icon_delete.gif"
                                                             CausesValidation="False" CommandName="Delete" OnClientClick="Javascript:return confirm('Are you sure you want to delete this entry?');"
-                                                            Text="X"></asp:ImageButton>
+                                                            Text="X" AlternateText="Delete"></asp:ImageButton>
                                                     </td>
                                                 </tr>
                                             </table>

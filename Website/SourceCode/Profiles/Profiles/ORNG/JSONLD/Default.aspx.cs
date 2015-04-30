@@ -71,8 +71,12 @@ namespace Profiles.ORNG.JSONLD
             URL = ORNGSettings.getSettings().ShindigURL + "/rest/jsonld?userId=" + HttpUtility.UrlEncode(URL);
 
             HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create(URL);
-//            myReq.Accept = "application/json"; // "application/ld+json";
-            String jsonProfiles = new StreamReader(myReq.GetResponse().GetResponseStream()).ReadToEnd();
+            myReq.Accept = "application/json"; // "application/ld+json";
+            String jsonProfiles = "";
+            using (StreamReader sr = new StreamReader(myReq.GetResponse().GetResponseStream())) 
+            {
+                jsonProfiles = sr.ReadToEnd();
+            }
 
             //WebClient client = new WebClient();
             //String jsonProfiles = client.DownloadString(URL);

@@ -44,11 +44,6 @@ namespace Profiles.Edit.Modules.SecurityOptions
         {
             List<SecurityItem> si = new List<SecurityItem>();
 
-            if (this.PredicateURI.StartsWith(Profiles.ORNG.Utilities.OpenSocialManager.ORNG_ONTOLOGY_PREFIX))
-            {
-                si.Add(new SecurityItem("Hidden", "Not visible on your profile page", 0));
-            }
-
             foreach (XmlNode securityitem in this.SecurityGroups.SelectNodes("SecurityGroupList/SecurityGroup"))
             {
                 si.Add(new SecurityItem(securityitem.SelectSingleNode("@Label").Value,
@@ -67,15 +62,19 @@ namespace Profiles.Edit.Modules.SecurityOptions
                 RadioButton rb = (RadioButton)e.Row.FindControl("rdoSecurityOption");
                 HiddenField hf = (HiddenField)e.Row.FindControl("hdnPrivacyCode");
                 RadioButton rdoSecurityOption = (RadioButton)e.Row.FindControl("rdoSecurityOption");
+                Literal l = (Literal) e.Row.FindControl("rdoSecurityOptionLabel");
+                HiddenField hl = (HiddenField)e.Row.FindControl("hdnLabel");
 
                 rdoSecurityOption.GroupName = "SecurityOption";
 
                 hf.Value = si.PrivacyCode.ToString();
+                l.Text = "<label for=\"" + rb.UniqueID.Replace("$", "_") + "\">" + si.Label + "</label>";
+                hl.Value = si.Label;
 
                 if (si.PrivacyCode == this.PrivacyCode)
                 {
                     rb.Checked = true;
-                    lbSecurityOptions.Text = "Edit Visibility (" + si.Label + ")";
+                    litVisibility.Text = "(" + si.Label + ")";
                 }
                 else
                 {
@@ -84,6 +83,19 @@ namespace Profiles.Edit.Modules.SecurityOptions
             }
         }
         protected void imbSecurityOptions_OnClick(object sender, EventArgs e)
+        {
+            if (Request.Form["enterkey"] != "")
+            {
+                Session["pnlSecurityOptions.Visible"] = true;
+            }
+
+            ToggleDisplay();
+
+            if (BubbleClick != null)
+                BubbleClick(this, e);
+        }
+
+        private void ToggleDisplay()
         {
             if (Session["pnlSecurityOptions.Visible"] == null)
             {
@@ -97,10 +109,8 @@ namespace Profiles.Edit.Modules.SecurityOptions
                 imbSecurityOptions.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
                 Session["pnlSecurityOptions.Visible"] = null;
             }
-
-            if (BubbleClick != null)
-                BubbleClick(this, e);
         }
+
         protected void rdoSecurityOption_OnCheckedChanged(object sender, EventArgs e)
         {
             Session["pnlSecurityOptions.Visible"] = null;
@@ -115,30 +125,15 @@ namespace Profiles.Edit.Modules.SecurityOptions
             RadioButton rb = (RadioButton)sender;
             GridViewRow row = (GridViewRow)rb.NamingContainer;  
             ((RadioButton)row.FindControl("rdoSecurityOption")).Checked = true;
-            lbSecurityOptions.Text = "Edit Visibility (" + row.Cells[1].Text + ")";
+
+            litVisibility.Text = "(" + ((HiddenField)row.Cells[0].FindControl("hdnLabel")).Value + ")";
             UpdateSecuritySetting(((HiddenField)row.Cells[0].FindControl("hdnPrivacyCode")).Value);
         }
 
         private void UpdateSecuritySetting(string securitygroup)
         {
-            // maybe be able to make this more general purpose
-            if (this.PredicateURI.StartsWith(Profiles.ORNG.Utilities.OpenSocialManager.ORNG_ONTOLOGY_PREFIX))
-            {
-                Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
-                if ("0".Equals(securitygroup))
-                {
-                    data.RemovePersonalGadget(this.Subject, this.PredicateURI);
-                }
-                else
-                {
-                    data.AddPersonalGadget(this.Subject, this.PredicateURI);
-                }
-            }
-            if (!"0".Equals(securitygroup))
-            {
-                Edit.Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
-                data.UpdateSecuritySetting(this.Subject, data.GetStoreNode(this.PredicateURI), Convert.ToInt32(securitygroup));
-            }
+            Edit.Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
+            data.UpdateSecuritySetting(this.Subject, data.GetStoreNode(this.PredicateURI), Convert.ToInt32(securitygroup));
             Framework.Utilities.Cache.AlterDependency(this.Subject.ToString());
         }
 

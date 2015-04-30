@@ -49,8 +49,8 @@ namespace Profiles.ORNG.Utilities
             }
             else  // must be a sandbox gadget
             {
-                this.view = "";
-                this.chromeId = "gadgets-test-" + gadgetSpec.GetAppId();
+                this.view = "sandbox";
+                this.chromeId = "gadgets-sandbox-" + gadgetSpec.GetAppId();
                 this.optParams = "{}";
             }
         }
@@ -168,10 +168,7 @@ namespace Profiles.ORNG.Utilities
                 }
                 finally
                 {
-                    if (s != null)
-                    {
-                        sockets.PutSocket(s);
-                    }
+                    if(sockets!= null && s != null) sockets.PutSocket(s);
                 }
             }
             return page.TrimEnd();

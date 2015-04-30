@@ -67,13 +67,13 @@ namespace Profiles.Edit.Modules.CustomEditMainImage {
         protected global::System.Web.UI.WebControls.PlaceHolder phAddCustomPhoto;
         
         /// <summary>
-        /// btnImgAddCustomPhoto control.
+        /// aaa control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnImgAddCustomPhoto;
+        protected global::System.Web.UI.WebControls.ImageButton aaa;
         
         /// <summary>
         /// btnAddCustomPhoto control.
@@ -83,6 +83,15 @@ namespace Profiles.Edit.Modules.CustomEditMainImage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnAddCustomPhoto;
+        
+        /// <summary>
+        /// btnImgAddCustomPhoto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image btnImgAddCustomPhoto;
         
         /// <summary>
         /// imgPhoto control.

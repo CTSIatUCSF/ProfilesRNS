@@ -76,15 +76,6 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor {
         protected global::System.Web.UI.WebControls.Panel pnlEditAwards;
         
         /// <summary>
-        /// imbAddArror control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imbAddArror;
-        
-        /// <summary>
         /// btnEditAwards control.
         /// </summary>
         /// <remarks>
@@ -92,6 +83,15 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnEditAwards;
+        
+        /// <summary>
+        /// imbAddArror control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imbAddArror;
         
         /// <summary>
         /// RptrEditAwards control.

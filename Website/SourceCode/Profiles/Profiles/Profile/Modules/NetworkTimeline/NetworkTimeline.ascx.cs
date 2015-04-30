@@ -190,6 +190,59 @@ namespace Profiles.Profile.Modules.NetworkTimeline
 					}					
 				}
 				timelineDetails.InnerHtml = sb.ToString();
+
+                string altText = "";
+                StringBuilder tableText = new StringBuilder();
+                tableText.AppendLine("<div class=\"listTable\" style=\"margin-top: 12px, margin-bottom:8px \"><table>");
+                tableText.AppendLine("<tr><th>Name</th><th>Number of Publications</th><th>First Publication Year</th><th>Most Recent Publication Year</th><th>Average Publication Date</th></tr>");
+
+                switch (timelineType)
+                {
+                    case "CoAuthor":
+                        for (i = 0; i < dataView.Count; i++)
+                        {
+                            bool run = false;
+                            if (i == dataView.Count - 1) run = true;
+                            else if (dataView[i]["label"].ToString() != dataView[i + 1]["label"].ToString()) run = true;
+                            if(run)
+                            {
+                                string l = dataView[i]["label"].ToString();
+                                double AvgX = Double.Parse(dataView[i]["AvgX"].ToString());
+                                double Avg = (double)a + (double)j * AvgX;
+                                int AvgYear = (int)Avg;
+                                int AvgMonth = (int)((Avg - (double)AvgYear) * (double)12);
+                                string month = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(AvgMonth + 1);
+                                altText = altText + l + ", " + dataView[i]["PublicationCount"].ToString() + " publications between " + dataView[i]["FirstPublicationYear"].ToString() +
+                                    " and " + dataView[i]["LastPublicationYear"].ToString() + ", average publication date " + month + " " + AvgYear + ". ";
+                                tableText.AppendLine("<tr><td style=\"text-align:left\"><a href=\"" + dataView[i]["ObjectURI"].ToString() + "\">" + l + "</a></td><td>" + dataView[i]["PublicationCount"].ToString() + "</td><td>" + dataView[i]["FirstPublicationYear"].ToString() + "</td><td>" + dataView[i]["LastPublicationYear"].ToString() + "</td><td style=\"text-align:left\">" + month + " " + AvgYear + "</td></tr>");
+                            }
+                        }
+                        break;
+                    case "Concept":
+                        for (i = 0; i < dataView.Count; i++)
+                        {
+                            bool run = false;
+                            if (i == dataView.Count - 1) run = true;
+                            else if (dataView[i]["label"].ToString() != dataView[i + 1]["label"].ToString()) run = true;
+                            if(run)
+                            {
+                                string l = dataView[i]["label"].ToString();
+                                double AvgX = Double.Parse(dataView[i]["AvgX"].ToString());
+                                double Avg = (double)a + (double)j * AvgX;
+                                int AvgYear = (int)Avg;
+                                int AvgMonth = (int)((Avg - (double)AvgYear) * (double)12);
+                                string month = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(AvgMonth + 1);
+                                altText = altText + l + ", " + dataView[i]["NumPubsThis"].ToString() + " publications between " + dataView[i]["FirstPublicationYear"].ToString() +
+                                    " and " + dataView[i]["LastPublicationYear"].ToString() + ", average publication date " + month + " " + AvgYear + ". ";
+                                tableText.AppendLine("<tr><td style=\"text-align:left\"><a href=\"" + dataView[i]["ObjectURI"].ToString() + "\">" + l + "</a></td><td>" + dataView[i]["NumPubsThis"].ToString() + "</td><td>" + dataView[i]["FirstPublicationYear"].ToString() + "</td><td>" + dataView[i]["LastPublicationYear"].ToString() + "</td><td style=\"text-align:left\">" + month + " " + AvgYear + "</td></tr>");
+
+                            }
+                        }
+                        break;
+                }
+                tableText.AppendLine("</table></div>");
+                timelineImage.Alt = altText;
+                litNetworkText.Text = tableText.ToString();
 			}
 
 

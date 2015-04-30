@@ -8,10 +8,10 @@
     <script type="text/javascript">
       <xsl:text disable-output-escaping="yes">
       var hasClickedListTable = false;
-      function DISABLEDdoListTableRowOver(x) {
+      function doListTableRowOver(x) {
       //x.className = 'overRow';
-      //x.style.backgroundColor = '#5A719C';
-      //x.style.color = '#FFF';
+      x.style.backgroundColor = '#5A719C';
+      x.style.color = '#FFF';
       for (var i = 0; i &lt; x.childNodes.length; i++) {
       if (x.childNodes[i].childNodes.length > 0) {
       if (x.childNodes[i].childNodes[0].className == 'listTableLink') {
@@ -20,7 +20,7 @@
       }
       }
       }
-      function DISABLEDdoListTableRowOut(x, eo) {
+      function doListTableRowOut(x, eo) {
       if (eo == 1) {
       //x.className = 'oddRow';
       x.style.backgroundColor = '#FFFFFF';
@@ -37,11 +37,11 @@
       }
       }
       }
-      function DISABLEDdoListTableCellOver(x) {
+      function doListTableCellOver(x) {
       //x.className = 'listTableLinkOver';
-      //x.style.backgroundColor = '#36C';
+      x.style.backgroundColor = '#36C';
       }
-      function DISABLEDdoListTableCellOut(x) {
+      function doListTableCellOut(x) {
       //x.className = 'listTableLink';
       x.style.backgroundColor = '';
       }
@@ -52,9 +52,6 @@
       window.location = '/profile/'+uri;
       }
 
-      function doURL(x){
-      if (!hasClickedListTable) { document.location = x;}
-      }
 </xsl:text>
     </script>
     Concepts are listed by decreasing relevance which is based on many factors, including how many publications the person wrote about that topic, how long ago those publications were written, and how many publications other people have written on that same topic.
@@ -87,29 +84,37 @@
             <xsl:variable name="connectionResource" select="./prns:hasConnectionDetails/@rdf:resource"/>
             <xsl:variable name="whyLink" select="./@rdf:about"/>
             <xsl:variable name="detailsResource" select="./prns:hasConnectionDetails/@rdf:resource"/>
-            <tr  onclick="doURL('{$objectResource}')">
+            <tr  onclick="doURL('{$objectResource}')" onkeypress="if (event.keyCode == 13) doURL('{$objectResource}')" onmouseover="doListTableRowOver(this)" onfocus="doListTableRowOver(this)">
               <xsl:choose>
                 <xsl:when test="position() mod 2 = 0">
                   <xsl:attribute name="class">
                     <xsl:value-of select="'evenRow'"/>
                   </xsl:attribute>
-<!--                  <xsl:attribute name="onmouseout">
+                  <xsl:attribute name="onmouseout">
                     <xsl:value-of  select="'doListTableRowOut(this,0)'"/>
-                  </xsl:attribute>  -->
+                  </xsl:attribute>
+                  <xsl:attribute name="onblur">
+                    <xsl:value-of  select="'doListTableRowOut(this,0)'"/>
+                  </xsl:attribute>                  
+                  <xsl:attribute name="tabindex">0</xsl:attribute>
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:attribute name="class">
                     <xsl:value-of select="'oddRow'"/>
                   </xsl:attribute>
-<!--                  <xsl:attribute name="onmouseout">
+                  <xsl:attribute name="onmouseout">
                     <xsl:value-of  select="'doListTableRowOut(this,1)'"/>
-                  </xsl:attribute>  -->
+                  </xsl:attribute>
+                  <xsl:attribute name="onblur">
+                    <xsl:value-of  select="'doListTableRowOut(this,1)'"/>
+                  </xsl:attribute>
+                  <xsl:attribute name="tabindex">0</xsl:attribute>
                 </xsl:otherwise>
               </xsl:choose>
               <td style="text-align: left;" class="alignLeft">
-                <div>
+                <a class="listTableLink" href="{$objectResource}">
                   <xsl:value-of select="/rdf:RDF/rdf:Description[@rdf:about=$objectResource]/rdfs:label"/>
-                </div>
+                </a>
               </td>
               <td>
                 <div >
@@ -133,7 +138,7 @@
                 </div>
               </td>
               <td>
-                  <a class="listTableLink"  href="Javascript:window.location.assign('{$whyLink}');">
+                <a class="listTableLink"  href="{$whyLink}">
                   Why?
                 </a>
               </td>

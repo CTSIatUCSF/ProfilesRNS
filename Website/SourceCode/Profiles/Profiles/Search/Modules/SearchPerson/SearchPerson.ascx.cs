@@ -227,12 +227,15 @@ namespace Profiles.Search.Modules.SearchPerson
             ddl.ID = "ddlChkList";
             ListItem lstItem = new ListItem();
             ddl.Items.Insert(0, lstItem);
+            ddl.Attributes.Add("title", "faculty type");
             ddl.Width = new Unit(250);
             ddl.Height = new Unit(20);
-            ddl.Attributes.Add("onmousedown", "showdivonClick()");
+            ddl.Attributes.Add("onclick", "showdivonClick()");
+            ddl.Attributes.Add("onkeypress", "showdivonClick()");
             CheckBoxList chkBxLst = new CheckBoxList();
             chkBxLst.ID = "chkLstItem";
             chkBxLst.Attributes.Add("onmouseover", "showdiv()");
+            chkBxLst.Attributes.Add("onfocus", "if ( event.keyCode == 13) showdiv()");
             List<GenericListItem> dtListItem = data.GetFacultyRanks();
             int rowNo = dtListItem.Count;
             string lstValue = string.Empty;
@@ -241,7 +244,7 @@ namespace Profiles.Search.Modules.SearchPerson
 
 
             litFacRankScript.Text = "<script>";
-            for (int i = 0; i < rowNo; i++)
+            for (int i = 0; i < rowNo - 1; i++)
             {
                 lstValue = dtListItem[i].Text;
                 lstID = dtListItem[i].Value;
@@ -335,13 +338,6 @@ namespace Profiles.Search.Modules.SearchPerson
             {
                 department = Request.Form["department"];
                 departmentallexcept = Request.Form[this.departmentallexcept.UniqueID];
-            }
-
-
-            if (!Request.Form["division"].IsNullOrEmpty())
-            {
-                division = Request.Form["division"];
-                divisionallexcept = Request.Form[this.divisionallexcept.UniqueID];
             }
 
             string otherfilters = Request.Form["hdnSelectedText"];

@@ -66,7 +66,7 @@
 				int even_odd_flag = (cnt % 2 == 0) ? 0 : 1;
 				cnt++;
 			%>				
-			<tr class="<%= even_odd %>" onmouseover="doListTableRowOver(this);" onmouseout="doListTableRowOut(this,<%= even_odd_flag %>);" onclick="doGoMesh('<%= concept.ConceptProfile %>');">
+			<tr class="<%= even_odd %>" onmouseover="doListTableRowOver(this);" onfocus="doListTableRowOver(this);" onmouseout="doListTableRowOut(this,<%= even_odd_flag %>);" onblur="doListTableRowOut(this,<%= even_odd_flag %>);" onclick="doGoMesh('<%= concept.ConceptProfile %>');" onkeypress="if (event.keyCode == 13) doGoMesh('<%= concept.ConceptProfile %>');" tabindex="0">
 				<td class="alignLeft" style="text-align:left;">
 					<div style="width:353px;"><%= concept.MeshTerm %></div>
 				</td>

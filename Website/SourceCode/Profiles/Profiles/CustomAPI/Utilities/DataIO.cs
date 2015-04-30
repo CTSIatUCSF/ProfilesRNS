@@ -38,7 +38,7 @@ namespace Profiles.CustomAPI.Utilities
             stats.Add("profiles", GetProfilesCount());
             stats.Add("publications", GetPublicationsCount());
             stats.Add("edited", GetEditedCount());
-            stats.Add("links", GetLinksCount());
+            //stats.Add("links", GetLinksCount());
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             return serializer.Serialize(stats);
         }
@@ -68,11 +68,6 @@ namespace Profiles.CustomAPI.Utilities
             return GetCount(sql);
         }
 
-        public int GetLinksCount()
-        {
-            return GetAppRegistryCount(103);
-        }
-
         public string GetPublicationInclusionSource(int personId, string PMID)
         {
             if (PMID == null)
@@ -93,18 +88,6 @@ namespace Profiles.CustomAPI.Utilities
                 }
             }
             return "";
-        }
-
-        private int GetAppRegistryCount(int appId)
-        {
-            Nullable<int> cnt = (Nullable<int>)Framework.Utilities.Cache.FetchObject("ORNG._appRegistryCount_" + appId);
-            if (cnt == null) 
-            {
-                cnt = GetCount("select count(*) from [ORNG.].[AppRegistry] where appId = " + appId + ";");
-                Framework.Utilities.Cache.Set("ORNG._appRegistryCount_" + appId, (Nullable<int>)cnt);
-            }
-
-            return cnt.Value;
         }
 
         private int GetCount(string sql)

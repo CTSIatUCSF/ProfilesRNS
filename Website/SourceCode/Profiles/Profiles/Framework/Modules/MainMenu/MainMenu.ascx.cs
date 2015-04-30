@@ -115,7 +115,6 @@ namespace Profiles.Framework.Modules.MainMenu
                         file = file.Substring(0, file.Length - 1);
 
                         menulist.Append("<li><a href=\"" + uri + "/" + file + ".rdf\" target=\"_blank\">" + "Export RDF" + "</a>&nbsp;<a style='border: none;' href='" + Root.Domain + "/about/default.aspx?tab=data'><img style='border-style: none' src='" + Root.Domain + "/Framework/Images/info.png' width='11' height='11' border='0'></a></li>");
-
                         if (base.MasterPage != null)
                         {
                             System.Web.UI.HtmlControls.HtmlContainerControl Head1;

@@ -30,10 +30,11 @@
                     <div style="padding: 10px 0px;">
                         <security:Options runat="server" ID="securityOptions"></security:Options>
                         <br />
-                        <asp:ImageButton runat="server" ID="imbAddArror" ImageUrl="../../../Framework/Images/icon_squareArrow.gif"
-                            OnClick="btnEditProperty_OnClick" />&nbsp;
                         <asp:LinkButton ID="btnEditProperty" runat="server" CommandArgument="Show" OnClick="btnEditProperty_OnClick"
-                            CssClass="profileHypLinks">Add Property</asp:LinkButton>
+                            CssClass="profileHypLinks">
+                            <asp:Image runat="server" ID="imbAddArror" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;
+                            <asp:Literal runat="server" ID="litEditProperty">Add Property</asp:Literal>                           
+                        </asp:LinkButton>
                     </div>
                 </td>
             </tr>
@@ -51,20 +52,19 @@
                         <table border="0" cellspacing="2" cellpadding="4">
                             <tr>
                                 <td>
-                                    <asp:TextBox ID="txtLabel" runat="server" Rows="5" Width="500px" TextMode="MultiLine"
-                                        TabIndex="1"></asp:TextBox>
+                                    <asp:TextBox ID="txtLabel" runat="server" Rows="5" Width="500px" TextMode="MultiLine" title="Enter Text"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="3">
                                     <div style="padding-bottom: 5px; text-align: left;">
                                         <asp:LinkButton ID="btnInsertProperty" runat="server" CausesValidation="False" OnClick="btnInsert_OnClick"
-                                            Text="Save and add another&nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;" TabIndex="5"></asp:LinkButton>                                        
+                                            Text="Save and add another&nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;" ></asp:LinkButton>                                        
                                         <asp:LinkButton ID="btnInsertProperty2" runat="server" CausesValidation="False" OnClick="btnInsertClose_OnClick"
-                                            Text="Save and Close" TabIndex="6"></asp:LinkButton>
+                                            Text="Save and Close" ></asp:LinkButton>
                                         &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;
                                         <asp:LinkButton ID="btnInsertCancel" runat="server" CausesValidation="False" OnClick="btnInsertCancel_OnClick"
-                                            Text="Close" TabIndex="7"></asp:LinkButton>
+                                            Text="Close" ></asp:LinkButton>
                                     </div>
                                 </td>
                             </tr>
@@ -82,7 +82,7 @@
                                 <asp:TemplateField HeaderText="">
                                     <EditItemTemplate>
                                         <asp:TextBox ID="txtLabelGrid" Rows="20" runat="server" TextMode="MultiLine" Width="500px"
-                                            Text='<%# Bind("Literal") %>'></asp:TextBox>
+                                            Text='<%# Bind("Literal") %>' title="edit text"></asp:TextBox>
                                         <asp:HiddenField ID="hdLabel" runat="server" Value='<%# Bind("Literal") %>'></asp:HiddenField>
                                     </EditItemTemplate>
                                     <ItemTemplate>
@@ -99,11 +99,11 @@
                                             <tr>
                                                 <td>
                                                     <asp:ImageButton ID="lnkUpdate" runat="server" ImageUrl="~/Edit/Images/button_save.gif"
-                                                        CausesValidation="True" CommandName="Update" Text="Update"></asp:ImageButton>
+                                                        CausesValidation="True" CommandName="Update" Text="Update" AlternateText="Update"></asp:ImageButton>
                                                 </td>
                                                 <td>
                                                     <asp:ImageButton ID="lnkCancel" runat="server" ImageUrl="~/Edit/Images/button_cancel.gif"
-                                                        CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:ImageButton>
+                                                        CausesValidation="False" CommandName="Cancel" Text="Cancel" AlternateText="Cancel"></asp:ImageButton>
                                                 </td>
                                             </tr>
                                         </table>
@@ -116,20 +116,20 @@
                                                 <tr>
                                                     <td>
                                                         <asp:ImageButton OnClick="ibUp_Click" runat="server" CommandArgument="up" CommandName="action"
-                                                            ID="ibUp" ImageUrl="~/Edit/Images/icon_up.gif" />
+                                                            ID="ibUp" ImageUrl="~/Edit/Images/icon_up.gif" AlternateText="move up"/>
                                                     </td>
                                                     <td>
                                                         <asp:ImageButton runat="server" OnClick="ibDown_Click" ID="ibDown" CommandArgument="down"
-                                                            CommandName="action" ImageUrl="~/Edit/Images/icon_down.gif" />
+                                                            CommandName="action" ImageUrl="~/Edit/Images/icon_down.gif" AlternateText="move down" />
                                                     </td>
                                                     <td>
                                                         <asp:ImageButton ID="lnkEdit" runat="server" ImageUrl="~/Edit/Images/icon_edit.gif"
-                                                            CausesValidation="False" CommandName="Edit" Text="Edit"></asp:ImageButton>
+                                                            CausesValidation="False" CommandName="Edit" Text="Edit" AlternateText="Edit"></asp:ImageButton>
                                                     </td>
                                                     <td>
                                                         <asp:ImageButton ID="lnkDelete" runat="server" ImageUrl="~/Edit/Images/icon_delete.gif"
                                                             CausesValidation="False" CommandName="Delete" OnClientClick="Javascript:return confirm('Are you sure you want to delete this entry?');"
-                                                            Text="X"></asp:ImageButton>
+                                                            Text="X" AlternateText="delete"></asp:ImageButton>
                                                     </td>
                                                 </tr>
                                             </table>

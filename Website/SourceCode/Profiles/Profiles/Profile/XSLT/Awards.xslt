@@ -23,6 +23,8 @@
                 </td>
                 <td>
                   <xsl:value-of select="/rdf:RDF[1]/rdf:Description[@rdf:about=$awardUri]/rdfs:label"/>
+                  <xsl:if test="/rdf:RDF[1]/rdf:Description[@rdf:about=$awardUri]/prns:awardConferredBy">, </xsl:if>
+                  <xsl:value-of select="/rdf:RDF[1]/rdf:Description[@rdf:about=$awardUri]/prns:awardConferredBy"/>
                 </td>              
               </tr>
             </xsl:for-each>

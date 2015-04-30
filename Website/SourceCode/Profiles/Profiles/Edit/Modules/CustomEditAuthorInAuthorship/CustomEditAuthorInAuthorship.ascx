@@ -6,18 +6,29 @@
 <script type="text/javascript">
     var checkBoxSelector = '#<%=grdPubMedSearchResults.ClientID%> input[id*="chkPubMed"]:checkbox';
 
-    $(document).ready(function() {
-        $('#btnCheckAll').live('click', function() {
+    $(document).ready(function () {
+        $('#btnCheckAll').live('click', function () {
             $(checkBoxSelector).attr('checked', true);
         });
 
-        $('#btnUncheckAll').live('click', function() {
+        $('#btnUncheckAll').live('click', function () {
             $(checkBoxSelector).attr('checked', false);
         });
+
+        $('#btnCheckAll').live('keypress', function (e) {
+            if (e.keyCode == 13) {
+                $(checkBoxSelector).attr('checked', true);
+            };
+        });
+
+        $('#btnUncheckAll').live('keypress', function (e) {
+            if (e.keyCode == 13) {
+                $(checkBoxSelector).attr('checked', false);
+            };
+        });
+
     });
 
-
-    
 </script>
 
 <asp:UpdatePanel ID="upnlEditSection" runat="server" UpdateMode="Conditional" RenderMode="Inline">
@@ -49,33 +60,29 @@
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phAddPubMed" runat="server">
                             <div style="padding-bottom: 10px;">
-                                <asp:ImageButton ID="btnImgAddPubMed" runat="server" ImageUrl="~/Framework/Images/icon_squareArrow.gif" Width="11" Height="11"
-                                    OnClick="btnAddPubMed_OnClick" />&nbsp;
-                                <asp:LinkButton ID="btnAddPubMed" runat="server" OnClick="btnAddPubMed_OnClick" CssClass="profileHypLinks">Add PubMed</asp:LinkButton>
+                                <asp:LinkButton ID="btnAddPubMed" runat="server" OnClick="btnAddPubMed_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgAddPubMed" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif" Width="11" Height="11"
+                                    OnClick="btnAddPubMed_OnClick" />&nbsp;/>&nbsp;Add PubMed</asp:LinkButton>
                                 &nbsp;(Search PubMed and add multiple articles.)
                             </div>
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phAddPub" runat="server">
                             <div style="padding-bottom: 10px;">
-                                <asp:ImageButton ID="btnImgAddPub" runat="server" ImageUrl="~/Framework/Images/icon_squareArrow.gif" Width="11" Height="11"
-                                    OnClick="btnAddPub_OnClick" />&nbsp;
-                                <asp:LinkButton ID="btnAddPub" runat="server" OnClick="btnAddPub_OnClick" CssClass="profileHypLinks">Add by ID</asp:LinkButton>
+                                <asp:LinkButton ID="btnAddPub" runat="server" OnClick="btnAddPub_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgAddPub" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif" Width="11" Height="11"
+                                    OnClick="btnAddPubMed_OnClick" />&nbsp;/>&nbsp;Add by ID</asp:LinkButton>
                                 &nbsp;(Add one or more articles using codes, e.g., PubMed ID.)
                             </div>
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phAddCustom" runat="server">
                             <div style="padding-bottom: 10px;">
-                                <asp:ImageButton ID="btnImgAddCustom" runat="server" ImageUrl="~/Framework/Images/icon_squareArrow.gif" Width="11" Height="11"
-                                    OnClick="btnAddCustom_OnClick" />&nbsp;
-                                <asp:LinkButton ID="btnAddCustom" runat="server" OnClick="btnAddCustom_OnClick" CssClass="profileHypLinks">Add Custom</asp:LinkButton>
+                                <asp:LinkButton ID="btnAddCustom" runat="server" OnClick="btnAddCustom_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgAddCustom" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif" Width="11" Height="11"
+                                    OnClick="btnAddPubMed_OnClick" />&nbsp;/>&nbsp;Add Custom</asp:LinkButton>
                                 &nbsp;(Enter your own publication using an online form.)
                             </div>
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phDeletePub" runat="server">
                             <div style="padding-bottom: 10px;">
-                                <asp:ImageButton ID="btnImgDeletePub" runat="server" ImageUrl="~/Framework/Images/icon_squareArrow.gif" Width="11" Height="11"
-                                    OnClick="btnDeletePub_OnClick" />&nbsp;
-                                <asp:LinkButton ID="btnDeletePub" runat="server" OnClick="btnDeletePub_OnClick" CssClass="profileHypLinks">Delete</asp:LinkButton>
+                                <asp:LinkButton ID="btnDeletePub" runat="server" OnClick="btnDeletePub_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgDeletePub" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif" Width="11" Height="11"
+                                    OnClick="btnAddPubMed_OnClick" />&nbsp;/>&nbsp;Delete</asp:LinkButton>
                                 &nbsp;(Remove multiple publications from your profile.)
                             </div>
                         </asp:PlaceHolder>
@@ -92,22 +99,22 @@
                                         <div style="float: left; padding-right: 10px; padding-top: 3px;">
                                             <b>Enter one or more</b></div>
                                         <asp:DropDownList ID="drpPubIdType" runat="server" DataSourceID="PublicationTypeDS"
-                                            DataTextField="name" DataValueField="pubidtype_id">
+                                            DataTextField="name" DataValueField="pubidtype_id" title="publication identifier type">
                                         </asp:DropDownList>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtPubId" runat="server" TextMode="MultiLine" Rows="4" Columns="50"></asp:TextBox><br />
+                                        <asp:TextBox ID="txtPubId" runat="server" TextMode="MultiLine" Rows="4" Columns="50" title="publication identifiers"></asp:TextBox><br />
                                         (Separated by comma or semicolon, or one ID per line)
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
                                         <div style="padding: 10px 0px;">
-                                            <asp:ImageButton ID="lnkUpdate" TabIndex="5" runat="server" ImageUrl="~/Edit/Images/button_save.gif"
-                                                CausesValidation="False" Text="Save" OnClick="btnSavePub_OnClick"></asp:ImageButton>
+                                            <asp:ImageButton ID="lnkUpdate" runat="server" ImageUrl="~/Edit/Images/button_save.gif"
+                                                CausesValidation="False" Text="Save" AlternateText="Save" OnClick="btnSavePub_OnClick"></asp:ImageButton>
                                             &nbsp;
                                             <asp:ImageButton ID="lnkCancel" runat="server" OnClick="btnDonePub_OnClick" ImageUrl="~/Edit/Images/button_cancel.gif"
-                                                CausesValidation="False" Text="Close"></asp:ImageButton>
+                                                CausesValidation="False" Text="Cancel" AlternateText="Cancel"></asp:ImageButton>
                                         </div>
                                     </td>
                                 </tr>
@@ -125,39 +132,39 @@
                                     <b>Search PubMed</b>
                                 </div>
                                 <div style="padding-top: 10px;">
-                                    <asp:RadioButton ID="rdoPubMedKeyword" GroupName="PubMedSearch" runat="server" Checked="true" />Enter
-                                    author, affiliation or keyword in the field below.</div>
+                                    <asp:RadioButton ID="rdoPubMedKeyword" GroupName="PubMedSearch" runat="server" Checked="true" /><asp:Label ID="Label18" runat="server" AssociatedControlID="rdoPubMedKeyword">Enter
+                                    author, affiliation or keyword in the field below.</asp:Label></div>
                                 <div style="margin: 10px 0px 0px 25px;">
                                     <div style="padding-bottom: 10px;">
                                         <div style="width: 75px; float: left; text-align: right; padding-right: 10px; padding-top: 3px;">
-                                            <b>Author(s)</b><br />
+                                            <asp:Label ID="Label4" runat="server" AssociatedControlID="txtSearchAuthor"><b>Author(s)</b></asp:Label><br />
                                             (One per line)
                                         </div>
                                         <asp:TextBox ID="txtSearchAuthor" runat="server" TextMode="MultiLine" Rows="4" CssClass="textBoxBig"></asp:TextBox>
                                     </div>
                                     <div style="padding-bottom: 10px;">
                                         <div style="width: 75px; float: left; text-align: right; padding-right: 10px; padding-top: 3px;">
-                                            <b>Affiliation</b>
+                                            <asp:Label ID="Label5" runat="server" AssociatedControlID="txtSearchAffiliation"><b>Affiliation</b></asp:Label>
                                         </div>
                                         <asp:TextBox ID="txtSearchAffiliation" runat="server" CssClass="textBoxBig"></asp:TextBox>&nbsp;&nbsp;<span
                                             style="color: #999;">Optional</span>
                                     </div>
                                     <div>
                                         <div style="width: 75px; float: left; text-align: right; padding-right: 10px; padding-top: 3px;">
-                                            <b>Keyword</b>
+                                            <asp:Label ID="Label6" runat="server" AssociatedControlID="txtSearchKeyword"><b>Keyword</b></asp:Label>
                                         </div>
                                         <asp:TextBox ID="txtSearchKeyword" runat="server" CssClass="textBoxBig"></asp:TextBox>&nbsp;&nbsp;<span
                                             style="color: #999;">Optional</span>
                                     </div>
                                 </div>
                                 <div style="padding-top: 10px;">
-                                    <asp:RadioButton ID="rdoPubMedQuery" GroupName="PubMedSearch" runat="server" />Or
-                                    you can also search by an arbitrary PubMed query in the field below.
+                                    <asp:RadioButton ID="rdoPubMedQuery" GroupName="PubMedSearch" runat="server" /><asp:Label ID="Label7" runat="server" AssociatedControlID="rdoPubMedQuery">Or
+                                    you can also search by an arbitrary PubMed query in the field below.</asp:Label>
                                 </div>
                                 <div style="margin: 10px 0px 0px 25px;">
                                     <div style="padding-bottom: 10px;">
                                         <div style="width: 75px; float: left; text-align: right; padding-right: 10px; padding-top: 3px;">
-                                            <b>Query</b>
+                                            <asp:Label ID="Label17" runat="server" AssociatedControlID="txtPubMedQuery"><b>Query</b></asp:Label>
                                         </div>
                                         <asp:TextBox ID="txtPubMedQuery" runat="server" Style="width: 400px;"></asp:TextBox>
                                     </div>
@@ -167,13 +174,13 @@
                                 </div>
                                 <div style="padding: 10px 0px;">
                                     <asp:LinkButton ID="btnPubMedSearch" runat="server" CausesValidation="False" OnClick="btnPubMedSearch_OnClick"
-                                        Text="Search" TabIndex="5"></asp:LinkButton>
+                                        Text="Search"></asp:LinkButton>
                                     &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnPubMedReset" runat="server" CausesValidation="False" OnClick="btnPubMedReset_OnClick"
-                                        Text="Reset" TabIndex="6"></asp:LinkButton>
+                                        Text="Reset"></asp:LinkButton>
                                     &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnPubMedClose" runat="server" CausesValidation="False" OnClick="btnPubMedClose_OnClick"
-                                        Text="Close" TabIndex="6"></asp:LinkButton>
+                                        Text="Close"></asp:LinkButton>
                                 </div>
                             </div>
                         </asp:Panel>
@@ -184,7 +191,7 @@
                             <div style="padding: 5px;">
                                 <div>
                                     <div style="width: 25px; float: left;">
-                                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Framework/Images/icon_alert.gif" />
+                                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Framework/Images/icon_alert.gif" alt=" "/>
                                     </div>
                                     <div style="margin-left: 25px;">
                                         Check the articles that are yours in the list below, and then click the Add Selected
@@ -196,8 +203,8 @@
                                 </div>
                                 <asp:Panel runat="server" ID="pnlAddAll">
                                     <div style="padding: 10px 0px 5px 5px; background-color: #E2E6E8;">
-                                        <b>Select:</b>&nbsp;&nbsp; <a style="cursor: pointer" id="btnCheckAll">All</a> &nbsp;&nbsp;|&nbsp;&nbsp;
-                                        <a style="cursor: pointer" id="btnUncheckAll">None</a>
+                                        <b>Select:</b>&nbsp;&nbsp; <a tabindex="0" style="cursor: pointer" id="btnCheckAll">All</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+                                        <a tabindex="0" style="cursor: pointer" id="btnUncheckAll">None</a>
                                     </div>
                                 </asp:Panel>
                                 <div>
@@ -227,12 +234,12 @@
                                             <td>
                                                 <asp:ImageButton ID="lnkUpdatePubMed" OnClick="btnPubMedAddSelected_OnClick" runat="server"
                                                     ImageUrl="~/Edit/Images/button_save.gif" CausesValidation="False" CommandName="Update"
-                                                    Text="Add Selected"></asp:ImageButton>
+                                                    Text="Add Selected" AlternateText="Add Selected"></asp:ImageButton>
                                             </td>
                                             <td>
                                                 <asp:ImageButton ID="lnkCancelPubMed" runat="server" ImageUrl="~/Edit/Images/button_cancel.gif"
                                                     CausesValidation="False" CommandName="Cancel" OnClick="btnPubMedClose_OnClick"
-                                                    Text="Cancel"></asp:ImageButton>
+                                                    Text="Cancel" AlternateText="Cancel"></asp:ImageButton>
                                             </td>
                                         </tr>
                                     </table>
@@ -245,7 +252,7 @@
                             margin-bottom: 5px; border: solid 1px #999;" Visible="false">
                             <div style="padding: 5px;">
                                 <div>
-                                    <b>Select the type of publication you would like to add</b>&nbsp;&nbsp;
+                                    <asp:Label ID="Label3" runat="server" AssociatedControlID="drpPublicationType"><b>Select the type of publication you would like to add</b>&nbsp;&nbsp;</asp:Label>
                                     <asp:DropDownList ID="drpPublicationType" runat="server" AutoPostBack="true" EnableViewState="true"
                                         OnSelectedIndexChanged="drpPublicationType_SelectedIndexChanged">
                                         <asp:ListItem Value="" Text="--Select--"></asp:ListItem>
@@ -268,27 +275,27 @@
                                 </div>
                                 <div style="padding: 15px 0px 5px 0px;">
                                     <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Edit/Images/button_cancel.gif"
-                                        OnClick="btnPubMedFinished_OnClick" CausesValidation="False" Text="Close"></asp:ImageButton>
+                                        OnClick="btnPubMedFinished_OnClick" CausesValidation="False" Text="Cancel" AlternateText="Cancel"></asp:ImageButton>
                                 </div>
                                 <asp:PlaceHolder Visible="false" ID="phMain" runat="server">
                                     <hr />
                                     <div style="padding-top: 5px;">
-                                        <b>Author(s)</b> Enter the name of all the authors as they appear in the publication.<br />
+                                        <asp:Label ID="Label2" runat="server" AssociatedControlID="txtPubMedAuthors"><b>Author(s)</b></asp:Label> Enter the name of all the authors as they appear in the publication.<br />
                                         <asp:TextBox ID="txtPubMedAuthors" runat="server" Rows="4" Width="550px" TextMode="MultiLine"></asp:TextBox>
                                     </div>
                                     <div class="pubHeader">
-                                        <asp:Label ID="lblTitle" runat="server" Text=""></asp:Label>
+                                        <asp:Label ID="lblTitle" runat="server" Text="" AssociatedControlID="txtPubMedTitle"></asp:Label>
                                     </div>
                                     <asp:TextBox ID="txtPubMedTitle" runat="server" Width="550px" TextMode="MultiLine"></asp:TextBox>
                                     <asp:PlaceHolder Visible="false" ID="phTitle2" runat="server">
                                         <div class="pubHeader">
-                                            <asp:Label ID="lblTitle2" runat="server" Text=""></asp:Label>
+                                            <asp:Label ID="lblTitle2" runat="server" Text="" AssociatedControlID="txtPubMedTitle2"></asp:Label>
                                         </div>
                                         <asp:TextBox ID="txtPubMedTitle2" runat="server" Width="550px" TextMode="MultiLine"></asp:TextBox>
                                     </asp:PlaceHolder>
                                     <asp:PlaceHolder Visible="false" ID="phEdition" runat="server">
                                         <div class="pubSubSpacer">
-                                            <asp:Label ID="Label8" runat="server" Text="Edition" CssClass="pubSubHeader"></asp:Label>
+                                            <asp:Label ID="Label8" runat="server" Text="Edition" CssClass="pubSubHeader" AssociatedControlID="txtPubMedEdition"></asp:Label>
                                         </div>
                                         <asp:TextBox ID="txtPubMedEdition" runat="server"></asp:TextBox>
                                     </asp:PlaceHolder>
@@ -297,28 +304,28 @@
                                     </div>
                                     <div class="pubSubSpacer">
                                         <div style="float: left; padding-right: 20px;">
-                                            <asp:Label ID="Label9" runat="server" Text="Date" CssClass="pubSubHeader"></asp:Label><br />
+                                            <asp:Label ID="Label9" runat="server" Text="Date (MM/DD/YYYY)" CssClass="pubSubHeader" AssociatedControlID="txtPubMedPublicationDate"></asp:Label><br />
                                             <asp:TextBox ID="txtPubMedPublicationDate" runat="server" MaxLength="10" CssClass="textBoxDate"></asp:TextBox>
-                                            <asp:ImageButton ID="btnCalendar" runat="server" ImageUrl="~/Edit/Images/cal.gif" />
+                                            <asp:ImageButton ID="btnCalendar" runat="server" ImageUrl="~/Edit/Images/cal.gif" AlternateText="Calendar picker" />
                                             <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtPubMedPublicationDate"
                                                 PopupButtonID="btnCalendar">
                                             </asp:CalendarExtender>
                                         </div>
                                         <asp:PlaceHolder Visible="false" ID="phPubIssue" runat="server">
                                             <div style="float: left; padding-right: 20px;">
-                                                <asp:Label ID="Label10" runat="server" Text="Issue" CssClass="pubSubHeader"></asp:Label><br />
+                                                <asp:Label ID="Label10" runat="server" Text="Issue" CssClass="pubSubHeader" AssociatedControlID="txtPubMedPublicationIssue"></asp:Label><br />
                                                 <asp:TextBox ID="txtPubMedPublicationIssue" runat="server" MaxLength="10" CssClass="textBoxSmall"></asp:TextBox>
                                             </div>
                                         </asp:PlaceHolder>
                                         <asp:PlaceHolder Visible="false" ID="phPubVolume" runat="server">
                                             <div style="float: left; padding-right: 20px;">
-                                                <asp:Label ID="Label11" runat="server" Text="Volume" CssClass="pubSubHeader"></asp:Label><br />
+                                                <asp:Label ID="Label11" runat="server" Text="Volume" CssClass="pubSubHeader" AssociatedControlID="txtPubMedPublicationVolume"></asp:Label><br />
                                                 <asp:TextBox ID="txtPubMedPublicationVolume" runat="server" MaxLength="10" CssClass="textBoxSmall"></asp:TextBox>
                                             </div>
                                         </asp:PlaceHolder>
                                         <asp:PlaceHolder Visible="false" ID="phPubPageNumbers" runat="server">
                                             <div>
-                                                <asp:Label ID="Label12" runat="server" Text="Page Numbers" CssClass="pubSubHeader"></asp:Label><br />
+                                                <asp:Label ID="Label12" runat="server" Text="Page Numbers" CssClass="pubSubHeader" AssociatedControlID="txtPubMedPublicationPages"></asp:Label><br />
                                                 <asp:TextBox ID="txtPubMedPublicationPages" runat="server"></asp:TextBox>
                                             </div>
                                         </asp:PlaceHolder>
@@ -331,11 +338,11 @@
                                         </div>
                                         <div class="pubSubSpacer">
                                             <div style="float: left; padding-right: 20px;">
-                                                <asp:Label ID="Label13" runat="server" Text="Section" CssClass="pubSubHeader"></asp:Label><br />
+                                                <asp:Label ID="Label13" runat="server" Text="Section" CssClass="pubSubHeader" AssociatedControlID="txtPubMedNewsSection"></asp:Label><br />
                                                 <asp:TextBox ID="txtPubMedNewsSection" runat="server"></asp:TextBox>
                                             </div>
                                             <div>
-                                                <asp:Label ID="Label14" runat="server" Text="Column" CssClass="pubSubHeader"></asp:Label><br />
+                                                <asp:Label ID="Label14" runat="server" Text="Column" CssClass="pubSubHeader" AssociatedControlID="txtPubMedNewsColumn"></asp:Label><br />
                                                 <asp:TextBox ID="txtPubMedNewsColumn" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
@@ -343,11 +350,11 @@
                                     <asp:PlaceHolder Visible="false" ID="phNewsUniversity" runat="server">
                                         <div class="pubSubSpacer">
                                             <div style="float: left; padding-right: 20px;">
-                                                <asp:Label ID="Label15" runat="server" Text="University" CssClass="pubSubHeader"></asp:Label><br />
+                                                <asp:Label ID="Label15" runat="server" Text="University" CssClass="pubSubHeader" AssociatedControlID="txtPubMedNewsUniversity"></asp:Label><br />
                                                 <asp:TextBox ID="txtPubMedNewsUniversity" runat="server" CssClass="textBoxBig"></asp:TextBox>
                                             </div>
                                             <div>
-                                                <asp:Label ID="Label16" runat="server" Text="City" CssClass="pubSubHeader"></asp:Label><br />
+                                                <asp:Label ID="Label16" runat="server" Text="City" CssClass="pubSubHeader" AssociatedControlID="txtPubMedNewsCity"></asp:Label><br />
                                                 <asp:TextBox ID="txtPubMedNewsCity" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
@@ -360,11 +367,11 @@
                                     <asp:PlaceHolder Visible="false" ID="phPublisherName" runat="server">
                                         <div class="pubSubSpacer">
                                             <div style="float: left; padding-right: 20px;">
-                                                <asp:Label ID="Label19" runat="server" Text="Name" CssClass="pubSubHeader"></asp:Label><br />
+                                                <asp:Label ID="Label19" runat="server" Text="Name" CssClass="pubSubHeader" AssociatedControlID="txtPubMedPublisherName"></asp:Label><br />
                                                 <asp:TextBox ID="txtPubMedPublisherName" runat="server" CssClass="textBoxBig"></asp:TextBox>
                                             </div>
                                             <div>
-                                                <asp:Label ID="Label20" runat="server" Text="City" CssClass="pubSubHeader"></asp:Label><br />
+                                                <asp:Label ID="Label20" runat="server" Text="City" CssClass="pubSubHeader" AssociatedControlID="txtPubMedPublisherCity"></asp:Label><br />
                                                 <asp:TextBox ID="txtPubMedPublisherCity" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
@@ -372,12 +379,12 @@
                                     <asp:PlaceHolder Visible="false" ID="phPublisherNumbers" runat="server">
                                         <div class="pubSubSpacer">
                                             <div style="float: left; padding-right: 20px;">
-                                                <asp:Label ID="lblPubMedPublisherReport" runat="server" Text="Report Number" CssClass="pubSubHeader"></asp:Label><br />
+                                                <asp:Label ID="lblPubMedPublisherReport" runat="server" Text="Report Number" CssClass="pubSubHeader" AssociatedControlID="txtPubMedPublisherReport"></asp:Label><br />
                                                 <asp:TextBox ID="txtPubMedPublisherReport" runat="server" CssClass="textBoxBig"></asp:TextBox>
                                             </div>
                                             <div>
                                                 <asp:Label ID="lblPubMedPublisherContract" runat="server" Text="Contract Number"
-                                                    CssClass="pubSubHeader"></asp:Label><br />
+                                                    CssClass="pubSubHeader" AssociatedControlID="txtPubMedPublisherContract"></asp:Label><br />
                                                 <asp:TextBox ID="txtPubMedPublisherContract" runat="server" CssClass="textBoxBig"></asp:TextBox>
                                             </div>
                                         </div>
@@ -387,22 +394,22 @@
                                             Conference Information
                                         </div>
                                         <div class="pubSubSpacer">
-                                            <asp:Label ID="Label23" runat="server" Text="Conference Edition(s)" CssClass="pubSubHeader"></asp:Label><br />
+                                            <asp:Label ID="Label23" runat="server" Text="Conference Edition(s)" CssClass="pubSubHeader" AssociatedControlID="txtPubMedConferenceEdition"></asp:Label><br />
                                             <asp:TextBox ID="txtPubMedConferenceEdition" runat="server" TextMode="MultiLine"
                                                 Rows="4" Width="550px"></asp:TextBox>
                                         </div>
                                         <div class="pubSubSpacer">
-                                            <asp:Label ID="Label24" runat="server" Text="Conference Name" CssClass="pubSubHeader"></asp:Label><br />
+                                            <asp:Label ID="Label24" runat="server" Text="Conference Name" CssClass="pubSubHeader" AssociatedControlID="txtPubMedConferenceName"></asp:Label><br />
                                             <asp:TextBox ID="txtPubMedConferenceName" runat="server" TextMode="MultiLine" Rows="4"
                                                 Width="550px"></asp:TextBox>
                                         </div>
                                         <div class="pubSubSpacer">
                                             <div style="float: left; padding-right: 20px;">
-                                                <asp:Label ID="Label25" runat="server" Text="Conference Dates" CssClass="pubSubHeader"></asp:Label><br />
+                                                <asp:Label ID="Label25" runat="server" Text="Conference Dates" CssClass="pubSubHeader" AssociatedControlID="txtPubMedConferenceDate"></asp:Label><br />
                                                 <asp:TextBox ID="txtPubMedConferenceDate" runat="server" CssClass="textBoxBig"></asp:TextBox>
                                             </div>
                                             <div>
-                                                <asp:Label ID="Label26" runat="server" Text="Location" CssClass="pubSubHeader"></asp:Label><br />
+                                                <asp:Label ID="Label26" runat="server" Text="Location" CssClass="pubSubHeader" AssociatedControlID="txtPubMedConferenceLocation"></asp:Label><br />
                                                 <asp:TextBox ID="txtPubMedConferenceLocation" runat="server" CssClass="textBoxBig"></asp:TextBox>
                                             </div>
                                         </div>
@@ -419,12 +426,12 @@
                                         </div>
                                     </asp:PlaceHolder>
                                     <div style="padding-top: 20px;">
-                                        <b>Abstract</b> (Optional)<br />
+                                        <asp:Label runat="server" AssociatedControlID="txtPubMedAbstract"><b>Abstract</b> (Optional)<br /></asp:Label>
                                         <asp:TextBox ID="txtPubMedAbstract" runat="server" TextMode="MultiLine" Rows="4"
                                             Width="550px"></asp:TextBox>
                                     </div>
                                     <div style="padding-top: 20px;">
-                                        <b>Website URL</b> (Optional) Clicking the citation title will take the user to
+                                        <asp:Label ID="Label1" runat="server" AssociatedControlID="txtPubMedOptionalWebsite"><b>Website URL</b> (Optional)</asp:Label> Clicking the citation title will take the user to
                                         this website.<br />
                                         <asp:TextBox ID="txtPubMedOptionalWebsite" runat="server" Width="550px" TextMode="MultiLine"></asp:TextBox>
                                     </div>
@@ -493,11 +500,11 @@
                                                     <tr align="right">
                                                         <td>
                                                             <asp:ImageButton ID="lnkEdit" runat="server" ImageUrl="~/Edit/Images/icon_edit.gif"
-                                                                CausesValidation="False" CommandName="Select" Text="Edit" Visible="false"></asp:ImageButton>
+                                                                CausesValidation="False" CommandName="Select" Text="Edit" AlternateText="edit" Visible="false"></asp:ImageButton>
                                                         </td>
                                                         <td>
-                                                            <asp:ImageButton ID="lnkDelete" runat="server" ImageUrl="~/Edit/Images/icon_delete.gif"
-                                                                CausesValidation="False" OnClick="deleteOne_Onclick" CommandName="Delete" Text="X"
+                                                            <asp:ImageButton ID="lnkDelete" runat="server" ImageUrl="~/Edit/Images/icon_delete.gif" 
+                                                                CausesValidation="False" OnClick="deleteOne_Onclick" CommandName="Delete" Text="X" AlternateText="delete"
                                                                 OnClientClick="Javascript:return confirm('Are you sure you want to delete this citation?');">
                                                             </asp:ImageButton>
                                                         </td>

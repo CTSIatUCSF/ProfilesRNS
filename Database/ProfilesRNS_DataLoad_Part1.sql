@@ -1,6 +1,6 @@
 /*
 
-Copyright (c) 2008-2013 by the President and Fellows of Harvard College. All rights reserved.  Profiles Reseah Networking Software was developed under the supervision of Griffin M Weber, MD, PhD., and Harvard Catalyst: The Harvard Clinical and Translational Science Center, with support from the National Center for Reseah Resoues and Harvard University.
+Copyright (c) 2008-2014 by the President and Fellows of Harvard College. All rights reserved.  Profiles Reseah Networking Software was developed under the supervision of Griffin M Weber, MD, PhD., and Harvard Catalyst: The Harvard Clinical and Translational Science Center, with support from the National Center for Reseah Resoues and Harvard University.
 
 Redistribution and use in soue and binary forms, with or without modification, are permitted provided that the following conditions are met:
     * Redistributions of soue code must retain the above copyright notice, this list of conditions and the following disclaimer.
@@ -15,9 +15,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER (PRESIDENT AND FELLOWS OF HARV
 -- To run this script manually, replace the $(ProfilesRNSRootPath)\Data to the location that contains the various XML files (e.g. c:\)
 EXEC [Framework.].[LoadXMLFile] @FilePath = '$(ProfilesRNSRootPath)\Data\InstallData.xml', @TableDestination = '[Framework.].[InstallData]', @DestinationColumn = 'DATA'
 EXEC [Framework.].[LoadXMLFile] @FilePath = '$(ProfilesRNSRootPath)\Data\VIVO_1.4.owl', @TableDestination = '[Ontology.Import].owl', @DestinationColumn = 'DATA', @NameValue = 'VIVO_1.4'
-EXEC [Framework.].[LoadXMLFile] @FilePath = '$(ProfilesRNSRootPath)\Data\PRNS_1.0.owl', @TableDestination = '[Ontology.Import].owl', @DestinationColumn = 'DATA', @NameValue = 'PRNS_1.0'
+EXEC [Framework.].[LoadXMLFile] @FilePath = '$(ProfilesRNSRootPath)\Data\PRNS_1.1.owl', @TableDestination = '[Ontology.Import].owl', @DestinationColumn = 'DATA', @NameValue = 'PRNS_1.1'
 EXEC [Framework.].[LoadXMLFile] @FilePath = '$(ProfilesRNSRootPath)\Data\SemGroups.xml', @TableDestination = '[Profile.Data].[Concept.Mesh.File]', @DestinationColumn = 'DATA', @NameValue = 'SemGroups.xml'
 EXEC [Framework.].[LoadXMLFile] @FilePath = '$(ProfilesRNSRootPath)\Data\MeSH.xml', @TableDestination = '[Profile.Data].[Concept.Mesh.File]', @DestinationColumn = 'DATA', @NameValue = 'MeSH.xml'
+EXEC [Framework.].[LoadXMLFile] @FilePath = '$(ProfilesRNSRootPath)\Data\ORNG_1.0.owl', @TableDestination = '[Ontology.Import].owl', @DestinationColumn = 'DATA', @NameValue = 'ORNG_1.0';
 EXEC [Framework.].[LoadInstallData]
-UPDATE [Framework.].[Parameter] SET Value = 'http://localhost/profiles' WHERE ParameterID = 'basePath'
+UPDATE [Framework.].[Parameter] SET Value = '$(ProfilesRNSBasePath)' WHERE ParameterID = 'basePath'
 EXEC [Framework.].[RunJobGroup] @JobGroup = 1

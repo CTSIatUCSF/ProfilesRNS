@@ -870,7 +870,7 @@ namespace Connects.Profiles.Service.ServiceImplementation
                     }
                     else
                     {
-                        returnxml.Append("<PersonID>" + RDF.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + uri + "']/catalyst:eCommonsLogin", namespaces).InnerText + "</PersonID>");
+                        returnxml.Append("<PersonID>" + RDF.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + uri + "']", namespaces).InnerText + "</PersonID>");
                     }
 
 
@@ -1138,7 +1138,7 @@ namespace Connects.Profiles.Service.ServiceImplementation
                                 if (pub.SelectSingleNode("prns:informationResourceReference", namespaces) != null)
                                 {
                                     returnxml.Append("<PublicationReference>");
-                                    returnxml.Append(((pub.SelectSingleNode("prns:informationResourceReference", namespaces).InnerText).Replace("<", "&lt").Replace(">", "&gt")));
+                                returnxml.Append(((pub.SelectSingleNode("prns:informationResourceReference", namespaces).InnerText).Replace("<", "&lt").Replace(">", "&gt")));
                                     returnxml.Append("</PublicationReference>");
                                 }
 

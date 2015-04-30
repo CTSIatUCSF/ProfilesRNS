@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SearchPerson.ascx.cs"
-    Inherits="Profiles.Search.Modules.SearchPerson.SearchPerson" EnableViewState="true" %>
+    Inherits="Profiles.Search.Modules.SearchPerson.SearchPerson" EnableViewState="true"  %>
 <%@ Register Src="ComboTreeCheck.ascx" TagName="ComboTreeCheck" TagPrefix="uc1" %>
 
 <style type="text/css">
@@ -25,29 +25,32 @@
     }
 
     function showdiv() {
-        document.getElementById("divChkList").style.display = "block";
+        var divChkList = $('[id$=divChkList]').attr('id');
+        var chkListItem = $('[id$=chkLstItem_0]').attr('id');
+        document.getElementById(divChkList).style.display = "block";
 
-        document.getElementById('chkLstItem_0').focus()
+        document.getElementById(chkListItem).focus()
     }
 
     function showdivonClick() {
-        var objDLL = document.getElementById("divChkList");
-        if (objDLL.style.display == "block")
-            objDLL.style.display = "none";
+        var objDLL = $('[id$=divChkList]').attr('id');// document.getElementById("divChkList");
+
+        if (document.getElementById(objDLL).style.display  == "block")
+            document.getElementById(objDLL).style.display = "none";
         else
-            objDLL.style.display = "block";
+            document.getElementById(objDLL).style.display = "block";
     }
 
     function getSelectedItem(lstValue, lstNo, lstID, ctrlType) {
 
 
         var noItemChecked = 0;
-        var ddlChkList = document.getElementById("ddlChkList");
+        var ddlChkList =  document.getElementById($('[id$=ddlChkList]').attr('id'));
         var selectedItems = "";
         var selectedValues = "";
-        var arr = document.getElementById("chkLstItem").getElementsByTagName('input');
-        var arrlbl = document.getElementById("chkLstItem").getElementsByTagName('label');
-        var objLstId = document.getElementById('hidList');
+        var arr = document.getElementById($('[id$=chkLstItem]').attr('id')).getElementsByTagName('input');
+        var arrlbl = document.getElementById($('[id$=chkLstItem]').attr('id')).getElementsByTagName('label');
+        var objLstId = document.getElementById($('[id$=hidList]').attr('id')); //document.getElementById('hidList');
 
         for (i = 0; i < arr.length; i++) {
             checkbox = arr[i];
@@ -88,7 +91,8 @@
         else
             ddlChkList.options[ddlChkList.selectedIndex].text = "";
 
-        document.getElementById('hidList').value = ddlChkList.options[ddlChkList.selectedIndex].text;
+		var hidList =  document.getElementById($('[id$=hidList]').attr('id'));
+        hidList.value = ddlChkList.options[ddlChkList.selectedIndex].text;
 
 
     }
@@ -96,9 +100,9 @@
     document.onclick = check;
     function check(e) {
         var target = (e && e.target) || (event && event.srcElement);
-        var obj = document.getElementById('divChkList');
-        var obj1 = document.getElementById('ddlChkList');
-        if (target.id != "alst" && !target.id.match("chkLstItem")) {
+        var obj = document.getElementById($('[id$=divChkList]').attr('id'));
+        var obj1 = document.getElementById($('[id$=ddlChkList]').attr('id'));
+        if (target.id != "alst" && !target.id.match($('[id$=chkLstItem]').attr('id'))) {
             if (!(target == obj || target == obj1)) {
                 //obj.style.display = 'none'
             }
@@ -108,7 +112,7 @@
                 }
                 else {
                     obj.style.display = 'none';
-                    document.getElementById('ddlChkList').blur();
+                    document.getElementById($('[id$=ddlChkList]').attr('id')).blur();
                 }
             }
         }

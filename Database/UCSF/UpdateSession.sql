@@ -1,11 +1,12 @@
-/****** Object:  StoredProcedure [User.Session].[UpdateSession]    Script Date: 01/02/2014 11:21:33 ******/
+USE [ProfilesRNS]
+GO
+
+/****** Object:  StoredProcedure [User.Session].[UpdateSession]    Script Date: 04/30/2015 12:25:14 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
-
 
 ALTER PROCEDURE [User.Session].[UpdateSession]
 	@SessionID UNIQUEIDENTIFIER, 
@@ -14,9 +15,9 @@ ALTER PROCEDURE [User.Session].[UpdateSession]
 	@LogoutDate DATETIME=NULL,
 	@SessionPersonNodeID BIGINT = NULL OUTPUT,
 	@SessionPersonURI VARCHAR(400) = NULL OUTPUT,
-	@UserURI VARCHAR(400) = NULL OUTPUT,  -- Added by UCSF
+	@UserURI VARCHAR(400) = NULL OUTPUT,
+	@SecurityGroupID BIGINT = NULL OUTPUT,
 	@ShortDisplayName VARCHAR(400) = NULL OUTPUT  -- Added by UCSF
-
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -47,13 +48,26 @@ BEGIN
 	-- Update the session data
     IF EXISTS (SELECT * FROM [User.Session].[Session] WHERE SessionID = @SessionID)
 		UPDATE [User.Session].[Session]
-			SET	UserID = IsNull(@UserID,UserID),
-				UserNode = IsNull((SELECT NodeID FROM [User.Account].[User] WHERE UserID = @UserID AND @UserID IS NOT NULL),UserNode),
-				PersonID = IsNull(@PersonID,PersonID),
-				LastUsedDate = IsNull(@LastUsedDate,LastUsedDate),
-				LogoutDate = IsNull(@LogoutDate,LogoutDate)
+			SET	UserID = ISNULL(@UserID,UserID),
+				UserNode = ISNULL((SELECT NodeID FROM [User.Account].[User] WHERE UserID = @UserID AND @UserID IS NOT NULL),UserNode),
+				PersonID = ISNULL(@PersonID,PersonID),
+				LastUsedDate = ISNULL(@LastUsedDate,LastUsedDate),
+				LogoutDate = ISNULL(@LogoutDate,LogoutDate)
 			WHERE SessionID = @SessionID
-			
+
+	IF @UserID IS NOT NULL
+	BEGIN
+		SELECT @UserURI = p.Value + CAST(m.NodeID AS VARCHAR(50))
+			FROM [RDF.Stage].InternalNodeMap m, [Framework.].[Parameter] p
+			WHERE m.InternalID = @UserID
+				AND m.InternalType = 'User'
+				AND m.Class = 'http://profiles.catalyst.harvard.edu/ontology/prns#User'
+				AND p.ParameterID = 'baseURI'
+	END
+
+	-- Get the security group of the session
+	EXEC [RDF.Security].[GetSessionSecurityGroup] @SessionID = @SessionID, @SecurityGroupID = @SecurityGroupID OUTPUT
+	
 	-- UCSF
 	IF @UserID IS NOT NULL
 	BEGIN
@@ -66,10 +80,7 @@ BEGIN
 	END
 	-- UCSF
 	SELECT @ShortDisplayName = FirstName + ' ' + LastName FROM [User.Account].[User] WHERE UserID = @UserID AND @UserID IS NOT NULL
-			
 END
-
-
 
 GO
 

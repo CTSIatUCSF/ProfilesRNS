@@ -81,33 +81,30 @@ namespace Profiles.Edit.Modules.EditPropertyList
                         canedit = true;
                     }
 
-                    // treat ORNG items as "special", because they can be turned off
-                    if (node.SelectSingleNode("@URI").Value.StartsWith(Profiles.ORNG.Utilities.OpenSocialManager.ORNG_ONTOLOGY_PREFIX))
+                    string objecttype = string.Empty;
+                    switch (node.SelectSingleNode("@ObjectType").Value)
                     {
-                        GadgetSpec spec = OpenSocialManager.GetGadgetByPropertyURI(node.SelectSingleNode("@URI").Value);
-                        if (spec != null && "0".Equals(node.SelectSingleNode("@NumberOfConnections").Value)) 
-                        {
-                            singlesi.Add(new SecurityItem(node.ParentNode.SelectSingleNode("@Label").Value, node.SelectSingleNode("@Label").Value,
-                                node.SelectSingleNode("@URI").Value,
-                                Convert.ToInt32(node.SelectSingleNode("@NumberOfConnections").Value),
-                                Convert.ToInt32(node.SelectSingleNode("@ViewSecurityGroup").Value),
-                                "Hidden",
-                                node.SelectSingleNode("@ObjectType").Value, canedit));
-                            continue;
-                        }
+                        case "1":
+                            objecttype = "Literal";
+                            break;
+                        case "0":
+                            objecttype = "Entity";
+                            break;
                     }
+
+                    string editlink = "<a class=listTableLink href=\"" + Root.Domain + "/edit/default.aspx?subject=" + this.Subject.ToString() + "&predicateuri=" + node.SelectSingleNode("@URI").Value.Replace("#", "!") + "&module=DisplayItemToEdit&ObjectType=" + objecttype + "\" >" + node.SelectSingleNode("@Label").Value + "</a>";
 
                     singlesi.Add(new SecurityItem(node.ParentNode.SelectSingleNode("@Label").Value, node.SelectSingleNode("@Label").Value,
                         node.SelectSingleNode("@URI").Value,
                         Convert.ToInt32(node.SelectSingleNode("@NumberOfConnections").Value),
                         Convert.ToInt32(node.SelectSingleNode("@ViewSecurityGroup").Value),
                         this.SecurityGroups.SelectSingleNode("SecurityGroupList/SecurityGroup[@ID='" + node.SelectSingleNode("@ViewSecurityGroup").Value + "']/@Label").Value,
-                        node.SelectSingleNode("@ObjectType").Value, canedit));
+                        node.SelectSingleNode("@ObjectType").Value, canedit, editlink));
                 }
                 si.Add(singlesi);
             }
 
-            gli.Add(new GenericListItem("Hidden" , "This feature is not visible on your Profile page."));
+            string uri = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
             foreach (XmlNode securityitem in this.SecurityGroups.SelectNodes("SecurityGroupList/SecurityGroup"))
             {
                 this.Dropdown.Add(new GenericListItem(securityitem.SelectSingleNode("@Label").Value,
@@ -120,21 +117,6 @@ namespace Profiles.Edit.Modules.EditPropertyList
             repPropertyGroups.DataBind();
 
             BuildSecurityKey(gli);
-
-            // OpenSocial.  Allows gadget developers to show test gadgets if you have them installed
-            string uri = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
-            OpenSocialManager om = OpenSocialManager.GetOpenSocialManager(uri, Page, true);
-            if (om.IsVisible()) 
-            {
-                litGadget.Visible = true;
-                string sandboxDivs = "";
-                foreach (PreparedGadget gadget in om.GetSandboxGadgets())
-                {
-                    sandboxDivs += "<div id='" + gadget.GetChromeId() + "' class='gadgets-gadget-parent'></div>";
-                }
-                litGadget.Text = sandboxDivs;
-                om.LoadAssets();
-            }
         }
 
         protected void repPropertyGroups_OnItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -188,22 +170,6 @@ namespace Profiles.Edit.Modules.EditPropertyList
                     ((Control)e.Row.FindControl("imgOrng")).Visible = true ;
                 }
 
-                if (e.Row.RowState == DataControlRowState.Alternate)
-                {
-                    e.Row.Attributes.Add("onmouseover", "doListTableRowOver(this);");
-                    e.Row.Attributes.Add("onmouseout", "doListTableRowOut(this,0);");
-                    e.Row.Attributes.Add("class", "evenRow");
-                    blankimage.ImageUrl = Root.Domain + "/edit/images/icons_blankAlt.gif";
-                    blankimage.Attributes.Add("style", "opacity:0.0;filter:alpha(opacity=0);");
-                }
-                else
-                {
-                    e.Row.Attributes.Add("onmouseover", "doListTableRowOver(this);");
-                    e.Row.Attributes.Add("onmouseout", "doListTableRowOut(this,1);");
-                    e.Row.Attributes.Add("class", "oddRow");
-                    blankimage.ImageUrl = Root.Domain + "/edit/images/icons_blankAlt.gif";
-                    blankimage.Attributes.Add("style", "opacity:0.0;filter:alpha(opacity=0);");
-                }
 
                 switch (si.ObjectType)
                 {
@@ -211,15 +177,39 @@ namespace Profiles.Edit.Modules.EditPropertyList
                         objecttype = "Literal";
                         break;
                     case "0":
-                        objecttype = "Entity";                       
+                        objecttype = "Entity";
                         break;
                 }
 
                 string editlink = "javascript:GoTo('" + Root.Domain + "/edit/default.aspx?subject=" + this.Subject.ToString() + "&predicateuri=" + hf.Value.Replace("#", "!") + "&module=DisplayItemToEdit&ObjectType=" + objecttype + "')";
 
+                if (e.Row.RowState == DataControlRowState.Alternate)
+                {
+                    e.Row.Attributes.Add("onmouseover", "doListTableRowOver(this);");
+                    e.Row.Attributes.Add("onmouseout", "doListTableRowOut(this,0);");
+                    e.Row.Attributes.Add("onfocus", "doListTableRowOver(this);");
+                    e.Row.Attributes.Add("onblur", "doListTableRowOut(this,0);");
+                    e.Row.Attributes.Add("tabindex", "0");
+                    e.Row.Attributes.Add("class", "evenRow");
+                    e.Row.Attributes.Add("onclick", editlink);
+                    e.Row.Attributes.Add("onkeypress", "if (event.keyCode == 13) " + editlink);
+                    blankimage.ImageUrl = Root.Domain + "/edit/images/icons_blankAlt.gif";
+                    blankimage.Attributes.Add("style", "opacity:0.0;filter:alpha(opacity=0);");
+                }
+                else
+                {
+                    e.Row.Attributes.Add("onmouseover", "doListTableRowOver(this);");
+                    e.Row.Attributes.Add("onmouseout", "doListTableRowOut(this,1);");
+                    e.Row.Attributes.Add("onfocus", "doListTableRowOver(this);");
+                    e.Row.Attributes.Add("onblur", "doListTableRowOut(this,1);");
+                    e.Row.Attributes.Add("tabindex", "0");
+                    e.Row.Attributes.Add("class", "oddRow");
+                    e.Row.Attributes.Add("onclick", editlink);
+                    e.Row.Attributes.Add("onkeypress", "if (event.keyCode == 13) " + editlink);
+                    blankimage.ImageUrl = Root.Domain + "/edit/images/icons_blankAlt.gif";
+                    blankimage.Attributes.Add("style", "opacity:0.0;filter:alpha(opacity=0);");
+                }
 
-                e.Row.Cells[0].Attributes.Add("onclick", editlink);
-                e.Row.Cells[1].Attributes.Add("onclick", editlink);
                 e.Row.Cells[1].CssClass = "colItemCnt";
                 e.Row.Cells[2].CssClass = "colSecurity";
 
@@ -294,24 +284,8 @@ namespace Profiles.Edit.Modules.EditPropertyList
 
         private void UpdateSecuritySetting(string securitygroup)
         {
-            // maybe be able to make this more general purpose
-            if (this.PredicateURI.StartsWith(Profiles.ORNG.Utilities.OpenSocialManager.ORNG_ONTOLOGY_PREFIX))
-            {
-                Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
-                if ("0".Equals(securitygroup))
-                {
-                    data.RemovePersonalGadget(this.Subject, this.PredicateURI);
-                }
-                else
-                {
-                    data.AddPersonalGadget(this.Subject, this.PredicateURI);
-                }
-            }
-            if (!"0".Equals(securitygroup))
-            {
-                Edit.Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
-                data.UpdateSecuritySetting(this.Subject, data.GetStoreNode(this.PredicateURI), Convert.ToInt32(securitygroup));
-            }
+            Edit.Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
+            data.UpdateSecuritySetting(this.Subject, data.GetStoreNode(this.PredicateURI), Convert.ToInt32(securitygroup));
             //Framework.Utilities.Cache.AlterDependency(this.Subject.ToString());
         }
 
@@ -326,7 +300,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
 
     public class SecurityItem
     {
-        public SecurityItem(string itemlabel, string item, string itemuri, int itemcount, int privacycode, string privacylevel, string objecttype, bool canedit)
+        public SecurityItem(string itemlabel, string item, string itemuri, int itemcount, int privacycode, string privacylevel, string objecttype, bool canedit, string editLink)
         {
             
             this.ItemLabel = itemlabel;
@@ -337,6 +311,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
             this.ObjectType = objecttype;
             this.CanEdit = canedit;
             this.PrivacyLevel = privacylevel;
+            this.EditLink = editLink;
 
         }
         public string ItemLabel { get; set; }
@@ -347,5 +322,6 @@ namespace Profiles.Edit.Modules.EditPropertyList
         public string PrivacyLevel { get; set; }
         public string ObjectType { get; set; }
         public bool CanEdit { get; set; }
+        public string EditLink { get; set; }
     }
 }

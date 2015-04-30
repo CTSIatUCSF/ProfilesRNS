@@ -8,7 +8,7 @@
         <script type="text/javascript">
           <xsl:text disable-output-escaping="yes">
           var hasClickedListTable = false;
-          function DISABLEDdoListTableRowOver(x) {
+          function doListTableRowOver(x) {
           //x.className = 'overRow';
           x.style.backgroundColor = '#5A719C';
           x.style.color = '#FFF';
@@ -49,19 +49,16 @@
           hasClickedListTable = true;
           }
         
-        function doURL(x){
-        if (!hasClickedListTable) { document.location = x;}
-       }
 </xsl:text>
       </script>
       
       
-      <div class="tabInfoText">The people in this list are ordered by decreasing similarity.</div>
+      <div class="tabInfoText">Similar people share similar sets of concepts, but are not necessarily co-authors.</div>
       <div class="listTable" style="margin-top: 12px, margin-bottom:8px ">
         <table id="thetable1">
           <tbody>
             <tr>
-              <th class="alignLeft" style="width: 120px;">Name</th>
+              <th class="alignLeft" style="width: 238px;">Name</th>
               <th style="width: 110px;">
                 Also Co-Authors
               </th>
@@ -76,7 +73,7 @@
               <xsl:variable name="objectResource" select="./rdf:object/@rdf:resource"/>
 			  <xsl:variable name="connectionDetail" select="./prns:hasConnectionDetails/@rdf:resource"/>
 			  <xsl:variable name="isCoAuthor" select="/rdf:RDF/rdf:Description[@rdf:about=$connectionDetail]/prns:isAlsoCoAuthor"/>
-              <tr  onclick="doURL('{$objectResource}')" test="{$connectionDetail}">
+              <tr  onclick="doURL('{$objectResource}')" onkeypress="if (event.keyCode == 13) doURL('{$objectResource}')" test="{$connectionDetail}" onmouseover="doListTableRowOver(this)" onfocus="doListTableRowOver(this)">
                 <xsl:choose>
                   <xsl:when test="position() mod 2 = 0">
                     <xsl:attribute name="class">
@@ -85,6 +82,10 @@
                     <xsl:attribute name="onmouseout">
                       <xsl:value-of  select="'doListTableRowOut(this,0)'"/>
                     </xsl:attribute>
+                    <xsl:attribute name="onblur">
+                      <xsl:value-of  select="'doListTableRowOut(this,0)'"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="tabindex">0</xsl:attribute>
                   </xsl:when>
                   <xsl:otherwise>
                     <xsl:attribute name="class">
@@ -93,12 +94,16 @@
                     <xsl:attribute name="onmouseout">
                       <xsl:value-of  select="'doListTableRowOut(this,1)'"/>
                     </xsl:attribute>
+                    <xsl:attribute name="onblur">
+                      <xsl:value-of  select="'doListTableRowOut(this,1)'"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="tabindex">0</xsl:attribute>
                   </xsl:otherwise>
                 </xsl:choose>
                 <td style="text-align: left;" class="alignLeft">
-                  <div style="width: 238px;">
+                  <a class="listTableLink" href="{$objectResource}">
                     <xsl:value-of select="/rdf:RDF/rdf:Description[@rdf:about=$objectResource]/prns:fullName"/>
-                  </div>
+                  </a>
                 </td>
                 <td>
                   <div style="width: 98px;">
@@ -115,8 +120,8 @@
                     <xsl:value-of select="substring(/rdf:RDF/rdf:Description[@rdf:about=$connectionResource]/prns:connectionWeight,1,5)"/>
                   
                 </td>
-                <td onclick="doListTableCellClick(this);document.location = '{@rdf:about}';" class="linky" style="text-align:center;">
-                  <div class="listTableLink" style="width: 38px;">Why?</div>
+                <td onclick="doListTableCellClick(this);document.location = '{@rdf:about}';" onkeypress="if (event.keyCode == 13) document.location = '{@rdf:about}';" onmouseout="doListTableCellOut(this);" onmouseover="doListTableCellOver(this);" onblur="doListTableCellOut(this);" onfocus="doListTableCellOver(this);" tabindex="0">
+                  <div class="listTableLink" style="width: 38px; color: rgb(51, 102, 204);">Why?</div>
                 </td>
               </tr>
             </xsl:for-each>

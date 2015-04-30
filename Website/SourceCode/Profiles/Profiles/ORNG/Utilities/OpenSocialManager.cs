@@ -223,17 +223,17 @@ namespace Profiles.ORNG.Utilities
             return retval;
         }
 
-        public List<PreparedGadget> GetSandboxGadgets()
+        public List<PreparedGadget> GetUnrecognizedGadgets()
         {
-            List<PreparedGadget> sandboxGadgets = new List<PreparedGadget>();
+            List<PreparedGadget> unrecognizedGadgets = new List<PreparedGadget>();
             foreach (PreparedGadget gadget in gadgets)
             {
-                if (gadget.IsSandboxGadget())
+                if (gadget.Unrecognized())
                 {
-                    sandboxGadgets.Add(gadget);
+                    unrecognizedGadgets.Add(gadget);
                 }
             }
-            return sandboxGadgets;
+            return unrecognizedGadgets;
         }
 
         public bool HasGadgetsAttachingTo(string chromeId)
@@ -442,7 +442,7 @@ namespace Profiles.ORNG.Utilities
                     if (allDBGadgets.ContainsKey(sandboxGadget.GetFileName()))
                     {
                         GadgetSpec gadget = allDBGadgets[sandboxGadget.GetFileName()];
-                        gadget.MergeWithSandboxGadget(sandboxGadget);
+                        gadget.MergeWithUnrecognizedGadget(sandboxGadget);
                         gadgetSpecs.Add(gadget);
                     }
                     else

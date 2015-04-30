@@ -305,8 +305,57 @@ namespace Profiles.Framework.Utilities
 
 
         }
+        public string GetConnectionString()
+        {
+
+            //Need to test for IsBot in session
+            string connstr = string.Empty;
+
+                    connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+            return connstr;
+        }
+        public List<string> GetEagleI(Int64 subject)
+        {
 
 
+            List<string> html = new List<string>();
+
+            try
+            {
+
+
+                string connstr = this.GetConnectionString();
+                SqlConnection dbconnection = new SqlConnection(connstr);
+
+                dbconnection.Open();
+
+                SqlCommand dbcommand = new SqlCommand();
+                dbcommand.CommandType = CommandType.Text;
+                dbcommand.CommandText = "Select * from [Profile.Data].[EagleI.HTML] with(nolock) where nodeid = " + subject.ToString();
+                dbcommand.CommandTimeout = this.GetCommandTimeout();
+
+                dbcommand.Connection = dbconnection;
+                using (SqlDataReader dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    while (dbreader.Read())
+                        html.Add(dbreader["HTML"].ToString());
+
+                    if (!dbreader.IsClosed)
+                        dbreader.Close();
+                }
+
+
+
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return html;
+
+        }
 
 
 
@@ -539,33 +588,32 @@ namespace Profiles.Framework.Utilities
         /// <param name="session">ref of Framework.Session object that stores the state of a Profiles user session</param>
         public void SessionCreate(ref Session session)
         {
-            SqlDataReader dbreader;
             SqlParameter[] param = new SqlParameter[2];
             param[0] = new SqlParameter("@RequestIP", session.RequestIP);
             param[1] = new SqlParameter("@UserAgent", session.UserAgent);
 
 
-            dbreader = GetSQLDataReader(GetDBCommand("", "[User.Session].[CreateSession]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
-            if (dbreader != null)
+            using (SqlDataReader dbreader = GetSQLDataReader(GetDBCommand("","[User.Session].[CreateSession]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param)))
             {
-                if (dbreader.Read()) //Returns a data ready with one row of user Session Info.  {Profiles Session Info, not IIS}
+                if (dbreader != null)
+
                 {
-                    session.SessionID = dbreader["SessionID"].ToString();
-                    session.CreateDate = dbreader["CreateDate"].ToString();
-                    session.LastUsedDate = Convert.ToDateTime(dbreader["LastUsedDate"].ToString());
+                    if (dbreader.Read()) //Returns a data ready with one row of user Session Info. {Profiles Session Info, not IIS}
+                    {
+                        session.SessionID = dbreader["SessionID"].ToString();
+                        session.CreateDate = dbreader["CreateDate"].ToString();
+                        session.LastUsedDate = Convert.ToDateTime(dbreader["LastUsedDate"].ToString());
+                        session.ViewSecurityGroup = Convert.ToInt64(dbreader["SecurityGroupID"]);
 
-                    Utilities.DebugLogging.Log("Session object created:" + session.SessionID + " On " + session.CreateDate);
+                        Utilities.DebugLogging.Log("Session object created:" + session.SessionID + " On " + session.CreateDate + " with " + session.RequestIP);
+                    }
                 }
-                //Always close your readers
-                if (!dbreader.IsClosed)
-                    dbreader.Close();
+                else
+                {
+                    session = null;
 
+                }
             }
-            else
-            {
-                session = null;
-            }
-
         }
 
 
@@ -577,7 +625,7 @@ namespace Profiles.Framework.Utilities
         public void SessionUpdate(ref Session session)
         {
 
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = this.GetConnectionString();
             SessionManagement sm = new SessionManagement();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
@@ -623,10 +671,11 @@ namespace Profiles.Framework.Utilities
             {
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
                 ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[User.Session].[UpdateSession]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
-
-
             }
-            catch (Exception ex) { }
+            catch (Exception ex) 
+            {
+                Framework.Utilities.DebugLogging.Log("ERROR" + ex.StackTrace);
+            }
 
             try
             {
@@ -644,12 +693,16 @@ namespace Profiles.Framework.Utilities
             }
             catch (Exception ex)
             {
-
-
+                Framework.Utilities.DebugLogging.Log("ERROR" + ex.StackTrace);
             }
-
         }
 
+        //cache the session state local so you can test if this is a bot or now for the different data connections.
+        private Session Session
+        {
+            get { return (Session)(HttpContext.Current.Session["PROFILES_SESSION"]); }
+            set { HttpContext.Current.Session["PROFILES_SESSION"] = value; }
+        }
         #endregion
 
         #region "ActiveNetwork"

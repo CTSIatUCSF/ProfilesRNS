@@ -50,31 +50,33 @@ namespace Profiles.Profile.Modules
                 rpPublication.DataSource = publication;
                 rpPublication.DataBind();
             }
-           
-           // Get timeline bar chart			
+
+            // Get timeline bar chart			
             using (SqlDataReader reader = data.GetGoogleTimeline(base.RDFTriple, "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]"))
-           {
-				while(reader.Read())
-				{
-					timelineBar.Src = reader["gc"].ToString();
-				}
-				reader.Close();                          
-           }
+            {
+                while (reader.Read())
+                {
+                    timelineBar.Src = reader["gc"].ToString();
+                    timelineBar.Alt = reader["alt"].ToString();
+                    litTimelineTable.Text = reader["asText"].ToString();
+                }
+                reader.Close();
+            }
 
-           if (timelineBar.Src == "")
-           {
-               timelineBar.Visible = false;
-           }
+            if (timelineBar.Src == "")
+            {
+                timelineBar.Visible = false;
+            }
 
 
-		   // Login link
-		  loginLiteral.Text = String.Format("<a href='{0}'>login</a>", Root.Domain + "/login/default.aspx?pin=send&method=login&edit=true");
+            // Login link
+            loginLiteral.Text = String.Format("<a href='{0}'>login</a>", Root.Domain + "/login/default.aspx?pin=send&method=login&edit=true");
 
-          Framework.Utilities.DebugLogging.Log("PUBLICATION MODULE end Milliseconds:" + (DateTime.Now - d).TotalSeconds);
+            Framework.Utilities.DebugLogging.Log("PUBLICATION MODULE end Milliseconds:" + (DateTime.Now - d).TotalSeconds);
 
         }
 
-        protected void rpPublication_OnDataBound(object sender, RepeaterItemEventArgs  e)
+        protected void rpPublication_OnDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
@@ -86,6 +88,7 @@ namespace Profiles.Profile.Modules
                 string lblPubTxt = pub.prns_informaitonResourceReference;
                 if (pub.bibo_pmid != string.Empty && pub.bibo_pmid != null)
                 {
+                    lblPubTxt = lblPubTxt + " PMID: " + pub.bibo_pmid;
                     litViewIn.Text = "View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/" + pub.bibo_pmid + "' target='_blank'>PubMed</a>";
                     if (pub.vivo_pmcid != null)
                     {
@@ -96,6 +99,10 @@ namespace Profiles.Profile.Modules
                             int len = pmcid.IndexOf(' ');
                             if (len != -1) pmcid = pmcid.Substring(0, len);
                             litViewIn.Text = litViewIn.Text + "<br>View in: <a href='//www.ncbi.nlm.nih.gov/pmc/articles/" + pmcid + "' target='_blank'>PubMed Central</a>";
+                        }
+                        else if (pub.vivo_pmcid.Contains("NIHMS"))
+                        {
+                            lblPubTxt = lblPubTxt + "; NIHMSID: " + pub.vivo_pmcid;
                         }
                         else if (pub.vivo_pmcid.Contains("NIHMS"))
                         {
@@ -128,6 +135,5 @@ namespace Profiles.Profile.Modules
             public string vivo_webpage { get; set; }
 
         }
-
     }
 }

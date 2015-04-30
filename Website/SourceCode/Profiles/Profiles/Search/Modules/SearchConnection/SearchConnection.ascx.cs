@@ -62,7 +62,7 @@ namespace Profiles.Search.Modules
                 url = url.Replace("searchtype=whyeverything", "searchtype=everything");
             }
 
-            backlink.Text = "<a href='" + Root.Domain + "/search/default.aspx?" + url + "'><img src='" + Root.Domain + "/framework/images/icon_squareArrow.gif' border='0'/> Back to Search Results</a>";
+            backlink.Text = "<a href='" + Root.Domain + "/search/default.aspx?" + url + "'><img src='" + Root.Domain + "/framework/images/icon_squareArrow.gif' border='0' alt=''/> Back to Search Results</a>";
             litSearchURL.Text = "<a href='" + Root.Domain + "/search/default.aspx?" + url + "'>Search Results</a>";
 
             litPersonURI.Text = "<a href='" + nodeuri + "'>" + node.SelectSingleNode("rdfs:label", base.Namespaces).InnerText + "</a>";
@@ -131,6 +131,9 @@ namespace Profiles.Search.Modules
                 {
                     e.Row.Attributes.Add("onmouseover", "doListTableRowOver(this);");
                     e.Row.Attributes.Add("onmouseout", "doListTableRowOut(this,0);");
+                    e.Row.Attributes.Add("onfocus", "doListTableRowOver(this);");
+                    e.Row.Attributes.Add("onblur", "doListTableRowOut(this,0);");
+                    e.Row.Attributes.Add("tabindex", "0");
                     e.Row.Attributes.Add("class", "evenRow");
 
                 }
@@ -138,11 +141,14 @@ namespace Profiles.Search.Modules
                 {
                     e.Row.Attributes.Add("onmouseover", "doListTableRowOver(this);");
                     e.Row.Attributes.Add("onmouseout", "doListTableRowOut(this,1);");
+                    e.Row.Attributes.Add("onfocus", "doListTableRowOver(this);");
+                    e.Row.Attributes.Add("onblur", "doListTableRowOut(this,1);");
+                    e.Row.Attributes.Add("tabindex", "0");
                     e.Row.Attributes.Add("class", "oddRow");
                 }
 
 
-                e.Row.Attributes.Add("onclick", "document.location.href='" + dc.URI + "'");
+                //e.Row.Attributes.Add("onclick", "document.location.href='" + dc.URI + "'");
 
             }
         }
@@ -160,13 +166,16 @@ namespace Profiles.Search.Modules
                 string urlvalue =  dc.Name;
 
                 litProperty.Text = urlproperty;
-                litValue.Text = urlvalue;
+                litValue.Text = "<a class=\"listTableLink\" href=\""+ dc.URI + "\">" + urlvalue + "</a>";
 
 
                 if (e.Row.RowState == DataControlRowState.Alternate)
                 {
                     e.Row.Attributes.Add("onmouseover", "doListTableRowOver(this);");
                     e.Row.Attributes.Add("onmouseout", "doListTableRowOut(this,0);");
+                    e.Row.Attributes.Add("onfocus", "doListTableRowOver(this);");
+                    e.Row.Attributes.Add("onblur", "doListTableRowOut(this,0);");
+                    e.Row.Attributes.Add("tabindex", "0");
                     e.Row.Attributes.Add("class", "evenRow");
 
                 }
@@ -174,9 +183,12 @@ namespace Profiles.Search.Modules
                 {
                     e.Row.Attributes.Add("onmouseover", "doListTableRowOver(this);");
                     e.Row.Attributes.Add("onmouseout", "doListTableRowOut(this,1);");
+                    e.Row.Attributes.Add("onfocus", "doListTableRowOver(this);");
+                    e.Row.Attributes.Add("onblur", "doListTableRowOut(this,1);");
+                    e.Row.Attributes.Add("tabindex", "0");
                     e.Row.Attributes.Add("class", "oddRow");
                 }
-                e.Row.Attributes.Add("onclick", "document.location.href='" + dc.URI + "'");
+                //e.Row.Attributes.Add("onclick", "document.location.href='" + dc.URI + "'");
             }
         }
 

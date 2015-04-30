@@ -48,6 +48,8 @@ namespace Profiles.Profile.Modules
 				while (reader.Read())
 				{
 					timeline.Src = reader["gc"].ToString();
+                    timeline.Alt = reader["alt"].ToString();
+                    litTimelineTable.Text = reader["asText"].ToString();
 				}
 				reader.Close();
 			}

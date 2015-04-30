@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.Script.Serialization;
-using Connects.Profiles.Service.ServiceImplementation;
+using Profiles.Framework.Utilities;
 
 namespace Profiles.ORNG.Utilities
 {

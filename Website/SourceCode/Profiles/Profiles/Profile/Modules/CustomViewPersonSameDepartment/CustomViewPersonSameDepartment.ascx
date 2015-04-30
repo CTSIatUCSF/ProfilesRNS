@@ -7,7 +7,6 @@
                 Same Department 
 <!--
                 <a href="JavaScript:toggleVisibility('sdDescript');">
-                    <asp:Image runat="server" ID="imgQuestion" />
                 </a>
             </div>
             <div id="sdDescript" class="passiveSectionHeadDescription" style="display: none;">

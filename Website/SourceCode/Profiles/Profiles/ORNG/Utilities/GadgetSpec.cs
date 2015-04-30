@@ -17,7 +17,7 @@ namespace Profiles.ORNG.Utilities
         private string label;
         private string openSocialGadgetURL;
         private bool enabled;
-        private bool fromSandbox = false;
+        private bool unrecognized = false;
         private Dictionary<string, GadgetViewRequirements> viewRequirements = new Dictionary<string, GadgetViewRequirements>();
 
         // these are loaded from the DB
@@ -27,7 +27,7 @@ namespace Profiles.ORNG.Utilities
             this.label = label;
             this.appId = appId;
             this.enabled = enabled;
-            this.fromSandbox = false;
+            this.unrecognized = false;
 
             // load view requirements
             Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
@@ -42,7 +42,7 @@ namespace Profiles.ORNG.Utilities
             }
         }
 
-        // this is for sandbox gadgets
+        // this is for unrecognized gadgets loaded through the sandbox
         public GadgetSpec(string openSocialGadgetURL)
         {
             this.openSocialGadgetURL = openSocialGadgetURL;
@@ -53,15 +53,15 @@ namespace Profiles.ORNG.Utilities
                 appId += (int)ce.Current;
             }
             this.enabled = true;
-            this.fromSandbox = true;
+            this.unrecognized = true;
         }
 
-        internal void MergeWithSandboxGadget(GadgetSpec sandboxGadget)
+        internal void MergeWithUnrecognizedGadget(GadgetSpec unrecognizedGadget)
         {
             // basically just grab it's URL, but check some things first!
-            if (this.GetFileName() == sandboxGadget.GetFileName() && !this.fromSandbox && sandboxGadget.fromSandbox)
+            if (this.GetFileName() == unrecognizedGadget.GetFileName() && !this.unrecognized && unrecognizedGadget.unrecognized)
             {
-                this.openSocialGadgetURL = sandboxGadget.openSocialGadgetURL;
+                this.openSocialGadgetURL = unrecognizedGadget.openSocialGadgetURL;
                 this.enabled = true;
             }
             else
@@ -80,7 +80,7 @@ namespace Profiles.ORNG.Utilities
             return GetGadgetFileNameFromURL(GetGadgetURL());
         }
 
-        private string GetGadgetFileNameFromURL(string url)
+        public static string GetGadgetFileNameFromURL(string url)
         {
             string[] urlbits = url.ToString().Split('/');
             return urlbits[urlbits.Length - 1].Split('.')[0];
@@ -111,7 +111,7 @@ namespace Profiles.ORNG.Utilities
         {
             // if it is a sandbox gadget with no match in the db, always show it because
             // this means a developer is trying to test things
-            if (fromSandbox)
+            if (unrecognized)
             {
                 return true;
             }
@@ -143,9 +143,9 @@ namespace Profiles.ORNG.Utilities
             return enabled;
         }
 
-        public bool IsSandboxGadget()
+        public bool Unrecognized()
         {
-            return fromSandbox;
+            return unrecognized;
         }
 
     }

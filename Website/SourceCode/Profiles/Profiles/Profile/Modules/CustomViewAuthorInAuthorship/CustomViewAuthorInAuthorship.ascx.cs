@@ -85,6 +85,7 @@ namespace Profiles.Profile.Modules
                 Label lblPublication = (Label)e.Item.FindControl("lblPublication");
                 Literal litViewIn = (Literal)e.Item.FindControl("litViewIn");
 
+                string lblPubTxt = pub.prns_informaitonResourceReference;
                 if (pub.bibo_pmid != string.Empty && pub.bibo_pmid != null)
                 {
                     lblPubTxt = lblPubTxt + " PMID: " + pub.bibo_pmid;

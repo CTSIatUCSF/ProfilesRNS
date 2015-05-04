@@ -38,7 +38,7 @@
   <li><a href="#missing">Why are there missing or incorrect publications in my profile? How can I correct this?</a></li>
   <li><a href="trials">Why are there missing or incorrect clinical studies in my profile? How can I correct this?</a></li>
   <li><a href="#update">How frequently are the data in USC Health Sciences Profiles updated?</a></li>
-  <li><a href="#keyword">Can I add/edit research, career and academic interests?</a></li> 
+<!--  <li><a href="#keyword">Can I add/edit research, career and academic interests?</a></li> -->
   <li><a href="#mynetwork">Can I edit my co-authors or similar people lists?</a></li>
 <!--  <li><a href="#learn">How can I learn more about USC Health Sciences Profiles?</a></li> -->
   <li><a href="#ideas">Where should I send my ideas on how to improve the tool?</a></li>
@@ -68,7 +68,7 @@
   <li>You can upload a photo and also add/edit awards, your overview, and more.</li>
   <!-- <li>Keywords are research topics that you can add or edit. These are searchable from within USC Health Sciences Profiles, so if you're focusing on a new area of research and haven't published a paper on it yet, people can still find you if they search using that term.</li> -->
   <li>Publications are automatically added from PubMed. You can edit, delete and add other publications.</li>
-  <li>Clinical studies are automatically added from the Clinical Studies Directory, which uses data from ClinicalTrials.gov, USC True 2, and USC IRB.</li>
+  <li>Clinical studies are automatically added from the <a href="http://clinicaltrials.keckmedicine.org" target="_blank" title="Visit the Clinical Studies Directory">Clinical Studies Directory</a>, which uses data from ClinicalTrials.gov, USC True 2, and USC IRB.</li>
   </ul></li>
   <li><a href="mailto:profiles@sc-ctsi.org">Contact us</a> if you have questions about editing your profile.</li>
 </ul>
@@ -141,11 +141,13 @@
   <li>Changes made to a profile manually will be reflected within minutes.</li>
 </ul>
 
+<!--  
 <h3 id="keyword">Can I add/edit research, career and academic interests?</h3>
 <ul>
   <li>Yes. You can enter interests when you are editing your profile. These are useful to indicate research topics or fields in which you haven’t yet published. Users who search USC Health Sciences Profiles by these topics will find your profile.</li>
   <li>The new interests feature is different from the concepts associated to your publications (MeSH terms derived by the National Library of Medicine), which are not editable. However, you can ensure these accurately reflect your work by keeping your publications up to date and correct in USC Health Sciences Profiles. Please note that it can take up to 24 hours for the system to update your concepts, co-authors, and similar people after you have modified your publications.</li> 
 </ul>
+-->
 
 <h3 id="mynetwork">Can I edit my co-authors or similar people lists?</h3>
 <ul>

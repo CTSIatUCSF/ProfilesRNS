@@ -124,7 +124,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="About\PresentationXML\CloseBrowser.xml" />
-    <Content Include="About\PresentationXML\FAQ.xml" />
+    <Content Include="About\PresentationXML\FAQ.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="About\PresentationXML\Optin.xml">
       <SubType>Designer</SubType>
     </Content>

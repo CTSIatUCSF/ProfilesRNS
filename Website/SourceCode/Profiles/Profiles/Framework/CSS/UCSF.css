@@ -308,7 +308,7 @@ ul#editmenu li span { color: #666; }
 #menuthumb { float: left; height: 20px; width: 20px; overflow: hidden; margin-right: 4px; background-color: #666; }
 #ctl00_trbody .rdf { list-style-type: none; margin: 20px 10px; width: 190px; }
 
-#navbarsearch { float: right; width: 400px; text-align: right; padding-right: 20px; margin: 0;
+#navbarsearch { float: right; width: 400px; text-align: right; padding-right: 20px; margin: 6px 0 0;
   margin: 0\9; }
 #navbarsearch input { display:inline-block;width:198px;height:24px;padding: 0;font-size:13px;color:#555;
   background-color:#fff;border:1px solid #ccc;
@@ -317,6 +317,17 @@ ul#editmenu li span { color: #666; }
 #navbarsearch input#navbarsubmit { width: 20px; height: 20px; margin: 0 0 0 -21px; border: none;
   background: #FFF url(../images/glyphicons-halflings.png) no-repeat -47px 3px; }
 #navbarsearch input#navbarsubmit:hover { cursor: pointer; border: none; border-image-repeat: none; }
+
+.btnsearch {
+  display: block; margin-right: 15px; height: 30px; width: 112px; 
+  font-size: 20px; font-weight: bold; color: #FFF; letter-spacing: 1px; 
+  background-color: #F48024; border-radius: 6px; text-align: center; line-height: 30px; 
+  line-height: 28px\9; 
+}
+.profiles .btnsearch, .profiles .btnsearch:hover, .profiles .btnsearch:visited {
+  color: #FFF !important;
+  text-decoration: none;
+}
 
 /* gadget badges */
 ul#badge { list-style-type: none; padding-left: 0; margin: 0\9; }

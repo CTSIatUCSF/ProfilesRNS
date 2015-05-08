@@ -141,7 +141,7 @@
                                         </th>
                                         <td colspan="2" class="fieldOptions">
                                             <asp:TextBox runat="server" ID="txtSearchFor" CssClass="inputText"></asp:TextBox>
-                                            <asp:CheckBox runat="server" ID="chkExactphrase" />
+                                            <asp:CheckBox runat="server" ID="chkExactphrase" CssClass="unused" />
                                         </td>
 <!--  NOTE: checkboxes are hidden in css
                                             Search for exact phrase
@@ -153,9 +153,7 @@
 -->
                                             <td style="text-decoration: none;" colspan="2">
                                                 <div style="float: left; display: inline">
-                                                    <a href="JavaScript:search();">
-                                                        <img src="<%=GetURLDomain()%>/Search/Images/search.jpg" style="border: 0;margin-bottom: -4px;" alt="Search" />
-                                                    </a>
+                                                    <a class="btnsearch" href="JavaScript:search();">Search &#8981;</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -201,7 +199,7 @@
                                     </th>
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litInstitution"></asp:Literal>
-                                        <asp:CheckBox runat="server" ID="institutionallexcept" />
+                                        <asp:CheckBox runat="server" ID="institutionallexcept" CssClass="unused" />
 <!--
                                         All <b>except</b> the one selected
 -->
@@ -213,7 +211,7 @@
                                     </th>
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litDepartment"></asp:Literal>
-                                        <asp:CheckBox runat="server" ID="departmentallexcept" />
+                                        <asp:CheckBox runat="server" ID="departmentallexcept" CssClass="unused" />
 <!--
                                         All <b>except</b> the one selected
 -->

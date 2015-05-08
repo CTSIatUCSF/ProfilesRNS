@@ -26,12 +26,14 @@
 			<div id="timelineContainer" class='toggle-vis' style='margin-top: 6px;'>		
 				<div style='padding-right: 3px;'><%= this.GetModuleParamString("TimelineCaption").Replace("@ConceptName", this.ConceptName) %></div>
 				<div id="publicationTimelineGraph">
+					<a id="divShowTimelineTable" tabindex="0">View visualization as text</a>
 					<img id='timeline' runat='server' border='0' width='595' height='100'/>
-                    <div style="text-align:left">To see the data from this visualization as text, <a id="divShowTimelineTable" tabindex="0">click here.</a></div>
+                    <!--cp <div style="text-align:left">To see the data from this visualization as text, <a id="divShowTimelineTable" tabindex="0">click here.</a></div> -->
 				</div>
                 <div id="divTimelineTable" class="listTable" style="display:none;margin-top:12px;margin-bottom:8px;">
+			    <a id="dirReturnToTimeline" tabindex="0">View timeline visualization</a>
 		            <asp:Literal runat="server" ID="litTimelineTable"></asp:Literal>
-                    To return to the timeline, <a id="dirReturnToTimeline" tabindex="0">click here.</a>
+                    <!--cp To return to the timeline, <a id="dirReturnToTimeline" tabindex="0">click here.</a> -->
                 </div>
 			</div>	
 			

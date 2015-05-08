@@ -58,11 +58,9 @@
                                 <tr>
                                     <th>
                                     </th>
-                                    <td style="text-decoration: none" colspan="2">
+                                    <td style="text-decoration: none; padding-top: 10px;" colspan="2">
                                         <div style="float: left; display: inline">
-                                            <a href="JavaScript:submitEverythingSearch();">
-                                                <img src="images/search.jpg" alt="submit search" style="border: 0px; position: relative; top: 9px;" />
-                                            </a>
+                                            <a class="btnsearch" href="JavaScript:submitEverythingSearch();">Search &#8981;</a>
                                         </div>
                                     </td>
                                 </tr>

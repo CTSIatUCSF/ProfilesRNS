@@ -93,12 +93,16 @@
     <Content Include="About\Images\conceptsearch.jpg" />
     <Content Include="About\Images\detailstab.jpg" />
     <Content Include="About\Images\develop-profile.gif" />
+    <Content Include="About\Images\extCoAuth.png" />
+    <Content Include="About\Images\featuredPubs.png" />
+    <Content Include="About\Images\featuredVideos.png" />
     <Content Include="About\Images\feed.jpg" />
     <Content Include="About\Images\gear.gif" />
     <Content Include="About\Images\googleGadget.png" />
     <Content Include="About\Images\groupsGadget.png" />
     <Content Include="About\Images\help.gif" />
     <Content Include="About\Images\linksGadget.png" />
+    <Content Include="About\Images\listMaker.png" />
     <Content Include="About\Images\mentorGadget.png" />
     <Content Include="About\Images\minisearch.jpg" />
     <Content Include="About\Images\minisearch.png" />

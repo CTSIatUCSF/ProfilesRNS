@@ -9,40 +9,40 @@
       var hasClickedListTable = false;
       function doListTableRowOver(x) {
       //x.className = 'overRow';
-      x.style.backgroundColor = '#5A719C';
-      x.style.color = '#FFF';
-      for (var i = 0; i &lt; x.childNodes.length; i++) {
-      if (x.childNodes[i].childNodes.length > 0) {
-      if (x.childNodes[i].childNodes[0].className == 'listTableLink') {
-      x.childNodes[i].childNodes[0].style.color = '#FFF';
-      }
-      }
-      }
+      //cp  x.style.backgroundColor = '#5A719C';
+      //cp  x.style.color = '#FFF';
+      //cp  for (var i = 0; i &lt; x.childNodes.length; i++) {
+      //cp  if (x.childNodes[i].childNodes.length > 0) {
+      //cp  if (x.childNodes[i].childNodes[0].className == 'listTableLink') {
+      //cp  x.childNodes[i].childNodes[0].style.color = '#FFF';
+      //cp  }
+      //cp  }
+      //cp  }
       }
       function doListTableRowOut(x, eo) {
-      if (eo == 1) {
+      //cp  if (eo == 1) {
       //x.className = 'oddRow';
-      x.style.backgroundColor = '#FFFFFF';
-      } else {
+      //cp  x.style.backgroundColor = '#FFFFFF';
+      //cp  } else {
       //x.className = 'evenRow';
-      x.style.backgroundColor = '#F0F4F6';
-      }
-      x.style.color = '';
-      for (var i = 0; i &lt; x.childNodes.length; i++) {
-      if (x.childNodes[i].childNodes.length > 0) {
-      if (x.childNodes[i].childNodes[0].className == 'listTableLink') {
-      x.childNodes[i].childNodes[0].style.color = '#36C';
-      }
-      }
-      }
+      //cp  x.style.backgroundColor = '#F0F4F6';
+      //cp  }
+      //cp  x.style.color = '';
+      //cp  for (var i = 0; i &lt; x.childNodes.length; i++) {
+      //cp  if (x.childNodes[i].childNodes.length > 0) {
+      //cp  if (x.childNodes[i].childNodes[0].className == 'listTableLink') {
+      //cp  x.childNodes[i].childNodes[0].style.color = '#36C';
+      //cp  }
+      //cp  }
+      //cp  }
       }
       function doListTableCellOver(x) {
       //x.className = 'listTableLinkOver';
-      x.style.backgroundColor = '#36C';
+      //cp  x.style.backgroundColor = '#36C';
       }
       function doListTableCellOut(x) {
       //x.className = 'listTableLink';
-      x.style.backgroundColor = '';
+      //cp  x.style.backgroundColor = '';
       }
 
 </xsl:text>

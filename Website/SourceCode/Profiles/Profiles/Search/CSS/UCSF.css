@@ -1,5 +1,5 @@
 ﻿.searchForm td div.header { color: #CA7C29; font-size: 30px; font-weight: bold; margin: 16px 0 8px; }
-.searchForm #div1 { border-top: none; padding-top: 12px; padding-top: 20px\9; } 
+.searchForm #div1 { border-top: none; margin-top: 20px; padding-top: 12px; padding-top: 20px\9; margin-top: 0\9; } 
 .searchForm #div1 th { font-weight: normal; width: 140px; }
 #searchOptions { margin-top: -36px; margin-bottom: 25px; }
 #ctl00_ContentMain_rptMain_ctl00_ctl00_searchfor,
@@ -23,8 +23,9 @@ image { border: none; }
 .panelActive { margin-top: 29px; margin-top: 35px\9; }
 .profiles .profilesContentPassive { margin-top: 38px; margin-top: 35px\9; } 
 
+.unused,
 input#chkExactphrase, input#institutionallexcept, input#departmentallexcept { display: none; }
-.searchForm .inputText { width: 245px; }
+.searchForm .inputText { width: 249px; width: 245px\9; }
 #divChkList { border: 1px solid #CCC !important; margin-top: -5px; width: 248px !important; 
   height: 190px !important; padding-top: 15px !important; }
 /* move global health checkboxes up */

@@ -23,36 +23,88 @@ ul li { padding-top: 10px; }
 #new-features { display: none; }
 </style>
 
-<p>The new and improved UCSF Profiles offers a variety of features that make it an even more effective research networking and collaboration tool. Find out what's new and please <a href="mailto:profiles@ucsf.edu?Subject=New%20Features%20Feedback">share any comments</a>.</p>
+<p>We've made improvements to UCSF Profiles to make it an even more effective research networking and collaboration tool. Below is a summary of recent enhancements. Please <a href="mailto:profiles@ucsf.edu?Subject=New%20Features%20Feedback">share any comments</a>.</p>
 
 <div style="border: 1px solid #CCC; padding:5px 15px; margin-bottom: 10px;">
 <h2 style="color: #CA7C29;font-size: 16px;">Highlights</h2>
 <ul class="highlights"> 
-  <li><strong>Search by topic for all recent UCSF papers</strong> with automated help in pinpointing
-      specific concepts (e.g. all recent papers from UCSF on Post-Traumatic Epilepsies)
+  <li><strong>Explore External Co-Author</strong> networks to connect with experts at other institutions.
   </li>
-  <li><strong>Add customized keywords</strong> to reflect your personal interests (e.g. comparative 
-      effectiveness research, digital health, mentoring) – 
-      <span style="color:#990000;font-style:italic;">Top User Request!</span>
+  <li><strong>Showcase most important publications</strong> in their own section.
   </li>
-  <li><strong>Get a personalized URL</strong> for your profile page
-      (e.g. profiles.ucsf.edu/jane.smith)
+  <li><strong>View PMCIDs and free articles</strong>  of many publications.
   </li>
-  <li><strong>View the time course of an individual's publishing and collaborations</strong> 
-      (e.g. assess whether someone is an expert because of a classic paper written a decade ago 
-      or because of recent contributions)
+  <li><strong>Build a custom list of researchers</strong> to precisely target opportunities and invitations. 
+  </li>
+  <li><strong>Post video lectures and talks</strong> from a variety of hosting services, e.g. Vimeo, YouTube, etc.
   </li>
 </ul>
 
-<h3 style="font-size: 14px;padding-left:38px">And there’s more. See other new features and details below.</h3>
+<h3 style="font-size: 14px;padding-left:38px">And there's more. See other new features and details below.</h3>
 </div>
 
 <ul>
-  <li><strong>Videos</strong><br />
-      You can now enhance your profile page with YouTube and UCTV videos. In the Featured Videos
-      section, simply enter the title and web address for your YouTube and/or UCTV video. Videos 
-      will appear on your profile page within several minutes.<br />
-      <img src="images/video.jpg" alt="Video" style="padding:10px 0 0 89px;width:506px;" />
+  <li><strong>External Co-Authors</strong>
+      <ul>
+		<li>Shows network of co-authors at other institutions, where that data is available.
+		</li>
+		<li>Name links to the co-author's page at their institution.
+		</li>
+		<li>Researchers can more easily connect with experts at other institutions by following these networks.
+		</li>
+		<li>'See all' link with new graphics (below left) opens page showing map view of co-authorships.
+			<ul>
+				<li>Ranked list of co-authors</li>
+				<li>Links to co-authored papers</li>
+			</ul>
+		</li>
+	  </ul>
+	  <img src="images/extCoAuth.png" alt="External Co-Authors" style="margin:10px 0 0 40px;" />
+  </li>
+  <li><strong>Featured Publications</strong>
+      <ul>
+		<li>Makes a researcher's most important publications more visible by placing them above the fold and distinguished from chronological list of publications.
+		</li>
+		<li>This helps researchers showcase their best work and set it apart from their full body of work. 
+		</li>
+		<li>Profile owner or proxy can select publications to emphasize.
+			<ul>
+				<li>All publications in the person's profile are available to add</li>
+				<li>Drag and drop to re-order them in editing screen</li>
+			</ul>
+		</li>
+	  </ul>
+	  <img src="images/featuredPubs.png" alt="Featured Publications Example" style="margin:10px 0 0 68px;border:1px solid #CCC;" />
+  </li>
+  <li><strong>Publications Data</strong>
+      <ul>
+		<li>PMCIDs now included for articles that have them.  This helps researchers and faculty easily access these IDs. 
+		</li>
+		<li>All users can click through to free full-text articles when they are available. 
+		</li>
+		<li>Altmetric statistics show how an article is being accessed and shared on social media. This gives users and authors an early indication of the popularity of a paper, well in advance of citations or other traditional metrics.
+		</li>
+	  </ul>
+  </li>
+  <li><strong>ListMaker</strong> - sign in access only (<a href="ListMakerGuidance.pdf" target="_blank">instructions</a>)
+      <ul>
+		<li>Build a custom list of people from search results, network 'See All' pages and individual pages, then export contact info, compose an email or send them a Doodle Poll.
+		</li>
+		<li>Cut down on email spam by precisely targeting outreach, e.g. invite neuroinflammation researchers to a seminar or notify juvenile diabetes researchers about an opportunity from the Juvenile Diabetes Research Foundation. 
+		</li>
+	  </ul>
+	  <img src="images/listMaker.png" alt="ListMaker Example" style="margin:10px 0 0 40px;" />
+  </li>		
+  <li><strong>Featured Videos</strong>
+      <ul>
+		<li>Researchers can post lectures, panels, techniques, or any other recorded activity.
+		</li>
+		<li>Additional hosting services supported: YouTube, Vimeo, TedTalks (ted.com), UCTV and more 
+		</li>
+		<li>Better viewer shows multiple videos with previews in the profile page.
+		</li>
+	  </ul>
+	  <img src="images/featuredVideos.png" alt="Featured Videos Example" style="margin:10px 0 0 90px;border:1px solid #CCC;" />
   </li>
   <li><strong>New Search Options</strong><br />
       UCSF Profiles now allows you to search by a keyword or concept and return not only the 

@@ -83,7 +83,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
 
             vcard.FirstName = this.RDFData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:firstName", namespaces).InnerText;
             vcard.LastName = this.RDFData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:lastName", namespaces).InnerText;
-            vcard.HomePage = this.RDFData.SelectSingleNode("rdf:RDF/rdf:Description[1]/@rdf:about", namespaces).Value;
+            vcard.HomePage = this.RDFData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:workplaceHomepage", namespaces).Value;
 
             if (base.RDFData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/vivo:hrJobTitle", namespaces) != null)
                 vcard.JobTitle = base.RDFData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/vivo:hrJobTitle", namespaces).InnerText;

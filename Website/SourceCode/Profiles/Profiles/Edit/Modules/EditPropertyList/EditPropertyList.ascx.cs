@@ -105,6 +105,8 @@ namespace Profiles.Edit.Modules.EditPropertyList
             }
 
             string uri = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
+            // add one for "Not Added"
+            gli.Add(new GenericListItem("Not Added", "This item has not been added to your Profile page."));
             foreach (XmlNode securityitem in this.SecurityGroups.SelectNodes("SecurityGroupList/SecurityGroup"))
             {
                 this.Dropdown.Add(new GenericListItem(securityitem.SelectSingleNode("@Label").Value,
@@ -161,7 +163,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 ddl.DataBind();
                 ddl.SelectedValue = si.PrivacyCode.ToString();
                 ddl.Visible = false;
-                litSetting.Text = si.PrivacyLevel;
+                litSetting.Text = si.ItemCount > 0 ? si.PrivacyLevel : "Not Added";
 
                 //ddl.Attributes.Add("onchange", "JavaScript:showstatus()");
                 hf.Value = si.ItemURI;

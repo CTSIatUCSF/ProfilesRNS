@@ -104,7 +104,6 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 si.Add(singlesi);
             }
 
-            string uri = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
             // add one for "Not Added"
             gli.Add(new GenericListItem("Not Added", "This item has not been added to your Profile page."));
             foreach (XmlNode securityitem in this.SecurityGroups.SelectNodes("SecurityGroupList/SecurityGroup"))

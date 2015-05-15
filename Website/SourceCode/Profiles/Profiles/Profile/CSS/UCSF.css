@@ -6,7 +6,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .PropertyGroupItem { margin: 0 0 10px; border: none; }
 .PropertyItemHeader { color: #CA7C29; font-size: 16px; background-color: #FFF; clear:both;
   border-top: 1px solid #EEE; padding: 6px 0 0 !important; margin: 15px 0 0; }
-.PropertyItemHeader a { display: none; }
+.PropertyItemHeader img { display: none; }
 #toc { min-height: 27px; margin: 30px 0; background-color: #EEE; border: none; width: 680px\9; padding-bottom: 4px\9; }
 #toc.twoline { height: 58px\9; }
 #toc ul { padding: 0 0 0 10px; margin: 0\9; }
@@ -62,4 +62,8 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 }
 #publicationTimelineGraph img {
   padding: 10px 0 0 40px;
+  display: block;
+}
+#conceptPub #publicationTimelineGraph {
+  width: 620px;
 }

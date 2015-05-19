@@ -104,6 +104,8 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 si.Add(singlesi);
             }
 
+            // add one for "Not Added"
+            gli.Add(new GenericListItem("Not Added", "This item has not been added to your Profile page."));
             foreach (XmlNode securityitem in this.SecurityGroups.SelectNodes("SecurityGroupList/SecurityGroup"))
             {
                 this.Dropdown.Add(new GenericListItem(securityitem.SelectSingleNode("@Label").Value,
@@ -116,21 +118,6 @@ namespace Profiles.Edit.Modules.EditPropertyList
             repPropertyGroups.DataBind();
 
             BuildSecurityKey(gli);
-
-            // OpenSocial.  Allows gadget developers to show test gadgets if you have them installed
-            string uri = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
-            OpenSocialManager om = OpenSocialManager.GetOpenSocialManager(uri, Page, true);
-            if (om.IsVisible()) 
-            {
-                litGadget.Visible = true;
-                string sandboxDivs = "";
-                foreach (PreparedGadget gadget in om.GetUnrecognizedGadgets())
-                {
-                    sandboxDivs += "<div id='" + gadget.GetChromeId() + "' class='gadgets-gadget-parent'></div>";
-                }
-                litGadget.Text = sandboxDivs;
-                om.LoadAssets();
-            }
         }
 
         protected void repPropertyGroups_OnItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -175,7 +162,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 ddl.DataBind();
                 ddl.SelectedValue = si.PrivacyCode.ToString();
                 ddl.Visible = false;
-                litSetting.Text = si.PrivacyLevel;
+                litSetting.Text = si.ItemCount > 0 ? si.PrivacyLevel : "Not Added";
 
                 //ddl.Attributes.Add("onchange", "JavaScript:showstatus()");
                 hf.Value = si.ItemURI;

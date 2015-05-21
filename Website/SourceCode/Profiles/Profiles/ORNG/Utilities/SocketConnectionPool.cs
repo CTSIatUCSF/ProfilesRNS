@@ -18,7 +18,6 @@ namespace Profiles.ORNG.Utilities
         private string server;
         private int port;
         private Queue<CustomSocket> availableSockets = null;
-        private bool Initialized = false;
         private int SocketCounter = 0;
 
         public SocketConnectionPool(string server, int port, int minConnections, int maxConnections, int expire, int timeout)
@@ -35,8 +34,6 @@ namespace Profiles.ORNG.Utilities
                 CustomSocket cachedSocket = ConnectSocket();
                 PutSocket(cachedSocket);
             }
-
-            Initialized = true;
 
             DebugLogging.Log("Connection Pool is initialized" +
                    " with Max Number of " +
@@ -62,13 +59,13 @@ namespace Profiles.ORNG.Utilities
                         }
                         else
                         {
-                            socket.Close();
+                            socket.CloseNice();
                         }
                     }
                 }
                 else
                 {
-                    socket.Close();
+                    socket.CloseNice();
                     DebugLogging.Log("PutSocket - Socket is forced " +
                                        "to closed -> Pool size: " +
                                        availableSockets.Count.ToString());
@@ -97,7 +94,7 @@ namespace Profiles.ORNG.Utilities
                         }
                         else
                         {
-                            socket.Close();
+                            socket.CloseNice();
                             System.Threading.Interlocked.Decrement(ref SocketCounter);
                             DebugLogging.Log("GetSocket -- Close -- Count: " +
                                                                SocketCounter.ToString());
@@ -164,6 +161,13 @@ namespace Profiles.ORNG.Utilities
             : base(af, st, pt)
         {
             _TimeCreated = DateTime.Now;
+        }
+
+        public void CloseNice()
+        {
+            // this lets the server know that we are closing the socket
+            this.Send(System.Text.Encoding.ASCII.GetBytes("\r\n"));
+            this.Close();
         }
     }
 }

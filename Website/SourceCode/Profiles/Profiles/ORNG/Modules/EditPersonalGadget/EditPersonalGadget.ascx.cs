@@ -86,7 +86,7 @@ namespace Profiles.ORNG.Modules.Gadgets
             uri = uri.Substring(0, uri.IndexOf(Convert.ToString(this.SubjectID)) + Convert.ToString(this.SubjectID).Length);
             appId = Convert.ToInt32(base.GetModuleParamString("AppId"));
             om = OpenSocialManager.GetOpenSocialManager(uri, Page, true);
-            gadget = om.AddGadget(appId, base.GetModuleParamString("View"), base.GetModuleParamString("OptParams"));
+            gadget = om.AddOntologyGadget(appId, base.GetModuleParamString("View"), base.GetModuleParamString("OptParams"));
 
             securityOptions.Subject = this.SubjectID;
             securityOptions.PredicateURI = this.PredicateURI;

@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Text;
+using System.Diagnostics;
 using Profiles.Framework.Utilities;
 
 namespace Profiles.ORNG.Utilities
@@ -34,11 +35,14 @@ namespace Profiles.ORNG.Utilities
         private static string ORNG_MANAGER = "ORNG_MANAGER";
         public static string ORNG_GADGET_SPEC_KEY = "ORNG_GADGET_SPEC_KEY";
 
+        private static SocketConnectionPool sockets = null;
+
         #region "LocalVars"
 
         private List<PreparedGadget> gadgets = new List<PreparedGadget>();
         private Dictionary<string, ORNGRPCService> callbackResponders = new Dictionary<string, ORNGRPCService>();
         private Guid guid;
+        private string containerSecurityToken;
         private string viewerUri = null;
         private string ownerUri = null;
         internal bool isDebug = false;
@@ -47,6 +51,10 @@ namespace Profiles.ORNG.Utilities
         private Page page;
         private static string shindigURL;
         private static string features;
+
+        // performance
+        private static double socketTime = 0;
+        private static int socketCounter = 1;
 
         #endregion
 
@@ -58,7 +66,14 @@ namespace Profiles.ORNG.Utilities
             {
                 shindigURL = ORNGSettings.getSettings().ShindigURL;
                 features = ORNGSettings.getSettings().Features;
-                PreparedGadget.Init();
+
+                string[] tokenService = ORNGSettings.getSettings().TokenService.Split(':');
+                int min = ORNGSettings.getSettings().SocketPoolMin;
+                int max = ORNGSettings.getSettings().SocketPoolMax;
+                int expire = ORNGSettings.getSettings().SocketPoolExpire;
+                int timeout = ORNGSettings.getSettings().SocketReceiveTimeout;
+
+                sockets = new SocketConnectionPool(tokenService[0], Int32.Parse(tokenService[1]), min, max, expire, timeout);
             }
         }
 
@@ -79,18 +94,19 @@ namespace Profiles.ORNG.Utilities
 
         private OpenSocialManager(string ownerUri, Page page, bool editMode)
         {
-            this.guid = Guid.NewGuid();
-            this.isDebug = page.Session != null && page.Session[ORNG_DEBUG] != null && (bool)page.Session[ORNG_DEBUG];
-            this.noCache = page.Session != null && page.Session[ORNG_NOCACHE] != null && (bool)page.Session[ORNG_NOCACHE];
-            this.page = page;
-            this.pageName = page.AppRelativeVirtualPath.Substring(2).ToLower();
-
             DebugLogging.Log("Creating OpenSocialManager for " + ownerUri + ", " + pageName);
-            if (shindigURL == null)
+            if (!ORNGSettings.getSettings().Enabled)
             {
                 // do nothing
                 return;
             }
+
+            this.guid = Guid.NewGuid();
+
+            this.isDebug = page.Session != null && page.Session[ORNG_DEBUG] != null && (bool)page.Session[ORNG_DEBUG];
+            this.noCache = page.Session != null && page.Session[ORNG_NOCACHE] != null && (bool)page.Session[ORNG_NOCACHE];
+            this.page = page;
+            this.pageName = page.AppRelativeVirtualPath.Substring(2).ToLower();
 
             this.ownerUri = ownerUri;
     		// in editMode we need to set the viewer to be the same as the owner
@@ -116,6 +132,7 @@ namespace Profiles.ORNG.Utilities
                     viewerUri = null;
                 }
             }
+            containerSecurityToken = SocketSendReceive(viewerUri, ownerUri, null);
 
             string requestAppId = page.Request.QueryString["appId"];
             foreach (GadgetSpec gadgetSpec in GetGadgetSpecifications())
@@ -138,7 +155,7 @@ namespace Profiles.ORNG.Utilities
             gadgets.Sort();
         }
 
-        public PreparedGadget AddGadget(int appId, string view, string optParams)
+        public PreparedGadget AddOntologyGadget(int appId, string view, string optParams)
         {
             // this only returns enabled gadgets, and that's what we want!
             foreach (GadgetSpec spec in GetGadgetSpecifications())
@@ -317,7 +334,8 @@ namespace Profiles.ORNG.Utilities
 
                 HtmlGenericControl shindigjs = new HtmlGenericControl("script");
                 shindigjs.Attributes.Add("type", "text/javascript");
-                shindigjs.Attributes.Add("src", Root.Domain + (isDebug ? "/ORNG/JavaScript/orng.js" : "/ORNG/JavaScript/orng.min.js"));
+                //shindigjs.Attributes.Add("src", Root.Domain + (isDebug ? "/ORNG/JavaScript/orng.js" : "/ORNG/JavaScript/orng.min.js"));
+                shindigjs.Attributes.Add("src", Root.Domain + (isDebug ? "/ORNG/JavaScript/orng.js" : "/ORNG/JavaScript/orng.js"));
                 page.Header.Controls.Add(shindigjs);
             }
             else
@@ -352,6 +370,7 @@ namespace Profiles.ORNG.Utilities
                     "};" + Environment.NewLine;
             gadgetScriptText += "my.openSocialURL = '" + shindigURL + "';" + Environment.NewLine +
                 "my.guid = '" + guid.ToString() + "';" + Environment.NewLine +
+                "my.containerSecurityToken = '" + containerSecurityToken + "';" + Environment.NewLine +
                 "my.containerSessionId = '" + new SessionManagement().Session().SessionID + "';" + Environment.NewLine +
                 "my.debug = " + (IsDebug() ? "1" : "0") + ";" + Environment.NewLine +
                 "my.noCache = " + (NoCache() ? "1" : "0") + ";" + Environment.NewLine +
@@ -460,5 +479,79 @@ namespace Profiles.ORNG.Utilities
             return gadgetSpecs;
         }
 
+        #region Socket Communications
+
+        internal string GetSecurityToken(String gadgetURL)
+        {
+            if (Convert.ToBoolean(ConfigurationSettings.AppSettings["DEBUG"]) == true)
+            {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                string retval = SocketSendReceive(GetViewerURI(), GetOwnerURI(), gadgetURL);
+                sw.Stop();
+                socketTime += sw.Elapsed.TotalSeconds;
+                DebugLogging.Log("Average socket = " + (socketTime / socketCounter++) + ", Elapsed = " + sw.Elapsed);
+                return retval;
+            }
+            else
+            {
+                return SocketSendReceive(GetViewerURI(), GetOwnerURI(), gadgetURL);
+            }
+        }
+
+        private static string SocketSendReceive(string viewer, string owner, string gadget)
+        {
+            //  These keys need to match what you see in edu.ucsf.profiles.shindig.service.SecureTokenGeneratorService in Shindig
+            string request = "c=default" + (viewer != null ? "&v=" + HttpUtility.UrlEncode(viewer) : "") +
+                (owner != null ? "&o=" + HttpUtility.UrlEncode(owner) : "") + (gadget != null ? "&u=" + HttpUtility.UrlEncode(gadget) : "") + "\r\n";
+            Byte[] bytesSent = System.Text.Encoding.ASCII.GetBytes(request);
+            Byte[] bytesReceived = new Byte[256];
+
+            // Create a socket connection with the specified server and port.
+            //Socket s = ConnectSocket(tokenService[0], Int32.Parse(tokenService[1]));
+
+            // during startup we might fail a few times, so be will to retry 
+            string page = "";
+            for (int i = 0; i < 3 && page.Length == 0; i++)
+            {
+                CustomSocket s = null;
+                try
+                {
+                    s = sockets.GetSocket();
+
+                    if (s == null)
+                        return ("Connection failed");
+
+                    // Send request to the server.
+                    DebugLogging.Log("Sending Bytes");
+                    s.Send(bytesSent);
+
+                    // Receive the server home page content.
+                    int bytes = 0;
+
+                    // The following will block until the page is transmitted.
+                    // we recognize the end of the message when the Trim drops the length by removing the EOL
+                    do
+                    {
+                        DebugLogging.Log("Receiving Bytes");
+                        bytes = s.Receive(bytesReceived);
+                        page = page + Encoding.ASCII.GetString(bytesReceived, 0, bytes);
+                        DebugLogging.Log("Socket Page=" + page + "|");
+                    }
+                    while (page.Length == page.TrimEnd().Length && bytes > 0);
+                }
+                catch (Exception ex)
+                {
+                    DebugLogging.Log("Socket Error :" + ex.Message);
+                    page = "";
+                }
+                finally
+                {
+                    if (sockets != null && s != null) sockets.PutSocket(s);
+                }
+            }
+            return page.TrimEnd();
+        }
+        #endregion
     }
 }

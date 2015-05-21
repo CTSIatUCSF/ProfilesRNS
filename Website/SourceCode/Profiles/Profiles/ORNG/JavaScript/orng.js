@@ -31,6 +31,7 @@ my.orngRPCEndpoint = _rootDomain + "/ORNG/Default.aspx/CallORNGRPC";
 my.init = function () {
 
     // 1. Create the OrngContainer object
+    shindig.auth.updateSecurityToken(my.containerSecurityToken);
     var tokens = {};
     for (var i = 0; i < my.gadgets.length; i++) {
         tokens[my.gadgets[i].url] = {};
@@ -40,8 +41,13 @@ my.init = function () {
     var orngConfig = {};
     orngConfig[osapi.container.ServiceConfig.API_PATH] = my.openSocialURL.substring(my.openSocialURL.lastIndexOf('/')) + "/rpc";
     orngConfig[osapi.container.ContainerConfig.RENDER_DEBUG] = my.debug;
-    orngConfig[osapi.container.ContainerConfig.TOKEN_REFRESH_INTERVAL] = 0; // disable for now
     orngConfig[osapi.container.ContainerConfig.PRELOAD_TOKENS] = tokens; // hash keyed by chromeId seems to be the correct thing to put in here
+    orngConfig[osapi.container.ContainerConfig.TOKEN_REFRESH_INTERVAL] = 1000;  // 1000 seconds seem ok?
+    orngConfig[osapi.container.ContainerConfig.GET_CONTAINER_TOKEN] = function (callback) {
+        osapi.orng.refreshContainerToken().execute(function (result) {
+            callback(result, 1000);
+        });
+    };
 
     OrngContainer = new osapi.container.Container(orngConfig);
 

@@ -15,10 +15,12 @@ namespace Profiles.ORNG.Utilities
         private static List<WeakReference> managers = new List<WeakReference>();
 
         private OpenSocialManager om;
+        private List<string> channels = new List<string>();
 
-        public ORNGRPCService(string uri, Page page, bool editMode)
+        public ORNGRPCService(string uri, Page page, bool editMode, string[] chnls)
         {
             this.om = OpenSocialManager.GetOpenSocialManager(uri, page, false);
+            this.channels.AddRange(chnls);
             // Add to Session so that it does not get prematurely garbage collected
             HttpContext.Current.Session[KEY_PREFIX + ":" + om.GetGuid().ToString()] = this;
             managers.Add(new WeakReference(this));
@@ -29,7 +31,7 @@ namespace Profiles.ORNG.Utilities
             return this.om;
         }
 
-        public static ORNGRPCService GetRPCService(Guid guid)
+        public static ORNGRPCService GetRPCService(Guid guid, string channel)
         {
             DebugLogging.Log("ORNGRPCService guid :" + guid);
             ORNGRPCService retval = null;
@@ -40,7 +42,7 @@ namespace Profiles.ORNG.Utilities
                     DebugLogging.Log("ORNGRPCService removing WeakReference :" + wr);
                     managers.Remove(wr);
                 }
-                else if (guid.Equals(((ORNGRPCService)wr.Target).om.GetGuid()))
+                else if (((ORNGRPCService)wr.Target).match(guid, channel))
                 {
                     retval = wr.Target as ORNGRPCService;
                 }
@@ -48,7 +50,12 @@ namespace Profiles.ORNG.Utilities
             return retval;
         }
 
-        public abstract string call(string request);
+        private bool match(Guid guid, string channel)
+        {
+            return guid.Equals(om.GetGuid()) && channels.Contains(channel);
+        }
+
+        public abstract string call(string channel, string opt_params);
     }
 
 }

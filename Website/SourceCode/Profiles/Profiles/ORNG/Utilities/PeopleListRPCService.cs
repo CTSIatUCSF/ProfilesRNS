@@ -13,21 +13,22 @@ namespace Profiles.ORNG.Utilities
         // add more as you see fit
         public static readonly string REQUEST_PEOPLE_LIST_METADATA = "REQUEST_PEOPLE_LIST_METADATA";
         public static readonly string REQUEST_PEOPLE_LIST = "REQUEST_PEOPLE_LIST";
+        private static readonly string[] channels = {REQUEST_PEOPLE_LIST_METADATA, REQUEST_PEOPLE_LIST};
 
         JavaScriptSerializer serializer = new JavaScriptSerializer();
 
         public PeopleListRPCService(string uri, Page page, bool editMode)
-            : base(null, page, editMode)
+            : base(null, page, editMode, channels)
         {
         }
 
-        public override string call(string request)
+        public override string call(string channel, string opt_params)
         {
-            if (REQUEST_PEOPLE_LIST_METADATA.Equals(request))
+            if (REQUEST_PEOPLE_LIST_METADATA.Equals(channel))
             {
                 return getPeopleListMetadata();                                                   
             }
-            else if (REQUEST_PEOPLE_LIST.Equals(request))
+            else if (REQUEST_PEOPLE_LIST.Equals(channel))
             {
                 return BuildJSONPersonIds(getPeople());                                                   
             }

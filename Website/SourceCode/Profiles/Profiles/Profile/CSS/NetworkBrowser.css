@@ -10,7 +10,7 @@
     For details, see: LICENSE.txt 
   
 */
-body /* This body tag requires the use of one of the sets of banner and/or text div ids */
+body /* This body tag requires the use of one of the sets of banner and/or text div ids 
 {
 	background: #ffffff; 
 	color: #000000;
@@ -41,6 +41,8 @@ h3
 	font-size:1.1em;
 	color: #003388;
 }
+CP: commented out above rules & added next one */
+#navbarsearch { display: none; }
 
 pre
 {

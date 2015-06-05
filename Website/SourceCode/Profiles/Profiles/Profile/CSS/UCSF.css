@@ -7,6 +7,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .PropertyItemHeader { color: #CA7C29; font-size: 16px; background-color: #FFF; clear:both;
   border-top: 1px solid #EEE; padding: 6px 0 0 !important; margin: 15px 0 0; }
 .PropertyItemHeader img { display: none; }
+.PropertyItemHeader:focus { outline: none; }
 #toc { min-height: 27px; margin: 30px 0; background-color: #EEE; border: none; width: 680px\9; padding-bottom: 4px\9; }
 #toc.twoline { height: 58px\9; }
 #toc ul { padding: 0 0 0 10px; margin: 0\9; }

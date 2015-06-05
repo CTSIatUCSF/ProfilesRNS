@@ -37,7 +37,7 @@
                 <td>
                     <asp:LinkButton ID="lnkDelete" runat="server"
                         CausesValidation="False" OnClick="deleteOne_Onclick" CommandName="Delete" AlternateText=" " Visible="false"
-                        OnClientClick="Javascript:return confirm('Are you sure you want to remove this ORNG Application from your profile page?');">
+                        OnClientClick="Javascript:return confirm('Are you sure you want to remove this ORNG section from your profile page?');">
                             <asp:Image runat="server" ID="imgDelete" AlternateText=" " ImageUrl="~/Framework/Images/delete.png" />&nbsp;
                             <asp:Literal runat="server" ID="litDeleteORNGApplicationProperty">Remove ORNG Application</asp:Literal>       
                     </asp:LinkButton>

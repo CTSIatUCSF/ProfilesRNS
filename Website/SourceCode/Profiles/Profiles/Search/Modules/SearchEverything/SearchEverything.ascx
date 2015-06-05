@@ -60,7 +60,9 @@
                                     </th>
                                     <td style="text-decoration: none; padding-top: 10px;" colspan="2">
                                         <div style="float: left; display: inline">
-                                            <a class="btnsearch" href="JavaScript:submitEverythingSearch();">Search &#8981;</a>
+                                            <a href="JavaScript:submitEverythingSearch();">
+                                                <img src="images/search.jpg" style="border: 0px; position: relative; top: 9px;" />
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>

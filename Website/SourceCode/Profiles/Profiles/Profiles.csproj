@@ -1633,7 +1633,6 @@
     <Content Include="Profile\XSLT\Awards.xslt">
       <SubType>Designer</SubType>
     </Content>
-    </Content>
     <Content Include="Profile\XSLT\CoAuthorDetail.xslt" />
     <Content Include="Profile\XSLT\ConceptDetail.xslt" />
     <Content Include="Profile\XSLT\Narrative.xslt" />

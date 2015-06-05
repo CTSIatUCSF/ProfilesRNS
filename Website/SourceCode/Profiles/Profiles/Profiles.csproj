@@ -1728,6 +1728,7 @@
     <Content Include="Framework\Template.Master" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailHandler.ashx" />
     <None Include="About\Images\Thumbs.db" />
+    <None Include="About\ListMakerGuidance.pdf" />
     <None Include="ORCID\ORCIDPrivacySettingsandProfiles.pdf" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailAudioHandler.ashx" />
     <None Include="Profile\Modules\NetworkCluster\scriptaculous\CHANGELOG" />

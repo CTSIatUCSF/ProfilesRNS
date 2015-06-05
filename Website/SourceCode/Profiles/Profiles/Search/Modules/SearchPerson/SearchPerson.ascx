@@ -153,7 +153,9 @@
 -->
                                             <td style="text-decoration: none;" colspan="2">
                                                 <div style="float: left; display: inline">
-                                                    <a class="btnsearch" href="JavaScript:search();">Search &#8981;</a>
+                                                    <a href="JavaScript:search();">
+                                                        <img src="<%=GetURLDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />
+						    </a>
                                                 </div>
                                             </td>
                                         </tr>

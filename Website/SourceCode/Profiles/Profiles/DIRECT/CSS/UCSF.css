@@ -4,14 +4,8 @@
 .profiles .profilesContentPassive .passiveSectionBody  div { padding: 8px 0 12px; }
 .listTable tr:first-child td { color: #000; font-weight: bold; background-color: #EEE; }
 .listTable tr:first-child td:hover { color: #000; text-decoration: none; cursor: default; }
-#btnsearch { 
-  font-size: 20px; height: 30px; width: 112px; border: none; color: #FFF; letter-spacing: 1px; 
-  font-weight: bold; background-color: #F48024; border-radius: 6px; margin: 0 -28px 0 10px; text-align: left; 
-}
-.fieldOptions:after {
-  content: "\2315"; 
-  color: #FFF;
-  font-weight: bold; font-size: 22px;
+#btnsearch { font-size: 0; height: 30px; width: 110px; border: none; margin-top: 0.2em; 
+  background:url("../../Search/Images/search.jpg") no-repeat scroll 0 0 transparent;  
 }
 
 .siteresult { color: #000; }

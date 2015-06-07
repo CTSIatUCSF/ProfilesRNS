@@ -24,6 +24,7 @@ namespace Profiles.ORNG.Utilities
             // Add to Session so that it does not get prematurely garbage collected
             HttpContext.Current.Session[KEY_PREFIX + ":" + om.GetGuid().ToString()] = this;
             managers.Add(new WeakReference(this));
+            DebugLogging.Log("ORNGRPCService created :" + om.GetGuid().ToString() + " channels " + this.channels.ToString());
         }
 
         public OpenSocialManager GetOpenSocialManager()

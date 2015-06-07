@@ -103,17 +103,20 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
             // OpenSocial.  Allows gadget developers to show test gadgets if you have them installed
             string uri = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
             OpenSocialManager om = OpenSocialManager.GetOpenSocialManager(uri, Page);
-            if (om.IsVisible() && om.GetUnrecognizedGadgets().Count > 0) 
+            if (om.IsVisible()) 
             {
-                pnlSandboxGadgets.Visible = true;
-                litSandboxGadgets.Visible = true;
-                string sandboxDivs = "" ;
-                foreach (PreparedGadget gadget in om.GetUnrecognizedGadgets())
+                if (om.GetUnrecognizedGadgets().Count > 0) 
                 {
-                    sandboxDivs += "<div id='" + gadget.GetChromeId() + "' class='gadgets-gadget-parent'></div>";
+                    pnlSandboxGadgets.Visible = true;
+                    litSandboxGadgets.Visible = true;
+                    string sandboxDivs = "" ;
+                    foreach (PreparedGadget gadget in om.GetUnrecognizedGadgets())
+                    {
+                        sandboxDivs += "<div id='" + gadget.GetChromeId() + "' class='gadgets-gadget-parent'></div>";
+                    }
+                    litSandboxGadgets.Text = sandboxDivs;
+                    om.LoadAssets();
                 }
-                litSandboxGadgets.Text = sandboxDivs;
-                om.LoadAssets();
                 // Add this just in case it is needed.
                 new ORNGProfileRPCService(Page, this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/foaf:firstName", base.Namespaces).InnerText, uri);
             }

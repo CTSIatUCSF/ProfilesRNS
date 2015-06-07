@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" ContentType="text/plain" %>
 <%Response.Write("User-Agent: *" + Environment.NewLine);%>
-<%Response.Write("Disallow: /shindigorng/" + Environment.NewLine);%>
+<%Response.Write("Disallow: /shindigucsf/" + Environment.NewLine);%>
 <%Response.Write("Disallow: /sparql/" + Environment.NewLine);%>
 <%Response.Write("Disallow: /profile/" + Environment.NewLine);%>
 <%Response.Write("Disallow: /display/" + Environment.NewLine);%>

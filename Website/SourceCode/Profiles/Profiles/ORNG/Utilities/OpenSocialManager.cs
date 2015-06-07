@@ -94,21 +94,20 @@ namespace Profiles.ORNG.Utilities
 
         private OpenSocialManager(string ownerUri, Page page, bool editMode)
         {
-            DebugLogging.Log("Creating OpenSocialManager for " + ownerUri + ", " + pageName);
             if (!ORNGSettings.getSettings().Enabled)
             {
                 // do nothing
                 return;
             }
-
             this.guid = Guid.NewGuid();
-
             this.isDebug = page.Session != null && page.Session[ORNG_DEBUG] != null && (bool)page.Session[ORNG_DEBUG];
             this.noCache = page.Session != null && page.Session[ORNG_NOCACHE] != null && (bool)page.Session[ORNG_NOCACHE];
             this.page = page;
             this.pageName = page.AppRelativeVirtualPath.Substring(2).ToLower();
-
             this.ownerUri = ownerUri;
+
+            DebugLogging.Log("Creating OpenSocialManager " + this.guid.ToString() + " for " + ownerUri + ", " + pageName);
+
     		// in editMode we need to set the viewer to be the same as the owner
 	    	// otherwise, the gadget will not be able to save appData correctly            
             if (editMode)

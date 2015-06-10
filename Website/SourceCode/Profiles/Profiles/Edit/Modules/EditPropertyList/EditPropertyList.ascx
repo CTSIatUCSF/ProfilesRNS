@@ -5,7 +5,7 @@
 <!--
 <br />
 Below are the types of content that can be included on this profile. Locked items
-<asp:Image runat="server" ID="imgLock" />
+<asp:Image runat="server" ID="imgLock" alt=""/>
 can be viewed but not edited. Information in the Address section of your profile,
 including your titles, affiliations, telephone, fax, and email are managed by your
 Human Resources office; however, you may upload a custom photo to your profile using
@@ -39,14 +39,14 @@ this website.
             <AlternatingRowStyle CssClass="evenRow" />
             <Columns>
                 <asp:BoundField HeaderStyle-CssClass="padding" ItemStyle-CssClass="padding" HeaderStyle-HorizontalAlign="Left"
-                    ItemStyle-HorizontalAlign="Left" DataField="item" HeaderText="Item" ItemStyle-Width="150px" />
+                    ItemStyle-HorizontalAlign="Left" DataField="EditLink" HeaderText="Item" HtmlEncode="false" ItemStyle-Width="150px"/>
                 <asp:TemplateField HeaderStyle-HorizontalAlign="Center"
                     HeaderText="Items" ItemStyle-Width="50px">
                     <ItemTemplate>
-                        <asp:Image runat="server" ID="imgBlank" Visible="false" ImageUrl="~/Edit/Images/icons_blank.gif" />
+                        <asp:Image runat="server" ID="imgBlank" Visible="false" ImageUrl="~/Edit/Images/icons_blank.gif" AlternateText=" " />
                         <asp:Label runat="server" ID="lblItems"></asp:Label>
                         <asp:Image runat="server" ID="imgLock" Visible="false" ImageUrl="~/Edit/Images/icons_blank.gif" />
-                        <asp:Image runat="server" ID="imgOrng" Visible="false" ImageUrl="~/ORNG/Images/orng-asterisk.png" />
+                        <asp:Image runat="server" ID="imgOrng" Visible="false" ImageUrl="~/ORNG/Images/orng-asterisk.png" AlternateText="ORNG Gadget"/>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderStyle-HorizontalAlign="Center" 
@@ -86,6 +86,7 @@ this website.
                 <asp:Literal runat="server" ID="litSecurityKey"></asp:Literal>
               </div>
         </td>
+     </td>
     </tr>
 </table>
 <p class="orng"><img style="border-width:0px;" src="../ORNG/Images/orng-asterisk.png" /> Components developed by the UCSF <a href="http://www.orng.info/index.html" target="_blank">Open Research Networking Gadgets (ORNG)</a> initiative. 

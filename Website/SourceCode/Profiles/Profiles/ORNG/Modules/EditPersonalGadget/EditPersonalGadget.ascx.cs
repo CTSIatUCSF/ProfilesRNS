@@ -40,6 +40,11 @@ namespace Profiles.ORNG.Modules.Gadgets
         private int appId;
         private PreparedGadget gadget;
         private Profiles.ORNG.Utilities.DataIO data;
+        private bool hasGadget = false;
+
+        public Int64 SubjectID { get; set; }
+        public XmlDocument PropertyListXML { get; set; }
+        public string PredicateURI { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -81,15 +86,15 @@ namespace Profiles.ORNG.Modules.Gadgets
             uri = uri.Substring(0, uri.IndexOf(Convert.ToString(this.SubjectID)) + Convert.ToString(this.SubjectID).Length);
             appId = Convert.ToInt32(base.GetModuleParamString("AppId"));
             om = OpenSocialManager.GetOpenSocialManager(uri, Page, true);
-            gadget = om.AddGadget(appId, base.GetModuleParamString("View"), base.GetModuleParamString("OptParams"));
+            gadget = om.AddOntologyGadget(appId, base.GetModuleParamString("View"), base.GetModuleParamString("OptParams"));
 
             securityOptions.Subject = this.SubjectID;
             securityOptions.PredicateURI = this.PredicateURI;
-            securityOptions.PrivacyCode = "0".Equals(this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/@NumberOfConnections").Value) ? 
-                0 : Convert.ToInt32(this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@ViewSecurityGroup").Value);
+            securityOptions.PrivacyCode = Convert.ToInt32(this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@ViewSecurityGroup").Value);
             securityOptions.SecurityGroups = new XmlDataDocument();
             securityOptions.SecurityGroups.LoadXml(base.PresentationXML.DocumentElement.LastChild.OuterXml);
 
+            hasGadget = Convert.ToInt32(this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@NumberOfConnections").Value) > 0;
         }
 
         private void DrawProfilesModule()
@@ -101,16 +106,46 @@ namespace Profiles.ORNG.Modules.Gadgets
             }
             else 
             {
-                litGadget.Text = "<div id='" + gadget.GetChromeId() + "' class='gadgets-gadget-parent'></div>";
+                // We need to render the div even if we want to hide it, otherwise OpenSocial will not work
+                // so we use an ugly trick to turn it on and off in javascript
+                litGadget.Text = "<div id='" + gadget.GetChromeId() + "' class='gadgets-gadget-parent' style ='display: " + (hasGadget ? "block" : "none") + "'></div>";
                 om.LoadAssets();
+            }
+
+            if (hasGadget)
+            {
+                btnAddORNGApplication.Visible = false;
+                litDeleteORNGApplicationProperty.Text = "Remove " + gadget.GetLabel() + " gadget from your profile.";
+                lnkDelete.Visible = true;
+            }
+            else
+            {
+                litAddORNGApplicationProperty.Text = "Add " + gadget.GetLabel();
+                btnAddORNGApplication.Visible = true;
+                lnkDelete.Visible = false;
             }
         }
 
+        protected void btnAddORNGApplication_OnClick(object sender, EventArgs e)
+        {
+            // add the gadget to the person
+            data.AddPersonalGadget(this.SubjectID, this.PredicateURI);
+            hasGadget = true;
+            DrawProfilesModule();
+            upnlEditSection.Update();
+            string scriptstring = "document.getElementById('" + gadget.GetChromeId() + "').style.display = 'block';";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "hideshow", scriptstring, true);
+        }
 
-        public Int64 SubjectID { get; set; }
-        public XmlDocument PropertyListXML { get; set; }
-        public string PredicateURI { get; set; }
-
+        protected void deleteOne_Onclick(object sender, EventArgs e)
+        {
+            data.RemovePersonalGadget(this.SubjectID, this.PredicateURI);
+            hasGadget = false;
+            DrawProfilesModule();
+            upnlEditSection.Update();
+            string scriptstring = "document.getElementById('" + gadget.GetChromeId() + "').style.display = 'none';";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "hideshow", scriptstring, true);
+        }
     }
 
 }

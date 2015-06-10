@@ -20,7 +20,7 @@
 <!--
 					<td class="connectionLine"><img src="<%= this.GetRootDomain() %>/Framework/Images/connection_left.gif"></td>
 					<td class="connectionLine"><div>&nbsp;</div></td>
-					<td class="connectionLine"><img src="<%= this.GetRootDomain() %>/Framework/Images/connection_right.gif"></td>
+					<td class="connectionLine"><img src="<%= this.GetRootDomain() %>/Framework/Images/connection_right.gif" alt=""></td>
 -->
 				</tr>
 				<tr>

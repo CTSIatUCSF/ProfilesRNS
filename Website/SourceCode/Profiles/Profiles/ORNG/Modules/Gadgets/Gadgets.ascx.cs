@@ -46,13 +46,13 @@ namespace Profiles.ORNG.Modules.Gadgets
                 XmlNode node = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces);
                 uri = node != null ? node.Value : null;
                 // we know the structure of the URI and need to take advantage of that
-                if (uri != null && uri.StartsWith(Root.Domain + "/profile/")) 
+                if (uri != null && uri.StartsWith(Root.Domain + "/profile/"))
                 {
                     string suffix = uri.Substring((Root.Domain + "/profile/").Length);
                     uri = Root.Domain + "/profile/" + suffix.Split('/')[0];
                 }
             }
-            else if ("True".Equals(base.GetModuleParamString("AllowSetOwnerFromRequest"))) 
+            else if ("True".Equals(base.GetModuleParamString("AllowSetOwnerFromRequest")))
             {
                 uri = Page.Request["owner"];
             }
@@ -75,7 +75,7 @@ namespace Profiles.ORNG.Modules.Gadgets
                 else
                 {
                     litGadget.Text = base.GetModuleParamXml("HTML").InnerXml;
-                }
+                } 
                 om.LoadAssets();
             }
         }

@@ -10,7 +10,7 @@
 <!--
         <xsl:if test="@Description">
           <a href="JavaScript:toggleVisibility('{@ID}');">
-            <img alt="" src="{$root}/Framework/Images/info.png" width="11" height="11"/>
+            <img alt="Expand Description" src="{$root}/Framework/Images/info.png" width="11" height="11"/>
           </a>
         </xsl:if>
 changed display none to block for next div
@@ -41,7 +41,7 @@ changed display none to block for next div
     <xsl:if test ="@MoreURL!=''">
       <div class="passiveSectionBodyDetails">
         <a href="{@MoreURL}">
-          <img style="margin-right:2px;position:relative;top:1px;border:0"  src="{$root}/Framework/Images/icon_squareArrow.gif" width="11" height="11"/>
+          <img alt=" " style="margin-right:2px;position:relative;top:1px;border:10"  src="{$root}/Framework/Images/icon_squareArrow.gif" width="11" height="11"/>
           <xsl:value-of select="@MoreText"/>
         </a>
       </div>

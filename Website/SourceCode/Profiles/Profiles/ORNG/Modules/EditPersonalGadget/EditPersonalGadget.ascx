@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditPersonalGadget.ascx.cs" Inherits="Profiles.ORNG.Modules.Gadgets.EditPersonalGadget" %>
 <%@ Register TagName="Options" TagPrefix="security" Src="~/Edit/Modules/SecurityOptions/SecurityOptions.ascx" %>
-<asp:UpdatePanel ID="upnlEditSection" runat="server">
+<asp:UpdatePanel ID="upnlEditSection" runat="server" UpdateMode="Conditional">
     <ContentTemplate>
         <asp:UpdateProgress ID="updateProgress" runat="server">
             <ProgressTemplate>
@@ -24,7 +24,23 @@
                         <asp:Panel runat="server" ID="pnlSecurityOptions">
                             <security:Options runat="server" ID="securityOptions"></security:Options>
                         </asp:Panel>
+                        <br />
+                        <asp:LinkButton ID="btnAddORNGApplication" runat="server" CommandArgument="Show" OnClick="btnAddORNGApplication_OnClick"
+                            CssClass="profileHypLinks" Visible="false">
+                            <asp:Image runat="server" ID="imbAddArror" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;
+                            <asp:Literal runat="server" ID="litAddORNGApplicationProperty">Add ORNG Application</asp:Literal>                           
+                        </asp:LinkButton>
                     </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:LinkButton ID="lnkDelete" runat="server"
+                        CausesValidation="False" OnClick="deleteOne_Onclick" CommandName="Delete" AlternateText=" " Visible="false"
+                        OnClientClick="Javascript:return confirm('Are you sure you want to remove this ORNG section from your profile page?');">
+                            <asp:Image runat="server" ID="imgDelete" AlternateText=" " ImageUrl="~/Framework/Images/delete.png" />&nbsp;
+                            <asp:Literal runat="server" ID="litDeleteORNGApplicationProperty">Remove ORNG Application</asp:Literal>       
+                    </asp:LinkButton>
                 </td>
             </tr>
         </table>

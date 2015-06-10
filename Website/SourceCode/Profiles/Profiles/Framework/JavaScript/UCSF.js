@@ -104,7 +104,7 @@
             + "<p><a href='" + _rootDomain + "/login/default.aspx?method=login&amp;edit=true'>Let others know. Add to your UCSF Profile.</a></p>"
             + "<p><strong><a href='" + _rootDomain + "/jeanette.brown'>Jeanette Brown</a></strong> is a Faculty Mentor!</p>"
             + "</div></li>";
-    var links = "<li><div class='badge'>"
+    var links = "<li><div class='badge'>"  // not used
             + "<p><span class='counter'>" + linksCount + "</span> profiles now<br />"
             + "include <strong>links</strong> to departments, labs and other websites.</p>"
             + "<p class='linkAd'>"
@@ -136,7 +136,7 @@
     }
     // for search form pages
     if ($('.nonavbar').length && !$('#FSSiteDescription').length) {
-        var badge = "<ul id='badge'>" + chattergroup + chatterfollow + mentor + links + videointro + "</ul>";
+        var badge = "<ul id='badge'>" + chattergroup + chatterfollow + mentor + videointro + "</ul>";
         $(badge).insertAfter('.profilesContentPassive');
         var login = $('#signinlink').attr('href');
         $('.chatterlink').attr('href', login);

@@ -7,10 +7,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.Common;
-using Connects.Profiles.Common;
-using Connects.Profiles.Service.DataContracts;
-using Connects.Profiles.Utility;
-using Connects.Profiles.Service.ServiceContracts;
 using Profiles.CustomAPI.Utilities;
 
 public partial class PubDate : System.Web.UI.Page

@@ -136,7 +136,7 @@ namespace Profiles.Search.Modules.SearchPerson {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox divisionallexcept;
+        protected global::System.Web.UI.WebControls.CheckBox divisionallexcept;        
         
         /// <summary>
         /// trFacultyType control.

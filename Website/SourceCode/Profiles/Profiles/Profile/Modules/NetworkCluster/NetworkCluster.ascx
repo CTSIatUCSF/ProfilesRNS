@@ -276,13 +276,13 @@
     }
 // -->
 </SCRIPT>
-
+<div id="divClusterGraph">
 <div>
 	<div class="clusterWarning">
 		Please note that this visualization requires a fast computer and video card. It might cause web browsers on slower machines to become unresponsive.
 		<div style='margin-top: 10px;'>
 		<a id='showClusterViewLink'>
-			<img src="<%= Profiles.Framework.Utilities.Root.Domain %>/Framework/images/icon_squareArrow.gif" border="0" style="position:relative;top:1px;" width="11" height="11">&nbsp;Continue to Cluster View
+			<img src="<%= Profiles.Framework.Utilities.Root.Domain %>/Framework/images/icon_squareArrow.gif" border="0" alt="" style="position:relative;top:1px;" width="11" height="11">&nbsp;Continue to Cluster View
 		</a>
 		</div>
 	</div>
@@ -322,6 +322,16 @@
 		</div>
 	</div>
 </div>
+    <br />
+    To see the data from this visualization as text, <a id="divShowTimelineTable" tabindex="0">click here.</a>
+        
+    </div>
+    <div id="divDataText" style="display:none;margin-top:12px;margin-bottom:8px;">
+        <asp:Literal runat="server" ID="litNetworkText"></asp:Literal> 
+        <br />
+        To return to the cluster graph, <a id="dirReturnToTimeline" tabindex="0">click here.</a>                       
+    </div>
+
 <script type="text/javascript">
 	// Use jQuery instead of $ to avoid conflicts
 	jQuery(function() {
@@ -329,5 +339,34 @@
 			jQuery('div.clusterWarning').hide().siblings('div').show();			
 			loadClusterView();
 		});
-	});
+});
+
+jQuery(function () {
+    jQuery("#divShowTimelineTable").bind("click", function () {
+
+        jQuery("#divDataText").show();
+        jQuery("#divClusterGraph").hide();
+    });
+
+    jQuery("#divShowTimelineTable").bind("keypress", function (e) {
+        if (e.keyCode == 13) {
+            jQuery("#divDataText").show();
+            jQuery("#divClusterGraph").hide();
+        }
+    });
+});
+
+jQuery(function () {
+    jQuery("#dirReturnToTimeline").bind("click", function () {
+        jQuery("#divDataText").hide();
+        jQuery("#divClusterGraph").show();
+    });
+
+    jQuery("#dirReturnToTimeline").bind("keypress", function (e) {
+        if (e.keyCode == 13) {
+            jQuery("#divDataText").hide();
+            jQuery("#divClusterGraph").show();
+        }
+    });
+});
 </script>

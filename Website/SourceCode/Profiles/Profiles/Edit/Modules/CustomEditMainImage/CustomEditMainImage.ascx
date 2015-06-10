@@ -34,10 +34,10 @@
                     </asp:Panel>
                     <asp:PlaceHolder ID="phAddCustomPhoto" runat="server">
                         <div style="padding-bottom: 10px;">
-                            <asp:ImageButton ID="btnImgAddCustomPhoto" runat="server" ImageUrl="~/Framework/Images/icon_squareArrow.gif"
-                                OnClick="btnAddCustomPhoto_OnClick" />&nbsp;
+<!--                            <asp:ImageButton AlternateText=" " ID="aaa" runat="server" ImageUrl="~/Framework/Images/icon_squareArrow.gif"
+                                OnClick="btnAddCustomPhoto_OnClick" />&nbsp;-->
                             <asp:LinkButton ID="btnAddCustomPhoto" runat="server" OnClick="btnAddCustomPhoto_OnClick"
-                                CssClass="profileHypLinks">Add/Edit Custom Photo</asp:LinkButton>
+                                CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgAddCustomPhoto" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;Add/Edit Custom Photo</asp:LinkButton>
                         </div>
                     </asp:PlaceHolder>
                     </div>
@@ -47,7 +47,7 @@
         <table>
             <tr>
                 <td>
-                    <asp:Image runat="server" ID="imgPhoto" />
+                    <asp:Image runat="server" ID="imgPhoto" AlternateText="Your profile picture"/>
                     <i>
                         <asp:Label runat="server" ID="lblNoImage" Text="No photo found." Visible="false"></asp:Label></i>
                 </td>
@@ -57,7 +57,7 @@
         <br />
             Select custom photo for upload.<br />Maximum file size: 2MB<br />Photos will be scaled to 150 pixels wide and optimized for the web.
             <cc1:AsyncFileUpload ID="AsyncFileUpload1" runat="server" OnUploadedComplete="ProcessUpload"
-                OnClientUploadComplete="showUploadConfirmation" ThrobberID="spanUploading" />                        
+                OnClientUploadComplete="showUploadConfirmation" ThrobberID="spanUploading"  CssClass="imageUploaderField" />
             <span id="spanUploading" runat="server">Uploading...</span>
             <br />
         </div>

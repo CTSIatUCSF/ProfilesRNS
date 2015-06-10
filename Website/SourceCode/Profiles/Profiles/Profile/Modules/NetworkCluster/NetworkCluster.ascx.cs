@@ -94,7 +94,16 @@ namespace Profiles.Profile.Modules.NetworkCluster
                 "//function GoPerson(x) {document.location='"+ Root.Domain +"/profiles/profile/person/'+x;}";
             Page.Header.Controls.Add(script);
 
-        }
 
+            Profiles.Profile.Utilities.DataIO data = new Profiles.Profile.Utilities.DataIO();
+            RDFTriple request = new RDFTriple(Convert.ToInt64(Request.QueryString["subject"]));
+            XmlDocument x = data.GetProfileNetworkForBrowser(request);
+            System.Xml.Xsl.XsltArgumentList args = new System.Xml.Xsl.XsltArgumentList();
+            args.AddParam("root", "", Root.Domain);
+            DateTime d = DateTime.Now;
+            System.Xml.Xsl.XslCompiledTransform xslt = new System.Xml.Xsl.XslCompiledTransform();
+            litNetworkText.Text = Profiles.Framework.Utilities.XslHelper.TransformInMemory(Server.MapPath("~/profile/XSLT/NetworkTable.xslt"), args, x.InnerXml);
+
+        }
     }
 }

@@ -90,7 +90,7 @@ namespace Profiles.Framework.Modules.MainMenu
             // ORNG 
             if (sm.Session().NodeID > 0)
             {
-                menulist.Append("<li><a href='" + Root.Domain + "/orng/dashboard.aspx'>See My Dashboard</a></li>");
+                menulist.Append("<li><a href='" + Root.Domain + "/ORNG/Dashboard.aspx'>See My Dashboard</a></li>");
             }
 
             if (sm.Session().NodeID > 0)

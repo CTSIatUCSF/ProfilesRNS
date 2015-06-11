@@ -13,16 +13,14 @@
     <Panel Name="" Alias="" Type="main" TabType="default" TabSort="0" >
       <Module ID="Gadgets" >
         <ParamList>
-          <Param Name="AllowSetOwnerFromRequest">True</Param>
           <Param Name="TitleHTML">
             <div class="pageTitle">
               <h2>
-                <div id="GADGET_TITLE_CHROME_ID">Gadget Details</div>
+                <div id="GADGET_TITLE_CHROME_ID">Dashboard Gadgets</div>
               </h2>
             </div>
-            <div id="gadgets-detail" class="gadgets-gadget-parent"></div>
           </Param>
-          <Param Name="GadgetDiv">gadgets-detail</Param>
+          <Param Name="GadgetDiv">gadgets-dashboard</Param>
           <Param Name="GadgetClass">gadgets-gadget-parent</Param>
         </ParamList>
       </Module>

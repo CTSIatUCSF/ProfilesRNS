@@ -63,19 +63,22 @@ namespace Profiles.ORNG.Modules.Gadgets
         {
             if (om.IsVisible())
             {
-                if (!string.Empty.Equals(base.GetModuleParamString("GadgetDiv")))
+                String txt = "";
+                String chromeIdBase = base.GetModuleParamString("GadgetDiv");
+                foreach (PreparedGadget gadget in om.GetGadgetsAttachingTo(chromeIdBase))
                 {
-                    String txt = "<div id=\"" + base.GetModuleParamString("GadgetDiv") + "\"";//class="gadgets-gadget-network-parent" />
+                    if (!string.Empty.Equals(base.GetModuleParamString("TitleHTML")))
+                    {
+                        // note that the swapped in value for GADGET_TITLE_CHROME_ID must match what orng.js expects!!!!!
+                        litGadget.Text = base.GetModuleParamXml("TitleHTML").InnerXml.Replace("GADGET_TITLE_CHROME_ID", "gadget-title-" + gadget.GetAppId());
+                    }
+                    txt += "<div id=\"" + gadget.GetChromeId() + "\"";
                     if (!string.Empty.Equals(base.GetModuleParamString("GadgetClass")))
                     {
                         txt += " class=\"" + base.GetModuleParamString("GadgetClass") + "\"";
                     }
                     litGadget.Text = txt + "></div>";
                 }
-                else
-                {
-                    litGadget.Text = base.GetModuleParamXml("HTML").InnerXml;
-                } 
                 om.LoadAssets();
             }
         }

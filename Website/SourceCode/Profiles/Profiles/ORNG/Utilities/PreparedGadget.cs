@@ -31,25 +31,25 @@ namespace Profiles.ORNG.Utilities
             if (viewReqs != null)
             {
                 this.view = viewReqs.GetView();
-                this.chromeId = viewReqs.GetChromeId();
+                this.chromeId = viewReqs.GetChromeIdBase() + "-" + GetAppId();
                 this.optParams = viewReqs.GetOptParams();
             }
             else  // must be a sandbox gadget
             {
                 this.view = "sandbox";
-                this.chromeId = "gadgets-sandbox-" + gadgetSpec.GetAppId();
+                this.chromeId = "gadgets-sandbox-" + GetAppId();
                 this.optParams = "{}";
             }
         }
 
         // OntologyGadgets
-        public PreparedGadget(GadgetSpec gadgetSpec, OpenSocialManager openSocialManager, string view, string optParams, string chromeId)
+        public PreparedGadget(GadgetSpec gadgetSpec, OpenSocialManager openSocialManager, string view, string optParams)
         {
             this.gadgetSpec = gadgetSpec;
             this.openSocialManager = openSocialManager;
             this.securityToken = openSocialManager.GetSecurityToken(gadgetSpec.GetGadgetURL());
             this.view = view;
-            this.chromeId = chromeId;
+            this.chromeId ="gadgets-ontology-" + GetAppId();
             this.optParams = optParams == null || optParams.Trim() == string.Empty ? "{}" : optParams;
         }
 

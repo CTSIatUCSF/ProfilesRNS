@@ -13,6 +13,15 @@ namespace Profiles.ORNG.Modules.GadgetSandbox {
     public partial class GadgetSandbox {
         
         /// <summary>
+        /// pnlSandbox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSandbox;
+        
+        /// <summary>
         /// txtUserName control.
         /// </summary>
         /// <remarks>

@@ -222,6 +222,7 @@
     <Content Include="ORCID\Utilities\ProfilesRNSDLL\DAL\SQLFiles\ClearTestDataFromProduction.txt" />
     <Content Include="ORCID\Utilities\ProfilesRNSDLL\DAL\SQLFiles\CreateStoredProcedures.txt" />
     <Content Include="ORCID\Utilities\ProfilesRNSDLL\DAL\SQLFiles\CreateTablesScript.txt" />
+    <Content Include="ORNG\Dashboard.aspx" />
     <Content Include="ORNG\CSS\UCSF.css" />
     <Content Include="ORNG\Images\orng-asterisk.png" />
     <Content Include="ORNG\Images\orng.gif" />
@@ -249,6 +250,7 @@
     <Content Include="ORNG\Modules\ModuleCatalogue.xml" />
     <Content Include="ORNG\Modules\SearchGadgets\SearchGadgets.ascx" />
     <Content Include="ORNG\Modules\ViewPersonalGadget\ViewPersonalGadget.ascx" />
+    <Content Include="ORNG\PresentationXML\DashboardPresentation.xml" />
     <Content Include="ORNG\PresentationXML\GadgetDetailsPresentation.xml" />
     <Content Include="ORNG\PresentationXML\SandboxFormPresentation.xml" />
     <Content Include="Profile\CSS\UCSF.css" />
@@ -831,6 +833,13 @@
     <Compile Include="ORCID\Utilities\ProfilesRNSDLL\_CG\DAL\RDF.Security\Group.cs" />
     <Compile Include="ORCID\Utilities\ProfilesRNSDLL\_CG\DAL\RDF\Node.cs" />
     <Compile Include="ORCID\Utilities\ProfilesRNSDLL\_CG\DAL\RDF\Triple.cs" />
+    <Compile Include="ORNG\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ORNG\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ORNG\JSONLD\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

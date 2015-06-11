@@ -70,7 +70,7 @@ namespace Profiles.ORNG.Modules.Gadgets
                     if (!string.Empty.Equals(base.GetModuleParamString("TitleHTML")))
                     {
                         // note that the swapped in value for GADGET_TITLE_CHROME_ID must match what orng.js expects!!!!!
-                        litGadget.Text = base.GetModuleParamXml("TitleHTML").InnerXml.Replace("GADGET_TITLE_CHROME_ID", "gadget-title-" + gadget.GetAppId());
+                        txt += base.GetModuleParamXml("TitleHTML").InnerXml.Replace("GADGET_TITLE_CHROME_ID", "gadget-title-" + gadget.GetAppId());
                     }
                     txt += "<div id=\"" + gadget.GetChromeId() + "\"";
                     if (!string.Empty.Equals(base.GetModuleParamString("GadgetClass")))

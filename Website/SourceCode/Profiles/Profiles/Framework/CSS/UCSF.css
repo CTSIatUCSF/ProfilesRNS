@@ -106,7 +106,7 @@ table, tr { border-width: 0; border-spacing: 0; border-color: transparent; } /* 
 .profiles .button-link a, .profiles .button-link a:visited, .profiles .button-link a:hover { color: #FFF !important; }
 .EditMenuTopRow, .topRow, .editPage .topRow td, .profiles .profilesContentActive .activeSectionHead, .listTable th { background-color: #ECECEC; }
 .searchForm .searchSection { background-color: #ECECEC; padding: 18px 0\9; }
-.listTable .evenRow { background-color: #F7F7F8; }
+.listTable .evenRow, .evenRow { background-color: #F7F7F8; }
 .listTable td { border: none; border-right: solid 1px #CCC; cursor: default; }
 .linky,
 .listTable td:first-child { color: #178CCB; /* font-weight: bold; */ }
@@ -309,7 +309,7 @@ ul#editmenu li { list-style-type: none; display: inline-block; padding: 0 13px 0
    width: auto\9; float: left\9; }
 ul#editmenu li img { width: 20px; height: auto; margin-top: -10%; }
 ul#editmenu li span { color: #666; }
-#menuthumb { float: left; height: 20px; width: 20px; overflow: hidden; margin-right: 4px; background-color: #EEE; }
+#menuthumb { float: left; height: 20px; width: 20px; overflow: hidden; margin-right: 4px; background-color: #ECECEC; }
 #ctl00_trbody .rdf { list-style-type: none; margin: 20px 10px; width: 190px; }
 
 #navbarsearch { float: right; width: 400px; text-align: right; padding-right: 20px; margin: 6px 0 0;

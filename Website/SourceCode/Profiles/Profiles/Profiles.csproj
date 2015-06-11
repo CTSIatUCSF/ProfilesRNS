@@ -181,6 +181,7 @@
     <Content Include="Framework\Images\ProfilesLogo.gif" />
     <Content Include="Framework\Images\search-icon.gif" />
     <Content Include="Framework\Images\ucsf.png" />
+    <Content Include="Framework\Images\ucsfProfilesLogo.png" />
     <Content Include="Framework\Images\video-ad.png" />
     <Content Include="Framework\JavaScript\UCSF.js" />
     <Content Include="Global.asax" />

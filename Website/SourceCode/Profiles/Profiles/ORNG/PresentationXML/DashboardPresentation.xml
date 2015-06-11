@@ -13,6 +13,7 @@
     <Panel Name="" Alias="" Type="main" TabType="default" TabSort="0" >
       <Module ID="Gadgets" >
         <ParamList>
+          <Param Name="AllowSetOwnerFromRequest">True</Param>
           <Param Name="TitleHTML">
             <div class="pageTitle">
               <h2>

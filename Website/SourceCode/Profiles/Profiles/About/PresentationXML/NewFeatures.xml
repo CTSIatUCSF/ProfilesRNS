@@ -26,7 +26,7 @@ ul li { padding-top: 10px; }
 <p>We've made improvements to UCSF Profiles to make it an even more effective research networking and collaboration tool. Below is a summary of recent enhancements. Please <a href="mailto:profiles@ucsf.edu?Subject=New%20Features%20Feedback">share any comments</a>.</p>
 
 <div style="border: 1px solid #CCC; padding:5px 15px; margin-bottom: 10px;">
-<h2 style="color: #CA7C29;font-size: 16px;">Highlights</h2>
+<h2 style="color: #f26d04;font-size: 16px;">Highlights</h2>
 <ul class="highlights"> 
   <li><strong>Explore External Co-Author</strong> networks to connect with experts at other institutions.
   </li>

@@ -77,8 +77,9 @@ namespace Profiles.ORNG.Modules.Gadgets
                     {
                         txt += " class=\"" + base.GetModuleParamString("GadgetClass") + "\"";
                     }
-                    litGadget.Text = txt + "></div>";
+                    txt += "></div>";
                 }
+                litGadget.Text = txt;
                 om.LoadAssets();
             }
         }

@@ -161,8 +161,7 @@ namespace Profiles.ORNG.Utilities
             {
                 if (spec.GetAppId() == appId)
                 {
-                    string chromeId = "gadgets-" + gadgets.Count;
-                    PreparedGadget retval = new PreparedGadget(spec, this, view, optParams, chromeId);
+                    PreparedGadget retval = new PreparedGadget(spec, this, view, optParams);
                     gadgets.Add(retval);
                     gadgets.Sort();
                     return retval;
@@ -252,16 +251,17 @@ namespace Profiles.ORNG.Utilities
             return unrecognizedGadgets;
         }
 
-        public bool HasGadgetsAttachingTo(string chromeId)
+        public List<PreparedGadget> GetGadgetsAttachingTo(string chromeIdBase)
         {
+            List<PreparedGadget> attachingGadgets = new List<PreparedGadget>();
             foreach (PreparedGadget gadget in gadgets)
             {
-                if (chromeId.Equals(gadget.GetChromeId()))
+                if (gadget.GetChromeId().StartsWith(chromeIdBase))
                 {
-                    return true;
+                    attachingGadgets.Add(gadget);
                 }
             }
-            return false;
+            return attachingGadgets;
         }
 
         private List<PreparedGadget> GetVisibleGadgets()

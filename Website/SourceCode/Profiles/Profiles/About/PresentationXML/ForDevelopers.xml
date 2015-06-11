@@ -17,7 +17,7 @@
         <ParamList>
           <Param Name="HTML">
 <style type="text/css">
-#suckerfishmenu li#data a { background-color: #6A7D7D !important; }
+#suckerfishmenu li#data a { background-color: #052049 !important; }
 </style>
 
 <p>Over two dozen UCSF websites and apps use data from UCSF Profiles. Users include the UCSF School of Medicine, UCSF Department of Surgery, and UCSF Directory.</p>

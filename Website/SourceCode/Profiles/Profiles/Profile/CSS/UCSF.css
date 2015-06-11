@@ -4,7 +4,7 @@
 .profiles .profilesContentPassive { width: 192px; padding: 4px 20px 0 0; }
 img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .PropertyGroupItem { margin: 0 0 10px; border: none; }
-.PropertyItemHeader { color: #CA7C29; font-size: 16px; background-color: #FFF; clear:both;
+.PropertyItemHeader { color: #F26D04; font-size: 16px; background-color: #FFF; clear:both;
   border-top: 1px solid #EEE; padding: 6px 0 0 !important; margin: 15px 0 0; }
 .PropertyItemHeader img { display: none; }
 .PropertyItemHeader:focus { outline: none; }
@@ -37,11 +37,11 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .plusbutton, .minusbutton {
      position: absolute; bottom: 0; right: 0; 
      margin: 0; padding: 0 20px 0 9px; 
-     color: #CA7C29; line-height: 17px;
+     color: #F26D04; line-height: 17px;
      background-color: #FFF;
 }
 .plusbutton span:hover, .minusbutton span:hover { 
-     color: #CA7C29; text-decoration: underline; cursor: pointer;
+     color: #F26D04; text-decoration: underline; cursor: pointer;
 }
 
 
@@ -49,7 +49,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .education td { padding-left: 15px; vertical-align: top; }
 .education td:first-child { min-width: 220px; padding-left: 0; }
 .awardsList table { width: 680px; }
-.atog { color: #CA7C29; background-color: #FFF; white-space: nowrap; float: right; }
+.atog { color: #F26D04; background-color: #FFF; white-space: nowrap; float: right; }
 .atog:hover { text-decoration: underline; cursor: pointer; }
 
 .viewIn a { display: inline-block; padding-right: 15px; }
@@ -62,7 +62,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
   overflow-x: hidden;
 }
 #publicationTimelineGraph img {
-  padding: 10px 0 0 40px;
+  padding: 10px 0 0 44px;
   display: block;
 }
 #conceptPub #publicationTimelineGraph {

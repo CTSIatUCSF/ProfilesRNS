@@ -105,7 +105,7 @@
         <div id="tagline">search, discover, network</div></a></h1>
         </div>
         <div id="powered-by-block">
-          <a id="powered-by-ctsi" href="http://ctsi.ucsf.edu/" target="_blank">Powered by CTSI</a>
+          <a id="powered-by-ctsi" href="http://ctsi.ucsf.edu/" target="_blank"><img src="<%=GetURLDomain()%>/Framework/images/ctsi16.png" alt="CTSI icon" style="margin-right:4px" />Powered by CTSI</a>
         </div>
         <div id="new-features">
           <a href="<%=GetURLDomain()%>/about/NewFeatures.aspx">New Features: Learn more &nbsp;&#10095;</a>

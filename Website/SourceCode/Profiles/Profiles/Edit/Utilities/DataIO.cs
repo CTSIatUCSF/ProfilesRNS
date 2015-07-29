@@ -177,8 +177,10 @@ namespace Profiles.Edit.Utilities
 
         }
 
-        public void AddPublication(int userid, int pmid)
+        public void AddPublication(int userid, int pmid, string predicateuri, string privacycode)
         {
+            // record in activity log
+            ActivityLog(userid, predicateuri, privacycode, "PMID", "" + pmid);
 
             SessionManagement sm = new SessionManagement();
             string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;

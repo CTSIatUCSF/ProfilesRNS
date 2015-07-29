@@ -418,7 +418,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                     data.AddPublication(pmid, node.OuterXml);
 
                 // Assign the user to the publication
-                data.AddPublication(_personId, Convert.ToInt32(pmid));
+                data.AddPublication(_personId, Convert.ToInt32(pmid), this._predicateuri, "" + this.securityOptions.PrivacyCode);
 
             }
             this.Counter = 0;

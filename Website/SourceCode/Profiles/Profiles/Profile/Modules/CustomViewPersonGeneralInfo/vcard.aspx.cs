@@ -119,6 +119,12 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
 
             if (this.RDFData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/vivo:email", namespaces) != null)
                 vcard.Email = this.RDFData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/vivo:email", namespaces).InnerText;
+            else if (this.RDFData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/prns:emailEncrypted", namespaces) != null)
+            {
+                string email = this.RDFData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/prns:emailEncrypted", namespaces).InnerText;
+                vcard.Email = CustomViewPersonGeneralInfo.getEmailPlainText(email);
+            }
+
         }
 
         public void LoadPresentationXML()

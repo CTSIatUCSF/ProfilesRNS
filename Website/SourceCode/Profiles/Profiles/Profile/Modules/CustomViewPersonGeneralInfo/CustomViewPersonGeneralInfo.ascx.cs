@@ -123,7 +123,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
         }
 
         // UCSF
-        private string getEmailPlainText(String emailEncrypted)
+        static internal string getEmailPlainText(String emailEncrypted)
         {
             Utilities.DataIO data = new Profiles.Profile.Utilities.DataIO();
             SqlDataReader reader;

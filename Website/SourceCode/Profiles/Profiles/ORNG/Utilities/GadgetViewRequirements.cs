@@ -9,16 +9,16 @@ namespace Profiles.ORNG.Utilities
     {
         private string page;
         private string view;
-        private string chromeId;
+        private string chromeIdBase;
         private string visibility;
         private string optParams;
         private Int32 display_order;
 
-        public GadgetViewRequirements(string page, string view, string chromeId, string visibility, Int32 display_order, String optParams)
+        public GadgetViewRequirements(string page, string view, string chromeIdBase, string visibility, Int32 display_order, String optParams)
         {
             this.page = page;
             this.view = view;
-            this.chromeId = chromeId;
+            this.chromeIdBase = chromeIdBase;
             this.visibility = visibility;
             this.display_order = display_order;
             this.optParams = optParams;
@@ -34,9 +34,9 @@ namespace Profiles.ORNG.Utilities
             return view;
         }
 
-        public string GetChromeId()
+        public string GetChromeIdBase()
         {
-            return chromeId;
+            return chromeIdBase;
         }
 
         public string GetOptParams()

@@ -84,15 +84,9 @@ my.init = function () {
         OrngContainer.closeGadget(gadgetSite);
     };
 
-    // TODO: need to test and make work
     OrngContainer.setTitleHandler = function (rpcArgs, title) {
         var myGadget = OrngContainer.gadgetsByGadgetSiteId[rpcArgs.gs.getId()];
-        if (myGadget.view == 'canvas') {
-            document.getElementById("gadgets-title").innerHTML = cleanTitle(title);
-        }
-        else {
-            document.getElementById(myGadget.appId + '_title').innerHTML = cleanTitle(title);
-        }
+        document.getElementById('gadget-title-' + myGadget.appId).innerHTML = cleanTitle(title);
     };
 
     OrngContainer.doProfilesNavigation = function (rpc, view, opt_params) {
@@ -192,11 +186,15 @@ window.buildGadget = function (result, myGadget) {
         // now for the title
         if (myGadget.opt_params.hide_titlebar != 1) {
             var title = cleanTitle(result[myGadget.url].modulePrefs.title);
-            if (myGadget.view != 'canvas') {
-                chrome.innerHTML = this.getTitleHtml(myGadget, title);
+            // if we already have the dom element, use it.  Otherwise we create one.
+            if (document.getElementById('gadget-title-' + myGadget.appId)) {
+                document.getElementById('gadget-title-' + myGadget.appId).innerHTML = title;
             }
             else {
-                document.getElementById("gadgets-title").innerHTML = title;
+                chrome.innerHTML = '<div id="gadgets-gadget-title-bar' + '-' + myGadget.appId +
+	                  '" class="gadgets-gadget-title-bar"><span class="gadgets-gadget-title-button-bar">' +
+	                  '</span> <span id="gadget-title-' + myGadget.appId + '" class="gadgets-gadget-title">' + title +
+                      '</span><span id="' + myGadget.appId + '_status" class="gadgets-gadget-status"></span></div>';
             }
         }
 
@@ -207,15 +205,6 @@ window.buildGadget = function (result, myGadget) {
         var gadgetSite = OrngContainer.newGadgetSite(framediv);
         OrngContainer.navigateView(gadgetSite, myGadget);
     }
-};
-
-// TODO fix this legacy class stuff
-window.getTitleHtml = function (myGadget, title) {
-    return '<div id="gadgets-gadget-title-bar' + '-' + myGadget.appId +
-	      '" class="gadgets-gadget-title-bar"><span class="gadgets-gadget-title-button-bar">' +
-	      '</span> <span id="' + myGadget.appId + '_title" class="gadgets-gadget-title">' +
-	      title +
-          '</span><span id="' + myGadget.appId + '_status" class="gadgets-gadget-status"></span></div>';
 };
 
 window.hideOrShowGadget = function (rpc, hideOrShow, opt_params) {

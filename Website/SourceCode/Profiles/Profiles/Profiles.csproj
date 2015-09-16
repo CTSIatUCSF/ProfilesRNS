@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -22,9 +23,14 @@
     </SccProvider>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation />
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
     <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -169,6 +175,7 @@
     <Content Include="Framework\Images\chatter-group.png" />
     <Content Include="Framework\Images\collapseRound.gif" />
     <Content Include="Framework\Images\connection.gif" />
+    <Content Include="Framework\Images\ctsi16.png" />
     <Content Include="Framework\Images\expandRound.gif" />
     <Content Include="Framework\Images\favicon.gif" />
     <Content Include="Framework\Images\glyphicons-halflings.png" />
@@ -224,6 +231,7 @@
     <Content Include="ORCID\Utilities\ProfilesRNSDLL\DAL\SQLFiles\ClearTestDataFromProduction.txt" />
     <Content Include="ORCID\Utilities\ProfilesRNSDLL\DAL\SQLFiles\CreateStoredProcedures.txt" />
     <Content Include="ORCID\Utilities\ProfilesRNSDLL\DAL\SQLFiles\CreateTablesScript.txt" />
+    <Content Include="ORNG\Dashboard.aspx" />
     <Content Include="ORNG\CSS\UCSF.css" />
     <Content Include="ORNG\Images\orng-asterisk.png" />
     <Content Include="ORNG\Images\orng.gif" />
@@ -251,6 +259,7 @@
     <Content Include="ORNG\Modules\ModuleCatalogue.xml" />
     <Content Include="ORNG\Modules\SearchGadgets\SearchGadgets.ascx" />
     <Content Include="ORNG\Modules\ViewPersonalGadget\ViewPersonalGadget.ascx" />
+    <Content Include="ORNG\PresentationXML\DashboardPresentation.xml" />
     <Content Include="ORNG\PresentationXML\GadgetDetailsPresentation.xml" />
     <Content Include="ORNG\PresentationXML\SandboxFormPresentation.xml" />
     <Content Include="Profile\CSS\UCSF.css" />
@@ -833,6 +842,13 @@
     <Compile Include="ORCID\Utilities\ProfilesRNSDLL\_CG\DAL\RDF.Security\Group.cs" />
     <Compile Include="ORCID\Utilities\ProfilesRNSDLL\_CG\DAL\RDF\Node.cs" />
     <Compile Include="ORCID\Utilities\ProfilesRNSDLL\_CG\DAL\RDF\Triple.cs" />
+    <Compile Include="ORNG\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ORNG\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ORNG\JSONLD\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1740,6 +1756,7 @@
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\MIT-LICENSE" />
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\README.rdoc" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\PhotoHandler.ashx" />
+    <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1778,8 +1795,13 @@
       <Name>Connects.Profiles.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

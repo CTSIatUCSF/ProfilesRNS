@@ -21,9 +21,8 @@
       </Module>
       <Module ID="Gadgets" >
         <ParamList>
-          <Param Name="HTML">
-            <div id="gadgets-tools" class="gadgets-gadget-parent"></div>
-          </Param>
+          <Param Name="GadgetDiv">gadgets-tools</Param>
+          <Param Name="GadgetClass">gadgets-gadget-parent</Param>
         </ParamList>
       </Module>
     </Panel>

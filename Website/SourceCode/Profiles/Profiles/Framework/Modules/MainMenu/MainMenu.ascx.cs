@@ -86,6 +86,13 @@ namespace Profiles.Framework.Modules.MainMenu
                 menulist.Append("<li><a href='" + Root.Domain + "/edit/" + subject.ToString() + "'>Edit This Profile</a></li>");
             }
 
+
+            // ORNG 
+            if (sm.Session().NodeID > 0)
+            {
+                menulist.Append("<li><a href='" + Root.Domain + "/ORNG/Dashboard.aspx?owner=" + sm.Session().PersonURI + "'>See My Dashboard</a></li>");
+            }
+
             if (sm.Session().NodeID > 0)
             {
                 menulist.Append("<li><a href='" + Root.Domain + "/proxy/default.aspx?subject=" + sm.Session().NodeID.ToString() + "'>Manage Proxies</a></li>");

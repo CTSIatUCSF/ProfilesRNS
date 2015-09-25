@@ -28,6 +28,8 @@ ul li { padding-top: 10px; }
 <div style="border: 1px solid #CCC; padding:5px 15px; margin-bottom: 10px;">
 <h2 style="color: #f26d04;font-size: 16px;">Highlights</h2>
 <ul class="highlights"> 
+  <li><strong>View Dashboard</strong> display of statistics about visits to your personal profile page.
+  </li>
   <li><strong>Explore External Co-Author</strong> networks to connect with experts at other institutions.
   </li>
   <li><strong>Showcase most important publications</strong> in their own section.
@@ -44,6 +46,20 @@ ul li { padding-top: 10px; }
 </div>
 
 <ul>
+  <li><strong>Dashboard of UCSF Profiles Page Statistics</strong>
+      <ul>
+		<li>Compiles and presents statistics about visits to your personal profile page.
+		</li>
+		<li>Shows you how many visits, what organizations visit your page and when. 
+			<ul>
+				<li>Summary stats of by-month views for the past year, this month, best month, and cumulative views</li>
+				<li>Regional breakdown of visits for the last 30 days and past year</li>
+				<li>Views by internet service provider or company, last 30 days and past year</li>
+			</ul>
+		</li>
+	  </ul>
+	  <img src="images/dashboard.png" alt="Dashboard" style="margin:10px 0 0 68px;border:1px solid #CCC;" />
+  </li>
   <li><strong>External Co-Authors</strong>
       <ul>
 		<li>Shows network of co-authors at other institutions, where that data is available.

@@ -34,6 +34,9 @@
       e.stopPropagation();
   });
 
+  // open Other Options list 
+  $('#ctcFirst_rMaster_ctl00_imgExpand').click();
+  
   //search results adjustments
   $('#tblSearchResults tr').find('td:eq(0)').addClass('linky');
   $('#ctl00_ContentMain_rptMain_ctl00_ctl00_gvIndirectConnectionDetails td:last-child').addClass('linky');

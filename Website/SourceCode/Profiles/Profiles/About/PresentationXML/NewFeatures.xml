@@ -46,7 +46,7 @@ ul li { padding-top: 10px; }
 </div>
 
 <ul>
-  <li><strong>Dashboard of UCSF Profiles Page Statistics</strong>
+  <li><strong>Dashboard of UCSF Profiles Page Statistics</strong> - sign in access only 
       <ul>
 		<li>Compiles and presents statistics about visits to your personal profile page.
 		</li>

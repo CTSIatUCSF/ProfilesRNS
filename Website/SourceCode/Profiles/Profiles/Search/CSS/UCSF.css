@@ -34,6 +34,7 @@ input#chkExactphrase, input#institutionallexcept, input#departmentallexcept { di
   border-right: 1px solid #CCC !important;
   border-bottom: 1px solid #CCC !important;
   border-left: 1px solid #CCC !important;
+  height: 300px !important;
 }
 #why { width:190px; font-size:11px; padding:1px; text-align:center; background-color:#F7F7F8; margin-left:30px }
  

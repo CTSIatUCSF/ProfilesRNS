@@ -28,8 +28,6 @@ input#chkExactphrase, input#institutionallexcept, input#departmentallexcept { di
 .searchForm .inputText { width: 249px; width: 245px\9; }
 #divChkList { border: 1px solid #CCC !important; margin-top: -5px; width: 248px !important; 
   height: 190px !important; padding-top: 15px !important; }
-/* move global health checkboxes up */
-#divMaster_CTC1 { margin-top: -25px; }
 #divOtherOptions { 
   border-right: 1px solid #CCC !important;
   border-bottom: 1px solid #CCC !important;

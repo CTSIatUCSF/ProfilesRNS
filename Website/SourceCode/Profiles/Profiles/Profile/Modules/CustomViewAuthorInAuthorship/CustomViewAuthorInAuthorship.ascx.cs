@@ -94,22 +94,24 @@ namespace Profiles.Profile.Modules
                     {
                         if (pub.vivo_pmcid.Contains("PMC"))
                         {
+                            lblPubTxt = lblPubTxt + "; PMCID: " + pub.vivo_pmcid;
                             string pmcid = pub.vivo_pmcid;
                             int len = pmcid.IndexOf(' ');
                             if (len != -1) pmcid = pmcid.Substring(0, len);
-                            litViewIn.Text = litViewIn.Text + "&nbsp;<a href='//www.ncbi.nlm.nih.gov/pmc/articles/" + pmcid + "' target='_blank'>" + pmcid + "</a>";
+                            litViewIn.Text = litViewIn.Text + ", <a href='//www.ncbi.nlm.nih.gov/pmc/articles/" + pmcid + "' target='_blank'>PubMed Central</a>";
                         }
                         else if (pub.vivo_pmcid.Contains("NIHMS"))
                         {
                             lblPubTxt = lblPubTxt + "; NIHMSID: " + pub.vivo_pmcid;
                         }
                     }
+                    lblPubTxt = lblPubTxt + ".";
                 }
                 else if (pub.vivo_webpage != string.Empty && pub.vivo_webpage != null)
                 {
                     litViewIn.Text = "<a href='" + pub.vivo_webpage + "' target='_blank'>View Publication</a>";
                 }
-                lblPublication.Text = pub.prns_informaitonResourceReference;
+                lblPublication.Text = lblPubTxt;
             }
         }
 

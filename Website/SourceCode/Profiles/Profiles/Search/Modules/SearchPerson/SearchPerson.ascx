@@ -195,6 +195,7 @@
                                         <asp:TextBox runat="server" ID="txtFname" CssClass="inputText"></asp:TextBox>
                                     </td>
                                 </tr>
+<!--
                                 <tr runat="server" id="trInstitution">
                                     <th>
                                         School
@@ -202,11 +203,10 @@
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litInstitution"></asp:Literal>
                                         <asp:CheckBox runat="server" ID="institutionallexcept" CssClass="unused" />
-<!--
                                         All <b>except</b> the one selected
--->
                                     </td>
                                 </tr>
+-->
                                 <tr runat="server" id="trDepartment">
                                     <th>
                                         Department

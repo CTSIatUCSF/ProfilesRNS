@@ -8,7 +8,7 @@
     <script type="text/javascript">
       <xsl:text disable-output-escaping="yes">
       var hasClickedListTable = false;
-      function doListTableRowOver(x) {
+      function DISABLEDdoListTableRowOver(x) {
       //x.className = 'overRow';
       x.style.backgroundColor = '#5A719C';
       x.style.color = '#FFF';

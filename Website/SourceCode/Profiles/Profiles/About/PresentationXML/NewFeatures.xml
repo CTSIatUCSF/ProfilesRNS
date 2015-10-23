@@ -28,6 +28,8 @@ ul li { padding-top: 10px; }
 <div style="border: 1px solid #CCC; padding:5px 15px; margin-bottom: 10px;">
 <h2 style="color: #f26d04;font-size: 16px;">Highlights</h2>
 <ul class="highlights"> 
+  <li><strong>Discover Clinical Trials</strong> led by UCSF investigators.
+  </li>
   <li><strong>View Dashboard</strong> display of statistics about visits to your personal profile page.
   </li>
   <li><strong>Explore External Co-Author</strong> networks to connect with experts at other institutions.
@@ -46,6 +48,15 @@ ul li { padding-top: 10px; }
 </div>
 
 <ul>
+  <li><strong>Clinical Trials</strong> 
+      <ul>
+		<li>Data collected from <a href="https://clinicaltrials.gov/" target="_blank">ClincalTrials.gov</a>.
+		</li>
+		<li>Researchers can feature or hide individual trials.
+		</li>
+      </ul>
+	  <img src="images/clinicaltrials.png" alt="Clinical Trials for Chip Chambers" style="margin:10px 0 0 40px;border:1px solid #CCC;" />
+  </li>
   <li><strong>Dashboard of UCSF Profiles Page Statistics</strong> - sign in access only 
       <ul>
 		<li>Compiles and presents statistics about visits to your personal profile page.

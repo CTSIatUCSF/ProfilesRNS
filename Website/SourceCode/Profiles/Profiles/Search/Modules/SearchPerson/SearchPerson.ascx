@@ -181,14 +181,6 @@
                             <table width="100%" class='searchForm'>
                                <tr>
                                     <th>
-                                        Clinical Trials <span class="notice">New!</span>
-                                    </th>
-                                    <td colspan="2">
-                                        <input type="checkbox" class="trials2" />
-                                    </td>
-                               </tr>
-                               <tr>
-                                    <th>
                                         Last Name
                                     </th>
                                     <td colspan="2">
@@ -283,6 +275,14 @@
                                                 </td>
                                             </tr>
                                         </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Clinical Trials <span class="notice">New!</span>
+                                    </th>
+                                    <td colspan="2">
+                                        <input type="checkbox" class="trials2" />
                                     </td>
                                 </tr>
 <!--

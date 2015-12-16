@@ -371,7 +371,8 @@ namespace Profiles.Search.Modules.SearchResults
             args.AddParam("offset", "", offset);
             args.AddParam("totalpages", "", totalpages);
             args.AddParam("page", "", page);
-            args.AddParam("searchfor", "", searchfor);
+            args.AddParam("searchfor", "", searchfor); 
+            args.AddParam("searchforNoQuotes", "", searchfor.Replace("\"", "")); // ugly hack by Eric Meeks to fix WHY link
             args.AddParam("exactphrase", "", exactphrase);
             args.AddParam("classGrpURIpassedin", "", classgroupuri);
             args.AddParam("classURIpassedin", "", classuri);

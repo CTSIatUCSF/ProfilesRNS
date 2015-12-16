@@ -1,0 +1,17 @@
+changes to:
+[Profile.Data].[Publication.Pubmed.ParsePubMedXML] back out	
+[Profile.Data].[Publication.Pubmed.Author] back out
+
+Final changes:
+[Profile.Cache].[Publication.PubMed.UpdateAuthorPosition] (called as part of nighlty) we use this to add local URI's and 
+URL's
+[Profile.Module].[CustomViewAuthorInAuthorship.GetList]
+
+
+[Profile.Data].[Publication.Entity.UpdateEntity] (called by [Profile.Data].[Publication.Pubmed.LoadDisambiguationResults]
+ad end of disambiguation) -- this builds out author strings
+
+[Profile.Data].[Publication.Entity.UpdateEntityOnePerson]   (called by  [Profile.Data].[Publication.Pubmed.AddPublication] 
+from code) -- this builds out author strings
+
+[Profile.Cache].[fnPublication.Pubmed.General2Reference](

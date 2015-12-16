@@ -44,7 +44,7 @@ namespace Profiles.Profile.Modules
             {
                 while (reader.Read())
                 {
-                    publication.Add(new Publication(reader["bibo_pmid"].ToString(), reader["vivo_pmcid"].ToString(), reader["prns_informationResourceReference"].ToString(), reader["vivo_webpage"].ToString()));
+                    publication.Add(new Publication(reader["bibo_pmid"].ToString(), reader["vivo_pmcid"].ToString(), reader["authors"].ToString(), reader["prns_informationResourceReference"].ToString(), reader["vivo_webpage"].ToString(), reader["authorXML"].ToString()));
                 }
 
                 rpPublication.DataSource = publication;
@@ -85,7 +85,9 @@ namespace Profiles.Profile.Modules
                 Label lblPublication = (Label)e.Item.FindControl("lblPublication");
                 Literal litViewIn = (Literal)e.Item.FindControl("litViewIn");
 
-                string lblPubTxt = pub.prns_informaitonResourceReference;
+                // use the XML if it is not null so that we can display links, otherwise the regular list
+                string lblPubTxt = pub.authorXML != String.Empty ? getAuthorList(pub.authorXML) : pub.authors;
+                lblPubTxt += (lblPubTxt != String.Empty ? ". " : "") + pub.prns_informationResourceReference;
                 if (pub.bibo_pmid != string.Empty && pub.bibo_pmid != null)
                 {
                     lblPubTxt = lblPubTxt + " PMID: " + pub.bibo_pmid;
@@ -115,21 +117,58 @@ namespace Profiles.Profile.Modules
             }
         }
 
+        private String getAuthorList(string authorXml)
+        {
+            string authorList = "";
+            // parse out XML document to get known coauthor URI's
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(authorXml); 
+            XmlNodeList xnList = doc.SelectNodes("/authors/author");
+            foreach (XmlNode xn in xnList)
+            {
+                authorList += ", ";
+                string display = xn["display"].InnerText;
+                if (xn["url"] != null)
+                {
+                    string url = xn["url"].InnerText;
+                    if ((Request.Url.Scheme + "://" + Request.Url.Host + Request.Url.AbsolutePath).Equals(url, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        // this is the author, just make it bold
+                        authorList += "<b>" + display + "</b>";
+                    }
+                    else
+                    {
+                        // this is a coauthor, make it a hyperlink
+                        authorList += "<a href='" + url + "' target='_blank'>" + display + "</a>";
+                    }
+                }
+                else
+                {
+                    authorList += display;
+                }
+            }
+            return authorList.Length > 0 ? authorList.Substring(2) : authorList;
+        }
+
         public class Publication
         {
-            public Publication(string _bibo_pmid, string _vivo_pmcid, string prns_informationresourcereference, string _vivo_webpage)
+            public Publication(string _bibo_pmid, string _vivo_pmcid, string _authors, string prns_informationresourcereference, string _vivo_webpage, string _authorXML)
             {
                 this.bibo_pmid = _bibo_pmid;
                 this.vivo_pmcid = _vivo_pmcid;
-                this.prns_informaitonResourceReference = prns_informationresourcereference;
+                this.authors = _authors;
+                this.prns_informationResourceReference = prns_informationresourcereference;
                 this.vivo_webpage = _vivo_webpage;
+                this.authorXML = _authorXML;
             }
 
             public string bibo_pmid { get; set; }
             public string vivo_pmcid { get; set; }
-            public string prns_informaitonResourceReference { get; set; }
+            public string authors { get; set; } 
+            public string prns_informationResourceReference { get; set; }
             public string vivo_webpage { get; set; }
-
+            public string authorXML { get; set; }
         }
+
     }
 }

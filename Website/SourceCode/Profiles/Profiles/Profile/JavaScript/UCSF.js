@@ -83,23 +83,32 @@
     if ($('.education') && $('.education').length) {
         $('.education table tr td:first-child').each(function () {
             var alma = $(this).text();
-            if (alma == 'University of California, San Francisco' ||
-		    alma == 'University of California San Francisco' ||
-		    alma == 'University of California at San Francisco' ||
-		    alma == 'University of California in San Francisco' ||
-		    alma == 'UC, San Francisco' ||
-		    alma == 'UC San Francisco' ||
-		    alma == 'UCSF')
+            if (alma == 'University of California, San Diego' ||
+		    alma == 'University of California San Diego' ||
+		    alma == 'University of California at San Diego' ||
+		    alma == 'University of California in San Diego' ||
+		    alma == 'UC, San Diego' ||
+		    alma == 'UC San Diego' ||
+		    alma == 'UCSD')
                 $('.profilesContentMain').addClass('alumni');
         });
     }
 
     //Overview expand/collapse
     if ($('.basicInfo') && $('.basicInfo').length) {
-        $('.PropertyItemHeader:contains("Overview")').next('.PropertyGroupData').attr("id", "narrative");
+        //$('.PropertyItemHeader:contains("Overview")').next('.PropertyGroupData').attr("id", "narrative");
+	for (var i=0;i<$('.PropertyGroupData').length;i++){
+		var isOverview = $('.PropertyGroupData')[i].firstChild.id.indexOf("overview");
+		if (isOverview >0) {
+			//var narrativeText=$('.PropertyGroupData')[i].innerText;
+			$('.PropertyGroupData')[i].id ="narrative";
+			break;
+		}
+	}
+
         if ($('#narrative').text().length > 800) {
             $('#narrative').addClass('box').addClass('box-collapsed');
-            $('.box').first().prepend("<div class='plusbutton'><span> <strong>&nbsp;...</strong> Show more</span> <img src='" + _rootDomain + "/Framework/Images/expandRound.gif' alt='+' style='vertical-align:top'  width='28' height='17'/></div><div class='minusbutton'><span>Show less</span> <img src='" + _rootDomain + "/Framework/Images/collapseRound.gif' alt='-' style='vertical-align:top' width='28' height='17'/></div>");
+	    $('.box').first().prepend("<div class='plusbutton'><span> <strong>&nbsp;...</strong> Show more</span> <img src='" + _rootDomain + "/Framework/Images/expandRound.gif' alt='+' style='vertical-align:top'  width='28' height='17'/></div><div class='minusbutton'><span>Show less</span> <img src='" + _rootDomain + "/Framework/Images/collapseRound.gif' alt='-' style='vertical-align:top' width='28' height='17'/></div>");
             $('.minusbutton').hide();
         }
         // $('.box').addClass('box-collapsed');

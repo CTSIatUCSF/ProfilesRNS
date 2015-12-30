@@ -917,6 +917,7 @@
     <xsl:param name="nodeURI"></xsl:param>
     <xsl:param name="weight"></xsl:param>
     <xsl:param name="searchfor"></xsl:param>
+    <xsl:param name="searchforNoQuotes"/>
     <xsl:param name="exactphrase"></xsl:param>
     <xsl:param name="perpage"></xsl:param>
     <xsl:param name="offset"></xsl:param>
@@ -977,7 +978,7 @@
 
 
     <td valign="middle" style="width:100px" >
-      <a class="listTableLink"  href="{$root}/search/default.aspx?searchtype=whypeople&amp;nodeuri={$nodeURI}&amp;searchfor={$searchfor}&amp;exactphrase={$exactphrase}&amp;perpage={$perpage}&amp;offset={$offset}&amp;page={$page}&amp;totalpages={$totalpages}&amp;searchrequest={$searchrequest}&amp;sortby={$sortby}&amp;sortdirection={$sortdirection}&amp;showcolumns={$showcolumns}">
+      <a class="listTableLink"  href="{$root}/search/default.aspx?searchtype=whypeople&amp;nodeuri={$nodeURI}&amp;searchfor={$searchforNoQuotes}&amp;exactphrase={$exactphrase}&amp;perpage={$perpage}&amp;offset={$offset}&amp;page={$page}&amp;totalpages={$totalpages}&amp;searchrequest={$searchrequest}&amp;sortby={$sortby}&amp;sortdirection={$sortdirection}&amp;showcolumns={$showcolumns}">
         Why?
       </a>
 

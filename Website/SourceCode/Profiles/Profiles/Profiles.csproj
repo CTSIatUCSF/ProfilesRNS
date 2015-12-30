@@ -85,7 +85,6 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="503.html" />
     <Content Include="About\AboutProfiles.aspx" />
     <Content Include="About\CloseBrowser.aspx" />
     <Content Include="About\CSS\UCSF.css" />
@@ -285,6 +284,7 @@
     <Content Include="Search\JavaScript\UCSF.js" />
     <Content Include="SiteMap.aspx" />
     <Content Include="trace.aspx" />
+    <Content Include="UCSD_app_offline.htm" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

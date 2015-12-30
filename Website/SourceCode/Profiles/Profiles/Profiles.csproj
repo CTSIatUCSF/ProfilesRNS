@@ -130,7 +130,9 @@
     <Content Include="About\JavaScript\UCSF.js" />
     <Content Include="About\NewFeatures.aspx" />
     <Content Include="About\Optin.aspx" />
-    <Content Include="About\PresentationXML\AboutProfiles.xml" />
+    <Content Include="About\PresentationXML\AboutProfiles.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="About\PresentationXML\CloseBrowser.xml" />
     <Content Include="About\PresentationXML\ForDevelopers.xml">
       <SubType>Designer</SubType>
@@ -189,6 +191,8 @@
     <Content Include="Framework\Images\photodefault.jpg" />
     <Content Include="Framework\Images\ProfilesLogo.gif" />
     <Content Include="Framework\Images\search-icon.gif" />
+    <Content Include="Framework\Images\ucsd.png" />
+    <Content Include="Framework\Images\ucsdhs.png" />
     <Content Include="Framework\Images\ucsf.png" />
     <Content Include="Framework\Images\video-ad.png" />
     <Content Include="Framework\JavaScript\UCSF.js" />
@@ -1747,6 +1751,7 @@
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailHandler.ashx" />
     <None Include="About\Images\Thumbs.db" />
     <None Include="About\ListMakerGuidance.pdf" />
+    <None Include="MentoringUCSD.pdf" />
     <None Include="ORCID\ORCIDPrivacySettingsandProfiles.pdf" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailAudioHandler.ashx" />
     <None Include="Profile\Modules\NetworkCluster\scriptaculous\CHANGELOG" />
@@ -1778,6 +1783,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\HttpBL\HttpBL.csproj">
+      <Project>{B669358D-6374-40F0-8053-A79900BCBC61}</Project>
+      <Name>HttpBL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ProfilesBetaAPI\Connects.Profiles.Service.DataContracts\Connects.Profiles.Service.DataContracts.csproj">
       <Project>{4E11DE8F-C111-44E4-8AF8-B66EDEC9152D}</Project>
       <Name>Connects.Profiles.Service.DataContracts</Name>

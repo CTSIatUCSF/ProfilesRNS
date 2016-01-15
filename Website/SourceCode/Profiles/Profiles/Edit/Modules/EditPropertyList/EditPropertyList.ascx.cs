@@ -119,7 +119,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
 
             BuildSecurityKey(gli);
 
-            litEditHRDataLink.Text = "<a href='http://169.228.46.140/ProfilesCR/PersonalDataChangeRequest.php?id=" +
+            litEditHRDataLink.Text = "<a href='http://ctripro.ucsd.edu/ProfilesCR/PersonalDataChangeRequest.php?id=" +
                     UCSFIDSet.ByNodeId[this.Subject].EmployeeID + "'>Request to change name, address or email</a>";
         }
 

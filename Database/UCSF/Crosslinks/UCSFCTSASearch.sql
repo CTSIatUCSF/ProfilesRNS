@@ -186,12 +186,12 @@ BEGIN
 		uri nvarchar(2000)
 	)
 
-	insert into @c (firstname, lastname, uri)
+	insert into @c (firstName, lastName, uri)
 		select 
-			nref.value('firstname[1]','varchar(max)') FirstName, 
-			nref.value('lastname[1]','varchar(max)') LastName,
+			nref.value('firstName[1]','varchar(max)') FirstName, 
+			nref.value('lastName[1]','varchar(max)') LastName,
 			nref.value('uri[1]','varchar(max)') URI
-		from [UCSF.CTSASearch].[Publication.PubMed.CoAuthorXML] cross apply x.nodes('//coauthors/coauthor') as R(nref)
+		from [UCSF.CTSASearch].[Publication.PubMed.CoAuthorXML] cross apply x.nodes('//publicationList/publication/authorList/author') as R(nref)
 		where pmid = @pmid and X is not null
 
 	SET @RowsToProcess=@@ROWCOUNT
@@ -201,7 +201,7 @@ BEGIN
 	BEGIN
 		SET @CurrentRow=@CurrentRow+1
 		SELECT 
-			@FirstName=firstname, @LastName = lastname, @URI=LTRIM(RTRIM(uri))
+			@FirstName=firstName, @LastName = lastName, @URI=LTRIM(RTRIM(uri))
 			FROM @c
 			WHERE RowID=@CurrentRow
 

@@ -103,8 +103,8 @@ table, tr { border-width: 0; border-spacing: 0; border-color: transparent; } /* 
 .profiles .profilesPageColumnLeft { padding-top: 6px; }
 .profiles a, .profiles a:visited { text-decoration: none; color: #178CCB !important; }
 .profiles a:hover { color: #178CCB !important; }
-.profiles .button-link a, .profiles .button-link a:visited, .profiles .button-link a:hover { color: #FFF !important; }
-.EditMenuTopRow, .topRow, .editPage .topRow td, .profiles .profilesContentActive .activeSectionHead, .listTable th { background-color: #ECECEC; }
+.EditMenuTopRow, .topRow, .editPage .topRow td, .profiles .profilesContentActive .activeSectionHead, 
+.searchForm .searchSection, .listTable th { background-color: #EEE; }
 .searchForm .searchSection { background-color: #ECECEC; padding: 18px 0\9; }
 .listTable .evenRow, .evenRow { background-color: #F7F7F8; }
 .listTable td { border: none; border-right: solid 1px #CCC; cursor: default; }

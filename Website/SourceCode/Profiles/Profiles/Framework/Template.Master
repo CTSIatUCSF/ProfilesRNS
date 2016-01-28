@@ -125,7 +125,7 @@
 		<div class="profiles">
             <div id="active-nav"><span id="signin">
                <a href="<%=GetURLDomain()%>/login/default.aspx?method=login&amp;edit=true" id="signinlink">Sign in</a>
-               to edit your profile (add interests, mentoring, photo, etc.)</span>
+               to see <span id="stats">private stats</span> on your profile page &mdash; or add photo, interests, videos, mentoring, etc.</span>
                <ul id="editmenu"></ul>
             </div>
 			<center>

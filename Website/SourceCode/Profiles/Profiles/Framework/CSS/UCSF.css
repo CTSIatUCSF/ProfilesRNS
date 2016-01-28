@@ -302,7 +302,9 @@ table, tr { border-width: 0; border-spacing: 0; border-color: transparent; } /* 
 
 /* login & edit links */
 #active-nav { text-align: left; padding: 5px 0; width: 100%; height: 21px; }
-#signin { display: block; padding-left: 20px; font-weight: bold; color: #989898; }
+#signin { display: block; padding-left: 20px; font-weight: bold; color: #666; }
+#signin a { font-size: 110%; }
+#stats { color: #000; }
 ul#editmenu { padding: 0 0 0 20px; margin: 0; }
 ul#editmenu li { list-style-type: none; display: inline-block; padding: 0 13px 0 0;
    border-right: 1px solid #CCC; margin: 0 15px 0 0; line-height: 20px;

@@ -1,7 +1,11 @@
 ﻿.searchForm td div.header { color: #F26D04; font-size: 30px; font-weight: bold; margin: 16px 0 8px; }
-.searchForm #div1 { border-top: none; margin-top: 20px; padding-top: 12px; padding-top: 20px\9; margin-top: 0\9; } 
+.searchForm .searchSection { margin-bottom: 0; }
+.searchForm #div1 { border-top: none; margin-top: 20px; padding-top: 8px; } 
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+     .searchForm #div1 { margin-top: 21px; }
+}
 .searchForm #div1 th { font-weight: normal; width: 140px; }
-#searchOptions { margin-top: -36px; margin-bottom: 25px; }
+#searchOptions { margin-top: -19px; margin-bottom: 25px; }
 #ctl00_ContentMain_rptMain_ctl00_ctl00_searchfor,
 #txtSearchFor { padding-left: 2px; height: 30px; height: 22px\9; padding-top: 6px\9; }
 .listTable th { border: 1px solid #CCC !important; }
@@ -36,8 +40,8 @@ input#chkExactphrase, input#institutionallexcept, input#departmentallexcept { di
 }
 #why { width:190px; font-size:11px; padding:1px; text-align:center; background-color:#F7F7F8; margin-left:30px }
  
-/* #andor { width: 100%; height: 3px\9; margin-top: -25px; } */
-#andor span { display: inline-block; position: relative; left: 150px; top: -25px;
-  width: 46px; height: 15px; margin-bottom: -15px;
-  color: #666; background-color: #EEE; padding: 0 0 0 6px; font-size: 11px; letter-spacing: 2px; }
+#andor { margin: -12px 0 -32px 153px; } 
+#andor span { /* display: inline-block; position: relative; left: 150px;  top: -25px; 
+  width: 46px; height: 15px; margin: -15px 0 150px; */
+  color: #666; background-color: #EEE; padding: 0 6px; font-size: 11px; letter-spacing: 2px; }
 

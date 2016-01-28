@@ -104,8 +104,9 @@ table, tr { border-width: 0; border-spacing: 0; border-color: transparent; } /* 
 .profiles a, .profiles a:visited { text-decoration: none; color: #178CCB !important; }
 .profiles a:hover { color: #178CCB !important; }
 .profiles .button-link a, .profiles .button-link a:visited, .profiles .button-link a:hover { color: #FFF !important; }
-.EditMenuTopRow, .topRow, .editPage .topRow td, .profiles .profilesContentActive .activeSectionHead, .listTable th { background-color: #ECECEC; }
-.searchForm .searchSection { background-color: #ECECEC; padding: 18px 0\9; }
+.EditMenuTopRow, .topRow, .editPage .topRow td, 
+.profiles .profilesContentActive .activeSectionHead, 
+.searchForm .searchSection, .listTable th { background-color: #ECECEC; }
 .listTable .evenRow, .evenRow { background-color: #F7F7F8; }
 .listTable td { border: none; border-right: solid 1px #CCC; cursor: default; }
 .linky,
@@ -301,9 +302,7 @@ table, tr { border-width: 0; border-spacing: 0; border-color: transparent; } /* 
 
 /* login & edit links */
 #active-nav { text-align: left; padding: 5px 0; width: 100%; height: 21px; }
-#signin { display: block; padding-left: 20px; font-weight: bold; color: #666; }
-#signin a { display: inline-block; font-size: 110%; }
-#stats { color: #000; }
+#signin { display: block; padding-left: 20px; font-weight: bold; color: #989898; }
 ul#editmenu { padding: 0 0 0 20px; margin: 0; }
 ul#editmenu li { list-style-type: none; display: inline-block; padding: 0 13px 0 0;
    border-right: 1px solid #CCC; margin: 0 15px 0 0; line-height: 20px;

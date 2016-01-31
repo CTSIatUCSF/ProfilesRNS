@@ -7,7 +7,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 
-
+ALTER TABLE [Profile.Data].[Publication.Entity.InformationResource]	ADD  Authors varchar(4000) NULL
 
 
 -- =============================================

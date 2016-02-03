@@ -18,6 +18,11 @@
     </FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
     <UpgradeBackupLocation />
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +44,9 @@
   <ItemGroup>
     <Reference Include="CsvHelper">
       <HintPath>..\Profiles\packages\CsvHelper.2.3.0\lib\net35-client\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ServiceModel.Web">
+      <HintPath>..\Profiles\packages\Microsoft.ServiceModel.Web.1.0.1\lib\net35\Microsoft.ServiceModel.Web.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -92,6 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

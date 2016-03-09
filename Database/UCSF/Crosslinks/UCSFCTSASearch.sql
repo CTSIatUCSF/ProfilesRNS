@@ -332,18 +332,16 @@ RETURNS varchar(255)
 AS
 BEGIN
 	-- go from  http://vivo.experts.scival.com/indiana/individual/n955 to http://www.experts.scival.com/indiana/expert.asp?u_id=955
-
+	-- and from http://vivo.scholars.northwestern.edu/individual/n4023 to http://www.scholars.northwestern.edu/expert.asp?u_id=4023
 	DECLARE @str varchar(255)
 	DECLARE @localBaseURI varchar(255)
 	SET @str = @s
 	SELECT @localBaseURI = Value FROM [Framework.].[Parameter] WHERE ParameterID = 'BaseURI'
 
-	-- stage hack
-	IF CHARINDEX('http://profiles.ucsf.edu/profile/', @s) = 1
-		SET @s = REPLACE(@s, 'http://stage-profiles.ucsf.edu/profiles260/eric.meeks', @localBaseURI)
-
  	IF CHARINDEX('vivo.experts.scival.com', @s) > 0 
 		SET @str = REPLACE(REPLACE(@s, 'vivo.experts.scival.com', 'www.experts.scival.com'), 'individual/n', 'expert.asp?u_id=')
+ 	ELSE IF CHARINDEX('vivo.scholars.northwestern.edu', @s) > 0 
+		SET @str = REPLACE(REPLACE(@s, 'vivo.scholars.northwestern.edu', 'www.scholars.northwestern.edu'), 'individual/n', 'expert.asp?u_id=')
 	ELSE IF CHARINDEX(@localBaseURI, @s) = 1
 	BEGIN
 		-- Nick, you'll need to add your own logic here!
@@ -356,9 +354,6 @@ BEGIN
 	RETURN @str
 
 END
-
-
-
 
 
 GO

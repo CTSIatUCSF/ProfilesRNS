@@ -28,7 +28,9 @@
   }
 
     // copyright year
+  if ($('#copyright-year') && $('#copyright-year').length) {
     $("#copyright-year").text( (new Date).getFullYear() );
+  }
 
     // navbarsearch
     // move & hide on main search pages

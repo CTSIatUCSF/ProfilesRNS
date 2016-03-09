@@ -120,6 +120,7 @@
 
     // altmetrics, don't attempt to load till after 7 seconds, which is 7000 milliseconds
     setTimeout(function () {
+      if ($('#publicationListAll') && $('#publicationListAll').length) {
         $("#publicationListAll li a:contains('PubMed')").each(function () {
             var pmid = $(this).attr('href').match(/(\d+)$/);
             if (pmid && pmid[0]) {
@@ -129,6 +130,7 @@
             }
         });
         $.getScript('http://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
+      }
     }, 7000);
 
 });

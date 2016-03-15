@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
-  <publishProfile publishUrl="Z:\Profiles200SearchAPI" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
-    <file relUrl="bin/Search.dll" publishTime="10/27/2013 21:45:21" />
-    <file relUrl="ProfilesSearchAPI.svc" publishTime="08/08/2013 09:52:22" />
-    <file relUrl="bin/Microsoft.ServiceModel.Web.dll" publishTime="08/08/2013 09:52:22" />
-    <file relUrl="Web.config" publishTime="10/15/2013 11:24:40" />
-    <file relUrl="bin/Search.pdb" publishTime="10/27/2013 21:45:21" />
+  <publishProfile publishUrl="C:\inetpub\ProfilesSearchAPI" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="ProfilesSearchAPI.svc" publishTime="09/09/2015 11:46:24" />
+    <file relUrl="bin/Search.dll" publishTime="03/11/2016 12:28:45" />
+    <file relUrl="bin/Search.pdb" publishTime="03/11/2016 12:28:45" />
+    <file relUrl="Web.config" publishTime="03/11/2016 10:34:36" />
   </publishProfile>
 </publishData>

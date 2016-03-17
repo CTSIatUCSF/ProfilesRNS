@@ -44,7 +44,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
      color: #CA7C29; text-decoration: underline; cursor: pointer;
 }
 
-
+#divShowTimelineTable, #showClusterViewLink { cursor: pointer; }
 .education .atog { margin-bottom: 15px; }
 .education td { padding-left: 15px; vertical-align: top; }
 .education td:first-child { min-width: 220px; padding-left: 0; }

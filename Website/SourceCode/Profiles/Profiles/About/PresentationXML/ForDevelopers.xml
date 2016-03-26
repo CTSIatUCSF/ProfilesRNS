@@ -17,38 +17,23 @@
         <ParamList>
           <Param Name="HTML">
 <style type="text/css">
-#suckerfishmenu li#data a { background-color: #6A7D7D !important; }
+#suckerfishmenu li#data a { background-color: #052049 !important; }
 </style>
-<p><a href="https://ucsf.my.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F9A00000004Szj" title="Visit UCSF Chatter">
-  <img src="images/cloud.png" alt="cloud" /> Join the UCSF Chatter Profiles Data Consumers group</a></p>
-<h3 style="padding-top: 6px">About the Data</h3>
-<div style="float:right;width:195px;background-color:#659191;margin-right:1px;margin-top: 4px">
-<p style="padding:6px 0 6px 8px;margin:0;font-size:15px;color:#fff;font-weight:bold">We’re happy to help integrate the API into your website, so it matches your site’s 
-look and feel.</p>
-</div>
-<ul  class="square">
-  <li>Over 100,000 publications, research overviews, photos</li>
-  <li>More than 3,000 UCSF faculty and academic leaders</li>
-  <li>More than 1,400 UCSF residents and fellows</li>
-  <li>More than 1,000 UCSF postdoctoral scholars</li>
-  <li>Updated automatically as new publications become available and contact data change</li>
+
+<p>Over two dozen UCSF websites and apps use data from UCSF Profiles. Users include the UCSF School of Medicine, UCSF Department of Surgery, and UCSF Directory.</p>
+
+<h3>Profiles data:</h3>
+<ul>
+  <li>Is free of cost</li>
+  <li>Covers over 6,000 members of the UCSF campus research community</li>
+  <li>Includes publications, photos, biographies, websites, etc.</li>
+  <li>Can be integrated into almost any kind of website</li>
 </ul>
 
-<h2 style="clear:right;padding-top:10px" class="about">Embed UCSF Profiles Data into your Site</h2>
-<img src="images/feed.jpg" alt="data feed" style="float:right;margin-top:-20px" />
-<p>Enhance your website with automated data from UCSF Profiles, matching your design. <br /><a href="http://opendata.profiles.ucsf.edu/" target="_blank">Learn more</a></p>
+<div class="button-link"><a href="http://opendata.profiles.ucsf.edu" target="_blank">Learn more and get started</a></div>
+<p><a href="https://ucsf.my.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F9A00000004Szj" title="Visit UCSF Chatter">
+  <img src="images/cloud.png" alt="cloud" /> Join the UCSF Chatter Profiles Data Consumers group</a></p>
 
-<h2 style="padding-top:10px" class="about">Search UCSF Profiles from your Website</h2>
-<img src="images/minisearch.jpg" alt="mini-search" style="float:right;padding-left:30px;padding-top:30px" />
-<p>By adding the UCSF Profiles Mini Search box to your website your site visitors can find UCSF researchers, potential collaborators, and mentors directly from your site. To get started, contact <a href="mailto:profiles@ucsf.edu">profiles@ucsf.edu</a></p>
-<p>See a demo at <a href="http://sfgh.ucsf.edu/research" target="_blank" title="See a demo">San Francisco General Hospital (SFGH)</a></p>
-<blockquote>
-It was very easy to add the Mini Search box with the very clear instructions I received. It allowed us to increase the accuracy and availability of the data on our site and to put an amazing search tool at the fingertips of our researchers.
-<p style="font-style:italic;font-size:12px">
-Moriah Hart, Analyst, San Francisco General Hospital, UCSF
-</p>
-</blockquote>
- 
  
           </Param>
         </ParamList>

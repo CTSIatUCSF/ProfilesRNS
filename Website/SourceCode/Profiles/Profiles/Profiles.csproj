@@ -24,8 +24,7 @@
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
+    <UpgradeBackupLocation />
     <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -188,6 +187,7 @@
     <Content Include="Framework\Images\ProfilesLogo.gif" />
     <Content Include="Framework\Images\search-icon.gif" />
     <Content Include="Framework\Images\ucsf.png" />
+    <Content Include="Framework\Images\ucsfProfilesLogo.png" />
     <Content Include="Framework\Images\video-ad.png" />
     <Content Include="Framework\JavaScript\UCSF.js" />
     <Content Include="Global.asax" />
@@ -254,7 +254,9 @@
     <Content Include="ORNG\Modules\EditPersonalGadget\EditPersonalGadget.ascx" />
     <Content Include="ORNG\Modules\GadgetSandbox\GadgetSandbox.ascx" />
     <Content Include="ORNG\Modules\Gadgets\Gadgets.ascx" />
-    <Content Include="ORNG\Modules\ModuleCatalogue.xml" />
+    <Content Include="ORNG\Modules\ModuleCatalogue.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ORNG\Modules\SearchGadgets\SearchGadgets.ascx" />
     <Content Include="ORNG\Modules\ViewPersonalGadget\ViewPersonalGadget.ascx" />
     <Content Include="ORNG\PresentationXML\DashboardPresentation.xml" />
@@ -1648,7 +1650,6 @@
     <Content Include="Profile\XSLT\Awards.xslt">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\CustomViewPersonGeneralInfo.xslt" />
     <Content Include="Profile\XSLT\CoAuthorDetail.xslt" />
     <Content Include="Profile\XSLT\ConceptDetail.xslt" />
     <Content Include="Profile\XSLT\Narrative.xslt" />

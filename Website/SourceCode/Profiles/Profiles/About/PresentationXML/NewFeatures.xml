@@ -18,7 +18,7 @@
           <Param Name="HTML">
 
 <style type="text/css">
-#suckerfishmenu li#about a { background-color: #6A7D7D !important; }
+#suckerfishmenu li#about a { background-color: #052049 !important; }
 ul li { padding-top: 10px; }
 #new-features { display: none; }
 </style>
@@ -26,8 +26,12 @@ ul li { padding-top: 10px; }
 <p>We've made improvements to UCSF Profiles to make it an even more effective research networking and collaboration tool. Below is a summary of recent enhancements. Please <a href="mailto:profiles@ucsf.edu?Subject=New%20Features%20Feedback">share any comments</a>.</p>
 
 <div style="border: 1px solid #CCC; padding:5px 15px; margin-bottom: 10px;">
-<h2 style="color: #CA7C29;font-size: 16px;">Highlights</h2>
+<h2 style="color: #f26d04;font-size: 16px;">Highlights</h2>
 <ul class="highlights"> 
+  <li><strong>Discover Clinical Trials</strong> led by UCSF investigators.
+  </li>
+  <li><strong>View Dashboard</strong> display of statistics about visits to your personal profile page.
+  </li>
   <li><strong>Explore External Co-Author</strong> networks to connect with experts at other institutions.
   </li>
   <li><strong>Showcase most important publications</strong> in their own section.
@@ -44,6 +48,29 @@ ul li { padding-top: 10px; }
 </div>
 
 <ul>
+  <li><strong>Clinical Trials</strong> 
+      <ul>
+		<li>Data collected from <a href="https://clinicaltrials.gov/" target="_blank">ClincalTrials.gov</a>.
+		</li>
+		<li>Researchers can feature or hide individual trials.
+		</li>
+      </ul>
+	  <img src="images/clinicaltrials.png" alt="Clinical Trials for Chip Chambers" style="margin:10px 0 0 40px;border:1px solid #CCC;" />
+  </li>
+  <li><strong>Dashboard of UCSF Profiles Page Statistics</strong> - sign in access only 
+      <ul>
+		<li>Compiles and presents statistics about visits to your personal profile page.
+		</li>
+		<li>Shows you how many visits, what organizations visit your page and when. 
+			<ul>
+				<li>Summary stats of by-month views for the past year, this month, best month, and cumulative views</li>
+				<li>Regional breakdown of visits for the last 30 days and past year</li>
+				<li>Views by internet service provider or company, last 30 days and past year</li>
+			</ul>
+		</li>
+	  </ul>
+	  <img src="images/dashboard.png" alt="Dashboard" style="margin:10px 0 0 68px;border:1px solid #CCC;" />
+  </li>
   <li><strong>External Co-Authors</strong>
       <ul>
 		<li>Shows network of co-authors at other institutions, where that data is available.

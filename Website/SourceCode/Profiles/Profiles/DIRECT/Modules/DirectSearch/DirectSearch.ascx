@@ -30,7 +30,7 @@ function NoEnter(){
 			x.style.backgroundColor = '#FFFFFF';
 		} else {
 			x.className = 'evenRow';
-			x.style.backgroundColor = '#F0F4F6';
+			x.style.backgroundColor = '#F8F7F7';
 		}
 		x.style.color = '';
 		for (var i=0; i<x.childNodes.length; i++) {
@@ -157,7 +157,7 @@ function NoEnter(){
     </script>
  <div class="searchForm">      
         <div class="pageSubTitleCaption">This tool, called
-            <a href="http://direct2experts.org/" title="Distributed Interoperable Research Experts Collaboration Tool"              style="color:#CA7C29 !important;font-size:13px;text-decoration:none" target="_blank">DIRECT</a>, 
+            <a href="http://direct2experts.org/" title="Distributed Interoperable Research Experts Collaboration Tool"              style="color:#f26d04 !important;font-size:13px;text-decoration:none" target="_blank">DIRECT</a>, 
              finds experts at multiple institutions. <a href="../">Return to search UCSF only</a><br /><br />
         </div>
         <div class="searchForm nonavbar">

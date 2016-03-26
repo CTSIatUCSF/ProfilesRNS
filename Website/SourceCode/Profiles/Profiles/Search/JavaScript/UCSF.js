@@ -34,6 +34,9 @@
       e.stopPropagation();
   });
 
+  // open Other Options list 
+  $('#ctcFirst_rMaster_ctl00_imgExpand').click();
+  
   //search results adjustments
   $('#tblSearchResults tr').find('td:eq(0)').addClass('linky');
   $('#ctl00_ContentMain_rptMain_ctl00_ctl00_gvIndirectConnectionDetails td:last-child').addClass('linky');
@@ -42,4 +45,14 @@
   $("#tblSearchResults th:contains('Type')").css("text-align","center");
   $("#tblSearchResults th:contains('Researcher Type')").css("text-align","left");
   
-});
+  //clone clinical trials checkbox for promotion
+  $("#divOtherOptions label[for='ctcFirst_rMaster_ctl00_rDetail_ctl09_checkDetailText']").parent().addClass('trials1');
+  $('.trials2').click(function() { 
+     if ($('.trials2').is(':checked')) {
+        $('#ctcFirst_rMaster_ctl00_divDetail .trials1 :checkbox').attr("checked", true)[0].onclick();
+     } else {
+        $('#ctcFirst_rMaster_ctl00_divDetail .trials1 :checkbox').attr("checked", false)[0].onclick(); 
+     }
+  });
+  
+  });

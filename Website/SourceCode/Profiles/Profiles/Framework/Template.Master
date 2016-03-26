@@ -80,16 +80,15 @@
 	<div id='page-container'>
     <div id="header-ucsf">
       <div id="ucsfnav">
-        <a class="ucsf-logo" target="_blank" href="http://www.ucsf.edu/">UCSF</a>
          <ul>
          <li class="first">
-           <a title="University of California, San Francisco" href="http://www.ucsf.edu/" target="_blank">University of California, San Francisco</a>
+           <a title="University of California San Francisco" href="http://www.ucsf.edu/" target="_blank">University of California San Francisco</a>
          </li>
          <li>
            <a title="About UCSF" href="http://www.ucsf.edu/about" target="_blank">About UCSF</a>
          </li>
          <li>
-           <a title="Search UCSF" href="http://www.ucsf.edu/ucsf/search" target="_blank">Search UCSF</a>
+           <a title="Search UCSF" href="http://www.ucsf.edu/search" target="_blank">Search UCSF</a>
          </li>
          <li>
            <a title="UCSF Medical Center" href="http://www.ucsfhealth.org/" target="_blank">UCSF Medical Center</a>
@@ -99,14 +98,14 @@
     </div>
     <div class="institutionHeader">
         <div id="site-logo">
-        <h1><a href="<%=GetURLDomain()%>/">UCSF Profiles
+        <h1><a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/Framework/images/ucsfProfilesLogo.png" alt="UCSF Profiles" />
         <div id="tagline">search, discover, network</div></a></h1>
         </div>
         <div id="powered-by-block">
-          <a id="powered-by-ctsi" href="http://ctsi.ucsf.edu/" target="_blank">Powered by CTSI</a>
+          <a id="powered-by-ctsi" href="http://ctsi.ucsf.edu/" target="_blank"><img src="<%=GetURLDomain()%>/Framework/images/ctsi16.png" alt="CTSI icon" style="margin-right:4px" />Powered by CTSI</a>
         </div>
         <div id="new-features">
-          <a href="<%=GetURLDomain()%>/about/NewFeatures.aspx">New Features: Learn more <img src="<%=GetURLDomain()%>/Framework/images/arrow-orgbg.gif" alt=">" style="border:none" width="12" height="16"/></a>
+          <a href="<%=GetURLDomain()%>/about/NewFeatures.aspx">New Features: Learn more &nbsp;&#10095;</a>
         </div>
     </div>	    
     <div id="suckerfish-container">
@@ -123,7 +122,7 @@
 		<div class="profiles">
             <div id="active-nav"><span id="signin">
                <a href="<%=GetURLDomain()%>/login/default.aspx?method=login&amp;edit=true" id="signinlink">Sign in</a>
-               to edit your profile (add interests, mentoring, photo, etc.)</span>
+               to see <span id="stats">private stats</span> on your profile page &mdash; or add photo, interests, videos, mentoring, etc.</span>
                <ul id="editmenu"></ul>
             </div>
 			<center>
@@ -271,7 +270,7 @@
 </form>
 <div id="backtotop">  
     <a href="#">  
-       <img src="<%=GetURLDomain()%>/framework/images/backtotop.gif" border="0" alt="Back to TOP"  width="33" height="116"/>  
+       <img src="<%=GetURLDomain()%>/framework/images/backtotop.gif" border="0" alt="Back to TOP"  width="25" height="62"/>  
     </a>  
 </div>
 
@@ -282,6 +281,19 @@
         a.src = document.location.protocol + "//dnn506yrbagrg.cloudfront.net/pages/scripts/0010/2559.js?" + Math.floor(new Date().getTime() / 3600000);
         a.async = true; a.type = "text/javascript"; b.parentNode.insertBefore(a, b)
     }, 1);
+</script>
+<script type='text/javascript' src='https://qeryz.com/survey/js/qryz_v3.2.js'></script>
+<script type='text/javascript'>
+    var qRz = qRz || [];
+    (function() {
+        setTimeout(function(){
+            var qryz_plks = document.createElement('div');
+            qryz_plks.id = 'qryz_plks';
+            qryz_plks.className = 'qryz_plks';
+            document.body.appendChild(qryz_plks);
+            qryzInit2('2511');
+        },0);
+    })();
 </script>
 </body>
 <asp:Panel runat="server" ID="pnlNavBarSearch" Visible="true">

@@ -292,7 +292,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
 
 
-            data.DeleteOnePublication(Convert.ToInt32(Session["ProfileUsername"]), key);
+            data.DeleteOnePublication(Convert.ToInt32(Session["ProfileUsername"]), Convert.ToInt64(Session["NodeID"]), key, this.PropertyListXML);
             this.Counter = 0;
             grdEditPublications.DataBind();
             upnlEditSection.Update();
@@ -418,7 +418,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                     data.AddPublication(pmid, node.OuterXml);
 
                 // Assign the user to the publication
-                data.AddPublication(_personId, Convert.ToInt32(pmid), this._predicateuri, "" + this.securityOptions.PrivacyCode);
+                data.AddPublication(_personId, _subject, Convert.ToInt32(pmid), this.PropertyListXML);
 
             }
             this.Counter = 0;
@@ -968,14 +968,14 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 HiddenField hdn = (HiddenField)grdEditPublications.Rows[grdEditPublications.SelectedIndex].FindControl("hdnMPID");
                 myParameters.Add("@mpid", hdn.Value);
 
-                data.EditCustomPublication(myParameters);
+                data.EditCustomPublication(myParameters, _subject, this.PropertyListXML);
                 grdEditPublications.SelectedIndex = -1;
             }
             else
             {
                 myParameters.Add("@PersonID", _personId);
                 myParameters.Add("@created_by", _personId);
-                data.AddCustomPublication(myParameters, _personId);
+                data.AddCustomPublication(myParameters, _personId, _subject, this.PropertyListXML);
             }
             this.Counter = 0;
             grdEditPublications.DataBind();
@@ -1058,7 +1058,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             // PRG: Double-check we're using the correct username variable here
             //myParameters.Add("@username", (string)Session["ProfileUsername"]));
             Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
-            data.DeletePublications(_personId, true, false);
+            data.DeletePublications(_personId, _subject, true, false);
             this.Counter = 0;
             phAddPub.Visible = true;
             phAddPubMed.Visible = true;
@@ -1078,7 +1078,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             // PRG: Double-check we're using the correct username variable here
             //myParameters.Add("@username", (string)Session["ProfileUsername"]));
             Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
-            data.DeletePublications(_personId, false, true);
+            data.DeletePublications(_personId, _subject, false, true);
             this.Counter = 0;
             phAddPub.Visible = true;
             phAddPubMed.Visible = true;
@@ -1098,7 +1098,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             // PRG: Double-check we're using the correct username variable here
             //myParameters.Add("@username", (string)Session["ProfileUsername"]));
             Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
-            data.DeletePublications(_personId, true, true);
+            data.DeletePublications(_personId, _subject, true, true);
             this.Counter = 0;
             phAddPub.Visible = true;
             phAddPubMed.Visible = true;

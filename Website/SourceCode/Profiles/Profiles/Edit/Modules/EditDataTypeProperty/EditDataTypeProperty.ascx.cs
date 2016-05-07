@@ -176,12 +176,18 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
         {
             HiddenField hdLabel = (HiddenField)GridViewProperty.Rows[e.RowIndex].FindControl("hdLabel");
             TextBox txtLabelGrid = (TextBox)GridViewProperty.Rows[e.RowIndex].FindControl("txtLabelGrid");
+            string propertyValue = txtLabelGrid.Text.Trim();
+            if ((this.MaxCardinality == "0" || this.MaxCardinality == "1") && propertyValue.Length > 4000)
+            {
+                if (propertyValue.Substring(0, 3).CompareTo("<br>")==0) propertyValue = propertyValue.Substring(3, propertyValue.Length-3);
+                else propertyValue="<br>"+propertyValue;
+            }
 
             Connects.Profiles.Service.ServiceImplementation.DebugLogging.Log("EditDataTypeProperty: Attempting to update: " + hdLabel.Value);
-            Connects.Profiles.Service.ServiceImplementation.DebugLogging.Log("EditDataTypeProperty: Attempting to update2: " + txtLabelGrid.Text.Trim());
+            Connects.Profiles.Service.ServiceImplementation.DebugLogging.Log("EditDataTypeProperty: Attempting to update2: " + propertyValue);
             Connects.Profiles.Service.ServiceImplementation.DebugLogging.Log("EditDataTypeProperty: Attempting to update3: " + this.SubjectID + "," + this.PredicateID );
 
-            data.UpdateLiteral(this.SubjectID, this.PredicateID, data.GetStoreNode(hdLabel.Value), data.GetStoreNode(txtLabelGrid.Text.Trim()), this.PropertyListXML);
+            data.UpdateLiteral(this.SubjectID, this.PredicateID, data.GetStoreNode(hdLabel.Value), data.GetStoreNode(propertyValue), this.PropertyListXML);
             GridViewProperty.EditIndex = -1;
             this.FillPropertyGrid(true);
             upnlEditSection.Update();
@@ -326,7 +332,9 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
 
             foreach (XmlNode property in this.PropertyListXML.SelectNodes("PropertyList/PropertyGroup/Property/Network/Connection"))
             {
-                literalstate.Add(new LiteralState(this.SubjectID, this.PredicateID, data.GetStoreNode(property.InnerText.Trim()), property.InnerText.Trim(), editexisting, editdelete));
+                string propertyValue = property.InnerText.Trim();
+                //if (propertyValue.Length > 4000) propertyValue = "<br>" + propertyValue;
+                literalstate.Add(new LiteralState(this.SubjectID, this.PredicateID, data.GetStoreNode(propertyValue), propertyValue, editexisting, editdelete));
             }
 
             if (literalstate.Count > 0)
@@ -354,7 +362,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
                 GridViewProperty.Visible = false;
                 imbAddArror.Visible = true;
                 btnEditProperty.Visible = true;
-                if (MaxCardinality == "1")
+                if (MaxCardinality == "1" || MaxCardinality == "0")
                 { 
                     
                     

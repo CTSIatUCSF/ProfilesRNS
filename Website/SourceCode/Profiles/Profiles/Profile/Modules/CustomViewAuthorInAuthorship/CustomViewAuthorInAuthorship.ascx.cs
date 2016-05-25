@@ -84,6 +84,7 @@ namespace Profiles.Profile.Modules
                 Label lblNum = (Label)e.Item.FindControl("lblNum");
                 Label lblPublication = (Label)e.Item.FindControl("lblPublication");
                 Literal litViewIn = (Literal)e.Item.FindControl("litViewIn");
+                System.Web.UI.HtmlControls.HtmlGenericControl liPublication = ((System.Web.UI.HtmlControls.HtmlGenericControl)(e.Item.FindControl("liPublication")));
 
                 // use the XML if it is not null so that we can display links, otherwise the regular list
                 string lblPubTxt = pub.authorXML != String.Empty ? getAuthorList(pub.authorXML) : pub.authors;
@@ -91,6 +92,7 @@ namespace Profiles.Profile.Modules
                 if (pub.bibo_pmid != string.Empty && pub.bibo_pmid != null)
                 {
                     lblPubTxt = lblPubTxt + " PMID: " + pub.bibo_pmid;
+                    liPublication.Attributes["data-pmid"] = pub.bibo_pmid;
                     litViewIn.Text = "View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/" + pub.bibo_pmid + "' target='_blank'>PubMed</a>";
                     if (pub.vivo_pmcid != null)
                     {

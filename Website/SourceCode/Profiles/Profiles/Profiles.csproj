@@ -263,7 +263,7 @@
     <Content Include="ORNG\PresentationXML\DashboardPresentation.xml" />
     <Content Include="ORNG\PresentationXML\GadgetDetailsPresentation.xml" />
     <Content Include="ORNG\PresentationXML\SandboxFormPresentation.xml" />
-    <Content Include="Profile\CSS\UCSF.css" />
+    <Content Include="Profile\CSS\viz.css" />
     <Content Include="Profile\Images\default_img.png" />
     <Content Include="Profile\Images\ucsf_alumni_blue.jpg" />
     <Content Include="Profile\JavaScript\UCSF.js" />
@@ -272,7 +272,45 @@
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\CustomViewPersonGeneralInfo.xslt" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx" />
-    <Content Include="Profile\XSLT\EducationalTraining.xslt" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\crossdomain.xml" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\Default.aspx" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\Images\yui-loading.gif" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\JavaScript\networkBrowserClass.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\NetworkCluster.ascx" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\NetworkClusterSvc.aspx" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\network_browser_force.swf" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\lib\prototype.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\src\builder.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\src\controls.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\src\dragdrop.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\src\effects.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\src\scriptaculous.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\src\slider.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\src\sound.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\src\unittest.js" />
+    <Content Include="Profile\Modules\NetworkCluster\JavaScript\networkClusterLayoutEngine.js" />
+    <Content Include="Profile\Modules\NetworkCluster\JavaScript\watchdog.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\crossdomain.xml" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\Default.aspx" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\Images\yui-loading.gif" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\JavaScript\networkBrowserClass.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\NetworkRadial.ascx" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\NetworkRadialSvc.aspx" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\network_browser.swf" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\lib\prototype.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\src\builder.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\src\controls.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\src\dragdrop.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\src\effects.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\src\scriptaculous.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\src\slider.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\src\sound.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\src\unittest.js" />
+    <Content Include="Profile\Modules\NetworkRadial\JavaScript\layout_balanced.js" />
+    <Content Include="Profile\Modules\NetworkRadial\JavaScript\networkBrowserClass.js" />
+    <Content Include="Profile\Modules\NetworkRadial\JavaScript\sliders.js" />
+    <Content Include="Profile\Modules\NetworkRadial\JavaScript\viz.js" />
+    <Content Include="Profile\Modules\NetworkRadial\JavaScript\watchdog.js" />
     <Content Include="Profile\XSLT\NetworkTable.xslt" />
     <Content Include="RobotsTxt.aspx" />
     <Content Include="Search\CSS\UCSF.css" />
@@ -985,6 +1023,34 @@
     <Compile Include="Profile\Modules\HRFooter\HRFooter.ascx.designer.cs">
       <DependentUpon>HRFooter.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Profile\Modules\NetworkClusterFlash\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkClusterFlash\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkClusterFlash\NetworkCluster.ascx.cs">
+      <DependentUpon>NetworkCluster.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkClusterFlash\NetworkCluster.ascx.designer.cs">
+      <DependentUpon>NetworkCluster.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkClusterFlash\NetworkClusterSvc.aspx.cs">
+      <DependentUpon>NetworkClusterSvc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkClusterFlash\NetworkClusterSvc.aspx.designer.cs">
+      <DependentUpon>NetworkClusterSvc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master.cs">
+      <DependentUpon>NetworkClusterTemplate.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master.designer.cs">
+      <DependentUpon>NetworkClusterTemplate.Master</DependentUpon>
+    </Compile>
     <Compile Include="Profile\Modules\NetworkCluster\NetworkClusterSvc.aspx.cs">
       <DependentUpon>NetworkClusterSvc.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -998,6 +1064,34 @@
     </Compile>
     <Compile Include="Profile\Modules\NetworkCluster\NetworkCluster.ascx.designer.cs">
       <DependentUpon>NetworkCluster.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkRadialFlash\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkRadialFlash\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkRadialFlash\NetworkRadial.ascx.cs">
+      <DependentUpon>NetworkRadial.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkRadialFlash\NetworkRadial.ascx.designer.cs">
+      <DependentUpon>NetworkRadial.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkRadialFlash\NetworkRadialSvc.aspx.cs">
+      <DependentUpon>NetworkRadialSvc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkRadialFlash\NetworkRadialSvc.aspx.designer.cs">
+      <DependentUpon>NetworkRadialSvc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkRadialFlash\NetworkRadialTemplate.Master.cs">
+      <DependentUpon>NetworkRadialTemplate.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkRadialFlash\NetworkRadialTemplate.Master.designer.cs">
+      <DependentUpon>NetworkRadialTemplate.Master</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\NetworkTimeline\NetworkTimeline.ascx.cs">
       <DependentUpon>NetworkTimeline.ascx</DependentUpon>
@@ -1595,12 +1689,14 @@
     <Content Include="Framework\CSS\jquery-ui-1.8.13.custom.css" />
     <Content Include="Framework\CSS\ui.dropdownchecklist.themeroller.css" />
     <Content Include="Framework\Images\banner.jpg" />
+    <Content Include="Framework\Images\banner.png" />
     <Content Include="Framework\Images\connection_left.gif" />
     <Content Include="Framework\Images\connection_right.gif" />
     <Content Include="Framework\Images\icon_alert.gif" />
     <Content Include="Framework\Images\icon_squareDownArrow.gif" />
     <Content Include="Framework\Images\passive_back1.gif" />
     <Content Include="Framework\Images\passive_backtile.gif" />
+    <Content Include="Framework\Images\search.png" />
     <Content Include="Framework\Images\two_coloumn_bottom.gif" />
     <Content Include="Framework\JavaScript\jquery-1.6.1.min.js" />
     <Content Include="Framework\JavaScript\jquery-ui-1.8.13.custom.min.js" />
@@ -1638,7 +1734,6 @@
     <Content Include="Profile\Modules\NetworkRadial\crossdomain.xml" />
     <Content Include="Profile\Modules\NetworkRadial\Images\yui-loading.gif" />
     <Content Include="Profile\Modules\NetworkRadial\NetworkRadial.ascx" />
-    <Content Include="Profile\Modules\NetworkRadial\JavaScript\networkBrowserClass.js" />
     <Content Include="Profile\Modules\NetworkRadial\NetworkRadialSvc.aspx" />
     <Content Include="Profile\Modules\NetworkRadial\network_browser.swf" />
     <Content Include="Profile\Modules\NetworkRadial\scriptaculous\lib\prototype.js" />
@@ -1756,9 +1851,17 @@
     <None Include="About\ListMakerGuidance.pdf" />
     <None Include="ORCID\ORCIDPrivacySettingsandProfiles.pdf" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailAudioHandler.ashx" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master" />
+    <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\CHANGELOG" />
+    <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\MIT-LICENSE" />
+    <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\README.rdoc" />
     <None Include="Profile\Modules\NetworkCluster\scriptaculous\CHANGELOG" />
     <None Include="Profile\Modules\NetworkCluster\scriptaculous\MIT-LICENSE" />
     <None Include="Profile\Modules\NetworkCluster\scriptaculous\README.rdoc" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\NetworkRadialTemplate.Master" />
+    <None Include="Profile\Modules\NetworkRadialFlash\scriptaculous\CHANGELOG" />
+    <None Include="Profile\Modules\NetworkRadialFlash\scriptaculous\MIT-LICENSE" />
+    <None Include="Profile\Modules\NetworkRadialFlash\scriptaculous\README.rdoc" />
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\CHANGELOG" />
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\MIT-LICENSE" />
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\README.rdoc" />

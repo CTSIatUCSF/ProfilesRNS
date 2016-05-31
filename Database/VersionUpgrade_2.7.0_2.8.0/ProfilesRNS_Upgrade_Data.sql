@@ -214,10 +214,16 @@ update [Ontology.Presentation].[XML] set  PresentationXML =  '<Presentation Pres
           <Param Name="MoreText">See all ({{{rdf:RDF/rdf:Description[rdf:predicate/@rdf:resource="http://profiles.catalyst.harvard.edu/ontology/prns#coAuthorOf"][@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:hasNetwork/@rdf:resource]/prns:numberOfConnections}}}) people</Param>
         </ParamList>
       </Module>
+      <Module ID="Gadgets">
+        <ParamList>
+          <Param Name="GadgetDiv">gadgets-network</Param>
+          <Param Name="GadgetClass">gadgets-gadget-network-parent</Param>
+        </ParamList>
+      </Module>
       <Module ID="PassiveList">
         <ParamList>
-          <Param Name="InfoCaption">Similar People</Param>
-          <Param Name="Description">People who share similar concepts with this person.</Param>
+          <Param Name="InfoCaption">Related Authors</Param>
+          <Param Name="Description">People who share related concepts with this person.</Param>
           <Param Name="MaxDisplay">11</Param>
           <Param Name="ListNode">rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:similarTo/@rdf:resource]</Param>
           <Param Name="ItemURLText">{{{rdf:Description/rdfs:label}}}</Param>
@@ -227,12 +233,11 @@ update [Ontology.Presentation].[XML] set  PresentationXML =  '<Presentation Pres
           <Param Name="MoreText">See all ({{{rdf:RDF/rdf:Description[rdf:predicate/@rdf:resource="http://profiles.catalyst.harvard.edu/ontology/prns#similarTo"][@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:hasNetwork/@rdf:resource]/prns:numberOfConnections}}}) people</Param>
         </ParamList>
       </Module>
-      <Module ID="CustomViewPersonSameDepartment" />
+      <!--Module ID="CustomViewPersonSameDepartment" /-->
       <Module ID="Gadgets">
         <ParamList>
-          <Param Name="HTML">
-            <div id="gadgets-tools" class="gadgets-gadget-parent" />
-          </Param>
+          <Param Name="GadgetDiv">gadgets-tools</Param>
+          <Param Name="GadgetClass">gadgets-gadget-parent</Param>
         </ParamList>
       </Module>
       <Module ID="PassiveList">

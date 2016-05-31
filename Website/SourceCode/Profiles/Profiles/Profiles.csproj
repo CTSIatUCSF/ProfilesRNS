@@ -311,6 +311,7 @@
     <Content Include="Profile\Modules\NetworkRadial\JavaScript\sliders.js" />
     <Content Include="Profile\Modules\NetworkRadial\JavaScript\viz.js" />
     <Content Include="Profile\Modules\NetworkRadial\JavaScript\watchdog.js" />
+    <Content Include="Profile\XSLT\EducationalTraining.xslt" />
     <Content Include="Profile\XSLT\NetworkTable.xslt" />
     <Content Include="RobotsTxt.aspx" />
     <Content Include="Search\CSS\UCSF.css" />

@@ -4,7 +4,7 @@
 
 <style type="text/css">
 .profiles .profilesContentMain { width: 584px; }
-.profiles .profilesContentPassive { margin-right: 20px; }
+.profiles .profilesPageColumnLeft { padding: 6px 6px 0 8px;}
 .profiles .profilesContentMain .pageTitle h2 { display: none; }
 </style>
 
@@ -139,10 +139,13 @@
                                         <th style="width: 140px">
                                             Research Topics
                                         </th>
-                                        <td colspan="2" class="fieldOptions">
+                                        <td class="fieldOptions">
                                             <asp:TextBox runat="server" ID="txtSearchFor" CssClass="inputText"></asp:TextBox>
                                             <asp:CheckBox runat="server" ID="chkExactphrase" CssClass="unused" />
                                         </td>
+                                       <td align="center">
+					    <a href="JavaScript:search();" class="search-button">Search</a>
+                                       </td>
 <!--  NOTE: checkboxes are hidden in css
                                             Search for exact phrase
                                     </tr>
@@ -160,7 +163,7 @@
 						    </a>
                                                 </div>
                                             </td>
-                                        </tr>
+                                        </tr>     (cp end comment out)-->
                                     </tr>
                                 </table>
                             </div>

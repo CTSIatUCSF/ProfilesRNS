@@ -1,5 +1,4 @@
-﻿.searchForm td div.header { color: #CA7C29; font-size: 30px; font-weight: bold; margin: 16px 0 8px; }
-.searchForm .searchSection { margin-bottom: 0; }
+﻿.searchForm .searchSection { margin-bottom: 0; }
 .searchForm #div1 { border-top: none; margin-top: 20px; padding-top: 8px; } 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
      .searchForm #div1 { margin-top: 21px; }
@@ -10,6 +9,8 @@
 #txtSearchFor { padding-left: 2px; height: 30px; height: 22px\9; padding-top: 6px\9; }
 .listTable th { border: 1px solid #CCC !important; }
 #tblSearchResults th { text-align: left; }
+.profiles a.search-button { color: #fff !important; background-color: #f48024; border: none; padding: 5px 12px 4px 33px; background-position: 10% 50%; font-size: 18px; }
+.profiles a.search-button:hover { box-shadow: none; color: #fff !important; background-color: #F26D04; }
 #suckerfishmenu li.item-home a { background-color: #6A7D7D !important; }
 /* we didn't use this filters display
 #filtersContainer { width: 680px; }

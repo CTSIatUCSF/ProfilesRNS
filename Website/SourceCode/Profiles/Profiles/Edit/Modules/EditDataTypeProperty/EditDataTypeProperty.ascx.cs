@@ -179,8 +179,9 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
             string propertyValue = txtLabelGrid.Text.Trim();
             if ((this.MaxCardinality == "0" || this.MaxCardinality == "1") && propertyValue.Length > 4000)
             {
-                if (propertyValue.Substring(0, 3).CompareTo("<br>")==0) propertyValue = propertyValue.Substring(3, propertyValue.Length-3);
-                else propertyValue="<br>"+propertyValue;
+                //if (propertyValue.Substring(0, 3).CompareTo("<br>")==0) propertyValue = propertyValue.Substring(3, propertyValue.Length-3);
+                //else 
+                propertyValue="<br>"+propertyValue;
             }
 
             Connects.Profiles.Service.ServiceImplementation.DebugLogging.Log("EditDataTypeProperty: Attempting to update: " + hdLabel.Value);

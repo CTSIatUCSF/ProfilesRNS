@@ -11,6 +11,7 @@
   
 */
 using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -160,6 +161,15 @@ namespace Profiles.Framework
             //    divPageColumnRightCenter.Style["background-repeat"] = "repeat";
             //}
 
+
+            // add in GoogleAnaltyics if it is configured
+            if (ConfigurationManager.AppSettings["GoogleAnalytics.TrackingID"] != null && !ConfigurationManager.AppSettings["GoogleAnalytics.TrackingID"].ToString().Trim().IsNullOrEmpty())
+            {
+                HtmlGenericControl gaTrackingjs = new HtmlGenericControl("script");
+                gaTrackingjs.Attributes.Add("type", "text/javascript");
+                gaTrackingjs.InnerHtml = GetGoogleAnalyticsJavascipt(ConfigurationManager.AppSettings["GoogleAnalytics.TrackingID"].ToString().Trim());
+                Page.Header.Controls.Add(gaTrackingjs);
+            }
 
             // IE Only css files
             Literal ieCss = new Literal();
@@ -482,6 +492,20 @@ namespace Profiles.Framework
 
             return rtnpanel;
         }
+
+        private string GetGoogleAnalyticsJavascipt(string trackingID)
+        {
+            string scriptText = Environment.NewLine +
+                    "var _gaq = _gaq || [];" + Environment.NewLine +
+                    "_gaq.push(['_setAccount', '" + trackingID + "']);" + Environment.NewLine +
+                    "(function () {" + Environment.NewLine +
+                    "   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;" + Environment.NewLine +
+                    "   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';" + Environment.NewLine +
+                    "   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);" + Environment.NewLine +
+                    "})();" + Environment.NewLine;
+            return scriptText;
+        }
+
 
         /// <summary>
         /// Used to bind a repeater for a given Panel to a List of Modules.  Each panel is defined by a type.  Each type can be assigned

@@ -65,6 +65,7 @@ namespace Profiles.Framework {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink navResearch;
+        
         /// <summary>
         /// divProfilesHeader control.
         /// </summary>
@@ -228,15 +229,6 @@ namespace Profiles.Framework {
         protected global::System.Web.UI.WebControls.Literal litTabs;
         
         /// <summary>
-        /// rptMain control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptMain;
-        
-        /// <summary>
         /// ContentMain control.
         /// </summary>
         /// <remarks>
@@ -244,6 +236,15 @@ namespace Profiles.Framework {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentMain;
+        
+        /// <summary>
+        /// rptMain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptMain;
         
         /// <summary>
         /// tdProfilesMainColumnRight control.

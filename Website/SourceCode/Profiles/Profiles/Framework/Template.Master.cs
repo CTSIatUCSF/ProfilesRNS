@@ -496,13 +496,12 @@ namespace Profiles.Framework
         private string GetGoogleAnalyticsJavascipt(string trackingID)
         {
             string scriptText = Environment.NewLine +
-                    "var _gaq = _gaq || [];" + Environment.NewLine +
-                    "_gaq.push(['_setAccount', '" + trackingID + "']);" + Environment.NewLine +
-                    "(function () {" + Environment.NewLine +
-                    "   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;" + Environment.NewLine +
-                    "   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';" + Environment.NewLine +
-                    "   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);" + Environment.NewLine +
-                    "})();" + Environment.NewLine;
+                    "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){" + Environment.NewLine +
+                    "(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o)," + Environment.NewLine +
+                    " m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)" + Environment.NewLine +
+                    "})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');" + Environment.NewLine +
+                    "ga('create', '" + trackingID + "', 'auto');" + Environment.NewLine +
+                    "ga('send', 'pageview');" + Environment.NewLine;
             return scriptText;
         }
 

@@ -129,7 +129,7 @@ namespace Profiles.ORNG.Modules.Gadgets
         protected void btnAddORNGApplication_OnClick(object sender, EventArgs e)
         {
             // add the gadget to the person
-            data.AddPersonalGadget(this.SubjectID, this.PredicateURI);
+            data.AddPersonalGadget(this.SubjectID, this.PredicateURI, securityOptions.PrivacyCode);
             hasGadget = true;
             DrawProfilesModule();
             upnlEditSection.Update();
@@ -139,7 +139,7 @@ namespace Profiles.ORNG.Modules.Gadgets
 
         protected void deleteOne_Onclick(object sender, EventArgs e)
         {
-            data.RemovePersonalGadget(this.SubjectID, this.PredicateURI);
+            data.RemovePersonalGadget(this.SubjectID, this.PredicateURI, securityOptions.PrivacyCode);
             hasGadget = false;
             DrawProfilesModule();
             upnlEditSection.Update();

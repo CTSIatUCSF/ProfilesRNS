@@ -51,16 +51,17 @@ namespace Profiles.ORNG.Utilities
             return -1;
         }
 
-        public void AddPersonalGadget(long Subject, string propertyURI)
+        public void AddPersonalGadget(long Subject, string propertyURI, int privacyCode)
         {
             GadgetSpec spec = OpenSocialManager.GetGadgetByPropertyURI(propertyURI);
             if (spec != null)
             {
                 AddPersonalGadget(Subject, spec.GetAppId());
+                EditActivityLog(Subject, propertyURI, "" + privacyCode, "ORNGApplication", spec.GetGadgetURL());
             }
         }
 
-        public void AddPersonalGadget(string uri, int appId)
+        private void AddPersonalGadget(string uri, int appId)
         {
             SqlParameter[] param = new SqlParameter[2];
 
@@ -86,16 +87,17 @@ namespace Profiles.ORNG.Utilities
             }
         }
 
-        public void RemovePersonalGadget(long Subject, string propertyURI)
+        public void RemovePersonalGadget(long Subject, string propertyURI, int privacyCode)
         {
             GadgetSpec spec = OpenSocialManager.GetGadgetByPropertyURI(propertyURI);
             if (spec != null)
             {
                 RemovePersonalGadget(Subject, spec.GetAppId());
+                EditActivityLog(Subject, propertyURI, "" +privacyCode, "ORNGApplication", "" + spec.GetGadgetURL());
             }
         }
 
-        public void RemovePersonalGadget(string uri, int appId)
+        private void RemovePersonalGadget(string uri, int appId)
         {
             SqlParameter[] param = new SqlParameter[3];
 
@@ -109,7 +111,7 @@ namespace Profiles.ORNG.Utilities
             }
         }
 
-        public void RemovePersonalGadget(long Subject, int appId)
+        private void RemovePersonalGadget(long Subject, int appId)
         {
             SqlParameter[] param = new SqlParameter[3];
 

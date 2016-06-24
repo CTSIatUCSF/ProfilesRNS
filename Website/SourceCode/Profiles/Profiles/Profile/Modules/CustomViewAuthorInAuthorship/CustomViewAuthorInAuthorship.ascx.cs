@@ -87,13 +87,13 @@ namespace Profiles.Profile.Modules
                 System.Web.UI.HtmlControls.HtmlGenericControl liPublication = ((System.Web.UI.HtmlControls.HtmlGenericControl)(e.Item.FindControl("liPublication")));
 
                 // use the XML if it is not null so that we can display links, otherwise the regular list
-                string lblPubTxt = pub.authorXML != String.Empty ? getAuthorList(pub.authorXML) : pub.authors;
+                string lblPubTxt = !String.IsNullOrEmpty(pub.authorXML) ? getAuthorList(pub.authorXML) : pub.authors;
                 // ugly logic but it works. If we did not match current author on URI, then do a name match
                 if (!lblPubTxt.Contains("<b>"))
                 {
                     lblPubTxt = findAndDecorateThisAuthor(lblPubTxt);
                 }
-                lblPubTxt += (lblPubTxt != String.Empty ? ". " : "") + pub.prns_informationResourceReference;
+                lblPubTxt += (!String.IsNullOrEmpty(lblPubTxt) && !lblPubTxt.TrimEnd().EndsWith(".") ? ". " : "") + pub.prns_informationResourceReference;
                 if (pub.bibo_pmid != string.Empty && pub.bibo_pmid != null)
                 {
                     lblPubTxt = lblPubTxt + " PMID: " + pub.bibo_pmid;

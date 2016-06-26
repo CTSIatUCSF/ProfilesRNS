@@ -192,6 +192,7 @@
     <Content Include="Framework\JavaScript\UCSF.js" />
     <Content Include="Global.asax" />
     <Content Include="google6b93ad5a56d431a7.html" />
+    <Content Include="History\Modules\HistoryActivity\HistoryActivity.ascx" />
     <Content Include="Login\Modules\ShibLogin\ShibLogin.ascx" />
     <Content Include="Login\PresentationXML\ShibbolethLoginPresentation.xml" />
     <Content Include="ORCID\CreateBatch.aspx" />
@@ -454,6 +455,15 @@
     <Compile Include="History\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="History\Modules\HistoryActivity\DeclumpedList.cs" />
+    <Compile Include="History\Modules\HistoryActivity\HistoryActivity.ascx.cs">
+      <DependentUpon>HistoryActivity.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="History\Modules\HistoryActivity\HistoryActivity.ascx.designer.cs">
+      <DependentUpon>HistoryActivity.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="History\Modules\HistoryActivity\Model.cs" />
     <Compile Include="History\Modules\HistoryByType\HistoryByType.ascx.cs">
       <DependentUpon>HistoryByType.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1510,8 +1520,12 @@
     <Content Include="History\Default.aspx" />
     <Content Include="History\Modules\HistoryByType\HistoryByType.ascx" />
     <Content Include="History\Modules\HistoryList\HistoryList.ascx" />
-    <Content Include="History\Modules\ModuleCatalogue.xml" />
-    <Content Include="History\PresentationXML\History.xml" />
+    <Content Include="History\Modules\ModuleCatalogue.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="History\PresentationXML\History.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Login\Modules\Login\Login.ascx" />
     <Content Include="Login\Modules\ModuleCatalogue.xml" />
     <Content Include="Login\PresentationXML\LogoutFormPresentation.xml" />
@@ -1681,7 +1695,9 @@
     <Content Include="Search\Modules\SearchOptions\SearchOptions.ascx" />
     <Content Include="Search\PresentationXML\SearchResultsConnectionPresentation.xml" />
     <Content Include="Search\PresentationXML\SearchResultsPersonPresentation.xml" />
-    <Content Include="Search\PresentationXML\SearchFormPresentation.xml" />
+    <Content Include="Search\PresentationXML\SearchFormPresentation.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Search\PresentationXML\SearchResultsEverythingPresentation.xml" />
     <Content Include="Search\Modules\SearchResults\EverythingResults.xslt" />
     <Content Include="SPARQL\PresentationXML\SPARQLPresentation.xml" />

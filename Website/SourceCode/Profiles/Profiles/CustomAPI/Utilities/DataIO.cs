@@ -89,6 +89,37 @@ namespace Profiles.CustomAPI.Utilities
             }
             return "";
         }
+        public SqlDataReader GetQueryOutputReader(string sql)
+        {
+
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            SqlCommand dbcommand = new SqlCommand(sql, dbconnection);
+            SqlDataReader dbreader = null;
+            dbconnection.Open();
+            dbcommand.CommandTimeout = 5000;
+            try
+            {
+                dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+            }
+            catch (Exception ex)
+            { string dd = ex.Message; }
+            return dbreader;
+        }
+
+        public string GetStringValue(string sql, string columnName)
+        {
+            string value = "";
+            using (SqlDataReader reader = GetQueryOutputReader(sql))
+            {
+                if (reader.Read())
+                {
+                    value = reader[columnName].ToString();
+                }
+            }
+            return value;
+        }
+
 
         private int GetCount(string sql)
         {

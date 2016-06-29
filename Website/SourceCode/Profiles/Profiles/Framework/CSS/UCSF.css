@@ -101,6 +101,7 @@ table, tr { border-width: 0; border-spacing: 0; border-color: transparent; } /* 
 .profiles .profilesContentMain .pageTitle h2 { font-size: 30px; font-weight: bold; line-height: 30px; }
 .profiles .profilesContentMain .aboutText h3, h3 { color: #666; }
 .profiles .profilesPageColumnLeft { padding-top: 6px; }
+.profiles .profilesContentPassive .passiveSectionLine { margin-bottom: -2px; }
 .profiles a, .profiles a:visited { text-decoration: none; color: #0088CC !important; }
 .profiles a:hover { color: #005580 !important; }
 .EditMenuTopRow, .topRow, .editPage .topRow td, .profiles .profilesContentActive .activeSectionHead, 
@@ -336,16 +337,12 @@ ul#editmenu li span { color: #666; }
 /* gadget badges */
 ul#badge { list-style-type: none; padding-left: 0; margin: 0\9; }
 .badge {
-  border-bottom: 1px solid #CCC;
   margin: 20px 0 20px 8px;  
   width: 136px;
   padding-left: 0; padding-bottom: 10px;
 }
 .badge h3 { color: #333; font-size: 12px; font-weight: normal; padding: 4px 8px; }
-h2.badge-top  { padding: 12px 0 14px 4px; margin: -68px 0 0 60px; width: 70px; font-size: 13px; }
 .badge p { padding: 0 0 6px; margin: 0 -3px 0 0; margin: 0\9; line-height: 18px; }
-.badge .linkAd { background: #FFF url(../../framework/images/link.gif) no-repeat scroll 0 2px; padding-left:40px; }
-.chatter { margin-top: -5px; }
 .counter { background-color: #849696; color: #FFF; padding: 1px 2px 1px 5px; margin-right: 4px;
   letter-spacing: 3px; font-family: 'Courier New', Courier, monospace; font-weight:bold; }
 

@@ -11,6 +11,7 @@
   
 */
 using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -86,8 +87,9 @@ namespace Profiles.Framework
                     tdProfilesMainColumnRight.Visible = false;
                     divProfilesPageColumnRightTopLine.Visible = false;
                     divProfilesPage.Style.Remove("background-image");
-                    divProfilesPageColumnRightBottom.Style.Remove("background-image");
-                    divProfilesPageColumnRightBottom.Style.Add("background-image", Root.Domain + "/Framework/images/passive_bottom_alt.gif");
+                    //These two lines are adding inline styles to get the rounded border at bottom of left column. This has been replicated in CSS.
+                    //divProfilesPageColumnRightBottom.Style.Remove("background-image");
+                    //divProfilesPageColumnRightBottom.Style.Add("background-image", Root.Domain + "/Framework/images/passive_bottom_alt.gif");
                     divProfilesMainColumnLeft.Style.Remove("width");
                     divProfilesMainColumnLeft.Style.Add("width", "777px");
                     divProfilesContentMain.Style.Remove("width");
@@ -152,12 +154,22 @@ namespace Profiles.Framework
             rootDomainjs.InnerHtml = Environment.NewLine + "var _rootDomain = \"" + Root.Domain + "\";" + Environment.NewLine;
             Page.Header.Controls.Add(rootDomainjs);
 
-            if (this.GetStringFromPresentationXML("Presentation/PageOptions/@Columns") == "3")
-            {
-                divPageColumnRightCenter.Style["background-image"] = Root.Domain + "/Framework/Images/passive_back.gif";
-                divPageColumnRightCenter.Style["background-repeat"] = "repeat";
-            }
+            //The below statement was adding inline styles to the left side navigation. Not needed anymore.
+            //if (this.GetStringFromPresentationXML("Presentation/PageOptions/@Columns") == "3")
+            //{
+            //    divPageColumnRightCenter.Style["background-image"] = Root.Domain + "/Framework/Images/passive_back.gif";
+            //    divPageColumnRightCenter.Style["background-repeat"] = "repeat";
+            //}
 
+
+            // add in GoogleAnaltyics if it is configured
+            if (ConfigurationManager.AppSettings["GoogleAnalytics.TrackingID"] != null && !ConfigurationManager.AppSettings["GoogleAnalytics.TrackingID"].ToString().Trim().IsNullOrEmpty())
+            {
+                HtmlGenericControl gaTrackingjs = new HtmlGenericControl("script");
+                gaTrackingjs.Attributes.Add("type", "text/javascript");
+                gaTrackingjs.InnerHtml = GetGoogleAnalyticsJavascipt(ConfigurationManager.AppSettings["GoogleAnalytics.TrackingID"].ToString().Trim());
+                Page.Header.Controls.Add(gaTrackingjs);
+            }
 
             // IE Only css files
             Literal ieCss = new Literal();
@@ -480,6 +492,19 @@ namespace Profiles.Framework
 
             return rtnpanel;
         }
+
+        private string GetGoogleAnalyticsJavascipt(string trackingID)
+        {
+            string scriptText = Environment.NewLine +
+                    "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){" + Environment.NewLine +
+                    "(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o)," + Environment.NewLine +
+                    " m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)" + Environment.NewLine +
+                    "})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');" + Environment.NewLine +
+                    "ga('create', '" + trackingID + "', 'auto');" + Environment.NewLine +
+                    "ga('send', 'pageview');" + Environment.NewLine;
+            return scriptText;
+        }
+
 
         /// <summary>
         /// Used to bind a repeater for a given Panel to a List of Modules.  Each panel is defined by a type.  Each type can be assigned

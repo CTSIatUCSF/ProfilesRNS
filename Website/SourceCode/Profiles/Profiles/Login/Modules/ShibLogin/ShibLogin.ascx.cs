@@ -48,15 +48,14 @@ namespace Profiles.Login.Modules.ShibLogin
                     if (ConfigurationManager.AppSettings["Shibboleth.ShibIdentityProvider"] == null ||
                         ConfigurationManager.AppSettings["Shibboleth.ShibIdentityProvider"].ToString().Equals(Request.Headers.Get("ShibIdentityProvider").ToString(), StringComparison.InvariantCultureIgnoreCase))
                     {
-                        String userName = Request.Headers.Get(ConfigurationManager.AppSettings["Shibboleth.InternalUserNameHeader"].ToString()); //"025693078";
+                        String userName = Request.Headers.Get(ConfigurationManager.AppSettings["Shibboleth.UserNameHeader"].ToString()); //"025693078";
                         if (userName != null && userName.Trim().Length > 0)
                         {
                             Profiles.Login.Utilities.DataIO data = new Profiles.Login.Utilities.DataIO();
                             Profiles.Login.Utilities.User user = new Profiles.Login.Utilities.User();
 
                             user.UserName = userName;
-                            user.Password = userName;
-                            if (data.UserLogin(ref user))
+                            if (data.UserLoginExternal(ref user))
                             {
                                 authenticated = true;
                                 RedirectAuthenticatedUser();

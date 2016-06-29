@@ -79,7 +79,7 @@
         });
     }
 
-    //Education badge
+    //Education badge (adjust alma var & alumnibadge img filename for inst)
     if ($('.education') && $('.education').length) {
         $('.education table tr td:first-child').each(function () {
             var alma = $(this).text();
@@ -89,8 +89,11 @@
 		    alma == 'University of California in San Francisco' ||
 		    alma == 'UC, San Francisco' ||
 		    alma == 'UC San Francisco' ||
-		    alma == 'UCSF')
+		    alma == 'UCSF') {
                 $('.profilesContentMain').addClass('alumni');
+				var alumnibadge = "url(" + _rootDomain + "/Profile/Images/ucsf_alumni_blue.jpg)";
+				$('.alumni').css('background-image',alumnibadge);
+			}
         });
     }
 

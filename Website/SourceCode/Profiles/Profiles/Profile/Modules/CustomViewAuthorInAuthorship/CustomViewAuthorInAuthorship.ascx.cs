@@ -84,13 +84,20 @@ namespace Profiles.Profile.Modules
                 Label lblNum = (Label)e.Item.FindControl("lblNum");
                 Label lblPublication = (Label)e.Item.FindControl("lblPublication");
                 Literal litViewIn = (Literal)e.Item.FindControl("litViewIn");
+                System.Web.UI.HtmlControls.HtmlGenericControl liPublication = ((System.Web.UI.HtmlControls.HtmlGenericControl)(e.Item.FindControl("liPublication")));
 
                 // use the XML if it is not null so that we can display links, otherwise the regular list
-                string lblPubTxt = pub.authorXML != String.Empty ? getAuthorList(pub.authorXML) : pub.authors;
-                lblPubTxt += (lblPubTxt != String.Empty ? ". " : "") + pub.prns_informationResourceReference;
+                string lblPubTxt = !String.IsNullOrEmpty(pub.authorXML) ? getAuthorList(pub.authorXML) : pub.authors;
+                // ugly logic but it works. If we did not match current author on URI, then do a name match
+                if (!lblPubTxt.Contains("<b>"))
+                {
+                    lblPubTxt = findAndDecorateThisAuthor(lblPubTxt);
+                }
+                lblPubTxt += (!String.IsNullOrEmpty(lblPubTxt) && !lblPubTxt.TrimEnd().EndsWith(".") ? ". " : "") + pub.prns_informationResourceReference;
                 if (pub.bibo_pmid != string.Empty && pub.bibo_pmid != null)
                 {
                     lblPubTxt = lblPubTxt + " PMID: " + pub.bibo_pmid;
+                    liPublication.Attributes["data-pmid"] = pub.bibo_pmid;
                     litViewIn.Text = "View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/" + pub.bibo_pmid + "' target='_blank'>PubMed</a>";
                     if (pub.vivo_pmcid != null)
                     {
@@ -148,6 +155,36 @@ namespace Profiles.Profile.Modules
                 }
             }
             return authorList.Length > 0 ? authorList.Substring(2) : authorList;
+        }
+
+        // find a way to put the current author in bold to match what happens above in getAuthorList
+        private String findAndDecorateThisAuthor(string authors)
+        {
+            try
+            {
+                string firstInitial = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:firstName", this.Namespaces).InnerText.Substring(0, 1);
+                string lastNamePlus = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:lastName", this.Namespaces).InnerText + " ";
+                foreach (string authorChunk in authors.Split(','))
+                {
+                    string author = authorChunk.Trim();
+                    // if this is a match 
+                    if (author.IndexOf(lastNamePlus) == 0)
+                    {
+                        // if this is the only match
+                        if (authors.IndexOf(lastNamePlus, authors.IndexOf(author) + 1) == -1 ||
+                            // this is the only match with first initial
+                            (author.IndexOf(lastNamePlus + firstInitial) == 0 && authors.IndexOf(lastNamePlus + firstInitial, authors.IndexOf(author) + 1) == -1))
+                        {
+                            return authors.Replace(author, "<b>" + author + "</b>");
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+            }
+            return authors;
         }
 
         public class Publication

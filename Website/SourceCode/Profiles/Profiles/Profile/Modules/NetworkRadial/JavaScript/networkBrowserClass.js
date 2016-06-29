@@ -201,9 +201,8 @@ network_browser = {
                 this.getDataRange.call(this, "EDGE", "n");
                 this.getDataRange.call(this, "EDGE", "y2");
                 break;
-            default:
-                alert(eventName + " is unhandled.");
-                
+//            default:
+//                alert(eventName + " is unhandled.");              
         }
     }
 };

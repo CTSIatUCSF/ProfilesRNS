@@ -193,6 +193,7 @@
     <Content Include="Global.asax" />
     <Content Include="google6b93ad5a56d431a7.html" />
     <Content Include="History\Modules\HistoryActivity\HistoryActivity.ascx" />
+    <Content Include="History\Modules\ModuleCatalogue.xml" />
     <Content Include="Login\Modules\ShibLogin\ShibLogin.ascx" />
     <Content Include="Login\PresentationXML\ADLoginFormPresentation.xml" />
     <Content Include="Login\PresentationXML\ShibbolethLoginPresentation.xml" />
@@ -1624,9 +1625,6 @@
     <Content Include="History\Default.aspx" />
     <Content Include="History\Modules\HistoryByType\HistoryByType.ascx" />
     <Content Include="History\Modules\HistoryList\HistoryList.ascx" />
-    <Content Include="History\Modules\ModuleCatalogue.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="History\PresentationXML\History.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -281,7 +281,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        Clinical Trials <span class="notice">New!</span>
+                                        Clinical Trials
                                     </th>
                                     <td colspan="2">
                                         <input type="checkbox" class="trials2" />

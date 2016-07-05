@@ -101,10 +101,10 @@
  function buildGadgetAds(linksCount) {
     //Gadget ads  
     var mentor = "<li><div class='badge'>"
-            + "<img src='" + _rootDomain +"/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?person=4669955'   alt='Jeanette Brown' width='62' />"
+            + "<img src='" + _rootDomain + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?person=4818429'   alt='Mitchell D. Feldman' width='62' />"
             + "<h2 class='badge-top'>Passionate about Mentoring?</h2>"
             + "<p><a href='" + _rootDomain + "/login/default.aspx?method=login&amp;edit=true'>Let others know. Add to your UCSF Profile.</a></p>"
-            + "<p><strong><a href='" + _rootDomain + "/jeanette.brown'>Jeanette Brown</a></strong> is a Faculty Mentor!</p>"
+            + "<p><strong><a href='" + _rootDomain + "/mitchell.feldman'>Mitchell D. Feldman</a></strong> is a Faculty Mentor!</p>"
             + "</div></li>";
     var links = "<li><div class='badge'>"  // not used
             + "<p><span class='counter'>" + linksCount + "</span> profiles now<br />"

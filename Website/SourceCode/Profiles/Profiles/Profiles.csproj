@@ -192,6 +192,7 @@
     <Content Include="Framework\JavaScript\UCSF.js" />
     <Content Include="Global.asax" />
     <Content Include="google6b93ad5a56d431a7.html" />
+    <Content Include="History\ActivityDetails.aspx" />
     <Content Include="History\Modules\HistoryActivity\HistoryActivity.ascx" />
     <Content Include="History\Modules\ModuleCatalogue.xml" />
     <Content Include="Login\Modules\ShibLogin\ShibLogin.ascx" />
@@ -490,6 +491,12 @@
     </Compile>
     <Compile Include="Framework\Utilities\UCSFIDSet.cs" />
     <Compile Include="Framework\Utilities\UserHistory.cs" />
+    <Compile Include="History\ActivityDetails.aspx.cs">
+      <DependentUpon>ActivityDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="History\ActivityDetails.aspx.designer.cs">
+      <DependentUpon>ActivityDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="History\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

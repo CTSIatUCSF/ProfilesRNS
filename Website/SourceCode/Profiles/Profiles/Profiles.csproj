@@ -128,6 +128,7 @@
     <Content Include="About\Images\tryit.gif" />
     <Content Include="About\Images\video.JPG" />
     <Content Include="About\JavaScript\UCSF.js" />
+    <Content Include="About\Modules\Statistics\Statistics.ascx" />
     <Content Include="About\NewFeatures.aspx" />
     <Content Include="About\Optin.aspx" />
     <Content Include="About\PresentationXML\AboutProfiles.xml" />
@@ -144,7 +145,6 @@
     <Content Include="CustomAPI\v1\JSONProfile.aspx" />
     <Content Include="CustomAPI\v1\PubDate.aspx" />
     <Content Include="CustomAPI\v1\PubXML.aspx" />
-    <Content Include="CustomAPI\v1\Statistics.aspx" />
     <Content Include="CustomAPI\v1\XMLProfile.aspx" />
     <Content Include="CustomAPI\v2\Default.aspx" />
     <Content Include="denied.txt" />
@@ -192,8 +192,10 @@
     <Content Include="Framework\JavaScript\UCSF.js" />
     <Content Include="Global.asax" />
     <Content Include="google6b93ad5a56d431a7.html" />
+    <Content Include="History\ActivityDetails.aspx" />
     <Content Include="History\Modules\HistoryActivity\HistoryActivity.ascx" />
     <Content Include="History\Modules\ModuleCatalogue.xml" />
+    <Content Include="History\PresentationXML\ActivityDetails.xml" />
     <Content Include="Login\Modules\ShibLogin\ShibLogin.ascx" />
     <Content Include="Login\PresentationXML\ADLoginFormPresentation.xml" />
     <Content Include="Login\PresentationXML\ShibbolethLoginPresentation.xml" />
@@ -384,6 +386,13 @@
     <Compile Include="About\Modules\About\About.ascx.designer.cs">
       <DependentUpon>About.ascx</DependentUpon>
     </Compile>
+    <Compile Include="About\Modules\Statistics\Statistics.ascx.cs">
+      <DependentUpon>Statistics.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About\Modules\Statistics\Statistics.ascx.designer.cs">
+      <DependentUpon>Statistics.ascx</DependentUpon>
+    </Compile>
     <Compile Include="About\NewFeatures.aspx.cs">
       <DependentUpon>NewFeatures.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -398,6 +407,7 @@
     <Compile Include="About\Optin.aspx.designer.cs">
       <DependentUpon>Optin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="About\Utilities\DataIO.cs" />
     <Compile Include="ActiveNetwork\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -427,10 +437,6 @@
     </Compile>
     <Compile Include="CustomAPI\v1\PubXML.aspx.cs">
       <DependentUpon>PubXML.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CustomAPI\v1\Statistics.aspx.cs">
-      <DependentUpon>Statistics.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CustomAPI\v1\XMLProfile.aspx.cs">
@@ -490,6 +496,13 @@
     </Compile>
     <Compile Include="Framework\Utilities\UCSFIDSet.cs" />
     <Compile Include="Framework\Utilities\UserHistory.cs" />
+    <Compile Include="History\ActivityDetails.aspx.cs">
+      <DependentUpon>ActivityDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="History\ActivityDetails.aspx.designer.cs">
+      <DependentUpon>ActivityDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="History\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -497,7 +510,6 @@
     <Compile Include="History\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="History\Modules\HistoryActivity\DeclumpedList.cs" />
     <Compile Include="History\Modules\HistoryActivity\HistoryActivity.ascx.cs">
       <DependentUpon>HistoryActivity.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -505,7 +517,7 @@
     <Compile Include="History\Modules\HistoryActivity\HistoryActivity.ascx.designer.cs">
       <DependentUpon>HistoryActivity.ascx</DependentUpon>
     </Compile>
-    <Compile Include="History\Modules\HistoryActivity\Model.cs" />
+    <Compile Include="History\Utilities\Activity.cs" />
     <Compile Include="History\Modules\HistoryByType\HistoryByType.ascx.cs">
       <DependentUpon>HistoryByType.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -520,6 +532,8 @@
     <Compile Include="History\Modules\HistoryList\HistoryList.ascx.designer.cs">
       <DependentUpon>HistoryList.ascx</DependentUpon>
     </Compile>
+    <Compile Include="History\Utilities\DataIO.cs" />
+    <Compile Include="History\Utilities\DeclumpedActivityList.cs" />
     <Compile Include="Login\Modules\ADLogin\ADLogin.ascx.cs">
       <DependentUpon>ADLogin.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1802,7 +1816,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Search\PresentationXML\SearchResultsEverythingPresentation.xml" />
-    <Content Include="Search\Modules\SearchResults\EverythingResults.xslt" />
+    <Content Include="Search\Modules\SearchResults\EverythingResults.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SPARQL\PresentationXML\SPARQLPresentation.xml" />
     <Content Include="SPARQL\Default.aspx" />
     <Content Include="SPARQL\Modules\SPARQLSearch\SPARQLSearch.ascx" />

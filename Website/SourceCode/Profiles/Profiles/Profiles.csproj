@@ -41,6 +41,10 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
     </DocumentationFile>
+    <PublishDatabaseSettings>
+      <Objects>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -195,6 +199,7 @@
     <Content Include="History\ActivityDetails.aspx" />
     <Content Include="History\Modules\HistoryActivity\HistoryActivity.ascx" />
     <Content Include="History\Modules\ModuleCatalogue.xml" />
+    <Content Include="History\PresentationXML\ActivityDetails.xml" />
     <Content Include="Login\Modules\ShibLogin\ShibLogin.ascx" />
     <Content Include="Login\PresentationXML\ADLoginFormPresentation.xml" />
     <Content Include="Login\PresentationXML\ShibbolethLoginPresentation.xml" />
@@ -493,6 +498,7 @@
     <Compile Include="Framework\Utilities\UserHistory.cs" />
     <Compile Include="History\ActivityDetails.aspx.cs">
       <DependentUpon>ActivityDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="History\ActivityDetails.aspx.designer.cs">
       <DependentUpon>ActivityDetails.aspx</DependentUpon>

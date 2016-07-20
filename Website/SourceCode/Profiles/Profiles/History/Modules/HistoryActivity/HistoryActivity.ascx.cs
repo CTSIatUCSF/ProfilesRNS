@@ -51,7 +51,7 @@ namespace Profiles.History.Modules.HistoryActivity
 
             // grab a bunch of activities from the Database
             Profiles.History.Utilities.DataIO data = new Profiles.History.Utilities.DataIO();
-            List<Activity> activities = data.GetRecentActivity(100);
+            List<Activity> activities = data.GetActivity();
             DeclumpedActivityList list = new DeclumpedActivityList();
             list.AddRange(activities);
             list.Clump();

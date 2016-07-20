@@ -25,7 +25,21 @@ namespace Profiles.History.Utilities
     public class DataIO : Framework.Utilities.DataIO
     {
 
-        public List<Activity> GetRecentActivity(int cacheCapacity)
+        public List<Activity> GetActivity()
+        {
+            // see if we have it in the cache
+            List<Activity> activities = (List<Activity>)Framework.Utilities.Cache.FetchObject("ActivityHistory");
+            if (activities == null)
+            {
+                activities = GetRecentActivity(100);
+
+                //Defaulted this to be 5 minutes
+                Framework.Utilities.Cache.SetWithTimeout("ActivityHistory", activities, 300);
+            }
+            return activities;
+        }
+
+        private List<Activity> GetRecentActivity(int cacheCapacity)
         {
             List<Activity> activities = new List<Activity>();
 

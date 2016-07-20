@@ -18,7 +18,7 @@
     <Panel Type="main" TabType="Default" TabSort="0">
       <Module ID="HistoryActivity">
         <ParamList>
-          <Param Name="Show">5</Param>
+          <Param Name="Show">100</Param>
           <Param Name="Paging">True</Param>
           <Param Name="SeeMore">False</Param>
         </ParamList>

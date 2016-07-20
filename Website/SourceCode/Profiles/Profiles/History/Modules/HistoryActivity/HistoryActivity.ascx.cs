@@ -22,7 +22,7 @@ using System.Xml.Xsl;
 using System.Data.SqlClient;
 using System.Configuration;
 
-using Profiles.Profile.Utilities;
+using Profiles.History.Utilities;
 using Profiles.Framework.Utilities;
 
 namespace Profiles.History.Modules.HistoryActivity
@@ -30,21 +30,33 @@ namespace Profiles.History.Modules.HistoryActivity
     public partial class HistoryActivity : BaseModule
     {
         
-        List<ShowActivities.Model.Activity> statact = new List<ShowActivities.Model.Activity>() ;
-        Profiles.CustomAPI.Utilities.DataIO data = new Profiles.CustomAPI.Utilities.DataIO();
-        string fullPageASPX="/History/ActivityDetails.aspx";
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            ItemsGet();
-         }
+            //ItemsGet();
+        }
+
         public HistoryActivity() { }
         public HistoryActivity(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
             : base(pagedata, moduleparams, pagenamespaces)
         {
- 
+            DrawProfilesModule(); 
+        }
+
+        public void DrawProfilesModule()
+        {
+            linkSeeMore.Visible = "True".Equals(base.GetModuleParamString("SeeMore"));
+            linkPrev.Visible = "True".Equals(base.GetModuleParamString("Paging"));
+            linkNext.Visible = "True".Equals(base.GetModuleParamString("Paging"));
+
+            // grab a bunch of activities from the Database
+            Profiles.History.Utilities.DataIO data = new Profiles.History.Utilities.DataIO();
+            List<Activity> activities = data.GetRecentActivity(100);
+            DeclumpedActivityList list = new DeclumpedActivityList();
+            list.AddRange(activities);
+            list.Clump();
+            rptHistoryActivity.DataSource = list.TakeUnclumped(Convert.ToInt32(base.GetModuleParamString("Show")));
+            rptHistoryActivity.DataBind();
         }
 
         public int CurrentPage
@@ -65,7 +77,7 @@ namespace Profiles.History.Modules.HistoryActivity
             }
         }
 
-
+        /**
        
         protected void ItemsGet()
         {
@@ -74,12 +86,7 @@ namespace Profiles.History.Modules.HistoryActivity
             linkNext.Visible = "True".Equals(base.GetModuleParamString("Paging"));
             // Populate the repeater control with the Items DataSet
             PagedDataSource objPds = new PagedDataSource();
-            DrawProfilesModule();
-            linkSeeMore.NavigateUrl = Root.Domain + fullPageASPX;
-            Title.Text="<strong>Profiles Metrics</strong>"; 
-            Label1.Text = " "+data.GetPublicationsCount() + " Publications";
-            Label2.Text = " "+data.GetProfilesCount()+ "  Total Profiles";
-            Label3.Text = " "+data.GetEditedCount()+" Edited Profiles";
+            DrawProfilesModule2();
 
             objPds.DataSource = statact;
  
@@ -117,21 +124,14 @@ namespace Profiles.History.Modules.HistoryActivity
             {
                     linkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?page=" + (CurrentPage + 1);
             }
-            if (Request.CurrentExecutionFilePath.Contains(fullPageASPX))
-            {
-                Label1.Visible = false;
-                Label2.Visible = false;
-                Label3.Visible = false;
-                Title.Visible = false;
-            }
-
             rptHistoryActivity.DataSource = objPds;
             rptHistoryActivity.DataBind();
 
          }
+         * **/
 
-
-        private void DrawProfilesModule()
+        /***
+        private void DrawProfilesModule2()
         {
           if (statact == null ||statact.Count==0 ) {
             string cacheCapacity = ConfigurationManager.AppSettings["cacheCapacity"];
@@ -290,62 +290,26 @@ namespace Profiles.History.Modules.HistoryActivity
           }
  
         }
+        **/
 
         public void rptHistoryActivity_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            Literal litHistoryItem = (Literal)e.Item.FindControl("litHistoryActivityItem");
-            ShowActivities.Model.Activity statact = (ShowActivities.Model.Activity)e.Item.DataItem;
-            string oline = "........................";
-
-            if (statact != null && litHistoryItem != null)
+            Activity activity = (Activity)e.Item.DataItem;
+            if (activity != null)
             {
-                if (statact.Type == ShowActivities.Model.ActivityType.Title)
-                {
-                    string msg = statact.Message;
-                    litHistoryItem.Text = 
-                        "<div style=\"background-color:#d3d3d3\" align =\"center\" class=\"act-title\">" +
-                        "<div class=\"act-name\">" + msg + "</div>" +
-                    "</div>";
+                HyperLink linkThumbnail = (HyperLink)e.Item.FindControl("linkThumbnail");
+                HyperLink linkProfileURL = (HyperLink)e.Item.FindControl("linkProfileURL");
+                Literal litDate = (Literal)e.Item.FindControl("litDate");
+                Literal litMessage = (Literal)e.Item.FindControl("litMessage");
 
-                }
-                if (statact.Type == ShowActivities.Model.ActivityType.Statistic)
-                {
-                    string msg = statact.Message;
-                    litHistoryItem.Text =
-                        "<div align =\"center\"class=\"act-name\">" + msg + "</div>";
+                linkThumbnail.ImageUrl = "~/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?person=" + activity.Profile.PersonId + "&Thumbnail=True&Width=45";
+                linkThumbnail.NavigateUrl = activity.Profile.URL;
+                linkProfileURL.NavigateUrl = activity.Profile.URL;
+                linkProfileURL.Text = activity.Profile.Name;
 
-                }
-                if (statact.Type == ShowActivities.Model.ActivityType.ActualActivity)
-                {
-                    string msg = statact.Message;
-                    string look4 = "publication";
-                    string userName = statact.ParentName;
-                    int idx = idx = msg.IndexOf(look4);
-                    if (msg.Length > 0 && idx != -1)
-                    {
-                        msg = msg.Substring(0, idx) + "<a target=\"_blank\" href=" + statact.LinkUrl + ">" + look4 + "</a>" +
-                            msg.Substring(idx + look4.Length);
-                    }
-                    string imgUrl = Root.Domain +
-                        "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?person=" + statact.ParentId + "&Thumbnail=True&Width=45";
-                    string profileUrl = Root.Domain + "/ProfileDetails.aspx?Person=" + statact.ParentId;
-                    string printedDate =statact.Date ;
-                    litHistoryItem.Text =
-                    "<div class=\"divider\"></div>" +
-                    "<div class=\"act-oline\">" + oline + "</div>" +
-                    "<div class=\"act\">" +
-                        "<div class=\"act-img\"><img src='" + imgUrl + "'/></div>" +
-                        "<div class=\"act-body\">" +
-                            "<div class=\"act-userdate\">" +
-                                "<div class=\"act-user\">" + "<a href=" + profileUrl + " target=\"_top\">" + userName + "</a>" + "</div>" +
-                                "<div class=\"date\">" + printedDate + "</div>" +
-                            "</div>" +
-                            "<div class=\"act-msg\">" + msg + "</div>" +
-                        "</div>" +
-                    "</div>";
-                }
+                litDate.Text = activity.Date;
+                litMessage.Text = activity.Message;
             }
-
         }
     }
 }

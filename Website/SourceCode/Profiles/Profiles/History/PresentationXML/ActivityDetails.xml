@@ -16,10 +16,10 @@
       </Module>
     </Panel>
     <Panel Type="main" TabType="Default" TabSort="0">
-      <Module ID="HistoryActivity">
+      <Module ID="ActivityHistory">
         <ParamList>
           <Param Name="Show">100</Param>
-          <Param Name="Paging">True</Param>
+          <Param Name="Scrolling">True</Param>
           <Param Name="SeeMore">False</Param>
         </ParamList>
       </Module>

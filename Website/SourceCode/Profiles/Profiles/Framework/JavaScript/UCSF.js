@@ -64,15 +64,8 @@
   if(window.location.href.indexOf("coauthors") == -1) {
     $("table").removeAttr("border").removeAttr("rules");
 
-    // get links count
-    $.ajax({
-        type: "GET",
-        url: _rootDomain + "/CustomAPI/v1/Statistics.aspx",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (response) { buildGadgetAds(response.links); },
-        failure: function (response) { buildGadgetAds('2147'); }
-    });
+    // Eric Meeks, we used to get links count but that is no longer needed
+    buildGadgetAds();
 
     // Back to top http://typicalwhiner.com/116/effortless-jquery-floating-back-to-top-script-v2/
     var pxShow = 300; //height on which the button will show  
@@ -97,3 +90,5 @@
 
   }
 });
+
+ function buildGadgetAds() {

@@ -25,33 +25,147 @@ namespace Profiles.History.Utilities
     public class DataIO : Framework.Utilities.DataIO
     {
 
-        public List<Activity> GetActivity()
-        {
-            // see if we have it in the cache
-            List<Activity> activities = (List<Activity>)Framework.Utilities.Cache.FetchObject("ActivityHistory");
-            if (activities == null)
-            {
-                activities = GetRecentActivity(100);
+        private static int activityCacheSize = 1000;
+        private readonly object syncLock = new object();
+        private Random random = new Random();
 
-                //Defaulted this to be 5 minutes
-                Framework.Utilities.Cache.SetWithTimeout("ActivityHistory", activities, 300);
-            }
-            return activities;
-        }
-
-        private List<Activity> GetRecentActivity(int cacheCapacity)
+        public List<Activity> GetActivity(Int64 lastActivityLogID, int count, bool declump)
         {
             List<Activity> activities = new List<Activity>();
+            SortedList<Int64, Activity> cache = GetFreshCache();
+            // grab as many as you can from the cache
+            if (lastActivityLogID == -1)
+            {
+                activities.AddRange(cache.Values);
+            }
+            else if (cache.IndexOfKey(lastActivityLogID) != -1)
+            {
+                activities.AddRange(cache.Values);
+                activities.RemoveRange(0, cache.IndexOfKey(lastActivityLogID) + 1);
+            }
 
-            string sql = "SELECT top " + cacheCapacity + "  i.activityLogID," +
+            List<Activity> retval = activities;
+            if (declump)
+            {
+                retval = GetUnclumpedSubset(activities, count);
+            }
+            else if (count < retval.Count)
+            {
+                retval.RemoveRange(count, activities.Count - count);
+            }
+
+            if (count > retval.Count)
+            {
+                // we need to go to the DB to get more. If we are declumping, we don't know exacly how many more we need but we make a good guess
+                // and loop as needed
+                if (declump)
+                {
+                    while (count > retval.Count)
+                    {
+                        SortedList<Int64, Activity> newActivities = GetRecentActivity(activities[activities.Count-1].Id, 10 * (count - retval.Count), true);
+                        if (newActivities.Count == 0)
+                        {
+                            // nothing more to load, time to bail
+                            break;
+                        }
+                        else
+                        {
+                            activities.AddRange(newActivities.Values);
+                            retval = GetUnclumpedSubset(activities, count);
+                        }
+                    } 
+                }
+                else
+                {
+                    retval.AddRange(GetRecentActivity(retval[retval.Count - 1].Id, count - retval.Count, true).Values);
+                }
+            }
+            return retval;
+        }
+
+        // makes sure you do not get consecutive activites for the same person. Instead, just randomly pick one of the activities in the consecutive 'clump'
+        private List<Activity> GetUnclumpedSubset(List<Activity> activities, int count)
+        {
+            int id = -1;
+            List<Activity> clumpedList = new List<Activity>();
+            List<Activity> subset = new List<Activity>();
+
+            foreach (Activity activity in activities)
+            {
+                if (id != activity.Profile.PersonId)
+                {
+                    //grab a random one from the old clumpedList
+                    if (clumpedList.Count > 0)
+                    {
+                        subset.Add(clumpedList[random.Next(0, clumpedList.Count)]);
+                        if (subset.Count == count)
+                        {
+                            clumpedList.Clear();
+                            break;
+                        }
+                    }
+                    // start a new clump for the new person
+                    clumpedList.Clear();
+                    id = activity.Profile.PersonId;
+                }
+                clumpedList.Add(activity);
+            }
+            // add the last one if needed
+            if (clumpedList.Count > 0)
+            {
+                subset.Add(clumpedList[random.Next(0, clumpedList.Count)]);
+            }
+
+            return subset;        
+        }
+
+        private SortedList<Int64, Activity> GetFreshCache()
+        {
+            SortedList<Int64, Activity> cache = (SortedList<Int64, Activity>)Framework.Utilities.Cache.FetchObject("ActivityHistory");
+            object isFresh = Framework.Utilities.Cache.FetchObject("ActivityHistoryIsFresh");
+            if (cache == null)
+            {
+                // for now just grab a whole new one. Later just add ones we don't have yet
+                cache = GetRecentActivity(-1, activityCacheSize, true);
+                //Defaulted this to be 10 hours. It should never go stale actually because of how it is managed
+                Framework.Utilities.Cache.SetWithTimeout("ActivityHistory", cache, 36000);
+            }
+            else if (isFresh == null)
+            {
+                lock(syncLock)
+                {
+                    // get new ones from the DB
+                    SortedList<Int64, Activity> newActivities = GetRecentActivity(cache.Values[0].Id, activityCacheSize, false);
+                    // in with the new
+                    foreach (Activity activity in newActivities.Values)
+                    {
+                        cache.Add(activity.Id, activity);
+                    }
+                    // out with the old
+                    while (cache.Count > activityCacheSize)
+                    {
+                        cache.RemoveAt(cache.Count - 1);
+                    }
+                }
+                Framework.Utilities.Cache.SetWithTimeout("ActivityHistoryIsFresh", new object(), 60);
+            }
+            return cache;
+        }
+
+        private SortedList<Int64, Activity> GetRecentActivity(Int64 lastActivityLogID, int count, bool older)
+        {
+            SortedList<Int64, Activity> activities = new SortedList<Int64, Activity>(new ReverseComparer());
+
+            string sql = "SELECT top " + count + "  i.activityLogID," +
                             "p.personid,n.nodeid,p.firstname,p.lastname," +
                             "i.methodName,i.property,cp._PropertyLabel as propertyLabel,i.param1,i.param2,i.createdDT " +
                             "FROM [Framework.].[Log.Activity] i " +
                             "LEFT OUTER JOIN [Profile.Data].[Person] p ON i.personId = p.personID " +
                             "LEFT OUTER JOIN [RDF.Stage].internalnodemap n on n.internalid = p.personId and n.[class] = 'http://xmlns.com/foaf/0.1/Person' "+ 
                             "LEFT OUTER JOIN [Ontology.].[ClassProperty] cp ON cp.Property = i.property " +
-                            "where p.IsActive=1 and i.privacyCode=-1 " +
-                            "order by i.activityLogID desc ";
+                            "where p.IsActive=1 and i.privacyCode=-1" +
+                            (lastActivityLogID != -1 ? (" and i.activityLogID " + (older ? "< " : "> ") + lastActivityLogID) : "") +
+                            "order by i.activityLogID desc";
             using (SqlDataReader reader = GetQueryOutputReader(sql))
             {
                 while (reader.Read())
@@ -151,7 +265,7 @@ namespace Profiles.History.Utilities
                                 URL = "~/" + UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)].PrettyURL
                             }
                         };
-                        activities.Add(act);
+                        activities.Add(act.Id, act);
                     }
                 }
             }

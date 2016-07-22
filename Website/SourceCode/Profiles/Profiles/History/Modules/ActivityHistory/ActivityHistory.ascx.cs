@@ -25,9 +25,9 @@ using System.Configuration;
 using Profiles.History.Utilities;
 using Profiles.Framework.Utilities;
 
-namespace Profiles.History.Modules.HistoryActivity
+namespace Profiles.History.Modules.ActivityHistory
 {
-    public partial class HistoryActivity : BaseModule
+    public partial class ActivityHistory : BaseModule
     {
         
         protected void Page_Load(object sender, EventArgs e)
@@ -36,8 +36,9 @@ namespace Profiles.History.Modules.HistoryActivity
             //ItemsGet();
         }
 
-        public HistoryActivity() { }
-        public HistoryActivity(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
+        public ActivityHistory() { }
+
+        public ActivityHistory(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
             : base(pagedata, moduleparams, pagenamespaces)
         {
             DrawProfilesModule(); 
@@ -46,17 +47,24 @@ namespace Profiles.History.Modules.HistoryActivity
         public void DrawProfilesModule()
         {
             linkSeeMore.Visible = "True".Equals(base.GetModuleParamString("SeeMore"));
-            linkPrev.Visible = "True".Equals(base.GetModuleParamString("Paging"));
-            linkNext.Visible = "True".Equals(base.GetModuleParamString("Paging"));
+            if ("True".Equals(base.GetModuleParamString("Scrolling"))) 
+            {
+                pnlActivities.ScrollBars = ScrollBars.Vertical;
+                pnlActivities.Attributes.Add("onscroll", "GetRecords()");
+            }
+            else 
+            {
+                pnlActivities.ScrollBars = ScrollBars.None;
+            }
 
             // grab a bunch of activities from the Database
             Profiles.History.Utilities.DataIO data = new Profiles.History.Utilities.DataIO();
-            List<Activity> activities = data.GetActivity();
+            List<Activity> activities = data.GetActivity(-1, 100, true);
             DeclumpedActivityList list = new DeclumpedActivityList();
             list.AddRange(activities);
             list.Clump();
-            rptHistoryActivity.DataSource = list.TakeUnclumped(Convert.ToInt32(base.GetModuleParamString("Show")));
-            rptHistoryActivity.DataBind();
+            rptActivityHistory.DataSource = list.TakeUnclumped(Convert.ToInt32(base.GetModuleParamString("Show")));
+            rptActivityHistory.DataBind();
         }
 
         public int CurrentPage
@@ -124,8 +132,8 @@ namespace Profiles.History.Modules.HistoryActivity
             {
                     linkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?page=" + (CurrentPage + 1);
             }
-            rptHistoryActivity.DataSource = objPds;
-            rptHistoryActivity.DataBind();
+            rptActivityHistory.DataSource = objPds;
+            rptActivityHistory.DataBind();
 
          }
          * **/
@@ -292,7 +300,7 @@ namespace Profiles.History.Modules.HistoryActivity
         }
         **/
 
-        public void rptHistoryActivity_OnItemDataBound(object sender, RepeaterItemEventArgs e)
+        public void rptActivityHistory_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             Activity activity = (Activity)e.Item.DataItem;
             if (activity != null)

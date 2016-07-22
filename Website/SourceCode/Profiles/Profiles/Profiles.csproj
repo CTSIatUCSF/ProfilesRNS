@@ -193,7 +193,7 @@
     <Content Include="Global.asax" />
     <Content Include="google6b93ad5a56d431a7.html" />
     <Content Include="History\ActivityDetails.aspx" />
-    <Content Include="History\Modules\HistoryActivity\HistoryActivity.ascx" />
+    <Content Include="History\Modules\ActivityHistory\ActivityHistory.ascx" />
     <Content Include="History\Modules\ModuleCatalogue.xml" />
     <Content Include="History\PresentationXML\ActivityDetails.xml" />
     <Content Include="Login\Modules\ShibLogin\ShibLogin.ascx" />
@@ -510,12 +510,12 @@
     <Compile Include="History\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="History\Modules\HistoryActivity\HistoryActivity.ascx.cs">
-      <DependentUpon>HistoryActivity.ascx</DependentUpon>
+    <Compile Include="History\Modules\ActivityHistory\ActivityHistory.ascx.cs">
+      <DependentUpon>ActivityHistory.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="History\Modules\HistoryActivity\HistoryActivity.ascx.designer.cs">
-      <DependentUpon>HistoryActivity.ascx</DependentUpon>
+    <Compile Include="History\Modules\ActivityHistory\ActivityHistory.ascx.designer.cs">
+      <DependentUpon>ActivityHistory.ascx</DependentUpon>
     </Compile>
     <Compile Include="History\Utilities\Activity.cs" />
     <Compile Include="History\Modules\HistoryByType\HistoryByType.ascx.cs">

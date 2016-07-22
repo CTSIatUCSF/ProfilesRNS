@@ -7,46 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.History.Modules.HistoryActivity {
+namespace Profiles.History.Modules.ActivityHistory {
     
     
-    public partial class HistoryActivity {
+    public partial class ActivityHistory {
         
         /// <summary>
-        /// rptHistoryActivity control.
+        /// pnlActivities control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptHistoryActivity;
+        protected global::System.Web.UI.WebControls.Panel pnlActivities;
         
         /// <summary>
-        /// Label4 control.
+        /// rptActivityHistory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
-        /// <summary>
-        /// linkPrev control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink linkPrev;
-        
-        /// <summary>
-        /// linkNext control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink linkNext;
+        protected global::System.Web.UI.WebControls.Repeater rptActivityHistory;
         
         /// <summary>
         /// linkSeeMore control.

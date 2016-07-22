@@ -20,6 +20,8 @@ using System.Xml;
 using System.Web.UI.HtmlControls;
 using Profiles.Profile.Utilities;
 using Profiles.Framework.Utilities;
+using System.Web.Script.Serialization;
+using Profiles.History.Utilities;
 
 namespace Profiles.History
 {
@@ -56,7 +58,15 @@ namespace Profiles.History
 
         }
         public XmlDocument PresentationXML { get; set; }
-        public Profiles.Framework.Template Master { get; set; }
+
+        [System.Web.Services.WebMethod]
+        public static string GetActivities(Int64 lastActivityId, int count)
+        {
+            Profiles.History.Utilities.DataIO data = new Profiles.History.Utilities.DataIO();
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            return serializer.Serialize(data.GetActivity(lastActivityId, count, true));
+        }
+    
     }
     
 }

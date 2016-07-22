@@ -32,7 +32,7 @@ namespace Profiles.History.Utilities
                 }
                 clumpedList.Add(activity);
             }
-            // ad the last one
+            // add the last one
             if (clumpedList != null)
             {
                 clumpedData.Add(clumpedList);

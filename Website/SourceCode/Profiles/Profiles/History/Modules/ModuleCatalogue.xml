@@ -13,5 +13,5 @@ For details, see: LICENSE.txt
 <ModuleList>
   <Module ModulePath="Modules" NameSpace="HistoryByType" FileName="HistoryByType.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="HistoryList" FileName="HistoryList.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="HistoryActivity" FileName="HistoryActivity.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="ActivityHistory" FileName="ActivityHistory.ascx" Enabled="true"/>
 </ModuleList>

@@ -64,9 +64,6 @@
   if(window.location.href.indexOf("coauthors") == -1) {
     $("table").removeAttr("border").removeAttr("rules");
 
-    // Eric Meeks, we used to get links count but that is no longer needed
-    buildGadgetAds();
-
     // Back to top http://typicalwhiner.com/116/effortless-jquery-floating-back-to-top-script-v2/
     var pxShow = 300; //height on which the button will show  
     var fadeInTime = 1000;  //how slow/fast you want the button to show  
@@ -90,5 +87,3 @@
 
   }
 });
-
- function buildGadgetAds() {

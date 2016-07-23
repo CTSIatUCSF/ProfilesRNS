@@ -22,7 +22,10 @@
             return;
         });
     }
-    
+
+    $(document).ready(function () {
+	buildGadgetAds();
+    });    
 </script>
 
 <input type="hidden" id="classgroupuri" name="classgroupuri" value="" />

@@ -25,7 +25,10 @@ namespace Profiles.History.Utilities
     public class DataIO : Framework.Utilities.DataIO
     {
 
-        private static int activityCacheSize = 1000;
+        private static readonly int activityCacheSize = 1000;
+        private static readonly int cacheExpirationSeconds = 36000; // 10 hours
+        private static readonly int chechForNewActivitiesSeconds = 60; // once a minute
+
         private readonly object syncLock = new object();
         private Random random = new Random();
 
@@ -125,10 +128,9 @@ namespace Profiles.History.Utilities
             object isFresh = Framework.Utilities.Cache.FetchObject("ActivityHistoryIsFresh");
             if (cache == null)
             {
-                // for now just grab a whole new one. Later just add ones we don't have yet
+                // Grab a whole new one. This is expensive and should be unnecessary if we manage getting new ones well, so we don't do this often
                 cache = GetRecentActivity(-1, activityCacheSize, true);
-                //Defaulted this to be 10 hours. It should never go stale actually because of how it is managed
-                Framework.Utilities.Cache.SetWithTimeout("ActivityHistory", cache, 36000);
+                Framework.Utilities.Cache.SetWithTimeout("ActivityHistory", cache, cacheExpirationSeconds);
             }
             else if (isFresh == null)
             {
@@ -147,7 +149,8 @@ namespace Profiles.History.Utilities
                         cache.RemoveAt(cache.Count - 1);
                     }
                 }
-                Framework.Utilities.Cache.SetWithTimeout("ActivityHistoryIsFresh", new object(), 60);
+                // look for new activities once every minute
+                Framework.Utilities.Cache.SetWithTimeout("ActivityHistoryIsFresh", new object(), chechForNewActivitiesSeconds);
             }
             return cache;
         }
@@ -161,8 +164,8 @@ namespace Profiles.History.Utilities
                             "i.methodName,i.property,cp._PropertyLabel as propertyLabel,i.param1,i.param2,i.createdDT " +
                             "FROM [Framework.].[Log.Activity] i " +
                             "LEFT OUTER JOIN [Profile.Data].[Person] p ON i.personId = p.personID " +
-                            "LEFT OUTER JOIN [RDF.Stage].internalnodemap n on n.internalid = p.personId and n.[class] = 'http://xmlns.com/foaf/0.1/Person' "+ 
-                            "LEFT OUTER JOIN [Ontology.].[ClassProperty] cp ON cp.Property = i.property " +
+                            "LEFT OUTER JOIN [RDF.Stage].internalnodemap n on n.internalid = p.personId and n.[class] = 'http://xmlns.com/foaf/0.1/Person' "+
+                            "LEFT OUTER JOIN [Ontology.].[ClassProperty] cp ON cp.Property = i.property  and cp.Class = 'http://xmlns.com/foaf/0.1/Person' " +
                             "where p.IsActive=1 and i.privacyCode=-1" +
                             (lastActivityLogID != -1 ? (" and i.activityLogID " + (older ? "< " : "> ") + lastActivityLogID) : "") +
                             "order by i.activityLogID desc";
@@ -261,8 +264,9 @@ namespace Profiles.History.Utilities
                                 PersonId = Convert.ToInt32(personid),
                                 NodeID = Convert.ToInt64(nodeid),
                                 //  Nick, you might want this one
-                                //URL = "~/profile/" + nodeid  
-                                URL = "~/" + UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)].PrettyURL
+                                //URL = Root.Domain + "/profile/" + nodeid  
+                                URL = Root.Domain + "/" + UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)].PrettyURL,
+                                Thumbnail = Root.Domain + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?person=" + personid + "&Thumbnail=True&Width=45"
                             }
                         };
                         activities.Add(act.Id, act);

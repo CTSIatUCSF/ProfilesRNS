@@ -1,5 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ActivityHistory.ascx.cs"
     Inherits="Profiles.History.Modules.ActivityHistory.ActivityHistory" %>
+<style>
+#arrivingAct {
+    display: none;
+}
+</style>
 <script type="text/javascript">
     var activitySize;
 
@@ -61,22 +66,27 @@
                 return true;
             }
             activityTemplate.find("a").attr("href", newActivity.Profile.URL);
-            activityTemplate.find(".act-img").attr("src", newActivity.Profile.Thumbnail);
+            activityTemplate.find(".act-image").find("img").attr("src", newActivity.Profile.Thumbnail);
             activityTemplate.find(".act-user").find("a").html(newActivity.Profile.Name);
             activityTemplate.find(".act-date").html(newActivity.Date);
             activityTemplate.find(".act-msg").html(newActivity.Message);
             activityTemplate.find(".act-id").text(newActivity.Id);
             if (addToBottom) {
                 // add to the bottom
-                $(".actTemplate").last().after(activityTemplate.html());
+                $(".actTemplate").last().after('<div class="actTemplate">' + activityTemplate.html() + '</div>');
             }
             else {
-                // if there are no scroll bars, remove the last one to make room
-                if (!$(".clsScroll").hasScrollBar()) {
-                    $(".actTemplate").last().remove();
+                // if it is a fixed size, remove the last one to make room
+                if (<%=FixedSize()%>) { //(!$(".clsScroll").hasScrollBar()) {
+                    //$(".actTemplate").last().remove();
+                    $(".actTemplate").last().fadeOut("slow", function() {
+                        // Animation complete.
+                        $(".actTemplate").last().remove();
+                    });
                 }
-                // prepend to the top
-                $(".actTemplate").first().before(activityTemplate.html());
+                // prepend to the top and slide down
+                $(".actTemplate").first().before('<div class="actTemplate" style="display:none">' + activityTemplate.html() + '</div>');
+                $(".actTemplate").first().slideDown("slow");
             }
         });
         $("#loader").hide();

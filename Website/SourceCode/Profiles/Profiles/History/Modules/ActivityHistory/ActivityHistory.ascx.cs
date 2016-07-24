@@ -86,6 +86,11 @@ namespace Profiles.History.Modules.ActivityHistory
             }
         }
 
+        public int FixedSize()
+        {
+            return "True".Equals(base.GetModuleParamString("Scrolling")) ? 0 : 1;
+        }
+
         public string GetURLDomain()
         {
             return Root.Domain;

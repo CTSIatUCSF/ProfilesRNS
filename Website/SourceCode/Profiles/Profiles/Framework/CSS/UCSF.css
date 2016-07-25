@@ -378,12 +378,13 @@ ul#badge { list-style-type: none; padding-left: 0; margin: 0\9; }
 .metrics { margin-bottom: 20px; padding: 0 0 12px; border-bottom: 1px solid #ccc; }
 .metrics span { display: inline-block; width: 4em; text-align: right; font-family: courier, serif;}
 .activities { max-width: 600px; padding-bottom: 0; margin-bottom: 0; }
-.act { margin-bottom: 10px; padding: 0 0 8px; clear: left; border-bottom: 1px solid #ccc; min-height: 50px; }
+.act { margin-bottom: 10px; padding: 0 0 8px; clear: left; border-bottom: 1px solid #ccc; min-height: 48px; }
 .act-heading { padding-bottom: 12px; }
+.act-user { line-height: 15px; }
 .act-userdate .date { color: #506380; font-size: 11px; }
 .act-image { float: left; height: 45px; padding-right: 5px; overflow-y: hidden; }
 .act-msg { clear: left; padding-top: 6px; }
 .panelMain .activities { margin-top: 30px; }
 .panelMain .act-heading { display: none; }
-.panelMain .act-msg { clear: none; float: left; width: 400px; padding: 0; }
-.panelMain .act-body { float: left; width: 200px; }
+.panelMain .act-userdate { float: left; width: 160px; padding-right: 10px; }
+.panelMain .act-msg { clear: none; float: left; width: 360px; padding: 0; margin-top: -2px; }

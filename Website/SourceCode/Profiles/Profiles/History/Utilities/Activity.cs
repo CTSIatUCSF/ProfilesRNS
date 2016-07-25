@@ -7,7 +7,7 @@ namespace Profiles.History.Utilities
 {
 
 
-    public class Activity
+    public class Activity : IComparable<Activity>
     {
         public Int64 Id { get; set; }
 
@@ -35,20 +35,12 @@ namespace Profiles.History.Utilities
 
         public string Title { get; set; }
 
-    }
-
-    public class ActivitiesComparer : IComparer<Activity>
-    {
-        #region IComparer<Activity> Members
-
-        public int Compare(Activity x, Activity y)
+        public int CompareTo(Activity o)
         {
-            return x.Id.CompareTo(y.Id);
+            return o.Id.CompareTo(this.Id);
         }
 
-        #endregion
     }
-
 
     public class Profile
     {
@@ -60,5 +52,14 @@ namespace Profiles.History.Utilities
 
         public string URL { get; set; }
 
+        public string Thumbnail { get; set; }
+    }
+
+    public class ReverseComparer : IComparer<Int64>
+    {
+        public int Compare(Int64 x, Int64 y)
+        {
+            return y.CompareTo(x);
+        }
     }
 }

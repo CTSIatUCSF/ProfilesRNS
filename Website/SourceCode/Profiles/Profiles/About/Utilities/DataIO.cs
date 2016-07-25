@@ -52,17 +52,22 @@ namespace Profiles.About.Utilities
 
         private int GetCount(string sql)
         {
-            Int32 cnt = 0;
+            string key = "Statistics: " + sql;
+            // store this in the cache. Use the sql as part of the key
+            string cnt = (string)Framework.Utilities.Cache.FetchObject(key);
 
-            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+            if (String.IsNullOrEmpty(cnt))
             {
-                if (sqldr.Read())
+                using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
                 {
-                    cnt = Convert.ToInt32(sqldr[0].ToString());
+                    if (sqldr.Read())
+                    {
+                        cnt = sqldr[0].ToString();
+                        Framework.Utilities.Cache.Set(key, cnt);
+                    }
                 }
             }
-
-            return cnt;
+            return Convert.ToInt32(cnt);
         }
 
 

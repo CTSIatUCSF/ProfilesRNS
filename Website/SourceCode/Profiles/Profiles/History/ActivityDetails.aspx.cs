@@ -20,6 +20,8 @@ using System.Xml;
 using System.Web.UI.HtmlControls;
 using Profiles.Profile.Utilities;
 using Profiles.Framework.Utilities;
+using System.Web.Script.Serialization;
+using Profiles.History.Utilities;
 
 namespace Profiles.History
 {
@@ -56,7 +58,34 @@ namespace Profiles.History
 
         }
         public XmlDocument PresentationXML { get; set; }
-        public Profiles.Framework.Template Master { get; set; }
+
+        [System.Web.Services.WebMethod]
+        public static string GetActivities(Int64 referenceActivityId, int count, bool newActivities)
+        {
+            Profiles.History.Utilities.DataIO data = new Profiles.History.Utilities.DataIO();
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            List<Activity> activities = null;
+            if (newActivities)
+            {
+                // get the latest and remove any that we already have
+                activities = new List<Activity>();
+                // we should probably make the data function smart enough to not return a bunch we already have
+                // to save the loop
+                foreach (Activity activity in data.GetActivity(-1, count, true))
+                {
+                    if (activity.Id > referenceActivityId)
+                    {
+                        activities.Add(activity);
+                    }
+                }
+            }
+            else
+            {
+                activities = data.GetActivity(referenceActivityId, count, true);
+            }
+            return serializer.Serialize(activities);
+        }
+    
     }
     
 }

@@ -99,13 +99,13 @@
 
     //Overview expand/collapse
     if ($('.basicInfo') && $('.basicInfo').length) {
-        $('.PropertyItemHeader:contains("Overview")').next('.PropertyGroupData').attr("id", "narrative");
-        if ($('#narrative').text().length > 800) {
-            $('#narrative').addClass('box').addClass('box-collapsed');
+        $('.PropertyItemHeader:contains("verview")').next('.PropertyGroupData').attr("id", "narrative");
+	$('#narrative > div').addClass('overview');
+        if ($('.overview').text().length > 800) {
+            $('.overview').addClass('box').addClass('box-collapsed');
             $('.box').first().prepend("<div class='plusbutton'><span> <strong>&nbsp;...</strong> Show more</span> <img src='" + _rootDomain + "/Framework/Images/expandRound.gif' alt='+' style='vertical-align:top'  width='28' height='17'/></div><div class='minusbutton'><span>Show less</span> <img src='" + _rootDomain + "/Framework/Images/collapseRound.gif' alt='-' style='vertical-align:top' width='28' height='17'/></div>");
             $('.minusbutton').hide();
         }
-        // $('.box').addClass('box-collapsed');
         $('.plusbutton').click(function () {
             $(this).parent().removeClass('box-collapsed');
             $(this).parent().addClass('box');

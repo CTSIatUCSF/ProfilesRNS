@@ -117,6 +117,9 @@
             }
         }
     }
+    $(document).ready(function () {
+	buildGadgetAds();
+    });
 </script>
 
 <asp:HiddenField ID="hdnSearch" runat="server" Value="hdnSearch"></asp:HiddenField>
@@ -309,6 +312,6 @@
                 </tr>
             </table>
         </div>
-            <p><img src="<%=GetURLDomain()%>/Search/Images/icon_squareArrow.gif" /> <a href="<%=GetURLDomain()%>/direct">Search other institutions</a></p>
+            <p style="text-align:right; margin-right: 20px"><img src="<%=GetURLDomain()%>/Search/Images/icon_squareArrow.gif" /> <a href="<%=GetURLDomain()%>/direct">Search other institutions</a></p>
     </div>
 </div>

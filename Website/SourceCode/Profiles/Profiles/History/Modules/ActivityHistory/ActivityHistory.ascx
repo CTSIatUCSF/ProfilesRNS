@@ -34,7 +34,7 @@
         var referenceActivityId = newActivities ? $(".act-id").first().text() : $(".act-id").last().text();
         // only set this the first time
         activitySize = activitySize || $(".act-id").length;
-        $("#loader").show();
+        $("#divStatus").show();
         $.ajax({
             type: "POST",
             url: "<%=GetURLDomain()%>/History/ActivityDetails.aspx/GetActivities",
@@ -89,7 +89,7 @@
                 $(".actTemplate").first().slideDown("slow");
             }
         });
-        $("#loader").hide();
+        $("#divStatus").hide();
     }
 </script>
 <div class="activities">
@@ -115,9 +115,9 @@
 </asp:Panel>
 </div>
 <asp:HyperLink ID="linkSeeMore" runat="server" NavigateUrl="~/History/ActivityDetails.aspx"><img src="Images/icon_squareArrow.gif" /> See more Activities</asp:HyperLink>
-<div id="divStatus">
+<div id="divStatus" style="display: none">
     <div class="loader">
-            <span><img alt="Loading..." id="loader" src="<%=GetURLDomain()%>/Edit/Images/loader.gif" width="400" height="213" style="display: none"/></span>
+            <span><img alt="Loading..." id="loader" src="<%=GetURLDomain()%>/Edit/Images/loader.gif" width="400" height="213" /></span>
    </div>
 </div>
 

@@ -85,6 +85,7 @@ namespace Profiles.CustomAPI.Utilities
             return value;
         }
 
+
         private int GetCount(string sql)
         {
             Int32 cnt = 0;

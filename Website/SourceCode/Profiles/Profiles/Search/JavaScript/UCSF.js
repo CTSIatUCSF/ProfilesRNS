@@ -103,8 +103,9 @@ function buildGadgetAds() {
 
 }
 
-        this.randomtip = function () {
-            var length = $("#badge li").length;
-            var ran = Math.floor(Math.random() * length) + 1;
-            $("#badge li:nth-child(" + ran + ")").show();
-        };
+  
+this.randomtip = function () {
+    var length = $("#badge li").length;
+    var ran = Math.floor(Math.random() * length) + 1;
+    $("#badge li:nth-child(" + ran + ")").show();
+};

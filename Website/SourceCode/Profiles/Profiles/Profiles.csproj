@@ -539,7 +539,6 @@
       <DependentUpon>HistoryList.ascx</DependentUpon>
     </Compile>
     <Compile Include="History\Utilities\DataIO.cs" />
-    <Compile Include="History\Utilities\DeclumpedActivityList.cs" />
     <Compile Include="Login\Modules\ADLogin\ADLogin.ascx.cs">
       <DependentUpon>ADLogin.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

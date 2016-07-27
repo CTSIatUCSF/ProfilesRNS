@@ -103,7 +103,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
 
         protected void GridViewProperty_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            TextBox txtLabel = null;
+            TextBox txtLabelGrid = null;
 
             ImageButton lnkEdit = null;
             ImageButton lnkDelete = null;
@@ -164,8 +164,8 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
 
             if (e.Row.RowType == DataControlRowType.DataRow && (e.Row.RowState & DataControlRowState.Edit) == DataControlRowState.Edit)
             {
-                txtLabel = (TextBox)e.Row.Cells[0].FindControl("txtLabel");
-                txtLabel.Text = literalstate.Literal.Trim();
+                txtLabelGrid = (TextBox)e.Row.Cells[0].FindControl("txtLabelGrid"); 
+                txtLabelGrid.Text = literalstate.Literal.Trim();
             }
         }
 
@@ -180,9 +180,9 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
         {
 
             HiddenField hdLabel = (HiddenField)GridViewProperty.Rows[e.RowIndex].FindControl("hdLabel");
-            TextBox txtLabel = (TextBox)GridViewProperty.Rows[e.RowIndex].FindControl("txtLabel");
+            TextBox txtLabelGrid = (TextBox)GridViewProperty.Rows[e.RowIndex].FindControl("txtLabelGrid");
 
-            data.UpdateLiteral(this.SubjectID, this.PredicateID, data.GetStoreNode(hdLabel.Value), data.GetStoreNode(txtLabel.Text.Trim()), this.PropertyListXML);
+            data.UpdateLiteral(this.SubjectID, this.PredicateID, data.GetStoreNode(hdLabel.Value), data.GetStoreNode(txtLabelGrid.Text.Trim()), this.PropertyListXML);
             GridViewProperty.EditIndex = -1;
             this.FillPropertyGrid(true);
             upnlEditSection.Update();

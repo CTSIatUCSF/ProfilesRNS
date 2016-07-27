@@ -145,6 +145,8 @@
     <Content Include="About\PresentationXML\Optin.xml" />
     <Content Include="ActiveNetwork\CSS\UCSF.css" />
     <Content Include="ActiveNetwork\JavaScript\UCSF.js" />
+    <Content Include="bin\Profiles.dll" />
+    <Content Include="bin\Profiles.pdb" />
     <Content Include="CustomAPI\v1\EditedCount.aspx" />
     <Content Include="CustomAPI\v1\JSONProfile.aspx" />
     <Content Include="CustomAPI\v1\PubDate.aspx" />

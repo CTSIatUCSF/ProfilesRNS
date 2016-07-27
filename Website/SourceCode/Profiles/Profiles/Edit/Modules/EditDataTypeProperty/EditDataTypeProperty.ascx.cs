@@ -164,7 +164,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
 
             if (e.Row.RowType == DataControlRowType.DataRow && (e.Row.RowState & DataControlRowState.Edit) == DataControlRowState.Edit)
             {
-                txtLabel = (TextBox)e.Row.Cells[0].FindControl("txtLabel");
+                txtLabel = (TextBox)e.Row.Cells[0].FindControl("txtLabelGrid"); //txtLabel");
                 txtLabel.Text = literalstate.Literal.Trim();
             }
         }
@@ -180,7 +180,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
         {
 
             HiddenField hdLabel = (HiddenField)GridViewProperty.Rows[e.RowIndex].FindControl("hdLabel");
-            TextBox txtLabel = (TextBox)GridViewProperty.Rows[e.RowIndex].FindControl("txtLabel");
+            TextBox txtLabel = (TextBox)GridViewProperty.Rows[e.RowIndex].FindControl("txtLabelGrid"); //txtLabel");
 
             data.UpdateLiteral(this.SubjectID, this.PredicateID, data.GetStoreNode(hdLabel.Value), data.GetStoreNode(txtLabel.Text.Trim()), this.PropertyListXML);
             GridViewProperty.EditIndex = -1;

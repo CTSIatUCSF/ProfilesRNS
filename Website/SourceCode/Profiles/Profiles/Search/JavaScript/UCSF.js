@@ -57,75 +57,85 @@
   
   });
 
-
 function buildGadgetAds() {
     //Gadget ads buildGadgetAds(linksCount) 
-	var ads = [];
-	var videointro = "<li><a href='https://www.youtube.com/watch?v=YCOA2GWyplY' target='_blank'>"
+    var ads = [];
+    var adndx;
+    var videointro = "<li><a href='https://www.youtube.com/watch?v=YCOA2GWyplY' target='_blank'>"
 			+ "<div class='badge'><p style='padding-left:3px'>"
 			+ "<img src='" + _rootDomain + "/framework/images/video-ad.png' /></p>"
 			+ "<p><strong>Watch UCSF Profiles video introduction!</strong></p></div></a></li>";
-	ads.push(videointro);
+    ads.push(videointro);
 
-	var mentor = "<li><div class='badge'>"
+    var mentor = "<li><div class='badge'>"
 		+ "<h2 style='margin-bottom:5px'>Passionate about Mentoring?</h2>"
 		+ "<p><a href='" + _rootDomain + "/login/default.aspx?method=login&amp;edit=true'>Let others know. Add to your UCSF Profile.</a></p>";
-	var mentorpage = _rootDomain + "/mitchell.feldman";
-	var mentorphoto = _rootDomain + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=367209";
-	var mentorimage = "";
-	$.ajax({
-		type: 'HEAD',
-		url: mentorphoto,
-		success: function() {
-			mentorPhoto();
-		},
-		error: function() {
-			// oh well, show what we can
-			renderAds();
-		}
-	});
-	function mentorPhoto() {
-		mentorimage =  "<img src='" + mentorphoto 
-			+ "' alt='Mitch Feldman' width='62' style='float:left;padding-right:5px;' />";		
-		// ok, we now have the image. Now we need to see if the page is valid
-		$.ajax({
-			type: 'HEAD',
-			url: mentorpage,
-			success: function() {
-				mentorPerson();
-			},
-			error: function() {
-				// oh well, show what we can
-				renderAds();
-			}
-		});
-	}
-	
-	function mentorPerson() {
-		mentor = mentor + "<p style='height:62px;overflow-y:hidden;'>" + mentorimage
-			+ "<strong><a href='" + mentorpage 
-			+ "'>Mitch Feldman</a></strong><br /> is a Faculty Mentor!</p></div></li>";
-		ads.push(mentor);
-		// now render the ads
-		renderAds();
-	}
+    var mentorpage = _rootDomain + "/mitchell.feldman";
+    var mentorphoto = _rootDomain + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=367209";
+    var mentorimage = "";
 
-	function renderAds() {
-		// for search form pages
-		if ($('.nonavbar').length && !$('#FSSiteDescription').length && $('.mainmenu li').last().text() != 'Sign out') {
-			var badge = "<ul id='badge'>" + ads.join('') + "</ul>";
-			$(badge).insertAfter('.profilesContentPassive');
-			var login = $('#signinlink').attr('href');
-			$("#badge li").hide();
-			randomtip();
-		}		
-	}
+    $.ajax({
+        type: 'HEAD',
+        url: mentorphoto,
+        success: function () {
+            mentorPhoto();
+        },
+        error: function () {
+            // oh well, show what we can
+            renderAds();
+        }
+    });
+
+    function mentorPhoto() {
+        mentorimage = "<img src='" + mentorphoto
+			+ "' alt='Mitch Feldman' width='62' style='float:left;padding-right:5px;' />";
+        // ok, we now have the image. Now we need to see if the page is valid
+        $.ajax({
+            type: 'HEAD',
+            url: mentorpage,
+            success: function () {
+                mentorPerson();
+            },
+            error: function () {
+                // oh well, show what we can
+                renderAds();
+            }
+        });
+    }
+
+    function mentorPerson() {
+        mentor = mentor + "<p style='height:62px;overflow-y:hidden;'>" + mentorimage
+			+ "<strong><a href='" + mentorpage
+			+ "'>Mitch Feldman</a></strong><br /> is a Faculty Mentor!</p></div></li>";
+        ads.push(mentor);
+        // now render the ads
+        renderAds();
+    }
+
+    function renderAds() {
+        // rotate through the ads at some frequency
+        setInterval(nexttip, 30000);
+
+        // for search form pages
+        if ($('.nonavbar').length && !$('#FSSiteDescription').length && $('.mainmenu li').last().text() != 'Sign out') {
+            var badge = "<ul id='badge'>" + ads.join('') + "</ul>";
+            $(badge).insertAfter('.profilesContentPassive');
+            $("#badge li").hide();
+            randomtip();
+        }
+    }
+
+    function randomtip() {
+        var length = $("#badge li").length;
+        adndx = Math.floor(Math.random() * length) + 1;
+        $("#badge li:nth-child(" + adndx + ")").show();
+    }
+
+    function nexttip() {
+        $("#badge li:nth-child(" + adndx + ")").fadeOut("slow", function () {
+            adndx = adndx >= $("#badge li").length ? 1 : adndx + 1;
+            $("#badge li:nth-child(" + adndx + ")").fadeIn("slow");
+        });
+    }
 
 }
-
-  
-this.randomtip = function () {
-    var length = $("#badge li").length;
-    var ran = Math.floor(Math.random() * length) + 1;
-    $("#badge li:nth-child(" + ran + ")").show();
-};

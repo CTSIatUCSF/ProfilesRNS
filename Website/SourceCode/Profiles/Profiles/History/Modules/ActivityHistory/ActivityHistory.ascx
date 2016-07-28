@@ -1,35 +1,26 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ActivityHistory.ascx.cs"
     Inherits="Profiles.History.Modules.ActivityHistory.ActivityHistory" %>
-<style>
-#arrivingAct {
-    display: none;
-}
-</style>
+
 <script type="text/javascript">
     var activitySize;
 
     $(document).ready(function () {
-        setInterval(function () { GetRecords(true) }, 30000);
-    }); 
-
-    // function to detect if scrollbar is present
-    (function ($) {
-        $.fn.hasScrollBar = function () {
-            return this.get(0) ? this.get(0).scrollHeight > this.innerHeight() : false;
+        if ("<%=FixedSize()%>") {
+            $(".activities").css({ overflow: 'hidden' });
         }
-    })(jQuery);
+        setInterval(function () { GetRecords(true) }, 30000);
+    });
 
-    function ScrollAlert(){  
+    function ScrollAlert() {
         var scrolltop = $('.clsScroll').attr('scrollTop');
         var scrollheight = $('.clsScroll').attr('scrollHeight');
         var windowheight = $('.clsScroll').attr('clientHeight');
-        var scrolloffset=20;  
-        if(scrolltop>=(scrollheight-(windowheight+scrolloffset)))  
-        {
+        var scrolloffset = 20;
+        if (scrolltop >= (scrollheight - (windowheight + scrolloffset))) {
             GetRecords(false);
-        }  
-    }  
-    
+        }
+    }
+
     function GetRecords(newActivities) {
         var referenceActivityId = newActivities ? $(".act-id").first().text() : $(".act-id").last().text();
         // only set this the first time
@@ -54,6 +45,14 @@
         var activities = JSON.parse(response.d);
         // if we don't have any activities, bail now
         if (!activities.length) {
+            // uncomment to test push from above during periods of no activity
+            //$(".activities").height($(".activities").height());
+            //$(".actTemplate").first().before('<div class="actTemplate" style="display:none">' + $(".actTemplate").last().html() + '</div>');
+            //$(".actTemplate").first().slideDown("slow", function () {
+            //    // now allow the height to go back to automatic
+            //    $(".actTemplate").last().remove();
+            //    $(".activities").height("auto");
+            //});
             return;
         }
         $("#divStatus").show();
@@ -81,51 +80,60 @@
             }
             else {
                 // if it is a fixed size, remove the last one to make room
-                if (<%=FixedSize()%>) { //(!$(".clsScroll").hasScrollBar()) {
+                if ("<%=FixedSize()%>") {
                     // temporarily freeze the height so that things are less jarring
-        			$(".activities").height($(".activities").height());
-                    $(".actTemplate").last().fadeOut("slow", function() {
-                        // Animation complete.
-                        $(".actTemplate").last().remove();
-                        // prepend to the top and slide down
-                        $(".actTemplate").first().before('<div class="actTemplate" style="display:none">' + activityTemplate.html() + '</div>');
-                        $(".actTemplate").first().slideDown("slow", function() {
-                            // now allow the height to go back to automatic
-                            $(".activities").height("auto");
-                        });
-                    });
+                    $(".activities").height($(".activities").height());
                 }
-            }
+                // prepend to the top and slide down
+                $(".actTemplate").first().before('<div class="actTemplate" style="display:none">' + activityTemplate.html() + '</div>');
+                $(".actTemplate").first().slideDown("slow", function () {
+                    if ("<%=FixedSize()%>") {
+                    $(".actTemplate").last().remove();
+                    // now allow the height to go back to automatic
+                    $(".activities").height("auto");
+                }
+            });
+        }
         });
-        $("#divStatus").hide();
-    }
+    $("#divStatus").hide();
+}
 </script>
 <div class="activities">
-<div class="act-heading"><strong>Live Updates</strong></div>
-<asp:Panel runat="server" ID="pnlActivities" CssClass="clsScroll" >
-<asp:Repeater runat="server" ID="rptActivityHistory" OnItemDataBound="rptActivityHistory_OnItemDataBound">
-    <ItemTemplate>
-        <div class="actTemplate">
-        <div class="act">
-       	   <div class="act-body">
-                <div class="act-image"><asp:HyperLink runat="server" ID="linkThumbnail"></asp:HyperLink></div>
-                <div class="act-userdate">
-    	    	    <div class="act-user"><asp:HyperLink runat="server" ID="linkProfileURL"></asp:HyperLink></div>
-		            <div class="date"><asp:Literal runat="server" ID="litDate"></asp:Literal></div>
-        		</div>
-        	    <div class="act-msg"><asp:Literal runat="server" ID="litMessage"></asp:Literal></div>
-	        </div>
-    	    <div class="act-id" style="display: none"><asp:Literal runat="server" ID="litId"></asp:Literal></div>
-        </div>
-        </div>
-    </ItemTemplate>
-</asp:Repeater>
-</asp:Panel>
+    <div class="act-heading"><strong>Live Updates</strong></div>
+    <asp:Panel runat="server" ID="pnlActivities" CssClass="clsScroll">
+        <asp:Repeater runat="server" ID="rptActivityHistory" OnItemDataBound="rptActivityHistory_OnItemDataBound">
+            <ItemTemplate>
+                <div class="actTemplate">
+                    <div class="act">
+                        <div class="act-body">
+                            <div class="act-image">
+                                <asp:HyperLink runat="server" ID="linkThumbnail"></asp:HyperLink>
+                            </div>
+                            <div class="act-userdate">
+                                <div class="act-user">
+                                    <asp:HyperLink runat="server" ID="linkProfileURL"></asp:HyperLink>
+                                </div>
+                                <div class="date">
+                                    <asp:Literal runat="server" ID="litDate"></asp:Literal>
+                                </div>
+                            </div>
+                            <div class="act-msg">
+                                <asp:Literal runat="server" ID="litMessage"></asp:Literal>
+                            </div>
+                        </div>
+                        <div class="act-id" style="display: none">
+                            <asp:Literal runat="server" ID="litId"></asp:Literal>
+                        </div>
+                    </div>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
+    </asp:Panel>
 </div>
 <asp:HyperLink ID="linkSeeMore" runat="server" NavigateUrl="~/History/ActivityDetails.aspx"><img src="Images/icon_squareArrow.gif" /> See more Activities</asp:HyperLink>
 <div id="divStatus" style="display: none">
     <div class="loader">
-            <span><img alt="Loading..." id="loader" src="<%=GetURLDomain()%>/Edit/Images/loader.gif" width="400" height="213" /></span>
-   </div>
+        <span>
+            <img alt="Loading..." id="loader" src="<%=GetURLDomain()%>/Edit/Images/loader.gif" width="400" height="213" /></span>
+    </div>
 </div>
-

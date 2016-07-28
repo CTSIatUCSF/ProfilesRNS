@@ -34,7 +34,6 @@
         var referenceActivityId = newActivities ? $(".act-id").first().text() : $(".act-id").last().text();
         // only set this the first time
         activitySize = activitySize || $(".act-id").length;
-        $("#divStatus").show();
         $.ajax({
             type: "POST",
             url: "<%=GetURLDomain()%>/History/ActivityDetails.aspx/GetActivities",
@@ -53,6 +52,11 @@
 
     function OnSuccess(response) {
         var activities = JSON.parse(response.d);
+        // if we don't have any activities, bail now
+        if (!activities.length) {
+            return;
+        }
+        $("#divStatus").show();
         var addToBottom = activities.length && activities[0].Id < $(".act-id").first().text();
         if (addToBottom) {
             // we want to invert the array so that we add the most recent one last
@@ -78,15 +82,19 @@
             else {
                 // if it is a fixed size, remove the last one to make room
                 if (<%=FixedSize()%>) { //(!$(".clsScroll").hasScrollBar()) {
-                    //$(".actTemplate").last().remove();
+                    // temporarily freeze the height so that things are less jarring
+        			$(".activities").height($(".activities").height());
                     $(".actTemplate").last().fadeOut("slow", function() {
                         // Animation complete.
                         $(".actTemplate").last().remove();
+                        // prepend to the top and slide down
+                        $(".actTemplate").first().before('<div class="actTemplate" style="display:none">' + activityTemplate.html() + '</div>');
+                        $(".actTemplate").first().slideDown("slow", function() {
+                            // now allow the height to go back to automatic
+                            $(".activities").height("auto");
+                        });
                     });
                 }
-                // prepend to the top and slide down
-                $(".actTemplate").first().before('<div class="actTemplate" style="display:none">' + activityTemplate.html() + '</div>');
-                $(".actTemplate").first().slideDown("slow");
             }
         });
         $("#divStatus").hide();

@@ -86,9 +86,10 @@ namespace Profiles.History.Modules.ActivityHistory
             }
         }
 
-        public int FixedSize()
+        // return an empty string for false so that Javscript will interpret it correctly
+        public string FixedSize()
         {
-            return "True".Equals(base.GetModuleParamString("Scrolling")) ? 0 : 1;
+            return "True".Equals(base.GetModuleParamString("Scrolling")) ? "" : "True";
         }
 
         public string GetURLDomain()

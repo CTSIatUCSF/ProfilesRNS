@@ -247,7 +247,9 @@ namespace Profiles.History.Utilities
                         body = "now has a Profile page";
                     }
 
-                    if (!String.IsNullOrEmpty(title))
+                    // there are situations where a new person is loaded but we don't yet have them in the system
+                    // best to skip them for now
+                    if (!String.IsNullOrEmpty(title) && UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)] != null)
                     {
 
                         Activity act = new Activity

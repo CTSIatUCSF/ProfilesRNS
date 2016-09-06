@@ -139,10 +139,11 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
 
         protected void GridViewEducation_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            TextBox txtYr2 = null;
-            TextBox txtEducationalTrainingDegree = null;
-            TextBox txtEducationalTrainingSchool = null;
             TextBox txtEducationalTrainingInst = null;
+            TextBox txtEducationalTrainingLocation = null;
+            TextBox txtEducationalTrainingDegree = null;
+            TextBox txtYr2 = null;
+            TextBox txtEducationalTrainingFieldOfStudy = null;
             ImageButton lnkEdit = null;
             ImageButton lnkDelete = null;
             HiddenField hdURI = null;
@@ -157,11 +158,11 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-
-                txtYr2 = (TextBox)e.Row.Cells[1].FindControl("txtYr2");
-                txtEducationalTrainingDegree = (TextBox)e.Row.Cells[2].FindControl("txtEducationalTrainingDegree");
-                txtEducationalTrainingSchool = (TextBox)e.Row.Cells[2].FindControl("txtEducationalTrainingSchool");
                 txtEducationalTrainingInst = (TextBox)e.Row.Cells[3].FindControl("txtEducationalTrainingInst");
+                txtEducationalTrainingLocation = (TextBox)e.Row.Cells[3].FindControl("txtEducationalTrainingLocation");
+                txtEducationalTrainingDegree = (TextBox)e.Row.Cells[2].FindControl("txtEducationalTrainingDegree");
+                txtYr2 = (TextBox)e.Row.Cells[1].FindControl("txtYr2");
+                txtEducationalTrainingFieldOfStudy = (TextBox)e.Row.Cells[2].FindControl("txtEducationalTrainingFieldOfStudy");
                 hdURI = (HiddenField)e.Row.Cells[3].FindControl("hdURI");
 
                 lnkEdit = (ImageButton)e.Row.Cells[4].FindControl("lnkEdit");
@@ -180,10 +181,12 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
 
             if (e.Row.RowType == DataControlRowType.DataRow && (e.Row.RowState & DataControlRowState.Edit) == DataControlRowState.Edit)
             {
-                txtYr2.Text = Server.HtmlDecode((string)txtYr2.Text);
-                txtEducationalTrainingDegree.Text = Server.HtmlDecode((string)txtEducationalTrainingDegree.Text);
-                txtEducationalTrainingSchool.Text = Server.HtmlDecode((string)txtEducationalTrainingSchool.Text);
                 txtEducationalTrainingInst.Text = Server.HtmlDecode((string)txtEducationalTrainingInst.Text);
+                txtEducationalTrainingLocation.Text = Server.HtmlDecode((string)txtEducationalTrainingLocation.Text);
+                txtEducationalTrainingDegree.Text = Server.HtmlDecode((string)txtEducationalTrainingDegree.Text);
+                txtYr2.Text = Server.HtmlDecode((string)txtYr2.Text);
+                txtEducationalTrainingFieldOfStudy.Text = Server.HtmlDecode((string)txtEducationalTrainingFieldOfStudy.Text);
+
             }
 
         }
@@ -198,15 +201,16 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
 
         protected void GridViewEducation_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-
-            TextBox txtYr2 = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtYr2");
-            TextBox txtEducationalTrainingDegree = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtEducationalTrainingDegree");
-            TextBox txtEducationalTrainingSchool = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtEducationalTrainingSchool");
             TextBox txtEducationalTrainingInst = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtEducationalTrainingInst");
+            TextBox txtEducationalTrainingLocation = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtEducationalTrainingLocation");
+            TextBox txtEducationalTrainingDegree = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtEducationalTrainingDegree");
+            TextBox txtYr2 = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtYr2");
+            TextBox txtEducationalTrainingFieldOfStudy = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtEducationalTrainingFieldOfStudy");
+
             HiddenField hdURI = (HiddenField)GridViewEducation.Rows[e.RowIndex].FindControl("hdURI");
 
-
-            data.UpdateEducationalTraining(hdURI.Value, txtEducationalTrainingDegree.Text, txtEducationalTrainingInst.Text, txtEducationalTrainingSchool.Text, txtYr2.Text);
+            //data.AddEducationalTraining(this.SubjectID, txtInstitution.Text, txtLocation.Text, txtEducationalTrainingDegree.Text, txtEndYear.Text, txtFieldOfStudy.Text, this.PropertyListXML);
+            data.UpdateEducationalTraining(hdURI.Value, this.SubjectID, txtEducationalTrainingInst.Text, txtEducationalTrainingLocation.Text, txtEducationalTrainingDegree.Text, txtYr2.Text, txtEducationalTrainingFieldOfStudy.Text);
             GridViewEducation.EditIndex = -1;
             Session["pnlInsertEducationalTraining.Visible"] = null;
             this.FillEducationalTrainingGrid(true);
@@ -246,21 +250,25 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
             txtInstitution.Text = "";
             txtEducationalTrainingDegree.Text = "";
             txtEducationalTrainingSchool.Text = "";
+            txtLocation.Text = "";
+            txtFieldOfStudy.Text = "";
             pnlInsertEducationalTraining.Visible = false;
             upnlEditSection.Update();
         }
 
         protected void btnInsert_OnClick(object sender, EventArgs e)
         {
-            if (txtEndYear.Text != "" || txtInstitution.Text != "" || txtEducationalTrainingDegree.Text != "" || txtEducationalTrainingSchool.Text != "")
+            if (txtEducationalTrainingDegree.Text != "" || txtInstitution.Text != "" || txtLocation.Text != "" || txtFieldOfStudy.Text != "")
             {
-                data.AddEducationalTraining(this.SubjectID, txtEducationalTrainingDegree.Text, txtInstitution.Text, txtEducationalTrainingSchool.Text, txtEndYear.Text, this.PropertyListXML);
+                data.AddEducationalTraining(this.SubjectID, txtInstitution.Text, txtLocation.Text, txtEducationalTrainingDegree.Text, txtEndYear.Text, txtFieldOfStudy.Text, this.PropertyListXML);
 
 
                 txtEndYear.Text = "";
                 txtInstitution.Text = "";
                 txtEducationalTrainingDegree.Text = "";
                 txtEducationalTrainingSchool.Text = "";
+                txtLocation.Text = "";
+                txtFieldOfStudy.Text = "";
                 Session["pnlInsertEducationalTraining.Visible"] = null;
                 btnEditEducation_OnClick(sender, e);
                 this.FillEducationalTrainingGrid(true);
@@ -282,10 +290,10 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
 
         protected void btnInsertClose_OnClick(object sender, EventArgs e)
         {
-            if (txtEndYear.Text != "" || txtInstitution.Text != "" || txtEducationalTrainingDegree.Text != "" || txtEducationalTrainingSchool.Text != "")
+            if (txtEducationalTrainingDegree.Text != "" || txtInstitution.Text != "" || txtLocation.Text != "" || txtFieldOfStudy.Text != "")
             {
                 Session["pnlInsertEducationalTraining.Visible"] = null;
-                data.AddEducationalTraining(this.SubjectID, txtEducationalTrainingDegree.Text, txtInstitution.Text, txtEducationalTrainingSchool.Text, txtEndYear.Text, this.PropertyListXML);
+                data.AddEducationalTraining(this.SubjectID, txtInstitution.Text, txtLocation.Text, txtEducationalTrainingDegree.Text, txtEndYear.Text, txtFieldOfStudy.Text, this.PropertyListXML);
 
                 this.FillEducationalTrainingGrid(true);
 
@@ -353,10 +361,11 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
 
             Int64 oldobjectid = 0;
 
-            string oldschoolvalue = string.Empty;
-            string oldenddatevalue = string.Empty;
-            string olddegreevalue = string.Empty;
             string oldinstitutionvalue = string.Empty;
+            string oldlocationvalue = string.Empty;
+            string olddegreevalue = string.Empty;
+            string oldenddatevalue = string.Empty;
+            string oldfieldofstudyvalue = string.Empty;
 
             string predicateuri = string.Empty;
             string method = string.Empty;
@@ -391,28 +400,33 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
                 awarduri = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + property.InnerText + "']/rdf:object/@rdf:resource", base.Namespaces).Value;
                 oldobjectid = data.GetStoreNode(awarduri);
 
-                if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + awarduri + "']/vivo:departmentOrSchool", base.Namespaces) != null)
-                    oldschoolvalue = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + awarduri + "']/vivo:departmentOrSchool", base.Namespaces).InnerText;
+                if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + awarduri + "']/prns:trainingAtOrganization", base.Namespaces) != null)
+                    oldinstitutionvalue = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + awarduri + "']/prns:trainingAtOrganization", base.Namespaces).InnerText;
                 else
-                    oldschoolvalue = string.Empty;
+                    oldinstitutionvalue = string.Empty;
 
-                if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + awarduri + "']/prns:endDate", base.Namespaces) != null)
-                    oldenddatevalue = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + awarduri + "']/prns:endDate", base.Namespaces).InnerText;
+                if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + awarduri + "']/prns:trainingLocation", base.Namespaces) != null)
+                    oldlocationvalue = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + awarduri + "']/prns:trainingLocation", base.Namespaces).InnerText;
                 else
-                    oldenddatevalue = string.Empty;
+                    oldlocationvalue = string.Empty;
 
                 if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + awarduri + "']/vivo:degreeEarned", base.Namespaces) != null)
                     olddegreevalue = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + awarduri + "']/vivo:degreeEarned", base.Namespaces).InnerText;
                 else
                     olddegreevalue = string.Empty;
 
-                if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + awarduri + "']/vivo:trainingAtOrganization", base.Namespaces) != null)
-                    oldinstitutionvalue = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + awarduri + "']/vivo:trainingAtOrganization", base.Namespaces).InnerText;
+                if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + awarduri + "']/prns:endDate", base.Namespaces) != null)
+                    oldenddatevalue = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + awarduri + "']/prns:endDate", base.Namespaces).InnerText;
                 else
-                    oldinstitutionvalue = string.Empty;
+                    oldenddatevalue = string.Empty;
 
-                educationalTrainingState.Add(new EducationalTrainingState(awarduri, predicate, oldobjectid, oldschoolvalue, oldenddatevalue,
-                    oldinstitutionvalue, olddegreevalue, editexisting, editdelete));
+                if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + awarduri + "']/vivo:majorField", base.Namespaces) != null)
+                    oldfieldofstudyvalue = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + awarduri + "']/vivo:majorField", base.Namespaces).InnerText;
+                else
+                    oldfieldofstudyvalue = string.Empty;
+
+                educationalTrainingState.Add(new EducationalTrainingState(awarduri, predicate, oldobjectid, oldinstitutionvalue, oldlocationvalue,
+                    olddegreevalue, oldenddatevalue, oldfieldofstudyvalue, editexisting, editdelete));
 
             }
 

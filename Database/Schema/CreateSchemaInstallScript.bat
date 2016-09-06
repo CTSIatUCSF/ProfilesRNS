@@ -93,6 +93,7 @@ type Profile.Cache.Concept.Mesh.Tree.Table.sql
 type Profile.Data.Concept.Mesh.Term.Table.sql
 type Profile.Cache.Concept.Mesh.SimilarConcept.Table.sql
 type Profile.Data.Concept.Mesh.SemanticType.Table.sql
+type Profile.Data.Concept.Mesh.SemanticType.XML.Table.sql
 type Profile.Data.Concept.Mesh.SemanticGroupType.Table.sql
 type Profile.Data.Concept.Mesh.SemanticGroup.Table.sql
 type Profile.Data.Concept.Mesh.Qualifier.Table.sql
@@ -214,6 +215,10 @@ type Profile.Data.EagleI.HTML.Table.sql
 type Framework..Log.Activity.Table.sql
 type RDF..GetDataRDF.DebugLog.ExpandRDFListXML.Table.sql
 type RDF..GetDataRDF.DebugLog.Table.sql
+type Profile.Data.Funding.Agreement.Table.sql
+type Profile.Data.Funding.Role.Table.sql
+type Profile.Data.Funding.Add.Table.sql
+type Profile.Data.Funding.Delete.Table.sql
 
 type RDF..fnTripleHash.UserDefinedFunction.sql
 type Utility.Application.fnText2Bool.UserDefinedFunction.sql
@@ -560,3 +565,9 @@ type ORCID..PeopleWithoutAnORCIDByName.StoredProcedure.sql
 type RDF.SemWeb.UpdateHash2Base64.StoredProcedure.sql
 type Profile.Data.EagleI.UpdateEagleITables.StoredProcedure.sql
 type Framework..Log.AddActivity.StoredProcedure.sql
+type Profile.Data.Funding.AddUpdateFunding.StoredProcedure.sql
+type Profile.Data.Funding.DeleteFunding.StoredProcedure.sql
+type Profile.Data.Funding.Entity.UpdateEntityOnePerson.StoredProcedure.sql
+type Profile.Data.Funding.GetFundingItem.StoredProcedure.sql
+type Profile.Data.Funding.GetPersonFunding.StoredProcedure.sql
+type Edit.Module.CustomEditEducationalTraining.StoreItem.StoredProcedure.sql

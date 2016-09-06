@@ -26,10 +26,8 @@
                         </asp:Panel>
                         <br />
                         <asp:Panel runat="server" ID="pnlEditEducation">
-                            <asp:ImageButton runat="server" ID="imbAddArror" ImageUrl="../../../Framework/Images/icon_squareArrow.gif"
-                                OnClick="btnEditEducation_OnClick" />&nbsp;
                             <asp:LinkButton ID="btnEditEducation" runat="server" OnClick="btnEditEducation_OnClick"
-                                CssClass="profileHypLinks">Add Education and Training</asp:LinkButton>
+                                CssClass="profileHypLinks"><asp:Image runat="server" ID="imbAddArror" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;Add Education and Training</asp:LinkButton>
                         </asp:Panel>
                     </div>
                 </td>
@@ -45,42 +43,43 @@
                     <asp:Panel ID="pnlInsertEducationalTraining" runat="server" Style="background-color: #EEE; margin-bottom: 5px;
                         border: solid 1px #ccc;" Visible="false" >
                         <table border="0" cellspacing="2" cellpadding="4">
-                            <tr>
-                                <td colspan="3">
-                                    <div style="padding-top: 5px;">
-                                        Enter the institution, the name of the degree or training credential earned, the school or department and year completed, <br />e.g. Cambridge; MD; School of Medicine; 1992. 
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
+                            <tr style="vertical-align:bottom;">
                                 <td>
                                     <b>Institution</b><br />
-                                    <asp:TextBox ID="txtInstitution" runat="server" MaxLength="100" TabIndex="4" Width="220px"></asp:TextBox>
+                                    <asp:TextBox ID="txtInstitution" runat="server" MaxLength="100" Width="190px"></asp:TextBox>
                                 </td>
                                 <td>
-                                    <b>Degree/Training</b><br />
-                                    <asp:TextBox ID="txtEducationalTrainingDegree" runat="server" MaxLength="100" TabIndex="3" Width="220px"></asp:TextBox>
+                                    <b>Location<b><br />
+                                    <asp:TextBox ID="txtLocation" runat="server" MaxLength="100" Width="130px"></asp:TextBox>
                                 </td>
                                 <td>
+                                    <b>Degree</b><br />(if applicable)<br />
+                                    <asp:TextBox ID="txtEducationalTrainingDegree" runat="server" MaxLength="100" Width="100px"></asp:TextBox>
+                                </td>
+                                <!--<td>
                                     <b>School or Department</b><br />
-                                    <asp:TextBox ID="txtEducationalTrainingSchool" runat="server" MaxLength="100" TabIndex="3" Width="220px"></asp:TextBox>
+                                    <asp:TextBox ID="txtEducationalTrainingSchool" runat="server" MaxLength="100" TabIndex="3" Width="210px"></asp:TextBox>
+                                </td>-->
+                                <td>
+                                    <b>Completion Date</b> (MM/YYYY)<br />
+                                    <asp:TextBox ID="txtEndYear" runat="server" MaxLength="7" Width="80px"></asp:TextBox>
                                 </td>
                                 <td>
-                                    <b>Year</b><br />
-                                    <asp:TextBox ID="txtEndYear" runat="server" MaxLength="4" Width="60px" TabIndex="2"></asp:TextBox>
+                                    <b>Field Of Study<b><br />
+                                    <asp:TextBox ID="txtFieldOfStudy" runat="server" MaxLength="100" Width="175px"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="3">
+                                <td colspan="5">
                                     <div style="padding-bottom: 5px; text-align: left;">
                                         <asp:LinkButton ID="btnInsertEducationalTraining" runat="server" CausesValidation="False" OnClick="btnInsert_OnClick"
-                                            Text="Save and add another" TabIndex="5"></asp:LinkButton>
+                                            Text="Save and add another"></asp:LinkButton>
                                         &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;
                                         <asp:LinkButton ID="btnInsertEducationalTraining2" runat="server" CausesValidation="False" OnClick="btnInsertClose_OnClick"
-                                            Text="Save and Close" TabIndex="6"></asp:LinkButton>
+                                            Text="Save and Close"></asp:LinkButton>
                                         &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;
                                         <asp:LinkButton ID="btnInsertCancel" runat="server" CausesValidation="False" OnClick="btnInsertCancel_OnClick"
-                                            Text="Close" TabIndex="7"></asp:LinkButton>
+                                            Text="Close"></asp:LinkButton>
                                     </div>
                                 </td>
                             </tr>
@@ -107,34 +106,45 @@
                                     </ItemTemplate>
                                     <ItemStyle Wrap="true" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Degree/Training">
+                                <asp:TemplateField HeaderText="Location">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtEducationalTrainingLocation" runat="server" MaxLength="100" Text='<%# Bind("Location") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label6" runat="server" Text='<%# Bind("Location") %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <ControlStyle Width="100px" />
+                                    <ItemStyle Wrap="true" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Degree">
                                     <EditItemTemplate>
                                         <asp:TextBox ID="txtEducationalTrainingDegree" runat="server" MaxLength="100" Text='<%# Bind("Degree") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="Label3" runat="server" Text='<%# Bind("Degree") %>'></asp:Label>
                                     </ItemTemplate>
+                                    <ControlStyle Width="100px" />
                                     <ItemStyle Wrap="true" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="School or Department">
+                                <asp:TemplateField HeaderText="Completion Date">
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtEducationalTrainingSchool" runat="server" MaxLength="100" Text='<%# Bind("School") %>'></asp:TextBox>
-                                    </EditItemTemplate>
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label4" runat="server" Text='<%# Bind("School") %>'></asp:Label>
-                                    </ItemTemplate>
-                                    <ItemStyle Wrap="true" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Year">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtYr2" runat="server" MaxLength="4" Text='<%# Bind("EndDate") %>'></asp:TextBox>
+                                        <asp:TextBox ID="txtYr2" runat="server" MaxLength="7" Text='<%# Bind("EndDate") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="Label2" runat="server" Text='<%# Bind("EndDate") %>'></asp:Label>
                                     </ItemTemplate>
-                                    <ControlStyle Width="35px" />
+                                    <ControlStyle Width="60px" />
                                     <HeaderStyle HorizontalAlign="Center" />
                                     <ItemStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Field of Study">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtEducationalTrainingFieldOfStudy" runat="server" MaxLength="100" Text='<%# Bind("FieldOfStudy") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label4" runat="server" Text='<%# Bind("FieldOfStudy") %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle Wrap="true" />
                                 </asp:TemplateField>
                                 <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100px" HeaderText="Action"
                                     ShowHeader="False">

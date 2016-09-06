@@ -1043,175 +1043,6 @@ namespace Profiles.Edit.Utilities
 
         #region EducationalTraining
 
-        public bool AddEducationalTraining(Int64 subjectid, string degree, string institution,
-                    string school, string enddate, XmlDocument PropertyListXML)
-        {
-            string label = degree + " " + institution;
-            ActivityLog(PropertyListXML, GetPersonID(subjectid), label, institution);
-            bool error = false;
-            try
-            {
-
-                EducationalTrainingRequest eatr = new EducationalTrainingRequest();
-                eatr.EducationalTrainingForID = new StoreNodeParam();
-                eatr.EducationalTrainingForID.Value = subjectid;
-                eatr.EducationalTrainingForID.ParamOrdinal = 0;
-
-                eatr.Label = new StoreNodeParam();
-                eatr.Label.Value = label;
-                eatr.Label.ParamOrdinal = 1;
-
-                eatr.Degree = new StoreNodeParam();
-                eatr.Degree.Value = degree;
-                eatr.Degree.ParamOrdinal = 2;
-
-                eatr.Institution = new StoreNodeParam();
-                eatr.Institution.Value = institution;
-                eatr.Institution.ParamOrdinal = 3;
-
-                eatr.School = new StoreNodeParam();
-                eatr.School.Value = school;
-                eatr.School.ParamOrdinal = 4;
-
-                eatr.EndDate = new StoreNodeParam();
-                eatr.EndDate.Value = enddate;
-                eatr.EndDate.ParamOrdinal = 5;
-
-                error = this.StoreEducationalTrainingReceipt(eatr);
-
-            }
-            catch (Exception e)
-            {
-                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
-                throw new Exception(e.Message);
-            }
-
-            return error;
-
-        }
-
-        public bool UpdateEducationalTraining(string subjecturi, string degree, string institution,
-                    string school, string enddate)
-        {
-            bool error = false;
-            try
-            {
-                string label = degree + " " + institution;
-
-                EducationalTrainingRequest eatr = new EducationalTrainingRequest();
-                eatr.ExistingEducationalTrainingURI = new StoreNodeParam();
-                eatr.ExistingEducationalTrainingURI.Value = subjecturi;
-                eatr.ExistingEducationalTrainingURI.ParamOrdinal = 0;
-
-                eatr.Label = new StoreNodeParam();
-                eatr.Label.Value = label;
-                eatr.Label.ParamOrdinal = 1;
-
-                eatr.Degree = new StoreNodeParam();
-                eatr.Degree.Value = degree;
-                eatr.Degree.ParamOrdinal = 2;
-
-                eatr.Institution = new StoreNodeParam();
-                eatr.Institution.Value = institution;
-                eatr.Institution.ParamOrdinal = 3;
-
-                eatr.School = new StoreNodeParam();
-                eatr.School.Value = school;
-                eatr.School.ParamOrdinal = 4;
-
-                eatr.EndDate = new StoreNodeParam();
-                eatr.EndDate.Value = enddate;
-                eatr.EndDate.ParamOrdinal = 5;
-
-                eatr.EducationalTrainingForID = new StoreNodeParam();
-                eatr.EducationalTrainingForID.Value = this.GetStoreNode(subjecturi).ToString();
-                eatr.EducationalTrainingForID.ParamOrdinal = 6;
-                error = this.StoreEducationalTrainingReceipt(eatr);
-
-            }
-            catch (Exception e)
-            {
-                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
-                throw new Exception(e.Message);
-            }
-
-            return error;
-
-
-        }
-
-        private bool StoreEducationalTrainingReceipt(EducationalTrainingRequest eatr)
-        {
-
-            SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-
-            SqlConnection dbconnection = new SqlConnection(connstr);
-
-            SqlParameter[] param = new SqlParameter[eatr.Length];
-
-            bool error = false;
-
-            try
-            {
-                dbconnection.Open();
-
-                if (eatr.ExistingEducationalTrainingURI != null)
-                    param[eatr.ExistingEducationalTrainingURI.ParamOrdinal] = new SqlParameter("@ExistingEducationalTrainingURI", eatr.ExistingEducationalTrainingURI.Value);
-
-                if (eatr.EducationalTrainingForID != null)
-                    param[eatr.EducationalTrainingForID.ParamOrdinal] = new SqlParameter("@educationalTrainingForID", Convert.ToInt64(eatr.EducationalTrainingForID.Value));
-
-                if (eatr.Label != null)
-                    param[eatr.Label.ParamOrdinal] = new SqlParameter("@label", eatr.Label.Value.ToString());
-
-                if (eatr.Degree != null)
-                    param[eatr.Degree.ParamOrdinal] = new SqlParameter("@degree", eatr.Degree.Value.ToString());
-
-                if (eatr.Institution != null)
-                    param[eatr.Institution.ParamOrdinal] = new SqlParameter("@institution", eatr.Institution.Value.ToString());
-
-                if (eatr.School != null)
-                    param[eatr.School.ParamOrdinal] = new SqlParameter("@school", eatr.School.Value.ToString());
-
-                if (eatr.EndDate != null)
-                    param[eatr.EndDate.ParamOrdinal] = new SqlParameter("@endDate", eatr.EndDate.Value.ToString());
-
-
-                param[eatr.Length - 3] = new SqlParameter("@sessionID", sm.Session().SessionID);
-
-                param[eatr.Length - 2] = new SqlParameter("@error", null);
-                param[eatr.Length - 2].DbType = DbType.Boolean;
-                param[eatr.Length - 2].Direction = ParameterDirection.Output;
-
-                param[eatr.Length - 1] = new SqlParameter("@nodeid", null);
-                param[eatr.Length - 1].DbType = DbType.Int64;
-                param[eatr.Length - 1].Direction = ParameterDirection.Output;
-
-                // TODO
-                SqlCommand comm = GetDBCommand(ref dbconnection, "[Edit.Module].[CustomEditEducationalTraining.StoreItem]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param);
-                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                ExecuteSQLDataCommand(comm);
-
-
-                comm.Connection.Close();
-
-                if (dbconnection.State != ConnectionState.Closed)
-                    dbconnection.Close();
-
-                error = Convert.ToBoolean(param[eatr.Length - 2].Value);
-
-                Framework.Utilities.Cache.AlterDependency(eatr.EducationalTrainingForID.Value.ToString());
-            }
-            catch (Exception e)
-            {
-                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
-                throw new Exception(e.Message);
-            }
-
-            return error;
-
-        }
 
         #endregion
 
@@ -1503,7 +1334,391 @@ namespace Profiles.Edit.Utilities
             return rawdata;
         }
 
+        #region FUNDING
 
+
+
+        public void AddUpdateFunding(FundingState fs)
+        {
+            if (!fs.hasData) return;
+            string connstr = this.GetConnectionString();
+            SqlConnection dbconnection = new SqlConnection(connstr);
+
+            System.Text.StringBuilder sbSQL = new StringBuilder();
+
+            SqlParameter[] param = new SqlParameter[13];
+
+            if (fs.StartDate == "?")
+                fs.StartDate = string.Empty;
+
+            if (fs.EndDate == "?")
+                fs.EndDate = string.Empty;
+
+            try
+            {
+                dbconnection.Open();
+                param[0] = new SqlParameter("@FundingRoleID", fs.FundingRoleID);
+                param[1] = new SqlParameter("@PersonID", fs.PersonID);
+                param[2] = new SqlParameter("@FundingID", fs.FullFundingID); //this will use the full funding id but can be loaded with the core or fill depending on if its a sub grant or not.
+                param[3] = new SqlParameter("@FundingID2", fs.CoreProjectNum); //This will always be the core number
+                param[4] = new SqlParameter("@RoleLabel", fs.RoleLabel);
+                param[5] = new SqlParameter("@RoleDescription", fs.RoleDescription);
+                param[6] = new SqlParameter("@AgreementLabel", fs.AgreementLabel);
+                param[7] = new SqlParameter("@GrantAwardedBy", fs.GrantAwardedBy);
+                param[8] = new SqlParameter("@StartDate", fs.StartDate == "?" ? "" : fs.StartDate);
+                param[9] = new SqlParameter("@EndDate", fs.EndDate == "?" ? "" : fs.EndDate);
+                param[10] = new SqlParameter("@PrincipalInvestigatorName", fs.PrincipalInvestigatorName);
+                param[11] = new SqlParameter("@Abstract", fs.Abstract);
+                param[12] = new SqlParameter("@Source", fs.Source);
+
+                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                ExecuteSQLDataCommand(GetDBCommand(dbconnection, "[Profile.Data].[Funding.AddUpdateFunding]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+
+                dbconnection.Close();
+                
+                EditActivityLog(fs.SubjectID, "http://vivoweb.org/ontology/core#ResearcherRole", (string) null, fs.FundingRoleID.ToString(), (string) null);
+               
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+
+        }
+
+        public void FundingUpdateOnePerson(FundingState fs)
+        {
+            try
+            {
+                this.ExecuteSQLDataCommand("[Profile.Data].[Funding.Entity.UpdateEntityOnePerson] 	@PersonID = " + fs.PersonID.ToString());
+
+                if (HttpContext.Current.Request.QueryString["subjectid"] != null)
+                {
+                    Framework.Utilities.Cache.AlterDependency(HttpContext.Current.Request.QueryString["subjectid"].ToString());
+
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+        }
+
+        public FundingState GetFundingItem(Guid FundingRoleID)
+        {
+            string connstr = this.GetConnectionString();
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            dbconnection.Open();
+            System.Text.StringBuilder sbSQL = new StringBuilder();
+            FundingState fs = null;
+
+            sbSQL.AppendLine("[Profile.Data].[Funding.GetFundingItem] @FundingRoleID = '" + FundingRoleID.ToString() + "'");
+
+            using (SqlDataReader dr = GetSQLDataReader(GetDBCommand(dbconnection, sbSQL.ToString(), CommandType.Text, CommandBehavior.CloseConnection, null)))
+            {
+                while (dr.Read())
+                    fs = new FundingState
+                    {
+                        Abstract = dr["Abstract"].ToString(),
+                        AgreementLabel = dr["AgreementLabel"].ToString(),
+                        EndDate = String.Format("{0:M/d/yyyy}", Convert.ToDateTime(dr["EndDate"])),
+                        FundingID = dr["FundingID"].ToString(),
+                        Source = dr["Source"].ToString(),
+                        GrantAwardedBy = dr["GrantAwardedBy"].ToString(),
+                        FundingRoleID = new Guid(dr["FundingRoleID"].ToString()),
+                        FullFundingID = dr["FundingID"].ToString(),
+                        CoreProjectNum = dr["FundingID2"].ToString(),
+                        PersonID = Convert.ToInt32(dr["PersonID"]),
+                        PrincipalInvestigatorName = dr["PrincipalInvestigatorName"].ToString(),
+                        RoleDescription = dr["RoleDescription"].ToString(),
+                        RoleLabel = dr["RoleLabel"].ToString(),
+                        StartDate = String.Format("{0:M/d/yyyy}", Convert.ToDateTime(dr["StartDate"])),
+                    };
+
+                if (!dr.IsClosed)
+                    dr.Close();
+            }
+
+
+            return fs;
+
+        }
+        public List<FundingState> GetFunding(int PersonID)
+        {
+            string connstr = this.GetConnectionString();
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            dbconnection.Open();
+            System.Text.StringBuilder sbSQL = new StringBuilder();
+            List<FundingState> fs = new List<FundingState>();
+
+            sbSQL.AppendLine("[Profile.Data].[Funding.GetPersonFunding] @personid = " + PersonID.ToString());
+
+            using (SqlDataReader dr = GetSQLDataReader(GetDBCommand(dbconnection, sbSQL.ToString(), CommandType.Text, CommandBehavior.CloseConnection, null)))
+            {
+                while (dr.Read())
+                    fs.Add(new FundingState
+                    {
+                        Abstract = dr["Abstract"].ToString(),
+                        AgreementLabel = dr["AgreementLabel"] == null ? "" : dr["AgreementLabel"].ToString(),
+                        EndDate = Convert.ToDateTime(dr["EndDate"]).ToString("MMM d, yyyy"),
+                        FundingID = dr["FundingID"].ToString(),
+                        Source = dr["Source"].ToString(),
+                        FullFundingID = dr["FundingID"].ToString(),
+                        CoreProjectNum = dr["FundingID2"].ToString(),
+                        GrantAwardedBy = dr["GrantAwardedBy"].ToString(),
+                        FundingRoleID = new Guid(dr["FundingRoleID"].ToString()),
+                        PersonID = Convert.ToInt32(dr["PersonID"]),
+                        PrincipalInvestigatorName = dr["PrincipalInvestigatorName"].ToString(),
+                        RoleDescription = dr["RoleDescription"].ToString(),
+                        RoleLabel = dr["RoleLabel"].ToString(),
+                        StartDate = Convert.ToDateTime(dr["StartDate"]).ToString("MMM d, yyyy"),
+
+                    });
+
+                if (!dr.IsClosed)
+                    dr.Close();
+            }
+
+
+            return fs;
+
+        }
+
+        public void DeleteFunding(Guid FundingRoleID, long subjectID)
+        {
+            System.Text.StringBuilder sbSQL = new StringBuilder();
+            sbSQL.Append("[Profile.Data].[Funding.DeleteFunding]   @FundingRoleID = '" + FundingRoleID.ToString() + "'");
+
+            ExecuteSQLDataCommand(sbSQL.ToString());
+            EditActivityLog(subjectID, "http://vivoweb.org/ontology/core#ResearcherRole", (string)null, FundingRoleID.ToString(), (string)null);
+        }
+
+        #endregion
+
+        #region "freetext keywords"
+        public string getAutoCompleteSuggestions(string text)
+        {
+            string retVal = "";
+            try
+            {
+                string sql = " select distinct top 10  TermName, c.Rawweight from [Profile.Data].[Concept.Mesh.Term] t " +
+                                "left join [Profile.Cache].[Concept.Mesh.Count] c " +
+                                " on t.DescriptorName = c.MeshHeader " +
+                                " where t.TermName like @text + '%'" +
+                                " order by c.RawWeight desc ";
+
+                SqlParameter[] p = new SqlParameter[1];
+                p[0] = new SqlParameter("@text", text);
+
+                using (SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, p))
+                {
+                    bool first = true;
+                    while (sqldr.Read())
+                    {
+                        string str = sqldr["TermName"].ToString();
+                        if (first)
+                        {
+                            retVal = retVal + "{\"value\":\"" + str.Replace("\\", "\\\\").Replace("\"", "\\\"") + "\"}";
+                            first = false;
+                        }
+                        else retVal = retVal + ",{\"value\":\"" + str.Replace("\\", "\\\\").Replace("\"", "\\\"") + "\"}";
+                    }
+                    //Always close your readers
+                    if (!sqldr.IsClosed)
+                        sqldr.Close();
+
+                }
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + " " + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+            //this.GetSQLDataReader();
+            return "[" + retVal + "]";
+        }
+
+        #endregion
+
+        #region EducationalTraining
+
+        public bool AddEducationalTraining(Int64 subjectid, string institution, string location,
+                    string degree, string enddate, string fieldOfStudy, XmlDocument PropertyListXML)
+        {
+            ActivityLog(PropertyListXML, subjectid, institution + ", " + location + ", ", degree + ", " + enddate + ", " + fieldOfStudy);
+            bool error = false;
+            try
+            {
+
+                EducationalTrainingRequest eatr = new EducationalTrainingRequest();
+                eatr.EducationalTrainingForID = new StoreNodeParam();
+                eatr.EducationalTrainingForID.Value = subjectid;
+                eatr.EducationalTrainingForID.ParamOrdinal = 0;
+
+                eatr.Institution = new StoreNodeParam();
+                eatr.Institution.Value = institution;
+                eatr.Institution.ParamOrdinal = 1;
+
+                eatr.Location = new StoreNodeParam();
+                eatr.Location.Value = location;
+                eatr.Location.ParamOrdinal = 2;
+
+                eatr.Degree = new StoreNodeParam();
+                eatr.Degree.Value = degree;
+                eatr.Degree.ParamOrdinal = 3;
+
+                eatr.EndDate = new StoreNodeParam();
+                eatr.EndDate.Value = enddate;
+                eatr.EndDate.ParamOrdinal = 4;
+
+                eatr.FieldOfStudy = new StoreNodeParam();
+                eatr.FieldOfStudy.Value = fieldOfStudy;
+                eatr.FieldOfStudy.ParamOrdinal = 5;
+
+                error = this.StoreEducationalTrainingReceipt(eatr);
+
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+
+            return error;
+
+        }
+
+        public bool UpdateEducationalTraining(string existingTrainingURI, long subjectID, string institution, string location,
+                    string degree, string enddate, string fieldOfStudy)
+        {
+            bool error = false;
+            try
+            {
+                EditActivityLog(subjectID, "http://vivoweb.org/ontology/core#educationalTraining", null, institution + ", " + location + ", ", degree + ", " + enddate + ", " + fieldOfStudy);
+
+                string label = degree + " " + institution;
+
+                EducationalTrainingRequest eatr = new EducationalTrainingRequest();
+                eatr.ExistingEducationalTrainingURI = new StoreNodeParam();
+                eatr.ExistingEducationalTrainingURI.Value = existingTrainingURI;
+                eatr.ExistingEducationalTrainingURI.ParamOrdinal = 0;
+
+                eatr.Institution = new StoreNodeParam();
+                eatr.Institution.Value = institution;
+                eatr.Institution.ParamOrdinal = 1;
+
+                eatr.Location = new StoreNodeParam();
+                eatr.Location.Value = location;
+                eatr.Location.ParamOrdinal = 2;
+
+                eatr.Degree = new StoreNodeParam();
+                eatr.Degree.Value = degree;
+                eatr.Degree.ParamOrdinal = 3;
+
+                eatr.EndDate = new StoreNodeParam();
+                eatr.EndDate.Value = enddate;
+                eatr.EndDate.ParamOrdinal = 4;
+
+                eatr.FieldOfStudy = new StoreNodeParam();
+                eatr.FieldOfStudy.Value = fieldOfStudy;
+                eatr.FieldOfStudy.ParamOrdinal = 5;
+
+                eatr.EducationalTrainingForID = new StoreNodeParam();
+                eatr.EducationalTrainingForID.Value = this.GetStoreNode(existingTrainingURI).ToString();
+                eatr.EducationalTrainingForID.ParamOrdinal = 6;
+                error = this.StoreEducationalTrainingReceipt(eatr);
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+
+            return error;
+
+
+        }
+
+        private bool StoreEducationalTrainingReceipt(EducationalTrainingRequest eatr)
+        {
+
+            SessionManagement sm = new SessionManagement();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+            SqlConnection dbconnection = new SqlConnection(connstr);
+
+            SqlParameter[] param = new SqlParameter[eatr.Length];
+
+            bool error = false;
+
+            try
+            {
+                dbconnection.Open();
+
+                if (eatr.ExistingEducationalTrainingURI != null)
+                    param[eatr.ExistingEducationalTrainingURI.ParamOrdinal] = new SqlParameter("@ExistingEducationalTrainingURI", eatr.ExistingEducationalTrainingURI.Value);
+
+                if (eatr.EducationalTrainingForID != null)
+                    param[eatr.EducationalTrainingForID.ParamOrdinal] = new SqlParameter("@educationalTrainingForID", Convert.ToInt64(eatr.EducationalTrainingForID.Value));
+
+                if (eatr.Institution != null)
+                    param[eatr.Institution.ParamOrdinal] = new SqlParameter("@institution", eatr.Institution.Value.ToString());
+
+                if (eatr.Location != null)
+                    param[eatr.Location.ParamOrdinal] = new SqlParameter("@location", eatr.Location.Value.ToString());
+
+                if (eatr.Degree != null)
+                    param[eatr.Degree.ParamOrdinal] = new SqlParameter("@degree", eatr.Degree.Value.ToString());
+
+                if (eatr.EndDate != null)
+                    param[eatr.EndDate.ParamOrdinal] = new SqlParameter("@endDate", eatr.EndDate.Value.ToString());
+
+                if (eatr.FieldOfStudy != null)
+                    param[eatr.FieldOfStudy.ParamOrdinal] = new SqlParameter("@fieldOfStudy", eatr.FieldOfStudy.Value.ToString());
+
+
+
+
+                param[eatr.Length - 3] = new SqlParameter("@sessionID", sm.Session().SessionID);
+
+                param[eatr.Length - 2] = new SqlParameter("@error", null);
+                param[eatr.Length - 2].DbType = DbType.Boolean;
+                param[eatr.Length - 2].Direction = ParameterDirection.Output;
+
+                param[eatr.Length - 1] = new SqlParameter("@nodeid", null);
+                param[eatr.Length - 1].DbType = DbType.Int64;
+                param[eatr.Length - 1].Direction = ParameterDirection.Output;
+
+                // TODO
+                SqlCommand comm = GetDBCommand(ref dbconnection, "[Edit.Module].[CustomEditEducationalTraining.StoreItem]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param);
+                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                ExecuteSQLDataCommand(comm);
+
+
+                comm.Connection.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+
+                error = Convert.ToBoolean(param[eatr.Length - 2].Value);
+
+                Framework.Utilities.Cache.AlterDependency(eatr.EducationalTrainingForID.Value.ToString());
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+
+            return error;
+
+        }
+
+        #endregion
 
 
         #region "Request and Param classes for edit of a triple"
@@ -1671,6 +1886,7 @@ namespace Profiles.Edit.Utilities
 
         }
 
+        /*  UCSF old stuff
         private class EducationalTrainingRequest
         {
             public EducationalTrainingRequest() { }
@@ -1722,6 +1938,61 @@ namespace Profiles.Edit.Utilities
 
 
         }
+        */
+
+        private class EducationalTrainingRequest
+        {
+            public EducationalTrainingRequest() { }
+
+            public StoreNodeParam ExistingEducationalTrainingURI { get; set; }
+            public StoreNodeParam EducationalTrainingForID { get; set; }
+            public StoreNodeParam Institution { get; set; }
+            public StoreNodeParam Location { get; set; }
+            public StoreNodeParam Degree { get; set; }
+            public StoreNodeParam EndDate { get; set; }
+            public StoreNodeParam FieldOfStudy { get; set; }
+
+
+
+            public int Length
+            {
+                get
+                {
+                    int length = 0;
+
+                    if (ExistingEducationalTrainingURI != null)
+                        length++;
+
+                    if (EducationalTrainingForID != null)
+                        length++;
+
+                    if (Institution != null)
+                        length++;
+
+                    if (Location != null)
+                        length++;
+
+                    if (Degree != null)
+                        length++;
+
+                    if (EndDate != null)
+                        length++;
+
+                    if (FieldOfStudy != null)
+                        length++;
+
+                    //then add SessionID, Error and NodeID params for the array creation
+                    length = length + 3;
+
+
+                    return length;
+
+                }
+            }
+
+
+        }
+
         #endregion
 
         #region ActivityLog

@@ -106,14 +106,13 @@ namespace Profiles.ORNG.Modules.Gadgets
             {
                 pnlSecurityOptions.Visible = false;
                 litGadget.Text = "This feature is currently turned off on your system";
+                return;
             }
-            else 
-            {
-                // We need to render the div even if we want to hide it, otherwise OpenSocial will not work
-                // so we use an ugly trick to turn it on and off in javascript
-                litGadget.Text = "<div id='" + gadget.GetChromeId() + "' class='gadgets-gadget-parent' style ='display: " + (hasGadget ? "block" : "none") + "'></div>";
-                om.LoadAssets();
-            }
+
+            // We need to render the div even if we want to hide it, otherwise OpenSocial will not work
+            // so we use an ugly trick to turn it on and off in javascript
+            litGadget.Text = "<div id='" + gadget.GetChromeId() + "' class='gadgets-gadget-parent' style ='display: " + (hasGadget ? "block" : "none") + "'></div>";
+            om.LoadAssets();
 
             if (hasGadget)
             {

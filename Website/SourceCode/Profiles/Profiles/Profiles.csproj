@@ -198,6 +198,7 @@
     <Content Include="Framework\Images\ucsfProfilesLogo.png" />
     <Content Include="Framework\Images\video-ad.png" />
     <Content Include="Framework\JavaScript\UCSF.js" />
+    <Content Include="GitVersion.txt" />
     <Content Include="Global.asax" />
     <Content Include="google6b93ad5a56d431a7.html" />
     <Content Include="History\ActivityDetails.aspx" />

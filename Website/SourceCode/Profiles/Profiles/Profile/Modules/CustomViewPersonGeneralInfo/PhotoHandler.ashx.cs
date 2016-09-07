@@ -69,66 +69,66 @@ namespace Profiles.Profile.Modules.ProfileImage
                 if (context.Request.QueryString["Height"] != null)
                 {
                     height = Convert.ToInt32(context.Request.QueryString["Height"]);
+                }
 
-                    byte[] image = (byte[])Framework.Utilities.Cache.FetchObject(GetCacheKey(nodeid, width, height));
+                byte[] image = (byte[])Framework.Utilities.Cache.FetchObject(GetCacheKey(nodeid, width, height));
 
-                    if (image == null)
+                if (image == null)
+                {
+                    // stuff below this and if statement is what makes it slow
+                    Framework.Utilities.RDFTriple request = new Profiles.Framework.Utilities.RDFTriple(nodeid);
+
+                    request.Expand = true;
+                    request.ShowDetails = true;
+                    request.ExpandRDFList = "<ExpandRDF Class=\"http://xmlns.com/foaf/0.1/Person\" Property=\"http://vivoweb.org/ontology/core#authorInAuthorship\" Limit=\"1\" />";
+                    Framework.Utilities.Namespace xmlnamespace = new Profiles.Framework.Utilities.Namespace();
+                    XmlDocument person;
+
+                    person = data.GetRDFData(request);
+                    XmlNamespaceManager namespaces = xmlnamespace.LoadNamespaces(person);
+
+                    byte[] rawimage = null;
+                    if (person.SelectSingleNode("rdf:RDF/rdf:Description[1]/prns:mainImage/@rdf:resource", namespaces) != null)
                     {
-                        // stuff below this and if statement is what makes it slow
-                        Framework.Utilities.RDFTriple request = new Profiles.Framework.Utilities.RDFTriple(nodeid);
-
-                        request.Expand = true;
-                        request.ShowDetails = true;
-                        request.ExpandRDFList = "<ExpandRDF Class=\"http://xmlns.com/foaf/0.1/Person\" Property=\"http://vivoweb.org/ontology/core#authorInAuthorship\" Limit=\"1\" />";
-                        Framework.Utilities.Namespace xmlnamespace = new Profiles.Framework.Utilities.Namespace();
-                        XmlDocument person;
-
-                        person = data.GetRDFData(request);
-                        XmlNamespaceManager namespaces = xmlnamespace.LoadNamespaces(person);
-
-                        byte[] rawimage = null;
-                        if (person.SelectSingleNode("rdf:RDF/rdf:Description[1]/prns:mainImage/@rdf:resource", namespaces) != null)
-                        {
-                            rawimage = data.GetUserPhotoList(nodeid);
-                        }
-                        else if (thumbnail)
-                        {
-                            rawimage = silhouetteImage;
-                        }
-                        if (rawimage != null)
-                        {
-                            Edit.Utilities.DataIO resize = new Profiles.Edit.Utilities.DataIO();
-                            image = resize.ResizeImageFile(rawimage, width, height);
-                            // we are caching silhouettes many times, but that is OK
-                            Framework.Utilities.Cache.Set(GetCacheKey(nodeid, width, height), image, nodeid, request.Session.SessionID);
-                        }
+                        rawimage = data.GetUserPhotoList(nodeid);
                     }
-
-                    if (image != null)
+                    else if (thumbnail)
                     {
-                        Stream stream = new System.IO.MemoryStream(image);
-
-                        // Set up the response settings
-                        context.Response.ContentType = "image/jpeg";
-                        context.Response.Cache.SetExpires(DateTime.Now.AddDays(7));
-                        context.Response.Cache.SetCacheability(HttpCacheability.Public);
-                        context.Response.Cache.SetValidUntilExpires(true);
-                        context.Response.BufferOutput = false;
-                        context.Response.AddHeader("Content-Length", stream.Length.ToString());
-
-                        const int buffersize = 1024 * 16;
-                        byte[] buffer2 = new byte[buffersize];
-                        int count = stream.Read(buffer2, 0, buffersize);
-                        while (count > 0)
-                        {
-                            context.Response.OutputStream.Write(buffer2, 0, count);
-                            count = stream.Read(buffer2, 0, buffersize);
-                        }
+                        rawimage = silhouetteImage;
                     }
-                    else
+                    if (rawimage != null)
                     {
-                        context.Response.Write("No Image Found");
+                        Edit.Utilities.DataIO resize = new Profiles.Edit.Utilities.DataIO();
+                        image = resize.ResizeImageFile(rawimage, width, height);
+                        // we are caching silhouettes many times, but that is OK
+                        Framework.Utilities.Cache.Set(GetCacheKey(nodeid, width, height), image, nodeid, request.Session.SessionID);
                     }
+                }
+
+                if (image != null)
+                {
+                    Stream stream = new System.IO.MemoryStream(image);
+
+                    // Set up the response settings
+                    context.Response.ContentType = "image/jpeg";
+                    context.Response.Cache.SetExpires(DateTime.Now.AddDays(7));
+                    context.Response.Cache.SetCacheability(HttpCacheability.Public);
+                    context.Response.Cache.SetValidUntilExpires(true);
+                    context.Response.BufferOutput = false;
+                    context.Response.AddHeader("Content-Length", stream.Length.ToString());
+
+                    const int buffersize = 1024 * 16;
+                    byte[] buffer2 = new byte[buffersize];
+                    int count = stream.Read(buffer2, 0, buffersize);
+                    while (count > 0)
+                    {
+                        context.Response.OutputStream.Write(buffer2, 0, count);
+                        count = stream.Read(buffer2, 0, buffersize);
+                    }
+                }
+                else
+                {
+                    context.Response.Write("No Image Found");
                 }
             }
         }

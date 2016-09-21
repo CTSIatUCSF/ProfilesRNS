@@ -62,7 +62,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
   overflow-x: hidden;
 }
 #publicationTimelineGraph img {
-  padding: 10px 0 0 44px;
+  padding: 10px 0 0 24px;
   display: block;
 }
 #conceptPub #publicationTimelineGraph {

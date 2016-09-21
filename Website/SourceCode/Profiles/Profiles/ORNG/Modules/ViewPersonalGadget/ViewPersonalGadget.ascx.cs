@@ -56,7 +56,10 @@ namespace Profiles.ORNG.Modules.Gadgets
                 uri = node != null ? node.Value : null;
             }
             om = OpenSocialManager.GetOpenSocialManager(uri, Page);
-            gadget = om.AddOntologyGadget(Convert.ToInt32(base.GetModuleParamString("AppId")), base.GetModuleParamString("View"), base.GetModuleParamString("OptParams"));
+            if (om.IsVisible())
+            {
+                gadget = om.AddOntologyGadget(Convert.ToInt32(base.GetModuleParamString("AppId")), base.GetModuleParamString("View"), base.GetModuleParamString("OptParams"));
+            }
         }
 
         private void DrawProfilesModule()

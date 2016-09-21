@@ -120,7 +120,7 @@ GO
 
 
 ALTER PROCEDURE [ORNG.].[AddAppToPerson]
-@SubjectID BIGINT=NULL, @SubjectURI NVARCHAR(255)=NULL, @AppID INT, @SessionID UNIQUEIDENTIFIER=NULL, @Error BIT=NULL OUTPUT, @NodeID BIGINT=NULL OUTPUT
+@SubjectID BIGINT=NULL, @SubjectURI nvarchar(255)=NULL, @AppID INT, @SessionID UNIQUEIDENTIFIER=NULL, @Error BIT=NULL OUTPUT, @NodeID BIGINT=NULL OUTPUT
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -186,83 +186,80 @@ BEGIN
 			WHERE c.Class = 'http://xmlns.com/foaf/0.1/Person'
 				AND c.Property = @PredicateURI
 				AND c.NetworkProperty IS NULL
-				
+
+		-- Change the security group of the triple
 		EXEC [RDF.].[GetStoreTriple] @SubjectID = @SubjectID, -- bigint
 									 @ObjectID = @AppInstanceID, -- bigint
 									 @PredicateURI = @PredicateURI, -- varchar(400)
 									 @ViewSecurityGroup = @ViewSecurityGroup, -- bigint
 									 @SessionID = NULL, -- uniqueidentifier
 									 @Error = NULL -- bit
-
-		-- Exit the proc
-		RETURN;
 	END
-
-
-	----------------------------------------------------------------
-	-- Add the app to the person for the first time
-	----------------------------------------------------------------
-	SELECT @Error = 0
-	BEGIN TRAN
-		-- We want Type 2.  Lookup internal type from import.triple, pass in AppID
-		EXEC [RDF.].GetStoreNode	@Class = 'http://orng.info/ontology/orng#ApplicationInstance',
-									@InternalType = @InternalType,
-									@InternalID = @InternalID,
-									@SessionID = @SessionID, 
-									@Error = @Error OUTPUT, 
-									@NodeID = @NodeID OUTPUT
-		-- for some reason, this Status in [RDF.Stage].InternalNodeMap is set to 0, not 3.  This causes issues so
-		-- we fix
-		UPDATE [RDF.Stage].[InternalNodeMap] SET [Status] = 3 WHERE NodeID = @NodeID						
+	ELSE
+	BEGIN
+		----------------------------------------------------------------
+		-- Add the app to the person for the first time
+		----------------------------------------------------------------
+		SELECT @Error = 0
+		BEGIN TRAN
+			-- We want Type 2.  Lookup internal type from import.triple, pass in AppID
+			EXEC [RDF.].GetStoreNode	@Class = 'http://orng.info/ontology/orng#ApplicationInstance',
+										@InternalType = @InternalType,
+										@InternalID = @InternalID,
+										@SessionID = @SessionID, 
+										@Error = @Error OUTPUT, 
+										@NodeID = @NodeID OUTPUT
+			-- for some reason, this Status in [RDF.Stage].InternalNodeMap is set to 0, not 3.  This causes issues so
+			-- we fix
+			UPDATE [RDF.Stage].[InternalNodeMap] SET [Status] = 3 WHERE NodeID = @NodeID						
 			
-		EXEC [RDF.].GetStoreNode @Value = @Label, @Language = NULL, @DataType = NULL,
-			@SessionID = @SessionID, @Error = @Error OUTPUT, @NodeID = @LabelID OUTPUT	
+			EXEC [RDF.].GetStoreNode @Value = @Label, @Language = NULL, @DataType = NULL,
+				@SessionID = @SessionID, @Error = @Error OUTPUT, @NodeID = @LabelID OUTPUT	
 
-		-- Add the Type
-		EXEC [RDF.].GetStoreTriple	@SubjectID = @NodeID,
-									@PredicateURI = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-									@ObjectURI = 'http://orng.info/ontology/orng#ApplicationInstance',
-									@SessionID = @SessionID,
-									@Error = @Error OUTPUT
-		-- Add the Label
-		EXEC [RDF.].GetStoreTriple	@SubjectID = @NodeID,
-									@PredicateURI = 'http://www.w3.org/2000/01/rdf-schema#label',
-									@ObjectID = @LabelID,
-									@SessionID = @SessionID,
-									@Error = @Error OUTPUT
-		-- Link the ApplicationInstance to the Application
-		EXEC [RDF.].GetStoreTriple	@SubjectID = @NodeID,
-									@PredicateURI = 'http://orng.info/ontology/orng#applicationInstanceOfApplication',
-									@ObjectID = @ApplicationNodeID,
-									@SessionID = @SessionID,
-									@Error = @Error OUTPUT		
-		-- Link the ApplicationInstance to the person
-		EXEC [RDF.].GetStoreTriple	@SubjectID = @NodeID,
-									@PredicateURI = 'http://orng.info/ontology/orng#applicationInstanceForPerson',
-									@ObjectID = @SubjectID,
-									@SessionID = @SessionID,
-									@Error = @Error OUTPUT								
-		-- Link the person to the ApplicationInstance
-		EXEC [RDF.].GetStoreTriple	@SubjectID = @SubjectID,
-									@PredicateURI = @PredicateURI,
-									@ObjectID = @NodeID,
-									@SessionID = @SessionID,
-									@Error = @Error OUTPUT
-		
-		-- wire in the filter to both the import and live tables
-		SELECT @PERSON_FILTER_ID = (SELECT PersonFilterID FROM Apps WHERE AppID = @AppID AND PersonFilterID NOT IN (
-				SELECT personFilterId FROM [Profile.Data].[Person.FilterRelationship] WHERE PersonID = @PersonID))
-		IF (@PERSON_FILTER_ID IS NOT NULL) 
-			BEGIN
-				INSERT [Profile.Import].[PersonFilterFlag]
-					SELECT InternalUserName, PersonFilter FROM [Profile.Data].[Person], [Profile.Data].[Person.Filter]
-						WHERE PersonID = @PersonID AND PersonFilterID = @PERSON_FILTER_ID
-				INSERT [Profile.Data].[Person.FilterRelationship](PersonID, personFilterId) VALUES (@PersonID, @PERSON_FILTER_ID)
-			END
-	COMMIT	
+			-- Add the Type
+			EXEC [RDF.].GetStoreTriple	@SubjectID = @NodeID,
+										@PredicateURI = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+										@ObjectURI = 'http://orng.info/ontology/orng#ApplicationInstance',
+										@SessionID = @SessionID,
+										@Error = @Error OUTPUT
+			-- Add the Label
+			EXEC [RDF.].GetStoreTriple	@SubjectID = @NodeID,
+										@PredicateURI = 'http://www.w3.org/2000/01/rdf-schema#label',
+										@ObjectID = @LabelID,
+										@SessionID = @SessionID,
+										@Error = @Error OUTPUT
+			-- Link the ApplicationInstance to the Application
+			EXEC [RDF.].GetStoreTriple	@SubjectID = @NodeID,
+										@PredicateURI = 'http://orng.info/ontology/orng#applicationInstanceOfApplication',
+										@ObjectID = @ApplicationNodeID,
+										@SessionID = @SessionID,
+										@Error = @Error OUTPUT		
+			-- Link the ApplicationInstance to the person
+			EXEC [RDF.].GetStoreTriple	@SubjectID = @NodeID,
+										@PredicateURI = 'http://orng.info/ontology/orng#applicationInstanceForPerson',
+										@ObjectID = @SubjectID,
+										@SessionID = @SessionID,
+										@Error = @Error OUTPUT								
+			-- Link the person to the ApplicationInstance
+			EXEC [RDF.].GetStoreTriple	@SubjectID = @SubjectID,
+										@PredicateURI = @PredicateURI,
+										@ObjectID = @NodeID,
+										@SessionID = @SessionID,
+										@Error = @Error OUTPUT
+		COMMIT	
+	END
+			
+	-- wire in the filter to both the import and live tables
+	SELECT @PERSON_FILTER_ID = (SELECT PersonFilterID FROM Apps WHERE AppID = @AppID AND PersonFilterID NOT IN (
+			SELECT personFilterId FROM [Profile.Data].[Person.FilterRelationship] WHERE PersonID = @PersonID))
+	IF (@PERSON_FILTER_ID IS NOT NULL) 
+		BEGIN
+			INSERT [Profile.Import].[PersonFilterFlag]
+				SELECT InternalUserName, PersonFilter FROM [Profile.Data].[Person], [Profile.Data].[Person.Filter]
+					WHERE PersonID = @PersonID AND PersonFilterID = @PERSON_FILTER_ID
+			INSERT [Profile.Data].[Person.FilterRelationship](PersonID, personFilterId) values (@PersonID, @PERSON_FILTER_ID)
+		END
 END
-
-
 
 GO
 

@@ -1,4 +1,4 @@
-@echo off
+rem @echo off
 set WKDIR=%~dp0
 if "%1" == "" (
 	echo ERROR, no script name
@@ -9,8 +9,10 @@ if "%1" == "" (
 	shift
 )
 :BEGIN
-if "%1" == "" goto :EXEC
-set PARAMS=%PARAMS% %1
+if $%1$ == $$ goto :EXEC
+set NEWPARAM=%1
+
+set PARAMS=%PARAMS% %NEWPARAM:"=%
 shift
 goto :BEGIN
 
@@ -47,5 +49,5 @@ if %MONTH_NUM_DEL% LEQ 9 (
 )
 set LOGFILE_DEL=%WKDIR%%MONTH_CH_DEL%%YEAR_DEL%proc.log
 if exist %LOGFILE_DEL% del /q %LOGFILE_DEL%
-powershell -executionpolicy bypass -command "%SCRIPT% %PARAMS%"
+echo powershell -executionpolicy bypass -command "%SCRIPT%" %PARAMS%
 

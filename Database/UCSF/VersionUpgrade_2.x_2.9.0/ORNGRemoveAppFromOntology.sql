@@ -1,9 +1,13 @@
-/****** Object:  StoredProcedure [ORNG.].[RemoveAppFromOntology]    Script Date: 6/3/2016 10:54:02 AM ******/
+USE [profiles_ucsf_29]
+GO
+
+/****** Object:  StoredProcedure [ORNG.].[RemoveAppFromOntology]    Script Date: 10/13/2016 2:25:20 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 ALTER PROCEDURE [ORNG.].[RemoveAppFromOntology](@appId INT, @SessionID UNIQUEIDENTIFIER=NULL, @Error BIT=NULL OUTPUT, @NodeID BIGINT=NULL OUTPUT)
 AS
@@ -57,6 +61,6 @@ BEGIN
 END
 
 
-GO
 
+GO
 

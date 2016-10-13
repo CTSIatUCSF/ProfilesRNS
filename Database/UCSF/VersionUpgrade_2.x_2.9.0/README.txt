@@ -1,0 +1,1 @@
+Manually drop old UCSF ActivityLog tables and SP's, after first confirming that the data has been moved over

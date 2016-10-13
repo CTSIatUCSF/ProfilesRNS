@@ -47,34 +47,6 @@ GO
 SET ANSI_PADDING OFF
 GO
 
-/****** Object:  Table [UCSF.].[ActivityLog]    Script Date: 10/11/2013 10:33:48 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TABLE [UCSF.].[ActivityLog](
-	[activityLogId] [int] IDENTITY(1,1) NOT NULL,
-	[userId] [int] NULL,
-	[personId] [int] NULL,
-	[methodName] [nvarchar](255) NULL,
-	[property] [nvarchar](255) NULL,
-	[privacyCode] [int] NULL,
-	[param1] [nvarchar](255) NULL,
-	[param2] [nvarchar](255) NULL,
-	[createdDT] [datetime] NOT NULL,
- CONSTRAINT [PK__activityLog] PRIMARY KEY CLUSTERED 
-(
-	[activityLogId] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
-ALTER TABLE [UCSF.].[ActivityLog] ADD  CONSTRAINT [DF_activityLog_createdDT]  DEFAULT (getdate()) FOR [createdDT]
-GO
-
 ---------------------------------------------------------------------------------------------------------------------
 --
 --  Create Views
@@ -194,13 +166,7 @@ as
 
 GO
 
----------------------------------------------------------------------------------------------------------------------
---
---	Create Functions
---
----------------------------------------------------------------------------------------------------------------------
-
-/****** Object:  UserDefinedFunction [UCSF].[fnGeneratePersonID]    Script Date: 10/11/2013 12:44:18 ******/
+/****** Object:  View [UCSF.].[vwPublication.MyPub.General]    Script Date: 10/13/2016 12:52:26 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -208,20 +174,17 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 
-create function [UCSF.].[fnGeneratePersonID]
-(
-	@EmployeeID varchar(10)
-)
-RETURNS int
-AS
-BEGIN
-	-- Return the result of the function
-	RETURN 2569307 + cast(SUBSTRING(@EmployeeID, 2, 7) as numeric) 
-
-END
-
+CREATE VIEW [UCSF.].[vwPublication.MyPub.General] AS
+SELECT ir.EntityID, g.* FROM [Profile.Data].[Publication.Entity.InformationResource] ir JOIN [Profile.Data].[Publication.MyPub.General] g ON
+ir.MPID = g.MPID WHERE ir.MPID IS NOT NULL;
 
 GO
+---------------------------------------------------------------------------------------------------------------------
+--
+--	Create Functions
+--
+---------------------------------------------------------------------------------------------------------------------
+
 
 /****** Object:  UserDefinedFunction [UCSF.].[fn_UrlCleanName]    Script Date: 10/11/2013 10:59:38 ******/
 SET ANSI_NULLS ON
@@ -375,7 +338,8 @@ END
 
 GO
 
-/****** Object:  StoredProcedure [UCSF.].[LogActivity]    Script Date: 10/11/2013 10:34:48 ******/
+
+/****** Object:  StoredProcedure [UCSF.].[AddProxyByInternalUsername]    Script Date: 10/13/2016 12:34:33 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -383,42 +347,19 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 
-CREATE PROCEDURE [UCSF.].[LogActivity]
-	@userId int,
-	@personId int,
-	@methodName varchar(255),
-	@property varchar(255),
-	@privacyCode int,
-	@param1 varchar(255),
-	@param2 varchar(255)
+
+CREATE PROCEDURE [UCSF.].[AddProxyByInternalUsername]
+	@proxy varchar(255),
+	@user varchar(255)
 AS
 BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
+	DECLARE @UserID int
+	DECLARE @ProxyForUserID int
+	
+	SELECT @UserID = UserID FROM [User.Account].[User] WHERE InternalUserName = @proxy
+	SELECT @ProxyForUserID = UserID FROM [User.Account].[User] WHERE InternalUserName = @user
 
-	INSERT INTO [UCSF.].[ActivityLog] (userId, personId, methodName, property, privacyCode, param1, param2) 
-		VALUES(@userId, @personId, @methodName, @property, @privacyCode, @param1, @param2)
+	INSERT INTO [User.Account].DesignatedProxy values (@UserID, @ProxyForUserID)
+		
 END
-
-
-GO
-
-/****** Object:  StoredProcedure [UCSF.].[ReadActivityLog]    Script Date: 10/11/2013 10:35:30 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE PROCEDURE [UCSF.].[ReadActivityLog] @methodName nvarchar(255), @afterDT datetime
-AS   
-
-SELECT p.personid, p.displayname, p.url_name, p.emailaddr, l.createdDT
-  FROM [UCSF.].[ActivityLog] l  join [UCSF].[vwPersonExport] p on l.personId = p.PersonID
-  where l.methodName = @methodName and l.createdDT >= isnull(@afterDT, '01/01/1970')
-   order by activityLogId desc;
-
-GO
-
 

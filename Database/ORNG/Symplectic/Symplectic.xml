@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<Settings>
+	<WebService>
+		<URL>https://qa-oapolicy.universityofcalifornia.edu:8002/elements-secure-api</URL>
+		<WSUser>[Symplectic Service User Name]</WSUser>
+		<WSPassword>[Symplectic Service User Password]</WSPassword>
+	</WebService>
+	<Database>
+		<DBServer>stage-sql-ctsi.ucsf.edu</DBServer>
+		<DBName>profiles_ucsf</DBName>
+		<DBUser>App_Profiles10</DBUser>
+		<DBPassword>Password1234</DBPassword>
+	</Database>
+</Settings>
+		
+

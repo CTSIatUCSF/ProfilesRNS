@@ -64,16 +64,6 @@
   if(window.location.href.indexOf("coauthors") == -1) {
     $("table").removeAttr("border").removeAttr("rules");
 
-    // get links count
-    $.ajax({
-        type: "GET",
-        url: _rootDomain + "/CustomAPI/v1/Statistics.aspx",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (response) { buildGadgetAds(response.links); },
-        failure: function (response) { buildGadgetAds('2147'); }
-    });
-
     // Back to top http://typicalwhiner.com/116/effortless-jquery-floating-back-to-top-script-v2/
     var pxShow = 300; //height on which the button will show  
     var fadeInTime = 1000;  //how slow/fast you want the button to show  
@@ -97,63 +87,3 @@
 
   }
 });
-
- function buildGadgetAds(linksCount) {
-    //Gadget ads  
-    var mentor = "<li><div class='badge'>"
-            + "<img src='" + _rootDomain +"/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?person=4669955'   alt='Jeanette Brown' width='62' />"
-            + "<h2 class='badge-top'>Passionate about Mentoring?</h2>"
-            + "<p><a href='" + _rootDomain + "/login/default.aspx?method=login&amp;edit=true'>Let others know. Add to your UCSF Profile.</a></p>"
-            + "<p><strong><a href='" + _rootDomain + "/jeanette.brown'>Jeanette Brown</a></strong> is a Faculty Mentor!</p>"
-            + "</div></li>";
-    var links = "<li><div class='badge'>"  // not used
-            + "<p><span class='counter'>" + linksCount + "</span> profiles now<br />"
-            + "include <strong>links</strong> to departments, labs and other websites.</p>"
-            + "<p class='linkAd'>"
-            + "<a href='" + _rootDomain + "/login/default.aspx?method=login&amp;edit=true'>Add web links <br />to your profile</a></p>"
-            + "</div></li>";
-    var chattergroup = "<li class='chatter'><a href='" + _rootDomain + "/login/default.aspx?method=login' class='chatterlink'>"
-            + "<div class='badge'><p style='text-align:center'>"
-            + "<img src='" + _rootDomain + "/framework/images/chatter-group.png' width='130' height='95'/></p>"
-            + "<p><strong>Login</strong> to create a "
-            + "UCSF Chatter group right from UCSF Profiles!</p></div></a></li>";
-    var chatterfollow = "<li class='chatter'><a href='" + _rootDomain + "/login/default.aspx?method=login' class='chatterlink'>"
-            + "<div class='badge'><p style='text-align:center'>"
-            + "<img src='" + _rootDomain + "/framework/images/chatter-follow.png' width='130' height='95'/></p>"
-            + "<p><strong>Login</strong> and follow people on UCSF Chatter! "
-            + "Receive updates when people you follow publish new articles.</p></div></a></li>";
-    var videointro = "<li><a href='https://www.youtube.com/watch?v=YCOA2GWyplY' target='_blank'>"
-            + "<div class='badge'><p style='padding-left:3px'>"
-            + "<img src='" + _rootDomain + "/framework/images/video-ad.png' /></p>"
-            + "<p><strong>Watch UCSF Profiles video introduction!</strong></p></div></a></li>";
-    // for individual profile pages
-    if ($('.basicInfo').length) {
-        var badge = "<ul id='badge'>" + chattergroup + chatterfollow + "</ul>";
-        $(badge).insertAfter('.profilesContentPassive');
-        $(".badge").css('width', '192px');
-        var login = $('#signinlink').attr('href');
-        $('.chatterlink').attr('href', login);
-        $("#badge li").hide();
-        randomtip();
-    }
-    // for search form pages
-    if ($('.nonavbar').length && !$('#FSSiteDescription').length) {
-        var badge = "<ul id='badge'>" + chattergroup + chatterfollow + mentor + videointro + "</ul>";
-        $(badge).insertAfter('.profilesContentPassive');
-        var login = $('#signinlink').attr('href');
-        $('.chatterlink').attr('href', login);
-        $("#badge li").hide();
-        randomtip();
-    }
-    if ($('.mainmenu li').last().text() == 'Sign out') {
-        $("#badge").hide();
-    }
-
-}
-
-
-        this.randomtip = function () {
-            var length = $("#badge li").length;
-            var ran = Math.floor(Math.random() * length) + 1;
-            $("#badge li:nth-child(" + ran + ")").show();
-        };

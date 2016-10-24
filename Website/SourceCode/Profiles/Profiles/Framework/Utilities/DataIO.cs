@@ -505,6 +505,12 @@ namespace Profiles.Framework.Utilities
 
         }
 
+
+        public SqlDataReader GetSQLDataReader(String CmdText, CommandType CmdType, CommandBehavior CmdBehavior, SqlParameter[] sqlParam)
+        {
+            return GetSQLDataReader("ProfilesDB", CmdText, CmdType, CmdBehavior, sqlParam);
+        }
+
         public SqlDataReader GetSQLDataReader(string ConnectionString, String CmdText, CommandType CmdType, CommandBehavior CmdBehavior, SqlParameter[] sqlParam)
         {
 
@@ -809,7 +815,7 @@ namespace Profiles.Framework.Utilities
         protected void EditActivityLog(long subjectID, string property, string privacyCode, string param1, string param2)
         {
             Cache.AlterDependency(subjectID.ToString());
-            ActivityLog(subjectID, 0, property, 0, privacyCode, null, null);
+            ActivityLog(subjectID, 0, property, 0, privacyCode, param1, param2);
         }
 
         private void ActivityLog(long subjectID, int personId, string property, long propertyID, string privacyCode, string param1, string param2)

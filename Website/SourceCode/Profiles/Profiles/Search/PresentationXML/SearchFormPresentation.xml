@@ -18,6 +18,14 @@
           <Param Name="GadgetClass">gadgets-gadget-parent</Param>
         </ParamList>
       </Module>
+      <Module ID="Statistics">
+      </Module>
+      <Module ID="ActivityHistory">
+        <ParamList>
+          <Param Name="Show">3</Param>
+          <Param Name="SeeMore">True</Param>
+        </ParamList>
+      </Module>
     </Panel>
     <Panel Name="Find People" Alias="people" Type="main" TabType="Default" TabSort="0">
       <Module ID="SearchPerson">

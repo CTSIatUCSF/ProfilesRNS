@@ -1,18 +1,3 @@
-TODO:
-Add ontology for UCSF and ORNG to [Ontology.].[Namespace] and [Ontology.].[Import.Owl]
-
-Run:
-
-UCSF_CreateSchema.sql
-FixAuthorAffiliation.sql
-DeleteNarrativeBugHackFix.sql
-UpdateSession.sql
-ProfilesFrameworkResolveURL.sql
-
-Brand:
-Run:
-UpdatePresentationXML.sql
-
-ORNG DB Items:
-FixLabels.sql
-
+To create a UCSF version of Profiles:
+Run all scripts in here, starting with UCSF_CreateSchema.sql.
+Afterwards run the ones in VersionUpgrade_* that are specific to your upgrade or target version

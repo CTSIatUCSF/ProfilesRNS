@@ -129,6 +129,7 @@
     <Content Include="About\Images\tryit.gif" />
     <Content Include="About\Images\video.JPG" />
     <Content Include="About\JavaScript\UCSF.js" />
+    <Content Include="About\Modules\Statistics\Statistics.ascx" />
     <Content Include="About\NewFeatures.aspx" />
     <Content Include="About\Optin.aspx" />
     <Content Include="About\PresentationXML\AboutProfiles.xml" />
@@ -145,7 +146,6 @@
     <Content Include="CustomAPI\v1\JSONProfile.aspx" />
     <Content Include="CustomAPI\v1\PubDate.aspx" />
     <Content Include="CustomAPI\v1\PubXML.aspx" />
-    <Content Include="CustomAPI\v1\Statistics.aspx" />
     <Content Include="CustomAPI\v1\XMLProfile.aspx" />
     <Content Include="CustomAPI\v2\Default.aspx" />
     <Content Include="denied.txt" />
@@ -163,8 +163,10 @@
     <Content Include="Edit\JavaScript\UCSF.js" />
     <Content Include="Edit\Modules\CustomEditEagleI\CustomEditEagleI.ascx" />
     <Content Include="Edit\Modules\CustomEditEducationalTraining\CustomEditEducationalTraining.ascx" />
+    <Content Include="Edit\Modules\CustomEditFreetextKeyword\CustomEditFreetextKeyword.ascx" />
+    <Content Include="Edit\Modules\CustomEditFreetextKeyword\keywordAutocomplete.aspx" />
     <Content Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx" />
-    <Content Include="favicon.ico" />
+    <Content Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx" />
     <Content Include="Framework\CSS\UCSF.css" />
     <Content Include="Framework\Images\arrow-orgbg.gif" />
     <Content Include="Framework\Images\arrow-tealbg.gif" />
@@ -190,8 +192,12 @@
     <Content Include="Framework\Images\ucsf.png" />
     <Content Include="Framework\Images\video-ad.png" />
     <Content Include="Framework\JavaScript\UCSF.js" />
+    <Content Include="GitVersion.txt" />
     <Content Include="Global.asax" />
     <Content Include="google6b93ad5a56d431a7.html" />
+    <Content Include="History\ActivityDetails.aspx" />
+    <Content Include="History\Modules\ActivityHistory\ActivityHistory.ascx" />
+    <Content Include="History\PresentationXML\ActivityDetails.xml" />
     <Content Include="Login\Modules\ShibLogin\ShibLogin.ascx" />
     <Content Include="Login\PresentationXML\ADLoginFormPresentation.xml" />
     <Content Include="Login\PresentationXML\ShibbolethLoginPresentation.xml" />
@@ -271,6 +277,7 @@
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\CustomViewPersonGeneralInfo.xslt" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx" />
+    <Content Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx" />
     <Content Include="Profile\Modules\NetworkClusterFlash\crossdomain.xml" />
     <Content Include="Profile\Modules\NetworkClusterFlash\Default.aspx" />
     <Content Include="Profile\Modules\NetworkClusterFlash\Images\yui-loading.gif" />
@@ -311,6 +318,7 @@
     <Content Include="Profile\Modules\NetworkRadial\JavaScript\viz.js" />
     <Content Include="Profile\Modules\NetworkRadial\JavaScript\watchdog.js" />
     <Content Include="Profile\XSLT\EducationalTraining.xslt" />
+    <Content Include="Profile\XSLT\FreetextKeyword.xslt" />
     <Content Include="Profile\XSLT\NetworkTable.xslt" />
     <Content Include="RobotsTxt.aspx" />
     <Content Include="Search\CSS\UCSF.css" />
@@ -380,6 +388,13 @@
     <Compile Include="About\Modules\About\About.ascx.designer.cs">
       <DependentUpon>About.ascx</DependentUpon>
     </Compile>
+    <Compile Include="About\Modules\Statistics\Statistics.ascx.cs">
+      <DependentUpon>Statistics.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About\Modules\Statistics\Statistics.ascx.designer.cs">
+      <DependentUpon>Statistics.ascx</DependentUpon>
+    </Compile>
     <Compile Include="About\NewFeatures.aspx.cs">
       <DependentUpon>NewFeatures.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -394,6 +409,7 @@
     <Compile Include="About\Optin.aspx.designer.cs">
       <DependentUpon>Optin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="About\Utilities\DataIO.cs" />
     <Compile Include="ActiveNetwork\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -423,10 +439,6 @@
     </Compile>
     <Compile Include="CustomAPI\v1\PubXML.aspx.cs">
       <DependentUpon>PubXML.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CustomAPI\v1\Statistics.aspx.cs">
-      <DependentUpon>Statistics.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CustomAPI\v1\XMLProfile.aspx.cs">
@@ -468,6 +480,20 @@
     <Compile Include="Edit\Modules\CustomEditEducationalTraining\CustomEditEducationalTraining.ascx.designer.cs">
       <DependentUpon>CustomEditEducationalTraining.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Edit\Modules\CustomEditFreetextKeyword\CustomEditFreetextKeyword.ascx.cs">
+      <DependentUpon>CustomEditFreetextKeyword.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditFreetextKeyword\CustomEditFreetextKeyword.ascx.designer.cs">
+      <DependentUpon>CustomEditFreetextKeyword.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditFreetextKeyword\keywordAutocomplete.aspx.cs">
+      <DependentUpon>keywordAutocomplete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditFreetextKeyword\keywordAutocomplete.aspx.designer.cs">
+      <DependentUpon>keywordAutocomplete.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx.cs">
       <DependentUpon>CustomEditListProperty.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -475,7 +501,15 @@
     <Compile Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx.designer.cs">
       <DependentUpon>CustomEditListProperty.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx.cs">
+      <DependentUpon>CustomEditResearcherRole.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx.designer.cs">
+      <DependentUpon>CustomEditResearcherRole.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Edit\Utilities\EducationalTrainingState.cs" />
+    <Compile Include="Edit\Utilities\FundingState.cs" />
     <Compile Include="Edit\Utilities\LiteralListState.cs" />
     <Compile Include="Framework\Modules\MainMenu\History.ascx.cs">
       <DependentUpon>History.ascx</DependentUpon>
@@ -486,6 +520,13 @@
     </Compile>
     <Compile Include="Framework\Utilities\UCSFIDSet.cs" />
     <Compile Include="Framework\Utilities\UserHistory.cs" />
+    <Compile Include="History\ActivityDetails.aspx.cs">
+      <DependentUpon>ActivityDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="History\ActivityDetails.aspx.designer.cs">
+      <DependentUpon>ActivityDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="History\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -493,6 +534,14 @@
     <Compile Include="History\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="History\Modules\ActivityHistory\ActivityHistory.ascx.cs">
+      <DependentUpon>ActivityHistory.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="History\Modules\ActivityHistory\ActivityHistory.ascx.designer.cs">
+      <DependentUpon>ActivityHistory.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="History\Utilities\Activity.cs" />
     <Compile Include="History\Modules\HistoryByType\HistoryByType.ascx.cs">
       <DependentUpon>HistoryByType.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -507,6 +556,7 @@
     <Compile Include="History\Modules\HistoryList\HistoryList.ascx.designer.cs">
       <DependentUpon>HistoryList.ascx</DependentUpon>
     </Compile>
+    <Compile Include="History\Utilities\DataIO.cs" />
     <Compile Include="Login\Modules\ADLogin\ADLogin.ascx.cs">
       <DependentUpon>ADLogin.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1015,6 +1065,13 @@
     </Compile>
     <Compile Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx.designer.cs">
       <DependentUpon>vcard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx.cs">
+      <DependentUpon>CustomViewResearcherRole.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx.designer.cs">
+      <DependentUpon>CustomViewResearcherRole.ascx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\HRFooter\HRFooter.ascx.cs">
       <DependentUpon>HRFooter.ascx</DependentUpon>
@@ -1787,7 +1844,9 @@
     <Content Include="Search\PresentationXML\SearchResultsPersonPresentation.xml" />
     <Content Include="Search\PresentationXML\SearchFormPresentation.xml" />
     <Content Include="Search\PresentationXML\SearchResultsEverythingPresentation.xml" />
-    <Content Include="Search\Modules\SearchResults\EverythingResults.xslt" />
+    <Content Include="Search\Modules\SearchResults\EverythingResults.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SPARQL\PresentationXML\SPARQLPresentation.xml" />
     <Content Include="SPARQL\Default.aspx" />
     <Content Include="SPARQL\Modules\SPARQLSearch\SPARQLSearch.ascx" />
@@ -1960,4 +2019,8 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>call "$(SolutionDir)AddGitVersionToBuild.bat" $(ProjectDir)
+</PreBuildEvent>
+  </PropertyGroup>
 </Project>

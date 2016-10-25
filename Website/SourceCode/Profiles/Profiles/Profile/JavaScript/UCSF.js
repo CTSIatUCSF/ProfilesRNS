@@ -79,10 +79,6 @@
         });
     }
 
-    //Education badge
-    if ($('.education') && $('.education').length) {
-        $('.education table tr td:first-child').each(function () {
-            var alma = $(this).text();
             if (alma == 'University of California, San Diego' ||
 		    alma == 'University of California San Diego' ||
 		    alma == 'University of California at San Diego' ||
@@ -90,28 +86,18 @@
 		    alma == 'UC, San Diego' ||
 		    alma == 'UC San Diego' ||
 		    alma == 'UCSD')
-                $('.profilesContentMain').addClass('alumni');
-        });
-    }
 
     //Overview expand/collapse
     if ($('.basicInfo') && $('.basicInfo').length) {
-        //$('.PropertyItemHeader:contains("Overview")').next('.PropertyGroupData').attr("id", "narrative");
-	for (var i=0;i<$('.PropertyGroupData').length;i++){
-		var isOverview = $('.PropertyGroupData')[i].firstChild.id.indexOf("overview");
-		if (isOverview >0) {
-			//var narrativeText=$('.PropertyGroupData')[i].innerText;
-			$('.PropertyGroupData')[i].id ="narrative";
-			break;
-		}
+        $('.PropertyItemHeader:contains("verview")').next('.PropertyGroupData').attr("id", "narrative");
+	$('#narrative > div').addClass('overview');
+        if ($('.overview').text().length > 800) {
+            $('.overview').addClass('box').addClass('box-collapsed');
 	}
 
-        if ($('#narrative').text().length > 800) {
-            $('#narrative').addClass('box').addClass('box-collapsed');
 	    $('.box').first().prepend("<div class='plusbutton'><span> <strong>&nbsp;...</strong> Show more</span> <img src='" + _rootDomain + "/Framework/Images/expandRound.gif' alt='+' style='vertical-align:top'  width='28' height='17'/></div><div class='minusbutton'><span>Show less</span> <img src='" + _rootDomain + "/Framework/Images/collapseRound.gif' alt='-' style='vertical-align:top' width='28' height='17'/></div>");
             $('.minusbutton').hide();
         }
-        // $('.box').addClass('box-collapsed');
         $('.plusbutton').click(function () {
             $(this).parent().removeClass('box-collapsed');
             $(this).parent().addClass('box');
@@ -129,6 +115,7 @@
 
     // altmetrics, don't attempt to load till after 7 seconds, which is 7000 milliseconds
     setTimeout(function () {
+      if ($('#publicationListAll') && $('#publicationListAll').length) {
         $("#publicationListAll li a:contains('PubMed')").each(function () {
             var pmid = $(this).attr('href').match(/(\d+)$/);
             if (pmid && pmid[0]) {
@@ -138,6 +125,7 @@
             }
         });
         $.getScript('http://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
+      }
     }, 7000);
 
 });

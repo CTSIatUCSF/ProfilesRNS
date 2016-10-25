@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Xml;
 using System.Configuration;
 using System.Web;
@@ -473,11 +474,8 @@ namespace Profiles.Framework.Utilities
 
         public void AddSQLParameters(SqlCommand sqlcmd, SqlParameter[] sqlParam)
         {
-            for (int i = 0; i < sqlParam.GetLength(0); i++)
-            {
-                sqlcmd.Parameters.Add(sqlParam[i]);
-                sqlcmd.Parameters[i].Direction = sqlParam[i].Direction;                
-            }
+	        foreach (SqlParameter sqlParameter in sqlParam.Where(s => s != null))
+		        sqlcmd.Parameters.Add(sqlParameter);
         }
 
         public SqlDataReader GetSQLDataReader(SqlCommand sqlcmd)
@@ -505,6 +503,12 @@ namespace Profiles.Framework.Utilities
             }
             return sqldr;
 
+        }
+
+
+        public SqlDataReader GetSQLDataReader(String CmdText, CommandType CmdType, CommandBehavior CmdBehavior, SqlParameter[] sqlParam)
+        {
+            return GetSQLDataReader("ProfilesDB", CmdText, CmdType, CmdBehavior, sqlParam);
         }
 
         public SqlDataReader GetSQLDataReader(string ConnectionString, String CmdText, CommandType CmdType, CommandBehavior CmdBehavior, SqlParameter[] sqlParam)
@@ -787,62 +791,85 @@ namespace Profiles.Framework.Utilities
 
         #endregion
 
-        #region "UCSF Activity Log"
+        #region "Activity Log"
 
-        protected void ActivityLog(int personId, string property, string privacyCode)
+        public void SessionActivityLog()
         {
-            ActivityLog(personId, property, privacyCode, null, null);
+            Session session = new SessionManagement().Session();
+            Cache.AlterDependency(session.SessionID);
+            ActivityLog(0, session.PersonID, null, 0, null, null, null);
         }
 
-        protected void ActivityLog(int personId, string property, string privacyCode, string param1, string param2)
+        protected void EditActivityLog(long subjectID, string property, string privacyCode)
         {
-            if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ActivityLog"]) == true)
+            Cache.AlterDependency(subjectID.ToString());
+            ActivityLog(subjectID, 0, property, 0, privacyCode, null, null);
+        }
+
+        protected void EditActivityLog(long subjectID, long propertyID, string privacyCode)
+        {
+            Cache.AlterDependency(subjectID.ToString());
+            ActivityLog(subjectID, 0, null, propertyID, privacyCode, null, null);
+        }
+
+        protected void EditActivityLog(long subjectID, string property, string privacyCode, string param1, string param2)
+        {
+            Cache.AlterDependency(subjectID.ToString());
+            ActivityLog(subjectID, 0, property, 0, privacyCode, param1, param2);
+        }
+
+        private void ActivityLog(long subjectID, int personId, string property, long propertyID, string privacyCode, string param1, string param2)
+        {
+            int userId = new SessionManagement().Session().UserID;
+            int i = 1;
+            string message = null;
+            do
             {
-                int userId = new SessionManagement().Session().UserID;
-                int i = 1;
-                string message = null;
-                do
-                {
-                    StackFrame frame = new StackFrame(i++);
-                    MethodBase method = frame.GetMethod();
-                    message = String.Format("{0}.{1}", method.DeclaringType.FullName, method.Name);
-                } while (message.IndexOf("ActivityLog") != -1);
+                StackFrame frame = new StackFrame(i++);
+                MethodBase method = frame.GetMethod();
+                message = String.Format("{0}.{1}", method.DeclaringType.FullName, method.Name);
+            } while (message.IndexOf("ActivityLog") != -1);
 
-                // lookup 
-                //Console.WriteLine(message);
-                List<SqlParameter> param = new List<SqlParameter>();
-                if (userId > 0)
-                    param.Add(new SqlParameter("@userId", userId));
-                else
-                    param.Add(new SqlParameter("@userId", DBNull.Value));
-                if (personId > 0)
-                    param.Add(new SqlParameter("@personId", personId));
-                else
-                    param.Add(new SqlParameter("@personId", DBNull.Value));
-                param.Add(new SqlParameter("@methodName", message));
-                if (property != null)
-                    param.Add(new SqlParameter("@property", property));
-                else
-                    param.Add(new SqlParameter("@property", DBNull.Value));
-                if (privacyCode != null)
-                    param.Add(new SqlParameter("@privacyCode", Convert.ToInt32(privacyCode)));
-                else
-                    param.Add(new SqlParameter("@privacyCode", DBNull.Value));
-                if (param1 != null)
-                    param.Add(new SqlParameter("@param1", param1));
-                else
-                    param.Add(new SqlParameter("@param1", DBNull.Value));
-                if (param2 != null)
-                    param.Add(new SqlParameter("@param2", param2));
-                else
-                    param.Add(new SqlParameter("@param2", DBNull.Value));
-
-                using (SqlCommand comm = GetDBCommand("", "[UCSF.].[LogActivity]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param.ToArray()))
-                {
-                    ExecuteSQLDataCommand(comm);
-                }
+            // lookup 
+            //Console.WriteLine(message);
+            List<SqlParameter> param = new List<SqlParameter>();
+            if (userId > 0)
+                param.Add(new SqlParameter("@userId", userId));
+            else
+                param.Add(new SqlParameter("@userId", DBNull.Value));
+            if (personId > 0)
+                param.Add(new SqlParameter("@personId", personId));
+            else
+            {
+                param.Add(new SqlParameter("@personId", DBNull.Value));
+                param.Add(new SqlParameter("@subjectId", subjectID));
             }
-        }
+            param.Add(new SqlParameter("@methodName", message));
+
+            if (property != null)
+                param.Add(new SqlParameter("@property", property));
+            else
+                param.Add(new SqlParameter("@property", DBNull.Value));
+            if (propertyID > 0)
+                param.Add(new SqlParameter("@propertyID", propertyID));
+            if (privacyCode != null)
+                param.Add(new SqlParameter("@privacyCode", Convert.ToInt32(privacyCode)));
+            else
+                param.Add(new SqlParameter("@privacyCode", DBNull.Value));
+            if (param1 != null)
+                param.Add(new SqlParameter("@param1", param1));
+            else
+                param.Add(new SqlParameter("@param1", DBNull.Value));
+            if (param2 != null)
+                param.Add(new SqlParameter("@param2", param2));
+            else
+                param.Add(new SqlParameter("@param2", DBNull.Value));
+
+            using (SqlCommand comm = GetDBCommand("", "[Framework.].[Log.AddActivity]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param.ToArray()))
+            {
+                ExecuteSQLDataCommand(comm);
+            }
+         }
 
         public string GetProperty(Int64 predicateId)
         {

@@ -4,7 +4,7 @@
 
 <style type="text/css">
 .profiles .profilesContentMain { width: 584px; }
-.profiles .profilesContentPassive { margin-right: 20px; }
+.profiles .profilesPageColumnLeft { padding: 6px 6px 0 8px;}
 .profiles .profilesContentMain .pageTitle h2 { display: none; }
 </style>
 
@@ -117,18 +117,21 @@
             }
         }
     }
+    $(document).ready(function () {
+	buildGadgetAds();
+    });
 </script>
 
 <asp:HiddenField ID="hdnSearch" runat="server" Value="hdnSearch"></asp:HiddenField>
 <div class="content_container">
-    <div class="tabContainer" style="margin-top: 0px;">
+    <div class="tabContainer">
         <div class="searchForm nonavbar">
             <table onkeypress="JavaScript:runScript(event);" width="100%">
                 <tbody align="left">
                     <tr>
                         <td colspan='3'>
-                            <div class='header'>
-                                Find People by Research Topic or Name</div>
+                            <%-- New class to replace inline heading styles --%>
+                            <div class="headings">
                         </td>
                     </tr>
                     <tr>
@@ -139,10 +142,13 @@
                                         <th style="width: 140px">
                                             Research Topics
                                         </th>
-                                        <td colspan="2" class="fieldOptions">
+                                        <td class="fieldOptions">
                                             <asp:TextBox runat="server" ID="txtSearchFor" CssClass="inputText"></asp:TextBox>
                                             <asp:CheckBox runat="server" ID="chkExactphrase" CssClass="unused" />
                                         </td>
+                                       <td align="center">
+					    <a href="JavaScript:search();" class="search-button">Search</a>
+                                       </td>
 <!--  NOTE: checkboxes are hidden in css
                                             Search for exact phrase
                                     </tr>
@@ -150,15 +156,17 @@
                                         <tr>
                                             <th>
                                             </th>
--->
-                                            <td style="text-decoration: none;" colspan="2">
-                                                <div style="float: left; display: inline">
-                                                    <a href="JavaScript:search();">
-                                                        <img src="<%=GetURLDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />
+                                            <td colspan="2">
+                                                <div class="search-button-container">
+                                                    <%--Inline styles on this is no longer needed as the button is now all CSS--%>
+                                                    <a href="JavaScript:search();" class="search-button">
+                                                    <%--    No longer need a search button as an image--%>
+                                                        <%--<img src="<%=GetURLDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />--%>
+                                                        Search
 						    </a>
                                                 </div>
                                             </td>
-                                        </tr>
+                                        </tr>     (cp end comment out)-->
                                     </tr>
                                 </table>
                             </div>
@@ -170,7 +178,7 @@
 <!--
                 <tr>
                     <td colspan='3'>
-                        <div style="font-size: 18px; color: #b23f45; font-weight: bold; margin-bottom: 3px;">
+                        <div class="headings">
                             Find people by name/organization</div>
                     </td>
                 </tr>
@@ -235,8 +243,8 @@
                                     <th>
                                         Researcher Type
                                     </th>
-                                    <td style="padding:0" colspan="2">
-                                        <table cellpadding="0" style="padding:0">
+                                    <td class="pan" colspan="2">
+                                        <table cellpadding="0">
                                             <tr>
                                                 <td>
                                                     <asp:PlaceHolder ID="phDDLCHK" runat="server"></asp:PlaceHolder>
@@ -265,6 +273,7 @@
                                         <table>
                                             <tr>
                                                 <td>
+                                                    <div id="divOtherOptions">
                                                     <div id="divOtherOptions" style="position: absolute; margin-top: -2px; margin-left: -2px;
                                                         width: 255px; border-right: solid 1px #000000; border-bottom: solid 1px #000000;
                                                         border-left: solid 1px gray; padding-left: 3px; height: 150; width: 243px; overflow: auto;
@@ -282,9 +291,10 @@
                                     <th>
                                     </th>
                                     <td colspan="2">
-                                        <div style="float: left; display: inline">
-                                            <a href="JavaScript:search();">
-                                                <img src="<%=GetURLDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />
+                                        <div class="search-button-container"><%--Inline styles on this is no longer needed as the button is now all CSS--%>
+                                            <a href="JavaScript:search();" class="search-button">
+                                                <%--<img src="<%=GetURLDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />--%>
+                                                Search
                                             </a>
                                         </div>
                                     </td>

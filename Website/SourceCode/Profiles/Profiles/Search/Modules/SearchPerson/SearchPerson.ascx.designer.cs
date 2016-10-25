@@ -202,6 +202,15 @@ namespace Profiles.Search.Modules.SearchPerson {
         protected global::System.Web.UI.HtmlControls.HtmlTableRow trMoreOptions;
         
         /// <summary>
+        /// trOtherOptions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trOtherOptions;
+        
+        /// <summary>
         /// ctcFirst control.
         /// </summary>
         /// <remarks>

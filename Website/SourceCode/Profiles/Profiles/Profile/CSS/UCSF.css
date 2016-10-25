@@ -44,7 +44,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
      color: #CA7C29; text-decoration: underline; cursor: pointer;
 }
 
-
+#divShowTimelineTable, #showClusterViewLink { cursor: pointer; }
 .education .atog { margin-bottom: 15px; }
 .education td { padding-left: 15px; vertical-align: top; }
 .education td:first-child { min-width: 220px; padding-left: 0; }
@@ -52,8 +52,8 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .atog { color: #CA7C29; background-color: #FFF; white-space: nowrap; float: right; }
 .atog:hover { text-decoration: underline; cursor: pointer; }
 
-.viewIn a { display: inline-block; padding-right: 15px; }
-.altmetric-embed img { vertical-align: -2px; }
+.viewIn a { display: inline-block; }
+.altmetric-embed img { vertical-align: -2px; padding-left: 15px; }
 
 
 #publicationTimelineGraph {
@@ -62,7 +62,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
   overflow-x: hidden;
 }
 #publicationTimelineGraph img {
-  padding: 10px 0 0 40px;
+  padding: 10px 0 0 24px;
   display: block;
 }
 #conceptPub #publicationTimelineGraph {

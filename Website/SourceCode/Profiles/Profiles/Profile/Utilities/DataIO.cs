@@ -290,55 +290,6 @@ namespace Profiles.Profile.Utilities
             }
         }
 
-        public System.IO.Stream GetUserPhotoList(Int64 NodeID, bool harvarddefault)
-        {
-            Object result = null;
-            Edit.Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
-            //Use the editor method to resize the photo to 150.
-            Edit.Utilities.DataIO resize = new Profiles.Edit.Utilities.DataIO();
-
-            try
-            {
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-
-
-                SqlConnection dbconnection = new SqlConnection(connstr);
-                dbconnection.Open();
-
-                SqlCommand dbcommand;
-                if (harvarddefault)
-                {
-                    dbcommand = new SqlCommand("select photo from [Catalyst.].[Person.Photo] where personid = " + data.GetPersonID(NodeID).ToString());
-                    dbcommand.CommandType = CommandType.Text;
-                    dbcommand.CommandTimeout = base.GetCommandTimeout();
-                }
-                else
-                {
-                    dbcommand = new SqlCommand("[Profile.Data].[Person.GetPhotos]");
-                    dbcommand.CommandType = CommandType.StoredProcedure;
-                    dbcommand.CommandTimeout = base.GetCommandTimeout();
-                    dbcommand.Parameters.Add(new SqlParameter("@NodeID", NodeID));
-                }
-                dbcommand.Connection = dbconnection;
-
-                result = resize.ResizeImageFile((byte[])dbcommand.ExecuteScalar(), 150, 300);
-
-                if (result == null)
-                {
-                    result = (byte[])System.Text.Encoding.ASCII.GetBytes("null");
-                }
-
-                dbconnection.Close();
-
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-
-            return new System.IO.MemoryStream((byte[])result);
-        }
-
         #endregion
 
         #region "CustomViewPersonSameDepartment"
@@ -746,12 +697,12 @@ namespace Profiles.Profile.Utilities
 
         #region "Network Browser"
 
-        public XmlDocument GetProfileNetworkForBrowser(RDFTriple request)
+        public string GetProfileNetworkForBrowser(RDFTriple request)
         {
-            string xmlstr = string.Empty;
-            XmlDocument xmlrtn = new XmlDocument();
+            string str = string.Empty;
 
-            if (Framework.Utilities.Cache.Fetch(request.Key + "GetProfileNetworkForBrowser") == null)
+
+            if (Framework.Utilities.Cache.FetchObject(request.Key + "GetProfileNetworkForBrowser") == null)
             {
                 try
                 {
@@ -765,6 +716,54 @@ namespace Profiles.Profile.Utilities
                     dbcommand.CommandTimeout = base.GetCommandTimeout();
                     dbcommand.Parameters.Add(new SqlParameter("@nodeid", request.Subject));
                     dbcommand.Parameters.Add(new SqlParameter("@sessionid", request.Session.SessionID));
+
+                    dbcommand.Connection = dbconnection;
+                    dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                    while (dbreader.Read())
+                        str += dbreader[0].ToString();
+
+                    Framework.Utilities.DebugLogging.Log(str);
+
+                    if (!dbreader.IsClosed)
+                        dbreader.Close();
+
+                    Framework.Utilities.Cache.Set(request.Key + "GetProfileNetworkForBrowser", str);
+                }
+                catch (Exception ex)
+                {
+                    Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
+                }
+            }
+            else
+            {
+                str = (string)Framework.Utilities.Cache.FetchObject(request.Key + "GetProfileNetworkForBrowser");
+            }
+
+            return str;
+        }
+
+
+        public XmlDocument GetProfileNetworkForBrowserXML(RDFTriple request)
+        {
+            string xmlstr = string.Empty;
+            XmlDocument xmlrtn = new XmlDocument();
+
+            if (Framework.Utilities.Cache.Fetch(request.Key + "GetProfileNetworkForBrowserXML") == null)
+            {
+                try
+                {
+                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                    SqlConnection dbconnection = new SqlConnection(connstr);
+                    SqlCommand dbcommand = new SqlCommand("[Profile.Module].[NetworkRadial.GetCoauthors]");
+
+                    SqlDataReader dbreader;
+                    dbconnection.Open();
+                    dbcommand.CommandType = CommandType.StoredProcedure;
+                    dbcommand.CommandTimeout = base.GetCommandTimeout();
+                    dbcommand.Parameters.Add(new SqlParameter("@nodeid", request.Subject));
+                    dbcommand.Parameters.Add(new SqlParameter("@sessionid", request.Session.SessionID));
+                    dbcommand.Parameters.Add(new SqlParameter("@OutputFormat", "XML"));
                     dbcommand.Connection = dbconnection;
                     dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
 
@@ -787,6 +786,8 @@ namespace Profiles.Profile.Utilities
 
                     xmlrtn.LoadXml(xmlstr);
 
+                    Framework.Utilities.Cache.Set(request.Key + "GetProfileNetworkForBrowserXML", xmlrtn);
+
                 }
                 catch (Exception ex)
                 {
@@ -796,7 +797,7 @@ namespace Profiles.Profile.Utilities
             }
             else
             {
-                xmlrtn = Framework.Utilities.Cache.Fetch(request.Key + "GetProfileNetworkForBrowser");
+                xmlrtn = Framework.Utilities.Cache.Fetch(request.Key + "GetProfileNetworkForBrowserXML");
             }
 
             return xmlrtn;
@@ -922,6 +923,19 @@ namespace Profiles.Profile.Utilities
         #endregion
 
 
+
+        public Int32 GetPersonId(Int64 nodeid)
+        {
+            string sql = "select InternalID from [RDF.Stage].[InternalNodeMap] where Class = 'http://xmlns.com/foaf/0.1/Person' and nodeID = " + nodeid;
+            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+            {
+                if (sqldr.Read())
+                {
+                    return Int32.Parse(sqldr.GetString(0));   //GetInt32(0);
+                }
+            }
+            return -1;
+        }
     }
 
 

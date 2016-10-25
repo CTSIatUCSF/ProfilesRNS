@@ -26,34 +26,12 @@
     
     <%--Catalyst styles--%>
     
-    <script type="text/javascript">
-
-        var _gaq = _gaq || [];
-        if (window.location.hostname.match(/^dev-profiles.ucsf.edu$/i)) {
-            _gaq.push(['_setAccount', 'UA-1142388-9']);
-        } else if (window.location.hostname.match(/^stage-profiles.ucsf.edu$/i)) {
-            _gaq.push(['_setAccount', 'UA-1142388-20']);
-        } else {
-            _gaq.push(['_setAccount', 'UA-1142388-6']);
-        }
-        _gaq.push(['_trackPageview']);
-
-        (function () {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-
-    </script>
 </head>
 <body id="bodyMaster" runat="server">
 <form runat="server" id="form1" enctype="multipart/form-data" method="post">   
-<!-- Qualaroo for ucsf.edu -->
-<script type="text/javascript">    var _kiq = _kiq || [];</script>
-<script type="text/javascript" src="//s3.amazonaws.com/ki.js/21116/49p.js" async="true"></script>
 
-    <div id="divStatus" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 999999; display:none;">
-         <div class="progress">
+    <div id="divStatus">
+        <div class="loader">
              <span><img alt="Loading..." src="<%=GetURLDomain()%>/Edit/Images/loader.gif" width="400" height="213"/></span>
          </div>
     </div>
@@ -109,13 +87,14 @@
          </div>
        </div>
     </div>
+<%--        The center html tag below is now obsolete. Its styling has been replicated in profiles css
+        <center>	    --%>
 		<div class="profiles">
             <div id="active-nav"><span id="signin">
                <a href="<%=GetURLDomain()%>/login/default.aspx?method=login&amp;edit=true" id="signinlink">Sign in</a>
                to edit your profile (add interests, mentoring, photo, etc.)</span>
                <ul id="editmenu"></ul>
             </div>
-			<center>
 				<div class="profilesHeader" runat="server" id="divProfilesHeader">
 					<div class="panelHeader">
 						<asp:ContentPlaceHolder ID="ContentHeader" runat="server">
@@ -160,6 +139,7 @@
 												</div>
 											</div>
 											<div class="profilesPageColumnRightCenter" runat="server" id="divPageColumnRightCenter">
+											<%-- Removed below inline styles as they made no discernible improvement--%>
 												<table id="tblTableBody" runat="server">
 													<tbody>
 														<tr id="trbody">
@@ -213,12 +193,13 @@
 											</div>
 										</td>
 									</tr>
-									<tr>
+									<%-- This row only exists to add a border to the bottom of the main app. No longer needed.--%>
+                                    <%--  <tr>
 										<td colspan="2">
 											<div class="profilesPageColumnRightBottom" runat="server" id="divProfilesPageColumnRightBottom">
 											</div>
 										</td>
-									</tr>
+									</tr>--%>
 								</table>
 							</td>
 						</tr>
@@ -248,7 +229,6 @@
 						</asp:Repeater>
 					</asp:ContentPlaceHolder>
 				</div>
-			</center>
 		</div>
 	    
 		

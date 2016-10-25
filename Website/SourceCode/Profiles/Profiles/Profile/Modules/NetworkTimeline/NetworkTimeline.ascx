@@ -13,6 +13,7 @@
     </div>
 
     <div class="keywordTimelineLabels" runat='server' id='timelineDetails'>
+    To see the data from this visualization as text, <a id="divShowTimelineTable" tabindex="0" class="jQueryLink">click here.</a>
     </div>
 
 </div>
@@ -23,7 +24,7 @@
     </div>
     <asp:Literal runat="server" ID="litNetworkText"></asp:Literal> 
     <!--cp <br/>
-    To return to the timeline, <a id="dirReturnToTimeline" tabindex="0">click here.</a>   -->                    
+    To return to the timeline, <a id="dirReturnToTimeline" tabindex="0" class="jQueryLink">click here.</a>                       
 </div>
 
 <script type="text/javascript">

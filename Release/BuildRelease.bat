@@ -117,12 +117,25 @@ call C:\Windows\Microsoft.NET\Framework64\v4.0.30319\msbuild "..\Website\SourceC
 copy ..\Website\SourceCode\SemWeb\src\bin\sparql-core.dll ..\Website\SourceCode\ProfilesSPARQLAPI\bin\
 call C:\Windows\Microsoft.NET\Framework64\v4.0.30319\msbuild "..\Website\SourceCode\ProfilesSPARQLAPI\ProfilesSPARQLAPI.csproj" "/p:Platform=AnyCPU;Configuration=Release;PublishDestination=..\..\..\Release\ProfilesRNS\Website\Binary\ProfilesSPARQLAPI" /t:PublishToFileSystem
 
-
+copy ..\Website\SourceCode\Profiles\Profiles\web.config ProfilesRNS\Website\Binary\Profiles\web.config
+copy ..\Website\SourceCode\ProfilesBetaAPI\Connects.Profiles.Service\web.config ProfilesRNS\Website\Binary\ProfilesBetaAPI\web.config
+copy ..\Website\SourceCode\ProfilesSearchAPI\web.config ProfilesRNS\Website\Binary\ProfilesSearchAPI\web.config
+copy ..\Website\SourceCode\ProfilesSPARQLAPI\web.config ProfilesRNS\Website\Binary\ProfilesSPARQLAPI\web.config
 
 echo d | xcopy /s ..\Database\Data ProfilesRNS\Database\Data
+pushd ProfilesRNS\Database\Data
+del MeSH.xml
+call %zip% e MeSH.xml.zip -y
+del MeSH.xml.zip
+popd
 echo d | xcopy /s ..\Database\SQL2008 ProfilesRNS\Database\SQL2008
 echo d | xcopy /s ..\Database\SQL2012 ProfilesRNS\Database\SQL2012
-echo d | xcopy /s ..\Database\VersionUpgrade ProfilesRNS\Database\VersionUpgrade
+echo d | xcopy /s ..\Database\SQL2014 ProfilesRNS\Database\SQL2014
+echo d | xcopy /s ..\Database\VersionUpgrade_2.0.0_2.5.1 ProfilesRNS\Database\VersionUpgrade_2.0.0_2.5.1
+echo d | xcopy /s ..\Database\VersionUpgrade_2.5.1_2.6.0 ProfilesRNS\Database\VersionUpgrade_2.5.1_2.6.0
+echo d | xcopy /s ..\Database\VersionUpgrade_2.6.0_2.7.0 ProfilesRNS\Database\VersionUpgrade_2.6.0_2.7.0
+echo d | xcopy /s ..\Database\VersionUpgrade_2.7.0_2.8.0 ProfilesRNS\Database\VersionUpgrade_2.7.0_2.8.0
+echo d | xcopy /s ..\Database\VersionUpgrade_2.8.0_2.9.0 ProfilesRNS\Database\VersionUpgrade_2.8.0_2.9.0
 copy ..\Database\ProfilesRNS_CreateAccount.sql ProfilesRNS\Database\ProfilesRNS_CreateAccount.sql
 copy ..\Database\ProfilesRNS_CreateDatabase.sql ProfilesRNS\Database\ProfilesRNS_CreateDatabase.sql
 copy ..\Database\ProfilesRNS_DataLoad_Part1.sql ProfilesRNS\Database\ProfilesRNS_DataLoad_Part1.sql

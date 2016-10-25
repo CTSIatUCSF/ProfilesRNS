@@ -15,31 +15,42 @@
         <xsl:text>-</xsl:text>
       </xsl:for-each>
     </xsl:variable>
-    <h2>
+    <br/>
+    <br/>
+    <b>
       Co-Authors
-    </h2>
+    </b>
+    <br/><br/>
     <div class="listTable" style="margin-top: 12px, margin-bottom:8px ">
       <table>
         <tr>
           <th>Name</th>
-          <th>Publications</th>
-          <th>
-            Publications Co-Authored with <xsl:value-of select="$subjectName"/>
-          </th>
-          <th>
-            Connections to <xsl:value-of select="$subjectName"/>'s Co-Authors
-          </th>
-          <th>
-            Connections to <xsl:value-of select="$subjectName"/>'s Network
-          </th>
+          <th>Total Publications</th>
+          <th>Co-Authored Publications</th>
+          <!--<th>Weight</th>-->
         </tr>
         <xsl:for-each select="LocalNetwork/NetworkPeople/NetworkPerson[@d='1']">
+          <xsl:sort select="@w2" data-type="number" order="descending"/>
           <xsl:variable name="nodeId" select="@id"/>
           <xsl:variable name="uri" select="@uri"/>
+          <xsl:variable name="w2" select="@w2"/>
           <tr>
+            <xsl:choose>
+              <xsl:when test="position() mod 2 = 0">
+                <xsl:attribute name="class">
+                  <xsl:value-of select="'evenRow'"/>
+                </xsl:attribute>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:attribute name="class">
+                  <xsl:value-of select="'oddRow'"/>
+                </xsl:attribute>
+              </xsl:otherwise>
+            </xsl:choose>
+
             <td style="text-align:left">
               <a href="{$uri}">
-                <xsl:value-of select="@fn"/>&#160;<xsl:value-of select="@ln"/>
+                <xsl:value-of select="@ln"/>,&#160;<xsl:value-of select="@fn"/>
               </a>
             </td>
             <td>
@@ -53,49 +64,116 @@
                 <xsl:value-of select="/LocalNetwork/NetworkCoAuthors/NetworkCoAuthor[@id2=$subjectID and @id1=$nodeId]/@n"   />
               </xsl:if>
             </td>
-            <td>
-              <xsl:value-of select="count(/LocalNetwork/NetworkCoAuthors/NetworkCoAuthor[@id1=$nodeId and contains( $onehop, concat( '-', @id2, '-' ) )]) + count(/LocalNetwork/NetworkCoAuthors/NetworkCoAuthor[@id2=$nodeId and contains( $onehop, concat( '-', @id1, '-' ) )])"/>
-            </td>
-            <td>
-              <xsl:value-of select="count(/LocalNetwork/NetworkCoAuthors/NetworkCoAuthor[@id1=$nodeId]) + count(/LocalNetwork/NetworkCoAuthors/NetworkCoAuthor[@id2=$nodeId])"   />
-            </td>
+            <!--<td>
+              <xsl:value-of select="@w2"/>
+            </td>-->
           </tr>
         </xsl:for-each>
       </table>
     </div>
     <br/>
     <br/>
-    <h2>Co-Authors of Co-Authors</h2>
+    <b>Co-Authors of Co-Authors</b>
+    <br/>
+    <br/>
     <div class="listTable" style="margin-top: 12px, margin-bottom:8px ">
       <table>
         <tr>
           <th>Name</th>
-          <th>Total Publication</th>
-          <th>
-            Connections to <xsl:value-of select="$subjectName"/>'s Co-Authors
-          </th>
-          <th>
-            Connections to <xsl:value-of select="$subjectName"/>'s Network
-          </th>
+          <th>Total Publications</th>
+          <!--<th>Weight</th>-->
         </tr>
         <xsl:for-each select="LocalNetwork/NetworkPeople/NetworkPerson[@d='2']">
+          <xsl:sort select="@w2" data-type="number" order="descending"/>
           <xsl:variable name="nodeId" select="@id"/>
           <xsl:variable name="uri" select="@uri"/>
+          <xsl:variable name="w2" select="@w2"/>
           <tr>
-            <td style="text-align:left">
+            <xsl:choose>
+              <xsl:when test="position() mod 2 = 0">
+                <xsl:attribute name="class">
+                  <xsl:value-of select="'evenRow'"/>
+                </xsl:attribute>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:attribute name="class">
+                  <xsl:value-of select="'oddRow'"/>
+                </xsl:attribute>
+              </xsl:otherwise>
+             </xsl:choose>
+              <td style="text-align:left">
               <a href="{$uri}">
-                <xsl:value-of select="@fn"/>&#160;<xsl:value-of select="@ln"/>
+                <xsl:value-of select="@ln"/>,&#160;<xsl:value-of select="@fn"/>
               </a>
             </td>
             <td>
               <xsl:value-of select="@pubs"/>
             </td>
-            <td>
-              <xsl:value-of select="count(/LocalNetwork/NetworkCoAuthors/NetworkCoAuthor[@id1=$nodeId and contains( $onehop, concat( '-', @id2, '-' ) )]) + count(/LocalNetwork/NetworkCoAuthors/NetworkCoAuthor[@id2=$nodeId and contains( $onehop, concat( '-', @id1, '-' ) )])"/>
+            <!--<td>
+              <xsl:value-of select="@w2"/>
+            </td>-->
+          </tr>
+        </xsl:for-each>
+      </table>
+    </div>
+    <br/>
+    <br/>
+    <b>Co-Author Connections</b>
+    <br/>
+    <br/>
+    <div class="listTable" style="margin-top: 12px, margin-bottom:8px ">
+      <table>
+        <tr>
+          <th>Person 1</th>
+          <th>Person 2</th>
+          <th>Number of Co-Publications</th>
+          <th>Most Recent Co-Publication</th>
+          <!--<th>Weight</th>-->
+        </tr>
+        <xsl:for-each select="LocalNetwork/NetworkCoAuthors/NetworkCoAuthor">
+          <xsl:sort select="@n" data-type="number" order="descending"/>
+          <xsl:variable name="lid1" select="@lid1"/>
+          <xsl:variable name="uri1" select="@uri1"/>
+          <xsl:variable name="lid2" select="@lid2"/>
+          <xsl:variable name="uri2" select="@uri2"/>
+          <xsl:variable name="id2" select="@id2"/>
+          <xsl:variable name="n" select="@n"/>
+          <xsl:variable name="y2" select="@y2"/>
+          <xsl:variable name="w" select="@w"/>
+          <tr>
+            <xsl:choose>
+              <xsl:when test="position() mod 2 = 0">
+                <xsl:attribute name="class">
+                  <xsl:value-of select="'evenRow'"/>
+                </xsl:attribute>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:attribute name="class">
+                  <xsl:value-of select="'oddRow'"/>
+                </xsl:attribute>
+              </xsl:otherwise>
+            </xsl:choose>
+            <td style="text-align:left">
+              <a href="{$uri1}">
+                <xsl:value-of select="/LocalNetwork/NetworkPeople/NetworkPerson[@lid=$lid1]/@ln"/>,&#160;<xsl:value-of select="/LocalNetwork/NetworkPeople/NetworkPerson[@lid=$lid1]/@fn"/>
+              </a>
+            </td>
+            <td style="text-align:left">
+              <a href="{$uri2}">
+                <xsl:value-of select="/LocalNetwork/NetworkPeople/NetworkPerson[@lid=$lid2]/@ln"/>,&#160;<xsl:value-of select="/LocalNetwork/NetworkPeople/NetworkPerson[@lid=$lid2]/@fn"/>
+              </a>
             </td>
             <td>
-              <xsl:value-of select="count(/LocalNetwork/NetworkCoAuthors/NetworkCoAuthor[@id1=$nodeId]) + count(/LocalNetwork/NetworkCoAuthors/NetworkCoAuthor[@id2=$nodeId])"   />
+              <a href="{$uri1}/Network/CoAuthors/{$id2}">
+                <xsl:value-of select="@n"/>
+              </a>
             </td>
+            <td>
+              <xsl:value-of select="@y2"/>
+            </td>
+            <!--<td>
+              <xsl:value-of select="@w"/>
+            </td>-->
           </tr>
         </xsl:for-each>
       </table>

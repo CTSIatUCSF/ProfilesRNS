@@ -86,8 +86,11 @@ namespace Profiles.ORNG.Modules.Gadgets
             uri = uri.Substring(0, uri.IndexOf(Convert.ToString(this.SubjectID)) + Convert.ToString(this.SubjectID).Length);
             appId = Convert.ToInt32(base.GetModuleParamString("AppId"));
             om = OpenSocialManager.GetOpenSocialManager(uri, Page, true);
-            gadget = om.AddOntologyGadget(appId, base.GetModuleParamString("View"), base.GetModuleParamString("OptParams"));
-
+            if (om.IsVisible())
+            {
+                gadget = om.AddOntologyGadget(appId, base.GetModuleParamString("View"), base.GetModuleParamString("OptParams"));
+            }
+                
             securityOptions.Subject = this.SubjectID;
             securityOptions.PredicateURI = this.PredicateURI;
             securityOptions.PrivacyCode = Convert.ToInt32(this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@ViewSecurityGroup").Value);
@@ -103,14 +106,13 @@ namespace Profiles.ORNG.Modules.Gadgets
             {
                 pnlSecurityOptions.Visible = false;
                 litGadget.Text = "This feature is currently turned off on your system";
+                return;
             }
-            else 
-            {
-                // We need to render the div even if we want to hide it, otherwise OpenSocial will not work
-                // so we use an ugly trick to turn it on and off in javascript
-                litGadget.Text = "<div id='" + gadget.GetChromeId() + "' class='gadgets-gadget-parent' style ='display: " + (hasGadget ? "block" : "none") + "'></div>";
-                om.LoadAssets();
-            }
+
+            // We need to render the div even if we want to hide it, otherwise OpenSocial will not work
+            // so we use an ugly trick to turn it on and off in javascript
+            litGadget.Text = "<div id='" + gadget.GetChromeId() + "' class='gadgets-gadget-parent' style ='display: " + (hasGadget ? "block" : "none") + "'></div>";
+            om.LoadAssets();
 
             if (hasGadget)
             {
@@ -129,7 +131,7 @@ namespace Profiles.ORNG.Modules.Gadgets
         protected void btnAddORNGApplication_OnClick(object sender, EventArgs e)
         {
             // add the gadget to the person
-            data.AddPersonalGadget(this.SubjectID, this.PredicateURI);
+            data.AddPersonalGadget(this.SubjectID, this.PredicateURI, securityOptions.PrivacyCode);
             hasGadget = true;
             DrawProfilesModule();
             upnlEditSection.Update();
@@ -139,7 +141,7 @@ namespace Profiles.ORNG.Modules.Gadgets
 
         protected void deleteOne_Onclick(object sender, EventArgs e)
         {
-            data.RemovePersonalGadget(this.SubjectID, this.PredicateURI);
+            data.RemovePersonalGadget(this.SubjectID, this.PredicateURI, securityOptions.PrivacyCode);
             hasGadget = false;
             DrawProfilesModule();
             upnlEditSection.Update();

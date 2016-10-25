@@ -21,6 +21,7 @@ using System.Xml;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Web.UI.HtmlControls;
+using System.Configuration;
 
 using Profiles.Framework.Utilities;
 using Profiles.Search.Utilities;
@@ -55,9 +56,9 @@ namespace Profiles.Login
         public void LoadPresentationXML()
         {
             string presentationxml = string.Empty;
-            
-            //presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Login/PresentationXML/LoginFormPresentation.xml");
-            presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Login/PresentationXML/ShibbolethLoginPresentation.xml");
+
+            string presentationXMLfile = ConfigurationManager.AppSettings["Login.PresentationXML"].ToString().Trim();
+            presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Login/PresentationXML/" + presentationXMLfile + ".xml");
 
             this.PresentationXML = new XmlDocument();
             this.PresentationXML.LoadXml(presentationxml);

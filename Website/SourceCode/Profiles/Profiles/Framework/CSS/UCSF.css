@@ -74,7 +74,7 @@ h1 a:hover { color: #267094; text-decoration: none; }
 
 table, tr { border-width: 0; border-spacing: 0; border-color: transparent; } /* so Chrome won't put black lines everywhere */
 #page-container { background-color: #FFF; width: 980px; } 
-.profiles { background-color: #FFF; margin-top: 0; }
+.profiles { background-color: #FFF; margin-top: 0; max-width: 980px; }
 .profiles .profilesPage { padding-top: 15px; }
 .profiles .profilesPageColumnRightTop {
   background-image: none;
@@ -86,17 +86,28 @@ table, tr { border-width: 0; border-spacing: 0; border-color: transparent; } /* 
   border-left: none !important; 
   border-right: none !important; 
 }
+.profiles .profilesPageColumnRightCenter {
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+.profilesMainColumnRight {
+	background-color: transparent;
+	border-left:none;
+	width: 180px;
+}
 #ctl00_divPageColumnRightCenter { background: none !important;}
-.profiles .profilesContentMain { margin-top: 6px; }
+.profiles .profilesContentMain { margin-top: 6px; margin-left: 15px !important; }
 .profiles .profilesContentMain .pageTitle h2 a img { display: none; }  
 .profiles .profilesContentMain .pageTitle h2 { color: #CA7C29 !important; }
 .profiles .profilesContentMain .pageTitle h2 { font-size: 30px; font-weight: bold; line-height: 30px; }
 .profiles .profilesContentMain .aboutText h3, h3 { color: #666; }
 .profiles .profilesPageColumnLeft { padding-top: 6px; }
+.profiles .profilesContentPassive .passiveSectionLine { margin-bottom: -2px; }
 .profiles a, .profiles a:visited { text-decoration: none; color: #0088CC !important; }
 .profiles a:hover { color: #005580 !important; }
-.EditMenuTopRow, .topRow, .editPage .topRow td, .profiles .profilesContentActive .activeSectionHead, .listTable th { background-color: #EEE; }
-.searchForm .searchSection { background-color: #EEEEEE; padding: 18px 0\9; }
+.EditMenuTopRow, .topRow, .editPage .topRow td, .profiles .profilesContentActive .activeSectionHead, 
+.searchForm .searchSection, .listTable th { background-color: #EEE; }
 .listTable .evenRow { background-color: #F2F7F7; }
 .listTable td { border: none; border-right: solid 1px #CCC; cursor: default; }
 .linky,
@@ -133,7 +144,7 @@ table, tr { border-width: 0; border-spacing: 0; border-color: transparent; } /* 
 .profiles .profilesFooter { background-color: #2d84af; text-align: center; font-size: 89%;
   width: 980px; border-top: 3px solid #666; margin: 10px auto; }
 #footer-collaboration { background-color: #FFF; }
-#footer-collaboration p { margin: 0; padding: 12px; text-align: left; }
+#footer-collaboration p { margin: 0; padding: 12px 20px; text-align: left; }
 #footer-contact { padding: 6px; border-top: 3px solid #666; }
 #footer-contact ul li { display: inline; list-display-type: none; padding: 8px 20px; font-weight: bold; }
 #footer-contact ul li a, #footer-contact ul li a:visited, #footer-contact ul li a:hover { color: #FFF !important; }
@@ -328,16 +339,12 @@ ul#editmenu li span { color: #666; }
 /* gadget badges */
 ul#badge { list-style-type: none; padding-left: 0; margin: 0\9; }
 .badge {
-  border-bottom: 1px solid #CCC;
   margin: 20px 0 20px 8px;  
   width: 136px;
   padding-left: 0; padding-bottom: 10px;
 }
 .badge h3 { color: #333; font-size: 12px; font-weight: normal; padding: 4px 8px; }
-h2.badge-top  { padding: 12px 0 14px 4px; margin: -68px 0 0 60px; width: 70px; font-size: 13px; }
 .badge p { padding: 0 0 6px; margin: 0 -3px 0 0; margin: 0\9; line-height: 18px; }
-.badge .linkAd { background: #FFF url(../../framework/images/link.gif) no-repeat scroll 0 2px; padding-left:40px; }
-.chatter { margin-top: -5px; }
 .counter { background-color: #849696; color: #FFF; padding: 1px 2px 1px 5px; margin-right: 4px;
   letter-spacing: 3px; font-family: 'Courier New', Courier, monospace; font-weight:bold; }
 
@@ -368,3 +375,18 @@ h2.badge-top  { padding: 12px 0 14px 4px; margin: -68px 0 0 60px; width: 70px; f
     clear:both;  
 }  
 
+/* Metrics & Activity Stream */
+.panelActive { padding: 0 0 0 12px; }
+.metrics { margin-bottom: 20px; padding: 0 0 12px; border-bottom: 1px solid #ccc; }
+.metrics span { display: inline-block; width: 4em; text-align: right; font-family: courier, serif;}
+.activities { max-width: 600px; padding-bottom: 0; margin-bottom: 0; }
+.act { margin-bottom: 10px; padding: 0 0 8px; clear: left; border-bottom: 1px solid #ccc; min-height: 48px; }
+.act-heading { padding-bottom: 12px; }
+.act-user { line-height: 15px; }
+.act-userdate .date { color: #506380; font-size: 11px; }
+.act-image { float: left; height: 45px; padding-right: 5px; overflow-y: hidden; }
+.act-msg { clear: left; padding-top: 6px; }
+.panelMain .activities { margin-top: 30px; }
+.panelMain .act-heading { display: none; }
+.panelMain .act-userdate { float: left; width: 160px; padding-right: 10px; }
+.panelMain .act-msg { clear: none; float: left; width: 360px; padding: 0; margin-top: -2px; }

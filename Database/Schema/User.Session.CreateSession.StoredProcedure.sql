@@ -87,32 +87,13 @@ BEGIN
 
 		-- Create the Node
 		DECLARE @NodeID BIGINT
+		DECLARE @NodeIDTable TABLE (nodeId BIGINT)
 		INSERT INTO [RDF.].[Node] (ViewSecurityGroup, EditSecurityGroup, Value, ObjectType, ValueHash)
-			SELECT IDENT_CURRENT('[RDF.].[Node]'), -50, @baseURI+CAST(IDENT_CURRENT('[RDF.].[Node]') as varchar(50)), 0,
-				[RDF.].fnValueHash(null,null,@baseURI+CAST(IDENT_CURRENT('[RDF.].[Node]') as nvarchar(50)))
-		SELECT @NodeID = @@IDENTITY
+			  OUTPUT Inserted.NodeID INTO @NodeIDTable
+			  SELECT IDENT_CURRENT('[RDF.].[Node]'), -50, @baseURI+CAST(IDENT_CURRENT('[RDF.].[Node]') as varchar(50)), 0,
+					[RDF.].fnValueHash(null,null,@baseURI+CAST(IDENT_CURRENT('[RDF.].[Node]') as nvarchar(50)))
+		SELECT @NodeID = nodeId from @NodeIDTable
 
-
-		-- Confirm the node values are correct
-		IF EXISTS (
-			SELECT *
-			FROM [RDF.].[Node]
-			WHERE NodeID = @NodeID
-				AND (
-					Value <> @baseURI+cast(@NodeID as nvarchar(50))
-					OR ValueHash <> [RDF.].fnValueHash(null,null,@baseURI+cast(@NodeID as nvarchar(50)))
-					OR ViewSecurityGroup <> @NodeID
-				)
-			)
-
-		BEGIN
-			UPDATE [RDF.].[Node]
-				SET Value = @baseURI+cast(@NodeID as nvarchar(50)),
-					ValueHash = [RDF.].fnValueHash(null,null,@baseURI+cast(@NodeID as nvarchar(50))),
-					ViewSecurityGroup = @NodeID
-				WHERE NodeID = @NodeID
-		END
- 
 		-- Add properties to the node
 		DECLARE @Error INT
 		DECLARE @TypeID BIGINT

@@ -64,6 +64,7 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel">
@@ -129,6 +130,7 @@
     <Content Include="About\Images\tryit.gif" />
     <Content Include="About\Images\video.JPG" />
     <Content Include="About\JavaScript\UCSF.js" />
+    <Content Include="About\Modules\Statistics\Statistics.ascx" />
     <Content Include="About\NewFeatures.aspx" />
     <Content Include="About\Optin.aspx" />
     <Content Include="About\PresentationXML\AboutProfiles.xml">
@@ -151,7 +153,6 @@
     <Content Include="CustomAPI\v1\JSONProfile.aspx" />
     <Content Include="CustomAPI\v1\PubDate.aspx" />
     <Content Include="CustomAPI\v1\PubXML.aspx" />
-    <Content Include="CustomAPI\v1\Statistics.aspx" />
     <Content Include="CustomAPI\v1\XMLProfile.aspx" />
     <Content Include="CustomAPI\v2\Default.aspx" />
     <Content Include="denied.txt" />
@@ -166,12 +167,13 @@
     <Content Include="Edit\Images\icons_red_BlueRow.gif" />
     <Content Include="Edit\Images\Icons_upSort.gif" />
     <Content Include="Edit\Images\Icon_add_item.gif" />
-    <Content Include="Edit\Images\sophcat-boat.jpg" />
     <Content Include="Edit\JavaScript\UCSF.js" />
     <Content Include="Edit\Modules\CustomEditEagleI\CustomEditEagleI.ascx" />
     <Content Include="Edit\Modules\CustomEditEducationalTraining\CustomEditEducationalTraining.ascx" />
+    <Content Include="Edit\Modules\CustomEditFreetextKeyword\CustomEditFreetextKeyword.ascx" />
+    <Content Include="Edit\Modules\CustomEditFreetextKeyword\keywordAutocomplete.aspx" />
     <Content Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx" />
-    <Content Include="favicon.ico" />
+    <Content Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx" />
     <Content Include="Framework\CSS\UCSF.css" />
     <Content Include="Framework\Images\arrow-orgbg.gif" />
     <Content Include="Framework\Images\arrow-tealbg.gif" />
@@ -199,9 +201,14 @@
     <Content Include="Framework\Images\ucsf.png" />
     <Content Include="Framework\Images\video-ad.png" />
     <Content Include="Framework\JavaScript\UCSF.js" />
+    <Content Include="GitVersion.txt" />
     <Content Include="Global.asax" />
     <Content Include="google6b93ad5a56d431a7.html" />
+    <Content Include="History\ActivityDetails.aspx" />
+    <Content Include="History\Modules\ActivityHistory\ActivityHistory.ascx" />
+    <Content Include="History\PresentationXML\ActivityDetails.xml" />
     <Content Include="Login\Modules\ShibLogin\ShibLogin.ascx" />
+    <Content Include="Login\PresentationXML\ADLoginFormPresentation.xml" />
     <Content Include="Login\PresentationXML\ShibbolethLoginPresentation.xml" />
     <Content Include="ORCID\CreateBatch.aspx" />
     <Content Include="ORCID\CreateMyORCID.aspx" />
@@ -271,6 +278,7 @@
     <Content Include="ORNG\PresentationXML\SandboxFormPresentation.xml" />
     <Content Include="Profiles_version.txt" />
     <Content Include="Profile\CSS\UCSF.css" />
+    <Content Include="Profile\CSS\viz.css" />
     <Content Include="Profile\Images\default_img.png" />
     <Content Include="Profile\Images\ucsf_alumni_blue.jpg" />
     <Content Include="Profile\JavaScript\UCSF.js" />
@@ -279,7 +287,48 @@
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\CustomViewPersonGeneralInfo.xslt" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx" />
+    <Content Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\crossdomain.xml" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\Default.aspx" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\Images\yui-loading.gif" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\JavaScript\networkBrowserClass.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\NetworkCluster.ascx" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\NetworkClusterSvc.aspx" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\network_browser_force.swf" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\lib\prototype.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\src\builder.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\src\controls.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\src\dragdrop.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\src\effects.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\src\scriptaculous.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\src\slider.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\src\sound.js" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\scriptaculous\src\unittest.js" />
+    <Content Include="Profile\Modules\NetworkCluster\JavaScript\networkClusterLayoutEngine.js" />
+    <Content Include="Profile\Modules\NetworkCluster\JavaScript\watchdog.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\crossdomain.xml" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\Default.aspx" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\Images\yui-loading.gif" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\JavaScript\networkBrowserClass.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\NetworkRadial.ascx" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\NetworkRadialSvc.aspx" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\network_browser.swf" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\lib\prototype.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\src\builder.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\src\controls.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\src\dragdrop.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\src\effects.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\src\scriptaculous.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\src\slider.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\src\sound.js" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\scriptaculous\src\unittest.js" />
+    <Content Include="Profile\Modules\NetworkRadial\JavaScript\layout_balanced.js" />
+    <Content Include="Profile\Modules\NetworkRadial\JavaScript\networkBrowserClass.js" />
+    <Content Include="Profile\Modules\NetworkRadial\JavaScript\sliders.js" />
+    <Content Include="Profile\Modules\NetworkRadial\JavaScript\viz.js" />
+    <Content Include="Profile\Modules\NetworkRadial\JavaScript\watchdog.js" />
     <Content Include="Profile\XSLT\EducationalTraining.xslt" />
+    <Content Include="Profile\XSLT\FreetextKeyword.xslt" />
     <Content Include="Profile\XSLT\NetworkTable.xslt" />
     <Content Include="RobotsTxt.aspx" />
     <Content Include="Search\CSS\UCSF.css" />
@@ -350,6 +399,13 @@
     <Compile Include="About\Modules\About\About.ascx.designer.cs">
       <DependentUpon>About.ascx</DependentUpon>
     </Compile>
+    <Compile Include="About\Modules\Statistics\Statistics.ascx.cs">
+      <DependentUpon>Statistics.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About\Modules\Statistics\Statistics.ascx.designer.cs">
+      <DependentUpon>Statistics.ascx</DependentUpon>
+    </Compile>
     <Compile Include="About\NewFeatures.aspx.cs">
       <DependentUpon>NewFeatures.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -364,6 +420,7 @@
     <Compile Include="About\Optin.aspx.designer.cs">
       <DependentUpon>Optin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="About\Utilities\DataIO.cs" />
     <Compile Include="ActiveNetwork\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -393,10 +450,6 @@
     </Compile>
     <Compile Include="CustomAPI\v1\PubXML.aspx.cs">
       <DependentUpon>PubXML.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CustomAPI\v1\Statistics.aspx.cs">
-      <DependentUpon>Statistics.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CustomAPI\v1\XMLProfile.aspx.cs">
@@ -438,6 +491,20 @@
     <Compile Include="Edit\Modules\CustomEditEducationalTraining\CustomEditEducationalTraining.ascx.designer.cs">
       <DependentUpon>CustomEditEducationalTraining.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Edit\Modules\CustomEditFreetextKeyword\CustomEditFreetextKeyword.ascx.cs">
+      <DependentUpon>CustomEditFreetextKeyword.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditFreetextKeyword\CustomEditFreetextKeyword.ascx.designer.cs">
+      <DependentUpon>CustomEditFreetextKeyword.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditFreetextKeyword\keywordAutocomplete.aspx.cs">
+      <DependentUpon>keywordAutocomplete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditFreetextKeyword\keywordAutocomplete.aspx.designer.cs">
+      <DependentUpon>keywordAutocomplete.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx.cs">
       <DependentUpon>CustomEditListProperty.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -445,7 +512,15 @@
     <Compile Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx.designer.cs">
       <DependentUpon>CustomEditListProperty.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx.cs">
+      <DependentUpon>CustomEditResearcherRole.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx.designer.cs">
+      <DependentUpon>CustomEditResearcherRole.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Edit\Utilities\EducationalTrainingState.cs" />
+    <Compile Include="Edit\Utilities\FundingState.cs" />
     <Compile Include="Edit\Utilities\LiteralListState.cs" />
     <Compile Include="Framework\Modules\MainMenu\History.ascx.cs">
       <DependentUpon>History.ascx</DependentUpon>
@@ -456,6 +531,13 @@
     </Compile>
     <Compile Include="Framework\Utilities\UCSFIDSet.cs" />
     <Compile Include="Framework\Utilities\UserHistory.cs" />
+    <Compile Include="History\ActivityDetails.aspx.cs">
+      <DependentUpon>ActivityDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="History\ActivityDetails.aspx.designer.cs">
+      <DependentUpon>ActivityDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="History\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -463,6 +545,14 @@
     <Compile Include="History\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="History\Modules\ActivityHistory\ActivityHistory.ascx.cs">
+      <DependentUpon>ActivityHistory.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="History\Modules\ActivityHistory\ActivityHistory.ascx.designer.cs">
+      <DependentUpon>ActivityHistory.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="History\Utilities\Activity.cs" />
     <Compile Include="History\Modules\HistoryByType\HistoryByType.ascx.cs">
       <DependentUpon>HistoryByType.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -476,6 +566,14 @@
     </Compile>
     <Compile Include="History\Modules\HistoryList\HistoryList.ascx.designer.cs">
       <DependentUpon>HistoryList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="History\Utilities\DataIO.cs" />
+    <Compile Include="Login\Modules\ADLogin\ADLogin.ascx.cs">
+      <DependentUpon>ADLogin.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login\Modules\ADLogin\ADLogin.ascx.designer.cs">
+      <DependentUpon>ADLogin.ascx</DependentUpon>
     </Compile>
     <Compile Include="Login\Modules\Login\Login.ascx.cs">
       <DependentUpon>Login.ascx</DependentUpon>
@@ -979,12 +1077,47 @@
     <Compile Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx.designer.cs">
       <DependentUpon>vcard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx.cs">
+      <DependentUpon>CustomViewResearcherRole.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx.designer.cs">
+      <DependentUpon>CustomViewResearcherRole.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Profile\Modules\HRFooter\HRFooter.ascx.cs">
       <DependentUpon>HRFooter.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Profile\Modules\HRFooter\HRFooter.ascx.designer.cs">
       <DependentUpon>HRFooter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkClusterFlash\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkClusterFlash\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkClusterFlash\NetworkCluster.ascx.cs">
+      <DependentUpon>NetworkCluster.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkClusterFlash\NetworkCluster.ascx.designer.cs">
+      <DependentUpon>NetworkCluster.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkClusterFlash\NetworkClusterSvc.aspx.cs">
+      <DependentUpon>NetworkClusterSvc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkClusterFlash\NetworkClusterSvc.aspx.designer.cs">
+      <DependentUpon>NetworkClusterSvc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master.cs">
+      <DependentUpon>NetworkClusterTemplate.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master.designer.cs">
+      <DependentUpon>NetworkClusterTemplate.Master</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\NetworkCluster\NetworkClusterSvc.aspx.cs">
       <DependentUpon>NetworkClusterSvc.aspx</DependentUpon>
@@ -999,6 +1132,34 @@
     </Compile>
     <Compile Include="Profile\Modules\NetworkCluster\NetworkCluster.ascx.designer.cs">
       <DependentUpon>NetworkCluster.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkRadialFlash\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkRadialFlash\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkRadialFlash\NetworkRadial.ascx.cs">
+      <DependentUpon>NetworkRadial.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkRadialFlash\NetworkRadial.ascx.designer.cs">
+      <DependentUpon>NetworkRadial.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkRadialFlash\NetworkRadialSvc.aspx.cs">
+      <DependentUpon>NetworkRadialSvc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkRadialFlash\NetworkRadialSvc.aspx.designer.cs">
+      <DependentUpon>NetworkRadialSvc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkRadialFlash\NetworkRadialTemplate.Master.cs">
+      <DependentUpon>NetworkRadialTemplate.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\NetworkRadialFlash\NetworkRadialTemplate.Master.designer.cs">
+      <DependentUpon>NetworkRadialTemplate.Master</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\NetworkTimeline\NetworkTimeline.ascx.cs">
       <DependentUpon>NetworkTimeline.ascx</DependentUpon>
@@ -1596,12 +1757,14 @@
     <Content Include="Framework\CSS\jquery-ui-1.8.13.custom.css" />
     <Content Include="Framework\CSS\ui.dropdownchecklist.themeroller.css" />
     <Content Include="Framework\Images\banner.jpg" />
+    <Content Include="Framework\Images\banner.png" />
     <Content Include="Framework\Images\connection_left.gif" />
     <Content Include="Framework\Images\connection_right.gif" />
     <Content Include="Framework\Images\icon_alert.gif" />
     <Content Include="Framework\Images\icon_squareDownArrow.gif" />
     <Content Include="Framework\Images\passive_back1.gif" />
     <Content Include="Framework\Images\passive_backtile.gif" />
+    <Content Include="Framework\Images\search.png" />
     <Content Include="Framework\Images\two_coloumn_bottom.gif" />
     <Content Include="Framework\JavaScript\jquery-1.6.1.min.js" />
     <Content Include="Framework\JavaScript\jquery-ui-1.8.13.custom.min.js" />
@@ -1639,7 +1802,6 @@
     <Content Include="Profile\Modules\NetworkRadial\crossdomain.xml" />
     <Content Include="Profile\Modules\NetworkRadial\Images\yui-loading.gif" />
     <Content Include="Profile\Modules\NetworkRadial\NetworkRadial.ascx" />
-    <Content Include="Profile\Modules\NetworkRadial\JavaScript\networkBrowserClass.js" />
     <Content Include="Profile\Modules\NetworkRadial\NetworkRadialSvc.aspx" />
     <Content Include="Profile\Modules\NetworkRadial\network_browser.swf" />
     <Content Include="Profile\Modules\NetworkRadial\scriptaculous\lib\prototype.js" />
@@ -1693,7 +1855,9 @@
     <Content Include="Search\PresentationXML\SearchResultsPersonPresentation.xml" />
     <Content Include="Search\PresentationXML\SearchFormPresentation.xml" />
     <Content Include="Search\PresentationXML\SearchResultsEverythingPresentation.xml" />
-    <Content Include="Search\Modules\SearchResults\EverythingResults.xslt" />
+    <Content Include="Search\Modules\SearchResults\EverythingResults.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SPARQL\PresentationXML\SPARQLPresentation.xml" />
     <Content Include="SPARQL\Default.aspx" />
     <Content Include="SPARQL\Modules\SPARQLSearch\SPARQLSearch.ascx" />
@@ -1759,9 +1923,17 @@
     <Content Include="MentoringUCSD.pdf" />
     <None Include="ORCID\ORCIDPrivacySettingsandProfiles.pdf" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailAudioHandler.ashx" />
+    <Content Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master" />
+    <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\CHANGELOG" />
+    <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\MIT-LICENSE" />
+    <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\README.rdoc" />
     <None Include="Profile\Modules\NetworkCluster\scriptaculous\CHANGELOG" />
     <None Include="Profile\Modules\NetworkCluster\scriptaculous\MIT-LICENSE" />
     <None Include="Profile\Modules\NetworkCluster\scriptaculous\README.rdoc" />
+    <Content Include="Profile\Modules\NetworkRadialFlash\NetworkRadialTemplate.Master" />
+    <None Include="Profile\Modules\NetworkRadialFlash\scriptaculous\CHANGELOG" />
+    <None Include="Profile\Modules\NetworkRadialFlash\scriptaculous\MIT-LICENSE" />
+    <None Include="Profile\Modules\NetworkRadialFlash\scriptaculous\README.rdoc" />
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\CHANGELOG" />
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\MIT-LICENSE" />
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\README.rdoc" />
@@ -1865,4 +2037,8 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>call "$(SolutionDir)AddGitVersionToBuild.bat" $(ProjectDir)
+</PreBuildEvent>
+  </PropertyGroup>
 </Project>

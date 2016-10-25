@@ -56,7 +56,7 @@
       <JobGroup>1</JobGroup>
       <Step>3</Step>
       <IsActive>1</IsActive>
-      <Script>UPDATE [Ontology.Import].OWL SET Graph = 3 WHERE name = 'PRNS_1.1'</Script>
+      <Script>UPDATE [Ontology.Import].OWL SET Graph = 3 WHERE name = 'PRNS_1.2'</Script>
     </Row>
     <Row>
       <JobGroup>1</JobGroup>
@@ -74,7 +74,7 @@
       <JobGroup>1</JobGroup>
       <Step>6</Step>
       <IsActive>1</IsActive>
-      <Script>EXEC [Ontology.Import].[ConvertOWL2Triple] @OWL = 'PRNS_1.1'</Script>
+      <Script>EXEC [Ontology.Import].[ConvertOWL2Triple] @OWL = 'PRNS_1.2'</Script>
     </Row>
     <Row>
       <JobGroup>1</JobGroup>
@@ -505,6 +505,11 @@
       <ClassGroupURI>http://profiles.catalyst.harvard.edu/ontology/prns#ClassGroupResearch</ClassGroupURI>
       <ClassURI>http://purl.org/ontology/bibo/AcademicArticle</ClassURI>
       <SortOrder>1</SortOrder>
+    </Row>
+	<Row>
+      <ClassGroupURI>http://profiles.catalyst.harvard.edu/ontology/prns#ClassGroupResearch</ClassGroupURI>
+      <ClassURI>http://vivoweb.org/ontology/core#Grant</ClassURI>
+      <SortOrder>2</SortOrder>
     </Row>
   </Table>
   <Table Name="[Ontology.].[ClassProperty]">
@@ -7207,7 +7212,7 @@
     <Row>
       <Class>http://vivoweb.org/ontology/core#EducationalTraining</Class>
       <Property>http://vivoweb.org/ontology/core#degreeEarned</Property>
-      <IsDetail>1</IsDetail>
+      <IsDetail>0</IsDetail>
       <IncludeDescription>1</IncludeDescription>
       <IncludeNetwork>0</IncludeNetwork>
       <SearchWeight>0.000000000000000e+000</SearchWeight>
@@ -7261,7 +7266,7 @@
     <Row>
       <Class>http://vivoweb.org/ontology/core#EducationalTraining</Class>
       <Property>http://vivoweb.org/ontology/core#majorField</Property>
-      <IsDetail>1</IsDetail>
+      <IsDetail>0</IsDetail>
       <IncludeDescription>0</IncludeDescription>
       <IncludeNetwork>0</IncludeNetwork>
       <SearchWeight>5.000000000000000e-001</SearchWeight>
@@ -8395,7 +8400,7 @@
     <Row>
       <Class>http://vivoweb.org/ontology/core#Grant</Class>
       <Property>http://vivoweb.org/ontology/core#sponsorAwardId</Property>
-      <IsDetail>1</IsDetail>
+      <IsDetail>0</IsDetail>
       <IncludeDescription>0</IncludeDescription>
       <IncludeNetwork>0</IncludeNetwork>
       <SearchWeight>5.000000000000000e-001</SearchWeight>
@@ -10609,7 +10614,7 @@
     <Row>
       <Class>http://vivoweb.org/ontology/core#ResearcherRole</Class>
       <Property>http://vivoweb.org/ontology/core#researcherRoleOf</Property>
-      <IsDetail>1</IsDetail>
+      <IsDetail>0</IsDetail>
       <IncludeDescription>1</IncludeDescription>
       <IncludeNetwork>0</IncludeNetwork>
       <SearchWeight>0.000000000000000e+000</SearchWeight>
@@ -14877,7 +14882,7 @@
     <Row>
       <Class>http://xmlns.com/foaf/0.1/Person</Class>
       <Property>http://orng.info/ontology/orng#hasLinks</Property>
-      <IsDetail>0</IsDetail>
+      <IsDetail>1</IsDetail>
       <IncludeDescription>0</IncludeDescription>
       <IncludeNetwork>0</IncludeNetwork>
       <SearchWeight>0.000000000000000e+000</SearchWeight>
@@ -14915,7 +14920,7 @@
     <Row>
       <Class>http://xmlns.com/foaf/0.1/Person</Class>
       <Property>http://orng.info/ontology/orng#hasSlideShare</Property>
-      <IsDetail>0</IsDetail>
+      <IsDetail>1</IsDetail>
       <IncludeDescription>0</IncludeDescription>
       <IncludeNetwork>0</IncludeNetwork>
       <SearchWeight>0.000000000000000e+000</SearchWeight>
@@ -14953,7 +14958,7 @@
     <Row>
       <Class>http://xmlns.com/foaf/0.1/Person</Class>
       <Property>http://orng.info/ontology/orng#hasTwitter</Property>
-      <IsDetail>0</IsDetail>
+      <IsDetail>1</IsDetail>
       <IncludeDescription>0</IncludeDescription>
       <IncludeNetwork>0</IncludeNetwork>
       <SearchWeight>0.000000000000000e+000</SearchWeight>
@@ -14991,7 +14996,7 @@
     <Row>
       <Class>http://xmlns.com/foaf/0.1/Person</Class>
       <Property>http://orng.info/ontology/orng#hasYouTube</Property>
-      <IsDetail>0</IsDetail>
+      <IsDetail>1</IsDetail>
       <IncludeDescription>0</IncludeDescription>
       <IncludeNetwork>0</IncludeNetwork>
       <SearchWeight>0.000000000000000e+000</SearchWeight>
@@ -15502,17 +15507,18 @@
       <IsDetail>1</IsDetail>
       <IncludeDescription>1</IncludeDescription>
       <IncludeNetwork>0</IncludeNetwork>
-      <SearchWeight>0.000000000000000e+000</SearchWeight>
-      <CustomDisplay>0</CustomDisplay>
-      <CustomEdit>0</CustomEdit>
+      <SearchWeight>0.100000000000000e+000</SearchWeight>
+      <CustomDisplay>1</CustomDisplay>
+      <CustomEdit>1</CustomEdit>
       <ViewSecurityGroup>-1</ViewSecurityGroup>
-      <EditSecurityGroup>-40</EditSecurityGroup>
-      <EditPermissionsSecurityGroup>-40</EditPermissionsSecurityGroup>
-      <EditExistingSecurityGroup>-40</EditExistingSecurityGroup>
-      <EditAddNewSecurityGroup>-40</EditAddNewSecurityGroup>
-      <EditAddExistingSecurityGroup>-40</EditAddExistingSecurityGroup>
-      <EditDeleteSecurityGroup>-40</EditDeleteSecurityGroup>
+      <EditSecurityGroup>-20</EditSecurityGroup>
+      <EditPermissionsSecurityGroup>-20</EditPermissionsSecurityGroup>
+      <EditExistingSecurityGroup>-20</EditExistingSecurityGroup>
+      <EditAddNewSecurityGroup>-20</EditAddNewSecurityGroup>
+      <EditAddExistingSecurityGroup>-20</EditAddExistingSecurityGroup>
+      <EditDeleteSecurityGroup>-20</EditDeleteSecurityGroup>
       <MinCardinality>0</MinCardinality>
+	  <CustomEditModule><Module ID="CustomEditEducationalTraining"/></CustomEditModule>
     </Row>
     <Row>
       <Class>http://xmlns.com/foaf/0.1/Person</Class>
@@ -15628,17 +15634,19 @@
       <IsDetail>1</IsDetail>
       <IncludeDescription>1</IncludeDescription>
       <IncludeNetwork>0</IncludeNetwork>
-      <SearchWeight>0.000000000000000e+000</SearchWeight>
-      <CustomDisplay>0</CustomDisplay>
-      <CustomEdit>0</CustomEdit>
+      <SearchWeight>0.300000000000000e+000</SearchWeight>
+      <CustomDisplay>1</CustomDisplay>
+      <CustomEdit>1</CustomEdit>
       <ViewSecurityGroup>-1</ViewSecurityGroup>
-      <EditSecurityGroup>-40</EditSecurityGroup>
-      <EditPermissionsSecurityGroup>-40</EditPermissionsSecurityGroup>
+      <EditSecurityGroup>-20</EditSecurityGroup>
+      <EditPermissionsSecurityGroup>-20</EditPermissionsSecurityGroup>
       <EditExistingSecurityGroup>-40</EditExistingSecurityGroup>
-      <EditAddNewSecurityGroup>-40</EditAddNewSecurityGroup>
+      <EditAddNewSecurityGroup>-20</EditAddNewSecurityGroup>
       <EditAddExistingSecurityGroup>-40</EditAddExistingSecurityGroup>
-      <EditDeleteSecurityGroup>-40</EditDeleteSecurityGroup>
+      <EditDeleteSecurityGroup>-20</EditDeleteSecurityGroup>
       <MinCardinality>0</MinCardinality>
+	  <CustomDisplayModule><Module ID="CustomViewResearcherRole"/></CustomDisplayModule>
+	  <CustomEditModule><Module ID="CustomEditResearcherRole"/></CustomEditModule>
     </Row>
     <Row>
       <Class>http://xmlns.com/foaf/0.1/Person</Class>
@@ -16149,6 +16157,189 @@
       <EditAddExistingSecurityGroup>-40</EditAddExistingSecurityGroup>
       <EditDeleteSecurityGroup>-40</EditDeleteSecurityGroup>
       <MinCardinality>1</MinCardinality>
+    </Row>
+	<Row>
+      <Class>http://xmlns.com/foaf/0.1/Person</Class>
+      <Property>http://vivoweb.org/ontology/core#freetextKeyword</Property>
+      <IsDetail>1</IsDetail>
+      <IncludeDescription>0</IncludeDescription>
+      <IncludeNetwork>0</IncludeNetwork>
+      <SearchWeight>0.500000000000000e+000</SearchWeight>
+      <CustomDisplay>1</CustomDisplay>
+      <CustomEdit>1</CustomEdit>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-20</EditSecurityGroup>
+      <EditPermissionsSecurityGroup>-20</EditPermissionsSecurityGroup>
+      <EditExistingSecurityGroup>-20</EditExistingSecurityGroup>
+      <EditAddNewSecurityGroup>-20</EditAddNewSecurityGroup>
+      <EditAddExistingSecurityGroup>-20</EditAddExistingSecurityGroup>
+      <EditDeleteSecurityGroup>-20</EditDeleteSecurityGroup>
+      <MinCardinality>0</MinCardinality>
+	  <MaxCardinality>0</MaxCardinality>
+	  <CustomDisplayModule><Module ID="ApplyXSLT"><ParamList><Param Name="XSLTPath">~/profile/XSLT/FreetextKeyword.xslt</Param></ParamList></Module></CustomDisplayModule>
+	  <CustomEditModule><Module ID="CustomEditFreetextKeyword" /></CustomEditModule>
+    </Row>
+	<Row>
+      <Class>http://vivoweb.org/ontology/core#EducationalTraining</Class>
+      <Property>http://profiles.catalyst.harvard.edu/ontology/prns#trainingLocation</Property>
+      <IsDetail>0</IsDetail>
+      <IncludeDescription>0</IncludeDescription>
+      <IncludeNetwork>0</IncludeNetwork>
+      <SearchWeight>0.500000000000000e+000</SearchWeight>
+      <CustomDisplay>0</CustomDisplay>
+      <CustomEdit>0</CustomEdit>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+      <EditPermissionsSecurityGroup>-40</EditPermissionsSecurityGroup>
+      <EditExistingSecurityGroup>-40</EditExistingSecurityGroup>
+      <EditAddNewSecurityGroup>-40</EditAddNewSecurityGroup>
+      <EditAddExistingSecurityGroup>-40</EditAddExistingSecurityGroup>
+      <EditDeleteSecurityGroup>-40</EditDeleteSecurityGroup>
+      <MinCardinality>0</MinCardinality>
+    </Row>
+	<Row>
+      <Class>http://vivoweb.org/ontology/core#EducationalTraining</Class>
+      <Property>http://profiles.catalyst.harvard.edu/ontology/prns#trainingAtOrganization</Property>
+      <IsDetail>0</IsDetail>
+      <IncludeDescription>0</IncludeDescription>
+      <IncludeNetwork>0</IncludeNetwork>
+      <SearchWeight>0.500000000000000e+000</SearchWeight>
+      <CustomDisplay>0</CustomDisplay>
+      <CustomEdit>0</CustomEdit>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+      <EditPermissionsSecurityGroup>-40</EditPermissionsSecurityGroup>
+      <EditExistingSecurityGroup>-40</EditExistingSecurityGroup>
+      <EditAddNewSecurityGroup>-40</EditAddNewSecurityGroup>
+      <EditAddExistingSecurityGroup>-40</EditAddExistingSecurityGroup>
+      <EditDeleteSecurityGroup>-40</EditDeleteSecurityGroup>
+      <MinCardinality>0</MinCardinality>
+    </Row>
+	<Row>
+      <Class>http://vivoweb.org/ontology/core#EducationalTraining</Class>
+      <Property>http://profiles.catalyst.harvard.edu/ontology/prns#endDate</Property>
+      <IsDetail>0</IsDetail>
+      <IncludeDescription>0</IncludeDescription>
+      <IncludeNetwork>0</IncludeNetwork>
+      <SearchWeight>0.000000000000000e+000</SearchWeight>
+      <CustomDisplay>0</CustomDisplay>
+      <CustomEdit>0</CustomEdit>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+      <EditPermissionsSecurityGroup>-40</EditPermissionsSecurityGroup>
+      <EditExistingSecurityGroup>-40</EditExistingSecurityGroup>
+      <EditAddNewSecurityGroup>-40</EditAddNewSecurityGroup>
+      <EditAddExistingSecurityGroup>-40</EditAddExistingSecurityGroup>
+      <EditDeleteSecurityGroup>-40</EditDeleteSecurityGroup>
+      <MinCardinality>0</MinCardinality>
+    </Row>
+    <Row>
+      <Class>http://vivoweb.org/ontology/core#Grant</Class>
+      <Property>http://profiles.catalyst.harvard.edu/ontology/prns#endDate</Property>
+      <IsDetail>0</IsDetail>
+      <IncludeDescription>1</IncludeDescription>
+      <IncludeNetwork>0</IncludeNetwork>
+      <SearchWeight>0.000000000000000e+000</SearchWeight>
+      <CustomDisplay>0</CustomDisplay>
+      <CustomEdit>0</CustomEdit>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+      <EditPermissionsSecurityGroup>-40</EditPermissionsSecurityGroup>
+      <EditExistingSecurityGroup>-40</EditExistingSecurityGroup>
+      <EditAddNewSecurityGroup>-40</EditAddNewSecurityGroup>
+      <EditAddExistingSecurityGroup>-40</EditAddExistingSecurityGroup>
+      <EditDeleteSecurityGroup>-40</EditDeleteSecurityGroup>
+      <MinCardinality>0</MinCardinality>
+    </Row>
+    <Row>
+      <Class>http://vivoweb.org/ontology/core#Grant</Class>
+      <Property>http://profiles.catalyst.harvard.edu/ontology/prns#startDate</Property>
+      <IsDetail>0</IsDetail>
+      <IncludeDescription>1</IncludeDescription>
+      <IncludeNetwork>0</IncludeNetwork>
+      <SearchWeight>0.000000000000000e+000</SearchWeight>
+      <CustomDisplay>0</CustomDisplay>
+      <CustomEdit>0</CustomEdit>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+      <EditPermissionsSecurityGroup>-40</EditPermissionsSecurityGroup>
+      <EditExistingSecurityGroup>-40</EditExistingSecurityGroup>
+      <EditAddNewSecurityGroup>-40</EditAddNewSecurityGroup>
+      <EditAddExistingSecurityGroup>-40</EditAddExistingSecurityGroup>
+      <EditDeleteSecurityGroup>-40</EditDeleteSecurityGroup>
+      <MinCardinality>0</MinCardinality>
+    </Row>
+    <Row>
+      <Class>http://vivoweb.org/ontology/core#Grant</Class>
+      <Property>http://purl.org/ontology/bibo/abstract</Property>
+      <IsDetail>1</IsDetail>
+      <IncludeDescription>1</IncludeDescription>
+      <IncludeNetwork>0</IncludeNetwork>
+      <SearchWeight>5.000000000000000e-001</SearchWeight>
+      <CustomDisplay>0</CustomDisplay>
+      <CustomEdit>0</CustomEdit>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+      <EditPermissionsSecurityGroup>-40</EditPermissionsSecurityGroup>
+      <EditExistingSecurityGroup>-40</EditExistingSecurityGroup>
+      <EditAddNewSecurityGroup>-40</EditAddNewSecurityGroup>
+      <EditAddExistingSecurityGroup>-40</EditAddExistingSecurityGroup>
+      <EditDeleteSecurityGroup>-40</EditDeleteSecurityGroup>
+      <MinCardinality>0</MinCardinality>
+    </Row>
+    <Row>
+      <Class>http://vivoweb.org/ontology/core#Grant</Class>
+      <Property>http://vivoweb.org/ontology/core#contributingRole</Property>
+      <IsDetail>1</IsDetail>
+      <IncludeDescription>1</IncludeDescription>
+      <IncludeNetwork>0</IncludeNetwork>
+      <SearchWeight>0.000000000000000e+000</SearchWeight>
+      <CustomDisplay>0</CustomDisplay>
+      <CustomEdit>0</CustomEdit>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+      <EditPermissionsSecurityGroup>-40</EditPermissionsSecurityGroup>
+      <EditExistingSecurityGroup>-40</EditExistingSecurityGroup>
+      <EditAddNewSecurityGroup>-40</EditAddNewSecurityGroup>
+      <EditAddExistingSecurityGroup>-40</EditAddExistingSecurityGroup>
+      <EditDeleteSecurityGroup>-40</EditDeleteSecurityGroup>
+      <MinCardinality>0</MinCardinality>
+    </Row>
+    <Row>
+      <Class>http://vivoweb.org/ontology/core#ResearcherRole</Class>
+      <Property>http://vivoweb.org/ontology/core#description</Property>
+      <IsDetail>0</IsDetail>
+      <IncludeDescription>1</IncludeDescription>
+      <IncludeNetwork>0</IncludeNetwork>
+      <SearchWeight>5.000000000000000e-001</SearchWeight>
+      <CustomDisplay>0</CustomDisplay>
+      <CustomEdit>0</CustomEdit>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+      <EditPermissionsSecurityGroup>-40</EditPermissionsSecurityGroup>
+      <EditExistingSecurityGroup>-40</EditExistingSecurityGroup>
+      <EditAddNewSecurityGroup>-40</EditAddNewSecurityGroup>
+      <EditAddExistingSecurityGroup>-40</EditAddExistingSecurityGroup>
+      <EditDeleteSecurityGroup>-40</EditDeleteSecurityGroup>
+      <MinCardinality>0</MinCardinality>
+    </Row>
+    <Row>
+      <Class>http://vivoweb.org/ontology/core#ResearcherRole</Class>
+      <Property>http://vivoweb.org/ontology/core#roleContributesTo</Property>
+      <IsDetail>0</IsDetail>
+      <IncludeDescription>1</IncludeDescription>
+      <IncludeNetwork>0</IncludeNetwork>
+      <SearchWeight>1.000000000000000e+000</SearchWeight>
+      <CustomDisplay>0</CustomDisplay>
+      <CustomEdit>0</CustomEdit>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+      <EditPermissionsSecurityGroup>-40</EditPermissionsSecurityGroup>
+      <EditExistingSecurityGroup>-40</EditExistingSecurityGroup>
+      <EditAddNewSecurityGroup>-40</EditAddNewSecurityGroup>
+      <EditAddExistingSecurityGroup>-40</EditAddExistingSecurityGroup>
+      <EditDeleteSecurityGroup>-40</EditDeleteSecurityGroup>
+      <MinCardinality>0</MinCardinality>
     </Row>
   </Table>
   <Table Name="[Ontology.].[DataMap]">
@@ -18466,6 +18657,321 @@
       <ViewSecurityGroup>-1</ViewSecurityGroup>
       <EditSecurityGroup>-40</EditSecurityGroup>
     </Row>
+	    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#Agreement</Class>
+      <Property>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</Property>
+      <MapTable>[Profile.Data].[Funding.Agreement]</MapTable>
+      <sInternalType>Agreement</sInternalType>
+      <sInternalID>FundingAgreementID</sInternalID>
+      <oValue>'http://vivoweb.org/ontology/core#Agreement'</oValue>
+      <oObjectType>0</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#Agreement</Class>
+      <MapTable>[Profile.Data].[Funding.Agreement]</MapTable>
+      <sInternalType>Agreement</sInternalType>
+      <sInternalID>FundingAgreementID</sInternalID>
+      <oObjectType>0</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#Grant</Class>
+      <Property>http://profiles.catalyst.harvard.edu/ontology/prns#endDate</Property>
+      <MapTable>[Profile.Data].[Funding.Agreement]</MapTable>
+      <sInternalType>Grant</sInternalType>
+      <sInternalID>FundingAgreementID</sInternalID>
+      <oValue>EndDate</oValue>
+      <oObjectType>1</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#Grant</Class>
+      <Property>http://profiles.catalyst.harvard.edu/ontology/prns#grandAwardedBy</Property>
+      <MapTable>[Profile.Data].[Funding.Agreement]</MapTable>
+      <sInternalType>Grant</sInternalType>
+      <sInternalID>FundingAgreementID</sInternalID>
+      <oValue>GrantAwardedBy</oValue>
+      <oObjectType>1</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#Grant</Class>
+      <Property>http://profiles.catalyst.harvard.edu/ontology/prns#principalInvestigatorName</Property>
+      <MapTable>[Profile.Data].[Funding.Agreement]</MapTable>
+      <sInternalType>Grant</sInternalType>
+      <sInternalID>FundingAgreementID</sInternalID>
+      <oValue>PrincipalInvestigatorName</oValue>
+      <oObjectType>1</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#Grant</Class>
+      <Property>http://profiles.catalyst.harvard.edu/ontology/prns#startDate</Property>
+      <MapTable>[Profile.Data].[Funding.Agreement]</MapTable>
+      <sInternalType>Grant</sInternalType>
+      <sInternalID>FundingAgreementID</sInternalID>
+      <oValue>StartDate</oValue>
+      <oObjectType>1</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#Grant</Class>
+      <Property>http://purl.org/ontology/bibo/abstract</Property>
+      <MapTable>[Profile.Data].[Funding.Agreement]</MapTable>
+      <sInternalType>Grant</sInternalType>
+      <sInternalID>FundingAgreementID</sInternalID>
+      <oValue>Abstract</oValue>
+      <oObjectType>1</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#Grant</Class>
+      <Property>http://vivoweb.org/ontology/core#sponsorAwardId</Property>
+      <MapTable>[Profile.Data].[Funding.Agreement]</MapTable>
+      <sInternalType>Grant</sInternalType>
+      <sInternalID>FundingAgreementID</sInternalID>
+      <oValue>FundingID</oValue>
+      <oObjectType>1</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#Grant</Class>
+      <Property>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</Property>
+      <MapTable>[Profile.Data].[Funding.Agreement]</MapTable>
+      <sInternalType>Grant</sInternalType>
+      <sInternalID>FundingAgreementID</sInternalID>
+      <oValue>'http://vivoweb.org/ontology/core#Grant'</oValue>
+      <oObjectType>0</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#Grant</Class>
+      <Property>http://www.w3.org/2000/01/rdf-schema#label</Property>
+      <MapTable>[Profile.Data].[Funding.Agreement]</MapTable>
+      <sInternalType>Grant</sInternalType>
+      <sInternalID>FundingAgreementID</sInternalID>
+      <oValue>AgreementLabel</oValue>
+      <oObjectType>1</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#Grant</Class>
+      <MapTable>[Profile.Data].[Funding.Agreement]</MapTable>
+      <sInternalType>Grant</sInternalType>
+      <sInternalID>FundingAgreementID</sInternalID>
+      <oObjectType>0</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#Grant</Class>
+      <Property>http://vivoweb.org/ontology/core#contributingRole</Property>
+      <MapTable>[Profile.Data].[Funding.Role]</MapTable>
+      <sInternalType>Grant</sInternalType>
+      <sInternalID>FundingAgreementID</sInternalID>
+      <oClass>http://vivoweb.org/ontology/core#ResearcherRole</oClass>
+      <oInternalType>ResearcherRole</oInternalType>
+      <oInternalID>FundingRoleID</oInternalID>
+      <oObjectType>0</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#ResearcherRole</Class>
+      <Property>http://vivoweb.org/ontology/core#description</Property>
+      <MapTable>[Profile.Data].[Funding.Role]</MapTable>
+      <sInternalType>ResearcherRole</sInternalType>
+      <sInternalID>FundingRoleID</sInternalID>
+      <oValue>RoleDescription</oValue>
+      <oObjectType>1</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#ResearcherRole</Class>
+      <Property>http://vivoweb.org/ontology/core#researcherRoleOf</Property>
+      <MapTable>[Profile.Data].[Funding.Role]</MapTable>
+      <sInternalType>ResearcherRole</sInternalType>
+      <sInternalID>FundingRoleID</sInternalID>
+      <oClass>http://xmlns.com/foaf/0.1/Person</oClass>
+      <oInternalType>Person</oInternalType>
+      <oInternalID>PersonID</oInternalID>
+      <oObjectType>0</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#ResearcherRole</Class>
+      <Property>http://vivoweb.org/ontology/core#roleContributesTo</Property>
+      <MapTable>[Profile.Data].[Funding.Role]</MapTable>
+      <sInternalType>ResearcherRole</sInternalType>
+      <sInternalID>FundingRoleID</sInternalID>
+      <oClass>http://vivoweb.org/ontology/core#Grant</oClass>
+      <oInternalType>Grant</oInternalType>
+      <oInternalID>FundingAgreementID</oInternalID>
+      <oObjectType>0</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#ResearcherRole</Class>
+      <Property>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</Property>
+      <MapTable>[Profile.Data].[Funding.Role]</MapTable>
+      <sInternalType>ResearcherRole</sInternalType>
+      <sInternalID>FundingRoleID</sInternalID>
+      <oValue>'http://vivoweb.org/ontology/core#ResearcherRole'</oValue>
+      <oObjectType>0</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#ResearcherRole</Class>
+      <Property>http://www.w3.org/2000/01/rdf-schema#label</Property>
+      <MapTable>[Profile.Data].[Funding.Role]</MapTable>
+      <sInternalType>ResearcherRole</sInternalType>
+      <sInternalID>FundingRoleID</sInternalID>
+      <oValue>RoleLabel</oValue>
+      <oObjectType>1</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#ResearcherRole</Class>
+      <MapTable>[Profile.Data].[Funding.Role]</MapTable>
+      <sInternalType>ResearcherRole</sInternalType>
+      <sInternalID>FundingRoleID</sInternalID>
+      <oObjectType>0</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#Role</Class>
+      <Property>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</Property>
+      <MapTable>[Profile.Data].[Funding.Role]</MapTable>
+      <sInternalType>Role</sInternalType>
+      <sInternalID>FundingRoleID</sInternalID>
+      <oValue>'http://vivoweb.org/ontology/core#Role'</oValue>
+      <oObjectType>0</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://vivoweb.org/ontology/core#Role</Class>
+      <MapTable>[Profile.Data].[Funding.Role]</MapTable>
+      <sInternalType>Role</sInternalType>
+      <sInternalID>FundingRoleID</sInternalID>
+      <oObjectType>0</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
+    <Row>
+      <DataMapGroup>1</DataMapGroup>
+      <IsAutoFeed>1</IsAutoFeed>
+      <Graph>1</Graph>
+      <Class>http://xmlns.com/foaf/0.1/Person</Class>
+      <Property>http://vivoweb.org/ontology/core#hasResearcherRole</Property>
+      <MapTable>[Profile.Data].[Funding.Role]</MapTable>
+      <sInternalType>Person</sInternalType>
+      <sInternalID>PersonID</sInternalID>
+      <oClass>http://vivoweb.org/ontology/core#ResearcherRole</oClass>
+      <oInternalType>ResearcherRole</oInternalType>
+      <oInternalID>FundingRoleID</oInternalID>
+      <oObjectType>0</oObjectType>
+      <Weight>1</Weight>
+      <ViewSecurityGroup>-1</ViewSecurityGroup>
+      <EditSecurityGroup>-40</EditSecurityGroup>
+    </Row>
   </Table>
   <Table Name="[Ontology.].[Namespace]">
     <Row>
@@ -19808,7 +20314,6 @@
       <CustomDisplayModule>
         <Module ID="ApplyXSLT">
           <ParamList>
-            <Param Name="DataURI">rdf:RDF/rdf:Description/@rdf:about</Param>
             <Param Name="XSLTPath">~/profile/XSLT/Awards.xslt</Param>
           </ParamList>
         </Module>
@@ -20060,6 +20565,7 @@
       <SortOrder>1</SortOrder>
       <_TagName>vivo:educationalTraining</_TagName>
       <_PropertyLabel>education and training</_PropertyLabel>
+	  <CustomDisplayModule><Module ID="ApplyXSLT"><ParamList><Param Name="XSLTPath">~/profile/XSLT/EducationalTraining.xslt</Param></ParamList></Module></CustomDisplayModule>
     </Row>
     <Row>
       <PropertyGroupURI>http://profiles.catalyst.harvard.edu/ontology/prns#PropertyGroupOverview</PropertyGroupURI>
@@ -21482,6 +21988,20 @@
       <_TagName>foaf:lastName</_TagName>
       <_PropertyLabel>last name</_PropertyLabel>
     </Row>
+	<Row>
+      <PropertyGroupURI>http://profiles.catalyst.harvard.edu/ontology/prns#PropertyGroupAddress</PropertyGroupURI>
+      <PropertyURI>http://profiles.catalyst.harvard.edu/ontology/prns#trainingLocation</PropertyURI>
+      <SortOrder>26</SortOrder>
+      <_TagName>prns:trainingLocation</_TagName>
+      <_PropertyLabel>training location</_PropertyLabel>
+    </Row>
+	<Row>
+      <PropertyGroupURI>http://profiles.catalyst.harvard.edu/ontology/prns#PropertyGroupOverview</PropertyGroupURI>
+      <PropertyURI>http://profiles.catalyst.harvard.edu/ontology/prns#trainingAtOrganization</PropertyURI>
+      <SortOrder>224</SortOrder>
+      <_TagName>prns:trainingAtOrganization</_TagName>
+      <_PropertyLabel>educational organization</_PropertyLabel>
+    </Row>
   </Table>
   <Table Name="[Ontology.Presentation].[XML]">
     <Row>
@@ -21602,7 +22122,7 @@
             <Panel Type="main" TabSort="0" TabType="Default">
               <Module ID="CustomViewConceptPublication">
                 <ParamList>
-                  <Param Name="TimelineCaption">This graph shows the total number of publications written about "@ConceptName" by people in Harvard Catalyst Profiles by year, and whether "@ConceptName" was a major or minor topic of these publication. &lt;!--In all years combined, a total of [[[TODO:PUBLICATION COUNT]]] publications were written by people in Profiles.--&gt;</Param>
+                  <Param Name="TimelineCaption">This graph shows the total number of publications written about "@ConceptName" by people in this website by year, and whether "@ConceptName" was a major or minor topic of these publications. &lt;!--In all years combined, a total of [[[TODO:PUBLICATION COUNT]]] publications were written by people in Profiles.--&gt;</Param>
                   <Param Name="CitedCaption">Below are the publications written about "@ConceptName" that have been cited the most by articles in Pubmed Central.</Param>
                   <Param Name="NewestCaption">Below are the most recent publications written about "@ConceptName" by people in Profiles.</Param>
                   <Param Name="OldestCaption">Below are the earliest publications written about "@ConceptName" by people in Profiles.</Param>
@@ -21612,7 +22132,6 @@
             <Panel Type="passive">
               <Module ID="PassiveList">
                 <ParamList>
-                  <Param Name="DataURI">rdf:RDF/rdf:Description/@rdf:about</Param>
                   <Param Name="InfoCaption">People</Param>
                   <Param Name="Description">People who have written about this concept.</Param>
                   <Param Name="MaxDisplay">5</Param>
@@ -21664,7 +22183,6 @@
               <Module ID="CustomViewPersonGeneralInfo" />
               <Module ID="ApplyXSLT">
                 <ParamList>
-                  <Param Name="DataURI">rdf:RDF/rdf:Description/@rdf:about</Param>
                   <Param Name="XSLTPath">~/profile/XSLT/OtherPositions.xslt</Param>
                 </ParamList>
               </Module>
@@ -21683,10 +22201,6 @@
               </Module>
               <Module ID="PassiveList">
                 <ParamList>
-                  <Param Name="DataURI">rdf:RDF/rdf:Description/@rdf:about</Param>
-                  <Param Name="ExpandRDFList">
-                    <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
-                  </Param>
                   <Param Name="InfoCaption">Concepts</Param>
                   <Param Name="Description">Derived automatically from this person's publications.</Param>
                   <Param Name="MaxDisplay">5</Param>
@@ -21746,6 +22260,7 @@
           </PanelList>
           <ExpandRDFList>
             <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
+            <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#hasResearcherRole" Limit="1" />
           </ExpandRDFList>
         </Presentation>
       </presentationXML>
@@ -21818,6 +22333,7 @@
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
                   <Param Name="ExpandRDFList">
                     <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
+                    <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#hasResearcherRole" Limit="1" />
                   </Param>
                 </ParamList>
               </Module>
@@ -21826,6 +22342,7 @@
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
                   <Param Name="ExpandRDFList">
                     <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
+                    <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#hasResearcherRole" Limit="1" />
                   </Param>
                   <Param Name="InfoCaption">Concepts</Param>
                   <Param Name="Description">Derived automatically from this person's publications.</Param>
@@ -21843,6 +22360,7 @@
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
                   <Param Name="ExpandRDFList">
                     <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
+                    <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#hasResearcherRole" Limit="1" />
                   </Param>
                   <Param Name="InfoCaption">Co-Authors</Param>
                   <Param Name="MaxDisplay">5</Param>
@@ -21859,6 +22377,7 @@
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
                   <Param Name="ExpandRDFList">
                     <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
+                    <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#hasResearcherRole" Limit="1" />
                   </Param>
                   <Param Name="InfoCaption">Similar People</Param>
                   <Param Name="Description">People who share similar concepts with this person.</Param>
@@ -21877,6 +22396,7 @@
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
                   <Param Name="ExpandRDFList">
                     <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
+                    <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#hasResearcherRole" Limit="1" />
                   </Param>
                   <Param Name="InfoCaption">Physical Neighbors</Param>
                   <Param Name="Description">People whose addresses are nearby this person.</Param>
@@ -21948,6 +22468,7 @@
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
                   <Param Name="ExpandRDFList">
                     <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
+                    <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#hasResearcherRole" Limit="1" />
                   </Param>
                 </ParamList>
               </Module>
@@ -21956,6 +22477,7 @@
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
                   <Param Name="ExpandRDFList">
                     <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
+                    <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#hasResearcherRole" Limit="1" />
                   </Param>
                   <Param Name="InfoCaption">Concepts</Param>
                   <Param Name="Description">Derived automatically from this person's publications.</Param>
@@ -21973,6 +22495,7 @@
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
                   <Param Name="ExpandRDFList">
                     <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
+                    <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#hasResearcherRole" Limit="1" />
                   </Param>
                   <Param Name="InfoCaption">Co-Authors</Param>
                   <Param Name="MaxDisplay">5</Param>
@@ -21989,6 +22512,7 @@
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
                   <Param Name="ExpandRDFList">
                     <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
+                    <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#hasResearcherRole" Limit="1" />
                   </Param>
                   <Param Name="InfoCaption">Similar People</Param>
                   <Param Name="Description">People who share similar concepts with this person.</Param>
@@ -22007,6 +22531,7 @@
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
                   <Param Name="ExpandRDFList">
                     <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
+                    <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#hasResearcherRole" Limit="1" />
                   </Param>
                   <Param Name="InfoCaption">Physical Neighbors</Param>
                   <Param Name="Description">People whose addresses are nearby this person.</Param>
@@ -22065,7 +22590,6 @@
             <Panel Type="main" TabSort="1" Alias="categories" Name="Categories">
               <Module ID="NetworkCategories">
                 <ParamList>
-                  <Param Name="DataURI">rdf:RDF/rdf:Description/@rdf:about</Param>
                   <Param Name="InfoCaption">Concepts listed here are grouped according to their 'semantic' categories. Within each category, up to ten concepts are shown, in decreasing order of relevance.</Param>
                   <Param Name="NetworkListNode">rdf:RDF/rdf:Description[@rdf:about= //rdf:RDF/rdf:Description/prns:hasConnection/@rdf:resource]</Param>
                   <Param Name="CategoryPath">//prns:meshSemanticGroupName</Param>
@@ -22097,6 +22621,7 @@
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
                   <Param Name="ExpandRDFList">
                     <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
+                    <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#hasResearcherRole" Limit="1" />
                   </Param>
                   <Param Name="InfoCaption">Concepts</Param>
                   <Param Name="Description">Derived automatically from this person's publications.</Param>
@@ -22114,6 +22639,7 @@
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
                   <Param Name="ExpandRDFList">
                     <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
+                    <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#hasResearcherRole" Limit="1" />
                   </Param>
                   <Param Name="InfoCaption">Co-Authors</Param>
                   <Param Name="MaxDisplay">5</Param>
@@ -22130,6 +22656,7 @@
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
                   <Param Name="ExpandRDFList">
                     <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
+                    <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#hasResearcherRole" Limit="1" />
                   </Param>
                   <Param Name="InfoCaption">Similar People</Param>
                   <Param Name="Description">People who share similar concepts with this person.</Param>
@@ -22148,6 +22675,7 @@
                   <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
                   <Param Name="ExpandRDFList">
                     <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
+                    <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#hasResearcherRole" Limit="1" />
                   </Param>
                   <Param Name="InfoCaption">Physical Neighbors</Param>
                   <Param Name="Description">People whose addresses are nearby this person.</Param>

@@ -51,7 +51,6 @@ namespace Profiles.Profile.Modules.ProfileImage
                 // UCSF.  Allow old id to work
                 nodeid = Framework.Utilities.UCSFIDSet.ByPersonId[Convert.ToInt64(context.Request.QueryString["person"])].NodeId;
             }
-
             if (nodeid > 0)
             {
                 // UCSF items
@@ -80,6 +79,8 @@ namespace Profiles.Profile.Modules.ProfileImage
                     Framework.Utilities.RDFTriple request = new Profiles.Framework.Utilities.RDFTriple(nodeid);
 
                     request.Expand = true;
+                    request.ShowDetails = true;
+                    request.ExpandRDFList = "<ExpandRDF Class=\"http://xmlns.com/foaf/0.1/Person\" Property=\"http://vivoweb.org/ontology/core#authorInAuthorship\" Limit=\"1\" />";
                     Framework.Utilities.Namespace xmlnamespace = new Profiles.Framework.Utilities.Namespace();
                     XmlDocument person;
 
@@ -129,7 +130,6 @@ namespace Profiles.Profile.Modules.ProfileImage
                 {
                     context.Response.Write("No Image Found");
                 }
-
             }
         }
 

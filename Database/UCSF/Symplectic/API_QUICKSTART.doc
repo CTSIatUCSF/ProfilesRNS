@@ -1,0 +1,33 @@
+========================================================================
+ API QUICKSTART
+========================================================================
+
+The API reference is very complete but also very general. The following 
+describes some simple URLs for retrieving basic user and publication 
+data that can be used with commandline tools such as curl.
+
+    curl -k -u ucb:PASSWORD https://qa-oapolicy.universityofcalifornia.edu:8002/elements-secure-api/publications?userid=11229
+
+Also, if you have the 'xmllint' tool it can be used to format and 
+indent the output to make it more readable, e.g.
+
+    curl -k -u ucb:PASSWORD https://qa-oapolicy.universityofcalifornia.edu:8002/elements-secure-api/publications?userid=11229 | xmllint --format - | more
+
+* URL to search for a user by their Shibboleth EPPN:
+
+    https://qa-oapolicy.universityofcalifornia.edu:8002/elements-secure-api/users?username=eabel@berkeley.edu
+
+    in there you can find their id number within Elements, e.g. in this 
+    case, we see:
+     <api:object category="user" id="11229" proprietary-id="011460066"...>
+    and so the user id is 11229.
+
+* List items for a given user once you have their userid:
+
+    https://qa-oapolicy.universityofcalifornia.edu:8002/elements-secure-api/publications?userid=11229
+
+* If you already have a publication's Elements ID, you can get the 
+  record for just that publication:
+
+    https://qa-oapolicy.universityofcalifornia.edu:8002/elements-secure-api/publications/1386708
+    

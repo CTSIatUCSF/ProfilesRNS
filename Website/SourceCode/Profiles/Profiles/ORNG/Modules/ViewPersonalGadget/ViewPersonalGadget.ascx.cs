@@ -56,7 +56,7 @@ namespace Profiles.ORNG.Modules.Gadgets
                 uri = node != null ? node.Value : null;
             }
             om = OpenSocialManager.GetOpenSocialManager(uri, Page);
-            if (om.IsVisible())
+            if (om.IsEnabled())
             {
                 gadget = om.AddOntologyGadget(Convert.ToInt32(base.GetModuleParamString("AppId")), base.GetModuleParamString("View"), base.GetModuleParamString("OptParams"));
             }

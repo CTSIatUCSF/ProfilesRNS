@@ -27,7 +27,7 @@ agp.grantprincipalpk as FundingAgreementID --,agpi.principalinvestigatorpk,ag.gr
 from [ORNG.Grant].[agGrant]  ag 
 inner join [ORNG.Grant].[agGrantPrincipal] agp on ag.grantpk=agp.grantpk
 inner join [ORNG.Grant].[agPrincipalInvestigator] agpi on agpi.principalinvestigatorpk=agp.principalinvestigatorpk
-where not exists ( select * from [Profilesrns_29].[Profile.Data].[Funding.Agreement] rnsfa where rnsfa.fundingagreementid=agp.grantprincipalpk)
+where not exists ( select * from [Profile.Data].[Funding.Agreement] rnsfa where rnsfa.fundingagreementid=agp.grantprincipalpk)
 --and ag.grantpk in ( select grantpk from  [ORNG.Grant].[agGrantPrincipal] where principalinvestigatorpk in ( select principalinvestigatorpk from [ORNG.Grant].[agPrincipalInvestigator] where name like '%cabana%'))
 )
 

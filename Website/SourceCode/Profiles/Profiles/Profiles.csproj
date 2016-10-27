@@ -160,7 +160,6 @@
     <Content Include="Edit\Images\icons_red_BlueRow.gif" />
     <Content Include="Edit\Images\Icons_upSort.gif" />
     <Content Include="Edit\Images\Icon_add_item.gif" />
-    <Content Include="Edit\Images\sophcat-boat.jpg" />
     <Content Include="Edit\JavaScript\UCSF.js" />
     <Content Include="Edit\Modules\CustomEditEagleI\CustomEditEagleI.ascx" />
     <Content Include="Edit\Modules\CustomEditEducationalTraining\CustomEditEducationalTraining.ascx" />
@@ -176,7 +175,6 @@
     <Content Include="Framework\Images\chatter-group.png" />
     <Content Include="Framework\Images\collapseRound.gif" />
     <Content Include="Framework\Images\connection.gif" />
-    <Content Include="Framework\Images\ctsi16.png" />
     <Content Include="Framework\Images\expandRound.gif" />
     <Content Include="Framework\Images\favicon.gif" />
     <Content Include="Framework\Images\glyphicons-halflings.png" />

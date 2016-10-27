@@ -229,6 +229,13 @@ namespace Profiles.ORNG.Utilities
             return pageName;
         }
 
+        // is ORNG even turned on 
+        public bool IsEnabled() 
+        {
+            return shindigURL != null;
+        }
+
+        // is ORNG turned on AND do we have something to show on this page
         public bool IsVisible()
         {
             // always have turned on for Profile/Display.aspx because we want to generate the "profile was viewed" in Javascript (bot proof) 

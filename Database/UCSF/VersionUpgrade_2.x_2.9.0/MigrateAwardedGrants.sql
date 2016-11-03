@@ -44,12 +44,12 @@ INSERT INTO [Profile.Data].[Funding.Role]
      
 	 (
 	 select  newid() as FundingRoleID  --agpi.principalinvestigatorpk
-, cast(agpi.employeeid as int) as Perosnid, agp.grantprincipalpk as Fundingagreementid,'Principal Investigator' as rolelabel, '' as roledescription
+, [UCSF.].fnGeneratePersonID(agpi.employeeid) as Personid, agp.grantprincipalpk as Fundingagreementid,'Principal Investigator' as rolelabel, '' as roledescription
 from [ORNG.Grant].[agGrant]  ag 
 inner join [ORNG.Grant].[agGrantPrincipal] agp on ag.grantpk=agp.grantpk
 inner join [ORNG.Grant].[agPrincipalInvestigator] agpi on agpi.principalinvestigatorpk=agp.principalinvestigatorpk
 where
-not exists( select * from [Profile.Data].[Funding.Role] rnsfr where rnsfr.personid=cast(agpi.employeeid as int) and rnsfr.fundingagreementid=agp.grantprincipalpk) 
+not exists( select * from [Profile.Data].[Funding.Role] rnsfr where rnsfr.personid=[UCSF.].fnGeneratePersonID(agpi.employeeid) and rnsfr.fundingagreementid=agp.grantprincipalpk) 
 --and ag.grantpk in ( select grantpk from  [ORNG.Grant].[agGrantPrincipal] where principalinvestigatorpk in ( select principalinvestigatorpk from [ORNG.Grant].[agPrincipalInvestigator] where name like '%cabana%'))
 )
 

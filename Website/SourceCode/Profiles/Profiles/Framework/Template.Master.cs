@@ -114,6 +114,11 @@ namespace Profiles.Framework
 
         }
 
+        public string GetThemedFile(string file)
+        {
+            return "~/App_Themes/" + Page.Theme + "/" + file;
+        }
+
         /// <summary>
         /// Used to set the link for css/js client Assets
         /// </summary>

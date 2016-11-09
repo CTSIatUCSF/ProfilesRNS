@@ -1908,6 +1908,8 @@
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailHandler.ashx" />
     <None Include="About\Images\Thumbs.db" />
     <None Include="About\ListMakerGuidance.pdf" />
+    <Content Include="App_Themes\UCSF\Default.skin" />
+    <Content Include="App_Themes\UCSD\Default.skin" />
     <None Include="ORCID\ORCIDPrivacySettingsandProfiles.pdf" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailAudioHandler.ashx" />
     <Content Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master" />

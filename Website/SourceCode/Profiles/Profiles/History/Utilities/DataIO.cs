@@ -65,7 +65,7 @@ namespace Profiles.History.Utilities
                 {
                     while (count > retval.Count)
                     {
-                        SortedList<Int64, Activity> newActivities = GetRecentActivity(activities[activities.Count - 1].Id, 10 * (count - retval.Count), true);
+                        SortedList<Int64, Activity> newActivities = GetRecentActivity(activities.Count > 0 ? activities[activities.Count - 1].Id : -1, 10 * (count - retval.Count), true);
                         if (newActivities.Count == 0)
                         {
                             // nothing more to load, time to bail
@@ -80,7 +80,7 @@ namespace Profiles.History.Utilities
                 }
                 else
                 {
-                    retval.AddRange(GetRecentActivity(retval[retval.Count - 1].Id, count - retval.Count, true).Values);
+                    retval.AddRange(GetRecentActivity(retval.Count > 0 ? retval[retval.Count - 1].Id : -1, count - retval.Count, true).Values);
                 }
             }
             return retval;
@@ -126,7 +126,7 @@ namespace Profiles.History.Utilities
         {
             SortedList<Int64, Activity> cache = (SortedList<Int64, Activity>)Framework.Utilities.Cache.FetchObject("ActivityHistory");
             object isFresh = Framework.Utilities.Cache.FetchObject("ActivityHistoryIsFresh");
-            if (cache == null)
+            if (cache == null || cache.Count == 0)
             {
                 // Grab a whole new one. This is expensive and should be unnecessary if we manage getting new ones well, so we don't do this often
                 cache = GetRecentActivity(-1, activityCacheSize, true);

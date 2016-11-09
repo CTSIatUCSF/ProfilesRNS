@@ -23,6 +23,7 @@
 
     function GetRecords(newActivities) {
         var referenceActivityId = newActivities ? $(".act-id").first().text() : $(".act-id").last().text();
+        referenceActivityId = referenceActivityId || -1; // if it is blank we want to replace that with -1, that is what the web service expects
         // only set this the first time
         activitySize = activitySize || $(".act-id").length;
         $.ajax({
@@ -33,10 +34,10 @@
             dataType: "json",
             success: OnSuccess,
             failure: function (response) {
-                alert(response.d);
+                alert(response);
             },
             error: function (response) {
-                alert(response.d);
+                alert(response.response);
             }
         });
     }

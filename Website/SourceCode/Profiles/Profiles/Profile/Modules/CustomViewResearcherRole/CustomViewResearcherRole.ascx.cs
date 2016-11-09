@@ -84,18 +84,18 @@ namespace Profiles.Profile.Modules.CustomViewResearcherRole
                 date = string.Empty;
 
             sb.Append("<tr><td>");
-            if (!(fs.FullFundingID == string.Empty && pi == string.Empty && date == string.Empty))
-                sb.Append("<div><span style='float:left'>" + fs.FullFundingID + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + pi + "<span style='float:right'>" + date + "</span></div>");
-
-            if (fs.GrantAwardedBy != string.Empty)
-                sb.Append(fs.GrantAwardedBy);
             if (fs.AgreementLabel != string.Empty)
-                sb.Append("<br/>" + fs.AgreementLabel);
+                sb.Append(fs.AgreementLabel + "<br/>");
+            if (fs.GrantAwardedBy != string.Empty)
+                sb.Append("<span style='float:left'>" + fs.GrantAwardedBy + "</span> ");
+            if (fs.FullFundingID != string.Empty)
+                sb.Append("<span style='float:left'>" + fs.FullFundingID + "</span> ");
+            if (date != string.Empty)
+                sb.Append("<span style='float:right'>" + date + "</span>");
             if (fs.RoleDescription != string.Empty)
                 sb.Append("<br/>Role Description: " + fs.RoleDescription);
             if (fs.RoleLabel != string.Empty)
                 sb.Append("<br/>Role: " + fs.RoleLabel);
-
 
             sb.Append("</td></tr>");
 

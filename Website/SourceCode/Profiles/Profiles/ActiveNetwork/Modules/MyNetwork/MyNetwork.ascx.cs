@@ -37,7 +37,7 @@ namespace Profiles.ActiveNetwork.Modules.MyNetwork
                 Response.Redirect(Root.Domain + "/search");
 
             
-            // UCSF DrawProfilesModule();
+            DrawProfilesModule();
 
         }
 
@@ -68,6 +68,8 @@ namespace Profiles.ActiveNetwork.Modules.MyNetwork
                 }
 
             }
+
+
             nibinder = this.GetItems("Collaborator", ni);
             litCollaborators.Text = "<b>Collaborators</b> (" + nibinder.Count.ToString() + ")";
             gvCollaborators.DataSource = nibinder;
@@ -95,6 +97,8 @@ namespace Profiles.ActiveNetwork.Modules.MyNetwork
             litAdviseesPast.Text = "<b>Advisee (Past)</b> (" + nibinder.Count.ToString() + ")";
             gvAdviseesPast.DataSource = nibinder;
             gvAdviseesPast.DataBind();
+
+
         }
 
 

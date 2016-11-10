@@ -46,7 +46,7 @@ UPDATE [Ontology.Presentation].[XML] SET [PresentationXML]=CONVERT(xml,N'<Presen
       <Module ID="CustomViewConceptSimilarMesh">
         <ParamList>
           <Param Name="InfoCaption">Related Concepts</Param>
-          <Param Name="Description">People who have written about this concept.</Param>
+          <Param Name="Description">Research concepts that are similar to this concept.</Param>
         </ParamList>
       </Module>
       <Module ID="CustomViewConceptTopJournal">

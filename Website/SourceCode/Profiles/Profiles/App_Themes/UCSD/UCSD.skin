@@ -15,3 +15,5 @@ Default skin template. The following skins are provided as examples only.
 --%>
 <asp:Panel runat="server" SkinID="UCSD" Visible="true">
 </asp:Panel>
+<asp:Image runat="server" SkinID="backtotop" ImageURL="Framework/Images/backtotop.gif" border="0" alt="Back to TOP" width="33" height="116" />
+<asp:Image runat="server" SkinID="searchIconSquareArrow" ImageURL="Search/Images/icon_squareArrow.gif" />

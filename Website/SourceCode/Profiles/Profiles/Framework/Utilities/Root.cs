@@ -75,5 +75,9 @@ namespace Profiles.Framework.Utilities
             }
         }
 
+        static public string GetThemedFile(System.Web.UI.Page page, string file)
+        {
+            return Root.Domain + "/App_Themes/" + page.Theme + "/" + file;
+        }
     }
-}
+}   

@@ -304,6 +304,6 @@
                 </tr>
             </table>
         </div>
-            <p style="text-align:right; margin-right: 20px"><img src="<%=GetURLDomain()%>/Search/Images/icon_squareArrow.gif" /> <a href="<%=GetURLDomain()%>/direct">Search other institutions</a></p>
+            <p style="text-align:right; margin-right: 20px"><asp:Image runat="server" SkinID="searchIconSquareArrow"/> <a href="<%=GetURLDomain()%>/direct">Search other institutions</a></p>
     </div>
 </div>

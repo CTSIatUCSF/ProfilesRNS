@@ -142,6 +142,42 @@
     <Content Include="About\PresentationXML\Optin.xml" />
     <Content Include="ActiveNetwork\CSS\UCSF.css" />
     <Content Include="ActiveNetwork\JavaScript\UCSF.js" />
+    <Content Include="App_Themes\UCSD\Framework\CSS\Theme.css" />
+    <Content Include="App_Themes\UCSD\Framework\Images\backtotop.gif" />
+    <Content Include="App_Themes\UCSD\Framework\Images\collapseRound.gif" />
+    <Content Include="App_Themes\UCSD\Framework\Images\expandRound.gif" />
+    <Content Include="App_Themes\UCSD\Framework\Images\icon_squareArrow.gif" />
+    <Content Include="App_Themes\UCSD\Framework\Images\icon_squareDownArrow.gif" />
+    <Content Include="App_Themes\UCSD\Framework\Images\ucsd.png" />
+    <Content Include="App_Themes\UCSD\Framework\Images\ucsdhs.png" />
+    <Content Include="App_Themes\UCSD\Framework\JavaScript\Theme.js" />
+    <Content Include="App_Themes\UCSD\Profile\CSS\display.css" />
+    <Content Include="App_Themes\UCSD\Profile\CSS\NetworkBrowser.css" />
+    <Content Include="App_Themes\UCSD\Profile\CSS\UCSF.css" />
+    <Content Include="App_Themes\UCSD\Profile\Images\college-alumni.png" />
+    <Content Include="App_Themes\UCSD\Profile\Images\default_img.png" />
+    <Content Include="App_Themes\UCSD\Profile\Images\ucsf_alumni_blue.jpg" />
+    <Content Include="App_Themes\UCSD\Profile\JavaScript\UCSF.js" />
+    <Content Include="App_Themes\UCSD\Search\CSS\Theme.css" />
+    <Content Include="App_Themes\UCSD\Search\Images\icon_squareArrow.gif" />
+    <Content Include="App_Themes\UCSD\Search\JavaScript\Theme.js" />
+    <Content Include="App_Themes\UCSF\Framework\CSS\Theme.css" />
+    <Content Include="App_Themes\UCSF\Framework\Images\backtotop.gif" />
+    <Content Include="App_Themes\UCSF\Framework\Images\collapseRound.gif" />
+    <Content Include="App_Themes\UCSF\Framework\Images\expandRound.gif" />
+    <Content Include="App_Themes\UCSF\Framework\Images\icon_squareArrow.gif" />
+    <Content Include="App_Themes\UCSF\Framework\Images\icon_squareDownArrow.gif" />
+    <Content Include="App_Themes\UCSF\Framework\JavaScript\Theme.js" />
+    <Content Include="App_Themes\UCSF\Profile\CSS\display.css" />
+    <Content Include="App_Themes\UCSF\Profile\CSS\NetworkBrowser.css" />
+    <Content Include="App_Themes\UCSF\Profile\CSS\UCSF.css" />
+    <Content Include="App_Themes\UCSF\Profile\CSS\viz.css" />
+    <Content Include="App_Themes\UCSF\Profile\Images\default_img.png" />
+    <Content Include="App_Themes\UCSF\Profile\Images\ucsf_alumni_blue.jpg" />
+    <Content Include="App_Themes\UCSF\Profile\JavaScript\UCSF.js" />
+    <Content Include="App_Themes\UCSF\Search\CSS\Theme.css" />
+    <Content Include="App_Themes\UCSF\Search\Images\icon_squareArrow.gif" />
+    <Content Include="App_Themes\UCSF\Search\JavaScript\Theme.js" />
     <Content Include="CustomAPI\v1\EditedCount.aspx" />
     <Content Include="CustomAPI\v1\JSONProfile.aspx" />
     <Content Include="CustomAPI\v1\PubDate.aspx" />
@@ -167,15 +203,11 @@
     <Content Include="Edit\Modules\CustomEditFreetextKeyword\keywordAutocomplete.aspx" />
     <Content Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx" />
     <Content Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx" />
-    <Content Include="Framework\CSS\UCSF.css" />
     <Content Include="Framework\Images\arrow-orgbg.gif" />
     <Content Include="Framework\Images\arrow-tealbg.gif" />
-    <Content Include="Framework\Images\backtotop.gif" />
     <Content Include="Framework\Images\chatter-follow.png" />
     <Content Include="Framework\Images\chatter-group.png" />
-    <Content Include="Framework\Images\collapseRound.gif" />
     <Content Include="Framework\Images\connection.gif" />
-    <Content Include="Framework\Images\expandRound.gif" />
     <Content Include="Framework\Images\favicon.gif" />
     <Content Include="Framework\Images\glyphicons-halflings.png" />
     <Content Include="Framework\Images\info1.png" />
@@ -190,7 +222,6 @@
     <Content Include="Framework\Images\search-icon.gif" />
     <Content Include="Framework\Images\ucsf.png" />
     <Content Include="Framework\Images\video-ad.png" />
-    <Content Include="Framework\JavaScript\UCSF.js" />
     <Content Include="GitVersion.txt" />
     <Content Include="Global.asax" />
     <Content Include="google6b93ad5a56d431a7.html" />
@@ -266,11 +297,9 @@
     <Content Include="ORNG\PresentationXML\DashboardPresentation.xml" />
     <Content Include="ORNG\PresentationXML\GadgetDetailsPresentation.xml" />
     <Content Include="ORNG\PresentationXML\SandboxFormPresentation.xml" />
-    <Content Include="Profile\CSS\UCSF.css" />
     <Content Include="Profile\CSS\viz.css" />
     <Content Include="Profile\Images\default_img.png" />
     <Content Include="Profile\Images\ucsf_alumni_blue.jpg" />
-    <Content Include="Profile\JavaScript\UCSF.js" />
     <Content Include="Profile\Modules\CustomViewEagleI\CustomViewEagleI.ascx" />
     <Content Include="Profile\Modules\CustomViewEagleI\Images\logo.gif" />
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />
@@ -320,10 +349,6 @@
     <Content Include="Profile\XSLT\FreetextKeyword.xslt" />
     <Content Include="Profile\XSLT\NetworkTable.xslt" />
     <Content Include="RobotsTxt.aspx" />
-    <Content Include="Search\CSS\UCSF.css" />
-    <Content Include="Search\Images\icon_squareArrow.gif" />
-    <Content Include="Search\Images\search-red.jpg" />
-    <Content Include="Search\JavaScript\UCSF.js" />
     <Content Include="SiteMap.aspx" />
     <Content Include="trace.aspx" />
     <Content Include="Web.config">
@@ -1749,7 +1774,6 @@
     <Content Include="Framework\Images\connection_left.gif" />
     <Content Include="Framework\Images\connection_right.gif" />
     <Content Include="Framework\Images\icon_alert.gif" />
-    <Content Include="Framework\Images\icon_squareDownArrow.gif" />
     <Content Include="Framework\Images\passive_back1.gif" />
     <Content Include="Framework\Images\passive_backtile.gif" />
     <Content Include="Framework\Images\search.png" />
@@ -1883,7 +1907,6 @@
     <Content Include="Framework\Images\icon_network.gif" />
     <Content Include="Framework\Images\icon_profile.gif" />
     <Content Include="Framework\Images\icon_roundArrow.gif" />
-    <Content Include="Framework\Images\icon_squareArrow.gif" />
     <Content Include="Framework\Images\info.png" />
     <Content Include="Framework\Images\info2.png" />
     <Content Include="Framework\Images\info3.png" />
@@ -1908,8 +1931,8 @@
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailHandler.ashx" />
     <None Include="About\Images\Thumbs.db" />
     <None Include="About\ListMakerGuidance.pdf" />
-    <Content Include="App_Themes\UCSF\Default.skin" />
-    <Content Include="App_Themes\UCSD\Default.skin" />
+    <Content Include="App_Themes\UCSF\UCSF.skin" />
+    <Content Include="App_Themes\UCSD\UCSD.skin" />
     <None Include="ORCID\ORCIDPrivacySettingsandProfiles.pdf" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailAudioHandler.ashx" />
     <Content Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master" />
@@ -1933,7 +1956,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Search\Default.aspx" />
-    <Content Include="Search\Images\search.jpg" />
     <Content Include="SPARQL\Modules\ModuleCatalogue.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -1944,6 +1966,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Login\Modules\App_LocalResources\" />
     <Folder Include="ORCID\XSLT\" />
+    <Folder Include="Profile\JavaScript\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

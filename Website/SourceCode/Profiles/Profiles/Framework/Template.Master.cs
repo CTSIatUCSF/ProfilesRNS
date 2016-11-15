@@ -114,11 +114,6 @@ namespace Profiles.Framework
 
         }
 
-        public string GetThemedFile(string file)
-        {
-            return "~/App_Themes/" + Page.Theme + "/" + file;
-        }
-
         /// <summary>
         /// Used to set the link for css/js client Assets
         /// </summary>
@@ -136,21 +131,21 @@ namespace Profiles.Framework
             //Page.Header.Controls.Add(Profilescss);
             head.Controls.Add(Profilescss);
 
+            HtmlLink UCSFcss = new HtmlLink();
+            UCSFcss.Href = Root.GetThemedFile(Page, "Framework/CSS/Theme.css");
+            UCSFcss.Attributes["rel"] = "stylesheet";
+            UCSFcss.Attributes["type"] = "text/css";
+            UCSFcss.Attributes["media"] = "all";
+            Page.Header.Controls.Add(UCSFcss); 
+            
             HtmlGenericControl jsscript = new HtmlGenericControl("script");
             jsscript.Attributes.Add("type", "text/javascript");
             jsscript.Attributes.Add("src", Root.Domain + "/Framework/JavaScript/profiles.js");
             Page.Header.Controls.Add(jsscript);
 
-            HtmlLink UCSFcss = new HtmlLink();
-            UCSFcss.Href = Root.Domain + "/Framework/CSS/UCSF.css";
-            UCSFcss.Attributes["rel"] = "stylesheet";
-            UCSFcss.Attributes["type"] = "text/css";
-            UCSFcss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(UCSFcss);
-
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");
-            UCSFjs.Attributes.Add("src", Root.Domain + "/Framework/JavaScript/UCSF.js");
+            UCSFjs.Attributes.Add("src", Root.GetThemedFile(Page, "Framework/JavaScript/Theme.js"));
             Page.Header.Controls.Add(UCSFjs);
 
             // UCSF. This is handy to have in JavaScript form and is required for ORNG

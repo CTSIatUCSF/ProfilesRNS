@@ -44,13 +44,8 @@ namespace Profiles.Login
 
         private void LoadAssets()
         {
-            HtmlLink Searchcss = new HtmlLink();
-            Searchcss.Href = Root.Domain + "/Search/CSS/search.css";
-            Searchcss.Attributes["rel"] = "stylesheet";
-            Searchcss.Attributes["type"] = "text/css";
-            Searchcss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(Searchcss);
-
+            HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
+            body.Attributes.Add("class", "login");
         }
 
         public void LoadPresentationXML()

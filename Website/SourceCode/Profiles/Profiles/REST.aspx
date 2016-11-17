@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="REST.aspx.cs" Inherits="Profiles.REST" %>
-<head id="SillyThingNeededForThemes" runat="server"/>
+<head id="SillyThingNeededForThemes" runat="server" visible="false"/>
  <%--
     Copyright (c) 2008-2012 by the President and Fellows of Harvard College. All rights reserved.  
     Profiles Research Networking Software was developed under the supervision of Griffin M Weber, MD, PhD.,

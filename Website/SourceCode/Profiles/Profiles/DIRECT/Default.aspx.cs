@@ -48,12 +48,8 @@ namespace Profiles.DIRECT
         // Added by UCSF
         private void LoadAssets()
         {
-            HtmlLink UCSFcss = new HtmlLink();
-            UCSFcss.Href = Root.Domain + "/DIRECT/CSS/UCSF.css";
-            UCSFcss.Attributes["rel"] = "stylesheet";
-            UCSFcss.Attributes["type"] = "text/css";
-            UCSFcss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(UCSFcss);
+            HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
+            body.Attributes.Add("class", "direct");
 
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");

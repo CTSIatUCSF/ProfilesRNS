@@ -93,6 +93,8 @@ namespace Profiles.Profile
 
         private void LoadAssets()
         {
+            HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
+            body.Attributes.Add("class", "profile");
 
             HtmlLink Displaycss = new HtmlLink();
             Displaycss.Href = Root.Domain + "/Profile/CSS/display.css";
@@ -101,16 +103,9 @@ namespace Profiles.Profile
             Displaycss.Attributes["media"] = "all";
             Page.Header.Controls.Add(Displaycss);
 
-            HtmlLink UCSFcss = new HtmlLink();
-            UCSFcss.Href = Root.GetThemedFile(Page, "Profile/CSS/Theme.css");
-            UCSFcss.Attributes["rel"] = "stylesheet";
-            UCSFcss.Attributes["type"] = "text/css";
-            UCSFcss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(UCSFcss);
-
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");
-            UCSFjs.Attributes.Add("src", Root.GetThemedFile(Page, "Profile/JavaScript/Theme.js"));
+            UCSFjs.Attributes.Add("src", Root.Domain + "/Profile/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
         }
 

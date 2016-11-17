@@ -133,6 +133,12 @@ namespace Profiles.Search
 
         private void LoadAssets()
         {
+            HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
+            body.Attributes.Add("class", "search");
+
+            ContentPlaceHolder contentActive = (ContentPlaceHolder)Page.Master.FindControl("ContentActive");
+            contentActive.Visible = true;
+
             HtmlLink Searchcss = new HtmlLink();
             Searchcss.Href = Root.Domain + "/Search/CSS/search.css";
             Searchcss.Attributes["rel"] = "stylesheet";
@@ -158,16 +164,18 @@ namespace Profiles.Search
             script.Text = "<script>var _path = \"" + Root.Domain + "\";</script>";
             Page.Header.Controls.Add(script);
 
-            HtmlLink UCSFcss = new HtmlLink();
-            UCSFcss.Href = Root.GetThemedFile(Page, "Search/CSS/Theme.css");
-            UCSFcss.Attributes["rel"] = "stylesheet";
-            UCSFcss.Attributes["type"] = "text/css";
-            UCSFcss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(UCSFcss);
+            // This should get included automatically, but isn't working for Search for some reason
+            HtmlLink ThemeCss = new HtmlLink();
+            //ThemeCss.Href = Root.GetThemedFile(Page, "Search/CSS/Theme.css");
+            ThemeCss.Href = Root.Domain + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".css";
+            ThemeCss.Attributes["rel"] = "stylesheet";
+            ThemeCss.Attributes["type"] = "text/css";
+            ThemeCss.Attributes["media"] = "all";
+            Page.Header.Controls.Add(ThemeCss);
 
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");
-            UCSFjs.Attributes.Add("src", Root.GetThemedFile(Page, "Search/JavaScript/Theme.js"));
+            UCSFjs.Attributes.Add("src", Root.Domain + "/Search/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
         }
 

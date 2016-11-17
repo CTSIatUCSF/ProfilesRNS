@@ -159,7 +159,7 @@
                                             <td class="profilesPageColumnLeft">
                                                 <div class="profilesContentActive">
                                                     <div class="panelActive">
-                                                        <asp:ContentPlaceHolder ID="ContentActive" runat="server">
+                                                        <asp:ContentPlaceHolder ID="ContentActive" runat="server" Visible="false">
                                                             <asp:Repeater runat="server" ID="rptActive" OnItemDataBound="DrawModule">
                                                                 <ItemTemplate>
                                                                     <asp:PlaceHolder ID="phActive" runat="server"></asp:PlaceHolder>

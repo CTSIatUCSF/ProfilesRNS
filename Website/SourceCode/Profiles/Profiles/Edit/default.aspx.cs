@@ -74,6 +74,9 @@ namespace Profiles.Edit
 
         private void LoadAssets()
         {
+            HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
+            body.Attributes.Add("class", "edit");
+
             this.Master.FindControl("pnlNavBarSearch").Visible = false;
 
             HtmlLink Displaycss = new HtmlLink();
@@ -83,13 +86,15 @@ namespace Profiles.Edit
             Displaycss.Attributes["media"] = "all";
             Page.Header.Controls.Add(Displaycss);
 
-            HtmlLink UCSFcss = new HtmlLink();
-            UCSFcss.Href = Root.Domain + "/Edit/CSS/UCSF.css";
-            UCSFcss.Attributes["rel"] = "stylesheet";
-            UCSFcss.Attributes["type"] = "text/css";
-            UCSFcss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(UCSFcss);
-
+            // This should get included automatically, but isn't working for Edit for some reason
+            HtmlLink ThemeCss = new HtmlLink();
+            //ThemeCss.Href = Root.GetThemedFile(Page, "Search/CSS/Theme.css");
+            ThemeCss.Href = Root.Domain + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".css";
+            ThemeCss.Attributes["rel"] = "stylesheet";
+            ThemeCss.Attributes["type"] = "text/css";
+            ThemeCss.Attributes["media"] = "all";
+            Page.Header.Controls.Add(ThemeCss); 
+            
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");
             UCSFjs.Attributes.Add("src", Root.Domain + "/Edit/JavaScript/UCSF.js");

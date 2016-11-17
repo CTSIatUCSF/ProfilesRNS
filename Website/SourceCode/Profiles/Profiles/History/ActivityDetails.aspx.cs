@@ -43,7 +43,8 @@ namespace Profiles.History
 
         private void LoadAssets()
         {
-
+            HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
+            body.Attributes.Add("class", "history");
         }
 
         public void LoadPresentationXML()

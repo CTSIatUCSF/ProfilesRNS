@@ -131,12 +131,13 @@ namespace Profiles.Framework
             //Page.Header.Controls.Add(Profilescss);
             head.Controls.Add(Profilescss);
 
-            HtmlLink UCSFcss = new HtmlLink();
-            UCSFcss.Href = Root.GetThemedFile(Page, "Framework/CSS/Theme.css");
-            UCSFcss.Attributes["rel"] = "stylesheet";
-            UCSFcss.Attributes["type"] = "text/css";
-            UCSFcss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(UCSFcss); 
+            HtmlLink DEFAULTcss = new HtmlLink();
+            DEFAULTcss.Href = Root.Domain + "/App_Themes/DEFAULT.css";
+            DEFAULTcss.Attributes["rel"] = "stylesheet";
+            DEFAULTcss.Attributes["type"] = "text/css";
+            DEFAULTcss.Attributes["media"] = "all";
+            //Page.Header.Controls.Add(DEFAULTcss); 
+            head.Controls.Add(DEFAULTcss);
             
             HtmlGenericControl jsscript = new HtmlGenericControl("script");
             jsscript.Attributes.Add("type", "text/javascript");
@@ -145,7 +146,7 @@ namespace Profiles.Framework
 
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");
-            UCSFjs.Attributes.Add("src", Root.GetThemedFile(Page, "Framework/JavaScript/Theme.js"));
+            UCSFjs.Attributes.Add("src", Root.Domain + "/Framework/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
 
             // UCSF. This is handy to have in JavaScript form and is required for ORNG

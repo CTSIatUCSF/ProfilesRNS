@@ -136,8 +136,8 @@ namespace Profiles.Search
             HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
             body.Attributes.Add("class", "search");
 
-            ContentPlaceHolder contentActive = (ContentPlaceHolder)Page.Master.FindControl("ContentActive");
-            contentActive.Visible = true;
+            PlaceHolder pageColumnLeft = (PlaceHolder)Page.Master.FindControl("PageColumnLeft");
+            pageColumnLeft.Visible = true;
 
             HtmlLink Searchcss = new HtmlLink();
             Searchcss.Href = Root.Domain + "/Search/CSS/search.css";

@@ -152,27 +152,29 @@
                 <div class="profilesPage" runat="server" id="divProfilesPage">
                     <table>
                         <tr>
-                            <td valign="top">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="profilesPageColumnLeft">
-                                                <div class="profilesContentActive">
-                                                    <div class="panelActive">
-                                                        <asp:ContentPlaceHolder ID="ContentActive" runat="server" Visible="false">
-                                                            <asp:Repeater runat="server" ID="rptActive" OnItemDataBound="DrawModule">
-                                                                <ItemTemplate>
-                                                                    <asp:PlaceHolder ID="phActive" runat="server"></asp:PlaceHolder>
-                                                                </ItemTemplate>
-                                                            </asp:Repeater>
-                                                        </asp:ContentPlaceHolder>
+                            <asp:PlaceHolder runat="server" ID="PageColumnLeft" Visible="false">
+                                <td valign="top">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td class="profilesPageColumnLeft">
+                                                    <div class="profilesContentActive">
+                                                        <div class="panelActive">
+                                                            <asp:ContentPlaceHolder ID="ContentActive" runat="server">
+                                                                <asp:Repeater runat="server" ID="rptActive" OnItemDataBound="DrawModule">
+                                                                    <ItemTemplate>
+                                                                        <asp:PlaceHolder ID="phActive" runat="server"></asp:PlaceHolder>
+                                                                    </ItemTemplate>
+                                                                </asp:Repeater>
+                                                            </asp:ContentPlaceHolder>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </asp:PlaceHolder>
                             <td valign="top">
                                 <table>
                                     <tr>

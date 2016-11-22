@@ -434,7 +434,7 @@ namespace Profiles.Framework
                 else
                     url = PageBackLinkURL;
 
-                litBackLink.Text = "<img src=\"" + Root.Domain + "/Framework/Images/icon_squareArrow.gif\" class=\"pageBackLinkIcon\" width=\"11\" height=\"11\"/>&nbsp;<a href=\"" + url + "\">" + PageBackLinkName + "</a>";
+                litBackLink.Text = "<a href=\"" + url + "\" class=\"dblarrow\">" + PageBackLinkName + "</a>";
 
             }
 

@@ -87,7 +87,6 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
                 phEditProperty.Visible = true;
                 //phDelAll.Visible = true;
                 btnInsertCancel_OnClick(sender, e);
-                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
                 Session["pnlInsertProperty.Visible"] = null;
             }
             else
@@ -96,7 +95,6 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
                 phEditProperty.Visible = true;
                 //phDelAll.Visible = false;
                 pnlInsertProperty.Visible = true;
-                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                 Session["pnlInsertProperty.Visible"] = true;
 
             }
@@ -113,7 +111,6 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
                 phEditProperty.Visible = true;
                 //phDelAll.Visible = true;
                 pnlDeleteAll.Visible = false;
-                imbDelArrow.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
                 Session["pnlDeleteAll.Visible"] = null;
             }
             else
@@ -122,7 +119,6 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
                 phEditProperty.Visible = false;
                 //phDelAll.Visible = true;
                 pnlDeleteAll.Visible = true;
-                imbDelArrow.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                 Session["pnlDeleteAll.Visible"] = true;
 
             }
@@ -134,7 +130,6 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
             txtLabel.Text = "";
             pnlInsertProperty.Visible = false;
             pnlInsertPropertyBulk.Visible = true;
-            imbAddArror.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
             upnlEditSection.Update();
         }
 
@@ -143,7 +138,6 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
             txtLabelBulk.Text = "";
             pnlInsertProperty.Visible = true;
             pnlInsertPropertyBulk.Visible = false;
-            imbAddArror.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
             upnlEditSection.Update();
         }
 
@@ -310,7 +304,6 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
             phEditProperty.Visible = true;
             //phDelAll.Visible = true;
             pnlDeleteAll.Visible = false;
-            imbDelArrow.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
             Session["pnlDeleteAll.Visible"] = null;
         }
 

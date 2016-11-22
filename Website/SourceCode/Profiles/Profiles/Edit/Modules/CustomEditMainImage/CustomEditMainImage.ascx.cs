@@ -157,8 +157,6 @@ namespace Profiles.Edit.Modules.CustomEditMainImage
         {
             if (Session["phAddCustomPhoto.Visible"] == null)
             {
-                btnImgAddCustomPhoto.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
-
                 pnlUpload.Visible = true;
                 pnlSecurityOptions.Visible = false;
 

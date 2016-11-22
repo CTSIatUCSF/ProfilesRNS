@@ -88,15 +88,12 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
             {
 
                 btnInsertCancel_OnClick(sender, e);
-                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
                 Session["pnlInsertProperty.Visible"] = null;
             }
             else
             {
                 pnlInsertProperty.Visible = true;
-                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                 Session["pnlInsertProperty.Visible"] = true;
-
             }
             upnlEditSection.Update();
         }

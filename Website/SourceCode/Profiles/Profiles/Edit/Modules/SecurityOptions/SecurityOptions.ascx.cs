@@ -100,13 +100,11 @@ namespace Profiles.Edit.Modules.SecurityOptions
             if (Session["pnlSecurityOptions.Visible"] == null)
             {
                 pnlSecurityOptions.Visible = true;
-                imbSecurityOptions.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                 Session["pnlSecurityOptions.Visible"] = true;
             }
             else
             {
                 pnlSecurityOptions.Visible = false;
-                imbSecurityOptions.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
                 Session["pnlSecurityOptions.Visible"] = null;
             }
         }

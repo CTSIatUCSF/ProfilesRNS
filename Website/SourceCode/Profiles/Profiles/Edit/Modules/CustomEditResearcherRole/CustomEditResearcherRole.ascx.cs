@@ -167,7 +167,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             grdGrantSearchResults.DataSource = LoadFunding(CallAPI());
             grdGrantSearchResults.DataBind();
 
-            btnImgAddGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
             phAddCustom.Visible = false;
             phDeleteGrant.Visible = false;
             pnlAddGrantResults.Visible = false;
@@ -193,7 +192,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         {
             if (Session["pnlAddGrant.Visible"] == null)
             {
-                btnImgAddGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 phAddCustom.Visible = false;
                 phDeleteGrant.Visible = false;
                 pnlAddGrant.Visible = true;
@@ -213,7 +211,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         protected void btnClear_OnClick(object sender, EventArgs e)
         {
             ResetGrantSearch();
-            btnImgAddGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
             phAddCustom.Visible = false;
             phDeleteGrant.Visible = false;
             pnlAddGrant.Visible = true;
@@ -250,7 +247,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             phAddCustom.Visible = true;
             phDeleteGrant.Visible = true;
             phSecuritySettings.Visible = true;
-            btnImgAddGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
             upnlEditSection.Update();
         }
 
@@ -490,7 +486,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             phAddCustom.Visible = true;
             phDeleteGrant.Visible = true;
             phSecuritySettings.Visible = true;
-            btnImgAddGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
             FillResearchGrid(true);
             upnlEditSection.Update();
             Session["ADD"] = "true";
@@ -568,7 +563,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         {
             if (Session["pnlAddCustomGrant.Visible"] == null)
             {
-                btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 phAddGrant.Visible = false;
                 phDeleteGrant.Visible = false;
                 pnlAddCustomGrant.Visible = true;
@@ -600,7 +594,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             phAddCustom.Visible = false;
             phDeleteGrant.Visible = false;
             phSecuritySettings.Visible = false;
-            btnImgAddGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
             pnlAddGrantResults.Visible = true;
 
             grdGrantSearchResults.DataSource = LoadFunding(CallAPI());
@@ -614,7 +607,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             phAddCustom.Visible = false;
             phDeleteGrant.Visible = false;
             phSecuritySettings.Visible = false;
-            btnImgAddGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
             pnlAddGrantResults.Visible = true;
 
             grdGrantSearchResults.DataSource = LoadFunding(CallAPI());
@@ -931,7 +923,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         {
             if (Session["pnlDeleteGrant.Visible"] == null)
             {
-                btnImgDeleteGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 phAddCustom.Visible = false;
                 phAddGrant.Visible = false;
                 pnlDeleteGrant.Visible = true;
@@ -969,7 +960,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             phAddCustom.Visible = true;
             phSecuritySettings.Visible = true;
             pnlDeleteGrant.Visible = false;
-            btnImgDeleteGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
             FillResearchGrid(true);
             upnlEditSection.Update();
         }
@@ -980,7 +970,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             phDeleteGrant.Visible = true;
             phSecuritySettings.Visible = true;
             pnlDeleteGrant.Visible = false;
-            btnImgDeleteGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
             upnlEditSection.Update();
         }
 

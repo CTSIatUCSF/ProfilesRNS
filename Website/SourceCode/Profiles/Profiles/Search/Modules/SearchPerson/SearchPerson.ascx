@@ -3,8 +3,6 @@
 <%@ Register Src="ComboTreeCheck.ascx" TagName="ComboTreeCheck" TagPrefix="uc1" %>
 
 <style type="text/css">
-.profiles .profilesContentMain { width: 584px; }
-.profiles .profilesPageColumnLeft { padding: 6px 6px 0 8px;}
 .profiles .profilesContentMain .pageTitle h2 { display: none; }
 </style>
 
@@ -304,6 +302,6 @@
                 </tr>
             </table>
         </div>
-            <p style="text-align:right; margin-right: 20px"><asp:Image runat="server" SkinID="searchIconSquareArrow"/> <a href="<%=GetURLDomain()%>/direct">Search other institutions</a></p>
+            <p style="text-align:right; margin-right: 20px"><a href="<%=GetURLDomain()%>/direct" class="dblarrow">Search other institutions</a></p>
     </div>
 </div>

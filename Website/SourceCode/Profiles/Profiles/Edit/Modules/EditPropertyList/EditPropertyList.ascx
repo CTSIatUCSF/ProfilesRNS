@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditPropertyList.ascx.cs"
     Inherits="Profiles.Edit.Modules.EditPropertyList.EditPropertyList" %>
 <asp:Literal runat="server" ID="litBackLink"></asp:Literal>
-<br />
 <!--
+<br />
 <br />
 Below are the types of content that can be included on this profile. Locked items
 <asp:Image runat="server" ID="imgLock" alt=""/>
@@ -16,7 +16,7 @@ this website.
 <h3>Components:</h3>
 <div id="profile-components">
   <table style="width:100%;margin-bottom:0;">
-    <tr style="border-bottom:1px solid #CCC;">
+    <tr id="namedegreerow">
        <td class="padding" id="namedegree">Name and Degrees</td>
        <td colspan="2">
          <span id="public"><img src="Images/icons_lock.gif" />&nbsp;Always Public</span>

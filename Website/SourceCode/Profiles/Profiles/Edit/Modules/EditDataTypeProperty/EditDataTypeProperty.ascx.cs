@@ -309,7 +309,6 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
             if (!editaddnew)
             {
                 btnEditProperty.Visible = false;
-                imbAddArror.Visible = false;
             }
 
             this.SubjectID = Convert.ToInt64(base.GetRawQueryStringItem("subject"));
@@ -334,7 +333,6 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
 
                 if (MaxCardinality == literalstate.Count.ToString())
                 {
-                    imbAddArror.Visible = false;
                     btnEditProperty.Visible = false;
                     btnInsertProperty.Visible = false;                    
                 }
@@ -346,7 +344,6 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
             {
                 lblNoItems.Visible = true;
                 GridViewProperty.Visible = false;
-                imbAddArror.Visible = true;
                 btnEditProperty.Visible = true;
                 if (MaxCardinality == "1")
                 { 

@@ -36,8 +36,9 @@
                         <div style="padding-bottom: 10px;">
 <!--                            <asp:ImageButton AlternateText=" " ID="aaa" runat="server" ImageUrl="~/Framework/Images/icon_squareArrow.gif"
                                 OnClick="btnAddCustomPhoto_OnClick" />&nbsp;-->
-                            <asp:LinkButton ID="btnAddCustomPhoto" runat="server" OnClick="btnAddCustomPhoto_OnClick"
-                                CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgAddCustomPhoto" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;Add/Edit Custom Photo</asp:LinkButton>
+                            <span class="dblarrow"></span>
+							<asp:LinkButton ID="btnAddCustomPhoto" runat="server" OnClick="btnAddCustomPhoto_OnClick"
+                                CssClass="profileHypLinks"> Add/Edit Custom Photo</asp:LinkButton>
                         </div>
                     </asp:PlaceHolder>
                     </div>

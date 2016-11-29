@@ -26,9 +26,9 @@
                         </asp:Panel>
                         <br />
                         <asp:LinkButton ID="btnAddORNGApplication" runat="server" CommandArgument="Show" OnClick="btnAddORNGApplication_OnClick"
-                            CssClass="profileHypLinks" Visible="false">
-                            <asp:Image runat="server" ID="imbAddArror" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;
-                            <asp:Literal runat="server" ID="litAddORNGApplicationProperty">Add ORNG Application</asp:Literal>                           
+                            CssClass="profileHypLinks" Visible="false"> 
+							<span class="dblarrow"></span>                          
+                            <asp:Literal runat="server" ID="litAddORNGApplicationProperty" >Add ORNG Application</asp:Literal>                           
                         </asp:LinkButton>
                     </div>
                 </td>

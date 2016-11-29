@@ -32,7 +32,7 @@
                         <br />
                         <asp:LinkButton ID="btnEditProperty" runat="server" CommandArgument="Show" OnClick="btnEditProperty_OnClick"
                             CssClass="profileHypLinks">
-                            <asp:Image runat="server" ID="imbAddArror" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;
+                            <span class="dblarrow"></span>
                             <asp:Literal runat="server" ID="litEditProperty">Add Property</asp:Literal>                           
                         </asp:LinkButton>
                     </div>

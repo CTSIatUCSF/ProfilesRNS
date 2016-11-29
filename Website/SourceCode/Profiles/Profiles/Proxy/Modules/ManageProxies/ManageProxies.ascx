@@ -65,7 +65,7 @@ remove that person as your proxy.
                 </td>
 -->
                 <td style="padding-bottom: 4px" valign="middle">                    
-                    <img src="<%=GetURLDomain()%>/Framework/Images/icon_squareArrow.gif" alt=">" /> &nbsp;<asp:Literal runat="server" ID='lnkAddProxyTmp' Text = "Add A Proxy"></asp:Literal>
+                    <span class="dblarrow"></span><asp:Literal runat="server" ID='lnkAddProxyTmp' Text = "Add A Proxy"></asp:Literal>
                 </td>
             </tr>
         </table>

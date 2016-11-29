@@ -58,26 +58,20 @@
                             </div>
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phAddGrant" runat="server">
-                            <div style="padding-bottom: 10px;">
-                                <asp:ImageButton ID="btnImgAddGrant" runat="server" ImageUrl="~/Framework/Images/icon_squareArrow.gif"
-                                    OnClick="btnAddNewGrant_OnClick" AlternateText="Add Grant" />&nbsp;
+                            <div style="padding-bottom: 10px;" class="dblarrow">
                                 <asp:LinkButton ID="btnAddNewGrant" runat="server" OnClick="btnAddNewGrant_OnClick"
                                     CssClass="profileHypLinks">Add NIH Grant</asp:LinkButton>
                                 &nbsp;(Search NIH grants.)
                             </div>
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phAddCustom" runat="server">
-                            <div style="padding-bottom: 10px;">
-                                <asp:ImageButton ID="btnImgAddCustom" runat="server" ImageUrl="~/Framework/Images/icon_squareArrow.gif"
-                                    OnClick="btnAddCustom_OnClick" AlternateText="Add Custom Funding" />&nbsp;
+                            <div style="padding-bottom: 10px;" class="dblarrow">
                                 <asp:LinkButton ID="btnAddCustom" runat="server" OnClick="btnAddCustom_OnClick" CssClass="profileHypLinks">Add Custom Funding</asp:LinkButton>
                                 &nbsp;(Enter your own funding information using an online form.)
                             </div>
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phDeleteGrant" runat="server">
-                            <div style="padding-bottom: 10px;">
-                                <asp:ImageButton ID="btnImgDeleteGrant" runat="server" ImageUrl="~/Framework/Images/icon_squareArrow.gif"
-                                    OnClick="btnDeleteGrant_OnClick" AlternateText="Delete" />&nbsp;
+                            <div style="padding-bottom: 10px;" class="dblarrow">
                                 <asp:LinkButton ID="btnDeleteGrant" runat="server" OnClick="btnDeleteGrant_OnClick"
                                     CssClass="profileHypLinks">Delete all funding</asp:LinkButton>
                                 &nbsp;(Remove multiple funding sources from your profile.)

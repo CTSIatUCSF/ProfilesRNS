@@ -149,6 +149,12 @@ namespace Profiles.Framework
             UCSFjs.Attributes.Add("src", Root.Domain + "/Framework/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
 
+            // add one specific to the theme
+            HtmlGenericControl ThemeJs = new HtmlGenericControl("script");
+            ThemeJs.Attributes.Add("type", "text/javascript");
+            ThemeJs.Attributes.Add("src", Root.Domain + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".js");
+            Page.Header.Controls.Add(ThemeJs);
+
             // UCSF. This is handy to have in JavaScript form and is required for ORNG
             HtmlGenericControl rootDomainjs = new HtmlGenericControl("script");
             rootDomainjs.Attributes.Add("type", "text/javascript");

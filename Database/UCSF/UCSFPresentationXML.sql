@@ -240,6 +240,7 @@ UPDATE [Ontology.Presentation].[XML] SET [PresentationXML]=CONVERT(xml,N'<Presen
           <Param Name="DataURI">rdf:RDF/rdf:Description/rdf:subject/@rdf:resource</Param>
           <Param Name="ExpandRDFList">
             <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#authorInAuthorship" Limit="1" />
+            <ExpandRDF Class="http://xmlns.com/foaf/0.1/Person" Property="http://vivoweb.org/ontology/core#hasResearcherRole" Limit="1" />
           </Param>
           <Param Name="InfoCaption">Related Concepts</Param>
           <Param Name="Description">Derived automatically from this person''s publications.</Param>
@@ -637,7 +638,7 @@ UPDATE [Ontology.Presentation].[XML] SET [PresentationXML]=CONVERT(xml,N'<Presen
 </Presentation>
 ',1) WHERE type='C' and subject='http://xmlns.com/foaf/0.1/Person' and Predicate ='http://profiles.catalyst.harvard.edu/ontology/prns#similarTo' and [object] ='http://xmlns.com/foaf/0.1/Person' --[PresentationID] = 10
 
-
+commit
 
 --rollback
 --commit

@@ -45,7 +45,7 @@ namespace Profiles.Profile.Modules.CustomViewResearcherRole
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
                 int last = 0;
 
-                sb.Append("<div class='basicInfo'><table width='590px' border='0' cellpadding='5px' cellspacing='3px'>");
+                sb.Append("<div class='basicInfo'><table class='collapsible grants' width='590px' border='0' cellpadding='5px' cellspacing='3px'>");
                 foreach (Profiles.Edit.Utilities.FundingState fs in fundingstate)
                 {
                     last += 1;

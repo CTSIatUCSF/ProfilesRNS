@@ -45,7 +45,7 @@ namespace Profiles.Profile.Modules.CustomViewResearcherRole
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
                 int last = 0;
 
-                sb.Append("<div class='basicInfo'><table class='collapsible grants' width='590px' border='0' cellpadding='5px' cellspacing='3px'>");
+                sb.Append("<div class='basicInfo scroll'><table class='grants' width='590px' border='0' cellpadding='5px' cellspacing='3px'>");
                 foreach (Profiles.Edit.Utilities.FundingState fs in fundingstate)
                 {
                     last += 1;
@@ -57,10 +57,6 @@ namespace Profiles.Profile.Modules.CustomViewResearcherRole
                 litHTML.Text = sb.ToString();
             }
 
-        }
-        private void AddLine(ref System.Text.StringBuilder sb)
-        {
-            sb.Append("<tr><td colspan='2'><hr/></td></tr>");
         }
         private void AddRow(Profiles.Edit.Utilities.FundingState fs, ref System.Text.StringBuilder sb)
         {

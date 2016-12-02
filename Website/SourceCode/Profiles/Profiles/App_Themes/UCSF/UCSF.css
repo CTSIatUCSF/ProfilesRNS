@@ -1,9 +1,9 @@
 ﻿/* highlight color */
 .dblarrow:before, #about h2, h2.about, .content-block h2,
-.passive-header, .PropertyItemHeader,
+.passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
 .profiles .profilesContentMain .pageTitle h2 { color: #F26D04; }
-.profiles a.search-button { background-color: #F26D04; }
+.profiles a.search-button, .more span, .less span { background-color: #F26D04; }
 .profiles a.search-button:hover { background-color: #F48024; box-shadow: none; }
 
 /* active menu color */

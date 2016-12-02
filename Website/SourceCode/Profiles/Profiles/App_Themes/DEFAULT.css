@@ -135,7 +135,9 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 #meshDetails .label { vertical-align: top; padding-right: 10px; }
 .keywordTimelineLabels { width: 220px; }
 .passive-header { font-weight: bold; margin: 10px 0 0; }
+.profiles .profilesContentPassive .passiveSectionBodyDetails { padding-top: 4px; }
 .profiles .profilesContentPassive .passiveSectionBodyDetails a { font-weight: bold; }
+.profiles .profilesContentPassive .passiveSectionBodyDetails a.dblarrow:before { padding: 0 9px 0 5px; }
 .alumni { background: no-repeat scroll right top transparent; }
 .profiles .profilesContentMain.alumni .pageTitle h2 { padding-right: 80px; }
 .SupportText { border: none !important; }
@@ -143,41 +145,18 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .thumbnail { display: inline-block; height: 15px; width: 18px; overflow: hidden; 
   position: relative; margin: 2px 4px -2px 0; }
 .thumbnail img { position: absolute; left: 2px; height: auto !important; }
-
-/* PROFILE show & hide */
-.box { position: relative; height: auto; width: 680px; }
-.box-collapsed { position: relative;
-     height: 179px; width: 680px;
-     overflow: hidden; 
-}
-.plusbutton, .minusbutton {
-     position: absolute; bottom: 0; right: 0; 
-     margin: 0; padding: 0 20px 0 9px; 
-     color: #F26D04; line-height: 17px;
-     background-color: #FFF;
-}
-.plusbutton span:hover, .minusbutton span:hover { 
-     color: #F26D04; text-decoration: underline; cursor: pointer;
-}
-.education .atog { margin-bottom: 15px; }
-.education td { padding-left: 15px; vertical-align: top; }
-.education td:first-child { min-width: 220px; padding-left: 0; }
-.atog { color: #F26D04; background-color: #FFF; white-space: nowrap; float: right; }
-.atog:hover { text-decoration: underline; cursor: pointer; }
 .viewIn a { display: inline-block; }
 .altmetric-embed img { vertical-align: -2px; padding-left: 15px; }
-#publicationTimelineGraph {
-  text-align: left;
-  width: 565px;
-  overflow-x: hidden;
-}
-#publicationTimelineGraph img {
-  padding: 10px 0 0 24px;
-  display: block;
-}
-#conceptPub #publicationTimelineGraph {
-  width: 620px;
-}
+#publicationTimelineGraph { text-align: left; width: 565px; overflow-x: hidden; }
+#publicationTimelineGraph img { padding: 10px 0 0 24px; display: block; }
+#conceptPub #publicationTimelineGraph { width: 620px; }
+
+/* PROFILE show & hide */
+.overview { height: 179px; overflow: hidden; }
+.overview.full { height: auto; }
+.accordion td, .expand-collapse { text-align: right !important; font-weight: bold; cursor: pointer; }
+.expand-collapse { margin-top: 6px; }
+.more span, .less  span { display: inline-block; font-family: "Courier New", Courier, monospace; font-size: 20px; color: #FFF; border-radius: 12px; padding: 2px 4px; line-height: 16px;  }
 
 /* EDIT */
 .edit .panelMain { width: 900px; }
@@ -338,7 +317,7 @@ h2.badge-top  { padding: 12px 0 14px 4px; margin: -68px 0 0 60px; width: 70px; f
 /* Metrics & Activity Stream */
 .panelActive { padding: 0 0 0 12px; }
 .metrics { margin-bottom: 20px; padding: 0 0 12px; border-bottom: 1px solid #ccc; }
-.metrics span { display: inline-block; width: 4em; text-align: right; font-family: courier, serif;}
+.metrics span { display: inline-block; width: 4em; text-align: right; font-family: "Courier New", Courier, monospace; }
 .activities { max-width: 600px; padding-bottom: 0; margin-bottom: 0; }
 .act { margin-bottom: 10px; padding: 0 0 8px; clear: left; border-bottom: 1px solid #ccc; min-height: 48px; }
 .act-heading { padding-bottom: 12px; }

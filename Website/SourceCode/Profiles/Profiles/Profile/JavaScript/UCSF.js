@@ -59,7 +59,14 @@
 			location.href = "#narrative";
 		});
     }
-	
+
+    //Remove border when no External Co-Authors
+    if ($('.panelPassive .gadgets-gadget-network-parent') && $('.panelPassive .gadgets-gadget-network-parent').length) {
+	if ($('.panelPassive .gadgets-gadget-network-parent').height() < 20) {
+		$('.panelPassive .gadgets-gadget-network-parent').css("cssText", "border: none !important;");
+	}
+    }
+		
 });
 
 

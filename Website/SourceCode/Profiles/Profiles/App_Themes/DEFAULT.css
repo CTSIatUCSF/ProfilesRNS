@@ -156,7 +156,8 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .overview.full { height: auto; }
 .accordion td, .expand-collapse { text-align: right !important; font-weight: bold; cursor: pointer; }
 .expand-collapse { margin-top: 6px; }
-.more span, .less  span { display: inline-block; font-family: "Courier New", Courier, monospace; font-size: 20px; color: #FFF; border-radius: 12px; padding: 2px 4px; line-height: 16px;  }
+.more span, .less  span { display: inline-block; font-family: "Courier New", Courier, monospace; font-size: 20px; color: #FFF; border-radius: 12px; padding: 2px 4px; line-height: 16px; }
+.scroll { max-height: 240px; overflow: auto; }
 
 /* EDIT */
 .edit .panelMain { width: 900px; }

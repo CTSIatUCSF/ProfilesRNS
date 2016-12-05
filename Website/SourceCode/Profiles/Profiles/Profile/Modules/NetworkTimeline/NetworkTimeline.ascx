@@ -24,7 +24,7 @@
     </div>
     <asp:Literal runat="server" ID="litNetworkText"></asp:Literal> 
     <!--cp <br/>
-    To return to the timeline, <a id="dirReturnToTimeline" tabindex="0" class="jQueryLink">click here.</a>                       
+    To return to the timeline, <a id="dirReturnToTimeline" tabindex="0" class="jQueryLink">click here.</a>   -->                    
 </div>
 
 <script type="text/javascript">

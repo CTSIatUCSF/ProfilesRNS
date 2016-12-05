@@ -47,7 +47,7 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
 
 /* SEARCH */
 .profiles .profilesPageColumnLeft { padding: 18px 6px 0 8px; }
-.profiles .profilesContentMain .pageTabs { padding-left: 315px; 
+.search .profiles .profilesContentMain .pageTabs { padding-left: 315px; 
   background-image: url('../Framework/Images/tab_back.gif'); }
 .searchForm td div.header { font-size: 30px; font-weight: bold; margin: 16px 0 8px; }
 .searchForm .searchSection { margin-bottom: 0; border: 1px solid #CCC !important; }

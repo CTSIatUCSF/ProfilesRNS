@@ -50,8 +50,6 @@ namespace Profiles.Profile.Modules.CustomViewResearcherRole
                 {
                     last += 1;
                     AddRow(fs, ref sb);
-                    if (last < fundingstate.Count)
-                        AddLine(ref sb);
                 }
                 sb.Append("</table></div>");
                 litHTML.Text = sb.ToString();

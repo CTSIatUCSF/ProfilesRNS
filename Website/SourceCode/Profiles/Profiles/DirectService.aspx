@@ -1,2 +1,1 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DirectService.aspx.cs" Inherits="Profiles.DirectService" %>
-<head runat="server" />
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DirectService.aspx.cs" Inherits="Profiles.DirectService" EnableTheming="false" Theme="" %>

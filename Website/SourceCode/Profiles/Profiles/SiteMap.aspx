@@ -1,3 +1,2 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SiteMap.aspx.cs" Inherits="Profiles.SiteMap" %>
-<head runat="server" />
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SiteMap.aspx.cs" Inherits="Profiles.SiteMap" EnableTheming="false" Theme="" %>
 

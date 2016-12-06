@@ -149,7 +149,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .altmetric-embed img { vertical-align: -2px; padding-left: 15px; }
 #publicationTimelineGraph { text-align: left; width: 565px; overflow-x: hidden; }
 #publicationTimelineGraph img { padding: 10px 0 0 24px; display: block; }
-#conceptPub #publicationTimelineGraph { width: 620px; }
+#conceptPub #publicationTimelineGraph { width: 615px; overflow-x:hidden; }
 
 /* PROFILE show & hide */
 .overview { height: 179px; overflow: hidden; }
@@ -157,7 +157,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .accordion td, .expand-collapse { text-align: right !important; font-weight: bold; cursor: pointer; }
 .expand-collapse { margin-top: 6px; }
 .more span, .less  span { display: inline-block; font-family: "Courier New", Courier, monospace; font-size: 20px; color: #FFF; border-radius: 12px; padding: 2px 4px; line-height: 16px; }
-.scroll { max-height: 240px; overflow: auto; }
+.scroll { max-height: 270px; overflow: auto; }
 
 /* EDIT */
 .edit .panelMain { width: 900px; }

@@ -115,9 +115,6 @@
             }
         }
     }
-    $(document).ready(function () {
-	buildGadgetAds();
-    });
 </script>
 
 <asp:HiddenField ID="hdnSearch" runat="server" Value="hdnSearch"></asp:HiddenField>
@@ -278,6 +275,13 @@
                                                 </td>
                                             </tr>
                                         </table>
+                                    </td>
+                                </tr>
+                                    <th>
+                                        Clinical Trials <span class="notice">New!</span>
+                                    </th>
+                                    <td colspan="2">
+                                        <input type="checkbox" class="trials2" />
                                     </td>
                                 </tr>
 <!--

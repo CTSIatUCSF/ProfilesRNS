@@ -13,10 +13,10 @@
       e.stopPropagation();
   });
   
-  // open Other Options list
-  if (!$('#ctcFirst_rMaster_ctl00_divDetail') && !$('#ctcFirst_rMaster_ctl00_divDetail').length) {
-	$('#ctcFirst_rMaster_ctl00_imgExpand').click();
-  }
+  // open Other Options checkbox list
+	$('#selOtherOptions').click(function() {
+		$('#ctcFirst_rMaster_ctl00_divDetail').show();
+	});		
   
   //search results adjustments
   if ($('#tblSearchResults') && $('#tblSearchResults').length) {

@@ -46,8 +46,8 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:hover:before,
 .dblarrow:hover:before { text-decoration: none; }
 
-/* SEARCH */
-.profiles .profilesPageColumnLeft { padding: 18px 6px 0 8px; }
+/* SEARCH FORM */
+.profiles .profilesPageColumnLeft { padding: 18px 6px 0 20px; }
 .search .profiles .profilesContentMain .pageTabs { padding-left: 315px; 
   background-image: url('../Framework/Images/tab_back.gif'); }
 .searchForm td div.header { font-size: 30px; font-weight: bold; margin: 16px 0 8px; }
@@ -61,13 +61,14 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
 .unused, input#chkExactphrase, input#institutionallexcept, input#departmentallexcept { display: none; }
 .searchForm .inputText { width: 249px; }
 #divChkList { border: 1px solid #CCC !important; margin-top: -5px; width: 248px !important; 
-  height: 190px !important; padding-top: 15px !important; }
+  height: 190px !important; padding-top: 15px !important; } 
 #divOtherOptions { 
   border-right: 1px solid #CCC !important;
   border-bottom: 1px solid #CCC !important;
   border-left: 1px solid #CCC !important;
-  height: 300px !important; 
+  height: auto !important; 
 }
+#ctcFirst_rMaster_ctl00_imgExpand { margin: 0 10px 0 -19px; }
 #andor { margin: -12px 0 -32px 153px; } 
 #andor span { color: #666; background-color: #F8F8F9; padding: 0 6px; font-size: 11px; letter-spacing: 2px; }
 
@@ -158,7 +159,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .accordion td, .expand-collapse { text-align: right !important; font-weight: bold; cursor: pointer; }
 .expand-collapse { margin-top: 6px; }
 .more span, .less  span { display: inline-block; font-family: "Courier New", Courier, monospace; font-size: 20px; color: #FFF; border-radius: 12px; padding: 2px 4px; line-height: 16px; }
-.scroll { max-height: 270px; overflow: auto; }
+.scroll { max-height: 270px; overflow-y: scroll; }
 
 /* EDIT */
 .edit .panelMain { width: 900px; }
@@ -320,14 +321,14 @@ h2.badge-top  { padding: 12px 0 14px 4px; margin: -68px 0 0 60px; width: 70px; f
 .panelActive { padding: 0 0 0 12px; }
 .metrics { margin-bottom: 20px; padding: 0 0 12px; border-bottom: 1px solid #ccc; }
 .metrics span { display: inline-block; width: 4em; text-align: right; font-family: "Courier New", Courier, monospace; }
-.activities { max-width: 600px; padding-bottom: 0; margin-bottom: 0; }
+.activities { padding-bottom: 0; margin-bottom: 0; }
 .act { margin-bottom: 10px; padding: 0 0 8px; clear: left; border-bottom: 1px solid #ccc; min-height: 48px; }
 .act-heading { padding-bottom: 12px; }
 .act-user { line-height: 15px; }
 .act-userdate .date { color: #506380; font-size: 11px; }
 .act-image { float: left; height: 45px; padding-right: 5px; overflow-y: hidden; }
 .act-msg { clear: left; padding-top: 6px; }
-.panelMain .activities { margin-top: 30px; }
+.panelMain .activities { margin-top: 30px; margin-left: 60px; }
 .panelMain .act-heading { display: none; }
 .panelMain .act-userdate { float: left; width: 160px; padding-right: 10px; }
 .panelMain .act-msg { clear: none; float: left; width: 360px; padding: 0; margin-top: -2px; }

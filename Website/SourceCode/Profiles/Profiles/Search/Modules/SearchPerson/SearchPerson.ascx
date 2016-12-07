@@ -258,7 +258,7 @@
                                 </tr>
                                 <tr  runat="server" id="trOtherOptions">
                                     <th>
-                                        More Options
+                                        More Details
                                     </th>
                                     <td colspan='2'>
                                         <input type="hidden" id="hiddenToggle" value="off" />

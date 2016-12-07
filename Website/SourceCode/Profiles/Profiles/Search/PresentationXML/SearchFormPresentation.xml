@@ -12,6 +12,8 @@
     <Panel Type="active">
       <Module ID="MainMenu">
       </Module>
+    </Panel>
+    <Panel Type="info">
       <Module ID="Gadgets" >
         <ParamList>
           <Param Name="GadgetDiv">gadgets-tools-left</Param>

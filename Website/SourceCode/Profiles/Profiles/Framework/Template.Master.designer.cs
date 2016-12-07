@@ -76,13 +76,22 @@ namespace Profiles.Framework {
         protected global::System.Web.UI.WebControls.Panel MasterPageHeaderUCSD;
         
         /// <summary>
-        /// navResearch control.
+        /// ContentActive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink navResearch;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentActive;
+        
+        /// <summary>
+        /// rptActive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptActive;
         
         /// <summary>
         /// divProfilesHeader control.
@@ -130,22 +139,22 @@ namespace Profiles.Framework {
         protected global::System.Web.UI.WebControls.PlaceHolder PageColumnLeft;
         
         /// <summary>
-        /// ContentActive control.
+        /// ContentInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentActive;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentInfo;
         
         /// <summary>
-        /// rptActive control.
+        /// rptInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptActive;
+        protected global::System.Web.UI.WebControls.Repeater rptInfo;
         
         /// <summary>
         /// divProfilesPageColumnRightTopLine control.

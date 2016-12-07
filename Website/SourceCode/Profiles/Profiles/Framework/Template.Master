@@ -110,17 +110,6 @@
                         to see <span id="stats">private stats</span> on your profile page &mdash; or add photo, interests, videos, mentoring, etc.</span>
                     <ul id="editmenu"></ul>
                 </div>
-				<div class="profilesContentActive">
-					<div class="panelActive">
-						<asp:ContentPlaceHolder ID="ContentActive" runat="server">
-							<asp:Repeater runat="server" ID="rptActive" OnItemDataBound="DrawModule">
-								<ItemTemplate>
-									<asp:PlaceHolder ID="phActive" runat="server"></asp:PlaceHolder>
-								</ItemTemplate>
-							</asp:Repeater>
-						</asp:ContentPlaceHolder>
-					</div>
-                </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCSD" runat="server" SkinID="UCSD" Visible="false">
                 <div class="institutionHeader">
@@ -155,18 +144,19 @@
                         to edit your profile (add interests, mentoring, photo, etc.)</span>
                     <ul id="editmenu"></ul>
                 </div>
-				<div class="profilesContentActive">
-                    <div class="panelActive">
-                        <asp:ContentPlaceHolder ID="ContentActive" runat="server">
-                            <asp:Repeater runat="server" ID="rptActive" OnItemDataBound="DrawModule">
-                                <ItemTemplate>
-									<asp:PlaceHolder ID="phActive" runat="server"></asp:PlaceHolder>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                        </asp:ContentPlaceHolder>
-                    </div>
-                </div>
             </asp:Panel>
+
+			<div class="profilesContentActive">
+				<div class="panelActive">
+					<asp:ContentPlaceHolder ID="ContentActive" runat="server">
+						<asp:Repeater runat="server" ID="rptActive" OnItemDataBound="DrawModule">
+							<ItemTemplate>
+								<asp:PlaceHolder ID="phActive" runat="server"></asp:PlaceHolder>
+							</ItemTemplate>
+						</asp:Repeater>
+					</asp:ContentPlaceHolder>
+				</div>
+            </div>
 
             <div class="profiles">
                 <div class="profilesHeader" runat="server" id="divProfilesHeader">

@@ -71,6 +71,7 @@ namespace Profiles.Framework
 
                 this.BindRepeaterToPanel(ref rptHeader, GetPanelByType("header"));
                 this.BindRepeaterToPanel(ref rptActive, GetPanelByType("active"));
+                this.BindRepeaterToPanel(ref rptInfo, GetPanelByType("info"));
                 this.BindRepeaterToPanel(ref rptPage, GetPanelByType("page"));
                 this.BindRepeaterToPanel(ref rptMain, GetPanelByType("main"));
                 this.BindRepeaterToPanel(ref rptPassive, GetPanelByType("passive"));
@@ -353,6 +354,9 @@ namespace Profiles.Framework
 
             if (placeholder == null)
                 placeholder = (PlaceHolder)e.Item.FindControl("phActive");
+
+            if (placeholder == null)
+                placeholder = (PlaceHolder)e.Item.FindControl("phInfo");
 
             if (placeholder == null)
                 placeholder = (PlaceHolder)e.Item.FindControl("phMain");

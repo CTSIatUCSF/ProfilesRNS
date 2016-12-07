@@ -13,6 +13,7 @@ body { background-color: #DEDFDF; width: 980px; margin: 0 auto; }
 #header-ucsf div#ucsfnav ul li.first a { padding:0 352px 0 0; }
 .institutionHeader { background-color: #FFF; height: 95px; border-bottom: none; padding: 0 0 0 20px; text-align: left; overflow: hidden; width: 960px; }
 #site-logo { width: 300px; float: left; line-height: 30px; }
+#site-logo h1 { margin: 20px 0 0; }
 h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
 #page-container { background-color: #FFF; } 
 .profiles { margin-top: 0; max-width: 980px; }
@@ -179,7 +180,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 #profile-visibility { width: 450px; float: left; margin-left: 50px; border: 1px solid #CCC; }
 #profile-visibility td { vertical-align: top; padding: 4px 10px; }
 #profile-visibility td p { margin: 0; }
-.orng { display: inline-block;margin: 20px 0 0 70px; text-indent: -18px; width: 420px; }
+div.orng { display: inline-block;margin: 20px 0 0 70px; text-indent: -18px; width: 420px; }
 .progress { text-align: center; }
 .edittable td, 
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridViewAwards td,

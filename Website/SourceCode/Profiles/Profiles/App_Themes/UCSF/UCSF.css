@@ -16,7 +16,7 @@
   font-size: 20px;
   font-style: italic;
   font-weight: normal;
-  line-height: 18px;
+  line-height: 16px;
   letter-spacing: 0.2px;
   padding: 0; margin: 0; 
 }
@@ -38,12 +38,10 @@
 #powered-by-block a img {
   vertical-align: -3px;
 }
-.profiles .button-link a, .profiles .button-link a:visited, .profiles .button-link a:hover,
-#new-features a, #new-features a:visited, #new-features a:hover {
-  background-color: #F26D04; color: #FFF; padding: 6px; margin: 0;
-  font-family: Arial, Helvetica, sans serif; font-size: 14px; text-decoration: none;
-  display: inline-block;
-}
+.profiles .button-link a, .profiles .button-link a:visited,
+#new-features a, #new-features a:visited { 
+padding: 6px; margin: 0; display: inline-block; font-family: Arial, Helvetica, sans serif; font-size: 14px; background-color: #F26D04; color: #FFF; text-decoration: none; }
+#new-features a:hover, .profiles .button-link a:hover  { background-color: #F48024; }
 .button-link { padding-top: 20px; padding-bottom: 20px; }
 #new-features { clear: right; float: right; width: 300px; margin: 20px 20px 0 0; }
 #new-features a { width: 198px; text-align: center; float: right; padding: 6px 0; }

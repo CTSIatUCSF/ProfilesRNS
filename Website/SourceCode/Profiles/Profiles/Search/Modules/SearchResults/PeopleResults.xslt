@@ -681,10 +681,9 @@
       NavToPage();
       }
 
-     window.location = root + '/search/default.aspx?searchtype=whypeople<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>nodeuri=' + uri + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchfor=' + searchfor + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>exactphrase=' + exactphrase + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>perpage=' + perpage + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>offset=' + offset + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>page=' + page + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>totalpages=' + totalpages + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchrequest=' + searchrequest +  '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortby=' + sortby+ '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortdirection=' + sortdirection;
       function ShowDetails(nodeURI,obj){
 
-      doListTableRowOver(obj);
+//      doListTableRowOver(obj);
       debugger;
       document.getElementById('divItemDetails').innerHTML = document.getElementById(nodeURI).value;
 
@@ -692,7 +691,7 @@
 
       function HideDetails(obj,ord){
 
-      doListTableRowOut(obj,ord);
+//      doListTableRowOut(obj,ord);
       document.getElementById('divItemDetails').innerHTML = '';
       }
 
@@ -874,9 +873,6 @@
       
       <td class="alignLeft" style="width:250px" onclick="javascript:GoTo('{$nodeURI}')">
         <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$institutionlabel]"/>
-
-  
-
       </td>
     </xsl:if>
 

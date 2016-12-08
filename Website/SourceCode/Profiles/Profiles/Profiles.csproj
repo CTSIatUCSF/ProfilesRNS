@@ -136,7 +136,12 @@
     <Content Include="About\PresentationXML\GadgetLibrary.xml" />
     <Content Include="About\PresentationXML\Help.xml" />
     <Content Include="About\PresentationXML\HowProfilesWorks.xml" />
-    <Content Include="About\PresentationXML\NewFeatures.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\NewFeatures.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Themes\UCSF\PresentationXML\NewFeatures.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="About\PresentationXML\Optin.xml" />
     <Content Include="App_Themes\UCSD\Images\backtotop.gif" />
     <Content Include="App_Themes\UCSD\Images\icon_squareArrow.gif" />
@@ -145,7 +150,22 @@
     <Content Include="App_Themes\UCSD\Images\college-alumni.png" />
     <Content Include="App_Themes\UCSD\UCSD.css" />
     <Content Include="App_Themes\DEFAULT.css" />
+    <Content Include="App_Themes\UCSD\UCSD.js" />
     <Content Include="App_Themes\UCSF\Images\backtotop.gif" />
+    <Content Include="App_Themes\UCSF\Images\clinicaltrials.png" />
+    <Content Include="App_Themes\UCSF\Images\conceptsearch.jpg" />
+    <Content Include="App_Themes\UCSF\Images\dashboard.png" />
+    <Content Include="App_Themes\UCSF\Images\detailstab.jpg" />
+    <Content Include="App_Themes\UCSF\Images\extCoAuth.png" />
+    <Content Include="App_Themes\UCSF\Images\featuredPubs.png" />
+    <Content Include="App_Themes\UCSF\Images\featuredVideos.png" />
+    <Content Include="App_Themes\UCSF\Images\listMaker.png" />
+    <Content Include="App_Themes\UCSF\Images\orangeArrow.gif" />
+    <Content Include="App_Themes\UCSF\Images\pubsgraph.jpg" />
+    <Content Include="App_Themes\UCSF\Images\timeline.jpg" />
+    <Content Include="App_Themes\UCSF\Images\toc.jpg" />
+    <Content Include="App_Themes\UCSF\Images\ucsfProfilesLogo.png" />
+    <Content Include="App_Themes\UCSF\UCSF.js" />
     <Content Include="Edit\Images\img_arrow.png" />
     <Content Include="Error\PresentationXML\HttpRequestValidationExceptionPresentation.xml" />
     <Content Include="Framework\Images\collapseRound.gif" />
@@ -1659,7 +1679,9 @@
     <Content Include="ActiveNetwork\Default.aspx" />
     <Content Include="ActiveNetwork\Modules\ModuleCatalogue.xml" />
     <Content Include="ActiveNetwork\Modules\MyNetwork\MyNetwork.ascx" />
-    <Content Include="ActiveNetwork\PresentationXML\MyNetwork.xml" />
+    <Content Include="ActiveNetwork\PresentationXML\MyNetwork.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ApplicationModuleCatalogue.xml" />
     <Content Include="About\Default.aspx" />
     <Content Include="Default.aspx" />
@@ -1669,7 +1691,9 @@
     <Content Include="History\Modules\HistoryByType\HistoryByType.ascx" />
     <Content Include="History\Modules\HistoryList\HistoryList.ascx" />
     <Content Include="History\Modules\ModuleCatalogue.xml" />
-    <Content Include="History\PresentationXML\History.xml" />
+    <Content Include="History\PresentationXML\History.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Login\Modules\Login\Login.ascx" />
     <Content Include="Login\Modules\ModuleCatalogue.xml" />
     <Content Include="Login\PresentationXML\LogoutFormPresentation.xml" />
@@ -1720,7 +1744,9 @@
     <Content Include="DIRECT\Modules\DirectSearch\Config.xml" />
     <Content Include="DIRECT\Modules\DirectSearch\DirectService.aspx" />
     <Content Include="DIRECT\Modules\DirectSearch\DirectSearch.ascx" />
-    <Content Include="DIRECT\PresentationXML\DirectPresentation.xml" />
+    <Content Include="DIRECT\PresentationXML\DirectPresentation.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Edit\default.aspx" />
     <Content Include="Edit\Images\cal.gif" />
     <Content Include="Edit\Images\icons_blank.gif" />
@@ -1840,7 +1866,9 @@
     <Content Include="Search\Modules\SearchOptions\SearchOptions.ascx" />
     <Content Include="Search\PresentationXML\SearchResultsConnectionPresentation.xml" />
     <Content Include="Search\PresentationXML\SearchResultsPersonPresentation.xml" />
-    <Content Include="Search\PresentationXML\SearchFormPresentation.xml" />
+    <Content Include="Search\PresentationXML\SearchFormPresentation.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Search\PresentationXML\SearchResultsEverythingPresentation.xml" />
     <Content Include="Search\Modules\SearchResults\EverythingResults.xslt">
       <SubType>Designer</SubType>

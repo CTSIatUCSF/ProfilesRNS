@@ -32,8 +32,8 @@
         // $('#toc ul li:contains("Publications")').appendTo('#toc ul');
         $('#toc ul li').last().css('border-right', 'none').css('margin-right', '0');
 
-        //remove border for 1st section
-        $('.PropertyItemHeader').first().css('border', 'none');
+        //class for 1st section
+        $('.PropertyItemHeader').first().addClass('first-section');
     }
 
     //Expand/collapse for Tables (Awards, Education, Grants)
@@ -51,7 +51,7 @@
         $('.PropertyItemHeader:contains("verview")').next('.PropertyGroupData').attr("id", "narrative");
 		$('#narrative > div').addClass('overview');
         if ($('.overview').text().length > 800) {
-            $("<div class='expand-collapse'><div class='more'>Show more <span>+</span></div><div class='less' style='display:none'>Show less <span>-</span></div></div>").insertAfter('.overview');
+            $("<div class='expand-collapse'><div class='more'>Show more <span>+</span></div><div class='less' style='display:none;margin-top:-20px;'>Show less <span>-</span></div></div>").insertAfter('.overview');
         }
 		$('.expand-collapse').click(function(){
 			$(this).siblings().toggleClass('full');

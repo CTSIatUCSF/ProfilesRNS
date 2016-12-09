@@ -111,8 +111,8 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
 img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .PropertyGroup { display: none; }
 .PropertyGroupItem { margin: 0 0 10px; border: none; }
-.PropertyItemHeader { font-size: 16px; background-color: #FFF; clear:both;
-  border-top: 1px solid #EEE; padding: 6px 0 0 !important; margin: 15px 0 0; }
+  border-top: 1px solid #EEE; padding: 6px 0 0 !important; margin: 20px 0 0; display: inline-block; }
+.PropertyItemHeader.first-section { margin-top: 0; border-top: none; }
 .PropertyItemHeader img { display: none; }
 .PropertyItemHeader:focus { outline: none; }
 #toc { min-height: 27px; margin: 30px 0; background-color: #F7F7F8; border: none; width: 680px\9; padding-bottom: 4px\9; }
@@ -127,7 +127,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .profiles .profilesContentMain .sectionHeader { padding-top: 6px;  text-decoration: none; }
 .profiles .profilesContentMain .awardsList { margin-top: 6px; }
 .profiles .profilesContentMain .awardsList td:first-child { white-space: normal !important; }
-.profiles .profilesContentMain .publications li { border: none; padding-top: 0; }
+.profiles .profilesContentMain .publications li { border: none !important; padding-top: 0 !important; }
 .profiles .profilesContentMain .basicInfo th,
 .profiles .profilesContentMain .basicInfo td { font-size: 13px !important; line-height: 20px; }
 .profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000 !important; }
@@ -154,8 +154,8 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 #conceptPub #publicationTimelineGraph { width: 615px; overflow-x:hidden; }
 
 /* PROFILE show & hide */
-.overview { height: 179px; overflow: hidden; }
-.overview.full { height: auto; }
+.overview { max-height: 179px; overflow: hidden; }
+.overview.full { max-height: none; }
 .accordion td, .expand-collapse { text-align: right !important; font-weight: bold; cursor: pointer; }
 .expand-collapse { margin-top: 6px; }
 .more span, .less  span { display: inline-block; font-family: "Courier New", Courier, monospace; font-size: 20px; color: #FFF; border-radius: 12px; padding: 2px 4px; line-height: 16px; }

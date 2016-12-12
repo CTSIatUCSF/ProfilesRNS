@@ -45,6 +45,7 @@
   background-color: #EEEBE5;
   background-color: #EEE;
   max-height: 20px;
+  font-weight: bold;
 }
 .gadgets-gadget-title-bar:hover { background-color: #EAEAEA; } 
 .gadgets-gadget-title-bar img,

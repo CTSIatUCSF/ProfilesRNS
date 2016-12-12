@@ -50,7 +50,7 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
 .profiles .profilesPageColumnLeft { padding: 18px 6px 0 20px; }
 .search .profiles .profilesContentMain .pageTabs { padding-left: 315px; 
   background-image: url('../Framework/Images/tab_back.gif'); }
-.searchForm td div.header { font-size: 30px; font-weight: bold; margin: 16px 0 8px; }
+.searchForm td div.header { font-size: 28px; font-weight: bold; margin: 16px 0 8px; }
 .searchForm .searchSection { margin-bottom: 0; border: 1px solid #CCC !important; }
 .searchForm #div1 { border-top: none; margin-top: 20px; padding-top: 8px; } 
 .searchForm #div1 th { font-weight: normal; width: 140px; }
@@ -111,7 +111,8 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
 img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .PropertyGroup { display: none; }
 .PropertyGroupItem { margin: 0 0 10px; border: none; }
-  border-top: 1px solid #EEE; padding: 6px 0 0 !important; margin: 20px 0 0; display: inline-block; }
+.PropertyItemHeader { font-size: 16px; background-color: #FFF; width: 100%; border-top: 1px solid #EEE; 
+  padding: 6px 0 0 !important; margin: 20px 0 0; display: inline-block; }
 .PropertyItemHeader.first-section { margin-top: 0; border-top: none; }
 .PropertyItemHeader img { display: none; }
 .PropertyItemHeader:focus { outline: none; }
@@ -181,7 +182,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 #profile-visibility { width: 450px; float: left; margin-left: 50px; border: 1px solid #CCC; }
 #profile-visibility td { vertical-align: top; padding: 4px 10px; }
 #profile-visibility td p { margin: 0; }
-div.orng { display: inline-block;margin: 20px 0 0 70px; text-indent: -18px; width: 420px; }
+.orng-credit { display: inline-block;margin: 20px 0 0 70px; text-indent: -18px; width: 420px; }
 .progress { text-align: center; }
 .edittable td, 
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridViewAwards td,

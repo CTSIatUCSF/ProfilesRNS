@@ -106,7 +106,6 @@
 * html #ctl00_ctl00_left_pnlOpenSocialTools { margin-left: -8px; }
 
 /* chromeless sidebar gadget */
-.gadgets-gadget-network-parent { border-bottom: 1px solid #CCC !important; }
 .gadgets-gadget-network-parent .gadgets-gadget-title-bar { 
   background-color: #FFF;
   padding: 0;

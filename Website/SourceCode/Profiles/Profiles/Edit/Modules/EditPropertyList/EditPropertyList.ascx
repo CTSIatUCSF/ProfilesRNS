@@ -83,9 +83,7 @@ this website.
      </td>
     </tr>
 </table>
-<p class="orng"><img style="border-width:0px;" src="../ORNG/Images/orng-asterisk.png" /> Components developed by the UCSF <a href="http://www.orng.info/index.html" target="_blank">Open Research Networking Gadgets (ORNG)</a> initiative. 
-Have an idea for a new component you would like to see in Profiles, or are you a software developer who knows HTML and Javascript that would like to build 
-one yourself? Contact <a href="mailto:profiles@ucsf.edu">profiles@ucsf.edu</a> to let us know!</p>
+<p class="orng-credit"><img style="border-width:0px;" src="../ORNG/Images/orng-asterisk.png" /> Components developed by the UCSF <a href="http://www.orng.info/index.html" target="_blank">Open Research Networking Gadgets (ORNG)</a> initiative. Have an idea for a new component you would like to see? Or are you a Javascript software developer who would like to build one? <a href="http://www.orng.info/contact-us.html" target="_blank">Let us know!</a></p>
 <!-- for testing -->
 <asp:Literal runat="server" ID="litGadget" Visible="false"/>
 

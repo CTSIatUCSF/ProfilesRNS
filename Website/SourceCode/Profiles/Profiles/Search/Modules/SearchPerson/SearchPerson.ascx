@@ -125,8 +125,9 @@
                 <tbody align="left">
                     <tr>
                         <td colspan='3'>
-                            <%-- New class to replace inline heading styles --%>
-                            <div class="headings">
+                            <div class='header'>
+                                Find People by Research Topic or Name
+							</div>
                         </td>
                     </tr>
                     <tr>

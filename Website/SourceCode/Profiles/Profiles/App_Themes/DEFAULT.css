@@ -38,8 +38,11 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
 #defaultmenu, #minisearch { display: none; } 
 
 /* LINK DEFAULTS */
-.listTable .listTableLink, .searchResults td:first-child , .linky,
-.profiles a, .profiles a:visited { text-decoration: none; color: #178CCB; }
+#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.edittable td:first-child, 
+#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child, 
+#profile-components table td#namedegree, .listTable .listTableLink, .linky,
+.profiles a, .profiles a:visited { text-decoration: none; color: #007CBE; cursor: pointer; }
+.profiles .profilesContentMain .kwCloud0 a { color: #5DAFDB !important; }
 .searchResults td:first-child:hover, .linky:hover { text-decoration: underline; cursor: pointer; }
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before,
 .dblarrow:before { content: ">>"; font-family: "Courier New", Courier, monospace; letter-spacing: -3px; font-size: 12px; font-weight: bold; display: inline-block; padding-right: 6px; vertical-align: middle; }
@@ -101,9 +104,6 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
 }
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults .listTablePagination tr td { 
   border: none !important; padding-top: 5px; }
-#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.edittable td:first-child, 
-#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child { 
-  color: #178CCB; cursor: pointer; }
 .connectionContainerTable { background-color: #F7F7F8; border: 1px solid #CCC; }
 .connectionContainerTable td { width: 220px; }
 
@@ -170,7 +170,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 #profile-components table td { height: 30px; border-width: 0 0 1px !important; }
 .EditMenuTopRow, .colItemCnt span , #cls  { display: none; }
 .edit .evenRow { background-color: #FFF;}
-#profile-components table td#namedegree { color: #178CCB; width: 150px; }
+#profile-components table td#namedegree { width: 150px; }
 #profile-components table td#namedegree:hover { text-decoration: none; cursor: default; }
 #namedegreerow { border-bottom:1px solid #CCC; }
 #namedegreerow:hover #cls { display: inline-block; }
@@ -285,7 +285,6 @@ ul#editmenu li span { color: #666; }
 #navbarsearch input#navbarsubmit { width: 20px; height: 20px; margin: 0 0 0 -21px; border: none;
   background: #FFF url(../Framework/images/glyphicons-halflings.png) no-repeat -47px 3px; }
 #navbarsearch input#navbarsubmit:hover { cursor: pointer; border: none; border-image-repeat: none; }
-.search #navbarsearch { display: none; } 
 
 /* gadget badges */
 ul#badge { list-style-type: none; padding-left: 0; margin: 0\9; }

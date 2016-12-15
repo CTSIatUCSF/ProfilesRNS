@@ -3,6 +3,7 @@ using System.Xml;
 using System.Xml.Xsl;
 using System.IO;
 using System.Collections.Generic;
+using System;
 
 namespace Profiles.Framework.Utilities
 {
@@ -54,6 +55,24 @@ namespace Profiles.Framework.Utilities
             return output;
 
             
+        }
+
+        public static string GetThemedOrDefaultPresentationXML(System.Web.UI.Page page, string directory, string fileName)
+        {
+            string cacheKey = "PresentationXML:" + directory + "/" + fileName;
+            string contents = (string)Framework.Utilities.Cache.FetchObject(cacheKey);
+            if (contents != null)
+            {
+                return contents;
+            }
+            string presentationXMLFile = AppDomain.CurrentDomain.BaseDirectory + "/App_Themes/" + page.Theme + "/PresentationXML/" + directory + "/" + fileName;
+            if (!File.Exists(presentationXMLFile))
+            {
+                presentationXMLFile = AppDomain.CurrentDomain.BaseDirectory + "/" + directory + "/PresentationXML/" + fileName;
+            }
+            contents = System.IO.File.ReadAllText(presentationXMLFile);
+            Framework.Utilities.Cache.SetWithTimeout(cacheKey, contents, 604800); // Cache for 7 days
+            return contents;
         }
       
     }

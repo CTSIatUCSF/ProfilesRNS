@@ -50,8 +50,8 @@ namespace Profiles.ORNG
         public void LoadPresentationXML()
         {
             string presentationxml = string.Empty;
-            
-            presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/ORNG/PresentationXML/DashboardPresentation.xml");
+
+            presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "ORNG", "DashboardPresentation.xml");
             
             this.PresentationXML = new XmlDocument();
             this.PresentationXML.LoadXml(presentationxml);

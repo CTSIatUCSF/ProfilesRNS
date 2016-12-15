@@ -41,16 +41,24 @@ namespace Profiles.Profile.Modules.ProfileImage
             Utilities.DataIO data = new Profiles.Profile.Utilities.DataIO();
 
             Int64 nodeid = -1;
-            if (!string.IsNullOrEmpty(context.Request.QueryString["NodeID"]))
+            try
             {
-                // get the id for the image
-                nodeid = Convert.ToInt32(context.Request.QueryString["NodeID"]);
+                if (!string.IsNullOrEmpty(context.Request.QueryString["NodeID"]))
+                {
+                    // get the id for the image
+                    nodeid = Convert.ToInt64(context.Request.QueryString["NodeID"]);
+                }
+                else if (!string.IsNullOrEmpty(context.Request.QueryString["person"]))
+                {
+                    // UCSF.  Allow old id to work
+                    nodeid = Framework.Utilities.UCSFIDSet.ByPersonId[Convert.ToInt64(context.Request.QueryString["person"])].NodeId;
+                }
             }
-            else if (!string.IsNullOrEmpty(context.Request.QueryString["person"]))
+            catch (Exception e)
             {
-                // UCSF.  Allow old id to work
-                nodeid = Framework.Utilities.UCSFIDSet.ByPersonId[Convert.ToInt64(context.Request.QueryString["person"])].NodeId;
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
             }
+
             if (nodeid > 0)
             {
                 // UCSF items

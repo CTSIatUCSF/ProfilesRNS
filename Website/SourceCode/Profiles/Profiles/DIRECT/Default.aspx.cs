@@ -61,7 +61,7 @@ namespace Profiles.DIRECT
         {
             string presentationxml = string.Empty;
 
-            presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Direct/PresentationXML/DirectPresentation.xml");
+            presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "DIRECT", "DirectPresentation.xml");
 
 
             this.PresentationXML = new XmlDocument();

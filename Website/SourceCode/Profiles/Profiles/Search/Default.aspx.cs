@@ -111,17 +111,17 @@ namespace Profiles.Search
             switch (type.ToLower())
             {
                 case "searchform":
-                    presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Search/PresentationXML/SearchFormPresentation.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "Search", "SearchFormPresentation.xml");
                     break;
                 case "everything":
-                    presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Search/PresentationXML/SearchResultsEverythingPresentation.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "Search", "SearchResultsEverythingPresentation.xml");
                     break;
                 case "people":
-                    presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Search/PresentationXML/SearchResultsPersonPresentation.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "Search", "SearchResultsPersonPresentation.xml");
                     break;
                 case "whyeverything":
                 case "whypeople":
-                    presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Search/PresentationXML/SearchResultsConnectionPresentation.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "Search", "SearchResultsConnectionPresentation.xml");
                     break;
             }
 

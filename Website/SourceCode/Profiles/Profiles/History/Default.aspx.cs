@@ -49,7 +49,7 @@ namespace Profiles.History
         {
             string presentationxml = string.Empty;
 
-            presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/History/PresentationXML/History.xml");
+            presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "History", "History.xml");
             
             this.PresentationXML = new XmlDocument();
             this.PresentationXML.LoadXml(presentationxml);

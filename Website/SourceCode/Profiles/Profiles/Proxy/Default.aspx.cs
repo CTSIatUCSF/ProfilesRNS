@@ -69,10 +69,10 @@ namespace Profiles.Proxy
             switch (method.ToLower().Trim())
             {
                 case "search":
-                    presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "\\Proxy\\PresentationXML\\SearchProxies.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "Proxy", "SearchProxies.xml");
                     break;
                 case "manage":
-                    presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "\\Proxy\\PresentationXML\\ManageProxies.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "Proxy", "ManageProxies.xml");
                     break;
             }
             this.PresentationXML = new XmlDocument();

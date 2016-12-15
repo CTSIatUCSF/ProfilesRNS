@@ -130,28 +130,36 @@
     <Content Include="About\Modules\Statistics\Statistics.ascx" />
     <Content Include="About\NewFeatures.aspx" />
     <Content Include="About\Optin.aspx" />
-    <Content Include="About\PresentationXML\README.txt" />
-    <Content Include="App_Themes\UCSD\PresentationXML\AboutPresentation.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\AboutProfiles.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\CloseBrowser.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\ForDevelopers.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\GadgetLibrary.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\Help.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\HowProfilesWorks.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\Optin.xml" />
-    <Content Include="App_Themes\UCSF\PresentationXML\AboutProfiles.xml" />
-    <Content Include="App_Themes\UCSF\PresentationXML\CloseBrowser.xml" />
-    <Content Include="App_Themes\UCSF\PresentationXML\ForDevelopers.xml" />
-    <Content Include="App_Themes\UCSF\PresentationXML\GadgetLibrary.xml" />
-    <Content Include="App_Themes\UCSF\PresentationXML\Help.xml" />
-    <Content Include="App_Themes\UCSF\PresentationXML\HowProfilesWorks.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\NewFeatures.xml">
+    <Content Include="About\PresentationXML\AboutProfiles.xml" />
+    <Content Include="About\PresentationXML\CloseBrowser.xml" />
+    <Content Include="About\PresentationXML\ForDevelopers.xml" />
+    <Content Include="About\PresentationXML\GadgetLibrary.xml" />
+    <Content Include="About\PresentationXML\Help.xml" />
+    <Content Include="About\PresentationXML\HowProfilesWorks.xml" />
+    <Content Include="About\PresentationXML\NewFeatures.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Themes\UCSF\PresentationXML\NewFeatures.xml">
+    <Content Include="About\PresentationXML\Optin.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\AboutProfiles.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\CloseBrowser.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\ForDevelopers.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\GadgetLibrary.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\HowProfilesWorks.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\Optin.xml" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\AboutProfiles.xml" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\CloseBrowser.xml" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\ForDevelopers.xml" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\GadgetLibrary.xml" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\HowProfilesWorks.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\NewFeatures.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Themes\UCSF\PresentationXML\Optin.xml" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\NewFeatures.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Themes\UCSF\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\UCSD\Images\backtotop.gif" />
     <Content Include="App_Themes\UCSD\Images\icon_squareArrow.gif" />
     <Content Include="App_Themes\UCSD\Images\ucsd.png" />
@@ -1684,7 +1692,7 @@
     <Content Include="About\CSS\about.css" />
     <Content Include="About\Modules\About\About.ascx" />
     <Content Include="About\Modules\ModuleCatalogue.xml" />
-    <Content Include="App_Themes\UCSF\PresentationXML\AboutPresentation.xml" />
+    <Content Include="About\PresentationXML\AboutPresentation.xml" />
     <Content Include="ActiveNetwork\Default.aspx" />
     <Content Include="ActiveNetwork\Modules\ModuleCatalogue.xml" />
     <Content Include="ActiveNetwork\Modules\MyNetwork\MyNetwork.ascx" />

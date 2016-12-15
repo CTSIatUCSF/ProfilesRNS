@@ -56,7 +56,7 @@ namespace Profiles.ORNG
         {
             string presentationxml = string.Empty;
 
-            presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/ORNG/PresentationXML/SandboxFormPresentation.xml");
+            presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "ORNG", "SandboxFormPresentation.xml");
 
             this.PresentationXML = new XmlDocument();
             this.PresentationXML.LoadXml(presentationxml);

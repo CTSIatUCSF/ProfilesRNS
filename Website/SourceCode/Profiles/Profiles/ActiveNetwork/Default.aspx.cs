@@ -49,7 +49,7 @@ namespace Profiles.ActiveNetwork
         {
             string presentationxml = string.Empty;
 
-            presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/ActiveNetwork/PresentationXML/MyNetwork.xml");
+            presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "ActiveNetwork", "MyNetwork.xml");
             
             this.PresentationXML = new XmlDocument();
             this.PresentationXML.LoadXml(presentationxml);

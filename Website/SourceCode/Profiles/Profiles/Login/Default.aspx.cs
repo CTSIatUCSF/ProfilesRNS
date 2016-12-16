@@ -53,7 +53,7 @@ namespace Profiles.Login
             string presentationxml = string.Empty;
 
             string presentationXMLfile = ConfigurationManager.AppSettings["Login.PresentationXML"].ToString().Trim();
-            presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "Login", presentationXMLfile + ".xml");
+            presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, presentationXMLfile + ".xml");
 
             this.PresentationXML = new XmlDocument();
             this.PresentationXML.LoadXml(presentationxml);

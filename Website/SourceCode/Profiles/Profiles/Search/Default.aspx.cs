@@ -111,17 +111,17 @@ namespace Profiles.Search
             switch (type.ToLower())
             {
                 case "searchform":
-                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "Search", "SearchFormPresentation.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "SearchFormPresentation.xml");
                     break;
                 case "everything":
-                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "Search", "SearchResultsEverythingPresentation.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "SearchResultsEverythingPresentation.xml");
                     break;
                 case "people":
-                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "Search", "SearchResultsPersonPresentation.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "SearchResultsPersonPresentation.xml");
                     break;
                 case "whyeverything":
                 case "whypeople":
-                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "Search", "SearchResultsConnectionPresentation.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "SearchResultsConnectionPresentation.xml");
                     break;
             }
 

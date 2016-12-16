@@ -69,10 +69,10 @@ namespace Profiles.Proxy
             switch (method.ToLower().Trim())
             {
                 case "search":
-                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "Proxy", "SearchProxies.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "SearchProxies.xml");
                     break;
                 case "manage":
-                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "Proxy", "ManageProxies.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "ManageProxies.xml");
                     break;
             }
             this.PresentationXML = new XmlDocument();

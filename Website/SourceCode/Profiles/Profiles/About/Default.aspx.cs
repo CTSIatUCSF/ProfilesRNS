@@ -37,7 +37,7 @@ namespace Profiles.About
             masterpage.Tab = "";
             masterpage.RDFData = null;
             XmlDocument presentationxml = new XmlDocument();
-            presentationxml.LoadXml(XslHelper.GetThemedOrDefaultPresentationXML(Page, "About", "AboutPresentation.xml"));
+            presentationxml.LoadXml(XslHelper.GetThemedOrDefaultPresentationXML(Page, "AboutPresentation.xml"));
             masterpage.PresentationXML = presentationxml;
 
         }

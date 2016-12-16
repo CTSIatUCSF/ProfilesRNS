@@ -57,8 +57,10 @@ namespace Profiles.Framework.Utilities
             
         }
 
-        public static string GetThemedOrDefaultPresentationXML(System.Web.UI.Page page, string directory, string fileName)
+        public static string GetThemedOrDefaultPresentationXML(System.Web.UI.Page page, string fileName)
         {
+            //		AppRelativeVirtualPath	"~/about/AboutProfiles.aspx"	string
+            string directory = page.AppRelativeVirtualPath.Split('/')[1];
             string cacheKey = "PresentationXML:" + directory + "/" + fileName;
             string contents = (string)Framework.Utilities.Cache.FetchObject(cacheKey);
             if (contents != null)

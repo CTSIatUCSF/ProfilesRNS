@@ -51,7 +51,7 @@ namespace Profiles.ORNG
         {
             string presentationxml = string.Empty;
 
-            presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "ORNG", "DashboardPresentation.xml");
+            presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "DashboardPresentation.xml");
             
             this.PresentationXML = new XmlDocument();
             this.PresentationXML.LoadXml(presentationxml);

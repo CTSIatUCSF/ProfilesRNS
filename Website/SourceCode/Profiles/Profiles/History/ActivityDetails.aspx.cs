@@ -51,7 +51,7 @@ namespace Profiles.History
         {
             string presentationxml = string.Empty;
 
-            presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "History", "ActivityDetails.xml");
+            presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "ActivityDetails.xml");
             
             this.PresentationXML = new XmlDocument();
             this.PresentationXML.LoadXml(presentationxml);

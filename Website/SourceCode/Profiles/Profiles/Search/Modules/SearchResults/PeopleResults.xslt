@@ -684,15 +684,15 @@
       function ShowDetails(nodeURI,obj){
 
 //      doListTableRowOver(obj);
-      debugger;
-      document.getElementById('divItemDetails').innerHTML = document.getElementById(nodeURI).value;
+//      debugger;
+//      document.getElementById('divItemDetails').innerHTML = document.getElementById(nodeURI).value;
 
       }
 
       function HideDetails(obj,ord){
 
 //      doListTableRowOut(obj,ord);
-      document.getElementById('divItemDetails').innerHTML = '';
+//      document.getElementById('divItemDetails').innerHTML = '';
       }
 
 

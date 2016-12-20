@@ -313,25 +313,26 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td valign="top" colspan='3' style="padding: 10px 0px 0px 0px;">
-                                            <b>Brief Description</b> (e.g. The goal of this study is...)<br />
-                                            <asp:TextBox ID="txtRoleDescription" runat="server" Columns="30" Width="748px" TextMode="MultiLine"
-                                                TabIndex="7" Title="Role Description"></asp:TextBox>
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <td colspan='3' valign="top" style="padding: 10px 0px 0px 0px;">
                                             <b>Your Role on Project</b> (e.g. Co-Investigator)<br />
                                             <asp:TextBox ID="txtRole" runat="server" TabIndex="8" Width="748px" Title="Role"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td valign="top" colspan='3' style="padding: 10px 0px 0px 0px;">
+                                            <b>Role Description</b> (optional)<br />
+                                            <asp:TextBox ID="txtRoleDescription" runat="server" Columns="30" Width="748px" TextMode="MultiLine"
+                                                TabIndex="7" Title="Role Description"></asp:TextBox>
+                                        </td>
+                                    </tr>
+									<!--
+                                    <tr>
                                         <td colspan='3' style="padding: 10px 0px 0px 0px;">
                                             <b>Abstract</b> (e.g. Specific aims of this study are...)<br />
                                             <asp:TextBox Rows='5' Columns="20" Style="resize: none;" ID="txtAbstract" runat="server"
                                                 TabIndex="9" TextMode="MultiLine" Title="Abstract" Width="748px"></asp:TextBox>
                                         </td>
-                                    </tr>
+                                    </tr>  -->
                                     <tr>
                                         <td colspan="3" style="padding: 10px 0px 0px 0px;">
                                             <div style="padding-bottom: 5px; text-align: left;">

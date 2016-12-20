@@ -86,10 +86,10 @@ namespace Profiles.Profile.Modules.CustomViewResearcherRole
                 sb.Append("<span style='float:left'>" + fs.FullFundingID + "</span>");
             if (date != string.Empty)
                 sb.Append("<span style='float:right;padding-left:10px'>" + date + "</span>");
-            if (fs.RoleDescription != string.Empty)
-                sb.Append("<br/>Description: " + fs.RoleDescription);
             if (fs.RoleLabel != string.Empty)
                 sb.Append("<br/>Role: " + fs.RoleLabel);
+            if (fs.RoleDescription != string.Empty)
+                sb.Append("<br/>Role Description: " + fs.RoleDescription);
 
             sb.Append("</td></tr>");
 

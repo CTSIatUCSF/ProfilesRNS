@@ -38,11 +38,14 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
 #defaultmenu, #minisearch { display: none; } 
 
 /* LINK DEFAULTS */
+.profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000; }
+.profiles .basicInfo .grants a, .profiles .basicInfo .grants a:visited, 
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.edittable td:first-child, 
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child, 
 #profile-components table td#namedegree, .listTable .listTableLink, .linky,
 .profiles a, .profiles a:visited { text-decoration: none; color: #007CBE; cursor: pointer; }
 .profiles .profilesContentMain .kwCloud0 a { color: #5DAFDB !important; }
+.profiles .basicInfo .grants a:hover,
 .searchResults td:first-child:hover, .linky:hover { text-decoration: underline; cursor: pointer; }
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before,
 .dblarrow:before { content: ">>"; font-family: "Courier New", Courier, monospace; letter-spacing: -3px; font-size: 12px; font-weight: bold; display: inline-block; padding-right: 6px; vertical-align: middle; }
@@ -131,7 +134,6 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .profiles .profilesContentMain .publications li { border: none !important; padding-top: 0 !important; }
 .profiles .profilesContentMain .basicInfo th,
 .profiles .profilesContentMain .basicInfo td { font-size: 13px !important; line-height: 20px; }
-.profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000 !important; }
 #ctl00_lblHTMLBlockLineBreaks { display: block; padding-bottom: 20px; }
 .PropertyGroupData #publicationTimelineGraph { margin-bottom: 20px; }
 #newest { padding-top: 15px; }

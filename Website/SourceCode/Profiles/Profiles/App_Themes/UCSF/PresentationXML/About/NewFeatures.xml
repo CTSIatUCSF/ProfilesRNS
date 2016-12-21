@@ -29,6 +29,8 @@ ul li { padding-top: 10px; }
 <div style="border: 1px solid #CCC; padding:5px 15px; margin-bottom: 10px;">
 <h2 class="about">Highlights</h2>
 <ul class="highlights"> 
+  <li><strong>Add All Your Funding Sources</strong> in addition to the NIH.
+  </li>
   <li><strong>Discover Clinical Trials</strong> led by UCSF investigators.
   </li>
   <li><strong>View Dashboard</strong> display of statistics about visits to your personal profile page.
@@ -49,6 +51,17 @@ ul li { padding-top: 10px; }
 </div>
 
 <ul>
+  <li><strong>Research Activities and Funding</strong> 
+      <ul>
+		<li>Replaces the old "Awarded Grants" section.
+		</li>
+		<li>Search NIH from within UCSF Profiles to import, or manually enter any others.
+		</li>
+		<li><a href="../login/default.aspx?method=login&amp;edit=true">Sign in</a> to add yours!
+		</li>
+      </ul>
+	  <img src="../App_Themes/UCSF/Images/funding.png" alt="Options for editing research activities" style="margin:10px 0 0 40px;border:1px solid #CCC;" />
+  </li>
   <li><strong>Clinical Trials</strong> 
       <ul>
 		<li>Data collected from <a href="https://clinicaltrials.gov/" target="_blank">ClincalTrials.gov</a>.

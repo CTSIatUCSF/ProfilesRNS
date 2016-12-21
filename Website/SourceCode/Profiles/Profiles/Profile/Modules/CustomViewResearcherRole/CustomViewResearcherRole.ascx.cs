@@ -83,7 +83,8 @@ namespace Profiles.Profile.Modules.CustomViewResearcherRole
             if (fs.GrantAwardedBy != string.Empty)
                 sb.Append("<span style='float:left;padding-right:10px'>" + fs.GrantAwardedBy + "</span> ");
             if (fs.FullFundingID != string.Empty)
-                sb.Append("<span style='float:left'>" + fs.FullFundingID + "</span>");
+                sb.Append("<span style='float:left'>" + ("NIH".Equals(fs.GrantAwardedBy) ? "<a href='http://grantome.com/search?q=" + fs.FullFundingID + "' target='_blank'>" + fs.FullFundingID + "</a>" :
+                    fs.FullFundingID) + "</span>");
             if (date != string.Empty)
                 sb.Append("<span style='float:right;padding-left:10px'>" + date + "</span>");
             if (fs.RoleLabel != string.Empty)

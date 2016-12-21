@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Profiles.Edit.Utilities
 {
-    public class FundingState
+    public class FundingState : IComparable 
     {
         private string _startdate;
         private string _enddate;
@@ -55,6 +55,22 @@ namespace Profiles.Edit.Utilities
         public string SubProjectID { get; set; }
         public List<FundingState> SubFundingState { get; set; }
 
+        private DateTime GetStartDateTime()
+        {
+            DateTime dt;
+            if (!DateTime.TryParse(_startdate, out dt))
+                return DateTime.Parse("1/1/1900");
+            return dt;
+        }
+
+        private DateTime GetEndDateTime()
+        {
+            DateTime dt;
+            if (!DateTime.TryParse(_enddate, out dt))
+                return DateTime.Parse("1/1/1900");
+            return dt;
+        }
+
         public bool hasData
         {
             get
@@ -68,6 +84,30 @@ namespace Profiles.Edit.Utilities
                     || SubFundingState != null);
             }
         }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null) return 1;
+
+            FundingState other = obj as FundingState;
+            if (other != null)
+            {
+                int compare = -GetStartDateTime().CompareTo(other.GetStartDateTime());
+                if (compare == 0)
+                {
+                    compare = -GetEndDateTime().CompareTo(other.GetEndDateTime());
+                    if (compare == 0 && !String.IsNullOrEmpty(FundingID) && !String.IsNullOrEmpty(other.FundingID))
+                    {
+                        compare = FundingID.CompareTo(other.FundingID);
+                    }
+                }
+                return compare;
+            }
+            else
+                throw new ArgumentException("Object is not a FundingState");
+        }
+
+
 
     }
 

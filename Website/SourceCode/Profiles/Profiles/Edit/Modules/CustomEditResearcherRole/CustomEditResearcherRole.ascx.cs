@@ -1145,6 +1145,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
 
                 }
             }
+            funding.Sort();
             return funding;
         }
 

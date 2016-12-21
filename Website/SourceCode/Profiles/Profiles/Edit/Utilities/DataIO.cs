@@ -1483,7 +1483,7 @@ namespace Profiles.Edit.Utilities
                     dr.Close();
             }
 
-
+            fs.Sort();
             return fs;
 
         }

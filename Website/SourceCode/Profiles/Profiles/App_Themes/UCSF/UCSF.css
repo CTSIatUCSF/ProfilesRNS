@@ -58,6 +58,11 @@ ul.highlights li {
 }
 .sautter { text-align: center; margin-top: 0; font-size: 15px; font-style: italic; } 
 
+.screenshot {
+-webkit-box-shadow: 10px 10px 10px -10px rgba(153,153,153,1);
+-moz-box-shadow: 10px 10px 10px -10px rgba(153,153,153,1);
+box-shadow: 10px 10px 10px -10px rgba(153,153,153,1);
+}
 
 
 

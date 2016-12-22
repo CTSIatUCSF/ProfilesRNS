@@ -60,7 +60,7 @@ ul li { padding-top: 10px; }
 		<li><a href="../login/default.aspx?method=login&amp;edit=true">Sign in</a> to add yours!
 		</li>
       </ul>
-	  <img src="../App_Themes/UCSF/Images/funding.png" alt="Options for editing research activities" style="margin:10px 0 0 40px;border:1px solid #CCC;" />
+	  <img src="../App_Themes/UCSF/Images/funding.png" alt="Options for editing research activities" style="margin:10px 0 0 40px;border:1px solid #CCC;" class="screenshot" />
   </li>
   <li><strong>Clinical Trials</strong> 
       <ul>
@@ -69,7 +69,7 @@ ul li { padding-top: 10px; }
 		<li>Researchers can feature or hide individual trials.
 		</li>
       </ul>
-	  <img src="../App_Themes/UCSF/Images/clinicaltrials.png" alt="Clinical Trials for Chip Chambers" style="margin:10px 0 0 40px;border:1px solid #CCC;" />
+	  <img src="../App_Themes/UCSF/Images/clinicaltrials.png" alt="Clinical Trials for Chip Chambers" style="margin:10px 0 0 40px;border:1px solid #CCC;" class="screenshot" />
   </li>
   <li><strong>Dashboard of UCSF Profiles Page Statistics</strong> - sign in access only 
       <ul>
@@ -83,7 +83,7 @@ ul li { padding-top: 10px; }
 			</ul>
 		</li>
 	  </ul>
-	  <img src="../App_Themes/UCSF/Images/dashboard.png" alt="Dashboard" style="margin:10px 0 0 68px;border:1px solid #CCC;" />
+	  <img src="../App_Themes/UCSF/Images/dashboard.png" alt="Dashboard" style="margin:10px 0 0 68px;border:1px solid #CCC;" class="screenshot" />
   </li>
   <li><strong>External Co-Authors</strong>
       <ul>
@@ -115,7 +115,7 @@ ul li { padding-top: 10px; }
 			</ul>
 		</li>
 	  </ul>
-	  <img src="../App_Themes/UCSF/Images/featuredPubs.png" alt="Featured Publications Example" style="margin:10px 0 0 68px;border:1px solid #CCC;" />
+	  <img src="../App_Themes/UCSF/Images/featuredPubs.png" alt="Featured Publications Example" style="margin:10px 0 0 68px;border:1px solid #CCC;" class="screenshot" />
   </li>
   <li><strong>Publications Data</strong>
       <ul>
@@ -145,12 +145,12 @@ ul li { padding-top: 10px; }
 		<li>Better viewer shows multiple videos with previews in the profile page.
 		</li>
 	  </ul>
-	  <img src="../App_Themes/UCSF/Images/featuredVideos.png" alt="Featured Videos Example" style="margin:10px 0 0 90px;border:1px solid #CCC;" />
+	  <img src="../App_Themes/UCSF/Images/featuredVideos.png" alt="Featured Videos Example" style="margin:10px 0 0 90px;border:1px solid #CCC;" class="screenshot" />
   </li>
   <li><strong>New Search Options</strong><br />
       UCSF Profiles now allows you to search by a keyword or concept and return not only the 
       list of experts at UCSF (6000+) but also all recent papers from UCSF on a topic.<br />
-      <img src="images/conceptsearch.jpg" alt="Search Options" style="padding:10px 0 0 90px" />
+      <img src="images/conceptsearch.jpg" alt="Search Options" style="margin:10px 0 0 90px" class="screenshot" />
   </li>
   <li><strong>Highlight Your Interests</strong><br />
       The feature most requested by profile owners over the last 2 years has been the option to 
@@ -169,19 +169,19 @@ ul li { padding-top: 10px; }
             (e.g. assess whether someone is an expert because of a classic paper written a decade ago
             or because of recent contributions; identify recent versus long-past co-authors). To view, 
             click the Timeline link above an individual's list of publications. <br />
-            <img src="../App_Themes/UCSF/Images/pubsgraph.jpg" alt="Publication timeline" style="padding:10px 0 0 45px" />
+            <img src="../App_Themes/UCSF/Images/pubsgraph.jpg" alt="Publication timeline" style="margin:10px 0 0 45px" class="screenshot" />
         </li>
         <li><strong>Explore Networks Associated with an Expert</strong> (right column on each profile) 
             <ul> 
                <li><strong>Related Concepts</strong> includes subject areas related to an individual's 
                    publishing history. Select "See all" to view different visualizations, including a 
                    timeline that demonstrates topics an individual has published on over time. <br />  
-                   <img src="../App_Themes/UCSF/Images/timeline.jpg" alt="Expertise timeline" style="padding:10px 0 0 0" />
+                   <img src="../App_Themes/UCSF/Images/timeline.jpg" alt="Expertise timeline" style="margin:10px 0 0 0" class="screenshot" />
                </li>   
                <li><strong>Related Co-Authors</strong> includes subject areas related to an individual's
                    publishing history. Select "See all" to view visualizations including number of 
                    co-publications by individual, a map of co-author publications, etc.   <br />  
-                   <img src="../App_Themes/UCSF/Images/detailstab.jpg" alt="Related Co-Authors" style="padding:10px 0 0 0" />
+                   <img src="../App_Themes/UCSF/Images/detailstab.jpg" alt="Related Co-Authors" style="margin:10px 0 0 0" class="screenshot" />
                </li>   
             </ul>    
         </li>      
@@ -190,7 +190,7 @@ ul li { padding-top: 10px; }
   <li><strong>Updated Look and Feel</strong><br />
       You'll notice some subtle but helpful changes, including a new table of contents that make it
       easy to quickly review individual profiles.<br />
-      <img src="../App_Themes/UCSF/Images/toc.jpg" alt="Look and Feel" style="padding:10px 0 0 80px" />
+      <img src="../App_Themes/UCSF/Images/toc.jpg" alt="Look and Feel" style="margin:10px 0 0 80px" class="screenshot" />
   </li>
 </ul>
 <p><br />Do you have questions or ideas for new UCSF Profiles features? Let us know at <a href="mailo:profiles@ucsf.edu">profiles@ucsf.edu</a>. </p>

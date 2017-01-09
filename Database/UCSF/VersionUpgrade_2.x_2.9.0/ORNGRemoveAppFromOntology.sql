@@ -1,6 +1,3 @@
-USE [profiles_ucsf_29]
-GO
-
 /****** Object:  StoredProcedure [ORNG.].[RemoveAppFromOntology]    Script Date: 10/13/2016 2:25:20 PM ******/
 SET ANSI_NULLS ON
 GO

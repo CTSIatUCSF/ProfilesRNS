@@ -147,6 +147,7 @@
     <Content Include="App_Themes\UCSD\PresentationXML\About\Help.xml" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\HowProfilesWorks.xml" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\Optin.xml" />
+    <Content Include="App_Themes\UCSF\Images\funding.png" />
     <Content Include="App_Themes\UCSF\PresentationXML\About\AboutProfiles.xml" />
     <Content Include="App_Themes\UCSF\PresentationXML\About\CloseBrowser.xml" />
     <Content Include="App_Themes\UCSF\PresentationXML\About\ForDevelopers.xml" />

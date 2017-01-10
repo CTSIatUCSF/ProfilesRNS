@@ -126,7 +126,7 @@ namespace Profiles.History.Utilities
         {
             SortedList<Int64, Activity> cache = (SortedList<Int64, Activity>)Framework.Utilities.Cache.FetchObject("ActivityHistory");
             object isFresh = Framework.Utilities.Cache.FetchObject("ActivityHistoryIsFresh");
-            if (cache == null)
+            if (cache == null || cache.Count == 0)
             {
                 // Grab a whole new one. This is expensive and should be unnecessary if we manage getting new ones well, so we don't do this often
                 cache = GetRecentActivity(-1, activityCacheSize, true);
@@ -168,7 +168,7 @@ namespace Profiles.History.Utilities
                             "LEFT OUTER JOIN [Ontology.].[ClassProperty] cp ON cp.Property = i.property  and cp.Class = 'http://xmlns.com/foaf/0.1/Person' " +
                             "where p.IsActive=1 and i.privacyCode=-1" +
                             (lastActivityLogID != -1 ? (" and i.activityLogID " + (older ? "< " : "> ") + lastActivityLogID) : "") +
-                            "order by i.activityLogID desc";
+                            " order by i.activityLogID desc";
             using (SqlDataReader reader = GetQueryOutputReader(sql))
             {
                 while (reader.Read())

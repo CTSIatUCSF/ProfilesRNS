@@ -331,6 +331,7 @@
     <Content Include="Profile\XSLT\EducationalTraining.xslt" />
     <Content Include="Profile\XSLT\FreetextKeyword.xslt" />
     <Content Include="Profile\XSLT\NetworkTable.xslt" />
+    <Content Include="Properties\PublishProfiles\ProfileUCSD.pubxml.user" />
     <Content Include="RobotsTxt.aspx" />
     <Content Include="Search\CSS\UCSF.css" />
     <Content Include="Search\Images\icon_squareArrow.gif" />
@@ -1921,6 +1922,7 @@
     <None Include="About\Images\Thumbs.db" />
     <None Include="About\ListMakerGuidance.pdf" />
     <Content Include="MentoringUCSD.pdf" />
+    <None Include="deployUniversity.bat" />
     <None Include="ORCID\ORCIDPrivacySettingsandProfiles.pdf" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailAudioHandler.ashx" />
     <Content Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master" />
@@ -1938,9 +1940,7 @@
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\MIT-LICENSE" />
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\README.rdoc" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\PhotoHandler.ashx" />
-    <None Include="Properties\PublishProfiles\Profile1.pubxml">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Properties\PublishProfiles\ProfileUCSD.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

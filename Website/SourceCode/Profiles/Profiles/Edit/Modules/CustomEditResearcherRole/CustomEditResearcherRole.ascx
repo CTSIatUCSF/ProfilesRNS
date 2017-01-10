@@ -66,15 +66,15 @@
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phAddCustom" runat="server">
                             <div style="padding-bottom: 10px;" class="dblarrow">
-                                <asp:LinkButton ID="btnAddCustom" runat="server" OnClick="btnAddCustom_OnClick" CssClass="profileHypLinks">Add Custom Funding</asp:LinkButton>
-                                &nbsp;(Enter your own funding information using an online form.)
+                                <asp:LinkButton ID="btnAddCustom" runat="server" OnClick="btnAddCustom_OnClick" CssClass="profileHypLinks">Add Custom</asp:LinkButton>
+                                &nbsp;(Enter your own activity/funding information using an online form.)
                             </div>
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phDeleteGrant" runat="server">
                             <div style="padding-bottom: 10px;" class="dblarrow">
                                 <asp:LinkButton ID="btnDeleteGrant" runat="server" OnClick="btnDeleteGrant_OnClick"
-                                    CssClass="profileHypLinks">Delete all funding</asp:LinkButton>
-                                &nbsp;(Remove multiple funding sources from your profile.)
+                                    CssClass="profileHypLinks">Delete Items</asp:LinkButton>
+                                &nbsp;(Remove multiple activities/funding from your profile.)
                             </div>
                         </asp:PlaceHolder>
                     </td>
@@ -356,20 +356,19 @@
                             border: solid 1px #999;" Visible="false">
                             <div style="padding: 5px;">
                                 <div>
-                                    To delete a single grant, click the delete icon to the right of the funding information.
-                                    To delete multiple grants, select one of the options below. Note that you cannot
-                                    undo this!
+                                    To delete a single item, click the delete icon to the right of the item's information.
+                                    To delete multiple items, select one of the options below. <strong>Note that you cannot undo this!</strong>
                                 </div>
                                 <div style="padding: 10px 0px;">
                                     <asp:LinkButton ID="btnDeleteNIHOnly" runat="server" CausesValidation="False" OnClick="btnDeleteNIHOnly_OnClick"
                                         Text="Delete only NIH grants" OnClientClick="Javascript:return confirm('Are you sure you want to delete the NIH funding sources?');"></asp:LinkButton>
                                     &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnDeleteCustomOnly" runat="server" CausesValidation="False"
-                                        OnClick="btnDeleteCustomOnly_OnClick" Text="Delete only custom funding sources"
-                                        OnClientClick="Javascript:return confirm('Are you sure you want to delete the custom funding sources?');"></asp:LinkButton>
+                                        OnClick="btnDeleteCustomOnly_OnClick" Text="Delete only custom items"
+                                        OnClientClick="Javascript:return confirm('Are you sure you want to delete the custom items?');"></asp:LinkButton>
                                     &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnDeleteAll" runat="server" CausesValidation="False" OnClick="btnDeleteAll_OnClick"
-                                        Text="Delete all funding" OnClientClick="Javascript:return confirm('Are you sure you want to delete all grants?');"></asp:LinkButton>
+                                        Text="Delete all items" OnClientClick="Javascript:return confirm('Are you sure you want to delete all items?');"></asp:LinkButton>
                                     &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnDeleteGrantClose" runat="server" CausesValidation="False"
                                         OnClick="btnDeleteGrantClose_OnClick" Text="Close"></asp:LinkButton>
@@ -404,7 +403,7 @@
                                         <td>
                                             <asp:ImageButton ID="lnkDelete" runat="server" ImageUrl="~/Edit/Images/icon_delete.gif"
                                                 CausesValidation="False" OnClick="deleteOne_Onclick" CommandName="Delete_Grant"
-                                                Text="X" OnClientClick="Javascript:return confirm('Are you sure you want to delete this funding record?');"
+                                                Text="X" OnClientClick="Javascript:return confirm('Are you sure you want to delete this item?');"
                                                 AlternateText="Delete"></asp:ImageButton>
                                         </td>
                                     </tr>
@@ -416,7 +415,7 @@
             </asp:GridView>
         </div>
         <i>
-            <asp:Label runat="server" ID="lblNoResearcherRole" Text="No funding records have been added."
+            <asp:Label runat="server" ID="lblNoResearcherRole" Text="No items have been added."
                 Visible="false"></asp:Label></i>
     </ContentTemplate>
     <Triggers>

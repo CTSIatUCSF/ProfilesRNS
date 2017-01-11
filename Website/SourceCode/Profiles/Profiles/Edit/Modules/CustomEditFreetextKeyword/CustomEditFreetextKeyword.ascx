@@ -33,13 +33,11 @@
                             <br />
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phEditProperty" runat="server">
-                            <span class="dblarrow"></span>
 							<asp:LinkButton ID="btnEditProperty" runat="server" OnClick="btnEditProperty_OnClick" 
                                 CssClass="profileHypLinks" AlternateText=" "> Add Keyword(s)</asp:LinkButton>
                             <br />
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phDelAll" runat="server" Visible="false">
-                            <span class="dblarrow"></span>
 							<asp:LinkButton ID="btnDelAll" runat="server" OnClick="btnDelAll_OnClick" 
                                 CssClass="profileHypLinks"> Delete All Keyword(s)</asp:LinkButton>
                         </asp:PlaceHolder>

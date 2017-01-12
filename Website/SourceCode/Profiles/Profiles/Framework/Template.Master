@@ -115,7 +115,7 @@
                 <div class="institutionHeader">
                     <div id="ucsd">
                         <a target="_blank" href="http://healthsciences.ucsd.edu/">
-                            <img src="<%=GetURLDomain()%>/App_Themes/UCSD/Framework/Images/ucsdhs.png" alt="UCSD Health Sciences" /></a>
+                            <img src="<%=GetURLDomain()%>/App_Themes/UCSD/Images/ucsdhs.png" alt="UCSD Health Sciences" /></a>
                     </div>
                     <div id="site-logo">
                         <h1><a href="<%=GetURLDomain()%>/">UCSD Profiles
@@ -123,7 +123,7 @@
                         </a></h1>
                     </div>
                     <div id="powered-by-block">
-                        <a id="powered-by-ctsi" href="http://ctri.ucsd.edu/Pages/default.aspx" target="_blank">Powered by CTRI</a>
+                        <a id="powered-by-ctsi" href="http://ctri.ucsd.edu/Pages/default.aspx" target="_blank">Powered by Altman Clinical and <br />Translational Research Institute</a>
                     </div>
                 </div>
 				<div id="suckerfish-container">
@@ -132,13 +132,11 @@
                         <ul class="menu">
                             <li class="item-home"><a href="<%=GetURLDomain()%>">Search</a></li>
                             <li id="about"><a href="<%=GetURLDomain()%>/about/AboutProfiles.aspx">About</a></li>
-                            <li id="data"><a href="<%=GetURLDomain()%>/about/ForDevelopers.aspx">Use our Data</a></li>
                             <li id="contact"><a href="<%=GetURLDomain()%>/about/Help.aspx">Help / Contact Us</a></li>
                         </ul>
                     </div>
-                  div>
 				</div>
-                <div id="active-nav">
+                <div id="active-nav" class="profiles">
                     <span id="signin">
                         <a href="<%=GetURLDomain()%>/login/default.aspx?method=login&amp;edit=true" id="signinlink">Sign in</a>
                         to edit your profile (add interests, mentoring, photo, etc.)</span>
@@ -303,7 +301,7 @@
                         <div id="footer-collaboration">
                             <p>
                                 UCSD Profiles is managed by the UCSD 
-                                          <a href="http://ctri.ucsd.edu/ABOUT/Pages/default.aspx" target="_blank">Clinical and Translational Research Institute (CTRI)</a>.
+                                          <a href="http://ctri.ucsd.edu/ABOUT/Pages/default.aspx" target="_blank">Altman Clinical and Translational Research Institute (CTRI)</a>.
                             </p>
                         </div>
                         <div id="footer-contact">

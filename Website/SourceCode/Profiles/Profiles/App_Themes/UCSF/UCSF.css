@@ -1,4 +1,5 @@
 ﻿/* highlight color */
+#powered-by-block a, #powered-by-block a:visited,
 .dblarrow:before, #about h2, h2.about, .content-block h2, .searchForm td div.header,
 .passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
@@ -11,33 +12,6 @@
 #suckerfishmenu	 a.active { background-color: #052049; }
 
 /* UCSF only elements */
-#tagline { 
-  color: #506480; 
-  font-size: 20px;
-  font-style: italic;
-  font-weight: normal;
-  line-height: 16px;
-  letter-spacing: 0.2px;
-  padding: 0; margin: 0; 
-}
-#powered-by-block { 
-  float: right; width: 300px; padding: 18px 20px 0;
-  font-family: Arial,Helvetica,sans serif;
-  text-align: right;
-}
-#powered-by-block a, #powered-by-block a:visited {
-  color: #F26D04;
-  font-size: 13px;
-  font-weight: bold;
-  text-decoration: none;
-}
-#powered-by-block a:hover {
-  color: #F26D04;
-  text-decoration: underline;
-} 
-#powered-by-block a img {
-  vertical-align: -3px;
-}
 .profiles .button-link a, .profiles .button-link a:visited,
 #new-features a, #new-features a:visited { 
 padding: 6px; margin: 0; display: inline-block; font-family: Arial, Helvetica, sans serif; font-size: 14px; background-color: #F26D04; color: #FFF; text-decoration: none; }

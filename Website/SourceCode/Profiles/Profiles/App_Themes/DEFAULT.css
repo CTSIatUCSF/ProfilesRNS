@@ -21,6 +21,7 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
 #page-container { background-color: #FFF; } 
 .profiles { margin-top: 0; max-width: 980px; }
 .profiles .profilesPage { padding-top: 15px; }
+.profiles .profilesPage table { border-color: transparent; }
 .profiles .profilesPageColumnRightCenter { border: none; box-shadow: none; border-radius: 0; }
 .profilesMainColumnRight { background-color: transparent; border-left:none; width: 180px; }
 .profiles .profilesPageColumnRightTop,

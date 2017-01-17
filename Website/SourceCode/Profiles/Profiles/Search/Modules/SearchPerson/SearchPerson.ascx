@@ -262,18 +262,18 @@
                                 </tr>
                                 <tr  runat="server" id="trOtherOptions">
                                     <th>
-                                        More Details
+                                        More Options
                                     </th>
                                     <td colspan='2'>
                                         <input type="hidden" id="hiddenToggle" value="off" />
                                         <select id="selOtherOptions" style="width: 249px; height: 20px">
-                                            <option value=""></option>
+                                            <option value="" style="font-size: 1px"></option>
                                         </select>
                                         <table>
                                             <tr>
                                                 <td>
-                                                    <div id="divOtherOptions">
-                                                        <br />
+                                                    <div id="divOtherOptions" style="padding-top:2px">
+                                                        <!-- <br /> -->
                                                         <uc1:ComboTreeCheck ID="ctcFirst" runat="server" Width="255px" />
                                                     </div>
                                                 </td>

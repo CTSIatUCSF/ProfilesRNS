@@ -13,6 +13,7 @@
 using System;
 using System.Web;
 using System.Configuration;
+using System.Web.Configuration;
 
 namespace Profiles.Framework.Utilities
 {   /// <summary>
@@ -78,6 +79,13 @@ namespace Profiles.Framework.Utilities
         static public string GetThemedFile(System.Web.UI.Page page, string file)
         {
             return Root.Domain + "/App_Themes/" + page.Theme + "/" + file;
+        }
+
+        // this one gets it from Web.config, and is not meant for page level use
+        static public string GetTheme()
+        {
+            PagesSection pages = (PagesSection)ConfigurationManager.GetSection("system.web/pages");
+            return pages.Theme;
         }
     }
 }   

@@ -917,9 +917,8 @@ namespace Profiles.Framework.Utilities
         // Load all the ID's for people so we don't have to hit the DB all the time
         public void LoadUCSFIdSet()
         {
-            System.Web.Configuration.PagesSection pages = (System.Web.Configuration.PagesSection)ConfigurationManager.GetSection("system.web/pages");
             String IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.urlname, '' from [UCSF.].vwPerson p";
-            if ("UCSF".Equals(pages.Theme))
+            if ("UCSF".Equals(Root.GetTheme()))
             {
                 IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.urlname, f.UID_USERID from [UCSF.].vwPerson p join import_ucsf.dbo.vw_FNO f on p.InternalUsername = f.INDIVIDUAL_ID";
             }

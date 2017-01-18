@@ -140,6 +140,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="About\PresentationXML\Optin.xml" />
+    <Content Include="App_Themes\UCSD\Images\network.png" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\AboutProfiles.xml" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\CloseBrowser.xml" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\ForDevelopers.xml" />

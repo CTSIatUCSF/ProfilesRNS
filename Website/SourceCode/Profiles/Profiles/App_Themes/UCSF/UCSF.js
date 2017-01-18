@@ -35,7 +35,7 @@
 
   //Search Form: clone clinical trials checkbox for promotion; call buildGadgetAds
     if ($('#trOtherOptions') && $('#trOtherOptions').length) {
-		$("#divOtherOptions label[for='ctcFirst_rMaster_ctl00_rDetail_ctl09_checkDetailText']").parent().addClass('trials1');
+		$("#divOtherOptions label[for='ctcFirst_rMaster_ctl00_rDetail_ctl00_checkDetailText']").parent().addClass('trials1');
 		$('.trials2').click(function() { 
 			if ($('.trials2').is(':checked')) {
 				$('#ctcFirst_rMaster_ctl00_divDetail .trials1 :checkbox').attr("checked", true)[0].onclick();

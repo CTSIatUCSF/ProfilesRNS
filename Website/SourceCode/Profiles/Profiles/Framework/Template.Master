@@ -115,7 +115,7 @@
                 <div class="institutionHeader">
                     <div id="ucsd">
                         <a target="_blank" href="http://healthsciences.ucsd.edu/">
-                            <img src="<%=GetURLDomain()%>/App_Themes/UCSD/Images/ucsdhs.png" alt="UCSD Health Sciences" /></a>
+                            <img src="<%=GetURLDomain()%>/App_Themes/UCSD/Images/actri-logo.png" alt="UCSD Altman Clinical and Translational Research Institute" /></a>
                     </div>
                     <div id="site-logo">
                         <h1><a href="<%=GetURLDomain()%>/">UCSD Profiles

@@ -8,8 +8,8 @@
 
 /* banner */
 .institutionHeader { padding: 0; }
-#ucsd { background-color: #16366b; float:left; width: 250px; height: 95px; }
-#ucsd img { padding: 10px 0 0 20px; }
+#ucsd { background-color: #16366b; float:left; width: 265px; height: 95px; }
+#ucsd img { padding: 12px 0 0 20px; }
 #site-logo h1 {
     background: transparent url("Images/network.png") no-repeat scroll 15px 0;
     font-size: 34px;
@@ -27,9 +27,17 @@
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child, 
 #profile-components table td#namedegree, .listTable .listTableLink, .linky, 
 .institutionHeader a, .institutionHeader a:hover,
-.profiles a, .profiles a:visited { color: #569bbe; }
+.profiles a, .profiles a:visited { color: #569bbe; font-weight: bold; }
 
 /* navbar colors */
 #suckerfishmenu, #suckerfishmenu a { background-color: #2D84AF; }
 .search #suckerfishmenu .item-home a,
 #suckerfishmenu	 a.active { background-color: #6A7D7D; }
+
+/* about pages */
+.toolbox, .questions, .share { padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #bbcddc; }
+.toolbox { background: transparent url(Images/gear.gif) no-repeat 20px 14px; }
+.questions { background: transparent url(Images/help.gif) no-repeat 20px 12px; }
+.share { background: transparent url(Images/comment.gif) no-repeat 20px 14px; }
+
+.alumni { background-image: url(Images/college-alumni.png); }

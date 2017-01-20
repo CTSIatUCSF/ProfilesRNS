@@ -199,7 +199,7 @@
                                         <asp:TextBox runat="server" ID="txtFname" CssClass="inputText"></asp:TextBox>
                                     </td>
                                 </tr>
-								<asp:Panel ID="SearchPersonFormSchoolUCSF" runat="server" SkinID="UCSF" Visible="false">
+								<asp:Panel ID="SearchPersonFormUCSF" runat="server" SkinID="UCSF" Visible="false">
                                 <tr runat="server" id="trInstitution">
                                     <th>
                                         School
@@ -212,7 +212,6 @@
 -->
                                     </td>
                                 </tr>
-								</asp:Panel>
                                 <tr runat="server" id="trDepartment">
                                     <th>
                                         Department
@@ -237,7 +236,6 @@
                                     </td>
                                 </tr>
 -->
-								<asp:Panel ID="SearchPersonFormDetailsUCSF" runat="server" SkinID="UCSF" Visible="false">
                                 <tr runat="server" id="trFacultyType">
                                     <th>
                                         Researcher Type
@@ -314,7 +312,7 @@
             <p style="text-align:right; margin-right: 20px"><a href="<%=GetURLDomain()%>/direct" class="dblarrow">Search other institutions</a></p>
 			<asp:Panel ID="SearchPersonFormNoteUCSD" runat="server" SkinID="UCSD" Visible="false">
 				<p><span class="notice">Important Note: </span>
-					If you are a faculty member within Health Sciences and your profile page is not found, it is most likely that your title in Blink is not listed with your academic faculty title. For example, if you listed your department name as your title in blink, you would have to change blink to reflect either Professor, Research Scientists etc. Blink updates have to be initiated either by the UCSD employee directly or their home department. Once blink is updated, your profile will be automatically generated with the next refresh cycle.
+					If you are a faculty member within UCSD and your profile page is not found, it is most likely that your title in Blink is not listed with your academic faculty title. For example, if you listed your department name as your title in blink, you would have to change blink to reflect either Professor, Research Scientists etc. Blink updates have to be initiated either by the UCSD employee directly or their home department. Once blink is updated, your profile will be automatically generated with the next refresh cycle.
 				</p>
 			</asp:Panel>
 

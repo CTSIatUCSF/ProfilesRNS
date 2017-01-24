@@ -1,5 +1,5 @@
 DECLARE @PersonFilterID int
-select @PersonFilterID=PersonFilterID from [Profile.Data].[Person.Filter] where PersonFilter = 'More INfo'
+select @PersonFilterID=PersonFilterID from [Profile.Data].[Person.Filter] where PersonFilter = 'More Info'
 
 DELETE FROM [Profile.Import].[PersonFilterFlag] where PersonFilter = 'More Info'
 DELETE FROM [Profile.Data].[Person.FilterRelationship] where PersonFilterID = @PersonFilterID

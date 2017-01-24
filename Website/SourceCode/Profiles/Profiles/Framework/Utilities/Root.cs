@@ -87,5 +87,11 @@ namespace Profiles.Framework.Utilities
             PagesSection pages = (PagesSection)ConfigurationManager.GetSection("system.web/pages");
             return pages.Theme;
         }
+
+        static public string GetGitVersion()
+        {
+            string contents = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/GitVersion.txt");
+            return contents.Split()[contents.Split().Length-1];
+        }
     }
 }   

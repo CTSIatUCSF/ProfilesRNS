@@ -430,7 +430,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
         {
             if (Session["pnlAddPubMed.Visible"] == null)
             {
-                btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 phAddCustom.Visible = false;
                 phAddPub.Visible = false;
                 phDeletePub.Visible = false;

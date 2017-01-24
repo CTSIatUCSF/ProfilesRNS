@@ -342,6 +342,21 @@
             a.async = true; a.type = "text/javascript"; b.parentNode.insertBefore(a, b)
         }, 1);
     </script>
+	<asp:Panel ID="MasterPageQeryzUCSF" runat="server" SkinID="UCSF" Visible="false">
+	  <script type='text/javascript' src='https://qeryz.com/survey/js/qryz_v3.2.js'></script>
+	  <script type='text/javascript'>
+		var qRz = qRz || [];
+		(function() {
+          setTimeout(function(){
+            var qryz_plks = document.createElement('div');
+            qryz_plks.id = 'qryz_plks';
+            qryz_plks.className = 'qryz_plks';
+            document.body.appendChild(qryz_plks);
+            qryzInit2('2511');
+          },0);
+		})();
+	  </script>
+	</asp:Panel>
 </body>
 <asp:panel runat="server" id="pnlNavBarSearch" visible="true">
     <form id="navbarsearch" action="<%=GetURLDomain()%>/Search/Default.aspx?">

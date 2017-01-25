@@ -65,14 +65,14 @@ namespace Profiles.History
         {
             Profiles.History.Utilities.DataIO data = new Profiles.History.Utilities.DataIO();
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            List<Activity> activities = null;
+            List<Profiles.Activity.Utilities.Activity> activities = null;
             if (newActivities)
             {
                 // get the latest and remove any that we already have
-                activities = new List<Activity>();
+                activities = new List<Profiles.Activity.Utilities.Activity>();
                 // we should probably make the data function smart enough to not return a bunch we already have
                 // to save the loop
-                foreach (Activity activity in data.GetActivity(-1, count, true))
+                foreach (Profiles.Activity.Utilities.Activity activity in data.GetActivity(-1, count, true))
                 {
                     if (activity.Id > referenceActivityId)
                     {

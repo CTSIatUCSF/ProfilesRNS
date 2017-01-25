@@ -140,6 +140,13 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="About\PresentationXML\Optin.xml" />
+    <Content Include="Activity\CSS\activity.css" />
+    <Content Include="Activity\Modules\ActivityHistory\ActivityDetails.aspx" />
+    <Content Include="Activity\Modules\ActivityHistory\ActivityHistory.ascx" />
+    <Content Include="Activity\Modules\LatestUpdates\LatestUpdates.ascx" />
+    <Content Include="Activity\Modules\ModuleCatalogue.xml" />
+    <Content Include="Activity\Modules\Statistics\Statistics.ascx" />
+    <Content Include="Activity\PresentationXML\ActivityDetails.xml" />
     <Content Include="App_Themes\UCSD\Images\network.png" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\AboutProfiles.xml" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\CloseBrowser.xml" />
@@ -187,12 +194,14 @@
     <Content Include="App_Themes\UCSF\UCSF.js" />
     <Content Include="Edit\Images\img_arrow.png" />
     <Content Include="Error\PresentationXML\HttpRequestValidationExceptionPresentation.xml" />
+    <Content Include="favicon.ico" />
     <Content Include="Framework\Images\collapseRound.gif" />
     <Content Include="Framework\Images\expandRound.gif" />
     <Content Include="App_Themes\UCSF\Images\icon_squareArrow.gif" />
     <Content Include="Framework\Images\icon_squareDownArrow.gif" />
     <Content Include="Framework\JavaScript\UCSF.js" />
     <Content Include="App_Themes\UCSF\Images\ucsf_alumni_blue.jpg" />
+    <Content Include="HttpBL.csproj" />
     <Content Include="Profile\JavaScript\UCSF.js" />
     <Content Include="App_Themes\UCSF\UCSF.css" />
     <Content Include="Search\JavaScript\UCSF.js" />
@@ -462,6 +471,34 @@
     <Compile Include="ActiveNetwork\Modules\MyNetwork\MyNetwork.ascx.designer.cs">
       <DependentUpon>MyNetwork.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Activity\Modules\ActivityHistory\ActivityDetails.aspx.cs">
+      <DependentUpon>ActivityDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Activity\Modules\ActivityHistory\ActivityDetails.aspx.designer.cs">
+      <DependentUpon>ActivityDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Activity\Modules\ActivityHistory\ActivityHistory.ascx.cs">
+      <DependentUpon>ActivityHistory.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Activity\Modules\ActivityHistory\ActivityHistory.ascx.designer.cs">
+      <DependentUpon>ActivityHistory.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Activity\Modules\LatestUpdates\LatestUpdates.ascx.cs">
+      <DependentUpon>LatestUpdates.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Activity\Modules\LatestUpdates\LatestUpdates.ascx.designer.cs">
+      <DependentUpon>LatestUpdates.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Activity\Modules\Statistics\Statistics.ascx.cs">
+      <DependentUpon>Statistics.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Activity\Modules\Statistics\Statistics.ascx.designer.cs">
+      <DependentUpon>Statistics.ascx</DependentUpon>
+    </Compile>
     <Compile Include="CustomAPI\Utilities\DataIO.cs" />
     <Compile Include="CustomAPI\v1\EditedCount.aspx.cs">
       <DependentUpon>EditedCount.aspx</DependentUpon>
@@ -581,7 +618,6 @@
     <Compile Include="History\Modules\ActivityHistory\ActivityHistory.ascx.designer.cs">
       <DependentUpon>ActivityHistory.ascx</DependentUpon>
     </Compile>
-    <Compile Include="History\Utilities\Activity.cs" />
     <Compile Include="History\Modules\HistoryByType\HistoryByType.ascx.cs">
       <DependentUpon>HistoryByType.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1701,7 +1737,9 @@
     <Content Include="History\Default.aspx" />
     <Content Include="History\Modules\HistoryByType\HistoryByType.ascx" />
     <Content Include="History\Modules\HistoryList\HistoryList.ascx" />
-    <Content Include="History\Modules\ModuleCatalogue.xml" />
+    <Content Include="History\Modules\ModuleCatalogue.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="History\PresentationXML\History.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -31,6 +31,20 @@ namespace Profiles.Profile
 
         private static Random random = new Random();
 
+        // expiremental
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            switch (Request.QueryString["theme"])
+            {
+                case "UCSD":
+                    Page.Theme = "UCSD";
+                    break;
+                case "UCSF":
+                    Page.Theme = "UCSF";
+                    break;
+            }
+        }
+
         public void Page_Load(object sender, EventArgs e)
         {
             UserHistory uh = new UserHistory();

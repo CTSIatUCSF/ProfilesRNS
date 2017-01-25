@@ -149,12 +149,6 @@ namespace Profiles.Profile.Modules.ProfileImage
             return IMAGE_CACHE_PREFIX + nodeid + "_" + width + "_" + height;
         }
 
-        private static string GetCacheKey(Int64 nodeid, int width, int height)
-        {
-            return IMAGE_CACHE_PREFIX + nodeid + "_" + width + "_" + height;
-        }
-
-
         //this is required for using the IHttpHandler interface. 
         public bool IsReusable
         {

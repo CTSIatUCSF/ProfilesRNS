@@ -185,6 +185,11 @@ namespace Profiles
 
             Framework.Utilities.DebugLogging.Log("{REST.aspx.cs} ProcessRequest() redirect=" + resolve.Redirect.ToString() + " to=>" + resolve.ResponseURL);
 
+            // experimental
+            if (!String.IsNullOrEmpty(Request.QueryString["theme"]))
+            {
+                resolve.ResponseURL += (resolve.ResponseURL.Contains("?") ? "&" : "?") + "theme=" + Request.QueryString["theme"].ToUpper();
+            }
 
             if (resolve.Resolved && !resolve.Redirect)
             {

@@ -59,14 +59,14 @@ namespace Profiles.History.Modules.ActivityHistory
 
             // grab a bunch of activities from the Database
             Profiles.History.Utilities.DataIO data = new Profiles.History.Utilities.DataIO();
-            List<Activity> activities = data.GetActivity(-1, count, true);
+            List<Profiles.Activity.Utilities.Activity> activities = data.GetActivity(-1, count, true);
             rptActivityHistory.DataSource = activities;
             rptActivityHistory.DataBind();
         }
 
         public void rptActivityHistory_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            Activity activity = (Activity)e.Item.DataItem;
+            Profiles.Activity.Utilities.Activity activity = (Profiles.Activity.Utilities.Activity)e.Item.DataItem;
             if (activity != null)
             {
                 HyperLink linkThumbnail = (HyperLink)e.Item.FindControl("linkThumbnail");

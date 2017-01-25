@@ -18,6 +18,7 @@ using System.Xml;
 using System.Configuration;
 using System.Web.Script.Serialization;
 using Profiles.Framework.Utilities;
+using Profiles.Activity.Utilities;
 
 namespace Profiles.History.Utilities
 {
@@ -32,10 +33,10 @@ namespace Profiles.History.Utilities
         private readonly object syncLock = new object();
         private Random random = new Random();
 
-        public List<Activity> GetActivity(Int64 lastActivityLogID, int count, bool declump)
+        public List<Profiles.Activity.Utilities.Activity> GetActivity(Int64 lastActivityLogID, int count, bool declump)
         {
-            List<Activity> activities = new List<Activity>();
-            SortedList<Int64, Activity> cache = GetFreshCache();
+            List<Profiles.Activity.Utilities.Activity> activities = new List<Profiles.Activity.Utilities.Activity>();
+            SortedList<Int64, Profiles.Activity.Utilities.Activity> cache = GetFreshCache();
             // grab as many as you can from the cache
             if (lastActivityLogID == -1)
             {
@@ -47,7 +48,7 @@ namespace Profiles.History.Utilities
                 activities.RemoveRange(0, cache.IndexOfKey(lastActivityLogID) + 1);
             }
 
-            List<Activity> retval = activities;
+            List<Profiles.Activity.Utilities.Activity> retval = activities;
             if (declump)
             {
                 retval = GetUnclumpedSubset(activities, count);
@@ -65,7 +66,7 @@ namespace Profiles.History.Utilities
                 {
                     while (count > retval.Count)
                     {
-                        SortedList<Int64, Activity> newActivities = GetRecentActivity(activities.Count > 0 ? activities[activities.Count - 1].Id : -1, 10 * (count - retval.Count), true);
+                        SortedList<Int64, Profiles.Activity.Utilities.Activity> newActivities = GetRecentActivity(activities.Count > 0 ? activities[activities.Count - 1].Id : -1, 10 * (count - retval.Count), true);
                         if (newActivities.Count == 0)
                         {
                             // nothing more to load, time to bail
@@ -87,13 +88,13 @@ namespace Profiles.History.Utilities
         }
 
         // makes sure you do not get consecutive activites for the same person. Instead, just randomly pick one of the activities in the consecutive 'clump'
-        private List<Activity> GetUnclumpedSubset(List<Activity> activities, int count)
+        private List<Profiles.Activity.Utilities.Activity> GetUnclumpedSubset(List<Profiles.Activity.Utilities.Activity> activities, int count)
         {
             int id = -1;
-            List<Activity> clumpedList = new List<Activity>();
-            List<Activity> subset = new List<Activity>();
+            List<Profiles.Activity.Utilities.Activity> clumpedList = new List<Profiles.Activity.Utilities.Activity>();
+            List<Profiles.Activity.Utilities.Activity> subset = new List<Profiles.Activity.Utilities.Activity>();
 
-            foreach (Activity activity in activities)
+            foreach (Profiles.Activity.Utilities.Activity activity in activities)
             {
                 if (id != activity.Profile.PersonId)
                 {
@@ -122,9 +123,9 @@ namespace Profiles.History.Utilities
             return subset;
         }
 
-        private SortedList<Int64, Activity> GetFreshCache()
+        private SortedList<Int64, Profiles.Activity.Utilities.Activity> GetFreshCache()
         {
-            SortedList<Int64, Activity> cache = (SortedList<Int64, Activity>)Framework.Utilities.Cache.FetchObject("ActivityHistory");
+            SortedList<Int64, Profiles.Activity.Utilities.Activity> cache = (SortedList<Int64, Profiles.Activity.Utilities.Activity>)Framework.Utilities.Cache.FetchObject("ActivityHistory");
             object isFresh = Framework.Utilities.Cache.FetchObject("ActivityHistoryIsFresh");
             if (cache == null || cache.Count == 0)
             {
@@ -137,9 +138,9 @@ namespace Profiles.History.Utilities
                 lock (syncLock)
                 {
                     // get new ones from the DB
-                    SortedList<Int64, Activity> newActivities = GetRecentActivity(cache.Values[0].Id, activityCacheSize, false);
+                    SortedList<Int64, Profiles.Activity.Utilities.Activity> newActivities = GetRecentActivity(cache.Values[0].Id, activityCacheSize, false);
                     // in with the new
-                    foreach (Activity activity in newActivities.Values)
+                    foreach (Profiles.Activity.Utilities.Activity activity in newActivities.Values)
                     {
                         cache.Add(activity.Id, activity);
                     }
@@ -155,9 +156,9 @@ namespace Profiles.History.Utilities
             return cache;
         }
 
-        private SortedList<Int64, Activity> GetRecentActivity(Int64 lastActivityLogID, int count, bool older)
+        private SortedList<Int64, Profiles.Activity.Utilities.Activity> GetRecentActivity(Int64 lastActivityLogID, int count, bool older)
         {
-            SortedList<Int64, Activity> activities = new SortedList<Int64, Activity>(new ReverseComparer());
+            SortedList<Int64, Profiles.Activity.Utilities.Activity> activities = new SortedList<Int64, Profiles.Activity.Utilities.Activity>(new ReverseComparer());
 
             string sql = "SELECT top " + count + "  i.activityLogID," +
                             "p.personid,n.nodeid,p.firstname,p.lastname," +
@@ -254,7 +255,7 @@ namespace Profiles.History.Utilities
                         if (!String.IsNullOrEmpty(title) && UCSFIDSet.ByNodeId.ContainsKey(Convert.ToInt64(nodeid)))
                         {
 
-                            Activity act = new Activity
+                            Profiles.Activity.Utilities.Activity act = new Profiles.Activity.Utilities.Activity
                             {
                                 Id = Convert.ToInt64(activityLogId),
                                 Message = body,
@@ -262,11 +263,11 @@ namespace Profiles.History.Utilities
                                 Title = title,
                                 CreatedDT = Convert.ToDateTime(reader["CreatedDT"]),
                                 CreatedById = activityLogId,
-                                Profile = new Profile
+                                Profile = new Profiles.Activity.Utilities.Profile
                                 {
                                     Name = firstname + " " + lastname,
-                                    PersonId = Convert.ToInt32(personid),
                                     NodeID = Convert.ToInt64(nodeid),
+                                    PersonId = Convert.ToInt32(personid),
                                     //  Nick, you might want this one
                                     //URL = Root.Domain + "/profile/" + nodeid  
                                     URL = Root.Domain + "/" + UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)].PrettyURL,

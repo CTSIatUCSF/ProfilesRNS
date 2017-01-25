@@ -413,6 +413,8 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 data.AddPublication(_personId, _subject, Convert.ToInt32(pmid), this.PropertyListXML);
 
             }
+            data.UpdateEntityOnePerson(_personId);
+
             this.Counter = 0;
             Session["phAddPub.Visible"] = null;
             Session["pnlAddPubMed.Visible"] = null;

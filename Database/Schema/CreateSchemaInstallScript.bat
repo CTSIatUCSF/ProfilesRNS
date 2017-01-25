@@ -114,6 +114,7 @@ type User.Account.Relationship.Table.sql
 type Profile.Data.Publication.Type.Table.sql
 type Profile.Data.Publication.Pubmed.Journal.Table.sql
 type Profile.Data.Publication.PubMed.General.Table.sql
+type Profile.Data.Publication.PubMed.General.Stage.Table.sql
 type Profile.Data.Publication.PubMed.DisambiguationAudit.Table.sql
 type Profile.Data.Publication.PubMed.DisambiguationAffiliation.Table.sql
 type Profile.Data.Publication.PubMed.Disambiguation.Table.sql
@@ -168,6 +169,7 @@ type Framework..RestPath.Table.sql
 type Ontology.Presentation.XML.Table.sql
 type User.Session.Session.Table.sql
 type Profile.Data.Publication.PubMed.Author.Table.sql
+type Profile.Data.Publication.PubMed.Author.Stage.Table.sql
 type Profile.Data.Publication.PubMed.PubType.Table.sql
 type Profile.Data.Publication.PubMed.Keyword.Table.sql
 type Profile.Data.Person.Photo.Table.sql
@@ -179,6 +181,7 @@ type Profile.Data.Publication.MyPub.General.Table.sql
 type Profile.Data.Publication.PubMed.Databank.Table.sql
 type Profile.Data.Publication.PubMed.Chemical.Table.sql
 type Profile.Data.Publication.PubMed.Mesh.Table.sql
+type Profile.Data.Publication.PubMed.Mesh.Stage.Table.sql
 type Profile.Data.Publication.PubMed.Investigator.Table.sql
 type Profile.Data.Publication.PubMed.Grant.Table.sql
 type Profile.Data.Publication.PubMed.Author2Person.Table.sql
@@ -219,6 +222,10 @@ type Profile.Data.Funding.Agreement.Table.sql
 type Profile.Data.Funding.Role.Table.sql
 type Profile.Data.Funding.Add.Table.sql
 type Profile.Data.Funding.Delete.Table.sql
+type Profile.Data.Funding.DisambiguationOrganizationMapping.Table.sql
+type Profile.Data.Funding.DisambiguationResults.Table.sql
+type Profile.Data.Funding.DisambiguationAudit.Table.sql
+
 
 type RDF..fnTripleHash.UserDefinedFunction.sql
 type Utility.Application.fnText2Bool.UserDefinedFunction.sql
@@ -376,6 +383,7 @@ type RDF..SetNodePropertySecurity.StoredProcedure.sql
 type User.Account.Relationship.SetRelationship.StoredProcedure.sql
 type User.Account.Relationship.GetRelationship.StoredProcedure.sql
 type Profile.Data.Publication.Pubmed.ParsePubMedXML.StoredProcedure.sql
+type Profile.Data.Publication.Pubmed.ParseAllPubMedXML.StoredProcedure.sql
 type User.Session.UpdateSession.StoredProcedure.sql
 type Ontology..UpdateDerivedFields.StoredProcedure.sql
 type Ontology..UpdateCounts.StoredProcedure.sql
@@ -570,4 +578,8 @@ type Profile.Data.Funding.DeleteFunding.StoredProcedure.sql
 type Profile.Data.Funding.Entity.UpdateEntityOnePerson.StoredProcedure.sql
 type Profile.Data.Funding.GetFundingItem.StoredProcedure.sql
 type Profile.Data.Funding.GetPersonFunding.StoredProcedure.sql
+type Profile.Data.Funding.GetPersonInfoForDisambiguation.StoredProcedure.sql
+type Profile.Data.Funding.LoadDisambiguationResults.StoredProcedure.sql
+type Profile.Data.Funding.AddDisambiguationLog.StoredProcedure.sql
+type Profile.Data.Funding.ParseDisambiguationXML.StoredProcedure.sql
 type Edit.Module.CustomEditEducationalTraining.StoreItem.StoredProcedure.sql

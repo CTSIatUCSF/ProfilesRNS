@@ -100,6 +100,10 @@ namespace Profiles.Profile.Utilities
                             SqlConnection.ClearPool(dbconnection);
                         }
 
+
+
+
+
                         xmlrtn.LoadXml(xmlstr);
 
                         //Framework.Utilities.Cache.Set(request.Key + "|data", xmlrtn);
@@ -274,6 +278,19 @@ namespace Profiles.Profile.Utilities
 
 
         #region "Profile Photo"
+
+        public System.IO.Stream GetUserPhotoList150x300(Int64 NodeID)
+        {
+            Object result = null;
+            Edit.Utilities.DataIO resize = new Profiles.Edit.Utilities.DataIO();
+            result = resize.ResizeImageFile(GetUserPhotoList(NodeID), 150, 300);
+
+            if (result == null)
+            {
+                result = (byte[])System.Text.Encoding.ASCII.GetBytes("null");
+            }
+            return new System.IO.MemoryStream((byte[])result);
+        }
 
         public byte[] GetUserPhotoList(Int64 NodeID)
         {
@@ -921,7 +938,6 @@ namespace Profiles.Profile.Utilities
 
 
         #endregion
-
 
 
         public Int32 GetPersonId(Int64 nodeid)

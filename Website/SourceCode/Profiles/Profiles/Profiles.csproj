@@ -490,6 +490,8 @@
     <Compile Include="CustomAPI\v2\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Activity\Utilities\Activity.cs" />
+    <Compile Include="Activity\Utilities\DataIO.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1094,9 +1096,6 @@
     <Compile Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx.designer.cs">
       <DependentUpon>CustomViewListProperty.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailAudioHandler.ashx.cs">
-      <DependentUpon>EmailAudioHandler.ashx</DependentUpon>
-    </Compile>
     <Compile Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx.cs">
       <DependentUpon>vcard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1364,13 +1363,6 @@
     </Compile>
     <Compile Include="Profile\Modules\ConceptConnection\ConceptConnection.ascx.designer.cs">
       <DependentUpon>ConceptConnection.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Profile\Modules\NetworkDetails\NetworkDetails.ascx.cs">
-      <DependentUpon>NetworkDetails.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Profile\Modules\NetworkDetails\NetworkDetails.ascx.designer.cs">
-      <DependentUpon>NetworkDetails.ascx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\PassiveList\PassiveList.ascx.cs">
       <DependentUpon>PassiveList.ascx</DependentUpon>
@@ -1803,10 +1795,6 @@
     <Content Include="Framework\JavaScript\ui.dropdownchecklist.js" />
     <Content Include="Framework\Modules\MainMenu\SetActiveNetworks.ascx" />
     <Content Include="Profile\Modules\NetworkList\SortIntermediate.xslt" />
-    <Content Include="Profile\Modules\NetworkDetails\NetworkDetails.ascx" />
-    <Content Include="Profile\Modules\NetworkDetails\NetworkDetails.xslt">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Profile\Modules\PassiveList\PassiveList.ascx" />
     <Content Include="Profile\Modules\PassiveList\PassiveList.xslt">
       <SubType>Designer</SubType>
@@ -1956,7 +1944,6 @@
     <Content Include="App_Themes\UCSF\UCSF.skin" />
     <Content Include="App_Themes\UCSD\UCSD.skin" />
     <None Include="ORCID\ORCIDPrivacySettingsandProfiles.pdf" />
-    <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailAudioHandler.ashx" />
     <Content Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master" />
     <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\CHANGELOG" />
     <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\MIT-LICENSE" />

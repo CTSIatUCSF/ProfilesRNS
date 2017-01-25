@@ -24,7 +24,7 @@ namespace Profiles.Profile.Modules.ProfileImage
     public class PhotoHandler : IHttpHandler, System.Web.SessionState.IRequiresSessionState
     {
         static byte[] silhouetteImage = null;
-        static readonly string IMAGE_CACHE_PREFIX = "UCSF.Image_";
+        static readonly string IMAGE_CACHE_PREFIX = "Image_";
 
         static PhotoHandler()
         {
@@ -39,7 +39,11 @@ namespace Profiles.Profile.Modules.ProfileImage
         public void ProcessRequest(HttpContext context)
         {
             Utilities.DataIO data = new Profiles.Profile.Utilities.DataIO();
-
+            // Set up the response settings
+            context.Response.ContentType = "image/jpeg";
+            context.Response.Cache.SetCacheability(HttpCacheability.Public);
+            context.Response.BufferOutput = false;
+            
             Int64 nodeid = -1;
             try
             {
@@ -58,10 +62,8 @@ namespace Profiles.Profile.Modules.ProfileImage
             {
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
             }
-
             if (nodeid > 0)
             {
-                // UCSF items
                 bool thumbnail = false;
                 int width = 150;
                 int height = 300;
@@ -80,7 +82,7 @@ namespace Profiles.Profile.Modules.ProfileImage
                 }
 
                 byte[] image = (byte[])Framework.Utilities.Cache.FetchObject(GetCacheKey(nodeid, width, height));
-
+                // UCSF items
                 if (image == null)
                 {
                     // stuff below this and if statement is what makes it slow
@@ -138,6 +140,7 @@ namespace Profiles.Profile.Modules.ProfileImage
                 {
                     context.Response.Write("No Image Found");
                 }
+
             }
         }
 
@@ -145,6 +148,12 @@ namespace Profiles.Profile.Modules.ProfileImage
         {
             return IMAGE_CACHE_PREFIX + nodeid + "_" + width + "_" + height;
         }
+
+        private static string GetCacheKey(Int64 nodeid, int width, int height)
+        {
+            return IMAGE_CACHE_PREFIX + nodeid + "_" + width + "_" + height;
+        }
+
 
         //this is required for using the IHttpHandler interface. 
         public bool IsReusable

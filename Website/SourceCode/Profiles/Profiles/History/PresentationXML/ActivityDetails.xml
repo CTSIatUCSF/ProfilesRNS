@@ -16,7 +16,7 @@
       </Module>
     </Panel>
     <Panel Type="main" TabType="Default" TabSort="0">
-      <Module ID="ActivityHistory">
+      <Module ID="UCSFActivityHistory">
         <ParamList>
           <Param Name="Show">100</Param>
           <Param Name="Scrolling">True</Param>

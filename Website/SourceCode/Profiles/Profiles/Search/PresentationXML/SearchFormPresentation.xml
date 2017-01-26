@@ -22,7 +22,7 @@
       </Module>
       <Module ID="Statistics">
       </Module>
-      <Module ID="UCSFActivityHistory">
+      <Module ID="ActivityHistory">
         <ParamList>
           <Param Name="Show">3</Param>
           <Param Name="SeeMore">True</Param>

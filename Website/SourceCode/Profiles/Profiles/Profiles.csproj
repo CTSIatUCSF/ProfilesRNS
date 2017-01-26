@@ -127,7 +127,6 @@
     <Content Include="About\Images\toc.jpg" />
     <Content Include="About\Images\tryit.gif" />
     <Content Include="About\Images\video.JPG" />
-    <Content Include="About\Modules\Statistics\Statistics.ascx" />
     <Content Include="About\NewFeatures.aspx" />
     <Content Include="About\Optin.aspx" />
     <Content Include="About\PresentationXML\AboutProfiles.xml" />
@@ -250,9 +249,6 @@
     <Content Include="GitVersion.txt" />
     <Content Include="Global.asax" />
     <Content Include="google6b93ad5a56d431a7.html" />
-    <Content Include="History\ActivityDetails.aspx" />
-    <Content Include="History\Modules\ActivityHistory\ActivityHistory.ascx" />
-    <Content Include="History\PresentationXML\ActivityDetails.xml" />
     <Content Include="Login\Modules\ShibLogin\ShibLogin.ascx" />
     <Content Include="Login\PresentationXML\ADLoginFormPresentation.xml" />
     <Content Include="Login\PresentationXML\ShibbolethLoginPresentation.xml" />
@@ -435,13 +431,6 @@
     <Compile Include="About\Modules\About\About.ascx.designer.cs">
       <DependentUpon>About.ascx</DependentUpon>
     </Compile>
-    <Compile Include="About\Modules\Statistics\Statistics.ascx.cs">
-      <DependentUpon>Statistics.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About\Modules\Statistics\Statistics.ascx.designer.cs">
-      <DependentUpon>Statistics.ascx</DependentUpon>
-    </Compile>
     <Compile Include="About\NewFeatures.aspx.cs">
       <DependentUpon>NewFeatures.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -456,7 +445,6 @@
     <Compile Include="About\Optin.aspx.designer.cs">
       <DependentUpon>Optin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="About\Utilities\DataIO.cs" />
     <Compile Include="ActiveNetwork\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -597,26 +585,12 @@
     </Compile>
     <Compile Include="Framework\Utilities\UCSFIDSet.cs" />
     <Compile Include="Framework\Utilities\UserHistory.cs" />
-    <Compile Include="History\ActivityDetails.aspx.cs">
-      <DependentUpon>ActivityDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="History\ActivityDetails.aspx.designer.cs">
-      <DependentUpon>ActivityDetails.aspx</DependentUpon>
-    </Compile>
     <Compile Include="History\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="History\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="History\Modules\ActivityHistory\ActivityHistory.ascx.cs">
-      <DependentUpon>ActivityHistory.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="History\Modules\ActivityHistory\ActivityHistory.ascx.designer.cs">
-      <DependentUpon>ActivityHistory.ascx</DependentUpon>
     </Compile>
     <Compile Include="History\Modules\HistoryByType\HistoryByType.ascx.cs">
       <DependentUpon>HistoryByType.ascx</DependentUpon>
@@ -632,7 +606,6 @@
     <Compile Include="History\Modules\HistoryList\HistoryList.ascx.designer.cs">
       <DependentUpon>HistoryList.ascx</DependentUpon>
     </Compile>
-    <Compile Include="History\Utilities\DataIO.cs" />
     <Compile Include="Login\Modules\ADLogin\ADLogin.ascx.cs">
       <DependentUpon>ADLogin.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

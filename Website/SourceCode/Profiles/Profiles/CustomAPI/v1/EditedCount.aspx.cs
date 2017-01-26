@@ -3,7 +3,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Profiles.About.Utilities;
+using Profiles.Activity.Utilities;
 
 public partial class EditedCount : System.Web.UI.Page
 {

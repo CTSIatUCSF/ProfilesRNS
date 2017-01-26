@@ -12,5 +12,4 @@ For details, see: LICENSE.txt
 -->
 <ModuleList>
   <Module ModulePath="Modules" NameSpace="About" FileName="About.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="UCSFStatistics" FileName="Statistics.ascx" Enabled="true"/>
 </ModuleList>

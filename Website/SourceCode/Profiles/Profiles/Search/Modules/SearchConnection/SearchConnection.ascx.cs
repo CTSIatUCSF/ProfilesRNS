@@ -62,7 +62,7 @@ namespace Profiles.Search.Modules
                 url = url.Replace("searchtype=whyeverything", "searchtype=everything");
             }
 
-            backlink.Text = "<a href='" + Root.Domain + "/search/default.aspx?" + url + "'><img src='" + Root.Domain + "/framework/images/icon_squareArrow.gif' border='0' alt=''/> Back to Search Results</a>";
+            backlink.Text = "<a href='" + Root.Domain + "/search/default.aspx?" + url + "' class='dblarrow'>Back to Search Results</a>";
             litSearchURL.Text = "<a href='" + Root.Domain + "/search/default.aspx?" + url + "'>Search Results</a>";
 
             litPersonURI.Text = "<a href='" + nodeuri + "'>" + node.SelectSingleNode("rdfs:label", base.Namespaces).InnerText + "</a>";

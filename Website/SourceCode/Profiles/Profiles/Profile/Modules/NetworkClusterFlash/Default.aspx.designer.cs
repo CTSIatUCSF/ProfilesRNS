@@ -13,7 +13,7 @@ namespace Profiles.Profile.Modules.NetworkClusterFlash {
     public partial class Default {
         
         /// <summary>
-        /// NetworkRadial control.
+        /// NetworkCluster control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

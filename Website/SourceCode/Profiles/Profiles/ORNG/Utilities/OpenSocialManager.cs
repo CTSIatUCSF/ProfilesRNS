@@ -516,7 +516,7 @@ namespace Profiles.ORNG.Utilities
             // Create a socket connection with the specified server and port.
             //Socket s = ConnectSocket(tokenService[0], Int32.Parse(tokenService[1]));
 
-            // during startup we might fail a few times, so be will to retry 
+            // during startup we might fail a few times, so be willing to retry 
             string page = "";
             for (int i = 0; i < 3 && page.Length == 0; i++)
             {

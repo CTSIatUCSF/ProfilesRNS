@@ -69,10 +69,10 @@ namespace Profiles.Proxy
             switch (method.ToLower().Trim())
             {
                 case "search":
-                    presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "\\Proxy\\PresentationXML\\SearchProxies.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "SearchProxies.xml");
                     break;
                 case "manage":
-                    presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "\\Proxy\\PresentationXML\\ManageProxies.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "ManageProxies.xml");
                     break;
             }
             this.PresentationXML = new XmlDocument();
@@ -83,13 +83,10 @@ namespace Profiles.Proxy
         }
         private void LoadAssets()
         {
-            HtmlLink Searchcss = new HtmlLink();
-            Searchcss.Href = Root.Domain + "/Search/CSS/search.css";
-            Searchcss.Attributes["rel"] = "stylesheet";
-            Searchcss.Attributes["type"] = "text/css";
-            Searchcss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(Searchcss);
+            HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
+            body.Attributes.Add("class", "orng");
         }
+
         public XmlDocument PresentationXML { get; set; }
 
     }

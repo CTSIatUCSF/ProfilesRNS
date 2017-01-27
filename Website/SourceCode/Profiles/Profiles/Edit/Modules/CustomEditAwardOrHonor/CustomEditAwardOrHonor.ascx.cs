@@ -123,7 +123,6 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
                 btnInsertCancel_OnClick(sender, e);
                 pnlSecurityOptions.Visible = false;
                 pnlInsertAward.Visible = true;
-                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                 Session["pnlInsertAward.Visible"] = true;
             }
             else
@@ -131,8 +130,6 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
                 Session["pnlInsertAward.Visible"] = null;
                 pnlSecurityOptions.Visible = true;
                 pnlInsertAward.Visible = false;
-                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
-
             }
             upnlEditSection.Update();
         }

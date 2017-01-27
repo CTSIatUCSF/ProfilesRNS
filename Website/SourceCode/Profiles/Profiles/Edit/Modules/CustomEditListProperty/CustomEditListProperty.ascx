@@ -30,10 +30,11 @@
                     <div style="padding: 10px 0px;">
                         <security:Options runat="server" ID="securityOptions"></security:Options>
                         <br />
-                        <asp:ImageButton runat="server" ID="imbAddArror" ImageUrl="../../../Framework/Images/icon_squareArrow.gif"
-                            OnClick="btnEditProperty_OnClick" />&nbsp;
+<!--  
+                        <asp:ImageButton runat="server" ID="imbAddArror" 
+                            OnClick="btnEditProperty_OnClick"  />&nbsp; -->
                         <asp:LinkButton ID="btnEditProperty" runat="server" CommandArgument="Show" OnClick="btnEditProperty_OnClick"
-                            CssClass="profileHypLinks">Add Property</asp:LinkButton>
+                            CssClass="profileHypLinks"> Add Property</asp:LinkButton>
                     </div>
                 </td>
             </tr>

@@ -212,6 +212,7 @@ namespace Profiles.Edit.Utilities
 
         }
 
+
         public void DeletePublications(int personid, long subjectid, bool deletePMID, bool deleteMPID)
         {
             EditActivityLog(subjectid, "http://vivoweb.org/ontology/core#authorInAuthorship", null, deletePMID ? "deletePMID = true" : "deletePMID = false", deleteMPID ? "deleteMPID = true" : "deleteMPID = false");
@@ -242,10 +243,7 @@ namespace Profiles.Edit.Utilities
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();
 
-                if (deleteMPID)
-                    this.UpdateEntityOnePerson(personid);
-
-
+                this.UpdateEntityOnePerson(personid);
             }
             catch (Exception e)
             {
@@ -1483,7 +1481,7 @@ namespace Profiles.Edit.Utilities
                     dr.Close();
             }
 
-
+            fs.Sort();
             return fs;
 
         }

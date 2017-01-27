@@ -13,7 +13,7 @@
         for (var index = 3; index < $('.mainmenu li').length; index++) {
             $('.mainmenu li').eq(index).clone().appendTo('#editmenu');
         }
-        $("#active-nav").css('background-color', '#EEEEEE');
+        $("#active-nav").css('background-color', '#ECECEC');
         $('#editmenu li').last().css('border-right', 'none');
         $("#editmenu li:contains('Sign out')").addClass('logout');
         if ($('#editmenu li:first-child img').length) {
@@ -41,7 +41,7 @@
     }
     // placeholder text
     function initiateSearchText() {
-        $("#searchterm").css('color', '#999');
+        $("#searchterm").css('color', '#989898');
         $("#searchterm").attr('value', 'e.g. Smith or HIV');
     }
     initiateSearchText();

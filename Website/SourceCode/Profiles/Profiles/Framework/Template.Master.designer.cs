@@ -58,13 +58,40 @@ namespace Profiles.Framework {
         protected global::AjaxControlToolkit.ToolkitScriptManager toolkitScriptMaster;
         
         /// <summary>
-        /// navResearch control.
+        /// MasterPageHeaderUCSF control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink navResearch;
+        protected global::System.Web.UI.WebControls.Panel MasterPageHeaderUCSF;
+        
+        /// <summary>
+        /// MasterPageHeaderUCSD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageHeaderUCSD;
+        
+        /// <summary>
+        /// ContentActive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentActive;
+        
+        /// <summary>
+        /// rptActive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptActive;
         
         /// <summary>
         /// divProfilesHeader control.
@@ -103,22 +130,31 @@ namespace Profiles.Framework {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divProfilesPage;
         
         /// <summary>
-        /// ContentActive control.
+        /// PageColumnLeft control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentActive;
+        protected global::System.Web.UI.WebControls.PlaceHolder PageColumnLeft;
         
         /// <summary>
-        /// rptActive control.
+        /// ContentInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptActive;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentInfo;
+        
+        /// <summary>
+        /// rptInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptInfo;
         
         /// <summary>
         /// divProfilesPageColumnRightTopLine control.
@@ -274,6 +310,24 @@ namespace Profiles.Framework {
         protected global::System.Web.UI.WebControls.Repeater rptPassive;
         
         /// <summary>
+        /// MasterPageFooterUCSF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageFooterUCSF;
+        
+        /// <summary>
+        /// MasterPageFooterUCSD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageFooterUCSD;
+        
+        /// <summary>
         /// ContentFooter control.
         /// </summary>
         /// <remarks>
@@ -290,6 +344,15 @@ namespace Profiles.Framework {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptFooter;
+        
+        /// <summary>
+        /// BackToTop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image BackToTop;
         
         /// <summary>
         /// pnlNavBarSearch control.

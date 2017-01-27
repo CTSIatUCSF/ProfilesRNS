@@ -59,7 +59,7 @@ namespace Profiles.ORNG.Utilities
                         }
                         else
                         {
-                            socket.CloseNice();
+                            socket.Close();
                         }
                     }
                 }

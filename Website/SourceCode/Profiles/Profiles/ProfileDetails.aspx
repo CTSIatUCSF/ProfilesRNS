@@ -1,3 +1,3 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProfileDetails.aspx.cs" Inherits="Profiles.BetaRedirect" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProfileDetails.aspx.cs" Inherits="Profiles.BetaRedirect" EnableTheming="false" Theme="" %>
 
 

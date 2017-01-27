@@ -26,9 +26,9 @@
                         </asp:Panel>
                         <br />
                         <asp:LinkButton ID="btnAddORNGApplication" runat="server" CommandArgument="Show" OnClick="btnAddORNGApplication_OnClick"
-                            CssClass="profileHypLinks" Visible="false">
-                            <asp:Image runat="server" ID="imbAddArror" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;
-                            <asp:Literal runat="server" ID="litAddORNGApplicationProperty">Add ORNG Application</asp:Literal>                           
+                            CssClass="profileHypLinks" Visible="false"> 
+							<span class="dblarrow"></span>                          
+                            <asp:Literal runat="server" ID="litAddORNGApplicationProperty" >Add ORNG Application</asp:Literal>                           
                         </asp:LinkButton>
                     </div>
                 </td>
@@ -37,7 +37,7 @@
                 <td>
                     <asp:LinkButton ID="lnkDelete" runat="server"
                         CausesValidation="False" OnClick="deleteOne_Onclick" CommandName="Delete" AlternateText=" " Visible="false"
-                        OnClientClick="Javascript:return confirm('Are you sure you want to remove this ORNG section from your profile page?');">
+                        OnClientClick="Javascript:return confirm('Are you sure you want to remove this section from your profile page?');">
                             <asp:Image runat="server" ID="imgDelete" AlternateText=" " ImageUrl="~/Framework/Images/delete.png" />&nbsp;
                             <asp:Literal runat="server" ID="litDeleteORNGApplicationProperty">Remove ORNG Application</asp:Literal>       
                     </asp:LinkButton>

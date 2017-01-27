@@ -181,7 +181,6 @@ namespace Profiles.Edit.Modules.EditObjectTypeProperty
         protected void cmdAddNewCancel_onclick(object sender, ImageClickEventArgs e)
         {
             pnlAddNew.Visible = false;
-            imgAddNew.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
             ShowAllPanels();
         }
 
@@ -240,7 +239,6 @@ namespace Profiles.Edit.Modules.EditObjectTypeProperty
             if (Session["pnlAddByURI.Visible"] == null)
             {
                 pnlAddByURI.Visible = true;
-                imgAddArror.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                 Session["pnlAddByURI.Visible"] = true;
                 phAddBySearch.Visible = false;
                 phAddNew.Visible = false;
@@ -249,7 +247,6 @@ namespace Profiles.Edit.Modules.EditObjectTypeProperty
             else
             {
                 pnlAddByURI.Visible = false;
-                imgAddArror.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
                 Session["pnlAddByURI.Visible"] = null;
                 phAddBySearch.Visible = true;
                 phAddNew.Visible = true;
@@ -265,7 +262,6 @@ namespace Profiles.Edit.Modules.EditObjectTypeProperty
             if (Session["pnlAddNew.Visible"] == null)
             {
                 pnlAddNew.Visible = true;
-                imgAddNew.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                 Session["pnlAddNew.Visible"] = true;
                 phAddBySearch.Visible = false;
                 phAddByURL.Visible = false;
@@ -274,7 +270,6 @@ namespace Profiles.Edit.Modules.EditObjectTypeProperty
             else
             {
                 pnlAddNew.Visible = false;
-                imgAddNew.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
                 Session["pnlAddNew.Visible"] = null;
                 phAddBySearch.Visible = true;
                 phAddByURL.Visible = true;
@@ -289,7 +284,6 @@ namespace Profiles.Edit.Modules.EditObjectTypeProperty
             if (Session["pnlAddBySearch.Visible"] == null)
             {
                 pnlAddBySearch.Visible = true;
-                imgAddSearch.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                 Session["pnlAddBySearch.Visible"] = true;
                 phAddByURL.Visible = false;
                 phAddNew.Visible = false;
@@ -298,7 +292,6 @@ namespace Profiles.Edit.Modules.EditObjectTypeProperty
             else
             {
                 pnlAddBySearch.Visible = false;
-                imgAddSearch.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
                 Session["pnlAddBySearch.Visible"] = null;
                 phAddByURL.Visible = true;
                 phAddNew.Visible = true;
@@ -404,7 +397,6 @@ namespace Profiles.Edit.Modules.EditObjectTypeProperty
                     phAddBySearch.Visible = false;
                     phAddNew.Visible = false;
                     phAddByURL.Visible = true;
-                    imgAddArror.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                     Session["pnlAddByURI.Visible"] = true;
 
                 }
@@ -414,7 +406,6 @@ namespace Profiles.Edit.Modules.EditObjectTypeProperty
         protected void cmdSaveByURICancel_onclick(object sender, ImageClickEventArgs e)
         {
             pnlAddByURI.Visible = false;
-            imgAddArror.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
             ShowAllPanels();
         }
 
@@ -437,7 +428,6 @@ namespace Profiles.Edit.Modules.EditObjectTypeProperty
         protected void cmdSaveByURIConfirmCancel_onclick(object sender, ImageClickEventArgs e)
         {
             pnlAddByURIConfirm.Visible = false;
-            imgAddArror.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
             ShowAllPanels();
         }
 
@@ -449,7 +439,6 @@ namespace Profiles.Edit.Modules.EditObjectTypeProperty
         {
             pnlAddBySearch.Visible = false;
             ShowAllPanels();
-            imgAddSearch.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
         }
 
 

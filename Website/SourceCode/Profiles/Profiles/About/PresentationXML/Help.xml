@@ -17,12 +17,13 @@
         <ParamList>
           <Param Name="HTML">
 
+<script type="text/javascript">
+$('#suckerfishmenu li#contact a').addClass('active'); 
+</script>
 <style type="text/css">
-#suckerfishmenu li#contact a { background-color: #6A7D7D !important; }
 .profiles .profilesContentMain .pageTitle h2 { display: none; }
-* html .profiles .profilesContentMain { margin-right: 0 !important; }
-*+html .profiles .profilesContentMain { margin-right: 0 !important; }
 </style>
+
   <div class="content-block" style="width:470px; padding-right: 50px;">
     <h2 style="font-size:30px">Need Help?</h2>
     <p><strong>Publications</strong>: To add, remove, or fix a publication, 
@@ -36,7 +37,7 @@
        your UCSF campus department. If unsure who this person is, contact your department's Business  
        Officer. You can also contact IT at 415-514-4100 (option 2) for more information. 
     </p>
-    <p><a href="#faq" class="doublearrow">Frequently Asked Questions</a></p>
+    <p><strong><a href="#faq">Frequently Asked Questions &#187;</a></strong></p>
   </div>
  
   <div class="content-block" style="width:200px; padding-right: 0">
@@ -62,12 +63,11 @@ Any published articles available in PubMed are listed, and Profile owners can ad
 </td>
 <td valign="top" style="padding-bottom:15px;"><img src="images/profilesnapshot.png" /></td>
 <td valign="top" style="font-size:11px;line-height:16px;padding-top:90px;">
-<strong>Networks &#38; other information about the individual's research</strong><br /><br />
+<strong style="display:block;width:14em">Networks &#38; other information about the individual's research</strong><br /><br />
 If the individual has publications available from PubMed, UCSF Profiles builds and displays networks related to their research.<br /><br />
 Lists of research concepts/topics based on PubMed "MeSH" terms<br /><br /><br />
 Co-authors<br /><br /><br />
-Researchers working on the same topics<br /><br /><br />
-People working in the same department
+Researchers working on the same topics
 </td>
 </tr>
 </table>

@@ -56,3 +56,14 @@ not exists( select * from [Profile.Data].[Funding.Role] rnsfr where rnsfr.person
 
 
 commit
+
+
+-- to remove the filter for the Awarded Grants gadget
+DECLARE @PersonFilterID int
+select @PersonFilterID=PersonFilterID from [Profile.Data].[Person.Filter] where PersonFilter = 'Awarded Grants'
+
+DELETE FROM [Profile.Import].[PersonFilterFlag] where PersonFilter = 'Awarded Grants'
+DELETE FROM [Profile.Data].[Person.FilterRelationship] where PersonFilterID = @PersonFilterID
+DELETE FROM [Profile.Data].[Person.Filter] where PersonFilter = 'Awarded Grants'
+
+SELECT @PersonFilterID

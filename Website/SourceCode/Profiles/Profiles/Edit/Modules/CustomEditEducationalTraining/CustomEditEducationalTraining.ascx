@@ -26,8 +26,9 @@
                         </asp:Panel>
                         <br />
                         <asp:Panel runat="server" ID="pnlEditEducation">
-                            <asp:LinkButton ID="btnEditEducation" runat="server" OnClick="btnEditEducation_OnClick"
-                                CssClass="profileHypLinks"><asp:Image runat="server" ID="imbAddArror" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;Add Education and Training</asp:LinkButton>
+                            <span class="dblarrow"></span>
+							<asp:LinkButton ID="btnEditEducation" runat="server" OnClick="btnEditEducation_OnClick"
+                                CssClass="profileHypLinks"> Add Education and Training</asp:LinkButton>
                         </asp:Panel>
                     </div>
                 </td>

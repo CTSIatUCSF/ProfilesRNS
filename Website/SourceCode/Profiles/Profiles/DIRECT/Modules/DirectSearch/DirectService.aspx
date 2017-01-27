@@ -1,3 +1,3 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DirectService.aspx.cs" Inherits="Profiles.DIRECT.Modules.DirectSearch.DirectService" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DirectService.aspx.cs" Inherits="Profiles.DIRECT.Modules.DirectSearch.DirectService" EnableTheming="false" Theme="" %>
 
 

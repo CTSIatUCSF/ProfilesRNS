@@ -1,0 +1,43 @@
+﻿/* highlight color */
+.dblarrow:before, #about h2, h2.about, .content-block h2, .searchForm td div.header,
+.passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
+#ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
+.profiles .profilesContentMain .pageTitle h2 { color: #CD2040; }
+.profiles a.search-button, .more span, .less span { background-color: #CD2040; }
+.profiles a.search-button:hover { background-color: #B01B37; box-shadow: none; }
+
+/* banner */
+.institutionHeader { padding: 0; }
+#ucsd { background-color: #16366b; float:left; width: 265px; height: 95px; }
+#ucsd img { padding: 12px 0 0 20px; }
+#site-logo h1 {
+    background: transparent url("Images/network.png") no-repeat scroll 15px 0;
+    font-size: 34px;
+    margin: 6px 0 0;
+    padding: 20px 0 12px 110px;
+	height: 86px;
+}
+ #tagline { color: #666; font-weight: bold; padding-top: 8px; }
+ #powered-by-block { padding: 50px 0 0;  }
+
+/* LINK Color */
+.profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000; }
+.profiles .basicInfo .grants a, .profiles .basicInfo .grants a:visited, 
+#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.edittable td:first-child, 
+#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child, 
+#profile-components table td#namedegree, .listTable .listTableLink, .linky, 
+.institutionHeader a, .institutionHeader a:hover,
+.profiles a, .profiles a:visited { color: #569bbe; font-weight: bold; }
+
+/* navbar colors */
+#suckerfishmenu, #suckerfishmenu a { background-color: #2D84AF; }
+.search #suckerfishmenu .item-home a,
+#suckerfishmenu	 a.active { background-color: #6A7D7D; }
+
+/* about pages */
+.toolbox, .questions, .share { padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #bbcddc; }
+.toolbox { background: transparent url(Images/gear.gif) no-repeat 20px 14px; }
+.questions { background: transparent url(Images/help.gif) no-repeat 20px 12px; }
+.share { background: transparent url(Images/comment.gif) no-repeat 20px 14px; }
+
+.alumni { background-image: url(Images/college-alumni.png); }

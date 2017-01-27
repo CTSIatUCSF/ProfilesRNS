@@ -1,0 +1,227 @@
+﻿<Presentation PresentationClass="profile">
+  <PageOptions Columns="2"/>
+  <WindowName>About</WindowName>  
+  <PageTitle>Contact Us</PageTitle>
+  <PageBackLinkName></PageBackLinkName>
+  <PageBackLinkURL></PageBackLinkURL>
+  <PageSubTitle></PageSubTitle>
+  <PageDescription></PageDescription>  
+  <PanelList>
+    <Panel type="header"  />
+    <Panel type="page" />
+    <Panel Type="active">
+      <Module ID="MainMenu"/>
+    </Panel>
+    <Panel Type="main">
+      <Module ID="HTMLBlock">
+        <ParamList>
+          <Param Name="HTML">
+
+<script type="text/javascript">
+$('#suckerfishmenu li#contact a').addClass('active'); 
+</script>
+<style type="text/css">
+.profiles .profilesContentMain .pageTitle h2 { display: none; }
+</style>
+
+  <div class="content-block" style="width:470px; padding-right: 50px;">
+    <h2 style="font-size:30px">Need Help?</h2>
+    <p><strong>Publications</strong>: To add, remove, or fix a publication, 
+       <a href="../login/default.aspx?method=login&amp;edit=true">login to edit</a> your profile page.
+    </p>
+    <p><strong>Photo</strong>: To add or remove a photo, 
+       <a href="../login/default.aspx?method=login&amp;edit=true">login to edit</a> your profile page.
+    </p>
+    <p><strong>Name/Degree/Contact Information</strong>: We get this data from the UCSD Directory (Blink). Changes to your data should be directed to the Payroll/Personnel Analyst for 
+       your UCSD campus department. If unsure who this person is, contact your department's Business  
+       Officer. 
+    </p>
+    <p><a href="#faq" class="doublearrow">Frequently Asked Questions &#187;</a></p>
+  </div>
+ 
+  <div class="content-block" style="width:200px; padding-right: 0">
+    <h2 style="font-size:30px">Contact Us</h2>
+    <p>Please <a href="mailto:ctripro@ucsd.edu">share your feedback</a> about how to improve
+       UCSD Profiles, and let us know if UCSD Profiles has enabled your research in any way.
+       Your success stories are important to enable the continued support and expansion of this
+       important tool.
+    </p>
+    <p><strong>Email us at <a href="mailto:ctripro@ucsd.edu">ctripro@ucsd.edu</a></strong></p>
+  </div>
+
+<h2 id="info" class="about" style="clear:left; padding-top:20px;">Information about UCSD Profiles</h2>
+<h3>When you view a person's profile, you will see:</h3>
+
+<table width="940">
+<tr>
+<td valign="top" style="font-size:11px;line-height:16px;padding-top:90px;">
+<strong>Information about the individual</strong><br /><br />
+At a minimum, an individual's profile will include the person's name, degrees and basic contact information (sourced from the UCSD Directory). <br /><br /><br /><br />
+Profile owners can edit and enhance their own profiles by providing a research overview, a photo, awards, links to other sites, etc. <br /><br /><br /><br />
+Any published articles available in PubMed are listed, and Profile owners can add additional publications.
+</td>
+<td valign="top" style="padding-bottom:15px;"><img src="../App_Themes/UCSD/Images/profilesnapshot.png" /></td>
+<td valign="top" style="font-size:11px;line-height:16px;padding-top:90px;">
+<strong>Networks &#38; other information about the individual's research</strong><br /><br />
+If the individual has publications available from PubMed, UCSD Profiles builds and displays networks related to their research.<br /><br />
+Lists of research concepts/topics based on PubMed "MeSH" terms<br /><br /><br />
+Co-authors<br /><br /><br />
+Researchers working on the same topics<br /><br /><br />
+People working in the same department
+</td>
+</tr>
+</table>
+
+<h2 id="faq" class="about">Frequently Asked Questions</h2>
+<ul> 
+  <li><a href="#who">Who is listed in UCSD Profiles?</a></li>
+  <li><a href="#view">Who can view UCSD Profiles?</a></li>
+  <li><a href="#enhance">How do I edit and enhance a profile page?</a></li>
+  <li><a href="#login">How do I login to UCSD Profiles?</a></li>
+  <li><a href="#whylogin">Why should I login to UCSD Profiles?</a></li>
+  <li><a href="#datasources">Where does the information in UCSD Profiles originate?</a></li>
+  <li><a href="#network">What are the lists of networks on the right side of my profile?</a></li>
+  <li><a href="#missing">Why are there missing or incorrect publications in my profile? How can I correct this?</a></li>
+  <li><a href="#update">How frequently are the data in UCSD Profiles updated?</a></li>
+  <li><a href="#keyword">Can I add/edit research, career and academic interests?</a></li>
+  <li><a href="#mynetwork">Can I edit my co-authors or related authors network lists?</a></li>
+  <li><a href="#learn">How can I learn more about UCSD Profile?</a></li>
+  <li><a href="#ideas">Where should I send my ideas on how to improve the tool?</a></li>
+  <li><a href="#sysreq">What are the system requirements for using UCSD Profiles?</a></li>
+  <li><a href="#manage">Who manages UCSD Profiles?</a></li>
+</ul>
+
+<h3 id="who">Who is listed in UCSD Profiles?</h3>
+
+<ul>
+  <li>UCSD Profiles was created for research networking so we initially focused on adding UCSD faculty members, researchers with academic leadership appointments, and non-faculty academic researchers. 
+<p><span class="notice">Important Note: </span>
+If you are a faculty member and your profile page is not found, it is most likely that your title in Blink is not listed with your academic faculty title. For example, if you listed your department name as your title in blink, you would have to change blink to reflect either Professor, Research Scientists etc. Blink updates have to be initiated either by the UCSD employee directly or their home department. Once blink is updated, your profile will be automatically generated with the next refresh cycle.</p>
+</li>
+  <li>We are happy to include research staff and other individuals in the UCSD community, on request and if possible.</li>
+  <li>Profile creation requires that an individual's data be in the UCSD Directory (Blink) and set to be shared with public websites. If you are a UCSD employee and do not have a profile, <a href="mailto:ctripro@ucsd.edu">request yours now</a> by sending us your UCSD Employee ID.</li>
+</ul>
+
+<h3 id="view">Who can view UCSD Profiles?</h3>
+<ul>
+  <li>UCSD Profiles is searchable on the web and can be viewed by the general public as well as the UCSD community.</li>
+</ul>
+
+<h3 id="enhance">How do I edit and enhance a profile page?</h3>
+<ul>
+  <li>To edit your own profile page, click the <strong><a href="../login/default.aspx?method=login&amp;edit=true">Sign in</a></strong> link from any page. Use your Single Sign On (SSO) credentials to sign in. Then click Edit My Profile.
+  <ul>
+    <li>You can designate a "proxy" to manage your profile page information for you.</li>
+  </ul></li>
+  <li>If you are a proxy and need to edit someone else's profile page, sign in as above using your Single Sign On (SSO) credentials. Search for the person’s page you want to edit. The menu will then show the option to "Edit this Profile." Click that link to go to the editing page. </li>
+  <li>A profile page is divided into several sections: directory information (not editable in Profiles), photo, awards and honors, overview, interests, featured publications, several other optional sections and publications.
+  <ul>
+  <li>For directory information, UCSD Profiles uses Campus Directory data from Blink (name, degrees, and contact information). Changes to this information can be directly updated in Blink and will then be refreshed in Profiles.</li>
+  <li>You can upload a photo, add an overview (bio), add/edit awards and many other optional sections.</li>
+  <li>Interests are research topics that you can add or edit yourself. These are searchable so people can still find you if they search using these terms. This is useful for new areas of research on which you haven't published a paper on it yet.</li>
+  <li>Publications are automatically added from PubMed, and you can also add other publications yourself. Co-authors, Related Authors and Related Concepts are derived from your publications so it is good to verify and add/delete publications as necessary.</li>
+  <li>Sections can be set to the privacy levels of your choice.</li>
+  </ul></li>
+  <li><a href="mailto:ctripro@ucsd.edu">Contact us</a> if you have questions about editing a profile.</li>
+</ul>
+
+<h3 id="login">How do I login to UCSD Profiles?</h3>
+<p>Click the <strong><a href="../login/default.aspx?method=login&amp;edit=true">Sign in</a></strong> link on any UCSD Profiles page. Then enter your SSO username and password.</p>
+<ul>
+  <li>If you have never used SSO or for password support: go to <a href="http://blink.ucsd.edu/technology/network/access/business-systems/access.html" title="Go to the UCSD Blink website" target="_blank">http://blink.ucsd.edu/technology/network/access/business-systems/access.html</a> or contact your Home Departmental Administrator.</li> 
+</ul>
+
+<h3 id="whylogin">Why should I login to UCSD Profiles?</h3>
+<ul>
+  <li>Many special UCSD Profiles features are available only if you're logged-in. These include:
+  <ul>
+  <li>Editing your profile page content to keep it current. Keeping your publications updated is important since your networks are built from them.</li>
+  <li>Designating a proxy to manage your profile page for you.</li>
+  <li>Creating a group of individuals based on search results. This group can then then be used to create an email message or to export information about these individuals.</li>
+  </ul></li>
+</ul>
+
+<h3 id="datasources">Where does the information in UCSD Profiles originate?</h3> 
+<ul>
+  <li>All information automatically added to your profile page is  currently available on other public websites, specifically the UCSD Directory, Blink, PubMed, and NIH RePORTER. 
+  <ul>
+  <li>Contact information is obtained from the Campus Directory (Blink). This information is updated weekly. </li>
+  <li>Publications are derived from the MEDLINE/PubMed citation database. These are retrieved monthly.</li>
+  <li>Grant information from NIH RePORTER is updated monthly. </li>
+  </ul></li>
+  <li>Overview and other personalized information is entered by the profile owner or a designated proxy. </li>
+</ul>
+
+<h3 id="network">What are the lists of networks on the right side of my profile?</h3>
+<ul>
+  <li>The lists at the right side of a profile page provide additional information about the individual. The first three lists are based on MeSH terms assigned to the individual's publications by the National Library of Medicine.
+  <ul>
+  <li>"Related Concepts" includes the top five research concepts derived from publications' MeSH terms. There is also a link to show all the concepts associated with this individual.</li>
+  <li>"Co-Authors" includes those who have published with this individual.</li>
+  <li>"Related Authors" includes people who have research concepts/MeSH terms in common with this individual. </li>
+  </ul></li>
+</ul>
+
+<h3 id="missing">Why are there missing or incorrect publications in my profile? How can I correct this?</h3> 
+<ul>
+  <li>UCSD Profiles uses a complex mix of names, institution, and manually entered publication information to find your publications in PubMed's repository. Unfortunately, there is no easy way to exactly match all articles in PubMed to UCSD authors with complete precision and accuracy. The algorithm used to find articles from PubMed attempts to minimize the number of publications incorrectly added to a profile; however, this method may result in some missing or incorrectly listed publications.</li>
+  <li>People who have common names, who published under multiple names or whose articles were written at other institutions are most likely to have incomplete publication lists. </li>
+  <li>You can make corrections by manually searching PubMed from within Profiles to add, edit or delete publications (see <a href="#enhance">How do I edit my Profile?</a> above). By curating publications manually, you are helping UCSD Profiles to identify which concepts and co-authors are correctly associated with your profile, thereby increasing the likelihood of finding the right publications on subsequent attempts. </li>
+  <li>We encourage you to sign in to the site and add any missing publications or remove incorrect ones because these publications can be imported into Advance and many departments pull publication lists from UCSD Profiles for use on their department and faculty website pages.</li>
+</ul>
+
+<h3 id="update">How frequently are the data in UCSD Profiles updated?</h3>
+<ul>
+  <li>Changes made to your primary campus information via your HR representative, such as names, degrees, and contact information, are automatically updated once a week.</li>
+  <li>Publications are added from PubMed weekly. MeSH terms and other publication data are updated monthly.</li>
+  <li>Changes made to a profile manually will be reflected immediately.</li>
+</ul>
+
+<h3 id="keyword">Can I add/edit research, career and academic interests?</h3>
+<ul>
+  <li>Yes! You can enter interests when you are editing your profile. These are useful to indicate research topics or fields in which you haven’t yet published. Users who search UCSD Profiles by these topics will find your profile. </li>
+  <li>Interests you add are  different from the concepts associated to your publications (MeSH terms derived by the National Library of Medicine) automatically, which are not editable. However, you can ensure these accurately reflect your work by keeping your publications up to date and correct in UCSD Profiles. Please note that system updates to your related concepts, co-authors, and related authors after you have modified your publications will happen after the next weekly update.</li> 
+</ul>
+
+<h3 id="mynetwork">Can I edit my co-authors or related authors network lists?</h3>
+<ul>
+  <li>These networks are automatically derived from publications and their MeSH terms. Keeping your publications accurate and up to date will improve these networks. However, these lists can't be edited directly.</li>
+</ul>
+
+<h3 id="learn">How can I learn more about UCSD Profiles?</h3>
+<ul>
+  <li><a href="AboutProfiles.aspx">Read more</a> about the UCSD Profiles tool, ongoing development and exciting collaborations.</li>
+  <li>If you have specific questions not answered here, please <a href="mailto:ctripro@ucsd.edu">contact us</a>.</li>
+</ul>
+
+<h3 id="ideas">Where should I send my ideas on how to improve the tool?</h3> 
+<ul>
+  <li>We encourage you to <a href="mailto:ctripro@ucsd.edu">share your thoughts</a> on how to improve UCSD Profiles.  We especially look forward to hearing from you if Profiles has enabled your research in any way.  <em>Your success stories allow us to continue to build on such tools and to continue to get support.</em></li>
+  <li>To tell us how we're doing or for questions please send a note to <a href="mailto:ctripro@ucsd.edu">ctripro@ucsd.edu</a>.</li>
+</ul>
+
+<h3 id="sysreq">What are the system requirements for using UCSD Profiles?</h3>
+<ul>
+  <li>UCSD Profiles works best using any of the following web browsers:
+    <ul>
+      <li>Internet Explorer 9 or later</li>
+      <li>Firefox 12 or later</li>
+      <li>Chrome</li>
+      <li>Safari 5 or later</li>
+    </ul></li>
+  <li>If you are using an older browser or a browser not listed above, you may experience some errors in functionality.</li>
+</ul>
+
+<h3 id="manage">Who manages UCSD Profiles?</h3>
+<p>UCSD Profiles is managed by UCSD's <a href="http://ctri.ucsd.edu/Pages/default.aspx" target="_blank">Clinical and Translational Research Institute (CTRI)</a>.</p>
+
+
+          </Param>
+        </ParamList>
+      </Module>
+      <Panel Type="passive"/>
+      <Panel type="footer" />
+    </Panel> 
+  </PanelList>
+</Presentation>
+

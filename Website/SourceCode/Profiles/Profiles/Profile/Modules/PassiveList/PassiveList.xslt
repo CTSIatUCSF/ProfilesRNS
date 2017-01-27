@@ -40,8 +40,7 @@ changed display none to block for next div
     </div>
     <xsl:if test ="@MoreURL!=''">
       <div class="passiveSectionBodyDetails">
-        <a href="{@MoreURL}">
-          <img alt=" " style="margin-right:2px;position:relative;top:1px;border:10"  src="{$root}/Framework/Images/icon_squareArrow.gif" width="11" height="11"/>
+        <a href="{@MoreURL}" class="dblarrow">          
           <xsl:value-of select="@MoreText"/>
         </a>
       </div>

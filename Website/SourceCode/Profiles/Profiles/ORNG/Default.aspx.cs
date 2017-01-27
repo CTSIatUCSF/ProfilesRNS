@@ -48,24 +48,15 @@ namespace Profiles.ORNG
 
         private void LoadAssets()
         {
-            HtmlLink UCSFcss = new HtmlLink();
-            UCSFcss.Href = Root.Domain + "/ORNG/CSS/UCSF.css";
-            UCSFcss.Attributes["rel"] = "stylesheet";
-            UCSFcss.Attributes["type"] = "text/css";
-            UCSFcss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(UCSFcss);
-
-            HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
-            UCSFjs.Attributes.Add("type", "text/javascript");
-            UCSFjs.Attributes.Add("src", Root.Domain + "/ORNG/JavaScript/UCSF.js");
-            Page.Header.Controls.Add(UCSFjs);
+            HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
+            body.Attributes.Add("class", "orng");
         }
 
         public void LoadPresentationXML()
         {
             string presentationxml = string.Empty;
 
-            presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/ORNG/PresentationXML/SandboxFormPresentation.xml");
+            presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "SandboxFormPresentation.xml");
 
             this.PresentationXML = new XmlDocument();
             this.PresentationXML.LoadXml(presentationxml);

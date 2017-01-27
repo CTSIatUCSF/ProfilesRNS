@@ -91,13 +91,9 @@
                         <xsl:choose>
                           <xsl:when test="($position mod 2 = 1)">
                             <xsl:attribute name="class">oddRow</xsl:attribute>
-                            <xsl:attribute name="onmouseout">doListTableRowOut(this,1)</xsl:attribute>
-                            <xsl:attribute name="onmouseover">doListTableRowOver(this)</xsl:attribute>
                           </xsl:when>
                           <xsl:otherwise>
                             <xsl:attribute name="class">evenRow</xsl:attribute>
-                            <xsl:attribute name="onmouseout">doListTableRowOut(this,0)</xsl:attribute>
-                            <xsl:attribute name="onmouseover">doListTableRowOver(this)</xsl:attribute>
                           </xsl:otherwise>
                         </xsl:choose>
                         <xsl:call-template name="threeColumn"/>
@@ -111,13 +107,9 @@
                         <xsl:choose>
                           <xsl:when test="($position mod 2 = 1)">
                             <xsl:attribute name="class">oddRow</xsl:attribute>
-                            <xsl:attribute name="onmouseout">doListTableRowOut(this,1)</xsl:attribute>
-                            <xsl:attribute name="onmouseover">doListTableRowOver(this)</xsl:attribute>
                           </xsl:when>
                           <xsl:otherwise>
                             <xsl:attribute name="class">evenRow</xsl:attribute>
-                            <xsl:attribute name="onmouseout">doListTableRowOut(this,0)</xsl:attribute>
-                            <xsl:attribute name="onmouseover">doListTableRowOver(this)</xsl:attribute>
                           </xsl:otherwise>
                         </xsl:choose>
                         <xsl:call-template name="threeColumn"/>

@@ -4,7 +4,7 @@
     <xsl:if test="rdf:RDF/rdf:Description[1]/vivo:awardOrHonor">
      
       <div class="awardsList">
-        <table>
+        <table  class="collapsible">
           <tbody>
             <xsl:for-each select="rdf:RDF/rdf:Description[1]/vivo:awardOrHonor">
               <xsl:variable name="awardUri" select="@rdf:resource"/>              

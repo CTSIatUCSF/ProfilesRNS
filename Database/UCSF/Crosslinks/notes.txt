@@ -14,4 +14,3 @@ ad end of disambiguation) -- this builds out author strings
 [Profile.Data].[Publication.Entity.UpdateEntityOnePerson]   (called by  [Profile.Data].[Publication.Pubmed.AddPublication] 
 from code) -- this builds out author strings
 
-[Profile.Cache].[fnPublication.Pubmed.General2Reference](

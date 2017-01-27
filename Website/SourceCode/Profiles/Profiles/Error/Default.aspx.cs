@@ -39,8 +39,8 @@ namespace Profiles.Error
             {
                 global_error = HttpContext.Current.Session["GLOBAL_ERROR"].ToString();
             }
-            if (global_error.Equals("HttpRequestValidationException")) presentationxml.LoadXml(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Error/PresentationXML/HttpRequestValidationExceptionPresentation.xml"));
-            else presentationxml.LoadXml(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Error/PresentationXML/ErrorPresentation.xml"));
+            if (global_error.Equals("HttpRequestValidationException")) presentationxml.LoadXml(XslHelper.GetThemedOrDefaultPresentationXML(Page, "HttpRequestValidationExceptionPresentation.xml"));
+            else presentationxml.LoadXml(XslHelper.GetThemedOrDefaultPresentationXML(Page, "ErrorPresentation.xml"));
             masterpage.PresentationXML = presentationxml;
         }
     }

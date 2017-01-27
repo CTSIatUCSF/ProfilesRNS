@@ -47,7 +47,6 @@ namespace Profiles.Framework
         private ModulesProcessing mp;
         #endregion
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -71,6 +70,7 @@ namespace Profiles.Framework
 
                 this.BindRepeaterToPanel(ref rptHeader, GetPanelByType("header"));
                 this.BindRepeaterToPanel(ref rptActive, GetPanelByType("active"));
+                this.BindRepeaterToPanel(ref rptInfo, GetPanelByType("info"));
                 this.BindRepeaterToPanel(ref rptPage, GetPanelByType("page"));
                 this.BindRepeaterToPanel(ref rptMain, GetPanelByType("main"));
                 this.BindRepeaterToPanel(ref rptPassive, GetPanelByType("passive"));
@@ -131,22 +131,29 @@ namespace Profiles.Framework
             //Page.Header.Controls.Add(Profilescss);
             head.Controls.Add(Profilescss);
 
+            HtmlLink DEFAULTcss = new HtmlLink();
+            DEFAULTcss.Href = Root.Domain + "/App_Themes/DEFAULT.css";
+            DEFAULTcss.Attributes["rel"] = "stylesheet";
+            DEFAULTcss.Attributes["type"] = "text/css";
+            DEFAULTcss.Attributes["media"] = "all";
+            //Page.Header.Controls.Add(DEFAULTcss); 
+            head.Controls.Add(DEFAULTcss);
+            
             HtmlGenericControl jsscript = new HtmlGenericControl("script");
             jsscript.Attributes.Add("type", "text/javascript");
             jsscript.Attributes.Add("src", Root.Domain + "/Framework/JavaScript/profiles.js");
             Page.Header.Controls.Add(jsscript);
 
-            HtmlLink UCSFcss = new HtmlLink();
-            UCSFcss.Href = Root.Domain + "/Framework/CSS/UCSF.css";
-            UCSFcss.Attributes["rel"] = "stylesheet";
-            UCSFcss.Attributes["type"] = "text/css";
-            UCSFcss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(UCSFcss);
-
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");
             UCSFjs.Attributes.Add("src", Root.Domain + "/Framework/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
+
+            // add one specific to the theme
+            HtmlGenericControl ThemeJs = new HtmlGenericControl("script");
+            ThemeJs.Attributes.Add("type", "text/javascript");
+            ThemeJs.Attributes.Add("src", Root.Domain + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".js");
+            Page.Header.Controls.Add(ThemeJs);
 
             // UCSF. This is handy to have in JavaScript form and is required for ORNG
             HtmlGenericControl rootDomainjs = new HtmlGenericControl("script");
@@ -348,6 +355,9 @@ namespace Profiles.Framework
                 placeholder = (PlaceHolder)e.Item.FindControl("phActive");
 
             if (placeholder == null)
+                placeholder = (PlaceHolder)e.Item.FindControl("phInfo");
+
+            if (placeholder == null)
                 placeholder = (PlaceHolder)e.Item.FindControl("phMain");
 
             if (placeholder == null)
@@ -433,7 +443,7 @@ namespace Profiles.Framework
                 else
                     url = PageBackLinkURL;
 
-                litBackLink.Text = "<img src=\"" + Root.Domain + "/Framework/Images/icon_squareArrow.gif\" class=\"pageBackLinkIcon\" width=\"11\" height=\"11\"/>&nbsp;<a href=\"" + url + "\">" + PageBackLinkName + "</a>";
+                litBackLink.Text = "<a href=\"" + url + "\" class=\"dblarrow\">" + PageBackLinkName + "</a>";
 
             }
 

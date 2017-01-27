@@ -362,4 +362,20 @@ BEGIN
 	INSERT INTO [User.Account].DesignatedProxy values (@UserID, @ProxyForUserID)
 		
 END
+GO
 
+/*********** ReadActivityLog from new tables **************************************/
+CREATE PROCEDURE [UCSF.].[ReadActivityLog] @methodName nvarchar(255), @afterDT datetime
+AS   
+
+IF @methodName is not null
+	SELECT p.personid, p.displayname, p.urlname, p.emailaddr, l.createdDT, l.methodName, l.param1, l.param2
+	  FROM [Framework.].[Log.Activity] l  join [UCSF.].[vwPerson] p on l.personId = p.PersonID
+	  where l.methodName = @methodName and l.createdDT >= isnull(@afterDT, '01/01/1970') 
+	   order by activityLogId desc;
+ELSE
+	SELECT p.personid, p.displayname, p.urlname, p.emailaddr, l.createdDT, l.methodName, l.param1, l.param2
+	  FROM [Framework.].[Log.Activity] l  join [UCSF.].[vwPerson] p on l.personId = p.PersonID
+	  where l.createdDT >= isnull(@afterDT, '01/01/1970') 
+	   order by activityLogId desc;
+GO

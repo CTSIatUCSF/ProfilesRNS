@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" ContentType="text/plain" %>
+﻿<%@ Page Language="C#" ContentType="text/plain" EnableTheming="false" Theme="" %>
 <%Response.Write("User-Agent: *" + Environment.NewLine);%>
 <%Response.Write("Disallow: /shindigorng/" + Environment.NewLine);%>
 <%Response.Write("Disallow: /sparql/" + Environment.NewLine);%>

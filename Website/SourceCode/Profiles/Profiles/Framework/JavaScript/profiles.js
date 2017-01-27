@@ -68,50 +68,24 @@ function toggleImage(key,id) {
 
 var hasClickedListTable = false;
 
-function DISABLEDdoListTableRowOver(x) {
+function doListTableRowOver(x) {
     
-    //x.className = 'overRow';
-    x.style.backgroundColor = '#B8D0D0';
-    x.style.color = '#FFF';
-    x.style.cursor = 'default';    
-    for (var i = 0; i < x.childNodes.length; i++) {
-    	if (x.childNodes[i].childNodes.length > 0) {
-    		if (x.childNodes[i].children[0] != undefined)
-    			if (x.childNodes[i].children[0].className == 'listTableLink') {
-    				x.childNodes[i].children[0].style.color = '#FFF';
-				}
-        }
-    }    
+    //do nothing
 }
 
-function DISABLEDdoListTableRowOut(x, eo) {
+function doListTableRowOut(x, eo) {
     
-    if (eo == 1) {
-        x.className = 'oddRow';
-        x.style.backgroundColor = '#FFFFFF';
-    } else {
-        x.className = 'evenRow';
-        x.style.backgroundColor = '#F0F4F6';
-    }
-    x.style.color = '';
-    for (var i = 0; i < x.childNodes.length; i++) {
-    	if (x.childNodes[i].childNodes.length > 0) {
-    		if (x.childNodes[i].children[0] != undefined)
-				if (x.childNodes[i].children[0].className == 'listTableLink') {
-            		x.childNodes[i].children[0].style.color = '#36C';
-				}
-        }
-    }
+    //do nothing
 }
 
 function doListTableCellOver(x) {
-    //x.className = 'listTableLinkOver';
-    x.style.backgroundColor = '#36C';
+    
+    //do nothing
 }
 
 function doListTableCellOut(x) {
-    //x.className = 'listTableLink';
-    x.style.backgroundColor = '';
+    
+    //do nothing
 }
 
 function doListTableCellClick(x) {

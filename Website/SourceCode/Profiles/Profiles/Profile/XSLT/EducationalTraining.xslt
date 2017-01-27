@@ -4,7 +4,7 @@
     <xsl:if test="rdf:RDF/rdf:Description[1]/vivo:educationalTraining">
      
       <div style="margin-top:6px">
-        <table style="width:592px">
+        <table style="width:592px"  class="collapsible education">
           <tbody>
             <xsl:for-each select="rdf:RDF/rdf:Description[1]/vivo:educationalTraining">
               <xsl:variable name="educationalTrainingUri" select="@rdf:resource"/>              

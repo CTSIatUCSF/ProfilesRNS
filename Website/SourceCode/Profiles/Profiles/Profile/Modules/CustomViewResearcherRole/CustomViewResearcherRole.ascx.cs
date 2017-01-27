@@ -45,22 +45,16 @@ namespace Profiles.Profile.Modules.CustomViewResearcherRole
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
                 int last = 0;
 
-                sb.Append("<div class='basicInfo'><table width='590px' border='0' cellpadding='5px' cellspacing='3px'>");
+                sb.Append("<div class='basicInfo scroll'><table class='grants' width='590px' border='0' cellpadding='5px' cellspacing='3px'>");
                 foreach (Profiles.Edit.Utilities.FundingState fs in fundingstate)
                 {
                     last += 1;
                     AddRow(fs, ref sb);
-                    if (last < fundingstate.Count)
-                        AddLine(ref sb);
                 }
                 sb.Append("</table></div>");
                 litHTML.Text = sb.ToString();
             }
 
-        }
-        private void AddLine(ref System.Text.StringBuilder sb)
-        {
-            sb.Append("<tr><td colspan='2'><hr/></td></tr>");
         }
         private void AddRow(Profiles.Edit.Utilities.FundingState fs, ref System.Text.StringBuilder sb)
         {
@@ -87,15 +81,16 @@ namespace Profiles.Profile.Modules.CustomViewResearcherRole
             if (fs.AgreementLabel != string.Empty)
                 sb.Append(fs.AgreementLabel + "<br/>");
             if (fs.GrantAwardedBy != string.Empty)
-                sb.Append("<span style='float:left'>" + fs.GrantAwardedBy + "</span> ");
+                sb.Append("<span style='float:left;padding-right:10px'>" + fs.GrantAwardedBy + "</span> ");
             if (fs.FullFundingID != string.Empty)
-                sb.Append("<span style='float:left'>" + fs.FullFundingID + "</span> ");
+                sb.Append("<span style='float:left'>" + ("NIH".Equals(fs.GrantAwardedBy) ? "<a href='http://grantome.com/search?q=" + fs.FullFundingID + "' target='_blank'>" + fs.FullFundingID + "</a>" :
+                    fs.FullFundingID) + "</span>");
             if (date != string.Empty)
-                sb.Append("<span style='float:right'>" + date + "</span>");
-            if (fs.RoleDescription != string.Empty)
-                sb.Append("<br/>Role Description: " + fs.RoleDescription);
+                sb.Append("<span style='float:right;padding-left:10px'>" + date + "</span>");
             if (fs.RoleLabel != string.Empty)
                 sb.Append("<br/>Role: " + fs.RoleLabel);
+            if (fs.RoleDescription != string.Empty)
+                sb.Append("<br/>Role Description: " + fs.RoleDescription);
 
             sb.Append("</td></tr>");
 

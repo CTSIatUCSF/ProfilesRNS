@@ -15,11 +15,11 @@ function NoEnter(){
 	
 		x.className = 'overRow';
 		// x.style.backgroundColor = '#5A719C';
-		// x.style.color = '#FFF';
+		x.style.color = '#000';
 		for (var i=0; i<x.childNodes.length; i++) {
 			if (x.childNodes[i].childNodes.length > 0) {
 				if (x.childNodes[i].childNodes[0].className == 'listTableLink') {
-					x.childNodes[i].childNodes[0].style.color = '#FFF';
+					x.childNodes[i].childNodes[0].style.color = '#178CCB';
 				}
 			}
 		}
@@ -30,20 +30,19 @@ function NoEnter(){
 			x.style.backgroundColor = '#FFFFFF';
 		} else {
 			x.className = 'evenRow';
-			x.style.backgroundColor = '#F0F4F6';
+			x.style.backgroundColor = '#F7F7F8';
 		}
 		x.style.color = '';
 		for (var i=0; i<x.childNodes.length; i++) {
 			if (x.childNodes[i].childNodes.length > 0) {
 				if (x.childNodes[i].childNodes[0].className == 'listTableLink') {
-					x.childNodes[i].childNodes[0].style.color = '#36C';
+					x.childNodes[i].childNodes[0].style.color = '#178CCB';
 				}
 			}
 		}
 	}
 	function doListTableCellOver(x) {
 		x.className = 'listTableLinkOver';
-		x.style.backgroundColor = '#36C';
 	}
 	function doListTableCellOut(x) {
 		x.className = 'listTableLink';
@@ -157,7 +156,8 @@ function NoEnter(){
     </script>
  <div class="searchForm">      
         <div class="pageSubTitleCaption">This tool, called
-            <a href="http://direct2experts.org/" title="Distributed Interoperable Research Experts Collaboration Tool"              style="color:#CA7C29 !important;font-size:13px;text-decoration:none" target="_blank">DIRECT</a>, 
+            <a href="http://direct2experts.org/" title="Distributed Interoperable Research Experts Collaboration Tool"
+			 style="color:#F26D04 !important;font-size:13px;text-decoration:none" target="_blank">DIRECT</a>, 
              finds experts at multiple institutions. <a href="../">Return to search UCSF only</a><br /><br />
         </div>
         <div class="searchForm nonavbar">
@@ -180,8 +180,8 @@ function NoEnter(){
                                 class="inputText" title="Search Phrase" />
                         </td>
                         <td class="fieldOptions">
-                            <input type='button' value="Search" name="btnsearch" id="btnsearch" class="inputButton"
-                                onclick="JavaScript:doDirectSearch();" title="Search" />
+                            <a class="search-button"
+                                onclick="JavaScript:doDirectSearch();" />Search</a>
                         </td>
                     </tr>
                 </table>

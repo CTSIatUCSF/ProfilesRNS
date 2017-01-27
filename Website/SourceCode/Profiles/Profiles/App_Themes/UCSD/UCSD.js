@@ -2,12 +2,18 @@
 	
     //Alumni badge 
     if ($('.education') && $('.education').length) {
-        var inst = [ 'University of California, San Diego', 'University of California San Diego', 'University of California at San Diego', 'University of California in San Diego', 'UC, San Diego', 'UC San Diego', 'UCSD' ];
-        $('.education table tr td:first-child').each(function () {
-            if ($.inArray($(this).text(), inst) >= 0) {
+        $('.education tr td:first-child').each(function () {
+            var alma = $(this).text();
+			var inst1 = alma.includes('University of California, San Diego');
+			var inst2 = alma.includes('University of California San Diego');
+			var inst3 = alma.includes('University of California at San Diego');
+			var inst4 = alma.includes('University of California in San Diego');
+			var inst5 = alma.includes('UC, San Diego');
+			var inst6 = alma.includes('UC San Diego');
+			var inst7 = alma.includes('UCSD');
+            if (inst1 + inst2 + inst3 + inst4 + inst5 + inst6 + inst7 > 0) {
                 $('.profilesContentMain').addClass('alumni');
-                return false;
-            }
+			}
         });
     }
 	

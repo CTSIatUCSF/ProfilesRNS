@@ -1,19 +1,17 @@
 ﻿$(document).ready(function () {
 	
-    //Education badge (adjust alma var & alumnibadge img filename for inst)
-    if ($('.education') && $('.education').length) {
+     if ($('.education') && $('.education').length) {
         $('.education tr td:first-child').each(function () {
             var alma = $(this).text();
-            if (alma == 'University of California, San Francisco' ||
-		    alma == 'University of California San Francisco' ||
-		    alma == 'University of California at San Francisco' ||
-		    alma == 'University of California in San Francisco' ||
-		    alma == 'UC, San Francisco' ||
-		    alma == 'UC San Francisco' ||
-		    alma == 'UCSF') {
+			var inst1 = alma.includes('University of California, San Francisco');
+			var inst2 = alma.includes('University of California San Francisco');
+			var inst3 = alma.includes('University of California at San Francisco');
+			var inst4 = alma.includes('University of California in San Francisco');
+			var inst5 = alma.includes('UC, San Francisco');
+			var inst6 = alma.includes('UC San Francisco');
+			var inst7 = alma.includes('UCSF');
+            if (inst1 + inst2 + inst3 + inst4 + inst5 + inst6 + inst7 > 0) {
                 $('.profilesContentMain').addClass('alumni');
-				var alumnibadge = "url(" + _rootDomain + "/App_Themes/UCSF/Images/ucsf_alumni_blue.jpg)";
-				$('.alumni').css('background-image',alumnibadge);
 			}
         });
     }

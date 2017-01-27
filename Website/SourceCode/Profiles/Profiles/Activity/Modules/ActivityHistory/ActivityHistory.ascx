@@ -99,6 +99,7 @@
 }
 </script>
 <div class="activities">
+    <div class="act-heading"><strong>Live Updates</strong></div>
     <asp:Panel runat="server" ID="pnlActivities" CssClass="clsScroll">
         <asp:Repeater runat="server" ID="rptActivityHistory" OnItemDataBound="rptActivityHistory_OnItemDataBound">
             <ItemTemplate>

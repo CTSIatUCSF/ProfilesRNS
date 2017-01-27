@@ -146,7 +146,14 @@
     <Content Include="Activity\Modules\ModuleCatalogue.xml" />
     <Content Include="Activity\Modules\Statistics\Statistics.ascx" />
     <Content Include="Activity\PresentationXML\ActivityDetails.xml" />
+    <Content Include="App_Themes\UCSD\Images\actri-logo.png" />
+    <Content Include="App_Themes\UCSD\Images\comment.gif" />
+    <Content Include="App_Themes\UCSD\Images\develop-profile.gif" />
+    <Content Include="App_Themes\UCSD\Images\gear.gif" />
+    <Content Include="App_Themes\UCSD\Images\help.gif" />
     <Content Include="App_Themes\UCSD\Images\network.png" />
+    <Content Include="App_Themes\UCSD\Images\profilesnapshot.png" />
+    <Content Include="App_Themes\UCSD\Images\search-icon.gif" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\AboutProfiles.xml" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\CloseBrowser.xml" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\ForDevelopers.xml" />

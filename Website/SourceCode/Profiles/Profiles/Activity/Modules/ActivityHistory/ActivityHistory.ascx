@@ -131,7 +131,7 @@
         </asp:Repeater>
     </asp:Panel>
 </div>
-<asp:HyperLink ID="linkSeeMore" runat="server" NavigateUrl="~/Activity/Modules/ActivityHistory/ActivityDetails.aspx"><asp:Image runat="server" SkinID="searchIconSquareArrow" /> See more Activities</asp:HyperLink>
+<asp:HyperLink ID="linkSeeMore" runat="server" NavigateUrl="~/Activity/Modules/ActivityHistory/ActivityDetails.aspx"><span class="dblarrow">See more Activities</span></asp:HyperLink>
 <div id="divStatus" style="display: none">
     <div class="loader">
         <span>

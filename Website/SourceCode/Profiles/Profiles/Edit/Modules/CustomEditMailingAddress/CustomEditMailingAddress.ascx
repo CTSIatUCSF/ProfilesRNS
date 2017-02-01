@@ -44,7 +44,7 @@
 -->
                         <br />
                         <br />
-                         This info is drawn from the Campus Locator System. Please contact your HR representative for corrections.
+                         This info is drawn from <asp:Panel ID="EditAddrUCSF" runat="server" SkinID="UCSF" Visible="false" CssClass="inlineBlock">the Campus Locator System. Please contact your HR representative for corrections.</asp:Panel><asp:Panel ID="EditAddrUCSD" runat="server" SkinID="UCSD" Visible="false" CssClass="inlineBlock">an automatic data feed.</asp:Panel>
                     </div>
                 </td>
             </tr>

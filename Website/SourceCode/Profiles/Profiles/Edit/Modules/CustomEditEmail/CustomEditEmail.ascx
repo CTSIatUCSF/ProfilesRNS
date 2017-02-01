@@ -41,7 +41,7 @@
                         </table>
                            <br />
                         <br />
-                         Email Address comes from an automatic data feed from Human Resources.
+                         Email Address comes from an automatic data feed<asp:Panel ID="EditEmailUCSF" runat="server" SkinID="UCSF" Visible="false"> from Human Resources</asp:Panel>.
                     </div>
                 </td>
             </tr>

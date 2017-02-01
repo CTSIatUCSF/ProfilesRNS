@@ -273,7 +273,7 @@ namespace Profiles.Activity.Utilities
 
                     // there are situations where a new person is loaded but we don't yet have them in the system
                     // best to skip them for now
-                    if (!String.IsNullOrEmpty(title) /*&& UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)] != null*/)
+                    if (!String.IsNullOrEmpty(title) && UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)] != null)
                     {
 
                         Activity act = new Activity
@@ -289,7 +289,7 @@ namespace Profiles.Activity.Utilities
                                 Name = firstname + " " + lastname, 
                                 PersonId = Convert.ToInt32(personid),
                                 NodeID = Convert.ToInt64(nodeid),
-                                URL = Root.Domain + "/profile/" + nodeid,
+                                URL = Root.Domain + "/" + UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)].PrettyURL,
                                 Thumbnail = Root.Domain + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID="+ nodeid + "&Thumbnail=True&Width=45"
                             }
                         };

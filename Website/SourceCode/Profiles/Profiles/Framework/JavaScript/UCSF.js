@@ -31,14 +31,6 @@
   if ($('#copyright-year') && $('#copyright-year').length) {
     $("#copyright-year").text( (new Date).getFullYear() );
   }
-
-    // version info
-  if ($('#footer-collaboration') && $('#footer-collaboration').length) {
-	var source = _rootDomain + '/gitVersion.txt';
-	$.get(source, function(data) {
-		$('.version').text(data);
-	});
-  }
 	
     // navbarsearch
     // move & hide on main search pages

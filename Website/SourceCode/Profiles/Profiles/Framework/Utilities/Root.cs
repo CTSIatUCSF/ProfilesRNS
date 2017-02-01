@@ -88,10 +88,5 @@ namespace Profiles.Framework.Utilities
             return pages.Theme;
         }
 
-        static public string GetGitVersion()
-        {
-            string contents = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/GitVersion.txt");
-            return contents.Split()[contents.Split().Length-1];
-        }
     }
 }   

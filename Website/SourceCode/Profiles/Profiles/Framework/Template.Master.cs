@@ -40,6 +40,8 @@ namespace Profiles.Framework
     /// </summary>
     public partial class Template : System.Web.UI.MasterPage
     {
+        public static readonly string VERSION_CACHE_KEY = "GitVersion";
+
         #region "Private Properties"
 
         private XmlDocument _presentationxml;
@@ -595,6 +597,19 @@ namespace Profiles.Framework
         public string GetURLDomain()
         {
             return Root.Domain;
+        }
+
+        public string GetVersion()
+        {
+            string version = (string)Framework.Utilities.Cache.FetchObject(VERSION_CACHE_KEY);
+            if (version == null)
+            {
+                string contents = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/GitVersion.txt");
+                string[] contentsLines = contents.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
+                version = contentsLines[contentsLines.Length - 1];
+                Framework.Utilities.Cache.SetWithTimeout(VERSION_CACHE_KEY, version, 604800); // Cache for 7 days
+            }
+            return version;
         }
 
         #region "Public Properties"

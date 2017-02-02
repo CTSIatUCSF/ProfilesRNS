@@ -118,7 +118,6 @@ namespace Profiles.Framework.Utilities
             Page pageHolder = new Page();
             // needed for Themes to work!
             pageHolder.Theme = Root.GetTheme();
-            //Page.EnableViewState = false;
 
             pageHolder.Controls.Add(new HtmlHead());
             pageHolder.Controls.Add(control);

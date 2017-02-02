@@ -4,7 +4,7 @@
 <div class='publicationList'>	
 	<div style="font-weight:bold;color:#888;margin-bottom: 12px;margin-top:6px">
 		Publications listed below are automatically derived from MEDLINE/PubMed and other sources, which might result in incorrect or missing publications. 
-		Researchers can <asp:Literal runat='server' ID='loginLiteral'></asp:Literal> to make corrections and additions, or <a href="mailto:profiles@ucsf.edu">contact us for help</a>.
+		Researchers can <asp:Literal runat='server' ID='loginLiteral'></asp:Literal> to make corrections and additions, or <asp:Hyperlink ID="Contact" SkinID="contact" runat="server" />.  
 	</div>
 	<div class="anchor-tab">
 		<a class='selected' tabindex="0">List All</a> 

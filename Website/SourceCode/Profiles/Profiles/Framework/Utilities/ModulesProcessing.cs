@@ -13,7 +13,6 @@ namespace Profiles.Framework.Utilities
     public class ModulesProcessing : System.Web.UI.MasterPage
     {
 
-
         public UserControl LoadControl(string UserControlPath,  Profiles.Framework.Template masterpage, params object[] constructorParameters)
         {
             List<Type> constParamTypes = new List<Type>();
@@ -114,19 +113,19 @@ namespace Profiles.Framework.Utilities
             return modulelist;
         }
 
-        public  string RenderView(UserControl control)
+        public string RenderView(UserControl control)
         {
             Page pageHolder = new Page();
+            // needed for Themes to work!
+            pageHolder.Theme = Root.GetTheme();
+            //Page.EnableViewState = false;
 
-
+            pageHolder.Controls.Add(new HtmlHead());
             pageHolder.Controls.Add(control);
+
             System.IO.StringWriter result = new System.IO.StringWriter();
             HttpContext.Current.Server.Execute(pageHolder, result, false);
             return result.ToString();
-
-
         }
-
-
     }
 }

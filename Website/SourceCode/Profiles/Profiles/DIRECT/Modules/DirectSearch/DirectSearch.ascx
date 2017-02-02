@@ -156,9 +156,8 @@ function NoEnter(){
     </script>
  <div class="searchForm">      
         <div class="pageSubTitleCaption">This tool, called
-            <a href="http://direct2experts.org/" title="Distributed Interoperable Research Experts Collaboration Tool"
-			 style="color:#F26D04 !important;font-size:13px;text-decoration:none" target="_blank">DIRECT</a>, 
-             finds experts at multiple institutions. <a href="../">Return to search UCSF only</a><br /><br />
+            <a href="http://direct2experts.org/" title="Distributed Interoperable Research Experts Collaboration Tool"  target="_blank">DIRECT</a>, 
+             finds experts at multiple institutions. <a href="../">Return to regular Profiles search</a><br /><br />
         </div>
         <div class="searchForm nonavbar">
 

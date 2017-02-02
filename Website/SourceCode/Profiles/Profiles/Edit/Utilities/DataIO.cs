@@ -254,6 +254,20 @@ namespace Profiles.Edit.Utilities
 
         }
 
+        public void ClaimOnePublication(int personid, long subjectID, string PubID, string pmid, XmlDocument PropertyListXML)
+        {
+            ActivityLog(PropertyListXML, subjectID, "PMID", pmid);
+            SqlParameter[] param = new SqlParameter[2];
+
+            param[0] = new SqlParameter("@PersonID", personid);
+            param[1] = new SqlParameter("@PubID", PubID);
+
+            using (SqlCommand comm = GetDBCommand("", "[Profile.Data].[Publication.ClaimOnePublication]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
+            {
+                ExecuteSQLDataCommand(comm);
+            }
+        }
+
         public void DeleteOnePublication(int personid, long subjectID, string pubid, XmlDocument PropertyListXML)
         {
             ActivityLog(PropertyListXML, subjectID, "PubID", pubid);

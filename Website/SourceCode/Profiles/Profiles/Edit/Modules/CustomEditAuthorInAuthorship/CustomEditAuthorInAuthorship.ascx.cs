@@ -196,6 +196,24 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 Label lblCounter = (Label)e.Row.FindControl("lblCounter");
                 lblCounter.Text = (this.Counter).ToString() + ".";
 
+                CheckBox clm = (CheckBox)e.Row.FindControl("chkClaim");
+                clm.Attributes["PubID"] = grdEditPublications.DataKeys[e.Row.RowIndex].Value.ToString();
+                if (!DataBinder.Eval(e.Row.DataItem, "pmid").Equals(System.DBNull.Value))
+                    clm.Attributes["pmid"] = DataBinder.Eval(e.Row.DataItem, "pmid").ToString();
+                // temp ability to turn it off by setting visibility to false in ascx
+                if (clm.Visible)
+                {
+                    if (1 == (Int32)DataBinder.Eval(e.Row.DataItem, "Claimed"))
+                    {
+                        clm.Enabled = false;
+                        clm.Checked = true;
+                    }
+                    else
+                    {
+                        clm.Enabled = true;
+                        clm.Checked = false;
+                    }
+                }
                 if (!DataBinder.Eval(e.Row.DataItem, "mpid").Equals(System.DBNull.Value))
                 {
                     string str = (string)DataBinder.Eval(e.Row.DataItem, "mpid");
@@ -282,6 +300,21 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 }
             }
         }
+
+        protected void claimOne__OnCheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox clm = (CheckBox)sender;
+
+            Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
+
+
+            data.ClaimOnePublication(Convert.ToInt32(Session["ProfileUsername"]), Convert.ToInt64(Session["NodeID"]), clm.Attributes["PubID"], clm.Attributes["pmid"], this.PropertyListXML);
+            grdEditPublications.DataBind();
+            upnlEditSection.Update();
+
+        }
+
+        
         protected void deleteOne_Onclick(object sender, EventArgs e)
         {
             ImageButton lb = (ImageButton)sender;

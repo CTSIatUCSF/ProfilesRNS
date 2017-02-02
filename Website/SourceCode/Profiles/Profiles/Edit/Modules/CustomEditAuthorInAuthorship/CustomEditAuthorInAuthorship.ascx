@@ -499,6 +499,10 @@
                                                 <table>
                                                     <tr align="right">
                                                         <td>
+                                                            <asp:CheckBox ID="chkClaim" runat="server" Text="Claim" AlternateText="claim" Visible="false"
+                                                                AutoPostBack="true" OnCheckedChanged="claimOne__OnCheckedChanged"></asp:CheckBox>
+                                                        </td>
+                                                        <td>
                                                             <asp:ImageButton ID="lnkEdit" runat="server" ImageUrl="~/Edit/Images/icon_edit.gif"
                                                                 CausesValidation="False" CommandName="Select" Text="Edit" AlternateText="edit" Visible="false"></asp:ImageButton>
                                                         </td>

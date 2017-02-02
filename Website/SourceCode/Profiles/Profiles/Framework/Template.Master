@@ -16,7 +16,7 @@
 <head id="Head1" runat="server">
     <title><%= Page.Theme %> Profiles</title>
     <asp:PlaceHolder runat="server">
-      <link rel="shortcut icon" href="<%= Page.ResolveUrl(String.Format("~/App_Themes/{0}/Images/favicon.ico", Page.Theme)) %>" />
+      <link rel="shortcut icon" href="<%= GetThemedFavicon() %>" />
     </asp:PlaceHolder>
 
     <%--Force ie out of quirks mode (Catalyst)--%>

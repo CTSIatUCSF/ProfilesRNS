@@ -612,6 +612,12 @@ namespace Profiles.Framework
             return version;
         }
 
+        public string GetThemedFavicon()
+        {
+            return Root.GetThemedFile(Page, "Images/favicon.ico");
+        }
+
+
         #region "Public Properties"
         public XmlDocument PresentationXML
         {

@@ -1,2 +1,0 @@
-Run ClaimedPublications.sql first, then
-UpdateUCSFDOntologyForClaimed.sql

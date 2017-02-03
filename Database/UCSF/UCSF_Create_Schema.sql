@@ -379,3 +379,17 @@ ELSE
 	  where l.createdDT >= isnull(@afterDT, '01/01/1970') 
 	   order by activityLogId desc;
 GO
+
+
+CREATE VIEW [UCSF.].[vwPublication.MyPub.General] AS
+SELECT ir.EntityID, g.* FROM [Profile.Data].[Publication.Entity.InformationResource] ir JOIN [Profile.Data].[Publication.MyPub.General] g ON
+ir.MPID = g.MPID WHERE ir.MPID IS NOT NULL;
+
+GO
+
+CREATE VIEW [UCSF.].[vwPublication.Entitity.Claimed] AS
+  SELECT a.EntityID, a.PersonID, CAST (CASE WHEN p.PubID is not null THEN 1 ELSE 0 END AS BIT) Claimed FROM [Profile.Data].[vwPublication.Entity.Authorship] a 
+  JOIN [Profile.Data].[vwPublication.Entity.InformationResource] i ON
+  a.InformationResourceID = i.ENtityID left outer join [Profile.Data].[Publication.Person.Add] p ON p.personid = a.personid and p.PMID = i.PMID WHERE i.PMID IS NOT NULL;
+
+GO

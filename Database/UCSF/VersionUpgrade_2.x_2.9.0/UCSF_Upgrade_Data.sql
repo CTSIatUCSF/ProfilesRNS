@@ -23,8 +23,8 @@ INSERT [Ontology.Import].OWL VALUES ('UCSF_1.1', N'<rdf:RDF xmlns:geo="http://ai
 
 -- Import the Updated PRNS ontology into Profiles. This should not eliminate any customizations unless additional 
 -- classes have been added to the PRNS ontology
-DELETE FROM [Ontology.Import].OWL WHERE name = 'UCSF_1.0'
-DELETE FROM [Ontology.Import].Triple WHERE OWL = 'UCSF_1.0'
+DELETE FROM [Ontology.Import].OWL WHERE name like 'UCSF_%'
+DELETE FROM [Ontology.Import].Triple WHERE OWL like 'UCSF_%'
 UPDATE [Ontology.Import].OWL SET Graph = 5 WHERE name = 'UCSF_1.1'
 EXEC [Ontology.Import].[ConvertOWL2Triple] @OWL = 'UCSF_1.1'
 
@@ -36,9 +36,20 @@ EXEC [RDF.Stage].[ProcessTriples]
 
 -- delete any old values from datamap
 --SELECT * FROM [Ontology.].[DataMap] WHERE Property in ('http://xmlns.com/foaf/0.1/workplaceHomepage','http://profiles.ucsf.edu/ontology/ucsf#hmsPubCategory');
-DELETE FROM [Ontology.].[DataMap] WHERE Property in ('http://xmlns.com/foaf/0.1/workplaceHomepage','http://profiles.ucsf.edu/ontology/ucsf#hmsPubCategory')
+--DELETE FROM [Ontology.].[DataMap] WHERE Property in ('http://xmlns.com/foaf/0.1/workplaceHomepage','http://profiles.ucsf.edu/ontology/ucsf#hmsPubCategory')
 
--- add new ones
+-- Workplace Homepage
+EXEC [Ontology.].[AddProperty]	@OWL = 'UCSF_1.1',
+								@PropertyURI = 'http://xmlns.com/foaf/0.1/workplaceHomepage',
+								@PropertyName = 'workplace homepage',
+								@ObjectType = 1,
+								@PropertyGroupURI = 'http://profiles.catalyst.harvard.edu/ontology/prns#PropertyGroupAddress',
+								@ClassURI = 'http://xmlns.com/foaf/0.1/Person',
+								@IsDetail = 0,
+								@IncludeDescription = 0;
+								
+UPDATE [Ontology.].[ClassProperty] SET CustomDisplay = 1 WHERE Property = 'http://xmlns.com/foaf/0.1/workplaceHomepage';
+
 INSERT INTO [Ontology.].[DataMap] (DataMapID, DataMapGroup, IsAutoFeed, Graph, 
 		Class, NetworkProperty, Property, 
 		MapTable, 
@@ -51,7 +62,17 @@ INSERT INTO [Ontology.].[DataMap] (DataMapID, DataMapGroup, IsAutoFeed, Graph,
 		'Person', 'PersonID',
 		'workplaceHomepage',
 		1, 1, NULL, -1, -40)
-		
+
+-- HMS Pub Category
+EXEC [Ontology.].[AddProperty]	@OWL = 'UCSF_1.1',
+								@PropertyURI = 'http://profiles.ucsf.edu/ontology/ucsf#hmsPubCategory',
+								@PropertyName = 'hmsPubCategory',
+								@ObjectType = 1,
+								@PropertyGroupURI = 'http://profiles.catalyst.harvard.edu/ontology/prns#PropertyGroupBibobscure',
+								@ClassURI = 'http://vivoweb.org/ontology/core#InformationResource',
+								@IsDetail = 0,
+								@IncludeDescription = 0;
+								
 INSERT INTO [Ontology.].[DataMap] (DataMapID, DataMapGroup, IsAutoFeed, Graph, 
 		Class, NetworkProperty, Property, 
 		MapTable, 
@@ -64,7 +85,7 @@ INSERT INTO [Ontology.].[DataMap] (DataMapID, DataMapGroup, IsAutoFeed, Graph,
 		'InformationResource', 'EntityID',
 		NULL, NULL, NULL, 'HmsPubCategory', NULL, NULL,
 		1, 1, NULL, -1, -40);
-		
+
 		
 EXEC [Ontology.].UpdateDerivedFields;
 

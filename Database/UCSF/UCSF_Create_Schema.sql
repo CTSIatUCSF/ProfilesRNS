@@ -387,6 +387,8 @@ ir.MPID = g.MPID WHERE ir.MPID IS NOT NULL;
 
 GO
 
+-- note that for this you also need to alter some existing profiles SPs!
+-- look in the VersionUpgrade_2.9.0_2.10.0 folder for details
 CREATE VIEW [UCSF.].[vwPublication.Entitity.Claimed] AS
   SELECT a.EntityID, a.PersonID, CAST (CASE WHEN p.PubID is not null THEN 1 ELSE 0 END AS BIT) Claimed FROM [Profile.Data].[vwPublication.Entity.Authorship] a 
   JOIN [Profile.Data].[vwPublication.Entity.InformationResource] i ON

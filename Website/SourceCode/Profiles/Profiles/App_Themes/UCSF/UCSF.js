@@ -1,20 +1,16 @@
 ﻿$(document).ready(function () {
 	
-     if ($('.education') && $('.education').length) {
-        $('.education tr td:first-child').each(function () {
-            var alma = $(this).text();
-			var inst1 = alma.includes('University of California, San Francisco');
-			var inst2 = alma.includes('University of California San Francisco');
-			var inst3 = alma.includes('University of California at San Francisco');
-			var inst4 = alma.includes('University of California in San Francisco');
-			var inst5 = alma.includes('UC, San Francisco');
-			var inst6 = alma.includes('UC San Francisco');
-			var inst7 = alma.includes('UCSF');
-            if (inst1 + inst2 + inst3 + inst4 + inst5 + inst6 + inst7 > 0) {
-                $('.profilesContentMain').addClass('alumni');
-			}
-        });
-    }
+     // alumni badge
+	 if ($('.education') && $('.education').length) {
+		$(".education:contains('University of California, San Francisco')").addClass('alum');
+		$(".education:contains('University of California San Francisco')").addClass('alum');
+		$(".education:contains('University of California at San Francisco')").addClass('alum');
+		$(".education:contains('University of California in San Francisco')").addClass('alum');
+		$(".education:contains('UC, San Francisco')").addClass('alum');
+		$(".education:contains('UC San Francisco')").addClass('alum');
+		$(".education:contains('UCSF')").addClass('alum');
+		if ($('.alum') && $('.alum').length) $('.profilesContentMain').addClass('alumni');
+	 }
 	
     // altmetrics, don't attempt to load till after 7 seconds, which is 7000 milliseconds
     setTimeout(function () {

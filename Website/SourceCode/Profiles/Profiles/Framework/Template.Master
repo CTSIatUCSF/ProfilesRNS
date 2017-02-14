@@ -304,7 +304,7 @@
                         <div id="footer-collaboration">
                             <p>
                                 UCSD Profiles is managed by the UCSD 
-                                          <a href="http://ctri.ucsd.edu/ABOUT/Pages/default.aspx" target="_blank">Altman Clinical and Translational Research Institute (CTRI)</a>. This site is running Profiles RNS version <span class="version"></span>.
+                                          <a href="http://ctri.ucsd.edu/ABOUT/Pages/default.aspx" target="_blank">Altman Clinical and Translational Research Institute (ACTRI)</a>. This site is running Profiles RNS version <%=GetVersion()%>.
                             </p>
                         </div>
                         <div id="footer-contact">

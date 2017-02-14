@@ -127,7 +127,7 @@ ul li { padding-top: 10px; }
 		</li>
 	  </ul>
   </li>
-  <li><strong>ListMaker</strong> - sign in access only (<a href="ListMakerGuidance.pdf" target="_blank">instructions</a>)
+  <li><strong>ListMaker</strong> - sign in access only (<a href="../about/ListMakerGuidance.pdf" target="_blank">instructions</a>)
       <ul>
 		<li>Build a custom list of people from search results, network 'See All' pages and individual pages, then export contact info, compose an email or send them a Doodle Poll.
 		</li>

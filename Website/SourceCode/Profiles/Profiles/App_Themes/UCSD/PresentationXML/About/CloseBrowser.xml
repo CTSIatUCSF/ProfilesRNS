@@ -18,7 +18,7 @@
           <Param Name="HTML">
 
 <style type="text/css">
-#suckerfishmenu li#about a { background-color: #6A7D7D !important; }
+#suckerfishmenu li#about a { background-color: #77AFCB !important; }
 </style>
 
 <div style="border: 1px solid #CCC; padding:5px 15px; width: 590px">

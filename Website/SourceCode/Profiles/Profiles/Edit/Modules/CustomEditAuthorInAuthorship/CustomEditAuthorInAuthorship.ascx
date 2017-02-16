@@ -476,6 +476,10 @@
                         <%--End Delete Publications--%>
                         <%--Start Publications List--%>
                         <div style="padding-left: 0px;">
+							<p><strong><span class="highlight">New!</span> Claim your correct publications and delete any errant ones below. </strong><br>
+							<span style="color:#666;font-size:11px;line-height:16px;">This will make it easier for you to participate in the <a href="http://osc.universityofcalifornia.edu/open-access-policy/" target="_blank">UC Open Access Policy</a> and improve our ability to identify future publications for your profile page. <br>
+							Please note: some older publications may falsely show as claimed due to a data issue encountered years ago. If any claimed publications are not yours, please delete them. </span><br></p>
+
                             <asp:GridView BorderStyle="Solid" ID="grdEditPublications" runat="server" AutoGenerateColumns="False"
                                 GridLines="none" CellSpacing="-1" HorizontalAlign="Left" 
                                 CellPadding="4" DataSourceID="PublicationDS" Width="100%" DataKeyNames="PubID"

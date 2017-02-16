@@ -200,6 +200,7 @@
     <Content Include="App_Themes\UCSF\Images\toc.jpg" />
     <Content Include="App_Themes\UCSF\Images\ucsfProfilesLogo.png" />
     <Content Include="App_Themes\UCSF\UCSF.js" />
+    <Content Include="CustomAPI\v1\RejectedPMIDs.aspx" />
     <Content Include="Edit\Images\img_arrow.png" />
     <Content Include="Error\PresentationXML\HttpRequestValidationExceptionPresentation.xml" />
     <Content Include="favicon.ico" />
@@ -497,6 +498,13 @@
       <DependentUpon>Statistics.ascx</DependentUpon>
     </Compile>
     <Compile Include="CustomAPI\Utilities\DataIO.cs" />
+    <Compile Include="CustomAPI\v1\RejectedPMIDs.aspx.cs">
+      <DependentUpon>RejectedPMIDs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v1\RejectedPMIDs.aspx.designer.cs">
+      <DependentUpon>RejectedPMIDs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CustomAPI\v1\EditedCount.aspx.cs">
       <DependentUpon>EditedCount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

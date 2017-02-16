@@ -33,44 +33,22 @@ namespace Profiles.CustomAPI
         // add smart caching of all of these ID lookups!
         protected void Page_Load(object sender, EventArgs e)
         {
-            string PersonId = Request["Person"];
-            string EmployeeID = Request["EmployeeID"];
-            string FNO = Request["FNO"];
-            string Subject = Request["Subject"];
-            string PrettyURL = Request["PrettyURL"];
+            Profiles.CustomAPI.Utilities.DataIO data = new Profiles.CustomAPI.Utilities.DataIO();
+            UCSFIDSet person = data.GetPerson(Request);
+
+            Response.Clear();
+            if (person == null)
+            {
+                Response.StatusCode = 404;
+                return;
+            }
+            Response.StatusCode = 200;
+            Response.Charset = "charset=UTF-8";
+
+            RDFTriple request = new RDFTriple(person.NodeId);
             string Expand = Request["Expand"];
             string ShowDetails = Request["ShowDetails"];
             string callback = Request["callback"];
-
-            Int64 nodeid = -1;
-            if (Subject != null)
-            {
-                nodeid = Convert.ToInt64(Subject);
-            }
-            else if (PrettyURL != null)
-            {
-                nodeid = Framework.Utilities.UCSFIDSet.ByPrettyURL[PrettyURL.ToLower()].NodeId;
-            }
-            else 
-            {
-                Profiles.CustomAPI.Utilities.DataIO data = new Profiles.CustomAPI.Utilities.DataIO();
-                int personid = -1;
-                if (PersonId != null)
-                {
-                    personid = Convert.ToInt32(PersonId);
-                }
-                else if (FNO != null)
-                {
-                    personid = (int)Profiles.Framework.Utilities.UCSFIDSet.ByFNO[FNO.ToLower()].PersonId;
-                }
-                else if (EmployeeID != null)
-                {
-                    personid = (int)Profiles.Framework.Utilities.UCSFIDSet.ByEmployeeID[EmployeeID].PersonId;
-                }
-                nodeid = Framework.Utilities.UCSFIDSet.ByPersonId[personid].NodeId;
-            }
-            RDFTriple request = new RDFTriple(nodeid);
-
 
             //The system default is True and True for showdetails and expand, but if its an external page call to this page, 
             //then its set to false for expand.           
@@ -93,14 +71,10 @@ namespace Profiles.CustomAPI
                 request.ShowDetails = false;
             }
 
-            Response.Clear();
-            Response.Charset = "charset=UTF-8";
-            Response.StatusCode = Convert.ToInt16("200");
-
             if ("JSON-LD".Equals(Request["Format"]))
             {
                 string URL = ConfigurationManager.AppSettings["OpenSocial.ShindigURL"] + "/rest/rdf?userId=" +
-                    HttpUtility.UrlEncode(Root.Domain + "/CustomAPI/v2/Default.aspx?Subject=" + nodeid + "&Expand=" + request.Expand + "&ShowDetails=" + request.ShowDetails);
+                    HttpUtility.UrlEncode(Root.Domain + "/CustomAPI/v2/Default.aspx?Subject=" + person.NodeId + "&Expand=" + request.Expand + "&ShowDetails=" + request.ShowDetails);
                 WebClient client = new WebClient();
                 String jsonProfiles = client.DownloadString(URL);
                 if (callback != null && callback.Length > 0)
@@ -117,7 +91,7 @@ namespace Profiles.CustomAPI
             else
             {
                 Response.ContentType = "text/xml";//"application/rdf+xml";
-                Response.Write(new Profiles.Profile.Utilities.DataIO().GetRDFData(request).InnerXml);
+                Response.Write(new Profiles.Profile.Utilities.DataIO().GetRDFData(new RDFTriple(person.NodeId)).InnerXml);
             }
         }
     }

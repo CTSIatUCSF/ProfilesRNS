@@ -476,9 +476,9 @@
                         <%--End Delete Publications--%>
                         <%--Start Publications List--%>
                         <div style="padding-left: 0px;">
-							<p><strong><span class="highlight">New!</span> Claim your correct publications and delete any errant ones below. </strong><br>
-							<span style="color:#666;font-size:11px;line-height:16px;">This will make it easier for you to participate in the <a href="http://osc.universityofcalifornia.edu/open-access-policy/" target="_blank">UC Open Access Policy</a> and improve our ability to identify future publications for your profile page. <br>
-							Please note: some older publications may falsely show as claimed due to a data issue encountered years ago. If any claimed publications are not yours, please delete them. </span><br></p>
+							<p><strong><span class="highlight">New!</span> Confirm your publications. </strong><br>
+							Check the box to confirm authorship, or click the trash can to remove the found publications below. Performing these simple tasks will improve our ability to identify future publications for your profile page. This will also make it easier for you to participate in the <a href="http://osc.universityofcalifornia.edu/open-access-policy/" target="_blank">UC Open Access Policy</a> and will help us give accurate publication lists to Advance, department sites and other systems at UCSF. <br>
+							<span style="color:#666;font-size:11px;">Note: Some older publications may falsely show as confirmed. If any checked/confirmed publications are not yours, please delete them. </span><br></p>
 
                             <asp:GridView BorderStyle="Solid" ID="grdEditPublications" runat="server" AutoGenerateColumns="False"
                                 GridLines="none" CellSpacing="-1" HorizontalAlign="Left" 
@@ -497,7 +497,7 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="Reference" ReadOnly="true" SortExpression="Reference" />
-                                    <asp:TemplateField ShowHeader="False" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="100px">
+                                    <asp:TemplateField ShowHeader="False" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="110px">
                                         <ItemTemplate>
                                             <div class="actionbuttons">
                                                 <table>

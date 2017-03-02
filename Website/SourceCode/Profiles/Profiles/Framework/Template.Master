@@ -117,8 +117,7 @@
             <asp:Panel ID="MasterPageHeaderUCSD" runat="server" SkinID="UCSD" Visible="false">
                 <div class="institutionHeader">
                     <div id="ucsd">
-                        <a target="_blank" href="http://healthsciences.ucsd.edu/">
-                            <img src="<%=GetURLDomain()%>/App_Themes/UCSD/Images/actri-logo.png" alt="UCSD Altman Clinical and Translational Research Institute" /></a>
+                            <img src="<%=GetURLDomain()%>/App_Themes/UCSD/Images/ucsdlogo.png" alt="UC San Diego" /></a>
                     </div>
                     <div id="site-logo">
                         <h1><a href="<%=GetURLDomain()%>/">UCSD Profiles
@@ -126,7 +125,7 @@
                         </a></h1>
                     </div>
                     <div id="powered-by-block">
-                        <a id="powered-by-ctsi" href="http://ctri.ucsd.edu/Pages/default.aspx" target="_blank">Powered by Altman Clinical and <br />Translational Research Institute</a>
+                        <a id="powered-by-ctsi" href="http://actri.ucsd.edu/Pages/default.aspx" target="_blank">Powered by Altman Clinical and <br />Translational Research Institute</a>
                     </div>
                 </div>
 				<div id="suckerfish-container">
@@ -303,8 +302,8 @@
                     <asp:Panel ID="MasterPageFooterUCSD" runat="server" SkinID="UCSD" Visible="false">
                         <div id="footer-collaboration">
                             <p>
-                                UCSD Profiles is managed by the UCSD 
-                                          <a href="http://ctri.ucsd.edu/ABOUT/Pages/default.aspx" target="_blank">Altman Clinical and Translational Research Institute (ACTRI)</a>. This site is running Profiles RNS version <%=GetVersion()%>.
+                                UCSD Profiles is managed by the UC San Diego
+                                          <a href="https://actri.ucsd.edu/Pages/default.aspx" target="_blank">Altman Clinical and Translational Research Institute (ACTRI)</a>. This site is running Profiles RNS version <%=GetVersion()%>.
                             </p>
                         </div>
                         <div id="footer-contact">

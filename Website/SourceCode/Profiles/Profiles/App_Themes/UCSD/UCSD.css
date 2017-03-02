@@ -8,8 +8,8 @@
 
 /* banner */
 .institutionHeader { padding: 0; }
-#ucsd { background-color: #16366b; float:left; width: 265px; height: 95px; }
-#ucsd img { padding: 12px 0 0 20px; }
+#ucsd { background-color: #16366b; float:left; width: 245px; height: 95px; }
+#ucsd img { padding: 20px 0 0 20px; }
 #site-logo h1 {
     background: transparent url("Images/network.png") no-repeat scroll 15px 0;
     font-size: 34px;

@@ -117,6 +117,7 @@
             <asp:Panel ID="MasterPageHeaderUCSD" runat="server" SkinID="UCSD" Visible="false">
                 <div class="institutionHeader">
                     <div id="ucsd">
+                        <a target="_blank" href="http://ucsd.edu/">
                             <img src="<%=GetURLDomain()%>/App_Themes/UCSD/Images/ucsdlogo.png" alt="UC San Diego" /></a>
                     </div>
                     <div id="site-logo">

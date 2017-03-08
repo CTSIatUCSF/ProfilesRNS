@@ -503,7 +503,7 @@
                                                 <table>
                                                     <tr align="right">
                                                         <td>
-                                                            <asp:CheckBox ID="chkClaim" runat="server" Text="Claim" AlternateText="claim" Visible="false"
+                                                            <asp:CheckBox ID="chkClaim" runat="server" Text="Confirm" AlternateText="confirm" Visible="true"
                                                                 AutoPostBack="true" OnCheckedChanged="claimOne__OnCheckedChanged"></asp:CheckBox>
                                                         </td>
                                                         <td>

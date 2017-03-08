@@ -307,8 +307,9 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
             Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
 
-
             data.ClaimOnePublication(Convert.ToInt32(Session["ProfileUsername"]), Convert.ToInt64(Session["NodeID"]), clm.Attributes["PubID"], clm.Attributes["pmid"], this.PropertyListXML);
+            this.Counter = 0;
+
             grdEditPublications.DataBind();
             upnlEditSection.Update();
 

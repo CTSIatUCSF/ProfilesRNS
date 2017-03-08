@@ -275,8 +275,8 @@ namespace Profiles.Activity.Utilities
                         }
                         else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.ClaimOnePublication") == 0 && param1.CompareTo("PMID") == 0)
                         {
-                            title = "claimed a PubMed publication found by Profiles";
-                            body = "claimed a publication from: " + journalTitle;
+                            title = "confirmed a PubMed publication found by Profiles";
+                            body = "confirmed a publication from: " + journalTitle;
                         }
 
                         // there are situations where a new person is loaded but we don't yet have them in the system

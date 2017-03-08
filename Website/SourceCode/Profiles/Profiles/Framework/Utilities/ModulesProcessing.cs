@@ -124,7 +124,10 @@ namespace Profiles.Framework.Utilities
 
             System.IO.StringWriter result = new System.IO.StringWriter();
             HttpContext.Current.Server.Execute(pageHolder, result, false);
-            return result.ToString();
+            // remove the <head>stuff</head> section.
+            // hate to do this as String vs XML but because HTMl can be messy, this is actually safer
+            string retval = result.ToString();
+            return retval.Remove(retval.IndexOf("<head>"), retval.IndexOf("</head>") - retval.IndexOf("<head>") + "</head>".Length);
         }
     }
 }

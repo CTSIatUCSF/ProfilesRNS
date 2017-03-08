@@ -32,6 +32,12 @@ INSERT [Ontology.Import].OWL VALUES ('UCSF_1.2', N'<rdf:RDF xmlns:geo="http://ai
 -- Import the Updated PRNS ontology into Profiles. This should not eliminate any customizations unless additional 
 -- classes have been added to the PRNS ontology
 
+-- 
+IF NOT EXISTS(SELECT * FROM [Ontology.].[Namespace] WHERE Prefix='ucsf')
+BEGIN
+	INSERT INTO [Ontology.].[Namespace] (URI, Prefix) VALUES ('http://profiles.ucsf.edu/ontology/ucsf#', 'ucsf')
+END
+
 UPDATE [Ontology.Import].OWL SET Graph = 5 WHERE name = 'UCSF_1.2'
 EXEC [Ontology.Import].[ConvertOWL2Triple] @OWL = 'UCSF_1.2'
 

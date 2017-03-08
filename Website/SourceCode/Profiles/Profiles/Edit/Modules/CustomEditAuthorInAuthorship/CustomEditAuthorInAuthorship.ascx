@@ -497,7 +497,7 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="Reference" ReadOnly="true" SortExpression="Reference" />
-                                    <asp:TemplateField ShowHeader="False" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="110px">
+                                    <asp:TemplateField ShowHeader="False" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="120px">
                                         <ItemTemplate>
                                             <div class="actionbuttons">
                                                 <table>

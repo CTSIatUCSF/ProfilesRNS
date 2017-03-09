@@ -15,7 +15,7 @@
 		Publications by year:
 		<div id="publicationTimelineGraph">
 			<a id="divShowTimelineTable" tabindex="0">View visualization as text</a><br />
-			<img id='timelineBar' runat='server' border='0' width='595' height='100'/>
+			<img id='timelineBar' runat='server' border='0' width='620' height='100'/>
 		</div>
 	</div>	
 

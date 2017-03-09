@@ -63,7 +63,7 @@ Any published articles available in PubMed are listed, and Profile owners can ad
 <td valign="top" style="padding-bottom:15px;"><img src="../App_Themes/UCSD/Images/profilesnapshot.png" /></td>
 <td valign="top" style="font-size:11px;line-height:16px;padding-top:90px;">
 <strong>Networks &#38; other information about the individual's research</strong><br /><br />
-If the individual has publications available from PubMed, UCSD Profiles builds and displays networks related to their research.<br /><br />
+If the individual has <span style="white-space:nowrap">publications available from </span>PubMed, UCSD Profiles builds and displays networks related to their research.<br /><br />
 Lists of research concepts/topics based on PubMed "MeSH" terms<br /><br /><br />
 Co-authors<br /><br /><br />
 Researchers working on the same topics<br /><br /><br />

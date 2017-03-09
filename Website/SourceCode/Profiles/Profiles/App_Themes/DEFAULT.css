@@ -141,7 +141,6 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .profiles .profilesContentMain .basicInfo th,
 .profiles .profilesContentMain .basicInfo td { font-size: 13px !important; line-height: 20px; }
 #ctl00_lblHTMLBlockLineBreaks { display: block; padding-bottom: 20px; }
-.PropertyGroupData #publicationTimelineGraph { margin-bottom: 20px; }
 #newest { padding-top: 15px; }
 #meshDetails .label { vertical-align: top; padding-right: 10px; }
 .keywordTimelineLabels { width: 220px; }
@@ -158,9 +157,8 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .thumbnail img { position: absolute; left: 2px; height: auto !important; }
 .viewIn a { display: inline-block; }
 .altmetric-embed img { vertical-align: -2px; padding-left: 15px; }
-#publicationTimelineGraph { text-align: left; width: 565px; overflow-x: hidden; }
-#publicationTimelineGraph img { padding: 10px 0 0 24px; display: block; }
-#conceptPub #publicationTimelineGraph { width: 615px; overflow-x:hidden; }
+#publicationTimelineGraph { width: auto;  }
+#publicationTimelineGraph img { padding: 10px 0 20px; }
 
 /* PROFILE show & hide */
 .overview { max-height: 179px; overflow: hidden; }

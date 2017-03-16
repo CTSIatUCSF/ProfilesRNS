@@ -155,6 +155,7 @@
     <Content Include="App_Themes\UCSD\Images\network.png" />
     <Content Include="App_Themes\UCSD\Images\profilesnapshot.png" />
     <Content Include="App_Themes\UCSD\Images\search-icon.gif" />
+    <Content Include="App_Themes\UCSD\Images\ucsdlogo.png" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\AboutProfiles.xml" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\CloseBrowser.xml" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\ForDevelopers.xml" />
@@ -1971,6 +1972,7 @@
     <None Include="About\ListMakerGuidance.pdf" />
     <Content Include="App_Themes\UCSF\UCSF.skin" />
     <Content Include="App_Themes\UCSD\UCSD.skin" />
+    <Content Include="App_Themes\UCSD\MentoringUCSD.pdf" />
     <None Include="ORCID\ORCIDPrivacySettingsandProfiles.pdf" />
     <Content Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master" />
     <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\CHANGELOG" />

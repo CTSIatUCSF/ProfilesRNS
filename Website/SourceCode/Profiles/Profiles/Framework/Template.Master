@@ -146,6 +146,38 @@
                     <ul id="editmenu"></ul>
                 </div>
             </asp:Panel>
+            <asp:Panel ID="MasterPageHeaderUSC" runat="server" SkinID="USC" Visible="false">
+                <div class="institutionHeader">
+                    <div id="ucsd">
+                        <a target="_blank" href="http://usc.edu/">
+                            <img src="<%=GetURLDomain()%>/App_Themes/USC/Images/network.png" alt="USC" /></a>
+                    </div>
+                    <div id="site-logo">
+                        <h1><a href="<%=GetURLDomain()%>/">USC Profiles
+							<div id="tagline">search, discover, network</div>
+                        </a></h1>
+                    </div>
+                    <div id="powered-by-block">
+                        <a id="powered-by-ctsi" href="http://actri.ucsd.edu/Pages/default.aspx" target="_blank">Powered by Altman Clinical and <br />Translational Research Institute</a>
+                    </div>
+                </div>
+				<div id="suckerfish-container">
+				  <div id="suckerfishmenu">
+                    <div class="content">
+                        <ul class="menu">
+                            <li class="item-home"><a href="<%=GetURLDomain()%>">Search</a></li>
+                            <li id="about"><a href="<%=GetURLDomain()%>/about/AboutProfiles.aspx">About</a></li>
+                            <li id="contact"><a href="<%=GetURLDomain()%>/about/Help.aspx">Help / Contact Us</a></li>
+                        </ul>
+                    </div>
+				</div>
+                <div id="active-nav" class="profiles">
+                    <span id="signin">
+                        <a href="<%=GetURLDomain()%>/login/default.aspx?method=login&amp;edit=true" id="signinlink">Sign in</a>
+                        to edit your profile (add interests, mentoring, photo, etc.)</span>
+                    <ul id="editmenu"></ul>
+                </div>
+            </asp:Panel>
 
 			<div class="profilesContentActive">
 				<div class="panelActive">

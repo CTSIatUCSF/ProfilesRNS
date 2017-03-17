@@ -1,24 +1,40 @@
 ﻿/* highlight color */
-.dblarrow:before, #about h2, h2.about, .content-block h2, .searchForm td div.header, .highlight,
+.dblarrow:before, .highlight { color: #771111; }
+#about h2, h2.about, .content-block h2, .searchForm td div.header, 
 .passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
-.profiles .profilesContentMain .pageTitle h2 { color: #CD2040; }
-.profiles a.search-button, .more span, .less span { background-color: #CD2040; }
-.profiles a.search-button:hover { background-color: #B01B37; box-shadow: none; }
+.profiles .profilesContentMain .pageTitle h2 { color: #000; }
+.profiles a.search-button, .more span, .less span { background-color: #771111; }
+.profiles a.search-button:hover { background-color: #990000; box-shadow: none; }
 
 /* banner */
-.institutionHeader { padding: 0; }
-#ucsd { background-color: #16366b; float:left; width: 245px; height: 95px; }
-#ucsd img { padding: 20px 0 0 20px; }
-#site-logo h1 {
-    background: transparent url("Images/network.png") no-repeat scroll 15px 0;
-    font-size: 34px;
-    margin: 6px 0 0;
-    padding: 20px 0 12px 110px;
-	height: 86px;
+
+#header-ucsf ul { padding-top: 4px; }
+#header-ucsf div#ucsfnav ul li a {
+    border-left: 1px solid #fff;
+    font-size: 11px;
+    padding: 0 5px 0 10px;
 }
- #tagline { color: #666; font-weight: bold; padding-top: 8px; }
- #powered-by-block { padding: 50px 0 0;  }
+#header-ucsf div#ucsfnav ul li.first a { border: none; padding: 0 5px 0 0; }
+.institutionHeader { height: 100px; }
+#site-logo h1 { margin: 0; padding: 10px 0 0 0; }
+#powered-by-block { margin: 15px 20px 0 0; padding: 0;}
+#powered-by-block  a {  
+  background: transparent url("Images/powered_by_scctsi.jpg") no-repeat scroll 0 4px;
+  color: #000;  
+  padding: 5px 0 5px 20px;
+  font-weight: normal;
+}
+#new-features { clear: right; float: right; width: 300px; margin: 24px 20px 0 0; }
+#new-features a, #new-features a:visited {
+    padding: 6px;
+    margin: 0;
+    display: inline-block;
+    font-size: 13px;
+	background-color: #eee;
+	float: right;
+}
+#powered-by-block  a:hover, #new-features a:hover { text-decoration: underline; }
 
 /* LINK Color */
 .profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000; }
@@ -26,19 +42,18 @@
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.edittable td:first-child, 
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child, 
 #profile-components table td#namedegree, .listTable .listTableLink, .linky, 
-.institutionHeader a, .institutionHeader a:hover,
-.profiles a, .profiles a:visited { color: #569bbe; font-weight: bold; }
+.institutionHeader a,
+.profiles a, .profiles a:visited { color: #4d8ba9; }
+.profiles a:hover, .institutionHeader a:hover { color: #267196; }
+.profiles .profilesFooter a, .profiles .profilesFooter a:hover { color: #FFCC00; }
+
 
 /* navbar & footer colors */
-.profiles .profilesFooter,
-#suckerfishmenu, #suckerfishmenu a { background-color: #2D84AF; }
+#suckerfishmenu, #suckerfishmenu a { background-color: #771111; }
+#suckerfishmenu li { border-right: none; }
 .search #suckerfishmenu .item-home a,
-#suckerfishmenu	 a.active, #suckerfishmenu a:hover { background-color: #77AFCB; }
+#suckerfishmenu	 a.active, #suckerfishmenu a:hover { background-color: #990000; }
+#header-ucsf, .profiles .profilesFooter { background-color: #000; }
+.profiles .profilesFooter { border: none; }
+.profiles .profilesFooter  p { color: #FFF; padding: 5px 150px; text-align: center; }
 
-/* about pages */
-.toolbox, .questions, .share { padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #bbcddc; }
-.toolbox { background: transparent url(Images/gear.gif) no-repeat 20px 14px; }
-.questions { background: transparent url(Images/help.gif) no-repeat 20px 12px; }
-.share { background: transparent url(Images/comment.gif) no-repeat 20px 14px; }
-
-.alumni { background-image: url(Images/college-alumni.png); }

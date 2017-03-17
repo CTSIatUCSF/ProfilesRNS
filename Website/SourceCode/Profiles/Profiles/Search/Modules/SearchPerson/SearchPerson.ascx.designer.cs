@@ -58,6 +58,15 @@ namespace Profiles.Search.Modules.SearchPerson {
         protected global::System.Web.UI.WebControls.TextBox txtFname;
         
         /// <summary>
+        /// SearchPersonFormHideUCSD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel SearchPersonFormHideUCSD;
+        
+        /// <summary>
         /// trInstitution control.
         /// </summary>
         /// <remarks>
@@ -136,8 +145,8 @@ namespace Profiles.Search.Modules.SearchPerson {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox divisionallexcept;        
-
+        protected global::System.Web.UI.WebControls.CheckBox divisionallexcept;
+        
         /// <summary>
         /// trFacultyType control.
         /// </summary>
@@ -218,5 +227,14 @@ namespace Profiles.Search.Modules.SearchPerson {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litFacRankScript;
+        
+        /// <summary>
+        /// SearchPersonFormNoteUCSD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel SearchPersonFormNoteUCSD;
     }
 }

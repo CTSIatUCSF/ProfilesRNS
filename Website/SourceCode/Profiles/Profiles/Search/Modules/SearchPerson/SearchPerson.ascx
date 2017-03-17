@@ -199,7 +199,7 @@
                                         <asp:TextBox runat="server" ID="txtFname" CssClass="inputText"></asp:TextBox>
                                     </td>
                                 </tr>
-								<asp:Panel ID="SearchPersonFormUCSF" runat="server" SkinID="UCSF" Visible="false">
+								<asp:Panel ID="SearchPersonFormHideUCSD" runat="server" SkinID="HideUCSD" Visible="true">
                                 <tr runat="server" id="trInstitution">
                                     <th>
                                         School

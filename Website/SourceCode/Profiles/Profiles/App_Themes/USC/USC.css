@@ -31,7 +31,7 @@
     margin: 0;
     display: inline-block;
     font-size: 13px;
-	background-color: #eee;
+	background-color: #f8f8f9;
 	float: right;
 }
 #powered-by-block  a:hover, #new-features a:hover { text-decoration: underline; }
@@ -47,7 +47,6 @@
 .profiles a:hover, .institutionHeader a:hover { color: #267196; }
 .profiles .profilesFooter a, .profiles .profilesFooter a:hover { color: #FFCC00; }
 
-
 /* navbar & footer colors */
 #suckerfishmenu, #suckerfishmenu a { background-color: #771111; }
 #suckerfishmenu li { border-right: none; }
@@ -57,3 +56,14 @@
 .profiles .profilesFooter { border: none; }
 .profiles .profilesFooter  p { color: #FFF; padding: 5px 150px; text-align: center; }
 
+/* USC only */
+.search .profiles .profilesContentMain { margin: 0 15px; }
+.search .profiles .profilesContentPassive { padding: 9px 20px 0 0; width: 162px; }
+.faculty2 { margin-left: 12px; }
+.tour {
+    background-color: #f8f8f9;
+    font-weight: bold;
+    margin-top: 15px; margin-right: -20px;
+    padding: 6px;
+}
+.topSearchPhrases { margin-right: -20px; }

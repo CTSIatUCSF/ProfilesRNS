@@ -183,6 +183,25 @@
                     <td colspan='3'>
                         <div class="searchSection" id="div1">
                             <table width="100%" class='searchForm'>
+							<asp:Panel ID="ClinicalTrialsUSC" runat="server" SkinID="USC" Visible="false">
+								<tr>
+                                    <th>
+                                        Clinical Trials
+                                    </th>
+                                    <td colspan="2">
+                                        <input type="checkbox" class="trials2" />
+                                    </td>
+                                </tr>
+								<tr>
+                                    <th>
+                                        Find Mentors <span class="notice">New!</span>
+                                    </th>
+                                    <td colspan="2">
+                                        <input type="checkbox" class="student2" /> Student Mentors
+                                        <input type="checkbox" class="faculty2" /> Faculty Mentors
+                                    </td>
+                                </tr>
+							</asp:Panel>
                                 <tr>
                                     <th>
                                         Last Name
@@ -199,7 +218,7 @@
                                         <asp:TextBox runat="server" ID="txtFname" CssClass="inputText"></asp:TextBox>
                                     </td>
                                 </tr>
-								<asp:Panel ID="SearchPersonFormHideUCSD" runat="server" SkinID="HideUCSD" Visible="true">
+							<asp:Panel ID="SearchPersonFormHideUCSD" runat="server" SkinID="HideUCSD" Visible="true">
                                 <tr runat="server" id="trInstitution">
                                     <th>
                                         School
@@ -279,6 +298,9 @@
                                         </table>
                                     </td>
                                 </tr>
+							</asp:Panel>
+							<asp:Panel ID="ClinicalTrialsUCSF" runat="server" SkinID="UCSF" Visible="false">
+								<tr>
                                     <th>
                                         Clinical Trials <span class="notice">New!</span>
                                     </th>
@@ -286,7 +308,7 @@
                                         <input type="checkbox" class="trials2" />
                                     </td>
                                 </tr>
-								</asp:Panel>
+							</asp:Panel>
 <!--
                                 <tr>
                                     <th>
@@ -309,7 +331,12 @@
                 </tr>
             </table>
         </div>
-            <p style="text-align:right; margin-right: 20px"><a href="<%=GetURLDomain()%>/direct" class="dblarrow">Search other institutions</a></p>
+			<asp:Panel ID="DirectSearchUCSF" runat="server" SkinID="UCSF" Visible="false">
+				<p style="text-align:right; margin-right: 20px"><a href="<%=GetURLDomain()%>/direct" class="dblarrow">Search other institutions</a></p>
+			</asp:Panel>
+			<asp:Panel ID="DirectSearchUSC" runat="server" SkinID="USC" Visible="false">
+				<p><a href="<%=GetURLDomain()%>/direct" class="dblarrow">Find Collaborators at other Research Institutions</a></p>
+			</asp:Panel>
 			<asp:Panel ID="SearchPersonFormNoteUCSD" runat="server" SkinID="UCSD" Visible="false">
 				<p><span class="notice">Important Note: </span>
 					If you are a faculty member within UCSD and your profile page is not found, it is most likely that your title in Blink is not listed with your academic faculty title. For example, if you listed your department name as your title in blink, you would have to change blink to reflect either Professor, Research Scientists etc. Blink updates have to be initiated either by the UCSD employee directly or their home department. Once blink is updated, your profile will be automatically generated with the next refresh cycle.

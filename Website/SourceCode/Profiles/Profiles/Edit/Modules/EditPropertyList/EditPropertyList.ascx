@@ -13,7 +13,11 @@ this website.
 <br />
 <br />
 -->
-<h3>Components:</h3>
+<h3>
+	<span id="editHR" style="display:block; padding-bottom: 20px">
+		<asp:Literal runat="server" ID="litEditHRDataLink" Visible="false"></asp:Literal>
+	</span>
+Components:</h3>
 <div id="profile-components">
   <table style="width:100%;margin-bottom:0;">
     <tr id="namedegreerow">

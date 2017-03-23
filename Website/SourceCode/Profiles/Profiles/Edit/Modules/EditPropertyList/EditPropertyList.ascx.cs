@@ -22,7 +22,7 @@ using System.Globalization;
 using System.Text;
 using System.Xml;
 using System.Xml.Xsl;
-
+using System.Configuration;
 using Profiles.Framework.Utilities;
 using Profiles.Profile.Utilities;
 using Profiles.Edit.Utilities;
@@ -116,6 +116,15 @@ namespace Profiles.Edit.Modules.EditPropertyList
             repPropertyGroups.DataBind();
 
             BuildSecurityKey(gli);
+            if (!String.IsNullOrEmpty(ConfigurationSettings.AppSettings["HR_NameServiceURL"]))
+            {
+                // only used by UCSD at the moment
+                // Why did we do this as a lite
+                hypEditHRDataLink.Visible = true;
+                hypEditHRDataLink.NavigateUrl = ConfigurationSettings.AppSettings["HR_NameServiceURL"] +
+                    //http://ctripro.ucsd.edu/ProfilesCR/PersonalDataChangeRequest.php?id=" 
+                UCSFIDSet.ByNodeId[this.Subject].EmployeeID;
+            }
         }
 
         protected void repPropertyGroups_OnItemDataBound(object sender, RepeaterItemEventArgs e)

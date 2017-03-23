@@ -13,7 +13,11 @@ this website.
 <br />
 <br />
 -->
-<h3>Components:</h3>
+<h3>
+	<span id="editHR" style="display:block; padding-bottom: 20px">
+		<asp:Hyperlink runat="server" ID="hypEditHRDataLink" Text="Request a change to your name, address, or email" Visible="false"/>
+	</span>
+&nbsp;Components:</h3>
 <div id="profile-components">
   <table style="width:100%;margin-bottom:0;">
     <tr id="namedegreerow">

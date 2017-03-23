@@ -31,6 +31,33 @@ namespace Profiles.Edit.Modules.EditPropertyList {
         protected global::System.Web.UI.WebControls.Image imgLock;
         
         /// <summary>
+        /// hypEditHRDataLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypEditHRDataLink;
+        
+        /// <summary>
+        /// EditPropListUCSF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel EditPropListUCSF;
+        
+        /// <summary>
+        /// EditPropListUCSD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel EditPropListUCSD;
+        
+        /// <summary>
         /// repPropertyGroups control.
         /// </summary>
         /// <remarks>

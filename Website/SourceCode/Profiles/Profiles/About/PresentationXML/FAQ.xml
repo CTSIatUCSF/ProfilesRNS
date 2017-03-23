@@ -1,0 +1,28 @@
+﻿<Presentation PresentationClass="profile">
+  <PageOptions Columns="2"/>
+  <WindowName>About</WindowName>  
+  <PageTitle>Frequently Asked Questions</PageTitle>
+  <PageBackLinkName></PageBackLinkName>
+  <PageBackLinkURL></PageBackLinkURL>
+  <PageSubTitle></PageSubTitle>
+  <PageDescription></PageDescription>  
+  <PanelList>
+    <Panel type="header"  />
+    <Panel type="page" />
+    <Panel Type="active">
+      <Module ID="MainMenu"/>
+    </Panel>
+    <Panel Type="main">
+      <Module ID="HTMLBlock">
+        <ParamList>
+          <Param Name="HTML">
+           <!-- You probably want to make a copy of this file in the App_Themes and add school specific information here. See USC as an option -->
+          </Param>
+        </ParamList>
+      </Module>
+      <Panel Type="passive"/>
+      <Panel type="footer" />
+    </Panel> 
+  </PanelList>
+</Presentation>
+

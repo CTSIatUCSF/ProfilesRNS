@@ -15,7 +15,7 @@ this website.
 -->
 <h3>
 	<span id="editHR" style="display:block; padding-bottom: 20px">
-		<asp:Hyperlink runat="server" ID="hypEditHRDataLink" Text="Request a change to your name, address, or email" Visible="false"/>
+		<asp:Hyperlink runat="server" ID="hypEditHRDataLink" Text="Request a change to your name, address, or email" Target="_blank" Visible="false"/>
 	</span>
 Components:</h3>
 <div id="profile-components">

@@ -1,7 +1,7 @@
 ﻿<Presentation PresentationClass="profile">
   <PageOptions Columns="2"/>
   <WindowName>About</WindowName>  
-  <PageTitle>What is UCSD Profiles?</PageTitle>
+  <PageTitle>What is Profiles?</PageTitle>
   <PageBackLinkName></PageBackLinkName>
   <PageBackLinkURL></PageBackLinkURL>
   <PageSubTitle></PageSubTitle>
@@ -20,95 +20,115 @@
 <script type="text/javascript">
 $('#suckerfishmenu li#about a').addClass('active'); 
 </script>
-<h3 style="text-align:center;font-size:20px;padding:10px 0 16px;color:#999;margin:0">
-  A Research Networking and Expertise Mining Tool</h3>
-<table cellspacing="0" id="about">
- <tr>
-  <td style="background-color:#bbcddc;padding:0 8px">
-    <h2>Search</h2>
-    <img src="../App_Themes/UCSD/Images/search-icon.gif" alt="Magnifying Glass" class="sdn" style="margin:0 0 8px 25px" />
-    <h3 style="text-align:center;color:#333">Experts, Collaborators, Mentors</h3>
-    <ul class="square">
-       <li>100,000+ publications</li>
-       <li>1200+ UCSD faculty</li>
-<!--
-       <li>1400+ UCSD residents and fellows</li>
-       <li>1000+ UCSD postdocs</li>
+<style type="text/css">
+.profiles .profilesContentMain .pageTitle h2 { text-align: center; }
+</style>
+
+            <h3 style="text-align:center;font-size:20px;padding:10px 0 16px;color:#777;margin:0;font-weight: normal;">
+              A Research Networking and Expertise Mining Tool
+            </h3>
+            <table cellspacing="0" id="about">
+              <tr>
+                <td style="background-color:#CCC;padding:0 8px">
+                  <h2>Find People</h2>
+                  <img src="../App_Themes/USC/Images/search-icon.gif" alt="Magnifying Glass" class="sdn" style="margin:4px 0 4px 55px" />
+                  <h3 style="text-align:center;color:#333">Experts, Collaborators, Mentors</h3>
+                  <ul class="square">
+                    <li>3200+ USC faculty</li>
+                    <li>Researchers at 30 biomedical institutions nationwide</li>
+                    <li>Data on over 62,000+ publications and 350+ clinical trials</li>
+                  </ul>
+                </td>
+
+                <td style="padding:0 6px;border-left: 3px solid #999; border-right: 3px solid #999;">
+                  <h2>Discover Networks</h2>
+                  <img src="../App_Themes/USC/Images/profiles.jpg" alt="Discover Networks" class="sdn" style="margin:10px 0 8px 65px" />
+                  <h3 style="text-align:center;color:#333">Peoples' Research Connections</h3>
+                  <ul class="square">
+                    <li>Who co-authored together</li>
+                    <li>Who worked on similar research topics</li>
+                    <li>Who works in a person's department</li>
+                  </ul>
+                </td>
+
+                <td style="background-color:#CCC;padding:0 8px 10px;">
+                  <h2>Edit Your Profile</h2>
+                  <img src="../App_Themes/USC/Images/develop-profile.gif" alt="Develop Your Profile" class="sdn" style="margin:4px 0 4px 65px" />
+                  <h3 style="text-align:center;color:#333">Information about Your Research</h3>
+                  <ul class="square">
+                    <li>Narrative to describe your work</li>
+                    <li>Photo, website links, and awards</li>
+                    <li>Mentoring information</li>
+                    <li>Auto-populated publications, if necessary</li>
+                  </ul>
+                  <p style="text-align:center;">
+                    <a href="../login/default.aspx?method=login&amp;edit=true">
+                      <img src="../App_Themes/USC/Images/editProfile.gif" alt="Edit Your Profile" style="margin:4px 0 0" />
+                    </a>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" align="center" style="padding:15px 0;">
+                  <!--
+    <a href="http://www.slideshare.net/scctsi/usc-health-sciences-researcher-profiles-tour">
+      <img src="images/TourProfiles-3D.png" alt="Tour Profiles" />
+    </a>
+    <iframe width="560" height="315" src="//www.youtube.com/embed/q79jUx2Ofi4" frameborder="0"></iframe>  
 -->
-       <li>30 biomedical institutions nationwide</li>
-    </ul>
-  </td>
+                  <h2>Watch this short introduction video!</h2>
+                  <iframe src="//player.vimeo.com/video/95993348" width="500" height="281" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe><br />from <a href="http://vimeo.com/socalctsi">SC CTSI</a> on <a href="https://vimeo.com">Vimeo</a>
+                </td>
+              </tr>
+            </table>
+            <table style="border-top: 1px solid #CCC;border-bottom: 1px solid #CCC;margin-right:15px;">
+              <tr>
+                <td style="padding: 20px 10px 10px 90px; font-size: 130%; white-space: nowrap;
+    background: transparent url(../App_Themes/USC/Images/help.gif) no-repeat 140px 13px; vertical-align: top">
+                  <span style="color:#777;padding-left: 85px; ">Help</span>
+                  <ul class="square" style="margin-left: 0;margin-top:30px;">
+                    <li>
+                      <a href="faq.aspx">Frequently Asked Questions</a>
+                    </li>
+                    <li>
+                      <a href="mailto:profiles@sc-ctsi.org">Contact us</a>
+                    </li>
+                  </ul>
+                </td>
+                <td style="padding: 20px 40px 10px; color:#777; text-align: center">
+                  <span style="font-size: 130%;">USC Profiles Updates</span>
+                  <br />
+                  <br />
 
-  <td style="padding:0 8px">
-    <h2>Discover Networks</h2>
-    <img src="../App_Themes/UCSD/Images/network.png" alt="Discover Networks" class="sdn" style="margin: 9px 0 8px 75px" />
-    <h3 style="text-align:center;color:#333">Peoples' Research Connections</h3>
-    <ul class="square">
-       <li>Who co-authored together</li>
-       <li>Who worked on similar research topics</li>
-    </ul>
-  </td>
+                  <a class="twitter-timeline"  href="https://twitter.com/USCProfiles"  data-widget-id="407943177664860160" data-chrome="nofooter noborders noheader" data-tweet-limit="1" data-link-color="#4D8BA9">Updates by @USCProfiles</a>
+                  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-  <td style="background-color:#bbcddc;padding:0 8px">
-    <h2>Edit Your Profile</h2>
-    <img src="../App_Themes/UCSD/Images/develop-profile.gif" alt="Develop Your Profile" class="sdn" style="margin:0 0 8px 20px" />
-    <h3 style="text-align:center;color:#333">Information about Your Research</h3>
-    <ul class="square">
-       <li>Overview to describe your work</li>
-       <li>Photo, website links, and awards</li>
-       <li>Mentoring information</li>
-       <li>Your presentations on SlideShare</li>
-       <li>Edit your publications if necessary</li>
-    </ul>
-     <p style="text-align:center;margin:15px 40px 6px;padding:5px 0;border-left: solid 1px #8fb5b5;
-       border-top: solid 1px #8fb5b5;background-color:#FFF;">
-       <a href="../login/default.aspx?method=login&amp;edit=true" class="doublearrow">Edit your profile now</a></p>
- </td>
- </tr>
- <tr>
-  <td colspan="3" align="center" style="padding:5px 0 20px;">
-    <h2 style="line-height:24px" >Watch this short introduction about UCSF Profiles, 
-	<br />the sister site to UCSD Profiles</h2>
-    <iframe width="560" height="325" src="//www.youtube.com/embed/YCOA2GWyplY" frameborder="0" allowfullscreen="true"></iframe>
-  </td>
- </tr>
- <tr>
-  <td class="toolbox">
-    <h3 style="padding: 12px 0 8px 40px">Toolbox</h3> 
-    <ul class="square" style="margin-left: 0;">
-      <!-- <li><a href="ForDevelopers.aspx">Profiles data tools for your website</a></li> -->
-      <li><a href="http://www.orng.info/index.html">Profiles OpenSocial extensions</a></li>
-    </ul>
-  </td>
-  <td class="questions">
-    <h3 style="padding: 12px 0 8px 40px">Help</h3>
-    <ul class="square" style="margin-left: 0;">
-      <li><a href="Help.aspx#faq">Frequently Asked Questions</a></li>
-      <li><a href="mailto:ctripro@ucsd.edu">Contact us</a></li>
-    </ul>
-  </td>
-  <td class="share">
-     <h3 style="padding: 12px 0 15px 40px">Feedback</h3> 
-     <p style="margin:0; font-size:12px"><a href="mailto:ctripro@ucsd.edu">Contact us</a> to share your ideas and success stories.</p>
-  </td>
- </tr>
-</table>
 
-<h3 style="padding-top:20px">Acknowledgements</h3>
-<p>UCSD Profiles is UCSD’s version of the ground-breaking, open source "Profiles Research Networking Software" that was developed under the supervision of Griffin M Weber, MD, PhD, with support from Grant Number 1 UL1 RR025758-01 to <a href="http://catalyst.harvard.edu/" target="_new">Harvard Catalyst: The Harvard Clinical and Translational Science Center</a> from the National Center for Research Resources and support from Harvard University and its affiliated academic healthcare centers.</p>
+                  <a href="https://twitter.com/USCProfiles" class="twitter-follow-button" data-show-count="false">Follow @USCProfiles</a>
+                  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </td>
+              </tr>
+            </table>
 
-<p>UCSD Profiles is hosted by the UCSF 
-<a target="_blank" href="http://ctsi.ucsf.edu">Clinical and Translational Science Institute (CTSI)</a>, part of the Clinical and Translational Science Award program funded by the National Center for Advancing Translational Sciences (grant number UL1 TR000004) at the National Institutes of Health (NIH).
-</p>
+            <h3 style="padding-top:20px">Acknowledgements</h3>
+            <p>
+              USC Profiles was developed from <a href="http://connects.catalyst.harvard.edu/Profiles/about/default.aspx" target="_blank">Profiles Research Networking Software</a>, which was created by Griffin M. Weber, MD, PhD, with support from <a href="http://catalyst.harvard.edu/" target="_new">Harvard Catalyst | The Harvard Clinical and Translational Science Center</a> (grant numbers 8UL1 TR000170-05 and 1UL1 TR001102-01).
+            </p>
 
-<p>Profiles Research Networking Software is available as an <a href="http://connects.catalyst.harvard.edu/Profiles/about/default.aspx?tab=open" target="_blank">open source platform</a> for institutions seeking a web-based means of facilitating collaboration among their academic researchers. </p>  
+            <p>
+              USC Profiles is hosted by the UCSF <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, part of the Clinical and Translational Science Award program funded by the National Center for Advancing Translational Sciences (grant number UL1 TR000004) at the National Institutes of Health (NIH).
+            </p>
+
+            <p>
+              Profiles Research Networking Software is available as an <a href="http://connects.catalyst.harvard.edu/Profiles/about/default.aspx?tab=open" target="_blank">open source platform</a> for institutions seeking a web-based means of facilitating collaboration among their academic researchers.
+            </p>
+
 
           </Param>
         </ParamList>
       </Module>
       <Panel Type="passive"/>
       <Panel type="footer" />
-    </Panel> 
+    </Panel>
   </PanelList>
 </Presentation>
-

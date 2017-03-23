@@ -5,7 +5,7 @@
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
 .profiles .profilesContentMain .pageTitle h2 { color: #000; }
 .profiles a.search-button, .more span, .less span { background-color: #771111; }
-.profiles a.search-button:hover { background-color: #990000; box-shadow: none; }
+.profiles a.search-button:hover { background-color: #990000; box-shadow: none; color: #FFF; }
 
 /* banner */
 
@@ -60,10 +60,9 @@
 .search .profiles .profilesContentMain { margin: 0 15px; }
 .search .profiles .profilesContentPassive { padding: 9px 20px 0 0; width: 162px; }
 .faculty2 { margin-left: 12px; }
-.tour {
-    background-color: #f8f8f9;
-    font-weight: bold;
-    margin-top: 15px; margin-right: -20px;
-    padding: 6px;
-}
+.tour { background-color: #f8f8f9; font-weight: bold; margin-top: 15px; margin-right: -20px; padding: 6px; }
 .topSearchPhrases { margin-right: -20px; }
+#about td { border-top: none; }
+.profile .passive-header { background-color: #f8f8f9; text-align: center; margin: 10px 0 -8px; padding: 8px 2px; }
+div.PlumX-Popup { display: inline; margin-left: 10px; }
+.PlumX-Popup .ppp-container.ppp-badge > a { font-family: arial,helvetica,sans serif !important; }

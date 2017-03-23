@@ -1,7 +1,7 @@
 ﻿<Presentation PresentationClass="profile">
   <PageOptions Columns="2"/>
   <WindowName>About</WindowName>  
-  <PageTitle>Use UCSF Profiles Data to Enhance Your Website</PageTitle>
+  <PageTitle>Use Profiles Data for Your Website</PageTitle>
   <PageBackLinkName></PageBackLinkName>
   <PageBackLinkURL></PageBackLinkURL>
   <PageSubTitle></PageSubTitle>
@@ -21,19 +21,40 @@
 $('#suckerfishmenu li#data a').addClass('active'); 
 </script>
 
-<p>Over two dozen UCSF websites and apps use data from UCSF Profiles. Users include the UCSF School of Medicine, UCSF Department of Surgery, and UCSF Directory.</p>
-
-<h3>Profiles data:</h3>
-<ul>
-  <li>Is free of cost</li>
-  <li>Covers over 6,000 members of the UCSF campus research community</li>
-  <li>Includes publications, photos, biographies, websites, etc.</li>
-  <li>Can be integrated into almost any kind of website</li>
+<h2 class="about">Available Data</h2>
+<p>Web developers have full access to the data shown in Profiles through a REST API. This allows you to show all or specific profile information and publications for a researcher on any website by writing client or server side code to incorporate information directly from Profiles. <a href="http://scctsi.github.io/profiles-api" title="Find on GitHub">More information about the REST API</a></p>
+<p>Enhance your website with automated data of the following:</p>
+<ul >
+  <li>Data on 3,200+ USC faculty, postdoctoral scholars, and clinical research coordinators in the health sciences – <em>Updated daily</em></li>
+  <li>Data on over 62,000 USC publications listed on PubMed – <em>Updated weekly</em></li>
+  <li>Data on 350+ clinical trials – updated daily (<a href="http://scctsi.github.io/clinicaltrials-datasource/" title="Find on GitHub">USC Clinical Trials REST API</a>)</li>
+  <li>Manually entered data (e.g., photos, research overview descriptions) - <em>Updated either immediately, or daily</em></li>
 </ul>
 
-<div class="button-link"><a href="http://opendata.profiles.ucsf.edu" target="_blank">Learn more and get started</a></div>
-<p><a href="https://ucsf.my.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F9A00000004Szj" title="Visit UCSF Chatter">
-  <img src="images/cloud.png" alt="cloud" /> Join the UCSF Chatter Profiles Data Consumers group</a></p>
+<p><strong>Data Types</strong> (supported by REST API)</p>
+<ul>
+    <li>Researcher Name</li>
+    <li>Photo URL</li>
+    <li>School</li>
+    <li>Titles</li>
+    <li>Email</li>
+    <li>Address</li>
+    <li>Telephone</li>
+    <li>Narrative</li>
+    <li>Publications (includes source, title, URL)</li>
+    <li>Clinical studies</li>
+</ul>
+		
+<p><strong>Search</strong> (supported by REST API)</p>
+<ul>
+    <li>Find people by name</li>
+    <li>Find people by school and department</li>
+</ul>
+
+
+<h2 style="clear:left;padding-top:15px" class="about" id="gethelp">Have Questions?</h2>
+
+<p><a href="mailto:profiles@sc-ctsi.org" class="dblarrow">Contact us at profiles@sc-ctsi.org</a></p>
  
           </Param>
         </ParamList>

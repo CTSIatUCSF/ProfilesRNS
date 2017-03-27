@@ -476,9 +476,19 @@
                         <%--End Delete Publications--%>
                         <%--Start Publications List--%>
                         <div style="padding-left: 0px;">
+						  <asp:Panel ID="ConfirmPubsUCSF" runat="server" SkinID="UCSF" Visible="false">
 							<p><strong><span class="highlight">New!</span> Confirm your publications. </strong><br>
 							Check the box to confirm authorship, or click the trash can to remove the found publications below. Performing these simple tasks will improve our ability to identify future publications for your profile page. This will also make it easier for you to participate in the <a href="http://osc.universityofcalifornia.edu/open-access-policy/" target="_blank">UC Open Access Policy</a> and will help us give accurate publication lists to Advance, department sites and other systems at UCSF. <br>
 							<span style="color:#666;font-size:11px;">Note: Some older publications may falsely show as confirmed. If any checked/confirmed publications are not yours, please delete them. </span><br></p>
+						  </asp:Panel>
+						  <asp:Panel ID="ConfirmPubsUCSD" runat="server" SkinID="UCSD" Visible="false">
+							<p><strong><span class="highlight">New!</span> Confirm your publications. </strong><br>
+							Check the box to confirm authorship, or click the trash can to remove the found publications below. Performing these simple tasks will improve our ability to identify future publications for your profile page. This will also make it easier for you to participate in the <a href="http://osc.universityofcalifornia.edu/open-access-policy/" target="_blank">UC Open Access Policy</a> and will help us give accurate publication lists to other systems at UCSD. <br></p>
+						  </asp:Panel>
+						  <asp:Panel ID="ConfirmPubsUSC" runat="server" SkinID="USC" Visible="false">
+							<p><strong><span class="highlight">New!</span> Confirm your publications. </strong><br>
+							Check the box to confirm authorship, or click the trash can to remove the found publications below. Performing these simple tasks will improve our ability to identify future publications for your profile page. <br></p>
+						  </asp:Panel>
 
                             <asp:GridView BorderStyle="Solid" ID="grdEditPublications" runat="server" AutoGenerateColumns="False"
                                 GridLines="none" CellSpacing="-1" HorizontalAlign="Left" 

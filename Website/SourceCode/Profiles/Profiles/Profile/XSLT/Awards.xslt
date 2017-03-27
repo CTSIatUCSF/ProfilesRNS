@@ -12,7 +12,7 @@
                 <td stlye="white-space:nowrap;">
                   <xsl:value-of select="/rdf:RDF[1]/rdf:Description[@rdf:about=$awardUri]/prns:awardConferredBy"/>
                 </td>
-                <td>
+                <td class="awardStartDate">
                   <xsl:value-of select="/rdf:RDF[1]/rdf:Description[@rdf:about=$awardUri]/prns:startDate"/>
                   <xsl:if test="/rdf:RDF[1]/rdf:Description[@rdf:about=$awardUri]/prns:endDate">
                     -

@@ -82,6 +82,7 @@ Researchers working on the same topics
   <li><a href="#datasources">Where does the information in UCSF Profiles originate?</a></li>
   <li><a href="#network">What are the lists of networks on the right side of my profile?</a></li>
   <li><a href="#missing">Why are there missing or incorrect publications in my profile? How can I correct this?</a></li>
+  <li><a href="#altmetric">Why is the Altmetric badge shown on publications?</a></li>
   <li><a href="#update">How frequently are the data in UCSF Profiles updated?</a></li>
   <li><a href="#keyword">Can I add/edit research, career and academic interests?</a></li>
   <li><a href="#mynetwork">Can I edit my co-authors or related authors network lists?</a></li>
@@ -167,6 +168,12 @@ Researchers working on the same topics
   <li>People who have common names, who published under multiple names or whose articles were written at other institutions are most likely to have incomplete publication lists. </li>
   <li>You can make corrections by manually searching PubMed from within Profiles to add, edit or delete publications (see <a href="HowProfilesWorks.aspx#enhance">How do I edit my Profile?</a> above). By curating publications manually, you are helping UCSF Profiles to identify which concepts and co-authors are correctly associated with your profile, thereby increasing the likelihood of finding the right publications on subsequent attempts. </li>
   <li>We encourage you to sign in to the site and add any missing publications or remove incorrect ones because these publications can be imported into Advance and many departments pull publication lists from UCSF Profiles for use on their department and faculty website pages.</li>
+</ul>
+
+<h3 id="altmetric">Why is the Altmetric badge shown on publications?</h3>
+<ul>
+  <li>We incorporate altmetrics data on UCSF Profiles because we see altmetrics and gray literature as an important way to show off the early impact/buzz of our researchers' work. The Altmetric badge is an easy, inexpensive way to show that data. <a href="https://en.wikipedia.org/wiki/altmetrics" target="_blank">See more on altmetrics.</a></li>
+  <li>It is not possible to turn off the Altmetric badge on your individual profile page.</li>
 </ul>
 
 <h3 id="update">How frequently are the data in UCSF Profiles updated?</h3>

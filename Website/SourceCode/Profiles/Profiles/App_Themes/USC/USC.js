@@ -2,7 +2,7 @@
 	
 	//Search Form: featured options
     if ($('#trOtherOptions') && $('#trOtherOptions').length) {
-		$("#divOtherOptions label[for='ctcFirst_rMaster_ctl00_rDetail_ctl07_checkDetailText']").parent().addClass('trials1');
+		$("#divOtherOptions label:contains('Clinical Trials')").parent().addClass('trials1');
 		$('.trials2').click(function() { 
 			if ($('.trials2').is(':checked')) {
 				$('#ctcFirst_rMaster_ctl00_divDetail .trials1 :checkbox').attr("checked", true)[0].onclick();
@@ -10,12 +10,20 @@
 				$('#ctcFirst_rMaster_ctl00_divDetail .trials1 :checkbox').attr("checked", false)[0].onclick(); 
 			}
 		});
-		$("#divOtherOptions label[for='ctcFirst_rMaster_ctl00_rDetail_ctl00_checkDetailText']").parent().addClass('faculty1');
+		$("#divOtherOptions label:contains('Faculty Mentoring')").parent().addClass('faculty1');
 		$('.faculty2').click(function() { 
 			if ($('.faculty2').is(':checked')) {
 				$('#ctcFirst_rMaster_ctl00_divDetail .faculty1 :checkbox').attr("checked", true)[0].onclick();
 			} else {
 				$('#ctcFirst_rMaster_ctl00_divDetail .faculty1 :checkbox').attr("checked", false)[0].onclick(); 
+			}
+		});
+		$("#divOtherOptions label:contains('Scholarly Project Mentor')").parent().addClass('student1');
+		$('.student2').click(function() { 
+			if ($('.student2').is(':checked')) {
+				$('#ctcFirst_rMaster_ctl00_divDetail .student1 :checkbox').attr("checked", true)[0].onclick();
+			} else {
+				$('#ctcFirst_rMaster_ctl00_divDetail .student1 :checkbox').attr("checked", false)[0].onclick(); 
 			}
 		});
 	}

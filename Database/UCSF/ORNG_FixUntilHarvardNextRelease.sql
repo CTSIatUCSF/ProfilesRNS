@@ -1,6 +1,3 @@
-USE [profiles_ucsf]
-GO
-
 /****** Object:  StoredProcedure [ORNG.].[GetAppInstance]    Script Date: 4/19/2017 10:09:48 AM ******/
 SET ANSI_NULLS ON
 GO

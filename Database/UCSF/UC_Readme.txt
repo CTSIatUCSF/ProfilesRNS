@@ -1,9 +1,14 @@
 Run ProfilesRNS_CreateDatabase.sql
-Follow the basic install instructions for everything else. Keep DB as ProfilesRNS.
-Do not run ProfilesRNS_DataLoad_Part3.sql at this time
+Follow the basic install instructions for everything else and stop at "Loading Person Data". Keep DB as ProfilesRNS.
 
-Run UCSF_Create_Schema.sql
+Run UCSF_Upgrade_Schema.sql
+Run ORNG_FixUntilHarvardNextRelease.sql
+Run UCSF_Upgrade_Data.sql
 
-Run Crosslinks/UCSFCTSASearch.sql 
-Run Crosslinks/Update.sql
+IMPORT HR DATA
+
+Run ProfilesRNS_DataLoad_Part3.sql
+
+
+Run FixLabels.sql
 

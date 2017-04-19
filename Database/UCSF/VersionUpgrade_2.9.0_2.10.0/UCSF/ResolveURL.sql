@@ -1,4 +1,7 @@
-/****** Object:  StoredProcedure [Profile.Framework].[ResolveURL]    Script Date: 10/31/2013 12:53:32 ******/
+USE [profiles_ucsf]
+GO
+
+/****** Object:  StoredProcedure [Profile.Framework].[ResolveURL]    Script Date: 3/13/2017 9:29:18 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -78,14 +81,11 @@ BEGIN
 	
 	-- UCSF subject when Application name is based on URL_NAME
 	DECLARE @URL_NAME VARCHAR(1000)
-	DECLARE @InternalUserName VARCHAR(100)
-	DECLARE @PersonID INT
 	IF (@MaxParam IS NULL) 
 	BEGIN
-		SELECT @PersonID = PersonID from [Profile.Data].[Person] p JOIN [UCSF.].NameAdditions n ON
-			p.InternalUserName = n.InternalUserName WHERE n.UrlName = @ApplicationName
   		SELECT @subject = i.nodeid from  [RDF.Stage].internalnodemap i with(nolock) where 
-			i.class = 'http://xmlns.com/foaf/0.1/Person' and i.internalid = @PersonID
+			i.class = 'http://xmlns.com/foaf/0.1/Person' and i.internalid = (
+				select 2569307 + cast(SUBSTRING(InternalUserName, 2, 7) as numeric) from [UCSF.].NameAdditions where UrlName =  @ApplicationName)		
         IF @subject is not null
 			SELECT @URL_NAME=@subject				
 	END
@@ -106,9 +106,8 @@ BEGIN
 
 	-- UCSF if we only have Subject and this is for a person, replace with URL_NAME
 	IF (@MaxParam = 1) AND (@Subject IS NOT NULL)
-	    SELECT @InternalUserName = InternalUserName FROM [Profile.Data].[Person] WHERE
-			PersonID = (select InternalID from [RDF.Stage].internalnodemap i with(nolock) where i.class = 'http://xmlns.com/foaf/0.1/Person' and i.nodeId = @Subject)		
-		SELECT @URL_NAME = UrlName from [UCSF.].[NameAdditions] WHERE InternalUserName = @InternalUserName
+		SELECT @URL_NAME = UrlName from [UCSF.].[NameAdditions] where 2569307 + cast(SUBSTRING(internalusername, 2, 7) as numeric) = 
+			(select InternalID from [RDF.Stage].internalnodemap i with(nolock) where i.class = 'http://xmlns.com/foaf/0.1/Person' and i.nodeId = @Subject)		
 
 	-- predicate
 	IF (@MaxParam >= @pointer) AND (@subject IS NOT NULL)

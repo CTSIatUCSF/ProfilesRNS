@@ -1,0 +1,16 @@
+UCSF\VersionUpgrade_2.x_2.9.0\ExecuteBeforeHarvardScripts all had nothing to do
+2.0 to 2.5.1 (these failed)
+2.5.1 to 2.6.0 (done)
+2.6.0 to 2.7.0 (updgrade schema failed in removing duplicate indexes, done)
+2.7.0 to 2.8.0 (done)
+2.8.0 to 2.9.0 (done)
+2.9.0 to 2.10.0 (done)
+UCSF\VersionUpgrade_2.x_2.9.0 (MigrateAwardedGrants, RemoveMoreInfo not needed )
+UCSF\Crosslinks 
+UCSF\VersionUpgrade_2.9.0_2.10.0
+
+Amia, talk to Kent Anderson on the Grant
+Mcfadden on Scheduler
+? on SPARC
+Doug Bell UCLA
+OMOP

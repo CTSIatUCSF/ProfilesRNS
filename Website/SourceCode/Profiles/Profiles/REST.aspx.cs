@@ -167,6 +167,7 @@ namespace Profiles
             SessionManagement sessionmanagement = new SessionManagement();
             Session session = sessionmanagement.Session();
 
+            //UCSF for UC Wide Profiles
             URLResolve resolve = data.GetResolvedURL(param0,
                                    param1,
                                    param2,
@@ -180,7 +181,8 @@ namespace Profiles
                                    session.SessionID,
                                    Root.Domain + Root.AbsolutePath,
                                    session.UserAgent,
-                                   getBestAcceptType(HttpContext.Current.Request.AcceptTypes));
+                                   getBestAcceptType(HttpContext.Current.Request.AcceptTypes),
+                                   HttpContext.Current.Request.Url.Host);
 
 
             Framework.Utilities.DebugLogging.Log("{REST.aspx.cs} ProcessRequest() redirect=" + resolve.Redirect.ToString() + " to=>" + resolve.ResponseURL);

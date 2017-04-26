@@ -134,7 +134,8 @@ namespace Profiles.Framework.Utilities
                                         string sessionid,
                                         string resturl,
                                         string useragent,
-                                        string contenttype)
+                                        string contenttype,
+                                        string host)
         {
 
             //Add the URL from the browser and then the full
@@ -143,7 +144,7 @@ namespace Profiles.Framework.Utilities
 
             try
             {
-                SqlParameter[] param = new SqlParameter[14];
+                SqlParameter[] param = new SqlParameter[15];
                 param[0] = new SqlParameter("@ApplicationName", applicationname);
                 param[1] = new SqlParameter("@param1", param1);
                 param[2] = new SqlParameter("@param2", param2);
@@ -158,6 +159,7 @@ namespace Profiles.Framework.Utilities
                 param[11] = new SqlParameter("@resturl", resturl);
                 param[12] = new SqlParameter("@useragent", useragent);
                 param[13] = new SqlParameter("@ContentType", contenttype);
+                param[14] = new SqlParameter("@Host", host);
 
                 using (SqlDataReader dbreader = GetSQLDataReader(GetDBCommand("", "[Framework.].[ResolveURL]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param)))
                 {

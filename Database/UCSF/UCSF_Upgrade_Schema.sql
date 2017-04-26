@@ -30,7 +30,7 @@ CREATE TABLE [UCSF.].[NameAdditions] (
 	[CleanSuffix] [nvarchar](50) NULL,
 	[GivenName] [nvarchar](50) NULL,  
 	[CleanGivenName] [nvarchar](50) NULL,  
-	[UrlName] [nvarchar](255) NULL,
+	[PrettyURL] [nvarchar](255) NULL,
 	[Strategy] [nvarchar](50) NULL,
 	[PublishingFirst] [nvarchar](50) NULL,
  CONSTRAINT [PK_uniqueNames] PRIMARY KEY CLUSTERED 
@@ -40,8 +40,8 @@ CREATE TABLE [UCSF.].[NameAdditions] (
 ) ON [PRIMARY]
 
 
-CREATE UNIQUE INDEX urlNameUnique ON [UCSF.].[NameAdditions](UrlName)
-WHERE UrlName IS NOT NULL
+CREATE UNIQUE INDEX prettyUrlUnique ON [UCSF.].[NameAdditions]([PrettyURL])
+WHERE [PrettyURL] IS NOT NULL
 GO
 
 SET ANSI_PADDING OFF
@@ -65,7 +65,7 @@ as
 SELECT p.[PersonID]
       ,p.[UserID]
       ,n.nodeid
-      ,na.UrlName
+      ,na.PrettyURL
       ,p.[FirstName]
       ,isnull(na.[PublishingFirst], isnull(na.[GivenName], p.[FirstName])) [PublishingFirst]
       ,p.[LastName]
@@ -114,7 +114,7 @@ as
 		SELECT p.personid,
 					 p.userid,
 					 p.nodeid,
-					 p.UrlName,
+					 p.PrettyURL,
 					 p.internalusername,
 					 p.firstname,
 					 p.publishingfirst,
@@ -241,14 +241,14 @@ GO
 --
 ---------------------------------------------------------------------------------------------------------------------
 
-/****** Object:  StoredProcedure [UCSF.].[CreateURLNames]    Script Date: 10/11/2013 10:52:39 ******/
+/****** Object:  StoredProcedure [UCSF.].[[CreatePrettyURLs]]    Script Date: 10/11/2013 10:52:39 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE [UCSF.].[CreateURLNames] 
+CREATE PROCEDURE [UCSF.].[CreatePrettyURLs] 
 AS
 BEGIN
 		
@@ -258,20 +258,27 @@ BEGIN
 	DECLARE @CleanLast nvarchar(255)
 	DECLARE @CleanSuffix nvarchar(255)
 	DECLARE @CleanGivenName nvarchar(255)
-	DECLARE @UrlName nvarchar(255)
+	DECLARE @PrettyURL nvarchar(255)
 	DECLARE @Strategy nvarchar(50)
 	DECLARE @i int
+	DECLARE @BaseURI nvarchar(255)
+	DECLARE @Domain nvarchar(255)
+
+	SELECT @BaseURI=Value FROM [Framework.].[Parameter] WHERE ParameterID='baseURI'
 		
 	WHILE exists (SELECT *
-		FROM [UCSF.].[NameAdditions] WHERE UrlName is null)
+		FROM [UCSF.].[NameAdditions] WHERE @PrettyURL is null)
 	BEGIN
-		SELECT TOP 1 @id=internalusername,
-					 @CleanFirst=CleanFirst, 
-					 @CleanMiddle=CleanMiddle,
-					 @CleanLast=CleanLast,
-					 @CleanSuffix=CleanSuffix,
- 					 @CleanGivenName=CleanGivenName
-		FROM [UCSF.].[NameAdditions] WHERE UrlName is null ORDER BY len(CleanMiddle) + len(CleanSuffix)					 
+		SELECT TOP 1 @id=n.internalusername,
+					 @Domain=ISNULL(p.Value, @BaseURI),
+					 @CleanFirst=n.CleanFirst, 
+					 @CleanMiddle=n.CleanMiddle,
+					 @CleanLast=n.CleanLast,
+					 @CleanSuffix=n.CleanSuffix,
+ 					 @CleanGivenName=n.CleanGivenName
+		FROM [UCSF.].[NameAdditions] n JOIN [Profile.Import].[PersonAffiliation] a on n.internalusername=a.internalusername and a.primaryaffiliation=1
+			LEFT OUTER JOIN [Framework.].[Parameter] p on p.ParameterID=a.institutionabbreviation
+			WHERE n.PrettyURL is null ORDER BY len(n.CleanMiddle) + len(n.CleanSuffix)					 
 
 		-- try different strategies
 		-- P = preferred first name
@@ -293,43 +300,43 @@ BEGIN
 			SET @CleanMiddle = ''
 
 		SET @strategy = 'P.L'
-		SET @UrlName = @CleanFirst + '.' + @CleanLast -- first and last
+		SET @PrettyURL = @Domain + @CleanFirst + '.' + @CleanLast -- first and last
 		
-		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE UrlName = @UrlName) AND len(@CleanMiddle) > 0
+		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE PrettyURL = @PrettyURL) AND len(@CleanMiddle) > 0
 		BEGIN
 			SET @strategy = 'P.I.L'
-			SET @UrlName = @CleanFirst + '.' + substring(@CleanMiddle,1,1) + '.' + @CleanLast -- middle initial
+			SET @PrettyURL = @Domain + @CleanFirst + '.' + substring(@CleanMiddle,1,1) + '.' + @CleanLast -- middle initial
 		END
-		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE UrlName = @UrlName) AND len(@CleanMiddle) > 0
+		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE PrettyURL = @PrettyURL) AND len(@CleanMiddle) > 0
 		BEGIN
 			SET @strategy = 'P.M.L'
-			SET @UrlName = @CleanFirst + '.' + @CleanMiddle + '.' + @CleanLast -- middle name
+			SET @PrettyURL = @Domain + @CleanFirst + '.' + @CleanMiddle + '.' + @CleanLast -- middle name
 		END
-		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE UrlName = @UrlName) AND len(@CleanSuffix) > 0
+		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE PrettyURL = @PrettyURL) AND len(@CleanSuffix) > 0
 		BEGIN
 			SET @strategy = 'P.L.S'
-			SET @UrlName = @CleanFirst + '.' + @CleanLast + '.' + @CleanSuffix -- suffix
+			SET @PrettyURL = @Domain + @CleanFirst + '.' + @CleanLast + '.' + @CleanSuffix -- suffix
 		END
-		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE UrlName = @UrlName) AND len(@CleanMiddle) > 0 AND len(@CleanSuffix) > 0
+		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE PrettyURL = @PrettyURL) AND len(@CleanMiddle) > 0 AND len(@CleanSuffix) > 0
 		BEGIN
 			SET @strategy = 'P.I.L.S'
-			SET @UrlName = @CleanFirst + '.' + substring(@CleanMiddle,1,1) + '.' + @CleanLast + '.' + @CleanSuffix-- middle initial and suffix
+			SET @PrettyURL = @Domain + @CleanFirst + '.' + substring(@CleanMiddle,1,1) + '.' + @CleanLast + '.' + @CleanSuffix-- middle initial and suffix
 		END
-		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE UrlName = @UrlName) AND len(@CleanMiddle) > 0 AND len(@CleanSuffix) > 0
+		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE PrettyURL = @PrettyURL) AND len(@CleanMiddle) > 0 AND len(@CleanSuffix) > 0
 		BEGIN
 			SET @strategy = 'P.M.L.S'
-			SET @UrlName = @CleanFirst + '.' + @CleanMiddle + '.' + @CleanLast + '.' + @CleanSuffix -- middle name and suffix
+			SET @PrettyURL = @Domain + @CleanFirst + '.' + @CleanMiddle + '.' + @CleanLast + '.' + @CleanSuffix -- middle name and suffix
 		END
 		-- if all else fails, add numbers
 		SET @i = 2
-		WHILE exists (SELECT * from [UCSF.].[NameAdditions] WHERE UrlName = @UrlName)
+		WHILE exists (SELECT * from [UCSF.].[NameAdditions] WHERE PrettyURL = @PrettyURL)
 		BEGIN
 			SET @strategy = 'P.L.N'
-			SET @UrlName = @CleanFirst + '.' + @CleanLast + '.' + CAST(@i as varchar)			
+			SET @PrettyURL = @Domain + @CleanFirst + '.' + @CleanLast + '.' + CAST(@i as varchar)			
 			SET @i = @i + 1
 		END				
 		-- it should be unique at this point
-		UPDATE [UCSF.].[NameAdditions] SET UrlName = @UrlName, [Strategy] = @strategy WHERE internalusername = @id
+		UPDATE [UCSF.].[NameAdditions] SET PrettyURL = @PrettyURL, [Strategy] = @strategy WHERE internalusername = @id
 		IF @@Error != 0 
             RETURN
 	END
@@ -370,12 +377,12 @@ CREATE PROCEDURE [UCSF.].[ReadActivityLog] @methodName nvarchar(255), @afterDT d
 AS   
 
 IF @methodName is not null
-	SELECT p.personid, p.displayname, p.urlname, p.emailaddr, l.createdDT, l.methodName, l.param1, l.param2
+	SELECT p.personid, p.displayname, p.prettyurl, p.emailaddr, l.createdDT, l.methodName, l.param1, l.param2
 	  FROM [Framework.].[Log.Activity] l  join [UCSF.].[vwPerson] p on l.personId = p.PersonID
 	  where l.methodName = @methodName and l.createdDT >= isnull(@afterDT, '01/01/1970') 
 	   order by activityLogId desc;
 ELSE
-	SELECT p.personid, p.displayname, p.urlname, p.emailaddr, l.createdDT, l.methodName, l.param1, l.param2
+	SELECT p.personid, p.displayname, p.prettyurl, p.emailaddr, l.createdDT, l.methodName, l.param1, l.param2
 	  FROM [Framework.].[Log.Activity] l  join [UCSF.].[vwPerson] p on l.personId = p.PersonID
 	  where l.createdDT >= isnull(@afterDT, '01/01/1970') 
 	   order by activityLogId desc;
@@ -435,7 +442,7 @@ GO
 
 -- note that for this you also need to alter some existing profiles SPs!
 -- look in the VersionUpgrade_2.9.0_2.10.0 folder for details
-CREATE VIEW [UCSF.].[vwPublication.Entitity.Claimed] AS
+CREATE VIEW [UCSF.].[vwPublication.Entity.Claimed] AS
   SELECT a.EntityID, a.PersonID, CAST (CASE WHEN p.PubID is not null THEN 1 ELSE 0 END AS BIT) Claimed FROM [Profile.Data].[vwPublication.Entity.Authorship] a 
   JOIN [Profile.Data].[vwPublication.Entity.InformationResource] i ON
   a.InformationResourceID = i.ENtityID left outer join [Profile.Data].[Publication.Person.Add] p ON p.personid = a.personid and p.PMID = i.PMID WHERE i.PMID IS NOT NULL;
@@ -790,8 +797,7 @@ BEGIN
 	ELSE IF CHARINDEX(@localBaseURI, @s) = 1
 	BEGIN
 		-- Nick, you'll need to add your own logic here!
-		SELECT @str = Value + '/' FROM [Framework.].[Parameter] WHERE ParameterID = 'BasePath'
-		SELECT @str = @str + na.UrlName FROM [UCSF.].[NameAdditions] na JOIN [Profile.Data].[Person] p on 
+		SELECT @str = na.prettyurl FROM [UCSF.].[NameAdditions] na JOIN [Profile.Data].[Person] p on 
 			na.InternalUserName = p.InternalUserName JOIN [RDF.Stage].[InternalNodeMap] n on n.internalid = p.personId
 			and n.[class] = 'http://xmlns.com/foaf/0.1/Person' 
 			WHERE n.nodeid = CAST(SUBSTRING(@s, LEN(@localBaseURI) + 1, LEN(@s) - LEN(@localBaseURI)) as bigint)
@@ -933,9 +939,7 @@ BEGIN
 		where k = 1
 	create unique clustered index idx_ap on #authorid_personid(pmid, personid, pmpubsauthorid)
 
-	DECLARE @basePath varchar(200)
 	DECLARE @baseURI varchar(200)
-	SELECT @basePath = Value FROM [Framework.].[Parameter] WHERE ParameterID = 'basePath'
 	SELECT @baseURI = Value FROM [Framework.].[Parameter] WHERE ParameterID = 'baseURI'
  
 	-- set coauthor links for local authors
@@ -945,7 +949,7 @@ BEGIN
 
 	-- this is currenlty specific to UCSF "pretty names". To make generic, just set the URL to the same value as the URI, or for those 
 	-- that use URL's of the form ../profile/name something else can be done 
-	UPDATE a set a.URI = @baseURI + cast(n.nodeid as varchar), a.URL = @basePath +'/' + na.UrlName 
+	UPDATE a set a.URI = @baseURI + cast(n.nodeid as varchar), a.URL = na.PrettyURL 
 		from [UCSF.CTSASearch].[Publication.PubMed.Author] a join #authorid_personid p on a.PmPubsAuthorID = p.pmpubsauthorid
 			join [RDF.Stage].internalnodemap n on n.internalid = p.personId
 			and n.[class] = 'http://xmlns.com/foaf/0.1/Person' join
@@ -2343,6 +2347,548 @@ END
 
 GO
 
+/***** UCSF for UC Wide Profiles: Add Host to ResolveURL objects  ********************/
+ALTER TABLE [User.Session].[History.ResolveURL] ADD [Host] VARCHAR(255) NULL;  
+
+/****** Object:  StoredProcedure [Framework.].[ResolveURL]    Script Date: 4/26/2017 11:09:33 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [Framework.].[ResolveURL]
+	@ApplicationName varchar(1000) = '',
+    @param1 varchar(1000) = '',
+	@param2 varchar(1000) = '',
+	@param3 varchar(1000) = '',
+	@param4 varchar(1000) = '',
+	@param5 varchar(1000) = '',
+	@param6 varchar(1000) = '',
+	@param7 varchar(1000) = '',
+	@param8 varchar(1000) = '',
+	@param9 varchar(1000) = '',
+	@SessionID uniqueidentifier = NULL,	 
+	@RestURL varchar(MAX) = NULL,
+	@UserAgent varchar(255) = NULL,
+	@ContentType varchar(255) = NULL,
+	@Host varchar(255) = null
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	-- Log request
+	DECLARE @HistoryID INT
+	INSERT INTO [User.Session].[History.ResolveURL]	(RequestDate, ApplicationName, param1, param2, param3, param4, param5, param6, param7, param8, param9, SessionID, RestURL, UserAgent, ContentType, Host)
+		SELECT GetDate(), @ApplicationName, @param1, @param2, @param3, @param4, @param5, @param6, @param7, @param8, @param9, @SessionID, @RestURL, @UserAgent, @ContentType, @Host
+	SELECT @HistoryID = @@IDENTITY		 
+
+	-- For dynamic sql
+	DECLARE @sql nvarchar(max)
+
+	-- Define variables needed to construct the output XML
+	DECLARE @Resolved bit
+	DECLARE @ErrorDescription varchar(max)
+	DECLARE @ResponseURL varchar(1000)
+	DECLARE @ResponseContentType varchar(255)
+	DECLARE @ResponseStatusCode int
+	DECLARE @ResponseRedirect bit
+	DECLARE @ResponseIncludePostData bit
+
+	-- Determine if this application has a custom resolver
+	DECLARE @CustomResolver varchar(1000)
+	SELECT @CustomResolver = Resolver
+		FROM [Framework.].RestPath
+		WHERE ApplicationName = @ApplicationName
+
+	-- Resolve the URL
+	SELECT @Resolved = 0
+	IF @CustomResolver IS NOT NULL
+	BEGIN
+		-- Use a custom resolver
+		SELECT @sql = 'EXEC ' + @CustomResolver 
+			+ ' @ApplicationName = ''' + replace(@ApplicationName,'''','''''') + ''', '
+			+ ' @param1 = ''' + replace(@param1,'''','''''') + ''', '
+			+ ' @param2 = ''' + replace(@param2,'''','''''') + ''', '
+			+ ' @param3 = ''' + replace(@param3,'''','''''') + ''', '
+			+ ' @param4 = ''' + replace(@param4,'''','''''') + ''', '
+			+ ' @param5 = ''' + replace(@param5,'''','''''') + ''', '
+			+ ' @param6 = ''' + replace(@param6,'''','''''') + ''', '
+			+ ' @param7 = ''' + replace(@param7,'''','''''') + ''', '
+			+ ' @param8 = ''' + replace(@param8,'''','''''') + ''', '
+			+ ' @param9 = ''' + replace(@param9,'''','''''') + ''', '
+			+ ' @SessionID = ' + IsNull('''' + replace(@SessionID,'''','''''') + '''','NULL') + ', '
+			+ ' @ContentType = ' + IsNull('''' + replace(@ContentType,'''','''''') + '''','NULL') + ', '
+			+ ' @Host = ''' + replace(@Host,'''','''''') + ''', '
+			+ ' @Resolved = @Resolved_OUT OUTPUT, '
+			+ ' @ErrorDescription = @ErrorDescription_OUT OUTPUT, '
+			+ ' @ResponseURL = @ResponseURL_OUT OUTPUT, '
+			+ ' @ResponseContentType = @ResponseContentType_OUT OUTPUT, '
+			+ ' @ResponseStatusCode = @ResponseStatusCode_OUT OUTPUT, '
+			+ ' @ResponseRedirect = @ResponseRedirect_OUT OUTPUT, '
+			+ ' @ResponseIncludePostData = @ResponseIncludePostData_OUT OUTPUT '
+		EXEC sp_executesql @sql, 
+			N'
+				@Resolved_OUT bit OUTPUT,
+				@ErrorDescription_OUT varchar(max) OUTPUT,
+				@ResponseURL_OUT varchar(1000) OUTPUT,
+				@ResponseContentType_OUT varchar(255) OUTPUT,
+				@ResponseStatusCode_OUT int OUTPUT,
+				@ResponseRedirect_OUT bit OUTPUT,
+				@ResponseIncludePostData_OUT bit OUTPUT',
+			@Resolved_OUT = @Resolved OUTPUT,
+			@ErrorDescription_OUT = @ErrorDescription OUTPUT,
+			@ResponseURL_OUT = @ResponseURL OUTPUT,
+			@ResponseContentType_OUT = @ResponseContentType OUTPUT,
+			@ResponseStatusCode_OUT = @ResponseStatusCode OUTPUT,
+			@ResponseRedirect_OUT = @ResponseRedirect OUTPUT,
+			@ResponseIncludePostData_OUT = @ResponseIncludePostData OUTPUT
+	END
+	ELSE
+	BEGIN
+		-- Use the default resolver
+		SELECT	@Resolved = 1,
+				@ErrorDescription = '', 
+				@ResponseURL = BaseURL,
+				@ResponseContentType = @ContentType,
+				@ResponseStatusCode = 200,
+				@ResponseRedirect = 0,
+				@ResponseIncludePostData = 0
+		    FROM [Framework.Alias].ApplicationBaseURL
+			WHERE ApplicationName = @ApplicationName
+		SELECT @ResponseURL = @ResponseURL + (CASE WHEN CHARINDEX('?',@ResponseURL) > 0 THEN '' ELSE '?' END)
+			+ '&param1=' + @param1
+			+ '&param2=' + @param2
+			+ '&param3=' + @param3
+			+ '&param4=' + @param4
+			+ '&param5=' + @param5
+			+ '&param6=' + @param6
+			+ '&param7=' + @param7
+			+ '&param8=' + @param8
+			+ '&param9=' + @param9
+	END
+	-- Add standard parameters
+	IF (@Resolved = 1) AND (@ResponseRedirect = 0)
+	BEGIN
+		SELECT @ResponseURL = @ResponseURL + (CASE WHEN CHARINDEX('?',@ResponseURL) > 0 THEN '' ELSE '?' END)
+		SELECT @ResponseURL = @ResponseURL + '&SessionID=' + IsNull(CAST(@SessionID AS varchar(50)),'')
+	END
+	SELECT @ErrorDescription = IsNull(@ErrorDescription,'URL could not be resolved.')
+
+	-- Log results
+	UPDATE [User.Session].[History.ResolveURL]
+		SET CustomResolver = @CustomResolver,
+			Resolved = @Resolved,
+			ErrorDescription = @ErrorDescription,
+			ResponseURL = @ResponseURL,
+			ResponseContentType = @ResponseContentType,
+			ResponseStatusCode = @ResponseStatusCode,
+			ResponseRedirect = @ResponseRedirect,
+			ResponseIncludePostData = @ResponseIncludePostData
+		WHERE HistoryID = @HistoryID
+
+	-- Return results 
+	SELECT	@Resolved Resolved, 
+			@ErrorDescription ErrorDescription, 
+			@ResponseURL ResponseURL,
+			@ResponseContentType ResponseContentType,
+			@ResponseStatusCode ResponseStatusCode,
+			@ResponseRedirect ResponseRedirect,
+			@ResponseIncludePostData ResponseIncludePostData,
+			@SessionID RedirectHeaderSessionID
+
+
+	/*
+		Examples:
+
+		EXEC [Framework.].[ResolveURL] @ApplicationName='profile', @param1='12345', @ContentType='application/rdf+xml'
+		EXEC [Framework.].[ResolveURL] @ApplicationName='profile', @param1='12345', @param2='12345.rdf'
+		EXEC [Framework.].[ResolveURL] @ApplicationName='profile', @param1='12345'
+		EXEC [Framework.].[ResolveURL] @ApplicationName='display', @param1='12345', @SessionID = '16A199ED-07C5-436F-AB7D-0214792630A6'
+		EXEC [Framework.].[ResolveURL] @ApplicationName='profile', @param1='12345', @param2='12345.rdf', @SessionID = '16A199ED-07C5-436F-AB7D-0214792630A6'
+
+	*/
+
+END
+
+GO
+
+/****** Object:  StoredProcedure [Edit.Framework].[ResolveURL]    Script Date: 4/26/2017 1:12:32 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [Edit.Framework].[ResolveURL]
+	@ApplicationName varchar(1000) = '',
+	@param1 varchar(1000) = '',
+	@param2 varchar(1000) = '',
+	@param3 varchar(1000) = '',
+	@param4 varchar(1000) = '',
+	@param5 varchar(1000) = '',
+	@param6 varchar(1000) = '',
+	@param7 varchar(1000) = '',
+	@param8 varchar(1000) = '',
+	@param9 varchar(1000) = '',
+	@SessionID uniqueidentifier = null,
+	@ContentType varchar(255) = null,
+	@Host varchar(255) = null,
+	@Resolved bit OUTPUT,
+	@ErrorDescription varchar(max) OUTPUT,
+	@ResponseURL varchar(1000) OUTPUT,
+	@ResponseContentType varchar(255) OUTPUT,
+	@ResponseStatusCode int OUTPUT,
+	@ResponseRedirect bit OUTPUT,
+	@ResponseIncludePostData bit OUTPUT
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	
+	-- By default we were not able to resolve the URL
+	SELECT @Resolved = 0
+
+	-- Load param values into a table
+	DECLARE @params TABLE (id int, val varchar(1000))
+	INSERT INTO @params (id, val) VALUES (1, @param1)
+	INSERT INTO @params (id, val) VALUES (2, @param2)
+	INSERT INTO @params (id, val) VALUES (3, @param3)
+	INSERT INTO @params (id, val) VALUES (4, @param4)
+	INSERT INTO @params (id, val) VALUES (5, @param5)
+	INSERT INTO @params (id, val) VALUES (6, @param6)
+	INSERT INTO @params (id, val) VALUES (7, @param7)
+	INSERT INTO @params (id, val) VALUES (8, @param8)
+	INSERT INTO @params (id, val) VALUES (9, @param9)
+
+	DECLARE @MaxParam int
+	SELECT @MaxParam = 0
+	SELECT @MaxParam = MAX(id) FROM @params WHERE val > ''
+
+	DECLARE @TabParam int
+	SELECT @TabParam = 3
+
+	DECLARE @REDIRECTPAGE VARCHAR(255)
+	
+	SELECT @REDIRECTPAGE = '~/edit/default.aspx'
+
+
+--this is for the display of the people search results if a queryID exists.
+		if(@Param1	<>	'' and IsNumeric(@Param1)=1)
+		BEGIN
+
+			SELECT @Resolved = 1,
+				@ErrorDescription = '',
+				@ResponseURL = @REDIRECTPAGE  + '?subject=' + @Param1							
+				
+					
+		END		
+
+
+set	@ResponseContentType =''
+set	@ResponseStatusCode  =''
+set	@ResponseRedirect =0
+set	@ResponseIncludePostData =0
+
+END
+
+GO
+
+/****** Object:  StoredProcedure [History.Framework].[ResolveURL]    Script Date: 4/26/2017 1:13:40 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [History.Framework].[ResolveURL]
+@ApplicationName VARCHAR (1000)='', @param1 VARCHAR (1000)='', @param2 VARCHAR (1000)='', @param3 VARCHAR (1000)='', @param4 VARCHAR (1000)='', @param5 VARCHAR (1000)='', @param6 VARCHAR (1000)='', @param7 VARCHAR (1000)='', @param8 VARCHAR (1000)='', @param9 VARCHAR (1000)='', @SessionID UNIQUEIDENTIFIER=null, @ContentType VARCHAR (255)=null, @Host VARCHAR (255)=null, @Resolved BIT OUTPUT, @ErrorDescription VARCHAR (MAX) OUTPUT, @ResponseURL VARCHAR (1000) OUTPUT, @ResponseContentType VARCHAR (255) OUTPUT, @ResponseStatusCode INT OUTPUT, @ResponseRedirect BIT OUTPUT, @ResponseIncludePostData BIT OUTPUT
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	
+	-- By default we were not able to resolve the URL
+	SELECT @Resolved = 0
+
+	-- Load param values into a table
+	DECLARE @params TABLE (id int, val varchar(1000))
+	INSERT INTO @params (id, val) VALUES (1, @param1)
+	INSERT INTO @params (id, val) VALUES (2, @param2)
+	INSERT INTO @params (id, val) VALUES (3, @param3)
+	INSERT INTO @params (id, val) VALUES (4, @param4)
+	INSERT INTO @params (id, val) VALUES (5, @param5)
+	INSERT INTO @params (id, val) VALUES (6, @param6)
+	INSERT INTO @params (id, val) VALUES (7, @param7)
+	INSERT INTO @params (id, val) VALUES (8, @param8)
+	INSERT INTO @params (id, val) VALUES (9, @param9)
+
+	DECLARE @MaxParam int
+	SELECT @MaxParam = 0
+	SELECT @MaxParam = MAX(id) FROM @params WHERE val > ''
+
+	DECLARE @TabParam int
+	SELECT @TabParam = 3
+
+	DECLARE @REDIRECTPAGE VARCHAR(255)
+	
+	SELECT @REDIRECTPAGE = '~/history/default.aspx'
+
+	-- Return results
+	IF (@ErrorDescription IS NULL)
+	BEGIN
+	
+		if(@Param1='list')
+		BEGIN
+			SELECT @Resolved = 1,
+				@ErrorDescription = '',
+				@ResponseURL = @REDIRECTPAGE + '?tab=list'
+		END						
+
+		if(@Param1='type')
+		BEGIN
+			SELECT @Resolved = 1,
+				@ErrorDescription = '',
+				@ResponseURL = @REDIRECTPAGE  + '?tab=type'									
+		END		
+	
+
+set	@ResponseContentType =''
+set	@ResponseStatusCode  =''
+set	@ResponseRedirect =0
+set	@ResponseIncludePostData =0
+
+
+
+				
+	END
+
+END
+
+GO
+
+/****** Object:  StoredProcedure [Direct.Framework].[ResolveURL]    Script Date: 4/26/2017 1:14:54 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+/*
+declare @resolved bit
+declare @t uniqueidentifier
+set @t = '719491AF-F4B2-48C0-B264-465D46730AB1';
+	declare @ErrorDescription varchar(max) 
+	declare @ResponseURL varchar(1000) 
+	declare @ResponseContentType varchar(255) 
+	declare @ResponseStatusCode int 
+	declare @ResponseRedirect bit 
+	declare @ResponseIncludePostData bit 
+
+
+
+exec [Direct.Framework].[ResolveDirectURL] 'direct','directservice.aspx', 'asdf','','','','','','','',@t,'', @resolved output, 
+	 @ErrorDescription output,
+	 @ResponseURL output,
+	 @ResponseContentType output,
+	 @ResponseStatusCode output,
+	 @ResponseRedirect output,
+	 @ResponseIncludePostData output
+
+
+
+select @ResponseURL
+
+*/
+ALTER PROCEDURE [Direct.Framework].[ResolveURL]
+	@ApplicationName varchar(1000) = '',
+	@param1 varchar(1000) = '',
+	@param2 varchar(1000) = '',
+	@param3 varchar(1000) = '',
+	@param4 varchar(1000) = '',
+	@param5 varchar(1000) = '',
+	@param6 varchar(1000) = '',
+	@param7 varchar(1000) = '',
+	@param8 varchar(1000) = '',
+	@param9 varchar(1000) = '',
+	@SessionID uniqueidentifier = null,
+	@ContentType varchar(255) = null,
+	@Host varchar(255) = null,
+	@Resolved bit OUTPUT,
+	@ErrorDescription varchar(max) OUTPUT,
+	@ResponseURL varchar(1000) OUTPUT,
+	@ResponseContentType varchar(255) OUTPUT,
+	@ResponseStatusCode int OUTPUT,
+	@ResponseRedirect bit OUTPUT,
+	@ResponseIncludePostData bit OUTPUT
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	
+	-- By default we were not able to resolve the URL
+	SELECT @Resolved = 0
+
+	-- Load param values into a table
+	DECLARE @params TABLE (id int, val varchar(1000))
+	INSERT INTO @params (id, val) VALUES (1, @param1)
+	INSERT INTO @params (id, val) VALUES (2, @param2)
+	INSERT INTO @params (id, val) VALUES (3, @param3)
+	INSERT INTO @params (id, val) VALUES (4, @param4)
+	INSERT INTO @params (id, val) VALUES (5, @param5)
+	INSERT INTO @params (id, val) VALUES (6, @param6)
+	INSERT INTO @params (id, val) VALUES (7, @param7)
+	INSERT INTO @params (id, val) VALUES (8, @param8)
+	INSERT INTO @params (id, val) VALUES (9, @param9)
+
+	DECLARE @MaxParam int
+	SELECT @MaxParam = 0
+	SELECT @MaxParam = MAX(id) FROM @params WHERE val > ''
+
+	DECLARE @TabParam int
+	SELECT @TabParam = 3
+
+	DECLARE @REDIRECTPAGE VARCHAR(255)
+	
+	SELECT @REDIRECTPAGE = '~/direct/default.aspx'
+
+	-- Return results
+	IF (@ErrorDescription IS NULL)
+	BEGIN
+
+		if(@ApplicationName = 'direct' and @param1 <> '' and @param2 = '')
+		BEGIN
+			SELECT @Resolved = 1,
+				@ErrorDescription = '',
+				@ResponseURL = @REDIRECTPAGE + '?queryid=' + @param1
+					
+		END
+
+
+		if(@ApplicationName = 'direct' and @param1 <> '' and @param2 <> '')
+		BEGIN
+			SELECT @Resolved = 1,
+				@ErrorDescription = '',
+				@ResponseURL = @REDIRECTPAGE + '?queryid=' + @param1 + '&stop=true'
+					
+		END
+	
+		set	@ResponseContentType =''
+		set	@ResponseStatusCode  =''
+		set	@ResponseRedirect =0
+		set	@ResponseIncludePostData =0
+				
+	END
+
+END
+
+GO
+
+/****** Object:  StoredProcedure [Search.Framework].[ResolveURL]    Script Date: 4/26/2017 1:15:51 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [Search.Framework].[ResolveURL]
+@ApplicationName VARCHAR (1000)='', @param1 VARCHAR (1000)='', @param2 VARCHAR (1000)='', @param3 VARCHAR (1000)='', @param4 VARCHAR (1000)='', @param5 VARCHAR (1000)='', @param6 VARCHAR (1000)='', @param7 VARCHAR (1000)='', @param8 VARCHAR (1000)='', @param9 VARCHAR (1000)='', @SessionID UNIQUEIDENTIFIER=null, @ContentType VARCHAR (255)=null, @Host VARCHAR (255)=null, @Resolved BIT OUTPUT, @ErrorDescription VARCHAR (MAX) OUTPUT, @ResponseURL VARCHAR (1000) OUTPUT, @ResponseContentType VARCHAR (255) OUTPUT, @ResponseStatusCode INT OUTPUT, @ResponseRedirect BIT OUTPUT, @ResponseIncludePostData BIT OUTPUT
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	
+	-- By default we were not able to resolve the URL
+	SELECT @Resolved = 0
+
+	-- Load param values into a table
+	DECLARE @params TABLE (id int, val varchar(1000))
+	INSERT INTO @params (id, val) VALUES (1, @param1)
+	INSERT INTO @params (id, val) VALUES (2, @param2)
+	INSERT INTO @params (id, val) VALUES (3, @param3)
+	INSERT INTO @params (id, val) VALUES (4, @param4)
+	INSERT INTO @params (id, val) VALUES (5, @param5)
+	INSERT INTO @params (id, val) VALUES (6, @param6)
+	INSERT INTO @params (id, val) VALUES (7, @param7)
+	INSERT INTO @params (id, val) VALUES (8, @param8)
+	INSERT INTO @params (id, val) VALUES (9, @param9)
+
+	DECLARE @MaxParam int
+	SELECT @MaxParam = 0
+	SELECT @MaxParam = MAX(id) FROM @params WHERE val > ''
+
+	DECLARE @TabParam int
+	SELECT @TabParam = 3
+
+	DECLARE @REDIRECTPAGE VARCHAR(255)
+	
+	SELECT @REDIRECTPAGE = '~/search/default.aspx'
+
+	-- Return results
+	IF (@ErrorDescription IS NULL)
+	BEGIN
+
+
+		if(@Param1='all' and @Param2='')
+		BEGIN
+			SELECT @Resolved = 1,
+				@ErrorDescription = '',
+				@ResponseURL = @REDIRECTPAGE + '?tab=all'
+		END		
+
+
+		if(@Param1='all' and @Param2='results')
+		BEGIN          
+		
+			SELECT @Resolved = 1,
+				@ErrorDescription = '',
+				@ResponseURL = @REDIRECTPAGE + '?tab=all&action=results'
+							
+		END
+
+
+		if(@Param1='people' and @Param2='')
+		BEGIN
+			SELECT @Resolved = 1,
+				@ErrorDescription = '',
+				@ResponseURL = @REDIRECTPAGE  + '?tab=people'				
+					
+		END		
+		if(@Param1='people' and @Param2='results')
+		BEGIN
+			SELECT @Resolved = 1,
+				@ErrorDescription = '',
+				@ResponseURL = @REDIRECTPAGE  + '?tab=people&action=results'				
+					
+		END		
+
+
+set	@ResponseContentType =''
+set	@ResponseStatusCode  =''
+set	@ResponseRedirect =0
+set	@ResponseIncludePostData =0
+
+
+
+				
+	END
+
+END
+
+GO
+
 /****** Object:  StoredProcedure [Profile.Framework].[ResolveURL]    Script Date: 10/31/2013 12:53:32 ******/
 SET ANSI_NULLS ON
 GO
@@ -2364,6 +2910,7 @@ ALTER PROCEDURE [Profile.Framework].[ResolveURL]
 	@param9 varchar(1000) = '',
 	@SessionID uniqueidentifier = null,
 	@ContentType varchar(255) = null,
+	@Host varchar(255) = null,
 	@Resolved bit = NULL OUTPUT,
 	@ErrorDescription varchar(max) = NULL OUTPUT,
 	@ResponseURL varchar(1000) = NULL OUTPUT,
@@ -2420,18 +2967,18 @@ BEGIN
 	DECLARE @aliases INT
 	SELECT @aliases = 0
 	
-	-- UCSF subject when Application name is based on URL_NAME
-	DECLARE @URL_NAME VARCHAR(1000)
+	-- UCSF subject when Application name is based on PRETTY_URL
+	DECLARE @PRETTY_URL VARCHAR(1000)
 	DECLARE @InternalUserName VARCHAR(100)
 	DECLARE @PersonID INT
 	IF (@MaxParam IS NULL) 
 	BEGIN
 		SELECT @PersonID = PersonID from [Profile.Data].[Person] p JOIN [UCSF.].NameAdditions n ON
-			p.InternalUserName = n.InternalUserName WHERE n.UrlName = @ApplicationName
+			p.InternalUserName = n.InternalUserName WHERE n.PrettyURL = @Host + '/' + @ApplicationName
   		SELECT @subject = i.nodeid from  [RDF.Stage].internalnodemap i with(nolock) where 
 			i.class = 'http://xmlns.com/foaf/0.1/Person' and i.internalid = @PersonID
         IF @subject is not null
-			SELECT @URL_NAME=@subject				
+			SELECT @PRETTY_URL=@subject				
 	END
 	-- subject
 	IF (@MaxParam >= @pointer)
@@ -2448,11 +2995,11 @@ BEGIN
 			SELECT @ErrorDescription = 'The subject cannot be found.'
 	END
 
-	-- UCSF if we only have Subject and this is for a person, replace with URL_NAME
+	-- UCSF if we only have Subject and this is for a person, replace with PRETTY_URL
 	IF (@MaxParam = 1) AND (@Subject IS NOT NULL)
 	    SELECT @InternalUserName = InternalUserName FROM [Profile.Data].[Person] WHERE
 			PersonID = (select InternalID from [RDF.Stage].internalnodemap i with(nolock) where i.class = 'http://xmlns.com/foaf/0.1/Person' and i.nodeId = @Subject)		
-		SELECT @URL_NAME = UrlName from [UCSF.].[NameAdditions] WHERE InternalUserName = @InternalUserName
+		SELECT @PRETTY_URL = PrettyURL from [UCSF.].[NameAdditions] WHERE InternalUserName = @InternalUserName
 
 	-- predicate
 	IF (@MaxParam >= @pointer) AND (@subject IS NOT NULL)
@@ -2546,12 +3093,10 @@ BEGIN
 		ELSE IF (@ApplicationName = 'profile')
 				-- Redirect 303 to the HTML URL
 				SELECT	@ResponseContentType = @ContentType,
-						@ResponseStatusCode = (CASE WHEN @URL_NAME IS NOT NULL THEN 301 ELSE 303 END),
+						@ResponseStatusCode = (CASE WHEN @PRETTY_URL IS NOT NULL THEN 301 ELSE 303 END),
 						@ResponseRedirect = 1,
 						@ResponseIncludePostData = 1,
-						@ResponseURL = @basePath + 
-							(CASE WHEN @URL_NAME IS NOT NULL THEN '/' + @URL_NAME
-							ELSE '/display' 
+						@ResponseURL = ISNULL(@PRETTY_URL, @basePath + '/display' 
 							+ (CASE WHEN @Subject IS NULL THEN ''
 									ELSE IsNull((SELECT TOP 1 '/'+Subject
 											FROM (
@@ -2585,7 +3130,6 @@ BEGIN
 											) t
 											ORDER BY k, Subject),'')
 									END)
-								END)
 							+ (CASE WHEN @MaxParam >= 1 AND @Pointer <= 1 THEN '/'+@param1 ELSE '' END)
 							+ (CASE WHEN @MaxParam >= 2 AND @Pointer <= 2 THEN '/'+@param2 ELSE '' END)
 							+ (CASE WHEN @MaxParam >= 3 AND @Pointer <= 3 THEN '/'+@param3 ELSE '' END)
@@ -2594,7 +3138,7 @@ BEGIN
 							+ (CASE WHEN @MaxParam >= 6 AND @Pointer <= 6 THEN '/'+@param6 ELSE '' END)
 							+ (CASE WHEN @MaxParam >= 7 AND @Pointer <= 7 THEN '/'+@param7 ELSE '' END)
 							+ (CASE WHEN @MaxParam >= 8 AND @Pointer <= 8 THEN '/'+@param8 ELSE '' END)
-							+ (CASE WHEN @MaxParam >= 9 AND @Pointer <= 9 THEN '/'+@param9 ELSE '' END)
+							+ (CASE WHEN @MaxParam >= 9 AND @Pointer <= 9 THEN '/'+@param9 ELSE '' END))
 		ELSE IF (@ApplicationName = 'presentation')
 				-- Display as HTML
 				SELECT	@ResponseURL = @ResponseURL + '&viewas=PresentationXML'

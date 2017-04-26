@@ -435,7 +435,7 @@ GO
 
 -- note that for this you also need to alter some existing profiles SPs!
 -- look in the VersionUpgrade_2.9.0_2.10.0 folder for details
-CREATE VIEW [UCSF.].[vwPublication.Entitity.Claimed] AS
+CREATE VIEW [UCSF.].[vwPublication.Entity.Claimed] AS
   SELECT a.EntityID, a.PersonID, CAST (CASE WHEN p.PubID is not null THEN 1 ELSE 0 END AS BIT) Claimed FROM [Profile.Data].[vwPublication.Entity.Authorship] a 
   JOIN [Profile.Data].[vwPublication.Entity.InformationResource] i ON
   a.InformationResourceID = i.ENtityID left outer join [Profile.Data].[Publication.Person.Add] p ON p.personid = a.personid and p.PMID = i.PMID WHERE i.PMID IS NOT NULL;

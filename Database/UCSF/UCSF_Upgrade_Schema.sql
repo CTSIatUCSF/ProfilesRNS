@@ -23,7 +23,7 @@ SET ANSI_PADDING ON
 GO
 
 CREATE TABLE [UCSF.].[NameAdditions] (
-	[InternalUserName] [varchar](9) NOT NULL,
+	[InternalUserName] [nvarchar](50) NOT NULL,
 	[CleanFirst] [nvarchar](50) NULL,
 	[CleanMiddle] [nvarchar](50) NULL,
 	[CleanLast] [nvarchar](50) NULL,
@@ -235,13 +235,38 @@ END
 
 GO
 
+/****** Object:  UserDefinedFunction [UCSF.].[fn_UrlCleanName]    Script Date: 4/26/2017 3:12:58 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE FUNCTION [UCSF.].[fn_ApplicationNameFromPrettyUrl]
+(
+	@CompleteURL varchar(255)
+)
+RETURNS varchar(255)
+AS
+BEGIN
+
+	RETURN REVERSE(RTRIM(SUBSTRING(REVERSE (@CompleteURL), 
+					(CHARINDEX('?', REVERSE (@CompleteURL), 1)+1), 
+					((CHARINDEX('/', REVERSE (@CompleteURL), 1)) - (CHARINDEX('?', REVERSE (@CompleteURL), 1))- 1)))) 
+END
+
+
+GO
+
 ---------------------------------------------------------------------------------------------------------------------
 --
 --	Create Stored Procedures
 --
 ---------------------------------------------------------------------------------------------------------------------
 
-/****** Object:  StoredProcedure [UCSF.].[[CreatePrettyURLs]]    Script Date: 10/11/2013 10:52:39 ******/
+/****** Object:  StoredProcedure [UCSF.].[CreatePrettyURLs]    Script Date: 10/11/2013 10:52:39 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -252,7 +277,7 @@ CREATE PROCEDURE [UCSF.].[CreatePrettyURLs]
 AS
 BEGIN
 		
-	DECLARE @id varchar(9)
+	DECLARE @id nvarchar(50)
 	DECLARE @CleanFirst nvarchar(255)
 	DECLARE @CleanMiddle nvarchar(255)
 	DECLARE @CleanLast nvarchar(255)
@@ -261,16 +286,16 @@ BEGIN
 	DECLARE @PrettyURL nvarchar(255)
 	DECLARE @Strategy nvarchar(50)
 	DECLARE @i int
-	DECLARE @BaseURI nvarchar(255)
+	DECLARE @BaseDomain nvarchar(255)
 	DECLARE @Domain nvarchar(255)
 
-	SELECT @BaseURI=Value FROM [Framework.].[Parameter] WHERE ParameterID='baseURI'
+	SELECT @BaseDomain=Value + '/' FROM [Framework.].[Parameter] WHERE ParameterID='basePath'
 		
 	WHILE exists (SELECT *
-		FROM [UCSF.].[NameAdditions] WHERE @PrettyURL is null)
+		FROM [UCSF.].[NameAdditions] WHERE PrettyURL is null)
 	BEGIN
 		SELECT TOP 1 @id=n.internalusername,
-					 @Domain=ISNULL(p.Value, @BaseURI),
+					 @Domain=ISNULL(p.Value, @BaseDomain),
 					 @CleanFirst=n.CleanFirst, 
 					 @CleanMiddle=n.CleanMiddle,
 					 @CleanLast=n.CleanLast,

@@ -6,6 +6,7 @@ DROP PROCEDURE [UCSF.].[AddProxyByInternalUsername]
 DROP PROCEDURE [UCSF.].[CreatePrettyURLs]
 DROP PROCEDURE [UCSF.].[ReadActivityLog]
 DROP FUNCTION [UCSF.].[fn_UrlCleanName]
+DROP FUNCTION [UCSF.].[fn_ApplicationNameFromPrettyUrl]
 DROP TABLE [UCSF.].[NameAdditions]
 DROP SCHEMA [UCSF.]
 

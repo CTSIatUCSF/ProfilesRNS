@@ -59,14 +59,6 @@ namespace Profiles.Profile.Modules.PropertyList
             
             bool hasitems = false;
 
-            // UCSF OpenSocial items
-            string uri = null;
-            // code to convert from numeric node ID to URI
-            if (base.Namespaces.HasNamespace("rdf"))
-            {
-                XmlNode node = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces);
-                uri = node != null ? node.Value : null;
-            }
             foreach (XmlNode propertygroup in this.PropertyListXML.SelectNodes("PropertyList/PropertyGroup"))
             {                
 

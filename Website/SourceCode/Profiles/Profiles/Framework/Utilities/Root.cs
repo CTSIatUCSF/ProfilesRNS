@@ -82,7 +82,7 @@ namespace Profiles.Framework.Utilities
         }
 
         // this one gets it from Web.config, and is not meant for page level use
-        static public string GetTheme()
+        static public string GetDefaultTheme()
         {
             PagesSection pages = (PagesSection)ConfigurationManager.GetSection("system.web/pages");
             return pages.Theme;

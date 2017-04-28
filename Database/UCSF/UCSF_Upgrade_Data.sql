@@ -641,6 +641,11 @@ UPDATE [Ontology.Presentation].[XML] SET [PresentationXML]=CONVERT(xml,N'<Presen
 
 commit
 
+--- UCWide Branding work
+INSERT INTO [UCSF.].[Brand] (BrandID, InstitutionAbbreviation, Theme, BasePath) VALUES (1, 'UCSF', 'UCSF', 'http://stage-profiles.ucsf.edu/ucsf');
+INSERT INTO [UCSF.].[Brand] (BrandID, InstitutionAbbreviation, Theme, BasePath) VALUES (2, 'UCSD', 'UCSD', 'http://stage-profiles.ucsf.edu/ucsd');
+
+
 --rollback
 --commit
 ---EXEC [Framework.].[LoadXMLFile] @FilePath = '$(ProfilesRNSRootPath)\Data\PRNS_1.2.owl', @TableDestination = '[Ontology.Import].owl', @DestinationColumn = 'DATA', @NameValue = 'PRNS_1.2'

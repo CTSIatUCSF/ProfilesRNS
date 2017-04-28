@@ -919,10 +919,10 @@ namespace Profiles.Framework.Utilities
         // Load all the ID's for people so we don't have to hit the DB all the time
         public void LoadUCSFIdSet()
         {
-            String IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.urlname, u.UserName, '' from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID";
+            String IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.urlname, u.UserName, '', u.Theme from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID";
             if ("UCSF".Equals(Root.GetTheme()))
             {
-                IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.urlname, u.UserName, f.UID_USERID from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID join import_ucsf.dbo.vw_FNO f on p.InternalUsername = f.INDIVIDUAL_ID";
+                IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.urlname, u.UserName, f.UID_USERID, u.Theme from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID join import_ucsf.dbo.vw_FNO f on p.InternalUsername = f.INDIVIDUAL_ID";
             }
 
             using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
@@ -930,7 +930,7 @@ namespace Profiles.Framework.Utilities
             {
                 while (reader.Read())
                 {
-                    new UCSFIDSet(Convert.ToInt64(reader[0]), Convert.ToInt64(reader[1]), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString());
+                    new UCSFIDSet(Convert.ToInt64(reader[0]), Convert.ToInt64(reader[1]), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), reader[6].ToString());
                 }
             }
         }

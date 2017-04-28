@@ -31,6 +31,15 @@ namespace Profiles.Framework {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
+        /// MasterPageFeedbackUSC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageFeedbackUSC;
+        
+        /// <summary>
         /// bodyMaster control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,24 @@ namespace Profiles.Framework {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel MasterPageHeaderUSC;
+        
+        /// <summary>
+        /// MasterPageHeaderLBNL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageHeaderLBNL;
+        
+        /// <summary>
+        /// MasterPageHeaderUC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageHeaderUC;
         
         /// <summary>
         /// ContentActive control.
@@ -335,6 +362,33 @@ namespace Profiles.Framework {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel MasterPageFooterUCSD;
+        
+        /// <summary>
+        /// MasterPageFooterUSC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageFooterUSC;
+        
+        /// <summary>
+        /// MasterPageFooterLBNL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageFooterLBNL;
+        
+        /// <summary>
+        /// MasterPageFooterUC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageFooterUC;
         
         /// <summary>
         /// ContentFooter control.

@@ -761,7 +761,7 @@ INSERT INTO [Ontology.].[DataMap] (DataMapID, DataMapGroup, IsAutoFeed, Graph,
 		oObjectType, Weight, OrderBy, ViewSecurityGroup, EditSecurityGroup)
 	VALUES (1002, 1, 1, 1,
 		'http://vivoweb.org/ontology/core#Authorship', NULL, 'http://profiles.ucsf.edu/ontology/ucsf#hasClaimedPublication',
-		'[UCSF.].[vwPublication.Entitity.Claimed]',
+		'[UCSF.].[vwPublication.Entity.Claimed]',
 		'Authorship', 'EntityID',
 		NULL, NULL, NULL, 'Claimed', 'http://www.w3.org/2001/XMLSchema#boolean', NULL,
 		1, 1, NULL, -1, -40);

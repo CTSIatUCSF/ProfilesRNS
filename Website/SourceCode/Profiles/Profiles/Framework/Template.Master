@@ -213,6 +213,10 @@
                     <ul id="editmenu"></ul>
                 </div>
             </asp:Panel>
+            <asp:Panel ID="MasterPageHeaderLBNL" runat="server" SkinID="LBNL" Visible="false">
+            </asp:Panel>
+            <asp:Panel ID="MasterPageHeaderUC" runat="server" SkinID="UC" Visible="false">
+            </asp:Panel>
 
 			<div class="profilesContentActive">
 				<div class="panelActive">
@@ -396,6 +400,10 @@
 							This site is running Profiles RNS version <%=GetVersion()%>.
                             </p>
                         </div>
+                    </asp:Panel>
+                    <asp:Panel ID="MasterPageFooterLBNL" runat="server" SkinID="LBNL" Visible="false">
+                    </asp:Panel>
+                    <asp:Panel ID="MasterPageFooterUC" runat="server" SkinID="UC" Visible="false">
                     </asp:Panel>
                     <asp:ContentPlaceHolder ID="ContentFooter" runat="server">
                         <asp:Repeater runat="server" ID="rptFooter" OnItemDataBound="DrawModule">

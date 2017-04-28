@@ -26,7 +26,7 @@ Components:</h3>
          <span id="public"><img src="Images/icons_lock.gif" />&nbsp;Always Public</span>
          <asp:Panel ID="EditPropListUCSF" runat="server" SkinID="UCSF" Visible="false" CssClass="inlineBlock"><span id="cls">This info is drawn from the Campus Locator System. 
          Please contact your HR representative for corrections.</span></asp:Panel>
-         <asp:Panel ID="EditPropListUCSD" runat="server" SkinID="UCSD" Visible="false" CssClass="inlineBlock"><span id="cls">This info is drawn an automatic data feed.</span></asp:Panel>
+         <asp:Panel ID="EditPropListUCSD" runat="server" SkinID="UCSD" Visible="false" CssClass="inlineBlock"><span id="cls">This info is drawn from an automatic data feed.</span></asp:Panel>
          <asp:Panel ID="EditPropListUSC" runat="server" SkinID="USC" Visible="false" CssClass="inlineBlock"><span id="cls">This info is drawn from the Campus Locator System. 
          Please contact your HR representative for corrections.</span></asp:Panel>
        </td>

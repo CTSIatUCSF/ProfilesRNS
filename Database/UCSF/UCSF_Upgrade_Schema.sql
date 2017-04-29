@@ -2399,8 +2399,8 @@ END
 
 GO
 
-/***** UCSF for UC Wide Profiles: Add Host to ResolveURL objects  ********************/
-ALTER TABLE [User.Session].[History.ResolveURL] ADD [Host] VARCHAR(255) NULL;  
+/***** UCSF for UC Wide Profiles: Add FullApplicationPath to ResolveURL objects  ********************/
+ALTER TABLE [User.Session].[History.ResolveURL] ADD [FullApplicationPath] VARCHAR(255) NULL;  
 
 /****** Object:  StoredProcedure [Framework.].[ResolveURL]    Script Date: 4/26/2017 11:09:33 AM ******/
 SET ANSI_NULLS ON
@@ -2424,7 +2424,7 @@ ALTER PROCEDURE [Framework.].[ResolveURL]
 	@RestURL varchar(MAX) = NULL,
 	@UserAgent varchar(255) = NULL,
 	@ContentType varchar(255) = NULL,
-	@Host varchar(255) = null
+	@FullApplicationPath varchar(255) = null
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -2433,8 +2433,8 @@ BEGIN
 
 	-- Log request
 	DECLARE @HistoryID INT
-	INSERT INTO [User.Session].[History.ResolveURL]	(RequestDate, ApplicationName, param1, param2, param3, param4, param5, param6, param7, param8, param9, SessionID, RestURL, UserAgent, ContentType, Host)
-		SELECT GetDate(), @ApplicationName, @param1, @param2, @param3, @param4, @param5, @param6, @param7, @param8, @param9, @SessionID, @RestURL, @UserAgent, @ContentType, @Host
+	INSERT INTO [User.Session].[History.ResolveURL]	(RequestDate, ApplicationName, param1, param2, param3, param4, param5, param6, param7, param8, param9, SessionID, RestURL, UserAgent, ContentType, FullApplicationPath)
+		SELECT GetDate(), @ApplicationName, @param1, @param2, @param3, @param4, @param5, @param6, @param7, @param8, @param9, @SessionID, @RestURL, @UserAgent, @ContentType, @FullApplicationPath
 	SELECT @HistoryID = @@IDENTITY		 
 
 	-- For dynamic sql
@@ -2473,7 +2473,7 @@ BEGIN
 			+ ' @param9 = ''' + replace(@param9,'''','''''') + ''', '
 			+ ' @SessionID = ' + IsNull('''' + replace(@SessionID,'''','''''') + '''','NULL') + ', '
 			+ ' @ContentType = ' + IsNull('''' + replace(@ContentType,'''','''''') + '''','NULL') + ', '
-			+ ' @Host = ''' + replace(@Host,'''','''''') + ''', '
+			+ ' @FullApplicationPath = ''' + replace(@FullApplicationPath,'''','''''') + ''', '
 			+ ' @Resolved = @Resolved_OUT OUTPUT, '
 			+ ' @ErrorDescription = @ErrorDescription_OUT OUTPUT, '
 			+ ' @ResponseURL = @ResponseURL_OUT OUTPUT, '
@@ -2587,7 +2587,7 @@ ALTER PROCEDURE [Edit.Framework].[ResolveURL]
 	@param9 varchar(1000) = '',
 	@SessionID uniqueidentifier = null,
 	@ContentType varchar(255) = null,
-	@Host varchar(255) = null,
+	@FullApplicationPath varchar(255) = null,
 	@Resolved bit OUTPUT,
 	@ErrorDescription varchar(max) OUTPUT,
 	@ResponseURL varchar(1000) OUTPUT,
@@ -2659,7 +2659,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 ALTER PROCEDURE [History.Framework].[ResolveURL]
-@ApplicationName VARCHAR (1000)='', @param1 VARCHAR (1000)='', @param2 VARCHAR (1000)='', @param3 VARCHAR (1000)='', @param4 VARCHAR (1000)='', @param5 VARCHAR (1000)='', @param6 VARCHAR (1000)='', @param7 VARCHAR (1000)='', @param8 VARCHAR (1000)='', @param9 VARCHAR (1000)='', @SessionID UNIQUEIDENTIFIER=null, @ContentType VARCHAR (255)=null, @Host VARCHAR (255)=null, @Resolved BIT OUTPUT, @ErrorDescription VARCHAR (MAX) OUTPUT, @ResponseURL VARCHAR (1000) OUTPUT, @ResponseContentType VARCHAR (255) OUTPUT, @ResponseStatusCode INT OUTPUT, @ResponseRedirect BIT OUTPUT, @ResponseIncludePostData BIT OUTPUT
+@ApplicationName VARCHAR (1000)='', @param1 VARCHAR (1000)='', @param2 VARCHAR (1000)='', @param3 VARCHAR (1000)='', @param4 VARCHAR (1000)='', @param5 VARCHAR (1000)='', @param6 VARCHAR (1000)='', @param7 VARCHAR (1000)='', @param8 VARCHAR (1000)='', @param9 VARCHAR (1000)='', @SessionID UNIQUEIDENTIFIER=null, @ContentType VARCHAR (255)=null, @FullApplicationPath VARCHAR (255)=null, @Resolved BIT OUTPUT, @ErrorDescription VARCHAR (MAX) OUTPUT, @ResponseURL VARCHAR (1000) OUTPUT, @ResponseContentType VARCHAR (255) OUTPUT, @ResponseStatusCode INT OUTPUT, @ResponseRedirect BIT OUTPUT, @ResponseIncludePostData BIT OUTPUT
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -2772,7 +2772,7 @@ ALTER PROCEDURE [Direct.Framework].[ResolveURL]
 	@param9 varchar(1000) = '',
 	@SessionID uniqueidentifier = null,
 	@ContentType varchar(255) = null,
-	@Host varchar(255) = null,
+	@FullApplicationPath varchar(255) = null,
 	@Resolved bit OUTPUT,
 	@ErrorDescription varchar(max) OUTPUT,
 	@ResponseURL varchar(1000) OUTPUT,
@@ -2854,7 +2854,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 ALTER PROCEDURE [Search.Framework].[ResolveURL]
-@ApplicationName VARCHAR (1000)='', @param1 VARCHAR (1000)='', @param2 VARCHAR (1000)='', @param3 VARCHAR (1000)='', @param4 VARCHAR (1000)='', @param5 VARCHAR (1000)='', @param6 VARCHAR (1000)='', @param7 VARCHAR (1000)='', @param8 VARCHAR (1000)='', @param9 VARCHAR (1000)='', @SessionID UNIQUEIDENTIFIER=null, @ContentType VARCHAR (255)=null, @Host VARCHAR (255)=null, @Resolved BIT OUTPUT, @ErrorDescription VARCHAR (MAX) OUTPUT, @ResponseURL VARCHAR (1000) OUTPUT, @ResponseContentType VARCHAR (255) OUTPUT, @ResponseStatusCode INT OUTPUT, @ResponseRedirect BIT OUTPUT, @ResponseIncludePostData BIT OUTPUT
+@ApplicationName VARCHAR (1000)='', @param1 VARCHAR (1000)='', @param2 VARCHAR (1000)='', @param3 VARCHAR (1000)='', @param4 VARCHAR (1000)='', @param5 VARCHAR (1000)='', @param6 VARCHAR (1000)='', @param7 VARCHAR (1000)='', @param8 VARCHAR (1000)='', @param9 VARCHAR (1000)='', @SessionID UNIQUEIDENTIFIER=null, @ContentType VARCHAR (255)=null, @FullApplicationPath VARCHAR (255)=null, @Resolved BIT OUTPUT, @ErrorDescription VARCHAR (MAX) OUTPUT, @ResponseURL VARCHAR (1000) OUTPUT, @ResponseContentType VARCHAR (255) OUTPUT, @ResponseStatusCode INT OUTPUT, @ResponseRedirect BIT OUTPUT, @ResponseIncludePostData BIT OUTPUT
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -2962,7 +2962,7 @@ ALTER PROCEDURE [Profile.Framework].[ResolveURL]
 	@param9 varchar(1000) = '',
 	@SessionID uniqueidentifier = null,
 	@ContentType varchar(255) = null,
-	@Host varchar(255) = null,
+	@FullApplicationPath varchar(255) = null,
 	@Resolved bit = NULL OUTPUT,
 	@ErrorDescription varchar(max) = NULL OUTPUT,
 	@ResponseURL varchar(1000) = NULL OUTPUT,
@@ -3026,7 +3026,7 @@ BEGIN
 	IF (@MaxParam IS NULL) 
 	BEGIN
 		SELECT @PersonID = PersonID from [Profile.Data].[Person] p JOIN [UCSF.].NameAdditions n ON
-			p.InternalUserName = n.InternalUserName WHERE n.PrettyURL = @Host + '/' + @ApplicationName
+			p.InternalUserName = n.InternalUserName WHERE n.PrettyURL = @FullApplicationPath + '/' + @ApplicationName
   		SELECT @subject = i.nodeid from  [RDF.Stage].internalnodemap i with(nolock) where 
 			i.class = 'http://xmlns.com/foaf/0.1/Person' and i.internalid = @PersonID
         IF @subject is not null

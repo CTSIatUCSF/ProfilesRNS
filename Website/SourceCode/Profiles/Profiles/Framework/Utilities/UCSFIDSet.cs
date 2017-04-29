@@ -13,6 +13,7 @@ namespace Profiles.Framework.Utilities
         public static Dictionary<string, UCSFIDSet> ByPrettyURL = new Dictionary<string, UCSFIDSet>();
         public static Dictionary<string, UCSFIDSet> ByFNO = new Dictionary<string, UCSFIDSet>();
         public static Dictionary<string, UCSFIDSet> ByUserName = new Dictionary<string, UCSFIDSet>(); // hopefully EPPN
+        public static HashSet<string> PrettyURLApplicationNames = new HashSet<string>();
 
         public Int64 PersonId { get; set; }
         public Int64 NodeId { get; set; }
@@ -20,9 +21,9 @@ namespace Profiles.Framework.Utilities
         public string PrettyURL { get; set; }
         public string UserName { get; set; }
         public string FNO { get; set; }
-        public string Theme { get; set; }
+        public Brand Brand { get; set; }
 
-        public UCSFIDSet(Int64 PersonId, Int64 NodeId, string EmployeeID, string PrettyURL, string UserName, string FNO, string Theme)
+        public UCSFIDSet(Int64 PersonId, Int64 NodeId, string EmployeeID, string PrettyURL, string UserName, string FNO, Brand Brand)
         {
             this.PersonId = PersonId;
             this.NodeId = NodeId;
@@ -30,7 +31,7 @@ namespace Profiles.Framework.Utilities
             this.PrettyURL = PrettyURL.ToLower();
             this.UserName = UserName;
             this.FNO = FNO.ToLower();
-            this.Theme = Theme;
+            this.Brand = Brand;
 
             ByPersonId[this.PersonId] = this;
             ByNodeId[this.NodeId] = this;
@@ -38,6 +39,9 @@ namespace Profiles.Framework.Utilities
             ByPrettyURL[this.PrettyURL] = this;
             ByUserName[this.UserName] = this;
             ByFNO[this.FNO] = this;
+
+            string[] uriparts = PrettyURL.Split('/');
+            PrettyURLApplicationNames.Add(uriparts[uriparts.Length - 1]);
         }
     }
 }

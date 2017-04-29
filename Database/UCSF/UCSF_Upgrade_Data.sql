@@ -718,9 +718,9 @@ INSERT INTO [Ontology.].[DataMap] (DataMapID, DataMapGroup, IsAutoFeed, Graph,
 		oObjectType, Weight, OrderBy, ViewSecurityGroup, EditSecurityGroup)
 	VALUES (1000, 1, 1, 1,
 		'http://xmlns.com/foaf/0.1/Person', NULL, 'http://xmlns.com/foaf/0.1/workplaceHomepage',
-		'(SELECT p.PersonID, f.Value + ''/'' + p.UrlName workplaceHomepage FROM [UCSF.].[vwPerson] p LEFT JOIN [Framework.].[Parameter] f ON f.ParameterID = ''basePath'' AND p.UrlName IS NOT NULL) t',
+		'[UCSF.].[vwPerson]',
 		'Person', 'PersonID',
-		'workplaceHomepage',
+		'PrettyURL',
 		1, 1, NULL, -1, -40)
 
 -- HMS Pub Category

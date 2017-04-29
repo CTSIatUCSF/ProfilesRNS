@@ -30,7 +30,7 @@ using Profiles.Framework.Utilities;
 namespace Profiles.Profile.Utilities
 {
 
-    public class ProfileData : System.Web.UI.Page
+    public class ProfileData : BrandedPage
     {
         #region "Local Private Data"
 
@@ -40,6 +40,15 @@ namespace Profiles.Profile.Utilities
         protected void Page_PreRender(object sender, EventArgs e)
         {
 
+        }
+
+        protected override void OnPreInit(EventArgs e)
+        {
+            base.OnPreInit(e);
+            if (!String.IsNullOrEmpty(Request.QueryString["Subject"]))
+            {
+                Page.Theme = Brand.GetThemeForSubject(Int64.Parse(Request.QueryString["subject"]));
+            }
         }
 
         public ProfileData()

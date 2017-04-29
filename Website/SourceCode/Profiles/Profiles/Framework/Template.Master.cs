@@ -596,7 +596,7 @@ namespace Profiles.Framework
 
         public string GetURLDomain()
         {
-            return Root.Domain;
+            return Brand.GetDomain(Page);
         }
 
         public string GetVersion()
@@ -614,7 +614,7 @@ namespace Profiles.Framework
 
         public string GetThemedFavicon()
         {
-            return Root.GetThemedFile(Page, "Images/favicon.ico");
+            return Brand.GetThemedFile(Page, "Images/favicon.ico");
         }
 
 

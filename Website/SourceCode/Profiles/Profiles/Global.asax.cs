@@ -43,6 +43,7 @@ namespace Profiles
         /// <param name="e"> .Net Event Arguments</param>
         protected void Application_Start(object sender, EventArgs e)
         {
+            new Framework.Utilities.DataIO().LoadBrands();
             new Framework.Utilities.DataIO().LoadUCSFIdSet();
             RegisterRoutes(RouteTable.Routes);
             LoadModuleCatalogue();
@@ -114,7 +115,7 @@ namespace Profiles
                 while (reader.Read())
                 {
                     // do not want to add these others for non pretty names
-                    if (UCSFIDSet.ByPrettyURL.ContainsKey(reader[0].ToString()))
+                    if (UCSFIDSet.PrettyURLApplicationNames.Contains(reader[0].ToString()))
                     {
                         routes.Add("ProfilesAliasPath0" + loop, new Route(reader[0].ToString(), new PrettyURLRouteHandler(reader[0].ToString())));
                     }

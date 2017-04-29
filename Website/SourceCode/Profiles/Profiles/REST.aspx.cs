@@ -182,7 +182,7 @@ namespace Profiles
                                    Root.Domain + Root.AbsolutePath,
                                    session.UserAgent,
                                    getBestAcceptType(HttpContext.Current.Request.AcceptTypes),
-                                   HttpContext.Current.Request.Url.Host);
+                                   HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host +  HttpContext.Current.Request.ApplicationPath);
 
 
             Framework.Utilities.DebugLogging.Log("{REST.aspx.cs} ProcessRequest() redirect=" + resolve.Redirect.ToString() + " to=>" + resolve.ResponseURL);

@@ -920,7 +920,7 @@ namespace Profiles.Framework.Utilities
         public void LoadUCSFIdSet()
         {
             String IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.urlname, u.UserName, '', u.Theme from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID";
-            if ("UCSF".Equals(Root.GetTheme()))
+            if ("UCSF".Equals(Root.GetDefaultTheme()))
             {
                 IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.urlname, u.UserName, f.UID_USERID, u.Theme from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID join import_ucsf.dbo.vw_FNO f on p.InternalUsername = f.INDIVIDUAL_ID";
             }

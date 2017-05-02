@@ -39,16 +39,16 @@ namespace Profiles.Login.Modules.Login
 
                     sm.SessionLogout();
                     sm.SessionDestroy();
-                    Response.Redirect(Root.Domain + "/search");
+                    Response.Redirect(Brand.GetDomain() + "/search");
                 }
                 else if (Request.QueryString["method"].ToString() == "login" && sm.Session().PersonID > 0)
                 {
                     if (Request.QueryString["redirectto"] == null && Request.QueryString["edit"] == "true")
                     {
                         if (Request.QueryString["editparams"] == null)
-                            Response.Redirect(Root.Domain + "/edit/" + sm.Session().NodeID);
+                            Response.Redirect(Brand.GetDomain() + "/edit/" + sm.Session().NodeID);
                         else
-                            Response.Redirect(Root.Domain + "/edit/default.aspx?subject=" + sm.Session().NodeID + "&" + Request.QueryString["editparams"]);
+                            Response.Redirect(Brand.GetDomain() + "/edit/default.aspx?subject=" + sm.Session().NodeID + "&" + Request.QueryString["editparams"]);
                     }
                     else
                         Response.Redirect(Request.QueryString["redirectto"].ToString());
@@ -80,9 +80,9 @@ namespace Profiles.Login.Modules.Login
                 {
                     if (Request.QueryString["edit"] == "true")
                         if (Request.QueryString["editparams"] == null)
-                            Response.Redirect(Root.Domain + "/edit/" + sm.Session().NodeID);
+                            Response.Redirect(Brand.GetDomain() + "/edit/" + sm.Session().NodeID);
                         else
-                            Response.Redirect(Root.Domain + "/edit/default.aspx?subject=" + sm.Session().NodeID + "&" + Request.QueryString["editparams"]);
+                            Response.Redirect(Brand.GetDomain() + "/edit/default.aspx?subject=" + sm.Session().NodeID + "&" + Request.QueryString["editparams"]);
                     else
                         Response.Redirect(Request.QueryString["redirectto"].ToString());
 
@@ -105,7 +105,7 @@ namespace Profiles.Login.Modules.Login
         private void LoadAssets()
         {
             HtmlLink Searchcss = new HtmlLink();
-            Searchcss.Href = Root.Domain + "/Search/CSS/search.css";
+            Searchcss.Href = Brand.GetDomain() + "/Search/CSS/search.css";
             Searchcss.Attributes["rel"] = "stylesheet";
             Searchcss.Attributes["type"] = "text/css";
             Searchcss.Attributes["media"] = "all";
@@ -113,10 +113,10 @@ namespace Profiles.Login.Modules.Login
 
             // Inject script into HEADER
             Literal script = new Literal();
-            script.Text = "<script>var _path = \"" + Root.Domain + "\";</script>";
+            script.Text = "<script>var _path = \"" + Brand.GetDomain() + "\";</script>";
             Page.Header.Controls.Add(script);
 
-            //Response.Write("<script>var _path = \"" + Root.Domain + "\";</script>");
+            //Response.Write("<script>var _path = \"" + Brand.GetDomain() + "\";</script>");
 
 
         }

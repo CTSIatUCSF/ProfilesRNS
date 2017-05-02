@@ -320,7 +320,7 @@ namespace Profiles.ORNG.Utilities
                 //body.Attributes.Add("onload", "my.init();");
 
                 HtmlLink gadgetscss = new HtmlLink();
-                gadgetscss.Href = Root.Domain + "/ORNG/CSS/gadgets.css";
+                gadgetscss.Href = Brand.GetDomain() + "/ORNG/CSS/gadgets.css";
                 gadgetscss.Attributes["rel"] = "stylesheet";
                 gadgetscss.Attributes["type"] = "text/css";
                 gadgetscss.Attributes["media"] = "all";
@@ -340,8 +340,8 @@ namespace Profiles.ORNG.Utilities
 
                 HtmlGenericControl shindigjs = new HtmlGenericControl("script");
                 shindigjs.Attributes.Add("type", "text/javascript");
-                //shindigjs.Attributes.Add("src", Root.Domain + (isDebug ? "/ORNG/JavaScript/orng.js" : "/ORNG/JavaScript/orng.min.js"));
-                shindigjs.Attributes.Add("src", Root.Domain + (isDebug ? "/ORNG/JavaScript/orng.js" : "/ORNG/JavaScript/orng.js"));
+                //shindigjs.Attributes.Add("src", Brand.GetDomain() + (isDebug ? "/ORNG/JavaScript/orng.js" : "/ORNG/JavaScript/orng.min.js"));
+                shindigjs.Attributes.Add("src", Brand.GetDomain() + (isDebug ? "/ORNG/JavaScript/orng.js" : "/ORNG/JavaScript/orng.js"));
                 page.Header.Controls.Add(shindigjs);
             }
             else

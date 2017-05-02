@@ -28,7 +28,7 @@ using Profiles.ORNG.Utilities;
 
 namespace Profiles.ORNG
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : BrandedPage
     {
         Profiles.Framework.Template masterpage;
 

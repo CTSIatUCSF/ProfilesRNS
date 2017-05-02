@@ -59,7 +59,7 @@ namespace Profiles.Edit.Modules.CustomEditListProperty
             else
                 Response.Redirect("~/search");
 
-            litBackLink.Text = "<a href='" + Root.Domain + "/edit/" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+            litBackLink.Text = "<a href='" + Brand.GetDomain() + "/edit/" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
 
             btnEditProperty.Text = "Add " + PropertyLabel;
 

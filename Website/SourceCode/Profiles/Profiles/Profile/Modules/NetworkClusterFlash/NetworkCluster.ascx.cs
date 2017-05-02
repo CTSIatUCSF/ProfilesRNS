@@ -38,7 +38,7 @@ namespace Profiles.Profile.Modules.NetworkClusterFlash
         protected void InitAssets()
         {
             System.Web.UI.HtmlControls.HtmlLink NetworkBrowsercss = new System.Web.UI.HtmlControls.HtmlLink();
-            NetworkBrowsercss.Href = Root.Domain + "/Profile/CSS/NetworkBrowser.css";
+            NetworkBrowsercss.Href = Brand.GetDomain() + "/Profile/CSS/NetworkBrowser.css";
             NetworkBrowsercss.Attributes["rel"] = "stylesheet";
             NetworkBrowsercss.Attributes["type"] = "text/css";
             NetworkBrowsercss.Attributes["media"] = "all";
@@ -46,17 +46,17 @@ namespace Profiles.Profile.Modules.NetworkClusterFlash
 
             HtmlGenericControl jsscript1 = new HtmlGenericControl("script");
             jsscript1.Attributes.Add("type", "text/javascript");
-			jsscript1.Attributes.Add("src", Root.Domain + "/Profile/Modules/NetworkClusterFlash/scriptaculous/lib/prototype.js");
+			jsscript1.Attributes.Add("src", Brand.GetDomain() + "/Profile/Modules/NetworkClusterFlash/scriptaculous/lib/prototype.js");
             Page.Header.Controls.Add(jsscript1);
 
             HtmlGenericControl jsscript2 = new HtmlGenericControl("script");
             jsscript2.Attributes.Add("type", "text/javascript");
-			jsscript2.Attributes.Add("src", Root.Domain + "/Profile/Modules/NetworkClusterFlash/scriptaculous/src/scriptaculous.js");
+			jsscript2.Attributes.Add("src", Brand.GetDomain() + "/Profile/Modules/NetworkClusterFlash/scriptaculous/src/scriptaculous.js");
             Page.Header.Controls.Add(jsscript2);
 
             HtmlGenericControl jsscript3 = new HtmlGenericControl("script");
             jsscript3.Attributes.Add("type", "text/javascript");
-            jsscript3.Attributes.Add("src", Root.Domain + "/Profile/Modules/NetworkClusterFlash/JavaScript/networkBrowserClass.js");
+            jsscript3.Attributes.Add("src", Brand.GetDomain() + "/Profile/Modules/NetworkClusterFlash/JavaScript/networkBrowserClass.js");
             Page.Header.Controls.Add(jsscript3);
 
             divSwfScript.InnerHtml = "<script language=\"JavaScript\" type=\"text/javascript\"> " +
@@ -64,8 +64,8 @@ namespace Profiles.Profile.Modules.NetworkClusterFlash
                "'codebase', '//download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0'," +
                "'width', '600'," +
                "'height', '485'," +
-			   "'src', '" + Root.Domain + "/profile/Modules/NetworkClusterFlash/network_browser_force.swf'," +
-			   "'movie', '" + Root.Domain + "/profile/Modules/NetworkClusterFlash/network_browser_force'," +
+			   "'src', '" + Brand.GetDomain() + "/profile/Modules/NetworkClusterFlash/network_browser_force.swf'," +
+			   "'movie', '" + Brand.GetDomain() + "/profile/Modules/NetworkClusterFlash/network_browser_force'," +
                "'quality', 'high'," +
                "'pluginspage', '//www.adobe.com/go/getflashplayer'," +
                "'align', 'middle'," +
@@ -88,10 +88,10 @@ namespace Profiles.Profile.Modules.NetworkClusterFlash
             script.Attributes.Add("type", "text/javascript");
             script.InnerHtml = "function loadClusterView() {" +
 				" network_browser._cfg.profile_network_path = '/" + Request.QueryString["Predicate"].ToString() + "/cluster'; " +
-                " network_browser.Init('" + Root.Domain + "/profile/modules/NetworkClusterFlash/NetworkClusterSvc.aspx?p='); " +
+                " network_browser.Init('" + Brand.GetDomain() + "/profile/modules/NetworkClusterFlash/NetworkClusterSvc.aspx?p='); " +
                 " network_browser.loadNetwork('" + Request.QueryString["Subject"].ToString() + "'); " +
                 "};" +
-                "//function GoPerson(x) {document.location='"+ Root.Domain +"/profiles/profile/person/'+x;}";
+                "//function GoPerson(x) {document.location='"+ Brand.GetDomain() +"/profiles/profile/person/'+x;}";
             Page.Header.Controls.Add(script);
 
         }

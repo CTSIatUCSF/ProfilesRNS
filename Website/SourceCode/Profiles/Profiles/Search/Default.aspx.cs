@@ -27,7 +27,7 @@ using Profiles.Search.Utilities;
 
 namespace Profiles.Search
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : BrandedPage
     {
         Profiles.Framework.Template masterpage;
 
@@ -61,7 +61,7 @@ namespace Profiles.Search
 
                 data.SearchRequest("", "", "", "", "", "", "", "", "", "", "", "15", "0", "", "", "", "", ref searchrequest);
 
-                Response.Redirect(Root.Domain + "/search/default.aspx?searchtype=" + this.SearchType + "&searchrequest=" + searchrequest, true);
+                Response.Redirect(Brand.GetDomain() + "/search/default.aspx?searchtype=" + this.SearchType + "&searchrequest=" + searchrequest, true);
 
             }
 
@@ -81,7 +81,7 @@ namespace Profiles.Search
             // added by UCSF.  A hack THAT NEEDS TO BE TESTED (try not doing the UrlEncode)
             else if (Request.QueryString["tab"] == "concept")
             {
-                Response.Redirect(Root.Domain + "/search/default.aspx?searchtype=everything&searchfor=" + HttpUtility.UrlEncode(Request.Form["txtSearchFor"]) +
+                Response.Redirect(Brand.GetDomain() + "/search/default.aspx?searchtype=everything&searchfor=" + HttpUtility.UrlEncode(Request.Form["txtSearchFor"]) +
                     "&ClassGroupURI=" + HttpUtility.UrlEncode("http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupConcepts") + "&perpage=15&offset=");
             }
             else
@@ -140,7 +140,7 @@ namespace Profiles.Search
             pageColumnLeft.Visible = true;
 
             HtmlLink Searchcss = new HtmlLink();
-            Searchcss.Href = Root.Domain + "/Search/CSS/search.css";
+            Searchcss.Href = Brand.GetDomain() + "/Search/CSS/search.css";
             Searchcss.Attributes["rel"] = "stylesheet";
             Searchcss.Attributes["type"] = "text/css";
             Searchcss.Attributes["media"] = "all";
@@ -148,7 +148,7 @@ namespace Profiles.Search
 
 
             HtmlLink Checkboxcss = new HtmlLink();
-            Checkboxcss.Href = Root.Domain + "/Search/CSS/comboTreeCheck.css";
+            Checkboxcss.Href = Brand.GetDomain() + "/Search/CSS/comboTreeCheck.css";
             Checkboxcss.Attributes["rel"] = "stylesheet";
             Checkboxcss.Attributes["type"] = "text/css";
             Checkboxcss.Attributes["media"] = "all";
@@ -156,18 +156,18 @@ namespace Profiles.Search
 
             HtmlGenericControl jsscript = new HtmlGenericControl("script");
             jsscript.Attributes.Add("type", "text/javascript");
-            jsscript.Attributes.Add("src", Root.Domain + "/Search/JavaScript/comboTreeCheck.js");
+            jsscript.Attributes.Add("src", Brand.GetDomain() + "/Search/JavaScript/comboTreeCheck.js");
             Page.Header.Controls.Add(jsscript);
 
             // Inject script into HEADER
             Literal script = new Literal();
-            script.Text = "<script>var _path = \"" + Root.Domain + "\";</script>";
+            script.Text = "<script>var _path = \"" + Brand.GetDomain() + "\";</script>";
             Page.Header.Controls.Add(script);
 
             // This should get included automatically, but isn't working for Search for some reason
             HtmlLink ThemeCss = new HtmlLink();
             //ThemeCss.Href = Root.GetThemedFile(Page, "Search/CSS/Theme.css");
-            ThemeCss.Href = Root.Domain + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".css";
+            ThemeCss.Href = Brand.GetDomain() + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".css";
             ThemeCss.Attributes["rel"] = "stylesheet";
             ThemeCss.Attributes["type"] = "text/css";
             ThemeCss.Attributes["media"] = "all";
@@ -175,7 +175,7 @@ namespace Profiles.Search
 
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");
-            UCSFjs.Attributes.Add("src", Root.Domain + "/Search/JavaScript/UCSF.js");
+            UCSFjs.Attributes.Add("src", Brand.GetDomain() + "/Search/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
         }
 

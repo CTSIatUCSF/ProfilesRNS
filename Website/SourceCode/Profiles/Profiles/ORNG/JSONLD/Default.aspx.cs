@@ -28,7 +28,7 @@ using System.Net;
 
 namespace Profiles.ORNG.JSONLD
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : Profiles.Framework.Utilities.BrandedPage
     {
 
         protected void Page_Load(object sender, EventArgs e)
@@ -52,14 +52,14 @@ namespace Profiles.ORNG.JSONLD
             }
             else
             {
-                Response.Redirect(Profiles.Framework.Utilities.Root.Domain + "/ORNG/JSONLD/Test.htm");
+                Response.Redirect(Profiles.Framework.Utilities.Brand.GetDomain() + "/ORNG/JSONLD/Test.htm");
             }
 
             Response.Clear();
             Response.Charset = "charset=UTF-8";
             Response.StatusCode = Convert.ToInt16("200");
 
-            string URL = Profiles.Framework.Utilities.Root.Domain + "/Profile/Profile.aspx?Subject=" + nodeid;
+            string URL = Profiles.Framework.Utilities.Brand.GetDomain() + "/Profile/Profile.aspx?Subject=" + nodeid;
             if (predicate != null) 
                 URL += "&Predicate=" + predicate;
             if (obj != null) 

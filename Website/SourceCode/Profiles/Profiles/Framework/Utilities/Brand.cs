@@ -10,57 +10,75 @@ namespace Profiles.Framework.Utilities
 {
     public class Brand
     {
+        public static string DefaultBrandName = "Default";
+
+        private static Dictionary<string, Brand> ByName = new Dictionary<string, Brand>();
         private static Dictionary<string, Brand> ByTheme = new Dictionary<string, Brand>();
 
+        public string Name { get; set; }
         public string Theme { get; set; }
         public string BasePath { get; set; }
 
-        public static string GetDomain(Page page)
+        public static string GetDomain()
         {
-            Brand brand = GetByTheme(page.Theme);
+            Brand brand = (Brand)HttpContext.Current.Items["Brand"];
             return brand != null ? brand.BasePath : Root.Domain;
+        }
+
+        // return default if name is null or not found
+        public static Brand GetByName(string Name)
+        {
+            return !String.IsNullOrEmpty(Name) && ByName.ContainsKey(Name) ? ByName[Name] : ByName[DefaultBrandName];
         }
 
         public static Brand GetByTheme(string Theme)
         {
-            return Theme != null && ByTheme.ContainsKey(Theme) ? ByTheme[Theme] : null;
+            return ByTheme.ContainsKey(Theme) ? ByTheme[Theme] : null;
         }
 
-        static public string GetThemeFromURL(string URL)
+        static public Brand GetByURL(string URL)
         {
             foreach (Brand brand in ByTheme.Values)
             {
                 if (URL.ToLower().StartsWith(brand.BasePath.ToLower()))
                 {
-                    return brand.Theme;
+                    return brand;
                 }
             }
-            return GetDefaultTheme();
+            return null;
         }
 
-        static public string GetThemeForSubject(long subjectId)
+        // should we return default?
+        static public Brand GetForSubject(long subjectId)
         {
             UCSFIDSet person = UCSFIDSet.ByNodeId.ContainsKey(subjectId) ? UCSFIDSet.ByNodeId[subjectId] : null;
-            return person != null && person.Brand != null ? person.Brand.Theme : GetDefaultTheme();
+            return person != null && person.Brand != null ? person.Brand : getDefault();
         }
 
         static public string GetThemedFile(Page page, string file)
         {
-            return GetDomain(page) + "/App_Themes/" + page.Theme + "/" + file;
+            return GetDomain() + "/App_Themes/" + page.Theme + "/" + file;
+        }
+
+        static public Brand getDefault()
+        {
+            return GetByTheme(GetSystemTheme());
         }
 
         // this one gets it from Web.config, and is not meant for page level use
-        static public string GetDefaultTheme()
+        static public string GetSystemTheme()
         {
             PagesSection pages = (PagesSection)ConfigurationManager.GetSection("system.web/pages");
             return pages.Theme;
         }
 
-        public Brand(string Theme, string BasePath)
+        public Brand(string Name, string Theme, string BasePath)
         {
+            this.Name = Name;
             this.Theme = Theme;
             this.BasePath = BasePath;
 
+            ByName[this.Name] = this;
             ByTheme[this.Theme] = this;
         }
     }

@@ -48,7 +48,7 @@ namespace Profiles.History.Modules.HistoryByType
             hi = uh.GetItems();
 
             if (hi == null)
-                Response.Redirect(Root.Domain + "/search",true);
+                Response.Redirect(Brand.GetDomain() + "/search",true);
 
 
             foreach (HistoryItem item in hi)

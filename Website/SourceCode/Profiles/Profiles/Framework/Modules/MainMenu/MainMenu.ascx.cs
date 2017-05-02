@@ -55,19 +55,19 @@ namespace Profiles.Framework.Modules.MainMenu
             Utilities.DataIO data = new Profiles.Framework.Utilities.DataIO();
             menulist.Append("<ul>");
 
-            menulist.Append("<li><a href='" + Root.Domain + "/search'>Find People</a></li>");
-            menulist.Append("<li><a href='" + Root.Domain + "/search/all'>Find Everything</a></li>");
+            menulist.Append("<li><a href='" + Brand.GetDomain() + "/search'>Find People</a></li>");
+            menulist.Append("<li><a href='" + Brand.GetDomain() + "/search/all'>Find Everything</a></li>");
 
             //-50 is the profiles Admin
             if (data.GetSessionSecurityGroup() == -50)
-                menulist.Append("<li><a href='" + Root.Domain + "/SPARQL/default.aspx'>SPARQL Query</a></li>");
+                menulist.Append("<li><a href='" + Brand.GetDomain() + "/SPARQL/default.aspx'>SPARQL Query</a></li>");
 
-            menulist.Append("<li><a href='" + Root.Domain + "/about/default.aspx'>About This Site</a></li>");
+            menulist.Append("<li><a href='" + Brand.GetDomain() + "/about/default.aspx'>About This Site</a></li>");
 
             // logged in Person
             if (sm.Session().NodeID > 0)
             {
-                menulist.Append("<li><img src='" + Root.Domain + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + sm.Session().NodeID + "&Thumbnail=True&Width=20' width='20' height='40'></li>");
+                menulist.Append("<li><img src='" + Brand.GetDomain() + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + sm.Session().NodeID + "&Thumbnail=True&Width=20' width='20' height='40'></li>");
                 menulist.Append("<li><a href='" + sm.Session().PersonURI + "'>" + sm.Session().ShortDisplayName + "</a></li>");
             }
             else if (!String.IsNullOrEmpty(sm.Session().ShortDisplayName)) // logged in person
@@ -77,25 +77,25 @@ namespace Profiles.Framework.Modules.MainMenu
             
             if (sm.Session().NodeID > 0)
             {
-                menulist.Append("<li><a href='" + Root.Domain + "/login/default.aspx?method=login&edit=true'>Edit My Profile</a></li>");
+                menulist.Append("<li><a href='" + Brand.GetDomain() + "/login/default.aspx?method=login&edit=true'>Edit My Profile</a></li>");
             }
 
 
             if (base.MasterPage.CanEdit)
             {
-                menulist.Append("<li><a href='" + Root.Domain + "/edit/" + subject.ToString() + "'>Edit This Profile</a></li>");
+                menulist.Append("<li><a href='" + Brand.GetDomain() + "/edit/" + subject.ToString() + "'>Edit This Profile</a></li>");
             }
 
 
             // ORNG 
             if (sm.Session().NodeID > 0)
             {
-                menulist.Append("<li><a href='" + Root.Domain + "/ORNG/Dashboard.aspx?owner=" + sm.Session().PersonURI + "'>See My Dashboard</a></li>");
+                menulist.Append("<li><a href='" + Brand.GetDomain() + "/ORNG/Dashboard.aspx?owner=" + sm.Session().PersonURI + "'>See My Dashboard</a></li>");
             }
 
             if (sm.Session().NodeID > 0)
             {
-                menulist.Append("<li><a href='" + Root.Domain + "/proxy/default.aspx?subject=" + sm.Session().NodeID.ToString() + "'>Manage Proxies</a></li>");
+                menulist.Append("<li><a href='" + Brand.GetDomain() + "/proxy/default.aspx?subject=" + sm.Session().NodeID.ToString() + "'>Manage Proxies</a></li>");
             }
 
             if (base.BaseData.SelectSingleNode(".").OuterXml != string.Empty && !Root.AbsolutePath.ToLower().Contains("/search"))
@@ -105,13 +105,13 @@ namespace Profiles.Framework.Modules.MainMenu
                     string uri = this.BaseData.SelectSingleNode("//rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
 
                     //IF the URI is in our system then we build the link. If not then we do not build the link for the data.
-                    if (uri.Contains(Root.Domain))
+                    if (uri.Contains(Brand.GetDomain()))
                     {
                         string file = string.Empty;
                         string spostring = string.Empty;
                         string[] spoarray;
 
-                        spostring = uri.ToLower().Replace(Root.Domain.ToLower() + "/profile/", "");
+                        spostring = uri.ToLower().Replace(Brand.GetDomain().ToLower() + "/profile/", "");
                         spoarray = spostring.Split('/');
 
                         for (int i = 0; i < spoarray.Length; i++)
@@ -121,7 +121,7 @@ namespace Profiles.Framework.Modules.MainMenu
 
                         file = file.Substring(0, file.Length - 1);
 
-                        //menulist.Append("<li><a href=\"" + uri + "/" + file + ".rdf\" target=\"_blank\">" + "Export RDF" + "</a>&nbsp;<a style='border: none;' href='" + Root.Domain + "/about/default.aspx?tab=data'><img style='border-style: none' src='" + Root.Domain + "/Framework/Images/info.png' width='11' height='11' border='0'></a></li>");
+                        //menulist.Append("<li><a href=\"" + uri + "/" + file + ".rdf\" target=\"_blank\">" + "Export RDF" + "</a>&nbsp;<a style='border: none;' href='" + Brand.GetDomain() + "/about/default.aspx?tab=data'><img style='border-style: none' src='" + Brand.GetDomain() + "/Framework/Images/info.png' width='11' height='11' border='0'></a></li>");
                         if (base.MasterPage != null)
                         {
                             System.Web.UI.HtmlControls.HtmlContainerControl Head1;
@@ -140,12 +140,12 @@ namespace Profiles.Framework.Modules.MainMenu
             {
                 if (!Root.AbsolutePath.Contains("login"))
                 {
-                    menulist.Append("<li><a href='" + Root.Domain + "/login/default.aspx?pin=send&method=login&redirectto=" + Root.Domain + Root.AbsolutePath + "'>Login to Profiles</a></li>");
+                    menulist.Append("<li><a href='" + Brand.GetDomain() + "/login/default.aspx?pin=send&method=login&redirectto=" + Brand.GetDomain() + Root.AbsolutePath + "'>Login to Profiles</a></li>");
                 }
             }
             else
             {
-                menulist.Append("<li><a href='" + Root.Domain + "/login/default.aspx?method=logout&redirectto=" + Root.Domain + "/About/CloseBrowser.aspx" + "'>Sign out</a></li>");
+                menulist.Append("<li><a href='" + Brand.GetDomain() + "/login/default.aspx?method=logout&redirectto=" + Brand.GetDomain() + "/About/CloseBrowser.aspx" + "'>Sign out</a></li>");
             }
 
             menulist.Append("</ul>");

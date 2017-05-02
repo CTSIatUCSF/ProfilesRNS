@@ -5,7 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Profiles.Activity.Utilities;
 
-public partial class EditedCount : System.Web.UI.Page
+public partial class EditedCount : Profiles.Framework.Utilities.BrandedPage
 {
 
     protected void Page_Load(object sender, EventArgs e)

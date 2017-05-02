@@ -53,7 +53,7 @@ namespace Profiles
      
     */
     /// </summary>
-    public partial class REST : System.Web.UI.Page
+    public partial class REST : BrandedPage
     {
         private static string[] knownAcceptTypes =new string[] {"text/html", "application/rdf+xml"};
 
@@ -179,7 +179,7 @@ namespace Profiles
                                    param8,
                                    param9,
                                    session.SessionID,
-                                   Root.Domain + Root.AbsolutePath,
+                                   Brand.GetDomain() + Root.AbsolutePath,
                                    session.UserAgent,
                                    getBestAcceptType(HttpContext.Current.Request.AcceptTypes),
                                    HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host +  HttpContext.Current.Request.ApplicationPath);
@@ -204,7 +204,7 @@ namespace Profiles
             }
             else
             {
-                Response.Redirect(Root.Domain + "/search", true);
+                Response.Redirect(Brand.GetDomain() + "/search", true);
 
 
                 //Response.Write("<b>Debug 404-- Your URL does not match a known Profiles RESTful pattern ---</b><br/><br/> ");
@@ -240,7 +240,7 @@ namespace Profiles
                 //Response.Write(param9);
 
                 //Response.Write("<br/><br/>Domain: ");
-                //Response.Write(Root.Domain);
+                //Response.Write(Brand.GetDomain());
 
                 //throw new Exception("custom 404 needed here");
             }

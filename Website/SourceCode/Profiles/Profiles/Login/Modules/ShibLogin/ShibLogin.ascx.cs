@@ -80,7 +80,7 @@ namespace Profiles.Login.Modules.ShibLogin
                     }
                     else
                     {
-                        string redirect = Root.Domain + "/login/default.aspx?method=shibboleth";
+                        string redirect = Brand.GetDomain() + "/login/default.aspx?method=shibboleth";
                         if (Request.QueryString["redirectto"] == null && Request.QueryString["edit"] == "true")
                             redirect += "&edit=true";
                         else
@@ -100,24 +100,24 @@ namespace Profiles.Login.Modules.ShibLogin
         {
             if (Request.QueryString["redirectto"] == null && Request.QueryString["edit"] == "true")
             {
-                Response.Redirect(Root.Domain + "/edit/" + sm.Session().NodeID);
+                Response.Redirect(Brand.GetDomain() + "/edit/" + sm.Session().NodeID);
             }
             else if (Request.QueryString["redirectto"] != null)
             {
                 if ("mypage".Equals(Request.QueryString["redirectto"].ToLower())) 
                 {
-                    Response.Redirect(Root.Domain + "/profile/" + sm.Session().NodeID);
+                    Response.Redirect(Brand.GetDomain() + "/profile/" + sm.Session().NodeID);
                 }
                 else if ("myproxies".Equals(Request.QueryString["redirectto"].ToLower()))
                 {
-                    Response.Redirect(Root.Domain + "/proxy/default.aspx?subject=" + sm.Session().NodeID);
+                    Response.Redirect(Brand.GetDomain() + "/proxy/default.aspx?subject=" + sm.Session().NodeID);
                 }
                 else 
                 {
                     Response.Redirect(Request.QueryString["redirectto"].ToString());
                 }
             }
-            Response.Redirect(Root.Domain);
+            Response.Redirect(Brand.GetDomain());
         }
 
         public ShibLogin() { }

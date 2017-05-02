@@ -71,7 +71,7 @@ namespace Profiles.ORCID.Modules.ProvideORCIDConfirmation
                     data.AddLiteral(subjectID, data.GetStoreNode("http://vivoweb.org/ontology/core#orcidId"), data.GetStoreNode(person.ORCID), this.PropertyListXML);
                     pHasProfile.Visible = !subjectID.Equals(0);
                     hlProfile.NavigateUrl = "~/display/" + subjectID.ToString();
-                    hlEdit.NavigateUrl = Root.Domain + "/edit/default.aspx?subject=" + subjectID.ToString() + "&predicateuri=http://vivoweb.org/ontology/core!orcidId&module=DisplayItemToEdit&ObjectType=Literal";
+                    hlEdit.NavigateUrl = Brand.GetDomain() + "/edit/default.aspx?subject=" + subjectID.ToString() + "&predicateuri=http://vivoweb.org/ontology/core!orcidId&module=DisplayItemToEdit&ObjectType=Literal";
                 }
             }
             catch (Exception ex)

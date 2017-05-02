@@ -28,7 +28,7 @@ using Profiles.Profile.Utilities;
 
 namespace Profiles.CustomAPI
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : BrandedPage
     {
         // add smart caching of all of these ID lookups!
         protected void Page_Load(object sender, EventArgs e)
@@ -74,7 +74,7 @@ namespace Profiles.CustomAPI
             if ("JSON-LD".Equals(Request["Format"]))
             {
                 string URL = ConfigurationManager.AppSettings["OpenSocial.ShindigURL"] + "/rest/rdf?userId=" +
-                    HttpUtility.UrlEncode(Root.Domain + "/CustomAPI/v2/Default.aspx?Subject=" + person.NodeId + "&Expand=" + request.Expand + "&ShowDetails=" + request.ShowDetails);
+                    HttpUtility.UrlEncode(Brand.GetDomain() + "/CustomAPI/v2/Default.aspx?Subject=" + person.NodeId + "&Expand=" + request.Expand + "&ShowDetails=" + request.ShowDetails);
                 WebClient client = new WebClient();
                 String jsonProfiles = client.DownloadString(URL);
                 if (callback != null && callback.Length > 0)

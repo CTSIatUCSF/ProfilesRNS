@@ -28,7 +28,7 @@ using Profiles.Profile.Utilities;
 
 namespace Profiles.CustomAPI
 {
-    public partial class RejectedPMIDs : System.Web.UI.Page
+    public partial class RejectedPMIDs : BrandedPage
     {
         // add smart caching of all of these ID lookups!
         protected void Page_Load(object sender, EventArgs e)

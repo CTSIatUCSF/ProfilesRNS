@@ -53,7 +53,7 @@ namespace Profiles.Proxy.Modules.SearchProxies
 
 
             if (sm.Session().UserID == 0)
-                Response.Redirect(Root.Domain + "/search");
+                Response.Redirect(Brand.GetDomain() + "/search");
 
             litBackLink.Text = "<b>Search Proxies</b>";
 
@@ -102,7 +102,7 @@ namespace Profiles.Proxy.Modules.SearchProxies
         }
         public string GetURLDomain()
         {
-            return Root.Domain;
+            return Brand.GetDomain();
         }
         public DataSet MyDataSet
         {
@@ -208,7 +208,7 @@ namespace Profiles.Proxy.Modules.SearchProxies
                 "_offset = " + this.Offset + ";" +
                 "_totalrows = " + this.TotalRowCount + ";" +
                 "_totalpages =" + this.TotalPages + ";" +
-                "_root = '" + Root.Domain + "';" +
+                "_root = '" + Brand.GetDomain() + "';" +
                 "_subject = '" + Subject + "';" +
                 "_fname = '" + this.Fname + "';" +
                 "_lname = '" + this.Lname.Replace("'", "\\'") + "';" +
@@ -231,7 +231,7 @@ namespace Profiles.Proxy.Modules.SearchProxies
 
         protected void btnSearchCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect(Root.Domain + "/proxy/default.aspx?subject=" + Request.QueryString["subject"]);
+            Response.Redirect(Brand.GetDomain() + "/proxy/default.aspx?subject=" + Request.QueryString["subject"]);
         }
 
         protected void gridSearchResults_RowDataBound(Object sender, GridViewRowEventArgs e)
@@ -279,22 +279,22 @@ namespace Profiles.Proxy.Modules.SearchProxies
 
 
                     if (CurrentPage > 1)
-                        litFirst.Text = "<a href='JavaScript:GotoPreviousPage();' class='listTablePaginationPN listTablePaginationP listTablePaginationA'><img src='" + Root.Domain + "/framework/images/arrow_prev.gif'/>Prev</a>" +
-                        "<a href='JavaScript:GotoFirstPage();' class='listTablePaginationFL listTablePaginationA'><img src='" + Root.Domain + "/framework/images/arrow_first.gif'/></a>";
+                        litFirst.Text = "<a href='JavaScript:GotoPreviousPage();' class='listTablePaginationPN listTablePaginationP listTablePaginationA'><img src='" + Brand.GetDomain() + "/framework/images/arrow_prev.gif'/>Prev</a>" +
+                        "<a href='JavaScript:GotoFirstPage();' class='listTablePaginationFL listTablePaginationA'><img src='" + Brand.GetDomain() + "/framework/images/arrow_first.gif'/></a>";
                     else
-                        litFirst.Text = "<div class='listTablePaginationPN listTablePaginationP'><img src='" + Root.Domain + "/framework/images/arrow_prev_d.gif'/>Prev</div><div class='listTablePaginationFL'>" +
-                        "<img src='" + Root.Domain + "/framework/images/arrow_first_d.gif'/></div>";
+                        litFirst.Text = "<div class='listTablePaginationPN listTablePaginationP'><img src='" + Brand.GetDomain() + "/framework/images/arrow_prev_d.gif'/>Prev</div><div class='listTablePaginationFL'>" +
+                        "<img src='" + Brand.GetDomain() + "/framework/images/arrow_first_d.gif'/></div>";
 
 
                     if (this.CurrentPage <= (this.TotalPages - 1))
                     {
-                        litLast.Text = "<a href='JavaScript:GotoLastPage();' class='listTablePaginationFL listTablePaginationA'><img src='" + Root.Domain + "/framework/images/arrow_last.gif'/></a>" +
-                        "<a href='javascript:GotoNextPage();' class='listTablePaginationPN listTablePaginationN listTablePaginationA'>Next<img src='" + Root.Domain + "/framework/images/arrow_next.gif'/></a>";
+                        litLast.Text = "<a href='JavaScript:GotoLastPage();' class='listTablePaginationFL listTablePaginationA'><img src='" + Brand.GetDomain() + "/framework/images/arrow_last.gif'/></a>" +
+                        "<a href='javascript:GotoNextPage();' class='listTablePaginationPN listTablePaginationN listTablePaginationA'>Next<img src='" + Brand.GetDomain() + "/framework/images/arrow_next.gif'/></a>";
                     }
                     else
                     {
-                        litLast.Text = "<div class='listTablePaginationFL'><img src='" + Root.Domain + "/framework/images/arrow_last_d.gif'/></div><div class='listTablePaginationPN listTablePaginationN'>" +
-                        "Next<img src='" + Root.Domain + "/framework/images/arrow_next_d.gif'/></div>";
+                        litLast.Text = "<div class='listTablePaginationFL'><img src='" + Brand.GetDomain() + "/framework/images/arrow_last_d.gif'/></div><div class='listTablePaginationPN listTablePaginationN'>" +
+                        "Next<img src='" + Brand.GetDomain() + "/framework/images/arrow_next_d.gif'/></div>";
                     }
                     int displaypage = 1;
                     if (this.CurrentPage != 0)
@@ -314,7 +314,7 @@ namespace Profiles.Proxy.Modules.SearchProxies
         {
             Utilities.DataIO data = new Profiles.Proxy.Utilities.DataIO();
             data.InsertProxy(gridSearchResults.DataKeys[gridSearchResults.SelectedIndex]["UserID"].ToString());
-            Response.Redirect(Root.Domain + "/proxy/default.aspx?subject=" + HttpContext.Current.Request.QueryString["subject"]);
+            Response.Redirect(Brand.GetDomain() + "/proxy/default.aspx?subject=" + HttpContext.Current.Request.QueryString["subject"]);
         }
 
         protected void gridSearchResults_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -328,7 +328,7 @@ namespace Profiles.Proxy.Modules.SearchProxies
         private void LoadAssets()
         {
             HtmlLink Searchcss = new HtmlLink();
-            Searchcss.Href = Root.Domain + "/Search/CSS/search.css";
+            Searchcss.Href = Brand.GetDomain() + "/Search/CSS/search.css";
             Searchcss.Attributes["rel"] = "stylesheet";
             Searchcss.Attributes["type"] = "text/css";
             Searchcss.Attributes["media"] = "all";

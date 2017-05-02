@@ -9,7 +9,7 @@ using System.Data;
 using System.Data.Common;
 using Profiles.CustomAPI.Utilities;
 
-public partial class PubDate : System.Web.UI.Page
+public partial class PubDate : Profiles.Framework.Utilities.BrandedPage
 {
 
     protected void Page_Load(object sender, EventArgs e)

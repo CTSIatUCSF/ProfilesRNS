@@ -69,7 +69,7 @@ namespace Profiles.Edit.Modules.CustomEditMainImage
 
             this.PredicateURI = Request.QueryString["predicateuri"].Replace("!", "#");
             this.PropertyListXML = propdata.GetPropertyList(this.BaseData, base.PresentationXML, PredicateURI, false, true, false);
-            litBackLink.Text = "<a href='" + Root.Domain + "/edit/" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+            litBackLink.Text = "<a href='" + Brand.GetDomain() + "/edit/" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
 
             securityOptions.Subject = this.SubjectID;
             securityOptions.PredicateURI = PredicateURI;

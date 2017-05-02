@@ -218,7 +218,7 @@ namespace Profiles.Search.Modules.SearchPerson
 
         public string GetURLDomain()
         {
-            return Root.Domain;
+            return Brand.GetDomain();
         }
 
 
@@ -356,7 +356,7 @@ namespace Profiles.Search.Modules.SearchPerson
             data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept,
                 department, departmentallexcept, division, divisionallexcept, classuri, "15", "0", "", "", otherfilters, facrank, ref searchrequest);
 
-            Response.Redirect(Root.Domain + "/search/default.aspx?showcolumns=10&searchtype=people&otherfilters=" + otherfilters + "&searchrequest=" + searchrequest, true);
+            Response.Redirect(Brand.GetDomain() + "/search/default.aspx?showcolumns=10&searchtype=people&otherfilters=" + otherfilters + "&searchrequest=" + searchrequest, true);
 
 
 

@@ -100,7 +100,7 @@ namespace Profiles.Framework.Modules.MainMenu
 
                 pnlMyNetwork.Visible = true;
 
-                litActiveNetworkDetails.Text = "<a class='activeSectionDetails' href='" + Root.Domain + "/activenetwork/default.aspx'><font style='font-size:10px'>View Details</font></a>";
+                litActiveNetworkDetails.Text = "<a class='activeSectionDetails' href='" + Brand.GetDomain() + "/activenetwork/default.aspx'><font style='font-size:10px'>View Details</font></a>";
             }
             else
             {
@@ -118,7 +118,7 @@ namespace Profiles.Framework.Modules.MainMenu
                 Literal lbPerson = (Literal)e.Row.FindControl("lbPerson");
                 ImageButton ibRemove = (ImageButton)e.Row.FindControl("ibRemove");
                 ibRemove.CommandArgument = networkitem.NodeID.ToString();
-                ibRemove.ImageUrl = Root.Domain + "/Framework/Images/delete.png";
+                ibRemove.ImageUrl = Brand.GetDomain() + "/Framework/Images/delete.png";
                 lbPerson.Text = "<a href='" + networkitem.URI + "'>" + networkitem.Name + "</a>";
             }
         }

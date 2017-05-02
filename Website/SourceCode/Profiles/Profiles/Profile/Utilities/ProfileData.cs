@@ -47,7 +47,9 @@ namespace Profiles.Profile.Utilities
             base.OnPreInit(e);
             if (!String.IsNullOrEmpty(Request.QueryString["Subject"]))
             {
-                Page.Theme = Brand.GetThemeForSubject(Int64.Parse(Request.QueryString["subject"]));
+                Brand brand = Brand.GetForSubject(Int64.Parse(Request.QueryString["subject"]));
+                HttpContext.Current.Items["Brand"] = brand;
+                Page.Theme = brand.Theme;
             }
         }
 
@@ -65,15 +67,15 @@ namespace Profiles.Profile.Utilities
                 if (HttpContext.Current.Request.QueryString["Subject"] != string.Empty)
                     this.RDFTriple = new RDFTriple(Convert.ToInt64(Request.QueryString["Subject"].Trim()));
                 else
-                    HttpContext.Current.Response.Redirect(Root.Domain + "/search");  //Need to take them to a search page when we have one.
+                    HttpContext.Current.Response.Redirect(Brand.GetDomain() + "/search");  //Need to take them to a search page when we have one.
             }else if(HttpContext.Current.Request.Form["Subject"]!=null){
                 if (HttpContext.Current.Request.Form["Subject"] != string.Empty)
                     this.RDFTriple = new RDFTriple(Convert.ToInt64(Request.Form["Subject"].Trim()));
                 else
-                    HttpContext.Current.Response.Redirect(Root.Domain + "/search");  //Need to take them to a search page when we have one.
+                    HttpContext.Current.Response.Redirect(Brand.GetDomain() + "/search");  //Need to take them to a search page when we have one.
             }
             else
-                HttpContext.Current.Response.Redirect(Root.Domain + "/search");  //Need to take them to a search page when we have one.
+                HttpContext.Current.Response.Redirect(Brand.GetDomain() + "/search");  //Need to take them to a search page when we have one.
 
             //*****************************************************************************
             //Optional            

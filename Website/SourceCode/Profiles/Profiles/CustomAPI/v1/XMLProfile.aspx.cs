@@ -14,7 +14,7 @@ using System.Web.Script.Serialization;
 using Profiles.CustomAPI.Utilities;
 using Profiles.Framework.Utilities;
 
-public partial class XMLProfile : System.Web.UI.Page
+public partial class XMLProfile : BrandedPage
 {
 
     protected void Page_Load(object sender, EventArgs e)

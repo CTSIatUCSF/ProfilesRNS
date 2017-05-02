@@ -26,7 +26,7 @@ using Profiles.Edit.Utilities;
 
 namespace Profiles.Edit
 {
-    public partial class _default : System.Web.UI.Page
+    public partial class _default : BrandedPage
     {
         private Profiles.Framework.Template masterpage;
 
@@ -64,7 +64,7 @@ namespace Profiles.Edit
             this.LoadPageData();
 
             if (this.PresentationXML.SelectSingleNode("Presentation/PageOptions[@CanEdit='true']") == null)
-                Response.Redirect(Root.Domain + "/search");
+                Response.Redirect(Brand.GetDomain() + "/search");
 
             //masterpage.Tab = base.Tab;
             masterpage.RDFData = this.RDFData;
@@ -80,7 +80,7 @@ namespace Profiles.Edit
             this.Master.FindControl("pnlNavBarSearch").Visible = false;
 
             HtmlLink Displaycss = new HtmlLink();
-            Displaycss.Href = Root.Domain + "/Profile/CSS/display.css";
+            Displaycss.Href = Brand.GetDomain() + "/Profile/CSS/display.css";
             Displaycss.Attributes["rel"] = "stylesheet";
             Displaycss.Attributes["type"] = "text/css";
             Displaycss.Attributes["media"] = "all";
@@ -89,7 +89,7 @@ namespace Profiles.Edit
             // This should get included automatically, but isn't working for Edit for some reason
             HtmlLink ThemeCss = new HtmlLink();
             //ThemeCss.Href = Root.GetThemedFile(Page, "Search/CSS/Theme.css");
-            ThemeCss.Href = Root.Domain + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".css";
+            ThemeCss.Href = Brand.GetDomain() + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".css";
             ThemeCss.Attributes["rel"] = "stylesheet";
             ThemeCss.Attributes["type"] = "text/css";
             ThemeCss.Attributes["media"] = "all";
@@ -97,7 +97,7 @@ namespace Profiles.Edit
             
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");
-            UCSFjs.Attributes.Add("src", Root.Domain + "/Edit/JavaScript/UCSF.js");
+            UCSFjs.Attributes.Add("src", Brand.GetDomain() + "/Edit/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
         }
 

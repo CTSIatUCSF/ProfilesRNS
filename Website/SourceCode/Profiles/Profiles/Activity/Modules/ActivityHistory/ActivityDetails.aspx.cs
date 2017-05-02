@@ -25,7 +25,7 @@ using Profiles.Activity.Utilities;
 
 namespace Profiles.Activity
 {
-    public partial class ActivityDetails : System.Web.UI.Page
+    public partial class ActivityDetails : BrandedPage
     {
          private Profiles.Framework.Template masterpage;
 

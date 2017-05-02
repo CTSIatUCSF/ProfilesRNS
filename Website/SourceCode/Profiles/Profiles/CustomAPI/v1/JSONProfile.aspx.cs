@@ -13,7 +13,7 @@ using Connects.Profiles.Utility;
 using System.Web.Script.Serialization;
 using Profiles.CustomAPI.Utilities;
 
-public partial class JSONProfile : System.Web.UI.Page
+public partial class JSONProfile : Profiles.Framework.Utilities.BrandedPage
 {
 
     protected void Page_Load(object sender, EventArgs e)

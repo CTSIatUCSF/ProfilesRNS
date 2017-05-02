@@ -9,9 +9,8 @@ using System.Data;
 using System.Data.Common;
 using Connects.Profiles.Common;
 using Connects.Profiles.Service.DataContracts;
-using Connects.Profiles.Utility;
 
-public partial class PubXML : System.Web.UI.Page
+public partial class PubXML : Profiles.Framework.Utilities.BrandedPage
 {
 
     protected void Page_Load(object sender, EventArgs e)

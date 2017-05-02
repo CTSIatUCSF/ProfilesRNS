@@ -43,7 +43,7 @@ namespace Profiles.Framework.Modules.ApplyXSLT
         {
 
             XsltArgumentList args = new XsltArgumentList();
-            args.AddParam("root", "", Root.Domain);
+            args.AddParam("root", "", Brand.GetDomain());
 
             //If your module performs a data request, based on the DataURI parameter then call ReLoadBaseData
             base.GetDataByURI();

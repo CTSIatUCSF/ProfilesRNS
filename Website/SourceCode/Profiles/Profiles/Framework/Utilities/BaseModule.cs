@@ -55,7 +55,7 @@ namespace Profiles.Framework.Utilities
             {
                 if (this.RDFTriple == null)
                 {
-                    if (this.BaseData.SelectSingleNode(this.GetModuleParamString("DataURI"), this.Namespaces).InnerText.Contains(Root.Domain))
+                    if (this.BaseData.SelectSingleNode(this.GetModuleParamString("DataURI"), this.Namespaces).InnerText.Contains(Brand.GetDomain()))
                     {
                         string[] vars = this.BaseData.SelectSingleNode(this.GetModuleParamString("DataURI"), this.Namespaces).InnerText.Split('/');
 

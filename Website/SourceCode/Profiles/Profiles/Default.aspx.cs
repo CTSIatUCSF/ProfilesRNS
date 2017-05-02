@@ -22,12 +22,12 @@ using Profiles.Framework.Utilities;
 
 namespace Profiles
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : BrandedPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             Response.Status = "301 Moved Permanently";
-            Response.AddHeader("Location", Root.Domain + "/search/");
+            Response.AddHeader("Location", Brand.GetDomain() + "/search/");
             Response.End();
         }
     }

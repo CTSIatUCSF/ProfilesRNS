@@ -97,7 +97,7 @@ namespace Profiles.Profile
             body.Attributes.Add("class", "profile");
 
             HtmlLink Displaycss = new HtmlLink();
-            Displaycss.Href = Root.Domain + "/Profile/CSS/display.css";
+            Displaycss.Href = Brand.GetDomain() + "/Profile/CSS/display.css";
             Displaycss.Attributes["rel"] = "stylesheet";
             Displaycss.Attributes["type"] = "text/css";
             Displaycss.Attributes["media"] = "all";
@@ -105,7 +105,7 @@ namespace Profiles.Profile
 
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");
-            UCSFjs.Attributes.Add("src", Root.Domain + "/Profile/JavaScript/UCSF.js");
+            UCSFjs.Attributes.Add("src", Brand.GetDomain() + "/Profile/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
         }
 

@@ -13,6 +13,7 @@ namespace Profiles.Framework.Utilities
         public static Dictionary<string, UCSFIDSet> ByPrettyURL = new Dictionary<string, UCSFIDSet>();
         public static Dictionary<string, UCSFIDSet> ByFNO = new Dictionary<string, UCSFIDSet>();
         public static Dictionary<string, UCSFIDSet> ByUserName = new Dictionary<string, UCSFIDSet>(); // hopefully EPPN
+        public static HashSet<string> PrettyURLs = new HashSet<string>();
         public static HashSet<string> PrettyURLApplicationNames = new HashSet<string>();
 
         public Int64 PersonId { get; set; }
@@ -40,6 +41,7 @@ namespace Profiles.Framework.Utilities
             ByUserName[this.UserName] = this;
             ByFNO[this.FNO] = this;
 
+            PrettyURLs.Add(PrettyURL);
             string[] uriparts = PrettyURL.Split('/');
             PrettyURLApplicationNames.Add(uriparts[uriparts.Length - 1]);
         }

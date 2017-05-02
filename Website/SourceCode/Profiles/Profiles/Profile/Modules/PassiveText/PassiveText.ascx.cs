@@ -80,7 +80,7 @@ namespace Profiles.Profile.Modules.PassiveText
 
             XslCompiledTransform xslt = new XslCompiledTransform();
             XsltArgumentList args = new XsltArgumentList();
-            args.AddParam("root", "", Root.Domain);
+            args.AddParam("root", "", Brand.GetDomain());
 
             litPassiveTextBlock.Text = Framework.Utilities.XslHelper.TransformInMemory(Server.MapPath("~/profile/modules/PassiveText/PassiveText.xslt"), args, base.BaseData.OuterXml);            
 

@@ -44,9 +44,6 @@ CREATE UNIQUE INDEX prettyUrlUnique ON [UCSF.].[NameAdditions]([PrettyURL])
 WHERE [PrettyURL] IS NOT NULL
 GO
 
-SET ANSI_PADDING OFF
-GO
-
 /****** Object:  Table [UCSF.].[Brand]    Script Date: 12/16/2015 10:51:55 AM ******/
 SET ANSI_NULLS ON
 GO
@@ -58,13 +55,12 @@ SET ANSI_PADDING ON
 GO
 
 CREATE TABLE [UCSF.].[Brand](
-	[BrandID] [int] NOT NULL,
-	[InstitutionAbbreviation] [nvarchar](50) NULL,
+	[BrandName] [nvarchar](50) NOT NULL,
 	[Theme] [nvarchar](50) NULL,
 	[BasePath] [nvarchar](50) NULL,
 PRIMARY KEY CLUSTERED 
 (
-	[BrandID] ASC
+	[BrandName] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
@@ -116,11 +112,11 @@ SELECT p.[PersonID]
       ,p.[FacultyRankID]
       ,p.[InternalUsername]
       ,p.[Visible]
-	  ,b.[Theme]
+	  ,b.[BrandName]  --this is where and how we assign a brand to a profile, currently based on institutionabbreviation
   FROM [Profile.Data].[Person] p 
 	JOIN [Profile.Data].[Person.Affiliation] a on p.PersonID = a.PersonID and a.IsPrimary = 1
 	JOIN [Profile.Data].[Organization.Institution] i on a.InstitutionID = i.InstitutionID
-	LEFT JOIN [UCSF.].[Brand] b on b.InstitutionAbbreviation = i.InstitutionAbbreviation
+	LEFT JOIN [UCSF.].[Brand] b on b.BrandName = i.InstitutionAbbreviation
 	LEFT JOIN [UCSF.].[NameAdditions] na on na.internalusername = p.internalusername
 	LEFT JOIN [RDF.Stage].internalnodemap n on n.internalid = p.personId
 	where n.[class] = 'http://xmlns.com/foaf/0.1/Person' 
@@ -329,7 +325,7 @@ BEGIN
 					 @CleanSuffix=n.CleanSuffix,
  					 @CleanGivenName=n.CleanGivenName
 		FROM [UCSF.].[NameAdditions] n JOIN [Profile.Import].[PersonAffiliation] a on n.internalusername=a.internalusername and a.primaryaffiliation=1
-			LEFT OUTER JOIN [UCSF.].[Brand] b on b.InstitutionAbbreviation=a.institutionabbreviation
+			LEFT OUTER JOIN [UCSF.].[Brand] b on b.BrandName=a.institutionabbreviation -- associate brand to person by instutition again
 			WHERE n.PrettyURL is null ORDER BY len(n.CleanMiddle) + len(n.CleanSuffix)					 
 
 		-- try different strategies

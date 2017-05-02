@@ -27,7 +27,7 @@ using System.Web.UI.HtmlControls;
 
 namespace Profiles.ORCID.Utilities
 {
-    public abstract class ProfileData : System.Web.UI.Page
+    public abstract class ProfileData : BrandedPage
     {
         #region "Constructor"
 
@@ -138,7 +138,7 @@ namespace Profiles.ORCID.Utilities
         private void LoadAssets()
         {
             HtmlLink ORCIDcss = new HtmlLink();
-            ORCIDcss.Href = Root.Domain + "/ORCID/CSS/ORCID.css";
+            ORCIDcss.Href = Brand.GetDomain() + "/ORCID/CSS/ORCID.css";
             ORCIDcss.Attributes["rel"] = "stylesheet";
             ORCIDcss.Attributes["type"] = "text/css";
             ORCIDcss.Attributes["media"] = "all";
@@ -146,7 +146,7 @@ namespace Profiles.ORCID.Utilities
 
             HtmlGenericControl ORCIDjs = new HtmlGenericControl("script");
             ORCIDjs.Attributes.Add("type", "text/javascript");
-            ORCIDjs.Attributes.Add("src", Root.Domain + "/ORCID/JavaScript/orcid.js?v=1");
+            ORCIDjs.Attributes.Add("src", Brand.GetDomain() + "/ORCID/JavaScript/orcid.js?v=1");
             Page.Header.Controls.Add(ORCIDjs);
         }
     }

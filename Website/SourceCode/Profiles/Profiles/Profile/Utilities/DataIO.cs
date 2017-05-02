@@ -844,7 +844,7 @@ namespace Profiles.Profile.Utilities
             {
                 String Filepath = HttpContext.Current.Server.MapPath("~/Profile/Modules/NetworkMap/config.xml");
                 vals.Load(Filepath);
-                //vals.Load(Root.Domain + "/Profile/Modules/NetworkMap/config.xml");
+                //vals.Load(Brand.GetDomain() + "/Profile/Modules/NetworkMap/config.xml");
             }
             catch (Exception e)
             {

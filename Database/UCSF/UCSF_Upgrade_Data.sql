@@ -642,8 +642,8 @@ UPDATE [Ontology.Presentation].[XML] SET [PresentationXML]=CONVERT(xml,N'<Presen
 commit
 
 --- UCWide Branding work
-INSERT INTO [UCSF.].[Brand] (BrandID, InstitutionAbbreviation, Theme, BasePath) VALUES (1, 'UCSF', 'UCSF', 'http://stage-profiles.ucsf.edu/ucsf');
-INSERT INTO [UCSF.].[Brand] (BrandID, InstitutionAbbreviation, Theme, BasePath) VALUES (2, 'UCSD', 'UCSD', 'http://stage-profiles.ucsf.edu/ucsd');
+INSERT INTO [UCSF.].[Brand] (BrandName, Theme, BasePath) VALUES ('UCSF', 'UCSF', 'http://stage-profiles.ucsf.edu/ucsf');
+INSERT INTO [UCSF.].[Brand] (BrandName, Theme, BasePath) VALUES ('UCSD', 'UCSD', 'http://stage-profiles.ucsf.edu/ucsd');
 
 
 --rollback

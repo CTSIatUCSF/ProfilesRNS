@@ -63,7 +63,7 @@ namespace Profiles.Edit.Modules.EditObjectTypeProperty
 
             this.PropertyListXML = propdata.GetPropertyList(this.BaseData, base.PresentationXML, PredicateURI, false, true, false);
             this.PropertyLabel = PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value;
-            litBackLink.Text = "<a href='" + Root.Domain + "/edit/" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + this.PropertyLabel + "</b>";
+            litBackLink.Text = "<a href='" + Brand.GetDomain() + "/edit/" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + this.PropertyLabel + "</b>";
 
 
             securityOptions.Subject = this.SubjectID;

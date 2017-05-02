@@ -25,7 +25,7 @@ using Profiles.Framework.Utilities;
 
 namespace Profiles.DIRECT
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : BrandedPage
     {     
 
         protected void Page_Load(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace Profiles.DIRECT
 
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");
-            UCSFjs.Attributes.Add("src", Root.Domain + "/DIRECT/JavaScript/UCSF.js");
+            UCSFjs.Attributes.Add("src", Brand.GetDomain() + "/DIRECT/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
         }
 

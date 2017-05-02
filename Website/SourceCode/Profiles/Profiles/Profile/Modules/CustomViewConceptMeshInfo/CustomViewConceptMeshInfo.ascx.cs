@@ -23,7 +23,7 @@ namespace Profiles.Profile.Modules
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			ConceptName = this.BaseData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]", this.Namespaces).InnerText;
-			plusImage.Src = Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif";
+			plusImage.Src = Brand.GetDomain() + "/Profile/Modules/PropertyList/images/minusSign.gif";
             plusImage.Width = 9;
             plusImage.Height = 9;
 			DrawProfilesModule();

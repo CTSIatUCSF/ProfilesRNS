@@ -37,11 +37,11 @@ namespace Profiles.Proxy.Modules.ManageProxies
         {
 
             if (sm.Session().UserID == 0)
-                Response.Redirect(Root.Domain + "/search");
+                Response.Redirect(Brand.GetDomain() + "/search");
 
             Utilities.DataIO data = new Profiles.Proxy.Utilities.DataIO();
 
-            imgAdd.ImageUrl = Root.Domain + "/framework/images/icon_roundArrow.gif";
+            imgAdd.ImageUrl = Brand.GetDomain() + "/framework/images/icon_roundArrow.gif";
 
 
             litBackLink.Text = "<b>Manage Proxies</b>";
@@ -102,7 +102,7 @@ namespace Profiles.Proxy.Modules.ManageProxies
             if (sm.Session().NodeID > 0)
             {
                 pnlAddProxy.Visible = true;
-                string url = Root.Domain + "/proxy/default.aspx?method=search&subject=" + HttpContext.Current.Request.QueryString["subject"];
+                string url = Brand.GetDomain() + "/proxy/default.aspx?method=search&subject=" + HttpContext.Current.Request.QueryString["subject"];
                 lnkAddProxyTmp.Text = "<a href='" + url + "'>Add A Proxy</a>";
             }
 
@@ -190,7 +190,7 @@ namespace Profiles.Proxy.Modules.ManageProxies
         }
         public string GetURLDomain()
         {
-            return Root.Domain;
+            return Brand.GetDomain();
         }
         class Proxy
         {

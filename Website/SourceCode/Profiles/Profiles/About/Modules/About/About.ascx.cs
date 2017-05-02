@@ -47,36 +47,36 @@ namespace Profiles.About.Modules.About
                 case "overview":
                     
                     tabs += Tabs.DrawActiveTab("Overview");
-                    tabs += Tabs.DrawDisabledTab("Frequently Asked Questions", Root.Domain + "/about/default.aspx?tab=faq");
-                    tabs += Tabs.DrawDisabledTab("Sharing Data", Root.Domain + "/about/default.aspx?tab=data");
-                    tabs += Tabs.DrawDisabledTab("ORCID", Root.Domain + "/about/default.aspx?tab=orcid");
+                    tabs += Tabs.DrawDisabledTab("Frequently Asked Questions", Brand.GetDomain() + "/about/default.aspx?tab=faq");
+                    tabs += Tabs.DrawDisabledTab("Sharing Data", Brand.GetDomain() + "/about/default.aspx?tab=data");
+                    tabs += Tabs.DrawDisabledTab("ORCID", Brand.GetDomain() + "/about/default.aspx?tab=orcid");
 
                     pnlOverview.Visible = true;
 
                     break;
 
                 case "faq":
-                    tabs += Tabs.DrawDisabledTab("Overview", Root.Domain + "/about/default.aspx?tab=overview");
+                    tabs += Tabs.DrawDisabledTab("Overview", Brand.GetDomain() + "/about/default.aspx?tab=overview");
                     tabs += Tabs.DrawActiveTab("Frequently Asked Questions");
-                    tabs += Tabs.DrawDisabledTab("Sharing Data", Root.Domain + "/about/default.aspx?tab=data");
-                    tabs += Tabs.DrawDisabledTab("ORCID", Root.Domain + "/about/default.aspx?tab=orcid");
+                    tabs += Tabs.DrawDisabledTab("Sharing Data", Brand.GetDomain() + "/about/default.aspx?tab=data");
+                    tabs += Tabs.DrawDisabledTab("ORCID", Brand.GetDomain() + "/about/default.aspx?tab=orcid");
 
                     pnlFAQ.Visible = true;
                     break;
 
 
                 case "data":
-                    tabs += Tabs.DrawDisabledTab("Overview", Root.Domain + "/about/default.aspx?tab=overview");
-                    tabs += Tabs.DrawDisabledTab("Frequently Asked Questions", Root.Domain + "/about/default.aspx?tab=faq");
+                    tabs += Tabs.DrawDisabledTab("Overview", Brand.GetDomain() + "/about/default.aspx?tab=overview");
+                    tabs += Tabs.DrawDisabledTab("Frequently Asked Questions", Brand.GetDomain() + "/about/default.aspx?tab=faq");
                     tabs += Tabs.DrawActiveTab("Sharing Data");
-                    tabs += Tabs.DrawDisabledTab("ORCID", Root.Domain + "/about/default.aspx?tab=orcid");
+                    tabs += Tabs.DrawDisabledTab("ORCID", Brand.GetDomain() + "/about/default.aspx?tab=orcid");
 
                     pnlData.Visible = true;
                     break;
                 case "orcid":
-                    tabs += Tabs.DrawDisabledTab("Overview", Root.Domain + "/about/default.aspx?tab=overview");
-                    tabs += Tabs.DrawDisabledTab("Frequently Asked Questions", Root.Domain + "/about/default.aspx?tab=faq");
-                    tabs += Tabs.DrawDisabledTab("Sharing Data", Root.Domain + "/about/default.aspx?tab=data");
+                    tabs += Tabs.DrawDisabledTab("Overview", Brand.GetDomain() + "/about/default.aspx?tab=overview");
+                    tabs += Tabs.DrawDisabledTab("Frequently Asked Questions", Brand.GetDomain() + "/about/default.aspx?tab=faq");
+                    tabs += Tabs.DrawDisabledTab("Sharing Data", Brand.GetDomain() + "/about/default.aspx?tab=data");
                     tabs += Tabs.DrawActiveTab("ORCID");
 
                     pnlORCID.Visible = true;

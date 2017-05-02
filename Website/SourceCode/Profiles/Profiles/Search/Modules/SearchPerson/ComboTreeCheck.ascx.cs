@@ -218,7 +218,7 @@ namespace Profiles.Search.Modules.SearchPerson
             {
                 ImageButton ibExpand = (ImageButton)this.FindControl("ibExpand");
 
-                ibExpand.ImageUrl = Root.Domain + "/framework/Images/blank.gif";
+                ibExpand.ImageUrl = Brand.GetDomain() + "/framework/Images/blank.gif";
 
                 ibExpand.OnClientClick = string.Format("ShowMainContent('{0}'); return false;", ClientID);
 
@@ -255,7 +255,7 @@ namespace Profiles.Search.Modules.SearchPerson
 
                 HtmlImage l_imgExpand = (HtmlImage)e.Item.FindControl("imgExpand");
                 l_imgExpand.Attributes.Add("onclick", string.Format("ShowDetailContent('{0}', '{1}'); return false;", ClientID, l_MasterID));
-                l_imgExpand.Attributes.Add("src", l_isExpand ? Root.Domain + "/framework/images/expand.gif" : Root.Domain + "/framework/images/collapse.gif");
+                l_imgExpand.Attributes.Add("src", l_isExpand ? Brand.GetDomain() + "/framework/images/expand.gif" : Brand.GetDomain() + "/framework/images/collapse.gif");
 
 
                 HtmlGenericControl l_divDetail = (HtmlGenericControl)e.Item.FindControl("divDetail");

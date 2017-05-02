@@ -24,7 +24,7 @@ using Profiles.Framework.Utilities;
 
 namespace Profiles.ActiveNetwork
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : BrandedPage
     {
         private Profiles.Framework.Template masterpage;
 

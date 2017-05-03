@@ -297,7 +297,7 @@ namespace Profiles.Activity.Utilities
                                     Name = firstname + " " + lastname,
                                     PersonId = Convert.ToInt32(personid),
                                     NodeID = Convert.ToInt64(nodeid),
-                                    URL = Brand.GetDomain() + "/" + UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)].PrettyURL,
+                                    URL = UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)].PrettyURL,
                                     Thumbnail = Brand.GetDomain() + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + nodeid + "&Thumbnail=True&Width=45"
                                 }
                             };

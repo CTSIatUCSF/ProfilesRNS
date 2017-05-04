@@ -148,6 +148,10 @@
     <Content Include="Activity\Modules\ModuleCatalogue.xml" />
     <Content Include="Activity\Modules\Statistics\Statistics.ascx" />
     <Content Include="Activity\PresentationXML\ActivityDetails.xml" />
+    <Content Include="App_Themes\LBNL\Images\lbl-logo.png" />
+    <Content Include="App_Themes\LBNL\Images\lbl-new-social-iconsB.png" />
+    <Content Include="App_Themes\LBNL\Images\seal-department-of-energy.png" />
+    <Content Include="App_Themes\LBNL\Images\seal-university-of-california.png" />
     <Content Include="App_Themes\UC\Images\backtotop.gif" />
     <Content Include="App_Themes\UC\Images\comment.gif" />
     <Content Include="App_Themes\UC\Images\favicon.ico" />
@@ -168,21 +172,11 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Themes\UC\PresentationXML\About\Optin.xml" />
-    <Content Include="App_Themes\LBNL\Images\actri-logo.png" />
     <Content Include="App_Themes\LBNL\Images\backtotop.gif" />
-    <Content Include="App_Themes\LBNL\Images\college-alumni.png" />
     <Content Include="App_Themes\LBNL\Images\comment.gif" />
-    <Content Include="App_Themes\LBNL\Images\develop-profile.gif" />
-    <Content Include="App_Themes\LBNL\Images\editProfile.gif" />
     <Content Include="App_Themes\LBNL\Images\favicon.ico" />
     <Content Include="App_Themes\LBNL\Images\gear.gif" />
     <Content Include="App_Themes\LBNL\Images\help.gif" />
-    <Content Include="App_Themes\LBNL\Images\icon_squareArrow.gif" />
-    <Content Include="App_Themes\LBNL\Images\network.png" />
-    <Content Include="App_Themes\LBNL\Images\powered_by_scctsi.jpg" />
-    <Content Include="App_Themes\LBNL\Images\profiles.jpg" />
-    <Content Include="App_Themes\LBNL\Images\profilesnapshot.png" />
-    <Content Include="App_Themes\LBNL\Images\search-icon.gif" />
     <Content Include="App_Themes\LBNL\PresentationXML\About\AboutProfiles.xml" />
     <Content Include="App_Themes\LBNL\PresentationXML\About\CloseBrowser.xml" />
     <Content Include="App_Themes\LBNL\PresentationXML\About\FAQ.xml" />

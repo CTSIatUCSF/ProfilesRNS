@@ -7,6 +7,7 @@ DROP PROCEDURE [UCSF.].[CreatePrettyURLs]
 DROP PROCEDURE [UCSF.].[ReadActivityLog]
 DROP FUNCTION [UCSF.].[fn_UrlCleanName]
 DROP FUNCTION [UCSF.].[fn_ApplicationNameFromPrettyUrl]
+DROP FUNCTION [UCSF.].fn_LegacyInternalusername2EPPN
 DROP TABLE [UCSF.].[NameAdditions]
 DROP TABLE [UCSF.].[Brand]
 DROP SCHEMA [UCSF.]

@@ -265,8 +265,6 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-
-
 CREATE FUNCTION [UCSF.].[fn_ApplicationNameFromPrettyUrl]
 (
 	@CompleteURL varchar(255)
@@ -278,6 +276,33 @@ BEGIN
 	RETURN REVERSE(RTRIM(SUBSTRING(REVERSE (@CompleteURL), 
 					(CHARINDEX('?', REVERSE (@CompleteURL), 1)+1), 
 					((CHARINDEX('/', REVERSE (@CompleteURL), 1)) - (CHARINDEX('?', REVERSE (@CompleteURL), 1))- 1)))) 
+END
+
+
+GO
+
+/****** Object:  UserDefinedFunction [UCSF.].[fn_LegacyInternalusername2EPPN]    Script Date: 4/26/2017 3:12:58 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE FUNCTION [UCSF.].fn_LegacyInternalusername2EPPN
+(
+	@legacyinternalusername nvarchar(50),
+	@institutionabbreviation nvarchar(50)	
+)
+RETURNS nvarchar(50)
+AS
+BEGIN
+	IF (@institutionabbreviation = 'ucsf') 
+		RETURN SUBSTRING(@legacyinternalusername, 3, 6) + '@ucsf.edu'
+	ELSE IF (@institutionabbreviation = 'ucsd')
+		RETURN cast(cast(@legacyinternalusername as Int) as varchar) + '@ucsd.edu'
+	ELSE IF (@institutionabbreviation = 'uci')
+		RETURN cast(@legacyinternalusername as varchar) + '@uci.edu'
+	RETURN 'Unrecognized institution :' + @institutionabbreviation
 END
 
 

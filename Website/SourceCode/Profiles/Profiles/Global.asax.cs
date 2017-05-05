@@ -99,6 +99,17 @@ namespace Profiles
         /// <param name="routes">RouteTable.Routes is passed as a RouteCollection by ref used to store all routes in the routing framework.</param>
         private static void RegisterRoutes(RouteCollection routes)
         {
+            routes.RouteExistingFiles = false;
+
+            // by UCSF
+            routes.Add("RobotsTxt", new Route("robots.txt", new AspxHandler("~/RobotsTxt.aspx")));
+            routes.Add("SiteMap", new Route("sitemap.xml", new AspxHandler("~/SiteMap.aspx")));
+
+            foreach (string prettyurl in UCSFIDSet.PrettyURLApplicationNames)
+            {
+                routes.Add(prettyurl, new Route(prettyurl, new PrettyURLRouteHandler(prettyurl)));
+            }
+
             Framework.Utilities.DataIO d = new Framework.Utilities.DataIO();
 
             //The REST Paths are built based on the applications setup in the Profiles database.
@@ -106,21 +117,8 @@ namespace Profiles
             {
                 int loop = 0;
 
-                routes.RouteExistingFiles = false;
-
-                // by UCSF
-                routes.Add("RobotsTxt", new Route("robots.txt", new AspxHandler("~/RobotsTxt.aspx")));
-                routes.Add("SiteMap", new Route("sitemap.xml", new AspxHandler("~/SiteMap.aspx")));
-
                 while (reader.Read())
                 {
-                    // do not want to add these others for non pretty names
-                    if (UCSFIDSet.PrettyURLApplicationNames.Contains(reader[0].ToString()))
-                    {
-                        routes.Add("ProfilesAliasPath0" + loop, new Route(reader[0].ToString(), new PrettyURLRouteHandler(reader[0].ToString())));
-                    }
-                    else
-                    {
                     routes.Add("ProfilesAliasPath0" + loop, new Route(reader[0].ToString(), new ProfilesRouteHandler()));
                     routes.Add("ProfilesAliasPath1" + loop, new Route(reader[0].ToString() + "/{Param1}", new ProfilesRouteHandler()));
                     routes.Add("ProfilesAliasPath2" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}", new ProfilesRouteHandler()));
@@ -131,7 +129,7 @@ namespace Profiles
                     routes.Add("ProfilesAliasPath7" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}/{Param4}/{Param5}/{Param6}/{Param7}", new ProfilesRouteHandler()));
                     routes.Add("ProfilesAliasPath8" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}/{Param4}/{Param5}/{Param6}/{Param7}/{Param8}", new ProfilesRouteHandler()));
                     routes.Add("ProfilesAliasPath9" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}/{Param4}/{Param5}/{Param6}/{Param7}/{Param8}/{Param9}", new ProfilesRouteHandler()));
-                    }
+
                     Framework.Utilities.DebugLogging.Log("REST PATTERN(s) CREATED FOR " + reader[0].ToString());
                     loop++;
                 }

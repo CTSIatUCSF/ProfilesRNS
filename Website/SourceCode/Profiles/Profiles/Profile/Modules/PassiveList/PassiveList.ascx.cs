@@ -74,7 +74,17 @@ namespace Profiles.Profile.Modules.PassiveList
             if (base.GetModuleParamString("MoreURL").Contains("&"))
                 documentdata.Append(Brand.GetDomain() + CustomParse.Parse(base.GetModuleParamString("MoreURL"), base.BaseData, base.Namespaces).Replace("&", "&amp;"));
             else
-                documentdata.Append(CustomParse.Parse(base.GetModuleParamString("MoreURL"), base.BaseData, base.Namespaces));
+            {
+                string moreURL = CustomParse.Parse(base.GetModuleParamString("MoreURL"), base.BaseData, base.Namespaces);
+                // if it is for this person, swap in the proper baseURI
+                UCSFIDSet person = (UCSFIDSet)HttpContext.Current.Items["UCSFIDSet"];
+                if (person != null && person.Brand != null && moreURL.StartsWith(Root.Domain + "/profile/" + person.NodeId + "/"))
+                {
+                    // swap in the themed domain for the link
+                    moreURL = moreURL.Replace(Root.Domain, person.Brand.BasePath);
+                }
+                documentdata.Append(moreURL);
+            }
             documentdata.Append("\"");
 
             documentdata.Append(">");

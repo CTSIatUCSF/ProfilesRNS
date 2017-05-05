@@ -45,11 +45,19 @@ namespace Profiles.Profile.Utilities
         protected override void OnPreInit(EventArgs e)
         {
             base.OnPreInit(e);
+            
             if (!String.IsNullOrEmpty(Request.QueryString["Subject"]))
             {
+                long nodeid = Int64.Parse(Request.QueryString["subject"]);
+                if (UCSFIDSet.ByNodeId.ContainsKey(nodeid))
+                {
+                    HttpContext.Current.Items["UCSFIDSet"] = UCSFIDSet.ByNodeId[nodeid];
+                }
+                /*
                 Brand brand = Brand.GetForSubject(Int64.Parse(Request.QueryString["subject"]));
                 HttpContext.Current.Items["Brand"] = brand;
                 Page.Theme = brand.Theme;
+                 */
             }
         }
 

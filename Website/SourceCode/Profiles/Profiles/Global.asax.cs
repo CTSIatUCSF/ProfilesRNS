@@ -105,30 +105,41 @@ namespace Profiles
             routes.Add("RobotsTxt", new Route("robots.txt", new AspxHandler("~/RobotsTxt.aspx")));
             routes.Add("SiteMap", new Route("sitemap.xml", new AspxHandler("~/SiteMap.aspx")));
 
-            foreach (string prettyurl in UCSFIDSet.PrettyURLApplicationNames)
+            foreach (string applicationName in UCSFIDSet.PrettyURLApplicationNames)
             {
-                routes.Add(prettyurl, new Route(prettyurl, new PrettyURLRouteHandler(prettyurl)));
+                PrettyURLRouteHandler purh = new PrettyURLRouteHandler(applicationName);
+                routes.Add(applicationName, new Route(applicationName, purh));
+                routes.Add(applicationName + "2", new Route(applicationName + "/{Param2}", purh));
+                /************  These things take a long time to make so they might be expensive to IIS. Uncomment more as you need them 
+                    and make  sure To make UCSFIDSet.TrySwapInPrettyURL OK with it!      :)                  ****************/
+                //routes.Add(applicationName + "3", new Route(applicationName + "/{Param2}/{Param3}", purh));
+                //routes.Add(applicationName + "4", new Route(applicationName + "/{Param2}/{Param3}/{Param4}", purh));
+                //routes.Add(applicationName + "5", new Route(applicationName + "/{Param2}/{Param3}/{Param4}/{Param5}", purh));
+                //routes.Add(applicationName + "6", new Route(applicationName + "/{Param2}/{Param3}/{Param4}/{Param5}/{Param6}", purh));
+                //routes.Add(applicationName + "7", new Route(applicationName + "/{Param2}/{Param3}/{Param4}/{Param5}/{Param6}/{Param7}", purh));
+                //routes.Add(applicationName + "8", new Route(applicationName + "/{Param2}/{Param3}/{Param4}/{Param5}/{Param6}/{Param7}/{Param8}", purh));
+                //routes.Add(applicationName + "9", new Route(applicationName + "/{Param2}/{Param3}/{Param4}/{Param5}/{Param6}/{Param7}/{Param8}/{Param9}", purh));
             }
 
-            Framework.Utilities.DataIO d = new Framework.Utilities.DataIO();
-
             //The REST Paths are built based on the applications setup in the Profiles database.
+            ProfilesRouteHandler prh = new ProfilesRouteHandler();
+            Framework.Utilities.DataIO d = new Framework.Utilities.DataIO();
             using (System.Data.SqlClient.SqlDataReader reader = d.GetRESTApplications())
             {
                 int loop = 0;
 
                 while (reader.Read())
                 {
-                    routes.Add("ProfilesAliasPath0" + loop, new Route(reader[0].ToString(), new ProfilesRouteHandler()));
-                    routes.Add("ProfilesAliasPath1" + loop, new Route(reader[0].ToString() + "/{Param1}", new ProfilesRouteHandler()));
-                    routes.Add("ProfilesAliasPath2" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}", new ProfilesRouteHandler()));
-                    routes.Add("ProfilesAliasPath3" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}", new ProfilesRouteHandler()));
-                    routes.Add("ProfilesAliasPath4" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}/{Param4}", new ProfilesRouteHandler()));
-                    routes.Add("ProfilesAliasPath5" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}/{Param4}/{Param5}", new ProfilesRouteHandler()));
-                    routes.Add("ProfilesAliasPath6" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}/{Param4}/{Param5}/{Param6}", new ProfilesRouteHandler()));
-                    routes.Add("ProfilesAliasPath7" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}/{Param4}/{Param5}/{Param6}/{Param7}", new ProfilesRouteHandler()));
-                    routes.Add("ProfilesAliasPath8" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}/{Param4}/{Param5}/{Param6}/{Param7}/{Param8}", new ProfilesRouteHandler()));
-                    routes.Add("ProfilesAliasPath9" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}/{Param4}/{Param5}/{Param6}/{Param7}/{Param8}/{Param9}", new ProfilesRouteHandler()));
+                    routes.Add("ProfilesAliasPath0" + loop, new Route(reader[0].ToString(), prh));
+                    routes.Add("ProfilesAliasPath1" + loop, new Route(reader[0].ToString() + "/{Param1}", prh));
+                    routes.Add("ProfilesAliasPath2" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}", prh));
+                    routes.Add("ProfilesAliasPath3" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}", prh));
+                    routes.Add("ProfilesAliasPath4" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}/{Param4}", prh));
+                    routes.Add("ProfilesAliasPath5" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}/{Param4}/{Param5}", prh));
+                    routes.Add("ProfilesAliasPath6" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}/{Param4}/{Param5}/{Param6}", prh));
+                    routes.Add("ProfilesAliasPath7" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}/{Param4}/{Param5}/{Param6}/{Param7}", prh));
+                    routes.Add("ProfilesAliasPath8" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}/{Param4}/{Param5}/{Param6}/{Param7}/{Param8}", prh));
+                    routes.Add("ProfilesAliasPath9" + loop, new Route(reader[0].ToString() + "/{Param1}/{Param2}/{Param3}/{Param4}/{Param5}/{Param6}/{Param7}/{Param8}/{Param9}", prh));
 
                     Framework.Utilities.DebugLogging.Log("REST PATTERN(s) CREATED FOR " + reader[0].ToString());
                     loop++;
@@ -231,18 +242,6 @@ namespace Profiles
     /// </summary>
     public class ProfilesRouteHandler : IRouteHandler
     {
-        private string VirtualPath { get; set; }
-
-        public ProfilesRouteHandler()
-        {
-            this.VirtualPath = string.Empty;
-        }
-
-        public ProfilesRouteHandler(string virtualpath)
-        {
-            this.VirtualPath = virtualpath;
-        }
-
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
             String path = HttpContext.Current.Request.Url.ToString().Replace("https://", "").Replace("http://", "");
@@ -268,12 +267,7 @@ namespace Profiles
                 HttpContext.Current.Items[urlParm.Key] = urlParm.Value;
             }
 
-            if (this.VirtualPath == "")
-            {
-                this.VirtualPath = "~/REST.aspx";
-            }
-
-            return BuildManager.CreateInstanceFromVirtualPath(this.VirtualPath, typeof(Page)) as IHttpHandler;
+            return BuildManager.CreateInstanceFromVirtualPath("~/REST.aspx", typeof(Page)) as IHttpHandler;
 
         }
     }
@@ -296,16 +290,19 @@ namespace Profiles
     public class PrettyURLRouteHandler : IRouteHandler
     {
 
-        private string PrettyURL;
+        private string applicationName;
 
-        public PrettyURLRouteHandler(string PrettyURL)
+        public PrettyURLRouteHandler(string applicationName)
         {
-            this.PrettyURL = PrettyURL;
+            this.applicationName = applicationName;
         }
 
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
-            HttpContext.Current.Items["Param0"] = this.PrettyURL;
+            string url = HttpContext.Current.Request.Url.ToString().ToLower();
+            string prettyUrl = url.Substring(0, url.IndexOf(applicationName)) + applicationName;
+            HttpContext.Current.Items["Param0"] = "display";
+            HttpContext.Current.Items["Param1"] = UCSFIDSet.ByPrettyURL[prettyUrl].NodeId;
 
 
             //Loop each of the parts of the path and pack them into the current request context as 

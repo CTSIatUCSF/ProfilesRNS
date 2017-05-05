@@ -21,6 +21,5 @@ DROP TABLE [UCSF.CTSASearch].[Publication.PubMed.Author]
 DROP TABLE [UCSF.CTSASearch].[Publication.PubMed.CoAuthorXML]
 DROP SCHEMA [UCSF.CTSASearch]
 
-ALTER TABLE [User.Session].[History.ResolveURL] DROP COLUMN [FullApplicationPath]
 ALTER TABLE [Profile.Data].[Publication.Entity.InformationResource]	DROP COLUMN Authors
 DROP PROCEDURE [Profile.Data].[Publication.ClaimOnePublication]

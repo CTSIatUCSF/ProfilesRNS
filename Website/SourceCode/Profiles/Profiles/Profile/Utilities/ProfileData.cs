@@ -48,8 +48,8 @@ namespace Profiles.Profile.Utilities
             
             if (!String.IsNullOrEmpty(Request.QueryString["Subject"]))
             {
-                long nodeid = Int64.Parse(Request.QueryString["subject"]);
-                if (UCSFIDSet.ByNodeId.ContainsKey(nodeid))
+                long nodeid = -1;                
+                if (Int64.TryParse(Request.QueryString["subject"], out nodeid) && UCSFIDSet.ByNodeId.ContainsKey(nodeid))
                 {
                     HttpContext.Current.Items["UCSFIDSet"] = UCSFIDSet.ByNodeId[nodeid];
                 }

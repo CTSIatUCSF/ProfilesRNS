@@ -55,7 +55,9 @@ namespace Profiles
     /// </summary>
     public partial class REST : BrandedPage
     {
-        private static string[] knownAcceptTypes =new string[] {"text/html", "application/rdf+xml"};
+        private static string TEXT_HTML = "text/html";
+        private static string RDF_XML = "application/rdf+xml";
+        private static string[] knownAcceptTypes = new string[] { TEXT_HTML, RDF_XML };
 
         //***************************************************************************************************************************************
         protected void Page_Load(object sender, EventArgs e)
@@ -168,7 +170,26 @@ namespace Profiles
             Session session = sessionmanagement.Session();
 
             //UCSF for UC Wide Profiles
-            URLResolve resolve = data.GetResolvedURL(param0,
+            string bestAcceptType = getBestAcceptType(HttpContext.Current.Request.AcceptTypes);
+            Int64 nodeId = -1;
+            URLResolve resolve = null;
+            if (TEXT_HTML.Equals(bestAcceptType) && "profile".Equals(param0.ToLower()) && Int64.TryParse(param1, out nodeId) && UCSFIDSet.ByNodeId.ContainsKey(nodeId))
+            {
+                // redirect to the pretty URL
+                resolve = new URLResolve(true, "", UCSFIDSet.ByNodeId[nodeId].PrettyURL + 
+                                            (String.IsNullOrEmpty(param2) ? "" : "/" + param2) +
+                                            (String.IsNullOrEmpty(param3) ? "" : "/" + param3) +
+                                            (String.IsNullOrEmpty(param4) ? "" : "/" + param4) +
+                                            (String.IsNullOrEmpty(param5) ? "" : "/" + param5) +
+                                            (String.IsNullOrEmpty(param6) ? "" : "/" + param6) +
+                                            (String.IsNullOrEmpty(param7) ? "" : "/" + param7) +
+                                            (String.IsNullOrEmpty(param8) ? "" : "/" + param8) +
+                                            (String.IsNullOrEmpty(param9) ? "" : "/" + param9),
+                                            TEXT_HTML, "200", true, false);
+            }
+            else
+            {
+                resolve = data.GetResolvedURL(param0,
                                    param1,
                                    param2,
                                    param3,
@@ -181,10 +202,9 @@ namespace Profiles
                                    session.SessionID,
                                    Brand.GetDomain() + Root.AbsolutePath,
                                    session.UserAgent,
-                                   getBestAcceptType(HttpContext.Current.Request.AcceptTypes),
-                                   HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host +  HttpContext.Current.Request.ApplicationPath);
+                                   getBestAcceptType(HttpContext.Current.Request.AcceptTypes));
 
-
+            }
             Framework.Utilities.DebugLogging.Log("{REST.aspx.cs} ProcessRequest() redirect=" + resolve.Redirect.ToString() + " to=>" + resolve.ResponseURL);
 
             if (resolve.Resolved && !resolve.Redirect)

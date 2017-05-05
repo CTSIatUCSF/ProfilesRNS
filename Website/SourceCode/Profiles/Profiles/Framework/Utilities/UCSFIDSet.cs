@@ -45,5 +45,22 @@ namespace Profiles.Framework.Utilities
             string[] uriparts = PrettyURL.Split('/');
             PrettyURLApplicationNames.Add(uriparts[uriparts.Length - 1]);
         }
+
+        public static string TrySwapInPrettyURL(string restURL)
+        {
+            // if it is for this person, swap in the proper baseURI
+            UCSFIDSet person = (UCSFIDSet)HttpContext.Current.Items["UCSFIDSet"];
+            if (person != null && person.Brand != null)
+            {
+                string toSwap = Root.Domain + "/profile/" + person.NodeId;
+                // only allow as many /'s as RegisterRoutes will support in Globl.asax.cs!!! If you add more, up the <= 1 to a larger number
+                if (restURL.StartsWith(toSwap) && restURL.Length - toSwap.Length - restURL.Replace(toSwap, "").Replace("/", "").Length <= 1) 
+                {
+                    // swap in the themed domain for the link
+                    return restURL.Replace(Root.Domain + "/profile/" + person.NodeId, person.PrettyURL);
+                }
+            }
+            return restURL;
+        }
     }
 }

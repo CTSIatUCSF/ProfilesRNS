@@ -14,7 +14,7 @@
 --%>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head id="Head1" runat="server">
-    <title><%= Page.Theme %> Profiles</title>
+    <title>Profiles</title>
     <asp:PlaceHolder runat="server">
       <link rel="shortcut icon" href="<%= GetThemedFavicon() %>" />
     </asp:PlaceHolder>

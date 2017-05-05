@@ -75,3 +75,41 @@ DROP TABLE #peopleMapUCSD
 
 -- add claimed
 -- add custom
+
+-- UCI
+WHILE EXISTS (SELECT * FROM  [profiles_uci].[Profile.Data].[Publication.PubMed.AllXML] WHERE ParseDT IS NOT NULL
+	AND PMID NOT IN (SELECT PMID FROM [Profile.Data].[Publication.PubMed.AllXML]))
+BEGIN 
+	INSERT [Profile.Data].[Publication.PubMed.AllXML] (PMID, X) SELECT TOP 1000 PMID, X FROM  [profiles_uci].[Profile.Data].[Publication.PubMed.AllXML]
+	WHERE ParseDT IS NOT NULL AND PMID NOT IN (SELECT PMID FROM [Profile.Data].[Publication.PubMed.AllXML])
+END 
+-- now parse all of it
+
+EXEC [Profile.Data].[Publication.Pubmed.ParseALLPubMedXML]
+
+-- load up people to migrate
+SELECT DISTINCT d.personid newPersonID, s.personid oldPersonID INTO #peopleMapUCI FROM [Profile.Data].[Person] d join [profiles_uci].[Profile.Data].[Person] s on d.internalusername = [UCSF.].fn_LegacyInternalusername2EPPN(s.InternalUserName, 'uci')
+JOIN [profiles_uci].[Profile.Data].[Publication.Person.Include] si on si.PersonID = s.PersonID WHERE si.PMID is not null AND si.PersonID is not null AND 
+si.PMID NOT IN (select PMID FROM [Profile.Data].[Publication.PubMed.Disambiguation] WHERE PMID is not null AND PersonID = d.PersonID)
+
+--DECLARE @newPersonID INT
+--DECLARE @oldPersonID INT
+--DECLARE @PMIDS XML
+WHILE EXISTS (SELECT * FROM #peopleMapUCI)
+BEGIN 
+	SELECT TOP 1 @newPersonID = newPersonID, @oldPersonID = oldPersonID FROM #peopleMapUCI
+
+	SELECT @PMIDS = (SELECT pmid as PMID from [profiles_uci].[Profile.Data].[Publication.Person.Include] 
+		where personid = @oldPersonID and pmid is not null for xml path, ROOT ('PMIDS'), elements)
+
+	EXEC [Profile.Data].[Publication.Pubmed.AddPMIDs] @personid = @newPersonID,	@PMIDxml =  @PMIDS
+
+	DELETE FROM #peopleMapUCI WHERE newPersonID = @newPersonID
+END
+
+
+EXEC [Profile.Data].[Publication.Pubmed.LoadDisambiguationResults]
+DROP TABLE #peopleMapUCI
+
+-- add claimed
+-- add custom

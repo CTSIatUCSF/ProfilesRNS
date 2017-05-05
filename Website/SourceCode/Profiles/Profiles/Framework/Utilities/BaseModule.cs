@@ -55,7 +55,8 @@ namespace Profiles.Framework.Utilities
             {
                 if (this.RDFTriple == null)
                 {
-                    if (this.BaseData.SelectSingleNode(this.GetModuleParamString("DataURI"), this.Namespaces).InnerText.Contains(Brand.GetDomain()))
+                    // only worry about the URI domain, aka Root.domain, for RDF retrival
+                    if (this.BaseData.SelectSingleNode(this.GetModuleParamString("DataURI"), this.Namespaces).InnerText.Contains(Root.Domain))
                     {
                         string[] vars = this.BaseData.SelectSingleNode(this.GetModuleParamString("DataURI"), this.Namespaces).InnerText.Split('/');
 

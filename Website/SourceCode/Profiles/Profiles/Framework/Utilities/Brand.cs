@@ -25,6 +25,12 @@ namespace Profiles.Framework.Utilities
             return brand != null ? brand.BasePath : Root.Domain;
         }
 
+        public static string GetDomainMatching(string URL)
+        {
+            Brand brand = GetByURL(URL);
+            return brand != null ? brand.BasePath : Root.Domain;
+        }
+
         // return default if name is null or not found
         public static Brand GetByName(string Name)
         {

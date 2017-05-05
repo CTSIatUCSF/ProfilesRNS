@@ -249,10 +249,9 @@ namespace Profiles
         {
             String path = HttpContext.Current.Request.Url.ToString().Replace("https://", "").Replace("http://", "");
 
-            String baseURI = Brand.GetDomain().Replace("https://", "").Replace("http://", "");
+            String baseURI = Brand.GetDomainMatching(HttpContext.Current.Request.Url.ToString()).Replace("https://", "").Replace("http://", "");
 
             string PathWithoutRoot = path.Substring(baseURI.Length + 1);
-
             //This manualy loads the Profiles Application into Param0 of the collection.  
             if (PathWithoutRoot.Contains('/'))
             {

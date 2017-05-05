@@ -244,8 +244,6 @@
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderLBNL" runat="server" SkinID="LBNL" Visible="false">
             </asp:Panel>
-            <asp:Panel ID="MasterPageHeaderUC" runat="server" SkinID="UC" Visible="false">
-            </asp:Panel>
 
 			<div class="profilesContentActive">
 				<div class="panelActive">

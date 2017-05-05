@@ -456,7 +456,7 @@ namespace Profiles.Framework
             {
                 buffer = buffer + " | ";
             }
-            Page.Header.Title = buffer + "UCSF Profiles";
+            Page.Header.Title = buffer + Page.Theme + " Profiles";
         }
 
         #region "Panel Methods"

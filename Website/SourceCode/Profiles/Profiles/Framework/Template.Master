@@ -165,8 +165,8 @@
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUC" runat="server" SkinID="UC" Visible="false">
                 <div class="institutionHeader">
-                    <div id="ucsd">
-                        <a target="_blank" href="http://ucsd.edu/">
+                    <div id="uc">
+                        <a target="_blank" href="https://www.universityofcalifornia.edu/">
                             <img src="<%=GetURLDomain()%>/App_Themes/UC/Images/uclogo137.png" alt="University of California" /></a>
                     </div>
                     <div id="site-logo">
@@ -418,6 +418,28 @@
                             </p>
                         </div>
                     </asp:Panel>
+                    <asp:Panel ID="MasterPageFooterUC" runat="server" SkinID="UC" Visible="false">
+                        <div id="footer-collaboration">
+                            <p>
+                                UC Profiles is managed by the UCSF 
+                                <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
+                                part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
+                                Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%>.
+                            </p>
+                        </div>
+                        <div id="footer-contact">
+                            <ul>
+                                <li><a href="<%=GetURLDomain()%>/">Home</a></li>
+                                <li><a href="mailto:profiles@ucop.edu">Contact us</a></li>
+                            </ul>
+                        </div>
+                        <div id="footer-copyright">
+                            <p>
+                                Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California. 
+                                All Rights Reserved.
+                            </p>
+                        </div>
+                    </asp:Panel>
                     <asp:Panel ID="MasterPageFooterUSC" runat="server" SkinID="USC" Visible="false">
                         <div id="footer">
                             <p>
@@ -429,8 +451,6 @@
                         </div>
                     </asp:Panel>
                     <asp:Panel ID="MasterPageFooterLBNL" runat="server" SkinID="LBNL" Visible="false">
-                    </asp:Panel>
-                    <asp:Panel ID="MasterPageFooterUC" runat="server" SkinID="UC" Visible="false">
                     </asp:Panel>
                     <asp:ContentPlaceHolder ID="ContentFooter" runat="server">
                         <asp:Repeater runat="server" ID="rptFooter" OnItemDataBound="DrawModule">

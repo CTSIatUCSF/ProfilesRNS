@@ -35,10 +35,43 @@ END
 EXEC [Profile.Data].[Publication.Pubmed.LoadDisambiguationResults]
 DROP TABLE #peopleMapUCSF
 
--- add claimed
+--DELETE FROM [Profile.Data].[Publication.Person.Add] 
+--DELETE FROM [Profile.Data].[Publication.Person.Include]  WHERE MPID IS NOT NULL
+--DELETE FROM [Profile.Data].[Publication.MyPub.General]
+--select count(*) from [profiles_ucsf].[Profile.Data].[Publication.MyPub.General]
 -- add custom
+INSERT INTO [Profile.Data].[Publication.MyPub.General]
+	SELECT mpid, d.personid, PMID, hmspubcategory,nlmpubcategory,PubTitle,ArticleTitle,ArticleType,ConfEditors,ConfLoc,EDITION,PlaceOfPub,VolNum,PartVolPub,IssuePub,PaginationPub,
+			AdditionalInfo,Publisher,SecondaryAuthors,ConfNm,ConfDts,ReptNumber,ContractNum,DissUnivNM,NewspaperCol,NewspaperSect,PublicationDT,ABSTRACT,AUTHORS,URL,
+			CreatedDT,d.personid,UpdatedDT,d.personid FROM [profiles_ucsf].[Profile.Data].[Publication.MyPub.General] g JOIN
+		[profiles_ucsf].[Profile.Data].[Person] s on g.personid = s.personid JOIN [Profile.Data].[Person] d on d.internalusername = [UCSF.].fn_LegacyInternalusername2EPPN(s.InternalUserName, 'ucsf')
+	WHERE mpid IS NOT NULL and mpid not in (SELECT mpid FROM [Profile.Data].[Publication.MyPub.General] where personid = d.personid and mpid is not null)
 
--- UCSD
+INSERT INTO [Profile.Data].[Publication.Person.Include] ( PubID, PersonID, MPID )
+	SELECT si.PubID, dg.PersonID, dg.MPID FROM [profiles_ucsf].[Profile.Data].[Publication.Person.Include] si JOIN [Profile.Data].[Publication.MyPub.General] dg 
+		ON si.mpid = dg.mpid JOIN [profiles_ucsf].[Profile.Data].[Person] s on si.personid = s.personid JOIN
+		[Profile.Data].[Person] d on d.internalusername = [UCSF.].fn_LegacyInternalusername2EPPN(s.InternalUserName, 'ucsf') WHERE dg.MPID is NOT NULL 
+		and dg.mpid not in (select mpid from [Profile.Data].[Publication.Person.Include] where mpid is not null) 
+select * from  [Profile.Data].[Publication.MyPub.General] where mpid is not null and mpid not in (select mpid from [Profile.Data].[Publication.Person.Include] where mpid is not null)
+select mpid, count(*) from [Profile.Data].[Publication.MyPub.General] group by mpid order by count(*) desc;
+select mpid, count(*) from [Profile.Data].[Publication.Person.Include] where mpid is not null group by mpid order by count(*) desc;
+select * from  [Profile.Data].[Publication.Person.Include] where mpid is not null and mpid not in (select mpid from [Profile.Data].[Publication.MyPub.General])
+select count(distinct(mpid)) from [Profile.Data].[Publication.MyPub.General] where mpid is not null
+select count(distinct(mpid)) from [Profile.Data].[Publication.Person.Include] where mpid is not null
+
+INSERT INTO [Profile.Data].[Publication.Person.Add] ( PubID, PersonID, MPID )
+	SELECT PubID, PersonID, MPID FROM [Profile.Data].[Publication.Person.Include] i WHERE mpid IS NOT NULL AND mpid NOT IN 
+	(select MPID from [Profile.Data].[Publication.Person.Add] WHERE mpid is not null)
+
+-- add claimed
+INSERT INTO [Profile.Data].[Publication.Person.Add] ( PubID, PersonID, pmid )
+	SELECT di.PubID, d.PersonID, di.pmid FROM [profiles_ucsf].[Profile.Data].[Publication.Person.Add] sa
+		JOIN [profiles_ucsf].[Profile.Data].[Person] s on sa.personid = s.personid JOIN
+		[Profile.Data].[Person] d on d.internalusername = [UCSF.].fn_LegacyInternalusername2EPPN(s.InternalUserName, 'ucsf') JOIN
+		[Profile.Data].[Publication.Person.Include] di on di.personid = d.personid and di.pmid = sa.pmid 
+		WHERE sa.pmid is not null and di.PubID not in (select PubID from [Profile.Data].[Publication.Person.Add])
+
+-- UCSD -------------------------------------------------------------------------------
 WHILE EXISTS (SELECT * FROM  [profiles_ucsd].[Profile.Data].[Publication.PubMed.AllXML] WHERE ParseDT IS NOT NULL
 	AND PMID NOT IN (SELECT PMID FROM [Profile.Data].[Publication.PubMed.AllXML]))
 BEGIN 

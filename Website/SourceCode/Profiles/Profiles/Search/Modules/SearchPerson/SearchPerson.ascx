@@ -131,7 +131,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="3"  style="padding: 0 2px">
                             <div class="searchSection" id="divSearchSection">
                                 <table width="100%" class='searchForm'>
                                     <tr>
@@ -168,9 +168,6 @@
                             </div>
                         </td>
                     </tr>
-            </table>
-            <div id="andor"><span>and/or</span></div>
-            <table width="100%" id="searchOptions">
 <!--
                 <tr>
                     <td colspan='3'>
@@ -180,8 +177,9 @@
                 </tr>
 -->
                 <tr>
-                    <td colspan='3'>
+                    <td colspan='3' style="padding: 0 2px">
                         <div class="searchSection" id="div1">
+							<span id="andor">and/or</span>
                             <table width="100%" class='searchForm'>
 							<asp:Panel ID="ClinicalTrialsUSC" runat="server" SkinID="USC" Visible="false">
 								<tr>

@@ -12,3 +12,8 @@ Run ProfilesRNS_DataLoad_Part3.sql
 
 Run FixLabels.sql
 
+
+
+TODO notes
+To brand concept page add institution OR brand to [Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]
+and [Profile.Data].[Concept.Mesh.GetPublications]

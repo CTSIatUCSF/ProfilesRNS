@@ -18,10 +18,16 @@ namespace Profiles.Framework.Utilities
         public string Name { get; set; }
         public string Theme { get; set; }
         public string BasePath { get; set; }
+        public bool IsMultiInstitutional { get; set; }
+
+        public static Brand GetCurrentBrand()
+        {
+            return (Brand)HttpContext.Current.Items["Brand"];
+        }
 
         public static string GetDomain()
         {
-            Brand brand = (Brand)HttpContext.Current.Items["Brand"];
+            Brand brand = GetCurrentBrand();
             return brand != null ? brand.BasePath : Root.Domain;
         }
 
@@ -79,10 +85,16 @@ namespace Profiles.Framework.Utilities
         }
 
         public Brand(string Name, string Theme, string BasePath)
+            : this(Name, Theme, BasePath, false)
+        {
+        }
+
+        public Brand(string Name, string Theme, string BasePath, bool IsMultiInstitutional)
         {
             this.Name = Name;
             this.Theme = Theme;
             this.BasePath = BasePath;
+            this.IsMultiInstitutional = IsMultiInstitutional;
 
             ByName[this.Name] = this;
             ByTheme[this.Theme] = this;

@@ -917,7 +917,7 @@ namespace Profiles.Framework.Utilities
         public void LoadBrands()
         {
             // add the default
-            new Brand(Brand.DefaultBrandName, Brand.GetSystemTheme(), GetRESTBasePath());
+            new Brand(Brand.DefaultBrandName, Brand.GetSystemTheme(), GetRESTBasePath(), true);
 
             using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
                 "select BrandName, Theme, BasePath from [UCSF.].[Brand]", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())

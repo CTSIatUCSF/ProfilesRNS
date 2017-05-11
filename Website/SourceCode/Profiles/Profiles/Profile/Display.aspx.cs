@@ -108,13 +108,13 @@ namespace Profiles.Profile
             UCSFjs.Attributes.Add("src", Brand.GetDomain() + "/Profile/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
 
-            // amp.. Look up by SubjectID, see if URL to lower matche pretty name and if so see if first letter is i, then have fun
+            // amp.. Look up by SubjectID, see if URL to lower matches pretty name and if so see if first letter is i, then have fun
             if (Page.Theme.Equals("UCSF") && UCSFIDSet.ByNodeId.ContainsKey(base.RDFTriple.Subject) && 
-                HttpContext.Current.Request.Url.ToString().ToLower().EndsWith(UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL) &&
-                UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL.StartsWith("i"))
+                HttpContext.Current.Request.Url.ToString().ToLower().Equals(UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL) &&
+                UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL.StartsWith(Brand.GetDomain() + "/i"))
             {
                 HtmlLink AmpLink = new HtmlLink();
-                AmpLink.Href = "http://amp.profiles.ucsf.edu/" + UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL;
+                AmpLink.Href = UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL.Replace(Brand.GetDomain(),  "http://amp.profiles.ucsf.edu");
                 AmpLink.Attributes["rel"] = "amphtml";
                 Page.Header.Controls.Add(AmpLink);
             }

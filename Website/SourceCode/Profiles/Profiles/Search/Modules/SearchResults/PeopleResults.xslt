@@ -93,18 +93,18 @@
                       <xsl:when test="$currentsort='institution'">
                         <xsl:choose>
                           <xsl:when test="$currentsortdirection='desc'">
-                            <option selected="true" value="institution_desc">School (A-Z)</option>
-                            <option value="institution_asc">School (Z-A)</option>
+                            <option selected="true" value="institution_desc">Institution (A-Z)</option>
+                            <option value="institution_asc">Institution (Z-A)</option>
                           </xsl:when>
                           <xsl:otherwise>
-                            <option value="institution_desc">School (A-Z)</option>
-                            <option selected="true" value="institution_asc">School (Z-A)</option>
+                            <option value="institution_desc">Institution (A-Z)</option>
+                            <option selected="true" value="institution_asc">Institution (Z-A)</option>
                           </xsl:otherwise>
                         </xsl:choose>
                       </xsl:when>
                       <xsl:otherwise>
-                        <option value="institution_desc">School (A-Z)</option>
-                        <option value="institution_asc">School (Z-A)</option>
+                        <option value="institution_desc">Institution (A-Z)</option>
+                        <option value="institution_asc">Institution (Z-A)</option>
                       </xsl:otherwise>
                     </xsl:choose>
                   </xsl:if>
@@ -171,7 +171,7 @@
                         <xsl:if test="$ShowInstitutions='true'">
                           <br />
                           <input type="checkbox" id="chkInstitution" name="chkInstitution" value="Institution" class="otherOptionCheckBox" title="Institution"/>
-                          <span>School</span>
+                          <span>Institution</span>
                         </xsl:if>
                         <xsl:if test="$ShowDepartments='true'">
                           <br></br>
@@ -235,7 +235,7 @@
                       <xsl:if test="$institution='true'">
                         <th>
                           <a href="JavaScript:Sort('institution');">
-                            School
+                            Institution
                             <xsl:choose>
                               <xsl:when test="$currentsort='institution'">
                                 <xsl:choose>

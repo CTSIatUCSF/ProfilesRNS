@@ -219,7 +219,7 @@
 							<asp:Panel ID="SearchPersonFormHideUCSD" runat="server" SkinID="HideUCSD" Visible="true">
                                 <tr runat="server" id="trInstitution">
                                     <th>
-                                        School
+                                        Institution
                                     </th>
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litInstitution"></asp:Literal>
@@ -229,6 +229,19 @@
 -->
                                     </td>
                                 </tr>
+                                <tr runat="server" id="trDivision">
+                                    <th>
+                                        School
+                                    </th>
+                                    <td colspan="2">
+                                        <asp:Literal runat="server" ID="litDivision"></asp:Literal>
+                                        <asp:CheckBox runat="server" id="divisionallexcept" CssClass="unused" />
+<!--
+                                        All <b>except</b> the one selected
+-->
+                                    </td>
+                                </tr>
+
                                 <tr runat="server" id="trDepartment">
                                     <th>
                                         Department
@@ -241,18 +254,7 @@
 -->
                                     </td>
                                 </tr>
-<!--
-                                <tr runat="server" id="trDivision">
-                                    <th>
-                                        Division
-                                    </th>
-                                    <td colspan="2">
-                                        <asp:Literal runat="server" ID="litDivision"></asp:Literal>
-                                        <asp:CheckBox runat="server" id="divisionallexcept" />
-                                        All <b>except</b> the one selected
-                                    </td>
-                                </tr>
--->
+
                                 <tr runat="server" id="trFacultyType">
                                     <th>
                                         Researcher Type

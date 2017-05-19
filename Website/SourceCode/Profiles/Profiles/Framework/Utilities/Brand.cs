@@ -17,6 +17,7 @@ namespace Profiles.Framework.Utilities
 
         public string Name { get; set; }
         public string Theme { get; set; }
+        public string PersonFilter { get; set; }
         public string BasePath { get; set; }
         public bool IsMultiInstitutional { get; set; }
 
@@ -77,6 +78,36 @@ namespace Profiles.Framework.Utilities
             return GetByTheme(GetSystemTheme());
         }
 
+        public static string CleanURL(string uri)
+        {
+            // if it's a match to a person URI, swap in their URL
+            long nodeid = -1;
+            bool isNumeric = Int64.TryParse("123", out nodeid);
+            if (uri.StartsWith(Root.Domain + "/profile/") && Int64.TryParse(uri.Substring(Root.Domain.Length + 9), out nodeid) && UCSFIDSet.ByNodeId.ContainsKey(nodeid))
+            {
+                // its a person!
+                return UCSFIDSet.ByNodeId[nodeid].PrettyURL;
+            }
+            // see if we have a person in the current context and this is a prefix to their URI
+            UCSFIDSet person = (UCSFIDSet)HttpContext.Current.Items["UCSFIDSet"];
+            if (person != null && person.Brand != null)
+            {
+                string toSwap = Root.Domain + "/profile/" + person.NodeId;
+                // only allow as many /'s as RegisterRoutes will support in Globl.asax.cs!!! If you add more, up the <= 1 to a larger number
+                if (uri.StartsWith(toSwap) && uri.Length - toSwap.Length - uri.Replace(toSwap, "").Replace("/", "").Length <= 1) 
+                {
+                    // swap in the themed domain for the link
+                    return uri.Replace(Root.Domain + "/profile/" + person.NodeId, person.PrettyURL);
+                }
+            }
+            // see if it is the Root.Domain and swap in the themed one. 
+            if (uri.StartsWith(Root.Domain)) 
+            {
+                return uri.Replace(Root.Domain, GetDomain());
+            }
+            return uri;
+        }
+
         // this one gets it from Web.config, and is not meant for page level use
         static public string GetSystemTheme()
         {
@@ -84,20 +115,19 @@ namespace Profiles.Framework.Utilities
             return pages.Theme;
         }
 
-        public Brand(string Name, string Theme, string BasePath)
-            : this(Name, Theme, BasePath, false)
-        {
-        }
-
-        public Brand(string Name, string Theme, string BasePath, bool IsMultiInstitutional)
+        public Brand(string Name, string Theme, string PersonFilter, string BasePath, bool IsMultiInstitutional)
         {
             this.Name = Name;
             this.Theme = Theme;
+            this.PersonFilter = PersonFilter;
             this.BasePath = BasePath;
             this.IsMultiInstitutional = IsMultiInstitutional;
 
             ByName[this.Name] = this;
-            ByTheme[this.Theme] = this;
+
+            // sort of ugly but we load the multi-institutional ones first, and for a shared theme we want that to be the one we use. 
+            if (!ByTheme.ContainsKey(this.Theme))
+                ByTheme[this.Theme] = this;
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Profiles.Profile.Modules
 			var dataIO = new Profiles.Profile.Utilities.DataIO();
 
 			// Get concept publication timeline
-			using (var reader = dataIO.GetGoogleTimeline(base.RDFTriple, "[Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]"))
+			using (var reader = dataIO.GetGoogleTimeline(base.RDFTriple, Brand.GetCurrentBrand().PersonFilter, "[Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]"))
 			{
 				while (reader.Read())
 				{
@@ -53,7 +53,7 @@ namespace Profiles.Profile.Modules
 			 * 2) Newest publication
 			 * 3) Oldest publications
 			 */
-			using (var reader = dataIO.GetConceptPublications(base.RDFTriple))
+			using (var reader = dataIO.GetConceptPublications(base.RDFTriple, Brand.GetCurrentBrand().PersonFilter))
 			{
 				List<string> htmlList = new List<string>();
 				StringBuilder html = null;

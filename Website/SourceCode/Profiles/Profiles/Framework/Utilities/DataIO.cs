@@ -917,14 +917,14 @@ namespace Profiles.Framework.Utilities
         public void LoadBrands()
         {
             // add the default
-            new Brand(Brand.DefaultBrandName, Brand.GetSystemTheme(), GetRESTBasePath(), true);
+            //new Brand(Brand.DefaultBrandName, Brand.GetSystemTheme(), null, GetRESTBasePath(), true);
 
             using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
-                "select BrandName, Theme, BasePath from [UCSF.].[Brand]", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+                "select BrandName, Theme, PersonFilter, BasePath, MultiInstitutional from [UCSF.].[Brand] order by MultiInstitutional desc", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    new Brand(reader[0].ToString(), reader[1].ToString(), reader[2].ToString());
+                    new Brand(reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader.GetBoolean(4));
                 }
             }
         }
@@ -932,10 +932,10 @@ namespace Profiles.Framework.Utilities
         // Load all the ID's for people so we don't have to hit the DB all the time
         public void LoadUCSFIdSet()
         {
-            string IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.prettyurl, u.UserName, '', p.BrandName from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID";
+            string IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.prettyurl, u.UserName, '', p.Theme from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID";
             if ("UCSF".Equals(Brand.GetSystemTheme()))
             {
-                IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.prettyurl, u.UserName, f.UID_USERID, p.BrandName from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID join import_ucsf.dbo.vw_FNO f on p.InternalUsername = f.INDIVIDUAL_ID";
+                IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.prettyurl, u.UserName, f.UID_USERID, p.Theme from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID join import_ucsf.dbo.vw_FNO f on p.InternalUsername = f.INDIVIDUAL_ID";
             }
 
             using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
@@ -943,7 +943,7 @@ namespace Profiles.Framework.Utilities
             {
                 while (reader.Read())
                 {
-                    new UCSFIDSet(Convert.ToInt64(reader[0]), Convert.ToInt64(reader[1]), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), Brand.GetByName(reader[6].ToString()));
+                    new UCSFIDSet(Convert.ToInt64(reader[0]), Convert.ToInt64(reader[1]), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), Brand.GetByTheme(reader[6].ToString()));
                 }
             }
         }

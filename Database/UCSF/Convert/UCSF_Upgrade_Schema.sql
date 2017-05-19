@@ -57,7 +57,9 @@ GO
 CREATE TABLE [UCSF.].[Brand](
 	[BrandName] [nvarchar](50) NOT NULL,
 	[Theme] [nvarchar](50) NULL,
+	[PersonFilter] varchar(200) NULL,
 	[BasePath] [nvarchar](50) NULL,
+	[MultiInstitutional] bit NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[BrandName] ASC
@@ -112,80 +114,13 @@ SELECT p.[PersonID]
       ,p.[FacultyRankID]
       ,p.[InternalUsername]
       ,p.[Visible]
-	  ,b.[BrandName]  --this is where and how we assign a brand to a profile, currently based on institutionabbreviation
+	  ,b.Theme  
   FROM [Profile.Data].[Person] p 
 	JOIN [Profile.Data].[Person.Affiliation] a on p.PersonID = a.PersonID and a.IsPrimary = 1
 	JOIN [Profile.Data].[Organization.Institution] i on a.InstitutionID = i.InstitutionID
-	LEFT JOIN [UCSF.].[Brand] b on b.BrandName = i.InstitutionAbbreviation
-	LEFT JOIN [UCSF.].[NameAdditions] na on na.internalusername = p.internalusername
-	LEFT JOIN [RDF.Stage].internalnodemap n on n.internalid = p.personId
-	where n.[class] = 'http://xmlns.com/foaf/0.1/Person' 
-
-
-GO
-
-/****** Object:  View [UCSF.].[vwPersonExport]    Script Date: 10/11/2013 11:32:07 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-
-CREATE view [UCSF.].[vwPersonExport]
-as
-		SELECT p.personid,
-					 p.userid,
-					 p.nodeid,
-					 p.PrettyURL,
-					 p.internalusername,
-					 p.firstname,
-					 p.publishingfirst,
-					 p.MiddleName,
-					 p.lastname,
-					 p.displayname, 
-					 pa.title,
-					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN p.addressline1 END addressline1,
-					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN p.addressline2 END addressline2,
-					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN p.addressline3 END addressline3,
-					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN p.addressline4 END addressline4,
-					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN p.addressstring END addressstring, 
-					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN  p.building END building,
-					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN  p.room END room,
-					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN  p.floor END floor, 
-					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN  p.latitude END latitude, 
-					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN  p.longitude END longitude,
-					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN p.phone END phone,
-					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN p.fax END fax,  
-					 CASE WHEN ISNULL(dp.ShowEmail,'Y') = 'Y' THEN p.emailaddr END emailaddr,
-					 i2.institutionname,
-					 i2.institutionabbreviation, 
-					 de.departmentname,
-					 dv.divisionname,  
-					 fr.facultyrank, 
-					 fr.facultyranksort, 
-					 p.isactive,
-					 ISNULL(dp.ShowAddress,'Y')ShowAddress,
-					 ISNULL(dp.ShowPhone,'Y')ShowPhone,
-					 ISNULL(dp.Showfax,'Y')Showfax,
-					 ISNULL(dp.ShowEmail,'Y')ShowEmail,
-					 ISNULL(dp.ShowPhoto,'N')ShowPhoto,
-					 ISNULL(dp.ShowAwards,'N')ShowAwards,
-					 ISNULL(dp.ShowNarrative,'N')ShowNarrative,
-					 ISNULL(dp.ShowPublications,'Y')ShowPublications, 
-					 ISNULL(p.visible,1)visible,
-					 0 numpublications
-			FROM [UCSF.].vwPerson p
- --LEFT JOIN [Profile.Cache].Person ps				 ON ps.personid = p.personid
- LEFT JOIN [Profile.Data].[Person.Affiliation] pa				 ON pa.personid = p.personid
-																				AND pa.isprimary=1 
- LEFT JOIN [Profile.Data].[Organization.Institution] i2				 ON pa.institutionid = i2.institutionid 
- LEFT JOIN [Profile.Data].[Organization.Department] de				 ON de.departmentid = pa.departmentid
- LEFT JOIN [Profile.Data].[Organization.Division] dv				 ON dv.divisionid = pa.divisionid
- LEFT OUTER JOIN [Profile.Data].[Person.FacultyRank] fr on fr.facultyrankid = pa.facultyrankid 
- LEFT OUTER JOIN [Profile.Import].[Beta.DisplayPreference] dp on dp.PersonID=p.PersonID 
- --OUTER APPLY(SELECT TOP 1 facultyrank ,facultyranksort from [Profile.Data].[Person.Affiliation] pa JOIN [Profile.Data].[Person.FacultyRank] fr on fr.facultyrankid = pa.facultyrankid  where personid = p.personid order by facultyranksort asc)a
- WHERE p.isactive = 1
+	JOIN [UCSF.].[Brand] b on i.InstitutionAbbreviation = b.BrandName --this is where and how we assign a theme to a profile.
+	JOIN [UCSF.].[NameAdditions] na on na.internalusername = p.internalusername
+	JOIN [RDF.Stage].internalnodemap n on n.internalid = p.personId AND n.[class] = 'http://xmlns.com/foaf/0.1/Person' 
 
 GO
 
@@ -202,6 +137,7 @@ SELECT ir.EntityID, g.* FROM [Profile.Data].[Publication.Entity.InformationResou
 ir.MPID = g.MPID WHERE ir.MPID IS NOT NULL;
 
 GO
+
 ---------------------------------------------------------------------------------------------------------------------
 --
 --	Create Functions
@@ -302,6 +238,8 @@ BEGIN
 		RETURN cast(cast(@legacyinternalusername as Int) as varchar) + '@ucsd.edu'
 	ELSE IF (@institutionabbreviation = 'uci')
 		RETURN cast(@legacyinternalusername as varchar) + '@uci.edu'
+	ELSE IF (@institutionabbreviation = 'usc')
+		RETURN cast(@legacyinternalusername as varchar) + '@usc.edu'
 	RETURN 'Unrecognized institution :' + @institutionabbreviation
 END
 
@@ -2416,6 +2354,251 @@ BEGIN
 	END
 	-- UCSF
 	SELECT @ShortDisplayName = FirstName + ' ' + LastName FROM [User.Account].[User] WHERE UserID = @UserID AND @UserID IS NOT NULL
+END
+
+GO
+
+/****** Object:  StoredProcedure [Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]    Script Date: 5/17/2017 12:16:54 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]
+	@NodeID BIGINT,
+	@PersonFilter VARCHAR(200)=NULL 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	DECLARE @DescriptorName NVARCHAR(255)
+ 	SELECT @DescriptorName = d.DescriptorName
+		FROM [RDF.Stage].[InternalNodeMap] m, [RDF.].Node n,
+			[Profile.Data].[Concept.Mesh.Descriptor] d
+		WHERE m.Status = 3 AND m.ValueHash = n.ValueHash AND n.NodeID = @NodeID
+			AND m.InternalID = d.DescriptorUI
+
+    -- Insert statements for procedure here
+	declare @gc varchar(max)
+
+	declare @y table (
+		y int,
+		A int,
+		B int
+	)
+
+	insert into @y (y,A,B)
+		select n.n y, coalesce(t.A,0) A, coalesce(t.B,0) B
+		from [Utility.Math].[N] left outer join (
+			select (case when y < 1970 then 1970 else y end) y,
+				sum(A) A,
+				sum(B) B
+			from (
+				select pmid, pubyear y, (case when w = 1 then 1 else 0 end) A, (case when w < 1 then 1 else 0 end) B
+				from (
+					select distinct pmid, pubyear, topicweight w
+					from [Profile.Cache].[Concept.Mesh.PersonPublication]
+					where meshheader = @DescriptorName 
+					-- UCSF Changes
+					AND (@PersonFilter is null OR personid in 
+						(select personid from [Profile.Data].[Person.Filter] f join [Profile.Data].[Person.FilterRelationship] r 
+						on f.PersonFilterID = r.PersonFilterID AND f.PersonFilter = @PersonFilter)) 
+				) t
+			) t
+			group by y
+		) t on n.n = t.y
+		where n.n between 1980 and year(getdate())
+
+	declare @x int
+
+	select @x = max(A+B)
+		from @y
+
+	if coalesce(@x,0) > 0
+	begin
+		declare @v varchar(1000)
+		declare @z int
+		declare @k int
+		declare @i int
+
+		set @z = power(10,floor(log(@x)/log(10)))
+		set @k = floor(@x/@z)
+		if @x > @z*@k
+			select @k = @k + 1
+		if @k > 5
+			select @k = floor(@k/2.0+0.5), @z = @z*2
+
+		set @v = ''
+		set @i = 0
+		while @i <= @k
+		begin
+			set @v = @v + '|' + cast(@z*@i as varchar(50))
+			set @i = @i + 1
+		end
+		set @v = '|0|'+cast(@x as varchar(50))
+		--set @v = '|0|50|100'
+
+		declare @h varchar(1000)
+		set @h = ''
+		select @h = @h + '|' + (case when y % 2 = 1 then '' else ''''+right(cast(y as varchar(50)),2) end)
+			from @y
+			order by y 
+
+		declare @w float
+		--set @w = @k*@z
+		set @w = @x
+
+		declare @d varchar(max)
+		set @d = ''
+		select @d = @d + cast(floor(0.5 + 100*A/@w) as varchar(50)) + ','
+			from @y
+			order by y
+		set @d = left(@d,len(@d)-1) + '|'
+		select @d = @d + cast(floor(0.5 + 100*B/@w) as varchar(50)) + ','
+			from @y
+			order by y
+		set @d = left(@d,len(@d)-1)
+
+		declare @c varchar(50)
+		set @c = 'FB8072,80B1D3'
+		--set @c = 'FB8072,B3DE69,80B1D3'
+		--set @c = 'F96452,a8dc4f,68a4cc'
+		--set @c = 'fea643,76cbbd,b56cb5'
+
+		--select @v, @h, @d
+
+		--set @gc = '//chart.googleapis.com/chart?chs=595x100&chf=bg,s,ffffff|c,s,ffffff&chxt=x,y&chxl=0:' + @h + '|1:' + @v + '&cht=bvs&chd=t:' + @d + '&chdl=First+Author|Middle or Unkown|Last+Author&chco='+@c+'&chbh=10'
+		set @gc = '//chart.googleapis.com/chart?chs=595x100&chf=bg,s,ffffff|c,s,ffffff&chxt=x,y&chxl=0:' + @h + '|1:' + @v + '&cht=bvs&chd=t:' + @d + '&chdl=Major+Topic|Minor+Topic&chco='+@c+'&chbh=10'
+
+
+		declare @asText varchar(max)
+		set @asText = '<table style="width:592px"><tr><th>Year</th><th>Major Topic</th><th>Minor Topic</th><th>Total</th></tr>'
+		select @asText = @asText + '<tr><td>' + cast(y as varchar(50)) + '</td><td>' + cast(A as varchar(50)) + '</td><td>' + cast(B as varchar(50)) + '</td><td>' + cast(A + B as varchar(50)) + '</td></tr>'
+			from @y
+			where A + B > 0
+			order by y 
+		select @asText = @asText + '</table>'
+
+		declare @alt varchar(max)
+		select @alt = 'Bar chart showing ' + cast(sum(A + B) as varchar(50))+ ' publications over ' + cast(count(*) as varchar(50)) + ' distinct years, with a maximum of ' + cast(@x as varchar(50)) + ' publications in ' from @y where A + B > 0
+		select @alt = @alt + cast(y as varchar(50)) + ' and '
+			from @y
+			where A + B = @x
+			order by y 
+		select @alt = left(@alt, len(@alt) - 4)
+
+		select @gc gc, @alt alt, @asText asText --, @w w
+
+		--select * from @y order by y
+
+	end
+
+END
+
+GO
+
+/****** Object:  StoredProcedure [Profile.Data].[Concept.Mesh.GetPublications]    Script Date: 5/17/2017 12:28:37 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [Profile.Data].[Concept.Mesh.GetPublications]
+	@NodeID BIGINT,
+	@ListType varchar(50) = NULL,
+	@LastDate datetime = '1/1/1900',
+	@PersonFilter VARCHAR(200)=NULL 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	DECLARE @DescriptorName NVARCHAR(255)
+ 	SELECT @DescriptorName = d.DescriptorName
+		FROM [RDF.Stage].[InternalNodeMap] m, [RDF.].Node n,
+			[Profile.Data].[Concept.Mesh.Descriptor] d
+		WHERE m.Status = 3 AND m.ValueHash = n.ValueHash AND n.NodeID = @NodeID
+			AND m.InternalID = d.DescriptorUI
+
+	if @ListType = 'Newest' or @ListType IS NULL
+	begin
+
+		select *
+		from (
+			select top 10 g.pmid, g.pubdate, [Profile.Cache].[fnPublication.Pubmed.General2Reference](g.pmid, ArticleDay, ArticleMonth, ArticleYear, ArticleTitle, Authors, AuthorListCompleteYN, Issue, JournalDay, JournalMonth, JournalYear, MedlineDate, MedlinePgn, MedlineTA, Volume, 0) reference
+			from [Profile.Data].[Publication.PubMed.General] g, (
+				select m.pmid, max(MajorTopicYN) MajorTopicYN
+				from [Profile.Data].[Publication.Person.Include] i, [Profile.Data].[Publication.PubMed.Mesh] m
+				where i.pmid = m.pmid and i.pmid is not null and m.descriptorname = @DescriptorName
+				-- UCSF changes
+				AND (@PersonFilter is null OR i.personid in 
+						(select personid from [Profile.Data].[Person.Filter] f join [Profile.Data].[Person.FilterRelationship] r 
+						on f.PersonFilterID = r.PersonFilterID AND f.PersonFilter = @PersonFilter)) 
+				group by m.pmid
+			) m
+			where g.pmid = m.pmid
+			order by g.pubdate desc
+		) t
+		order by pubdate desc
+
+	end
+
+	if @ListType = 'Oldest' or @ListType IS NULL
+	begin
+
+		select *
+		from (
+			select top 10 g.pmid, g.pubdate, [Profile.Cache].[fnPublication.Pubmed.General2Reference](g.pmid, ArticleDay, ArticleMonth, ArticleYear, ArticleTitle, Authors, AuthorListCompleteYN, Issue, JournalDay, JournalMonth, JournalYear, MedlineDate, MedlinePgn, MedlineTA, Volume, 0) reference
+			from [Profile.Data].[Publication.PubMed.General] g, (
+				select m.pmid, max(MajorTopicYN) MajorTopicYN
+				from [Profile.Data].[Publication.Person.Include] i, [Profile.Data].[Publication.PubMed.Mesh] m
+				where i.pmid = m.pmid and i.pmid is not null and m.descriptorname = @DescriptorName
+				-- UCSF changes
+				AND (@PersonFilter is null OR i.personid in 
+						(select personid from [Profile.Data].[Person.Filter] f join [Profile.Data].[Person.FilterRelationship] r 
+						on f.PersonFilterID = r.PersonFilterID AND f.PersonFilter = @PersonFilter)) 
+				group by m.pmid
+			) m
+			where g.pmid = m.pmid --and g.pubdate < @LastDate
+			order by g.pubdate
+		) t
+		order by pubdate
+
+	end
+
+
+	if @ListType = 'Cited' or @ListType IS NULL
+	begin
+
+		;with pm_citation_count as (
+			select pmid, 0 n
+			from [Profile.Data].[Publication.PubMed.General]
+		)
+		select *
+		from (
+			select top 10 g.pmid, g.pubdate, c.n, [Profile.Cache].[fnPublication.Pubmed.General2Reference](g.pmid, ArticleDay, ArticleMonth, ArticleYear, ArticleTitle, Authors, AuthorListCompleteYN, Issue, JournalDay, JournalMonth, JournalYear, MedlineDate, MedlinePgn, MedlineTA, Volume, 0) reference
+			from [Profile.Data].[Publication.PubMed.General] g, (
+				select m.pmid, max(MajorTopicYN) MajorTopicYN
+				from [Profile.Data].[Publication.Person.Include] i, [Profile.Data].[Publication.PubMed.Mesh] m
+				where i.pmid = m.pmid and i.pmid is not null and m.descriptorname = @DescriptorName
+				-- UCSF changes
+				AND (@PersonFilter is null OR i.personid in 
+						(select personid from [Profile.Data].[Person.Filter] f join [Profile.Data].[Person.FilterRelationship] r 
+						on f.PersonFilterID = r.PersonFilterID AND f.PersonFilter = @PersonFilter)) 
+				group by m.pmid
+			) m, pm_citation_count c
+			where g.pmid = m.pmid and m.pmid = c.pmid
+			order by c.n desc, g.pubdate desc
+		) t
+		order by n desc, pubdate desc
+
+	end
+
 END
 
 GO

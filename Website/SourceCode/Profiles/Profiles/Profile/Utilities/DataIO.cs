@@ -596,7 +596,7 @@ namespace Profiles.Profile.Utilities
 
         }
 
-        public SqlDataReader GetGoogleTimeline(RDFTriple request, string storedproc)
+        public SqlDataReader GetGoogleTimeline(RDFTriple request, string PersonFilter, string storedproc)
         {
             SessionManagement sm = new SessionManagement();
             string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
@@ -609,6 +609,8 @@ namespace Profiles.Profile.Utilities
             dbcommand.CommandTimeout = base.GetCommandTimeout();
             // Add parameters
             dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
+            if (PersonFilter != null)
+                dbcommand.Parameters.Add(new SqlParameter("@PersonFilter", PersonFilter));
             // Return reader
             return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
         }
@@ -665,7 +667,7 @@ namespace Profiles.Profile.Utilities
             return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
         }
 
-        public SqlDataReader GetConceptPublications(RDFTriple request)
+        public SqlDataReader GetConceptPublications(RDFTriple request, string PersonFilter)
         {
             SessionManagement sm = new SessionManagement();
             string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
@@ -679,6 +681,7 @@ namespace Profiles.Profile.Utilities
             // Add parameters
             dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
             dbcommand.Parameters.Add(new SqlParameter("@ListType", "newest"));
+            dbcommand.Parameters.Add(new SqlParameter("@PersonFilter", PersonFilter));
             // Return reader
             return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
         }

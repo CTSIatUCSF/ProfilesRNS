@@ -1,5 +1,4 @@
 DROP VIEW [UCSF.].[vwPerson]
-DROP VIEW [UCSF.].[vwPersonExport]
 DROP VIEW [UCSF.].[vwPublication.Entity.Claimed]
 DROP VIEW [UCSF.].[vwPublication.MyPub.General]
 DROP PROCEDURE [UCSF.].[AddProxyByInternalUsername]

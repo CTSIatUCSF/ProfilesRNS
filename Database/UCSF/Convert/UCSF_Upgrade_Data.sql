@@ -642,8 +642,11 @@ UPDATE [Ontology.Presentation].[XML] SET [PresentationXML]=CONVERT(xml,N'<Presen
 commit
 
 --- UCWide Branding work
-INSERT INTO [UCSF.].[Brand] (BrandName, Theme, BasePath) VALUES ('UCSF', 'UCSF', 'http://stage-profiles.ucsf.edu/ucsf');
-INSERT INTO [UCSF.].[Brand] (BrandName, Theme, BasePath) VALUES ('UCSD', 'UCSD', 'http://stage-profiles.ucsf.edu/ucsd');
+INSERT INTO [UCSF.].[Brand] (BrandName, Theme, PersonFilter, BasePath, MultiInstitutional) VALUES ('UC', 'UC', 'UC', 'http://stage-profiles.ucsf.edu/profiles_uc', 1);
+INSERT INTO [UCSF.].[Brand] (BrandName, Theme, PersonFilter, BasePath, MultiInstitutional) VALUES ('UCI', 'UC', 'UCI', 'http://stage-profiles.ucsf.edu/profiles_uc', 0);
+INSERT INTO [UCSF.].[Brand] (BrandName, Theme, PersonFilter, BasePath, MultiInstitutional) VALUES ('UCSF', 'UCSF', 'UCSF', 'http://stage-profiles.ucsf.edu/ucsf', 0);
+INSERT INTO [UCSF.].[Brand] (BrandName, Theme, PersonFilter, BasePath, MultiInstitutional) VALUES ('UCSD', 'UCSD', 'UCSD', 'http://stage-profiles.ucsf.edu/ucsd', 0);
+INSERT INTO [UCSF.].[Brand] (BrandName, Theme, PersonFilter, BasePath, MultiInstitutional) VALUES ('USC', 'USC', 'USC', 'http://stage-profiles.ucsf.edu/usc', 0);
 
 
 --rollback

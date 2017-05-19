@@ -40,7 +40,7 @@ namespace Profiles.Profile.Modules
 			{
 				while (reader.Read())
 				{
-					html.AppendFormat("<li><a href='{0}'>{1}</a></li>", reader["ObjectURI"].ToString(), reader["DescriptorName"].ToString());
+					html.AppendFormat("<li><a href='{0}'>{1}</a></li>", Brand.CleanURL(reader["ObjectURI"].ToString()), reader["DescriptorName"].ToString());
 				}
 				reader.Close();
 			}

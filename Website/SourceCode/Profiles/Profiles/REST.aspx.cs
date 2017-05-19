@@ -173,7 +173,7 @@ namespace Profiles
             string bestAcceptType = getBestAcceptType(HttpContext.Current.Request.AcceptTypes);
             Int64 nodeId = -1;
             URLResolve resolve = null;
-            if (TEXT_HTML.Equals(bestAcceptType) && "profile".Equals(param0.ToLower()) && Int64.TryParse(param1, out nodeId) && UCSFIDSet.ByNodeId.ContainsKey(nodeId))
+            if (TEXT_HTML.Equals(bestAcceptType) && "profile".Equals(param0.ToLower()) && String.IsNullOrEmpty(param2) && Int64.TryParse(param1, out nodeId) && UCSFIDSet.ByNodeId.ContainsKey(nodeId))
             {
                 // redirect to the pretty URL
                 resolve = new URLResolve(true, "", UCSFIDSet.ByNodeId[nodeId].PrettyURL + 
@@ -214,7 +214,7 @@ namespace Profiles
             }
             else if (resolve.Resolved && resolve.Redirect)
             {
-                Response.Redirect(resolve.ResponseURL, true);
+                Response.Redirect(resolve.ResponseURL.Replace(Root.Domain, Brand.GetDomain()), true);
             }
             else
             {

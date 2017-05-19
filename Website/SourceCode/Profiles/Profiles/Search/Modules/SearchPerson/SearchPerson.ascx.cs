@@ -56,8 +56,7 @@ namespace Profiles.Search.Modules.SearchPerson
                 //Profiles.Search.Utilities.DataIO dropdowns = new Profiles.Search.Utilities.DataIO();
                 if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowInstitutions"]) == true)
                 {
-                    // bad assumption that Theme and Institution are the same name
-                    litInstitution.Text = SearchDropDowns.BuildDropdown("institution", "249", Brand.GetCurrentBrand().IsMultiInstitutional ? "" : Brand.GetCurrentBrand().Name);
+                    litInstitution.Text = SearchDropDowns.BuildDropdown("institution", "249", Brand.GetCurrentBrand().IsMultiInstitutional ? "" : Brand.GetCurrentBrand().InstitutionName);
                 }
                 trInstitution.Visible = Brand.GetCurrentBrand().IsMultiInstitutional;
 
@@ -331,7 +330,7 @@ namespace Profiles.Search.Modules.SearchPerson
 
             if (!Brand.GetCurrentBrand().IsMultiInstitutional)
             {
-                institution = SearchDropDowns.GetDefaultItemValue("institution", Brand.GetCurrentBrand().Theme);
+                institution = SearchDropDowns.GetDefaultItemValue("institution", Brand.GetCurrentBrand().InstitutionName);
             }
             else if (Request.Form["institution"] != null)
             {

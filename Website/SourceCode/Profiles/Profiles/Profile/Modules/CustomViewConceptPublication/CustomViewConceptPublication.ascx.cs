@@ -23,6 +23,7 @@ namespace Profiles.Profile.Modules
 		{
 			DrawProfilesModule();
 			ConceptName = this.BaseData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]", this.Namespaces).InnerText;
+            Institution = Brand.GetCurrentBrand() != null ? Brand.GetCurrentBrand().Name : "";
 		}
 
 		public CustomViewConceptPublication() : base() { }
@@ -112,5 +113,6 @@ namespace Profiles.Profile.Modules
 
 		public bool ShowOtherPub { get; set; }
 		public string ConceptName { get; set; }
-	}
+        public string Institution { get; set; }
+    }
 }

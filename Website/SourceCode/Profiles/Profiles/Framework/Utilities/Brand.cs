@@ -19,6 +19,7 @@ namespace Profiles.Framework.Utilities
         public string Theme { get; set; }
         public string PersonFilter { get; set; }
         public string BasePath { get; set; }
+        public string InstitutionName { get; set; }
         public bool IsMultiInstitutional { get; set; }
 
         public static Brand GetCurrentBrand()
@@ -89,6 +90,7 @@ namespace Profiles.Framework.Utilities
                 return UCSFIDSet.ByNodeId[nodeid].PrettyURL;
             }
             // see if we have a person in the current context and this is a prefix to their URI
+            /**
             UCSFIDSet person = (UCSFIDSet)HttpContext.Current.Items["UCSFIDSet"];
             if (person != null && person.Brand != null)
             {
@@ -100,6 +102,7 @@ namespace Profiles.Framework.Utilities
                     return uri.Replace(Root.Domain + "/profile/" + person.NodeId, person.PrettyURL);
                 }
             }
+             **/
             // see if it is the Root.Domain and swap in the themed one. 
             if (uri.StartsWith(Root.Domain)) 
             {
@@ -115,12 +118,13 @@ namespace Profiles.Framework.Utilities
             return pages.Theme;
         }
 
-        public Brand(string Name, string Theme, string PersonFilter, string BasePath, bool IsMultiInstitutional)
+        public Brand(string Name, string Theme, string PersonFilter, string BasePath, string InstitutionName, bool IsMultiInstitutional)
         {
             this.Name = Name;
             this.Theme = Theme;
             this.PersonFilter = PersonFilter;
             this.BasePath = BasePath;
+            this.InstitutionName = InstitutionName;
             this.IsMultiInstitutional = IsMultiInstitutional;
 
             ByName[this.Name] = this;

@@ -13,8 +13,8 @@ ALTER PROCEDURE [User.Session].[UpdateSession]
 	@SessionPersonNodeID BIGINT = NULL OUTPUT,
 	@SessionPersonURI VARCHAR(400) = NULL OUTPUT,
 	@UserURI VARCHAR(400) = NULL OUTPUT,
-	@SecurityGroupID BIGINT = NULL OUTPUT
-	,@ShortDisplayName VARCHAR(400) = NULL OUTPUT  -- Added by UCSF
+	@SecurityGroupID BIGINT = NULL OUTPUT,
+	@ShortDisplayName VARCHAR(400) = NULL OUTPUT  -- Added by UCSF
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from

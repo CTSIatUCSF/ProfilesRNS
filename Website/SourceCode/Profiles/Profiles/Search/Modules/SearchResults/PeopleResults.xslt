@@ -64,7 +64,7 @@
 
         <table>
           <tr>
-            <td style="width:33%;">
+            <td style="width:33%;vertical-align:middle;">
               <div style="float:right">
                 Sort&#160;<select id="selSort" title="Query Relevance" onchange="JavaScript:DropdownSort();">
                   <option value="">Query Relevance</option>
@@ -155,7 +155,7 @@
                 </select>
               </div>
             </td>
-            <td style="width:33%;">
+            <td style="width:33%;vertical-align:middle;">
               <div style="float: right;">
                 <input type="hidden" id="hiddenToggle" value="off" />
                 Show&#160;
@@ -190,7 +190,7 @@
                 </table>
               </div>
             </td>
-            <td style="width:33%;">
+            <td style="width:33%;vertical-align:middle;">
               <xsl:choose>
                 <xsl:when test="$why">
                   <div id="why">
@@ -233,7 +233,7 @@
                         </a>
                       </th>
                       <xsl:if test="$institution='true'">
-                        <th>
+                        <th class="alignLeft">
                           <a href="JavaScript:Sort('institution');">
                             School
                             <xsl:choose>
@@ -252,7 +252,7 @@
                         </th>
                       </xsl:if>
                       <xsl:if test="$department='true'">
-                        <th>
+                        <th class="alignLeft">
                           <a href="JavaScript:Sort('department');">
                             Department
                             <xsl:choose>
@@ -272,7 +272,7 @@
                       </xsl:if>
 
                       <xsl:if test="$facrank='true'">
-                        <th>
+                        <th class="alignLeft">
                           <a href="JavaScript:Sort('facrank');">
                             Researcher Type
                             <xsl:choose>
@@ -292,7 +292,7 @@
                       </xsl:if>
                       <xsl:choose>
                         <xsl:when test="$why">
-                          <th>Why</th>
+                          <th class="alignCenter">Why</th>
                         </xsl:when>
                       </xsl:choose>
                     </tr>
@@ -735,7 +735,8 @@
       $("#divColSelect").hide();
 
       // hide/show event occurs on click of dropdown
-      $("#selColSelect").click(function() {
+      $("#selColSelect").focus(function() {
+	  $("#selColSelect").click();
       if ($("#divColSelect").is(":visible")) {
       $("#divColSelect").hide();
 

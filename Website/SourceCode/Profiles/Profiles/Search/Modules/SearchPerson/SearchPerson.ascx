@@ -330,10 +330,10 @@
             </table>
         </div>
 			<asp:Panel ID="DirectSearchUCSF" runat="server" SkinID="UCSF" Visible="false">
-				<p style="text-align:right; margin-right: 20px"><a href="<%=GetURLDomain()%>/direct" class="dblarrow">Search other institutions</a></p>
+				<p style="text-align:right;margin-right:20px;margin-bottom:160px;"><a href="<%=GetURLDomain()%>/direct" class="dblarrow">Search other institutions</a></p>
 			</asp:Panel>
 			<asp:Panel ID="DirectSearchUSC" runat="server" SkinID="USC" Visible="false">
-				<p><a href="<%=GetURLDomain()%>/direct" class="dblarrow">Find Collaborators at other Research Institutions</a></p>
+				<p style="margin-bottom:160px;"><a href="<%=GetURLDomain()%>/direct" class="dblarrow">Find Collaborators at other Research Institutions</a></p>
 			</asp:Panel>
 			<asp:Panel ID="SearchPersonFormNoteUCSD" runat="server" SkinID="UCSD" Visible="false">
 				<p><span class="notice">Important Note: </span>

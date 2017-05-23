@@ -65,8 +65,8 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
 .searchForm th { color: #000; }
 .searchForm .pan td { padding: 2px 0; }
 .searchForm td div.header { font-size: 28px; font-weight: bold; margin: 16px 0 8px; }
-.searchForm .searchSection { margin-bottom: 0; border: 1px solid #CCC; border-width: 1px 1px 0 1px; }
-.searchForm #div1 { border-bottom: 1px solid #CCC; } 
+.searchForm .searchSection { margin-bottom: 0; border: 1px solid #CCC; }
+.searchForm #divSearchSection { border-width: 1px 1px 0 1px; }
 .searchForm #div1 th { font-weight: normal; width: 140px; }
 #ctl00_ContentMain_rptMain_ctl00_ctl00_searchfor,
 #txtSearchFor { height: 30px; }
@@ -74,7 +74,7 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
 .unused, input#chkExactphrase, input#institutionallexcept, input#departmentallexcept { display: none; }
 .searchForm .inputText { width: 249px; }
 #divChkList { border: 1px solid #CCC !important; margin-top: -5px; width: 248px !important; 
-  height: 190px !important; padding-top: 15px !important; } 
+  height: 200px !important; padding-top: 15px !important; } 
 #divOtherOptions { 
   border-right: 1px solid #CCC !important;
   border-bottom: 1px solid #CCC !important;
@@ -82,6 +82,8 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
   height: auto !important; 
 }
 #ctcFirst_rMaster_ctl00_imgExpand { visibility: hidden; width: 1px; }
+#divDetailCheck { margin: 3px 0; }
+#chkLstItem label, #divDetailCheck label , label[for=ctl00_ContentMain_rptMain_ctl00_ctl00_chkExactPhrase]  { vertical-align: 2px; }
 #andor { display: block; float: left; margin: -18px 0 0 153px;   
  color: #666; background-color: #F8F8F9; padding: 0 6px; font-size: 11px; letter-spacing: 2px; }
 
@@ -89,6 +91,7 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
 .listTable th { border: 1px solid #CCC !important; }
 .direct .listTable tr:first-child td,
 #tblSearchResults th { text-align: left; font-weight: bold; }
+#tblSearchResults th.alignCenter { text-align: center; }
 #filters ul li strong { font-size: 150%; line-height: 20px; }
 .connectionContainerTable { background-color: #F7F7F8; height: 60px; border-color: #CCC; }
 #ctl00_ContentMain_rptMain_ctl00_ctl00_gvConnectionDetails th,
@@ -147,6 +150,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 #meshDetails .label { vertical-align: top; padding-right: 10px; }
 .keywordTimelineLabels { width: 220px; }
 .passive-header { font-weight: bold; margin: 10px 0 0; }
+.profiles .profilesContentPassive .passiveSectionBody li  { text-indent: -22px; padding-left: 22px; }
 .profiles .profilesContentPassive .passiveSectionBodyDetails { padding-top: 4px; }
 .profiles .profilesContentPassive .passiveSectionBodyDetails a { font-weight: bold; }
 .profiles .profilesContentPassive .passiveSectionBodyDetails a.dblarrow:before { padding: 0 9px 0 5px; }

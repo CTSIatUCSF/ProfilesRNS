@@ -77,8 +77,8 @@
             <tbody>
               <tr>
                 <th class="alignLeft">Match</th>
-                <th>Type</th>
-                <th>Why</th>
+                <th class="alignCenter">Type</th>
+                <th class="alignCenter">Why</th>
               </tr>
               <xsl:for-each select="/rdf:RDF/rdf:Description/prns:hasConnection">
                 <xsl:variable name="nodeID" select="@rdf:nodeID"/>

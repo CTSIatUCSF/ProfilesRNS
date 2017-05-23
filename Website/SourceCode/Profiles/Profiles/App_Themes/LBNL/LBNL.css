@@ -1,40 +1,32 @@
 ﻿/* highlight color */
-.dblarrow:before, .highlight { color: #771111; }
+.dblarrow:before, .highlight,
 #about h2, h2.about, .content-block h2, .searchForm td div.header, 
 .passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
-.profiles .profilesContentMain .pageTitle h2 { color: #000; }
-.profiles a.search-button, .more span, .less span { background-color: #771111; }
-.profiles a.search-button:hover { background-color: #990000; box-shadow: none; color: #FFF; }
+.profiles .profilesContentMain .pageTitle h2 { color: #F26D04; }
+.profiles a.search-button, .more span, .less span { background-color: #F26D04; }
+.profiles a.search-button:hover { background-color: #F48024; box-shadow: none; color: #FFF; }
 
 /* banner */
-
-#header-ucsf ul { padding-top: 4px; }
-#header-ucsf div#ucsfnav ul li a {
-    border-left: 1px solid #fff;
-    font-size: 11px;
-    padding: 0 5px 0 10px;
-}
-#header-ucsf div#ucsfnav ul li.first a { border: none; padding: 0 5px 0 0; }
-.institutionHeader { height: 100px; }
+body { border-top: 100px solid #0E4059; background-color: #fff; width: 100%; }
+body > form { width: 980px; margin: -100px auto 0; }
+.institutionHeader { background-color: #0E4059; height: 100px; }
 #site-logo h1 { margin: 0; padding: 10px 0 0 0; }
 #powered-by-block { margin: 15px 20px 0 0; padding: 0;}
-#powered-by-block  a {  
-  background: transparent url("Images/powered_by_scctsi.jpg") no-repeat scroll 0 4px;
-  color: #000;  
-  padding: 5px 0 5px 20px;
-  font-weight: normal;
-}
-#new-features { clear: right; float: right; width: 300px; margin: 24px 20px 0 0; }
-#new-features a, #new-features a:visited {
-    padding: 6px;
-    margin: 0;
+#powered-by-block  a, #powered-by-block  a:visited {  
+    border-right: 1px solid #fff;
+    color: #fff;
     display: inline-block;
-    font-size: 13px;
-	background-color: #f8f8f9;
-	float: right;
+    float: right;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 12px;
+    padding: 1px 8px;
+    text-align: right;
+    text-decoration: none;
 }
-#powered-by-block  a:hover, #new-features a:hover { text-decoration: underline; }
+#powered-by-block  a:hover { text-decoration: underline; color: #fff; }
+#powered-by-block a.last-item { border: none; }
 
 /* LINK Color */
 .profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000; }
@@ -43,16 +35,166 @@
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child, 
 #profile-components table td#namedegree, .listTable .listTableLink, .linky, 
 .institutionHeader a,
-.profiles a, .profiles a:visited { color: #4d8ba9; }
-.profiles a:hover, .institutionHeader a:hover { color: #267196; }
-.profiles .profilesFooter a, .profiles .profilesFooter a:hover { color: #FFCC00; }
+.profiles a, .profiles a:visited { color: #0088CC; }
+.profiles a:hover { color: #005580; }
+
+/* Search form */
+#ctl00_ContentMain_rptMain_ctl00_ctl00_trInstitution, #ctl00_ContentMain_rptMain_ctl00_ctl00_trOtherOptions { display: none; }
 
 /* navbar & footer colors */
-#suckerfishmenu, #suckerfishmenu a { background-color: #771111; }
-#suckerfishmenu li { border-right: none; }
-.search #suckerfishmenu .item-home a,
-#suckerfishmenu	 a.active, #suckerfishmenu a:hover { background-color: #990000; }
-#header-ucsf, .profiles .profilesFooter { background-color: #000; }
-.profiles .profilesFooter { border: none; }
-.profiles .profilesFooter  p { color: #FFF; padding: 5px 150px; text-align: center; }
+#suckerfishmenu { border-top: 3px solid #fff; }
+#suckerfishmenu, #suckerfishmenu a { background-color: #98b2c9; }
+#suckerfishmenu a { font-weight: normal; }
+#suckerfishmenu a:hover { text-decoration: underline; }
+#suckerfishmenu li { border-right: 3px solid #fff; }
+.search #suckerfishmenu .item-home a, #suckerfishmenu a:hover,
+#suckerfishmenu	 a.active { background-color: #999; }
+.profiles .profilesFooter { border-top: 1px solid #ccc; background-color: #fff; text-align: left; padding: 20px 0; margin-top: 30px; }
+.profiles .profilesFooter  p  { color: #444; font-size: 11px; margin: 0; padding: 0; }
+.disclaimer-logos {
+    display: block;
+    float: left;
+    padding-bottom: 10px;	
+}
+.disclaimer-logos ul {
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.disclaimer-logos li {
+    display: block;
+    float: left;
+    height: 55px;
+    list-style: none outside none;
+    width: 55px;
+}
+.disclaimer-logos .item1 {
+    background-image: url("Images/seal-department-of-energy.png");
+}
+.disclaimer-logos .item2 {
+    background-image: url("Images/seal-university-of-california.png");
+    margin: 0 0 0 7px;
+}
+.disclaimer-logos .item1, .disclaimer-logos .item2 {
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.disclaimer-text, .lbl-disclaimer {
+    padding-top: 15px;
+}
+.disclaimer-text {
+    float: left;
+    width: 220px;
+    padding: 15px 8px;
+}
+.lbl-disclaimer {
+    float: left;
+    margin: 0 20px 0 80px;
+    width: 160px;
+}
+.lbl-disclaimer a {
+    font-size: 13px;
+    display: block;
+    text-decoration: none;
+}
+.social ul {
+    height: 31px;
+}
+.social, .social-mobile {
+    width: 230px;
+}
+.social-mobile {
+    display: none;
+}
+.social-links {
+    padding-top: 5px;
+}
+.social-links ul, .social-links ul {
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.social-links li, .social-links li {
+    display: inline;
+    float: left;
+    list-style-type: none;
+    margin: 0 0 0 5%;
+}
+.social-links li a, .social-links li a {
+    background-image: url("Images/lbl-new-social-iconsB.png");
+    background-repeat: no-repeat;
+    display: block;
+    height: 31px;
+    opacity: 0.6;
+    width: 24px;
+}
+.social-links li a:hover, .social-links li a:hover {
+    border-color: #0072BC;
+}
+.social-links li a.item1, .social-links li a.item1 {
+    background-position: 0 4px;
+}
+.social-links li a.item1:hover, .social-links li a.item1:hover {
+    border-color: #0072BC;
+    opacity: 0.9;
+}
+.social-links li a.item2, .social-links li a.item2 {
+    background-position: -23px 4px;
+}
+.social-links li a.item2:hover, .social-links li a.item2:hover {
+    opacity: 0.9;
+}
+.social-links li a.item3, .social-links li a.item3 {
+    background-position: -51px 4px;
+}
+.social-links li a.item3:hover, .social-links li a.item3:hover {
+    opacity: 0.9;
+}
+.social-links li a.item4, .social-links li a.item4 {
+    background-position: -74px 4px;
+}
+.social-links li a.item4:hover, .social-links li a.item4:hover {
+    opacity: 0.9;
+}
+.social-links li a.item5, .social-links li a.item5 {
+    background-position: -101px 4px;
+}
+.social-links li a.item5:hover, .social-links li a.item5:hover {
+    opacity: 0.9;
+}
+.social-links li a.item6, .social-links li a.item6 {
+    background-position: -124px 4px;
+}
+.social-links li a.item6:hover, .social-links li a.item6:hover {
+    opacity: 0.9;
+}
+.social ul {
+    display: table;
+    margin: 0;
+    width: 230px;
+}
+.social {
+    display: table;
+    margin: 0;
+    position: relative;
+    width: 300px;
+}
+.ir {
+    background-color: rgba(0, 0, 0, 0);
+    background-repeat: no-repeat;
+    border: 0 none;
+    direction: ltr;
+    display: block;
+    line-height: 0;
+    overflow: hidden;
+    text-align: left;
+    text-indent: -999em;
+}
+.profiles .profilesFooter  .version { clear: left; text-align: center; margin: 40px 0 0; background-color: #999; }
+.profiles .profilesFooter  .version  p { color: #fff; padding: 8px 0; }
+
+/* About pages */
+#about td { border-top: 2px solid dbe4ec; }
 

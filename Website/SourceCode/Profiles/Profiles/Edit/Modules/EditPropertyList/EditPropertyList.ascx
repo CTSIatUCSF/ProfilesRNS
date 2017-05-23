@@ -29,6 +29,8 @@ Components:</h3>
          <asp:Panel ID="EditPropListUCSD" runat="server" SkinID="UCSD" Visible="false" CssClass="inlineBlock"><span id="cls">This info is drawn from an automatic data feed.</span></asp:Panel>
          <asp:Panel ID="EditPropListUSC" runat="server" SkinID="USC" Visible="false" CssClass="inlineBlock"><span id="cls">This info is drawn from the Campus Locator System. 
          Please contact your HR representative for corrections.</span></asp:Panel>
+         <asp:Panel ID="EditPropListLBNL" runat="server" SkinID="LBNL" Visible="false" CssClass="inlineBlock"><span id="cls">This info is drawn from the Campus Locator System. 
+         Please contact your HR representative for corrections.</span></asp:Panel>
        </td>
     </tr>
   </table>

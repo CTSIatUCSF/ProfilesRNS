@@ -1,27 +1,20 @@
-/*
-
-Run this script to pull data from $(ProfilesSourceDB) into the DB where you are running this scriot
-
-
-*/
 
 /********** photos ****************************************************************************************/
---- UCSF
+DECLARE @Institution VARCHAR(50) = 'USC'
+DECLARE @SourceDB VARCHAR(50) = 'profiles_usc' 
+
+DECLARE @SQL NVARCHAR(MAX)
+
+SELECT @SQL = N'
 INSERT INTO [Profile.Data].[Person.Photo]
            ([PersonID]
            ,[Photo]
            ,[PhotoLink])
-SELECT d.PersonID, ph.Photo, ph.PhotoLink FROM [Profile.Data].[Person] d join [profiles_ucsf].[Profile.Data].[Person] s on d.internalusername = SUBSTRING(s.InternalUserName, 3, 6) + '@ucsf.edu'
-JOIN [profiles_ucsf].[Profile.Data].[Person.Photo] ph on ph.PersonID = s.PersonID
+SELECT d.PersonID, ph.Photo, ph.PhotoLink FROM [Profile.Data].[Person] d join [' + @SourceDB + '].[Profile.Data].[Person] s on d.internalusername = [UCSF.].fn_LegacyInternalusername2EPPN(s.InternalUserName, ''' + @Institution + ''')
+JOIN [' + @SourceDB + '].[Profile.Data].[Person.Photo] ph on ph.PersonID = s.PersonID'
 
---- UCSD
-INSERT INTO [Profile.Data].[Person.Photo]
-           ([PersonID]
-           ,[Photo]
-           ,[PhotoLink])
-SELECT d.PersonID, ph.Photo, ph.PhotoLink FROM [Profile.Data].[Person] d join [profiles_ucsd].[Profile.Data].[Person] s on d.internalusername =  cast(cast(s.InternalUserName as Int) as varchar) + '@ucsd.edu'
-JOIN [profiles_ucsd].[Profile.Data].[Person.Photo] ph on ph.PersonID = s.PersonID
-
+--SELECT @SQL
+EXEC dbo.sp_executesql @SQL
 
 -- select * from [RDF.].Triple where predicate = [RDF.].fnURI2NodeID('http://profiles.catalyst.harvard.edu/ontology/prns#mainImage')
 

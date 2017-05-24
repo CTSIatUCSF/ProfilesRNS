@@ -22,3 +22,5 @@ DROP SCHEMA [UCSF.CTSASearch]
 
 ALTER TABLE [Profile.Data].[Publication.Entity.InformationResource]	DROP COLUMN Authors
 DROP PROCEDURE [Profile.Data].[Publication.ClaimOnePublication]
+
+-- we do NOT replace all the existing SP's we altered.

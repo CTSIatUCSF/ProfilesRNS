@@ -55,7 +55,8 @@ namespace Profiles.Framework.Modules.ApplyXSLT
 
             XslCompiledTransform xslt = new XslCompiledTransform();
 
-            litGeneric.Text = Utilities.XslHelper.TransformInMemory(Server.MapPath(base.GetModuleParamString("XSLTPath")), args, base.BaseData.OuterXml);            
+            // Eric Meeks, theme work
+            litGeneric.Text = Utilities.XslHelper.TransformInMemory(Server.MapPath(base.GetModuleParamString("XSLTPath")), args, base.BaseData.OuterXml).Replace(Root.Domain, Brand.GetDomain());            
             Framework.Utilities.DebugLogging.Log("{ApplyXSLT End} Milliseconds:" + (DateTime.Now - d).TotalMilliseconds);
 
         }

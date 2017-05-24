@@ -2603,3 +2603,361 @@ END
 
 GO
 
+/****** Object:  StoredProcedure [Profile.Module].[CustomViewPersonSameDepartment.GetList]    Script Date: 5/23/2017 12:57:51 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [Profile.Module].[CustomViewPersonSameDepartment.GetList]
+	@NodeID BIGINT,
+	@baseURI nvarchar(400),
+	@SessionID UNIQUEIDENTIFIER = NULL
+AS
+BEGIN
+ 
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+ 
+	declare @labelID bigint
+	select @labelID = [RDF.].fnURI2NodeID('http://www.w3.org/2000/01/rdf-schema#label')
+
+	DECLARE @PersonID INT
+ 	SELECT @PersonID = CAST(m.InternalID AS INT)
+		FROM [RDF.Stage].[InternalNodeMap] m, [RDF.].Node n
+		WHERE m.Status = 3 AND m.ValueHash = n.ValueHash AND n.NodeID = @NodeID
+
+	declare @i nvarchar(500)
+	declare @d nvarchar(500)
+	declare @v nvarchar(500)
+
+	select @i = institutionname, @d = departmentname, @v = divisionfullname
+		from [Profile.Cache].[Person]
+		where personid = @personid
+
+	declare @InstitutionURI varchar(400)
+	declare @DepartmentURI varchar(400)
+
+	select	@InstitutionURI = @baseURI + cast(j.NodeID as varchar(50)),
+			@DepartmentURI = @baseURI + cast(e.NodeID as varchar(50))
+		from [Profile.Data].[Organization.Institution] i,
+			[Profile.Data].[Organization.Department] d,
+			[RDF.Stage].[InternalNodeMap] j,
+			[RDF.Stage].[InternalNodeMap] e
+		where i.InstitutionName = @i and d.DepartmentName = @d
+			and j.InternalType = 'Institution' and j.Class = 'http://xmlns.com/foaf/0.1/Organization' and j.InternalID = cast(i.InstitutionID as varchar(50))
+			and e.InternalType = 'Department' and e.Class = 'http://xmlns.com/foaf/0.1/Organization' and e.InternalID = cast(d.DepartmentID as varchar(50))
+
+	declare @x xml
+
+	;with a as (
+		select a.personid, 
+			max(case when a.divisionname = @v then 1 else 0 end) v,
+			max(case when s.numpublications > 0 then 1 else 0 end) p
+			--row_number() over (order by newid()) k
+		from [Profile.Cache].[Person.Affiliation] a, [Profile.Cache].[Person] s
+		where a.personid <> @personid
+			and a.instititutionname = @i and a.departmentname = @d
+			and a.personid = s.personid
+		group by a.personid
+	), b as (
+		select top(5) *
+		from a
+		order by v desc, p desc, newid()
+	), c as (
+		select m.NodeID, n.Value URI, l.Value Label
+		from b
+			inner join [RDF.Stage].[InternalNodeMap] m
+				on m.InternalType = 'Person' and m.Class = 'http://xmlns.com/foaf/0.1/Person' and m.InternalID = cast(b.personid as varchar(50))
+			inner join [RDF.].[Node] n
+				on n.NodeID = m.NodeID and n.ViewSecurityGroup = -1
+			inner join [RDF.].[Triple] t
+				on t.subject = n.NodeID and t.predicate = @labelID and t.ViewSecurityGroup = -1
+			inner join [RDF.].[Node] l
+				on l.NodeID = t.object and l.ViewSecurityGroup = -1
+	)
+	select @x = (
+			select	(select count(*) from a) "NumberOfConnections",
+					@InstitutionURI "InstitutionURI",
+					@DepartmentURI "DepartmentURI",
+					(select	NodeID "Connection/@NodeID",
+							URI "Connection/@URI",
+							Label "Connection"
+						from c
+						order by Label
+						for xml path(''), type
+					)
+			for xml path('Network'), type
+		)
+
+	select @x XML
+
+END
+
+GO
+
+/****** Object:  StoredProcedure [Profile.Module].[NetworkCategory.Person.HasResearchArea.GetXML]    Script Date: 5/23/2017 12:39:45 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Stored Procedure
+
+ALTER PROCEDURE [Profile.Module].[NetworkCategory.Person.HasResearchArea.GetXML]
+	@NodeID BIGINT,
+	@baseURI NVARCHAR(400)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	DECLARE @hasResearchAreaID BIGINT
+	SELECT @hasResearchAreaID = [RDF.].fnURI2NodeID('http://vivoweb.org/ontology/core#hasResearchArea')	
+
+	DECLARE @labelID BIGINT
+	SELECT @labelID = [RDF.].fnURI2NodeID('http://www.w3.org/2000/01/rdf-schema#label')	
+
+	DECLARE @meshSemanticGroupNameID BIGINT
+	SELECT @meshSemanticGroupNameID = [RDF.].fnURI2NodeID('http://profiles.catalyst.harvard.edu/ontology/prns#meshSemanticGroupName')	
+
+	SELECT *
+		INTO #t
+		FROM (
+			SELECT t.SortOrder, t.Weight, @baseURI+CAST(t.Object AS VARCHAR(50)) URI, n.Value Concept, m.Value Category,
+				ROW_NUMBER() OVER (PARTITION BY s.Object ORDER BY t.Weight DESC) CategoryRank
+			FROM [RDF.].[Triple] t
+				INNER JOIN [RDF.].[Triple] l
+					ON t.Object = l.Subject AND l.Predicate = @labelID
+				INNER JOIN [RDF.].[Node] n
+					ON l.Object = n.NodeID
+				INNER JOIN [RDF.].[Triple] s
+					ON t.Object = s.Subject AND s.Predicate = @meshSemanticGroupNameID
+				INNER JOIN [RDF.].[Node] m
+					ON s.Object = m.NodeID
+			WHERE t.Subject = @NodeID AND t.Predicate = @hasResearchAreaID
+		) t
+		WHERE CategoryRank <= 10
+
+	SELECT (
+		SELECT	'Concepts listed here are grouped according to their ''semantic'' categories. Within each category, up to ten concepts are shown, in decreasing order of relevance.' "@InfoCaption",
+				(
+					SELECT a.Category "DetailList/@Category",
+						(SELECT	'' "Item/@ItemURLText",
+								URI "Item/@URL",
+								Concept "Item"
+							FROM #t b
+							WHERE b.Category = a.Category
+							ORDER BY b.CategoryRank
+							FOR XML PATH(''), TYPE
+						) "DetailList"
+					FROM (SELECT DISTINCT Category FROM #t) a
+					ORDER BY a.Category
+					FOR XML PATH(''), TYPE
+				)
+		FOR XML PATH('Items'), TYPE
+	) ItemsXML
+
+END
+
+GO
+
+/****** Object:  StoredProcedure [Profile.Module].[NetworkCloud.Person.HasResearchArea.GetXML]    Script Date: 5/23/2017 12:59:21 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Stored Procedure
+
+ALTER PROCEDURE [Profile.Module].[NetworkCloud.Person.HasResearchArea.GetXML]
+	@NodeID BIGINT,
+	@baseURI NVARCHAR(400)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	DECLARE @hasResearchAreaID BIGINT
+	SELECT @hasResearchAreaID = [RDF.].fnURI2NodeID('http://vivoweb.org/ontology/core#hasResearchArea')	
+
+	DECLARE @labelID BIGINT
+	SELECT @labelID = [RDF.].fnURI2NodeID('http://www.w3.org/2000/01/rdf-schema#label')	
+
+	SELECT (
+		SELECT	'' "@Description",
+				'In this concept ''cloud'', the sizes of the concepts are based not only on the number of corresponding publications, but also how relevant the concepts are to the overall topics of the publications, how long ago the publications were written, whether the person was the first or senior author, and how many other people have written about the same topic. The largest concepts are those that are most unique to this person.' "@InfoCaption",
+				2 "@Columns",
+				(
+					SELECT	Value "@ItemURLText", 
+							SortOrder "@sortOrder", 
+							(CASE WHEN SortOrder <= 5 THEN 'big'
+								WHEN Quintile = 1 THEN 'big'
+								WHEN Quintile = 5 THEN 'small'
+								ELSE 'med' END) "@Weight",
+							URI "@ItemURL"
+					FROM (
+						SELECT t.SortOrder, t.Weight, @baseURI+CAST(t.Object AS VARCHAR(50)) URI, n.Value,
+							NTILE(5) OVER (ORDER BY t.SortOrder) Quintile
+						FROM [RDF.].[Triple] t
+							INNER JOIN [RDF.].[Triple] l
+								ON t.Object = l.Subject AND l.Predicate = @labelID
+							INNER JOIN [RDF.].[Node] n
+								ON l.Object = n.NodeID
+						WHERE t.Subject = @NodeID AND t.Predicate = @hasResearchAreaID
+					) t
+					ORDER BY Value
+					FOR XML PATH('Item'), TYPE
+				)
+		FOR XML PATH('ListView'), TYPE
+	) ListViewXML
+
+END
+
+GO
+
+/****** Object:  StoredProcedure [Profile.Module].[NetworkTimeline.Person.CoAuthorOf.GetData]    Script Date: 5/23/2017 1:08:46 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [Profile.Module].[NetworkTimeline.Person.CoAuthorOf.GetData]
+	@NodeID BIGINT,
+	@baseURI NVARCHAR(400)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	DECLARE @PersonID INT
+ 	SELECT @PersonID = CAST(m.InternalID AS INT)
+		FROM [RDF.Stage].[InternalNodeMap] m, [RDF.].Node n
+		WHERE m.Status = 3 AND m.ValueHash = n.ValueHash AND n.NodeID = @NodeID
+ 
+ 	--DECLARE @baseURI NVARCHAR(400) Eric Meeks. Because we are getting URI's for people we just leave this as the base URI. The code will 
+	-- always swap in the propert brand for a person URI.
+	SELECT @baseURI = value FROM [Framework.].Parameter WHERE ParameterID = 'baseURI'
+
+	;with e as (
+		select top 20 s.PersonID1, s.PersonID2, s.n PublicationCount, 
+			year(s.FirstPubDate) FirstPublicationYear, year(s.LastPubDate) LastPublicationYear, 
+			p.DisplayName DisplayName2, ltrim(rtrim(p.FirstName+' '+p.LastName)) FirstLast2, s.w OverallWeight
+		from [Profile.Cache].[SNA.Coauthor] s, [Profile.Cache].[Person] p
+		where personid1 = @PersonID and personid2 = p.personid
+		order by w desc, personid2
+	), f as (
+		select e.*, g.pubdate
+		from [Profile.Data].[Publication.Person.Include] a, 
+			[Profile.Data].[Publication.Person.Include] b, 
+			[Profile.Data].[Publication.PubMed.General] g,
+			e
+		where a.personid = e.personid1 and b.personid = e.personid2 and a.pmid = b.pmid and a.pmid = g.pmid
+			and g.pubdate > '1/1/1900'
+	), g as (
+		select min(year(pubdate))-1 a, max(year(pubdate))+1 b,
+			cast(cast('1/1/'+cast(min(year(pubdate))-1 as varchar(10)) as datetime) as float) f,
+			cast(cast('1/1/'+cast(max(year(pubdate))+1 as varchar(10)) as datetime) as float) g
+		from f
+	), h as (
+		select f.*, (cast(pubdate as float)-f)/(g-f) x, a, b, f, g
+		from f, g
+	), i as (
+		select personid2, min(x) MinX, max(x) MaxX, avg(x) AvgX
+		from h
+		group by personid2
+	)
+	select h.*, MinX, MaxX, AvgX, h.FirstLast2 label, (select count(distinct personid2) from i) n,
+		@baseURI + cast(m.NodeID as varchar(50)) ObjectURI
+	from h, i, [RDF.Stage].[InternalNodeMap] m
+	where h.personid2 = i.personid2 and cast(i.personid2 as varchar(50)) = m.InternalID
+		and m.Class = 'http://xmlns.com/foaf/0.1/Person' and m.InternalType = 'Person'
+	order by AvgX, firstpublicationyear, lastpublicationyear, personid2, pubdate
+
+END
+
+GO
+
+/****** Object:  StoredProcedure [Profile.Module].[NetworkTimeline.Person.HasResearchArea.GetData]    Script Date: 5/23/2017 1:04:11 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [Profile.Module].[NetworkTimeline.Person.HasResearchArea.GetData]
+	@NodeID BIGINT,
+	@baseURI NVARCHAR(400)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	DECLARE @PersonID INT
+ 	SELECT @PersonID = CAST(m.InternalID AS INT)
+		FROM [RDF.Stage].[InternalNodeMap] m, [RDF.].Node n
+		WHERE m.Status = 3 AND m.ValueHash = n.ValueHash AND n.NodeID = @NodeID
+ 
+	;with a as (
+		select t.*, g.pubdate
+		from (
+			select top 20 *, 
+				--numpubsthis/sqrt(numpubsall+100)/sqrt((LastPublicationYear+1 - FirstPublicationYear)*1.00000) w
+				--numpubsthis/sqrt(numpubsall+100)/((LastPublicationYear+1 - FirstPublicationYear)*1.00000) w
+				--WeightNTA/((LastPublicationYear+2 - FirstPublicationYear)*1.00000) w
+				weight w
+			from [Profile.Cache].[Concept.Mesh.Person]
+			where personid = @PersonID
+			order by w desc, meshheader
+		) t, [Profile.Cache].[Concept.Mesh.PersonPublication] m, [Profile.Data].[Publication.PubMed.General] g
+		where t.meshheader = m.meshheader and t.personid = m.personid and m.pmid = g.pmid and year(g.pubdate) > 1900
+	), b as (
+		select min(firstpublicationyear)-1 a, max(lastpublicationyear)+1 b,
+			cast(cast('1/1/'+cast(min(firstpublicationyear)-1 as varchar(10)) as datetime) as float) f,
+			cast(cast('1/1/'+cast(max(lastpublicationyear)+1 as varchar(10)) as datetime) as float) g
+		from a
+	), c as (
+		select a.*, (cast(pubdate as float)-f)/(g-f) x, a, b, f, g
+		from a, b
+	), d as (
+		select meshheader, min(x) MinX, max(x) MaxX, avg(x) AvgX
+				--, (select avg(cast(g.pubdate as float))
+				--from resnav_people_hmsopen.dbo.pm_pubs_general g, (
+				--	select distinct pmid
+				--	from resnav_people_hmsopen.dbo.cache_pub_mesh m
+				--	where m.meshheader = c.meshheader
+				--) t
+				--where g.pmid = t.pmid) AvgAllX
+		from c
+		group by meshheader
+	)
+	select c.*, d.MinX, d.MaxX, d.AvgX,	c.meshheader label, (select count(distinct meshheader) from a) n, p.DescriptorUI
+		into #t
+		from c, d, [Profile.Data].[Concept.Mesh.Descriptor] p
+		where c.meshheader = d.meshheader and d.meshheader = p.DescriptorName
+
+	select t.*, @baseURI + cast(m.NodeID as varchar(50)) ObjectURI
+		from #t t, [RDF.Stage].[InternalNodeMap] m
+		where t.DescriptorUI = m.InternalID
+			and m.Class = 'http://www.w3.org/2004/02/skos/core#Concept' and m.InternalType = 'MeshDescriptor'
+		order by AvgX, firstpublicationyear, lastpublicationyear, meshheader, pubdate
+
+END
+
+GO
+
+
+
+
+
+
+

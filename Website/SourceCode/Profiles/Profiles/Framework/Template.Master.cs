@@ -443,7 +443,7 @@ namespace Profiles.Framework
                 else if (PageBackLinkURL.Contains("~"))
                     url = Brand.GetDomain() + PageBackLinkURL.Replace("~", "");
                 else
-                    url = PageBackLinkURL;
+                    url = Brand.CleanURL(PageBackLinkURL);
 
                 litBackLink.Text = "<a href=\"" + url + "\" class=\"dblarrow\">" + PageBackLinkName + "</a>";
 

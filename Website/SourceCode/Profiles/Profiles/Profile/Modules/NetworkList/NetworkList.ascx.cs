@@ -183,7 +183,7 @@ namespace Profiles.Framework.Modules.NetworkList
                 var items = from XmlNode networknode in base.BaseData.SelectNodes(networklistnode, base.Namespaces)
                             select new
                             {
-                                itemurl = CustomParse.Parse(itemurl, networknode, base.Namespaces),
+                                itemurl = Brand.CleanURL(CustomParse.Parse(itemurl, networknode, base.Namespaces)),
                                 item = CustomParse.Parse(itemtext, networknode, base.Namespaces),
                                 weight = GetCloudRank(networknode.SelectSingleNode("./rdf:object/@rdf:resource", base.Namespaces).InnerText, weights),
                                 connectiondetails = networknode.SelectSingleNode("prns:hasConnectionDetails/@rdf:resource", base.Namespaces),

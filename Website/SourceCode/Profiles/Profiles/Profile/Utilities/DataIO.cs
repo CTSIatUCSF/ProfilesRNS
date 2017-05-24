@@ -325,6 +325,7 @@ namespace Profiles.Profile.Utilities
             dbcommand.CommandType = CommandType.StoredProcedure;
             dbcommand.CommandTimeout = base.GetCommandTimeout();
             dbcommand.Parameters.Add(new SqlParameter("@nodeid", request.Subject));
+            dbcommand.Parameters.Add(new SqlParameter("@baseURI", Brand.GetDomain() + "/profile/"));
             dbcommand.Parameters.Add(new SqlParameter("@sessionid", request.Session.SessionID));
 
             dbcommand.Connection = dbconnection;
@@ -487,7 +488,8 @@ namespace Profiles.Profile.Utilities
             dbconnection.Open();
             dbcommand.CommandType = CommandType.StoredProcedure;
             dbcommand.CommandTimeout = base.GetCommandTimeout();
-            dbcommand.Parameters.Add(new SqlParameter("@nodeid", request.Subject));      
+            dbcommand.Parameters.Add(new SqlParameter("@nodeid", request.Subject));
+            dbcommand.Parameters.Add(new SqlParameter("@baseURI", Brand.GetDomain() + "/profile/"));
 
             dbcommand.Connection = dbconnection;
 
@@ -517,6 +519,7 @@ namespace Profiles.Profile.Utilities
             dbcommand.CommandType = CommandType.StoredProcedure;
             dbcommand.CommandTimeout = base.GetCommandTimeout();
             dbcommand.Parameters.Add(new SqlParameter("@nodeid", request.Subject));
+            dbcommand.Parameters.Add(new SqlParameter("@baseURI", Brand.GetDomain() + "/profile/"));
 
             dbcommand.Connection = dbconnection;
 
@@ -585,7 +588,7 @@ namespace Profiles.Profile.Utilities
             DataView dataView = null;
 
             var db = new SqlConnection(connstr);
-            dataAdapter = new SqlDataAdapter(storedproc + " " + request.Subject, db);
+            dataAdapter = new SqlDataAdapter(storedproc + " " + request.Subject + ", '" + Brand.GetDomain() + "/profile/'", db);
             dataSet = new DataSet();
             dataAdapter.Fill(dataSet);
             dataView = new DataView(dataSet.Tables[0]);

@@ -44,7 +44,7 @@ CREATE UNIQUE INDEX prettyUrlUnique ON [UCSF.].[NameAdditions]([PrettyURL])
 WHERE [PrettyURL] IS NOT NULL
 GO
 
-/****** Object:  Table [UCSF.].[Brand]    Script Date: 12/16/2015 10:51:55 AM ******/
+/****** Object:  Table [UCSF.].[Theme]    Script Date: 12/16/2015 10:51:55 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -54,18 +54,40 @@ GO
 SET ANSI_PADDING ON
 GO
 
-CREATE TABLE [UCSF.].[Brand](
-	[BrandName] [nvarchar](50) NOT NULL,
-	[Theme] [nvarchar](50) NULL,
-	[PersonFilter] varchar(200) NULL,
-	[BasePath] [nvarchar](50) NULL,
-	[MultiInstitutional] bit NOT NULL,
+CREATE TABLE [UCSF.].[Theme](
+	[Theme] [nvarchar](50) NOT NULL,
+	[BasePath] [nvarchar](50) NOT NULL,
+	[Shared] bit NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
-	[BrandName] ASC
+	[Theme] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+GO
+
+/****** Object:  Table [UCSF.].[InstitutionAbbreviation2Theme]    Script Date: 12/16/2015 10:51:55 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [UCSF.].[InstitutionAbbreviation2Theme](
+	[InstitutionAbbreviation] [nvarchar](50) NOT NULL,
+	[Theme] [nvarchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[InstitutionAbbreviation] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+ALTER TABLE [UCSF.].[InstitutionAbbreviation2Theme]  WITH CHECK ADD  CONSTRAINT [FK_institution2theme] FOREIGN KEY([Theme])
+REFERENCES [UCSF.].[Theme] ([Theme])
 GO
 
 ---------------------------------------------------------------------------------------------------------------------
@@ -114,11 +136,11 @@ SELECT p.[PersonID]
       ,p.[FacultyRankID]
       ,p.[InternalUsername]
       ,p.[Visible]
-	  ,b.Theme  
+	  ,t.Theme  
   FROM [Profile.Data].[Person] p 
 	JOIN [Profile.Data].[Person.Affiliation] a on p.PersonID = a.PersonID and a.IsPrimary = 1
 	JOIN [Profile.Data].[Organization.Institution] i on a.InstitutionID = i.InstitutionID
-	JOIN [UCSF.].[Brand] b on i.InstitutionAbbreviation = b.BrandName --this is where and how we assign a theme to a profile.
+	JOIN [UCSF.].[InstitutionAbbreviation2Theme] t on i.InstitutionAbbreviation = t.InstitutionAbbreviation --this is where and how we assign a theme to a profile.
 	JOIN [UCSF.].[NameAdditions] na on na.internalusername = p.internalusername
 	JOIN [RDF.Stage].internalnodemap n on n.internalid = p.personId AND n.[class] = 'http://xmlns.com/foaf/0.1/Person' 
 
@@ -138,6 +160,25 @@ ir.MPID = g.MPID WHERE ir.MPID IS NOT NULL;
 
 GO
 
+/****** Object:  View [UCSF.].[vwBrand]    Script Date: 10/13/2016 12:52:26 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [UCSF.].[vwBrand] AS  
+SELECT a.Theme,
+	   t.BasePath,
+	   CASE WHEN t.Shared = 1 THEN NULL ELSE i.InstitutionName END AS Exclusive2Institution,
+	   CASE WHEN t.Shared = 1 THEN NULL ELSE a.InstitutionAbbreviation END AS InstitutionAbbreviation,
+	   CASE WHEN a.Theme = 'UC' THEN 'UC' ELSE NULL END AS PersonFilter -- note that this is hacked to do what we need it to do. For a view, that is sort of OK
+FROM [UCSF.].[InstitutionAbbreviation2Theme] a
+	JOIN [UCSF.].[Theme] t on a.Theme = t.Theme
+	JOIN [Profile.Data].[Organization.Institution] i on a.InstitutionAbbreviation = i.InstitutionAbbreviation
+
+GO
 ---------------------------------------------------------------------------------------------------------------------
 --
 --	Create Functions
@@ -281,14 +322,15 @@ BEGIN
 		FROM [UCSF.].[NameAdditions] WHERE PrettyURL is null)
 	BEGIN
 		SELECT TOP 1 @id=n.internalusername,
-					 @Domain=ISNULL(b.BasePath, @BaseDomain) + '/',
+					 @Domain=ISNULL(t.BasePath, @BaseDomain) + '/',
 					 @CleanFirst=n.CleanFirst, 
 					 @CleanMiddle=n.CleanMiddle,
 					 @CleanLast=n.CleanLast,
 					 @CleanSuffix=n.CleanSuffix,
  					 @CleanGivenName=n.CleanGivenName
 		FROM [UCSF.].[NameAdditions] n JOIN [Profile.Import].[PersonAffiliation] a on n.internalusername=a.internalusername and a.primaryaffiliation=1
-			LEFT OUTER JOIN [UCSF.].[Brand] b on b.BrandName=a.institutionabbreviation -- associate brand to person by instutition again
+			LEFT OUTER JOIN [UCSF.].[InstitutionAbbreviation2Theme] it on it.InstitutionAbbreviation=a.institutionabbreviation -- associate theme to person by instutition 
+			LEFT OUTER JOIN [UCSF.].[Theme] t on t.Theme=it.Theme 
 			WHERE n.PrettyURL is null ORDER BY len(n.CleanMiddle) + len(n.CleanSuffix)					 
 
 		-- try different strategies
@@ -2367,7 +2409,8 @@ GO
 
 ALTER PROCEDURE [Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]
 	@NodeID BIGINT,
-	@PersonFilter VARCHAR(200)=NULL 
+	@PersonFilter VARCHAR(200)=NULL,
+	@InstitutionAbbreviation VARCHAR(200)=NULL 
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -2406,6 +2449,8 @@ BEGIN
 					AND (@PersonFilter is null OR personid in 
 						(select personid from [Profile.Data].[Person.Filter] f join [Profile.Data].[Person.FilterRelationship] r 
 						on f.PersonFilterID = r.PersonFilterID AND f.PersonFilter = @PersonFilter)) 
+					AND (@InstitutionAbbreviation is null OR personid in 
+						(select personid from [Profile.Data].[vwPerson] WHERE InstitutionAbbreviation = @InstitutionAbbreviation)) 
 				) t
 			) t
 			group by y
@@ -2511,7 +2556,8 @@ ALTER PROCEDURE [Profile.Data].[Concept.Mesh.GetPublications]
 	@NodeID BIGINT,
 	@ListType varchar(50) = NULL,
 	@LastDate datetime = '1/1/1900',
-	@PersonFilter VARCHAR(200)=NULL 
+	@PersonFilter VARCHAR(200)=NULL,
+	@InstitutionAbbreviation VARCHAR(200)=NULL 
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -2539,6 +2585,8 @@ BEGIN
 				AND (@PersonFilter is null OR i.personid in 
 						(select personid from [Profile.Data].[Person.Filter] f join [Profile.Data].[Person.FilterRelationship] r 
 						on f.PersonFilterID = r.PersonFilterID AND f.PersonFilter = @PersonFilter)) 
+				AND (@InstitutionAbbreviation is null OR i.personid in 
+						(select personid from [Profile.Data].[vwPerson] WHERE InstitutionAbbreviation = @InstitutionAbbreviation)) 
 				group by m.pmid
 			) m
 			where g.pmid = m.pmid
@@ -2562,6 +2610,8 @@ BEGIN
 				AND (@PersonFilter is null OR i.personid in 
 						(select personid from [Profile.Data].[Person.Filter] f join [Profile.Data].[Person.FilterRelationship] r 
 						on f.PersonFilterID = r.PersonFilterID AND f.PersonFilter = @PersonFilter)) 
+				AND (@InstitutionAbbreviation is null OR i.personid in 
+						(select personid from [Profile.Data].[vwPerson] WHERE InstitutionAbbreviation = @InstitutionAbbreviation)) 
 				group by m.pmid
 			) m
 			where g.pmid = m.pmid --and g.pubdate < @LastDate
@@ -2590,6 +2640,8 @@ BEGIN
 				AND (@PersonFilter is null OR i.personid in 
 						(select personid from [Profile.Data].[Person.Filter] f join [Profile.Data].[Person.FilterRelationship] r 
 						on f.PersonFilterID = r.PersonFilterID AND f.PersonFilter = @PersonFilter)) 
+				AND (@InstitutionAbbreviation is null OR i.personid in 
+						(select personid from [Profile.Data].[vwPerson] WHERE InstitutionAbbreviation = @InstitutionAbbreviation)) 
 				group by m.pmid
 			) m, pm_citation_count c
 			where g.pmid = m.pmid and m.pmid = c.pmid
@@ -2844,7 +2896,7 @@ BEGIN
 		WHERE m.Status = 3 AND m.ValueHash = n.ValueHash AND n.NodeID = @NodeID
  
  	--DECLARE @baseURI NVARCHAR(400) Eric Meeks. Because we are getting URI's for people we just leave this as the base URI. The code will 
-	-- always swap in the propert brand for a person URI.
+	-- always swap in the proper theme for a person URI.
 	SELECT @baseURI = value FROM [Framework.].Parameter WHERE ParameterID = 'baseURI'
 
 	;with e as (

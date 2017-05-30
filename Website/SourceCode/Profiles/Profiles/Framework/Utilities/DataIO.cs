@@ -920,11 +920,11 @@ namespace Profiles.Framework.Utilities
             //new Brand(Brand.DefaultBrandName, Brand.GetSystemTheme(), null, GetRESTBasePath(), true);
 
             using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
-                "select BrandName, Theme, PersonFilter, BasePath, InstitutionName, MultiInstitutional from [UCSF.].[Brand] b left outer join [Profile.Data].[Organization.Institution] i on b.BrandName = i.InstitutionAbbreviation order by MultiInstitutional desc", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+                "select Theme, BasePath, Exclusive2Institution, InstitutionAbbreviation, PersonFilter from [UCSF.].[vwBrand]", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    new Brand(reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader.GetBoolean(5));
+                    new Brand(reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString());
                 }
             }
         }

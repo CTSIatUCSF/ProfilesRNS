@@ -52,7 +52,7 @@ namespace Profiles.Profile.Modules
             }
 
             // Get timeline bar chart			
-            using (SqlDataReader reader = data.GetGoogleTimeline(base.RDFTriple, null, "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]"))
+            using (SqlDataReader reader = data.GetGoogleTimeline(base.RDFTriple, "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]", null))
             {
                 while (reader.Read())
                 {

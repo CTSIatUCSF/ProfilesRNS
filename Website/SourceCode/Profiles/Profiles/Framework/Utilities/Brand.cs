@@ -10,17 +10,18 @@ namespace Profiles.Framework.Utilities
 {
     public class Brand
     {
-        public static string DefaultBrandName = "Default";
-
-        private static Dictionary<string, Brand> ByName = new Dictionary<string, Brand>();
         private static Dictionary<string, Brand> ByTheme = new Dictionary<string, Brand>();
 
-        public string Name { get; set; }
         public string Theme { get; set; }
-        public string PersonFilter { get; set; }
         public string BasePath { get; set; }
         public string InstitutionName { get; set; }
-        public bool IsMultiInstitutional { get; set; }
+        public string InstitutionAbbreviation { get; set; }
+        public string PersonFilter { get; set; }
+
+        public bool IsMultiInstitutional()
+        {
+            return !String.IsNullOrEmpty(InstitutionName);
+        }
 
         public static Brand GetCurrentBrand()
         {
@@ -37,12 +38,6 @@ namespace Profiles.Framework.Utilities
         {
             Brand brand = GetByURL(URL);
             return brand != null ? brand.BasePath : Root.Domain;
-        }
-
-        // return default if name is null or not found
-        public static Brand GetByName(string Name)
-        {
-            return !String.IsNullOrEmpty(Name) && ByName.ContainsKey(Name) ? ByName[Name] : ByName[DefaultBrandName];
         }
 
         public static Brand GetByTheme(string Theme)
@@ -118,20 +113,15 @@ namespace Profiles.Framework.Utilities
             return pages.Theme;
         }
 
-        public Brand(string Name, string Theme, string PersonFilter, string BasePath, string InstitutionName, bool IsMultiInstitutional)
+        public Brand(string Theme, string BasePath, string InstitutionName, string InstitutionAbbreviation, string PersonFilter)
         {
-            this.Name = Name;
             this.Theme = Theme;
-            this.PersonFilter = PersonFilter;
             this.BasePath = BasePath;
             this.InstitutionName = InstitutionName;
-            this.IsMultiInstitutional = IsMultiInstitutional;
+            this.InstitutionAbbreviation = InstitutionAbbreviation;
+            this.PersonFilter = PersonFilter;
 
-            ByName[this.Name] = this;
-
-            // sort of ugly but we load the multi-institutional ones first, and for a shared theme we want that to be the one we use. 
-            if (!ByTheme.ContainsKey(this.Theme))
-                ByTheme[this.Theme] = this;
+            ByTheme[this.Theme] = this;
         }
     }
 }

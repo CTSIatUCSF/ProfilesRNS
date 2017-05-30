@@ -599,7 +599,7 @@ namespace Profiles.Profile.Utilities
 
         }
 
-        public SqlDataReader GetGoogleTimeline(RDFTriple request, string PersonFilter, string storedproc)
+        public SqlDataReader GetGoogleTimeline(RDFTriple request, string storedproc, Brand brand)
         {
             SessionManagement sm = new SessionManagement();
             string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
@@ -612,8 +612,10 @@ namespace Profiles.Profile.Utilities
             dbcommand.CommandTimeout = base.GetCommandTimeout();
             // Add parameters
             dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
-            if (PersonFilter != null)
-                dbcommand.Parameters.Add(new SqlParameter("@PersonFilter", PersonFilter));
+            if (brand != null && brand.PersonFilter != null)
+                dbcommand.Parameters.Add(new SqlParameter("@PersonFilter", brand.PersonFilter));
+            if (brand != null && brand.InstitutionAbbreviation != null)
+                dbcommand.Parameters.Add(new SqlParameter("@InstitutionAbbreviation", brand.InstitutionAbbreviation));
             // Return reader
             return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
         }
@@ -670,7 +672,7 @@ namespace Profiles.Profile.Utilities
             return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
         }
 
-        public SqlDataReader GetConceptPublications(RDFTriple request, string PersonFilter)
+        public SqlDataReader GetConceptPublications(RDFTriple request)
         {
             SessionManagement sm = new SessionManagement();
             string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
@@ -684,7 +686,11 @@ namespace Profiles.Profile.Utilities
             // Add parameters
             dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
             dbcommand.Parameters.Add(new SqlParameter("@ListType", "newest"));
-            dbcommand.Parameters.Add(new SqlParameter("@PersonFilter", PersonFilter));
+            Brand brand = Brand.GetCurrentBrand();
+            if (brand != null && brand.PersonFilter != null)
+                dbcommand.Parameters.Add(new SqlParameter("@PersonFilter", brand.PersonFilter));
+            if (brand != null && brand.InstitutionAbbreviation != null)
+                dbcommand.Parameters.Add(new SqlParameter("@InstitutionAbbreviation", brand.InstitutionAbbreviation));
             // Return reader
             return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
         }

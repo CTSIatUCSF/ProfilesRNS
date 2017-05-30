@@ -23,7 +23,7 @@ namespace Profiles.Profile.Modules
 		{
 			DrawProfilesModule();
 			ConceptName = this.BaseData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]", this.Namespaces).InnerText;
-            Institution = Brand.GetCurrentBrand() != null ? Brand.GetCurrentBrand().Name : "";
+            Institution = Brand.GetCurrentBrand() != null && !Brand.GetCurrentBrand().IsMultiInstitutional() ? Brand.GetCurrentBrand().InstitutionAbbreviation : "";
 		}
 
 		public CustomViewConceptPublication() : base() { }
@@ -39,7 +39,7 @@ namespace Profiles.Profile.Modules
 			var dataIO = new Profiles.Profile.Utilities.DataIO();
 
 			// Get concept publication timeline
-			using (var reader = dataIO.GetGoogleTimeline(base.RDFTriple, Brand.GetCurrentBrand().PersonFilter, "[Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]"))
+			using (var reader = dataIO.GetGoogleTimeline(base.RDFTriple, "[Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]", Brand.GetCurrentBrand()))
 			{
 				while (reader.Read())
 				{
@@ -54,7 +54,7 @@ namespace Profiles.Profile.Modules
 			 * 2) Newest publication
 			 * 3) Oldest publications
 			 */
-			using (var reader = dataIO.GetConceptPublications(base.RDFTriple, Brand.GetCurrentBrand().PersonFilter))
+			using (var reader = dataIO.GetConceptPublications(base.RDFTriple))
 			{
 				List<string> htmlList = new List<string>();
 				StringBuilder html = null;

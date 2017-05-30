@@ -56,11 +56,11 @@ namespace Profiles.Search.Modules.SearchPerson
                 //Profiles.Search.Utilities.DataIO dropdowns = new Profiles.Search.Utilities.DataIO();
                 if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowInstitutions"]) == true)
                 {
-                    litInstitution.Text = SearchDropDowns.BuildDropdown("institution", "249", Brand.GetCurrentBrand().IsMultiInstitutional ? "" : Brand.GetCurrentBrand().InstitutionName);
+                    litInstitution.Text = SearchDropDowns.BuildDropdown("institution", "249", Brand.GetCurrentBrand().IsMultiInstitutional() ? "" : Brand.GetCurrentBrand().InstitutionName);
                 }
-                trInstitution.Visible = Brand.GetCurrentBrand().IsMultiInstitutional;
+                trInstitution.Visible = Brand.GetCurrentBrand().IsMultiInstitutional();
 
-                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowDepartments"]) == true && !Brand.GetCurrentBrand().IsMultiInstitutional)
+                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowDepartments"]) == true && !Brand.GetCurrentBrand().IsMultiInstitutional())
                 {
                     litDepartment.Text = SearchDropDowns.BuildDropdown("department", "249", "");
                 }
@@ -69,7 +69,7 @@ namespace Profiles.Search.Modules.SearchPerson
                     trDepartment.Visible = false;
                 }
 
-                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowDivisions"]) == true && !Brand.GetCurrentBrand().IsMultiInstitutional)
+                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowDivisions"]) == true && !Brand.GetCurrentBrand().IsMultiInstitutional())
                 {
                     litDivision.Text = SearchDropDowns.BuildDropdown("division", "249", "");
                 }
@@ -328,7 +328,7 @@ namespace Profiles.Search.Modules.SearchPerson
             string divisionallexcept = "";
 
 
-            if (!Brand.GetCurrentBrand().IsMultiInstitutional)
+            if (!Brand.GetCurrentBrand().IsMultiInstitutional())
             {
                 institution = SearchDropDowns.GetDefaultItemValue("institution", Brand.GetCurrentBrand().InstitutionName);
             }
@@ -357,7 +357,7 @@ namespace Profiles.Search.Modules.SearchPerson
             data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept,
                 department, departmentallexcept, division, divisionallexcept, classuri, "15", "0", "", "", otherfilters, facrank, ref searchrequest);
 
-            Response.Redirect(Brand.GetDomain() + "/search/default.aspx?showcolumns=" + (Brand.GetCurrentBrand().IsMultiInstitutional ? "9" : "10") +  "&searchtype=people&otherfilters=" + otherfilters + "&searchrequest=" + searchrequest, true);
+            Response.Redirect(Brand.GetDomain() + "/search/default.aspx?showcolumns=" + (Brand.GetCurrentBrand().IsMultiInstitutional() ? "9" : "10") +  "&searchtype=people&otherfilters=" + otherfilters + "&searchrequest=" + searchrequest, true);
 
 
 

@@ -8,7 +8,9 @@ DROP FUNCTION [UCSF.].[fn_UrlCleanName]
 DROP FUNCTION [UCSF.].[fn_ApplicationNameFromPrettyUrl]
 DROP FUNCTION [UCSF.].fn_LegacyInternalusername2EPPN
 DROP TABLE [UCSF.].[NameAdditions]
-DROP TABLE [UCSF.].[Brand]
+DROP VIEW [UCSF].[vwBrand]
+DROP TABLE [UCSF.].[InstitutionAbbreviation2Theme]
+DROP TABLE [UCSF.].[Theme]
 DROP SCHEMA [UCSF.]
 
 DROP PROCEDURE [UCSF.CTSASearch].[Publication.Pubmed.AddCoAuthorXML]

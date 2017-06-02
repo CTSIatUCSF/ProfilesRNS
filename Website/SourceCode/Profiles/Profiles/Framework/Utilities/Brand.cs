@@ -20,7 +20,7 @@ namespace Profiles.Framework.Utilities
 
         public bool IsMultiInstitutional()
         {
-            return !String.IsNullOrEmpty(InstitutionName);
+            return String.IsNullOrEmpty(InstitutionName);
         }
 
         public static Brand GetCurrentBrand()

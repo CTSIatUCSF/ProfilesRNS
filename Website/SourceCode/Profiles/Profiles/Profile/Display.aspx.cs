@@ -31,6 +31,20 @@ namespace Profiles.Profile
 
         private static Random random = new Random();
 
+        // expiremental
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            switch (Request.QueryString["theme"])
+            {
+                case "UCSD":
+                    Page.Theme = "UCSD";
+                    break;
+                case "UCSF":
+                    Page.Theme = "UCSF";
+                    break;
+            }
+        }
+
         public void Page_Load(object sender, EventArgs e)
         {
             UserHistory uh = new UserHistory();
@@ -93,6 +107,8 @@ namespace Profiles.Profile
 
         private void LoadAssets()
         {
+            HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
+            body.Attributes.Add("class", "profile");
 
             HtmlLink Displaycss = new HtmlLink();
             Displaycss.Href = Root.Domain + "/Profile/CSS/display.css";
@@ -101,17 +117,21 @@ namespace Profiles.Profile
             Displaycss.Attributes["media"] = "all";
             Page.Header.Controls.Add(Displaycss);
 
-            HtmlLink UCSFcss = new HtmlLink();
-            UCSFcss.Href = Root.Domain + "/Profile/CSS/UCSF.css";
-            UCSFcss.Attributes["rel"] = "stylesheet";
-            UCSFcss.Attributes["type"] = "text/css";
-            UCSFcss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(UCSFcss);
-
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");
             UCSFjs.Attributes.Add("src", Root.Domain + "/Profile/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
+
+            // amp.. Look up by SubjectID, see if URL to lower matche pretty name and if so see if first letter is i, then have fun
+            if (Page.Theme.Equals("UCSF") && UCSFIDSet.ByNodeId.ContainsKey(base.RDFTriple.Subject) && 
+                HttpContext.Current.Request.Url.ToString().ToLower().EndsWith(UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL) &&
+                UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL.StartsWith("i"))
+            {
+                HtmlLink AmpLink = new HtmlLink();
+                AmpLink.Href = "http://amp.profiles.ucsf.edu/" + UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL;
+                AmpLink.Attributes["rel"] = "amphtml";
+                Page.Header.Controls.Add(AmpLink);
+            }
         }
 
         public void LoadPresentationXML()

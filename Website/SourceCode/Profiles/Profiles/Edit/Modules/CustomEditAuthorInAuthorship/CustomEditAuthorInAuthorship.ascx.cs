@@ -196,6 +196,24 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 Label lblCounter = (Label)e.Row.FindControl("lblCounter");
                 lblCounter.Text = (this.Counter).ToString() + ".";
 
+                CheckBox clm = (CheckBox)e.Row.FindControl("chkClaim");
+                clm.Attributes["PubID"] = grdEditPublications.DataKeys[e.Row.RowIndex].Value.ToString();
+                if (!DataBinder.Eval(e.Row.DataItem, "pmid").Equals(System.DBNull.Value))
+                    clm.Attributes["pmid"] = DataBinder.Eval(e.Row.DataItem, "pmid").ToString();
+                // temp ability to turn it off by setting visibility to false in ascx
+                if (clm.Visible)
+                {
+                    if (1 == (Int32)DataBinder.Eval(e.Row.DataItem, "Claimed"))
+                    {
+                        clm.Enabled = false;
+                        clm.Checked = true;
+                    }
+                    else
+                    {
+                        clm.Enabled = true;
+                        clm.Checked = false;
+                    }
+                }
                 if (!DataBinder.Eval(e.Row.DataItem, "mpid").Equals(System.DBNull.Value))
                 {
                     string str = (string)DataBinder.Eval(e.Row.DataItem, "mpid");
@@ -282,6 +300,22 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 }
             }
         }
+
+        protected void claimOne__OnCheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox clm = (CheckBox)sender;
+
+            Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
+
+            data.ClaimOnePublication(Convert.ToInt32(Session["ProfileUsername"]), Convert.ToInt64(Session["NodeID"]), clm.Attributes["PubID"], clm.Attributes["pmid"], this.PropertyListXML);
+            this.Counter = 0;
+
+            grdEditPublications.DataBind();
+            upnlEditSection.Update();
+
+        }
+
+        
         protected void deleteOne_Onclick(object sender, EventArgs e)
         {
             ImageButton lb = (ImageButton)sender;
@@ -309,8 +343,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
         {
             if (Session["phAddPub.Visible"] == null)
             {
-                btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
-
                 phAddCustom.Visible = false;
                 phAddPubMed.Visible = false;
                 phDeletePub.Visible = false;
@@ -337,9 +369,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phSecuritySettings.Visible = true;
             txtPubId.Text = "";
             pnlAddPubById.Visible = false;
-            btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-            btnImgAddPub.Width = 11;
-            btnImgAddPub.Height = 11;
             Session["phAddPub.Visible"] = null;
             upnlEditSection.Update();
         }
@@ -385,9 +414,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                     txtPubId.Text = "";
                     pnlAddPubById.Visible = false;
                     grdEditPublications.DataBind();
-                    btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-                    btnImgAddPub.Width = 11;
-                    btnImgAddPub.Height = 11;
                     upnlEditSection.Update();
                 }
                 catch (Exception ex)
@@ -401,10 +427,10 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
         private void InsertPubMedIds(string value)
         {
 
-            string uri = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?retmax=1000&db=pubmed&retmode=xml&id=" + value;
+            string uri = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?retmax=1000&db=pubmed&retmode=xml&id=" + value;
 
             System.Xml.XmlDocument myXml = new System.Xml.XmlDocument();
-            myXml.LoadXml(this.HttpPost(uri, "Catalyst", "text/plain"));
+            myXml.LoadXml(this.HttpGet(uri, "Catalyst", "text/plain"));
             XmlNodeList nodes = myXml.SelectNodes("PubmedArticleSet/PubmedArticle");
 
             Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
@@ -421,6 +447,8 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 data.AddPublication(_personId, _subject, Convert.ToInt32(pmid), this.PropertyListXML);
 
             }
+            data.UpdateEntityOnePerson(_personId);
+
             this.Counter = 0;
             Session["phAddPub.Visible"] = null;
             Session["pnlAddPubMed.Visible"] = null;
@@ -438,7 +466,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
         {
             if (Session["pnlAddPubMed.Visible"] == null)
             {
-                btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 phAddCustom.Visible = false;
                 phAddPub.Visible = false;
                 phDeletePub.Visible = false;
@@ -484,9 +511,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phAddPub.Visible = true;
             phDeletePub.Visible = true;
             phSecuritySettings.Visible = true;
-            btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-            btnImgAddPub.Width = 11;
-            btnImgAddPub.Height = 11;
             upnlEditSection.Update();
         }
 
@@ -565,9 +589,9 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
             Hashtable MyParameters = new Hashtable();
 
-            string uri = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&usehistory=y&retmax=100&retmode=xml&term=" + value;
+            string uri = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&usehistory=y&retmax=100&retmode=xml&term=" + value;
             System.Xml.XmlDocument myXml = new System.Xml.XmlDocument();
-            myXml.LoadXml(this.HttpPost(uri, "Catalyst", "text/plain"));
+            myXml.LoadXml(this.HttpGet(uri, "Catalyst", "text/plain"));
 
             XmlNodeList xnList;
             string queryKey = "";
@@ -587,8 +611,8 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             //string queryKey = MyGetXmlNodeValue(myXml, "QueryKey", "");
             //string webEnv = MyGetXmlNodeValue(myXml, "WebEnv", "");
 
-            uri = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?retmin=0&retmax=100&retmode=xml&db=Pubmed&query_key=" + queryKey + "&webenv=" + webEnv;
-            myXml.LoadXml(this.HttpPost(uri, "Catalyst", "text/plain"));
+            uri = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?retmin=0&retmax=100&retmode=xml&db=Pubmed&query_key=" + queryKey + "&webenv=" + webEnv;
+            myXml.LoadXml(this.HttpGet(uri, "Catalyst", "text/plain"));
 
             string pubMedAuthors = "";
             string pubMedTitle = "";
@@ -690,9 +714,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phAddPub.Visible = true;
             phDeletePub.Visible = true;
             phSecuritySettings.Visible = true;
-            btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-            btnImgAddPub.Width = 11;
-            btnImgAddPub.Height = 11;
             PubMedResults = null;
             upnlEditSection.Update();
         }
@@ -728,7 +749,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
         {
             if (Session["pnlAddCustomPubMed.Visible"] == null)
             {
-                btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 grdEditPublications.SelectedIndex = -1;
                 phAddPub.Visible = false;
                 phAddPubMed.Visible = false;
@@ -990,9 +1010,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 phSecuritySettings.Visible = true;
                 phMain.Visible = false;
                 pnlAddCustomPubMed.Visible = false;
-                btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-                btnImgAddPub.Width = 11;
-                btnImgAddPub.Height = 11;
             }
             Session["pnlAddCustomPubMed.Visible"] = null;
             upnlEditSection.Update();
@@ -1009,9 +1026,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             grdEditPublications.SelectedIndex = -1;
             phMain.Visible = false;
             pnlAddCustomPubMed.Visible = false;
-            btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-            btnImgAddPub.Width = 11;
-            btnImgAddPub.Height = 11;
             Session["pnlAddCustomPubMed.Visible"] = null;
             upnlEditSection.Update();
         }
@@ -1032,7 +1046,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
         {
             if (Session["pnlDeletePubMed.Visible"] == null)
             {
-                btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 phAddCustom.Visible = false;
                 phAddPubMed.Visible = false;
                 phAddPub.Visible = false;
@@ -1065,10 +1078,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phAddCustom.Visible = true;
             pnlDeletePubMed.Visible = false;
             phSecuritySettings.Visible = true;
-            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-            btnImgAddPub.Width = 11;
-            btnImgAddPub.Height = 11;
-
             grdEditPublications.DataBind();
             upnlEditSection.Update();
         }
@@ -1085,10 +1094,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phAddCustom.Visible = true;
             pnlDeletePubMed.Visible = false;
             phSecuritySettings.Visible = true;
-            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-            btnImgAddPub.Width = 11;
-            btnImgAddPub.Height = 11;
-
             grdEditPublications.DataBind();
             upnlEditSection.Update();
         }
@@ -1105,10 +1110,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phAddCustom.Visible = true;
             phSecuritySettings.Visible = true;
             pnlDeletePubMed.Visible = false;
-            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-            btnImgAddPub.Width = 11;
-            btnImgAddPub.Height = 11;
-
             grdEditPublications.DataBind();
             upnlEditSection.Update();
         }
@@ -1120,15 +1121,19 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phDeletePub.Visible = true;
             phSecuritySettings.Visible = true;
             pnlDeletePubMed.Visible = false;
-            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-            btnImgAddPub.Width = 11;
-            btnImgAddPub.Height = 11;
             upnlEditSection.Update();
         }
 
         #endregion
 
         private XmlDocument PropertyListXML { get; set; }
+
+        public string HttpGet(string myUri, string myXml, string contentType)
+        {
+            WebClient client = new WebClient();
+            return client.DownloadString(myUri);
+        }
+
 
         public string HttpPost(string myUri, string myXml, string contentType)
         {

@@ -53,38 +53,38 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:PlaceHolder ID="phSecuritySettings" runat="server">
-                            <div style="padding-bottom: 10px;">
-                                <security:Options runat="server" ID="securityOptions"></security:Options>
-                            </div>
-                        </asp:PlaceHolder>
+						<asp:PlaceHolder ID="phSecuritySettings" runat="server">
+							<div style="padding-bottom: 10px;">
+                            <security:Options runat="server" ID="securityOptions"></security:Options>
+							</div>
+ 						</asp:PlaceHolder>
                         <asp:PlaceHolder ID="phAddPubMed" runat="server">
-                            <div style="padding-bottom: 10px;">
-                                <asp:LinkButton ID="btnAddPubMed" runat="server" OnClick="btnAddPubMed_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgAddPubMed" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif" Width="11" Height="11"
-                                    OnClick="btnAddPubMed_OnClick" />&nbsp;&nbsp;Add PubMed</asp:LinkButton>
+							<div style="padding-bottom: 10px;" class="dblarrow">
+								<asp:LinkButton ID="btnAddPubMed" runat="server" OnClick="btnAddPubMed_OnClick" CssClass="profileHypLinks">
+								Add PubMed</asp:LinkButton>
                                 &nbsp;(Search PubMed and add multiple articles.)
-                            </div>
+							</div>
                         </asp:PlaceHolder>
-                        <asp:PlaceHolder ID="phAddPub" runat="server">
-                            <div style="padding-bottom: 10px;">
-                                <asp:LinkButton ID="btnAddPub" runat="server" OnClick="btnAddPub_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgAddPub" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif" Width="11" Height="11"
-                                    OnClick="btnAddPubMed_OnClick" />&nbsp;&nbsp;Add by ID</asp:LinkButton>
+                        <asp:PlaceHolder ID="phAddPub" runat="server"> 	
+							<div style="padding-bottom: 10px;" class="dblarrow">
+								<asp:LinkButton ID="btnAddPub" runat="server" OnClick="btnAddPub_OnClick" CssClass="profileHypLinks">
+                                Add by ID</asp:LinkButton>
                                 &nbsp;(Add one or more articles using codes, e.g., PubMed ID.)
-                            </div>
+							</div>
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phAddCustom" runat="server">
-                            <div style="padding-bottom: 10px;">
-                                <asp:LinkButton ID="btnAddCustom" runat="server" OnClick="btnAddCustom_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgAddCustom" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif" Width="11" Height="11"
-                                    OnClick="btnAddPubMed_OnClick" />&nbsp;&nbsp;Add Custom</asp:LinkButton>
+							<div style="padding-bottom: 10px;" class="dblarrow">
+                                <asp:LinkButton ID="btnAddCustom" runat="server" OnClick="btnAddCustom_OnClick" CssClass="profileHypLinks">
+								Add Custom</asp:LinkButton>
                                 &nbsp;(Enter your own publication using an online form.)
-                            </div>
+							</div>
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phDeletePub" runat="server">
-                            <div style="padding-bottom: 10px;">
-                                <asp:LinkButton ID="btnDeletePub" runat="server" OnClick="btnDeletePub_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgDeletePub" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif" Width="11" Height="11"
-                                    OnClick="btnAddPubMed_OnClick" />&nbsp;&nbsp;Delete</asp:LinkButton>
+							<div style="padding-bottom: 10px;" class="dblarrow">
+                                <asp:LinkButton ID="btnDeletePub" runat="server" OnClick="btnDeletePub_OnClick" CssClass="profileHypLinks">
+								Delete</asp:LinkButton>
                                 &nbsp;(Remove multiple publications from your profile.)
-                            </div>
+							</div>
                         </asp:PlaceHolder>
                     </td>
                 </tr>
@@ -476,6 +476,20 @@
                         <%--End Delete Publications--%>
                         <%--Start Publications List--%>
                         <div style="padding-left: 0px;">
+						  <asp:Panel ID="ConfirmPubsUCSF" runat="server" SkinID="UCSF" Visible="false">
+							<p><strong><span class="highlight">New!</span> Confirm your publications. </strong><br>
+							Check the box to confirm authorship, or click the trash can to remove the found publications below. Performing these simple tasks will improve our ability to identify future publications for your profile page. This will also make it easier for you to participate in the <a href="http://osc.universityofcalifornia.edu/open-access-policy/" target="_blank">UC Open Access Policy</a> and will help us give accurate publication lists to Advance, department sites and other systems at UCSF. <br>
+							<span style="color:#666;font-size:11px;">Note: Some older publications may falsely show as confirmed. If any checked/confirmed publications are not yours, please delete them. </span><br></p>
+						  </asp:Panel>
+						  <asp:Panel ID="ConfirmPubsUCSD" runat="server" SkinID="UCSD" Visible="false">
+							<p><strong><span class="highlight">New!</span> Confirm your publications. </strong><br>
+							Check the box to confirm authorship, or click the trash can to remove the found publications below. Performing these simple tasks will improve our ability to identify future publications for your profile page. This will also make it easier for you to participate in the <a href="http://osc.universityofcalifornia.edu/open-access-policy/" target="_blank">UC Open Access Policy</a> and will help us give accurate publication lists to other systems at UCSD. <br></p>
+						  </asp:Panel>
+						  <asp:Panel ID="ConfirmPubsUSC" runat="server" SkinID="USC" Visible="false">
+							<p><strong><span class="highlight">New!</span> Confirm your publications. </strong><br>
+							Check the box to confirm authorship, or click the trash can to remove the found publications below. Performing these simple tasks will improve our ability to identify future publications for your profile page. <br></p>
+						  </asp:Panel>
+
                             <asp:GridView BorderStyle="Solid" ID="grdEditPublications" runat="server" AutoGenerateColumns="False"
                                 GridLines="none" CellSpacing="-1" HorizontalAlign="Left" 
                                 CellPadding="4" DataSourceID="PublicationDS" Width="100%" DataKeyNames="PubID"
@@ -493,11 +507,15 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="Reference" ReadOnly="true" SortExpression="Reference" />
-                                    <asp:TemplateField ShowHeader="False" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="100px">
+                                    <asp:TemplateField ShowHeader="False" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="120px">
                                         <ItemTemplate>
                                             <div class="actionbuttons">
                                                 <table>
                                                     <tr align="right">
+                                                        <td>
+                                                            <asp:CheckBox ID="chkClaim" runat="server" Text="Confirm" AlternateText="confirm" Visible="true"
+                                                                AutoPostBack="true" OnCheckedChanged="claimOne__OnCheckedChanged"></asp:CheckBox>
+                                                        </td>
                                                         <td>
                                                             <asp:ImageButton ID="lnkEdit" runat="server" ImageUrl="~/Edit/Images/icon_edit.gif"
                                                                 CausesValidation="False" CommandName="Select" Text="Edit" AlternateText="edit" Visible="false"></asp:ImageButton>

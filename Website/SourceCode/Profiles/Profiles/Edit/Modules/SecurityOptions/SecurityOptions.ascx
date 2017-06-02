@@ -38,7 +38,7 @@
 </script>
 <input type='hidden' id='enterkey' value='' name='enterkey' />
 <asp:LinkButton runat="server" ID="lbSecurityOptions" OnClick="imbSecurityOptions_OnClick">
-    <asp:Image runat="server" ID="imbSecurityOptions" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;Edit Visibility
+    <span class="dblarrow"></span> Edit Visibility
     <asp:Literal runat="server" ID="litVisibility"></asp:Literal>
 </asp:LinkButton> 
     <br />

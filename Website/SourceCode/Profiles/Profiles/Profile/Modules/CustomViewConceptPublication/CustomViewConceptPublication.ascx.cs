@@ -23,11 +23,6 @@ namespace Profiles.Profile.Modules
 		{
 			DrawProfilesModule();
 			ConceptName = this.BaseData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]", this.Namespaces).InnerText;
-			
-			// Add plus image
-			plusImage.Src = Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif";
-            plusImage.Width = 9;
-            plusImage.Height = 9;
 		}
 
 		public CustomViewConceptPublication() : base() { }

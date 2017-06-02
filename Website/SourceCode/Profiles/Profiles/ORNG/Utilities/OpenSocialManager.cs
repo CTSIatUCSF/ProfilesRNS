@@ -229,6 +229,13 @@ namespace Profiles.ORNG.Utilities
             return pageName;
         }
 
+        // is ORNG even turned on 
+        public bool IsEnabled() 
+        {
+            return shindigURL != null;
+        }
+
+        // is ORNG turned on AND do we have something to show on this page
         public bool IsVisible()
         {
             // always have turned on for Profile/Display.aspx because we want to generate the "profile was viewed" in Javascript (bot proof) 
@@ -509,7 +516,7 @@ namespace Profiles.ORNG.Utilities
             // Create a socket connection with the specified server and port.
             //Socket s = ConnectSocket(tokenService[0], Int32.Parse(tokenService[1]));
 
-            // during startup we might fail a few times, so be will to retry 
+            // during startup we might fail a few times, so be willing to retry 
             string page = "";
             for (int i = 0; i < 3 && page.Length == 0; i++)
             {

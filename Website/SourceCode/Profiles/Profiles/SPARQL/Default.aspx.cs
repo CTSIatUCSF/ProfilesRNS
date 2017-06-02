@@ -34,7 +34,7 @@ namespace Profiles.SPARQL
             masterpage.Tab = "";
             masterpage.RDFData = null;
             XmlDocument presentationxml = new XmlDocument();
-            presentationxml.LoadXml(System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/SPARQL/PresentationXML/SPARQLPresentation.xml"));
+            presentationxml.LoadXml(XslHelper.GetThemedOrDefaultPresentationXML(Page, "SPARQLPresentation.xml"));
             masterpage.PresentationXML = presentationxml;
 
 

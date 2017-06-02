@@ -1,0 +1,206 @@
+﻿<Presentation PresentationClass="profile">
+  <PageOptions Columns="2"/>
+  <WindowName>New Features</WindowName>  
+  <PageTitle>New Features</PageTitle>
+  <PageBackLinkName></PageBackLinkName>
+  <PageBackLinkURL></PageBackLinkURL>
+  <PageSubTitle></PageSubTitle>
+  <PageDescription></PageDescription>  
+  <PanelList>
+    <Panel type="header"  />
+    <Panel type="page" />
+    <Panel Type="active">
+      <Module ID="MainMenu"/>
+    </Panel>
+    <Panel Type="main">
+      <Module ID="HTMLBlock">
+        <ParamList>
+          <Param Name="HTML">
+
+<script type="text/javascript">
+$('#suckerfishmenu li#about a').addClass('active'); 
+</script><style type="text/css">
+ul li { padding-top: 10px; }
+#new-features { display: none; }
+</style>
+
+<p>We've made improvements to UCSF Profiles to make it an even more effective research networking and collaboration tool. Below is a summary of recent enhancements. Please <a href="mailto:profiles@ucsf.edu?Subject=New%20Features%20Feedback">share any comments</a>.</p>
+
+<div style="border: 1px solid #CCC; padding:5px 15px; margin-bottom: 10px;">
+<h2 class="about">Highlights</h2>
+<ul class="highlights"> 
+  <li><strong>Add All Your Funding Sources</strong> in addition to the NIH.
+  </li>
+  <li><strong>Discover Clinical Trials</strong> led by UCSF investigators.
+  </li>
+  <li><strong>View Dashboard</strong> display of statistics about visits to your personal profile page.
+  </li>
+  <li><strong>Explore External Co-Author</strong> networks to connect with experts at other institutions.
+  </li>
+  <li><strong>Showcase most important publications</strong> in their own section.
+  </li>
+  <li><strong>View PMCIDs and free articles</strong>  of many publications.
+  </li>
+  <li><strong>Build a custom list of researchers</strong> to precisely target opportunities and invitations. 
+  </li>
+  <li><strong>Post video lectures and talks</strong> from a variety of hosting services, e.g. Vimeo, YouTube, etc.
+  </li>
+</ul>
+
+<h3 style="font-size: 14px;padding-left:38px">And there's more. See other new features and details below.</h3>
+</div>
+
+<ul>
+  <li><strong>Research Activities and Funding</strong> 
+      <ul>
+		<li>Replaces the old "Awarded Grants" section.
+		</li>
+		<li>Search NIH from within UCSF Profiles to import, or manually enter any others.
+		</li>
+		<li><a href="../login/default.aspx?method=login&amp;edit=true">Sign in</a> to add yours!
+		</li>
+      </ul>
+	  <img src="../App_Themes/UCSF/Images/funding.png" alt="Options for editing research activities" style="margin:10px 0 0 40px;border:1px solid #CCC;" class="screenshot" />
+  </li>
+  <li><strong>Clinical Trials</strong> 
+      <ul>
+		<li>Data collected from <a href="https://clinicaltrials.gov/" target="_blank">ClincalTrials.gov</a>.
+		</li>
+		<li>Researchers can feature or hide individual trials.
+		</li>
+      </ul>
+	  <img src="../App_Themes/UCSF/Images/clinicaltrials.png" alt="Clinical Trials for Chip Chambers" style="margin:10px 0 0 40px;border:1px solid #CCC;" class="screenshot" />
+  </li>
+  <li><strong>Dashboard of UCSF Profiles Page Statistics</strong> - sign in access only 
+      <ul>
+		<li>Compiles and presents statistics about visits to your personal profile page.
+		</li>
+		<li>Shows you how many visits, what organizations visit your page and when. 
+			<ul>
+				<li>Summary stats of by-month views for the past year, this month, best month, and cumulative views</li>
+				<li>Regional breakdown of visits for the last 30 days and past year</li>
+				<li>Views by internet service provider or company, last 30 days and past year</li>
+			</ul>
+		</li>
+	  </ul>
+	  <img src="../App_Themes/UCSF/Images/dashboard.png" alt="Dashboard" style="margin:10px 0 0 68px;border:1px solid #CCC;" class="screenshot" />
+  </li>
+  <li><strong>External Co-Authors</strong>
+      <ul>
+		<li>Shows network of co-authors at other institutions, where that data is available.
+		</li>
+		<li>Name links to the co-author's page at their institution.
+		</li>
+		<li>Researchers can more easily connect with experts at other institutions by following these networks.
+		</li>
+		<li>'See all' link with new graphics (below left) opens page showing map view of co-authorships.
+			<ul>
+				<li>Ranked list of co-authors</li>
+				<li>Links to co-authored papers</li>
+			</ul>
+		</li>
+	  </ul>
+	  <img src="../App_Themes/UCSF/Images/extCoAuth.png" alt="External Co-Authors" style="margin:10px 0 0 40px;" />
+  </li>
+  <li><strong>Featured Publications</strong>
+      <ul>
+		<li>Makes a researcher's most important publications more visible by placing them above the fold and distinguished from chronological list of publications.
+		</li>
+		<li>This helps researchers showcase their best work and set it apart from their full body of work. 
+		</li>
+		<li>Profile owner or proxy can select publications to emphasize.
+			<ul>
+				<li>All publications in the person's profile are available to add</li>
+				<li>Drag and drop to re-order them in editing screen</li>
+			</ul>
+		</li>
+	  </ul>
+	  <img src="../App_Themes/UCSF/Images/featuredPubs.png" alt="Featured Publications Example" style="margin:10px 0 0 68px;border:1px solid #CCC;" class="screenshot" />
+  </li>
+  <li><strong>Publications Data</strong>
+      <ul>
+		<li>PMCIDs now included for articles that have them.  This helps researchers and faculty easily access these IDs. 
+		</li>
+		<li>All users can click through to free full-text articles when they are available. 
+		</li>
+		<li>Altmetric statistics show how an article is being accessed and shared on social media. This gives users and authors an early indication of the popularity of a paper, well in advance of citations or other traditional metrics.
+		</li>
+	  </ul>
+  </li>
+  <li><strong>ListMaker</strong> - sign in access only (<a href="../about/ListMakerGuidance.pdf" target="_blank">instructions</a>)
+      <ul>
+		<li>Build a custom list of people from search results, network 'See All' pages and individual pages, then export contact info, compose an email or send them a Doodle Poll.
+		</li>
+		<li>Cut down on email spam by precisely targeting outreach, e.g. invite neuroinflammation researchers to a seminar or notify juvenile diabetes researchers about an opportunity from the Juvenile Diabetes Research Foundation. 
+		</li>
+	  </ul>
+	  <img src="../App_Themes/UCSF/Images/listMaker.png" alt="ListMaker Example" style="margin:10px 0 0 40px;" />
+  </li>		
+  <li><strong>Featured Videos</strong>
+      <ul>
+		<li>Researchers can post lectures, panels, techniques, or any other recorded activity.
+		</li>
+		<li>Additional hosting services supported: YouTube, Vimeo, TedTalks (ted.com), UCTV and more 
+		</li>
+		<li>Better viewer shows multiple videos with previews in the profile page.
+		</li>
+	  </ul>
+	  <img src="../App_Themes/UCSF/Images/featuredVideos.png" alt="Featured Videos Example" style="margin:10px 0 0 90px;border:1px solid #CCC;" class="screenshot" />
+  </li>
+  <li><strong>New Search Options</strong><br />
+      UCSF Profiles now allows you to search by a keyword or concept and return not only the 
+      list of experts at UCSF (6000+) but also all recent papers from UCSF on a topic.<br />
+      <img src="images/conceptsearch.jpg" alt="Search Options" style="margin:10px 0 0 90px" class="screenshot" />
+  </li>
+  <li><strong>Highlight Your Interests</strong><br />
+      The feature most requested by profile owners over the last 2 years has been the option to 
+      add customized keywords that reflect personal interests. Now you can! Your customized and searchable 
+      keywords complement the existing automatically generated concepts derived from publications.     
+  </li>
+  <li><strong>Personalized URLs</strong><br />
+      It's now easy to remember your profile page web address, and to share it on business cards,
+      email signatures, etc. Your new USCF Profiles address is based on your first and last name (e.g.
+      profiles.ucsf.edu/john.smith). Find your customized address in the browser address bar when you 
+      visit your profile.    
+  </li>
+  <li><strong>New Visualizations of Helpful Information </strong>
+     <ul>
+        <li><strong>View the time course of publishing and collaborations </strong>
+            (e.g. assess whether someone is an expert because of a classic paper written a decade ago
+            or because of recent contributions; identify recent versus long-past co-authors). To view, 
+            click the Timeline link above an individual's list of publications. <br />
+            <img src="../App_Themes/UCSF/Images/pubsgraph.jpg" alt="Publication timeline" style="margin:10px 0 0 45px" class="screenshot" />
+        </li>
+        <li><strong>Explore Networks Associated with an Expert</strong> (right column on each profile) 
+            <ul> 
+               <li><strong>Related Concepts</strong> includes subject areas related to an individual's 
+                   publishing history. Select "See all" to view different visualizations, including a 
+                   timeline that demonstrates topics an individual has published on over time. <br />  
+                   <img src="../App_Themes/UCSF/Images/timeline.jpg" alt="Expertise timeline" style="margin:10px 0 0 0" class="screenshot" />
+               </li>   
+               <li><strong>Related Co-Authors</strong> includes subject areas related to an individual's
+                   publishing history. Select "See all" to view visualizations including number of 
+                   co-publications by individual, a map of co-author publications, etc.   <br />  
+                   <img src="../App_Themes/UCSF/Images/detailstab.jpg" alt="Related Co-Authors" style="margin:10px 0 0 0" class="screenshot" />
+               </li>   
+            </ul>    
+        </li>      
+     </ul>
+  </li>
+  <li><strong>Updated Look and Feel</strong><br />
+      You'll notice some subtle but helpful changes, including a new table of contents that make it
+      easy to quickly review individual profiles.<br />
+      <img src="../App_Themes/UCSF/Images/toc.jpg" alt="Look and Feel" style="margin:10px 0 0 80px" class="screenshot" />
+  </li>
+</ul>
+<p><br />Do you have questions or ideas for new UCSF Profiles features? Let us know at <a href="mailo:profiles@ucsf.edu">profiles@ucsf.edu</a>. </p>
+        
+          </Param>
+        </ParamList>
+      </Module>
+      <Panel Type="passive"/>
+      <Panel type="footer" />
+    </Panel> 
+  </PanelList>
+</Presentation>
+

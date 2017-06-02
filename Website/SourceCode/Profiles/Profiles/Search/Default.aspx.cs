@@ -111,17 +111,17 @@ namespace Profiles.Search
             switch (type.ToLower())
             {
                 case "searchform":
-                    presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Search/PresentationXML/SearchFormPresentation.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "SearchFormPresentation.xml");
                     break;
                 case "everything":
-                    presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Search/PresentationXML/SearchResultsEverythingPresentation.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "SearchResultsEverythingPresentation.xml");
                     break;
                 case "people":
-                    presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Search/PresentationXML/SearchResultsPersonPresentation.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "SearchResultsPersonPresentation.xml");
                     break;
                 case "whyeverything":
                 case "whypeople":
-                    presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/Search/PresentationXML/SearchResultsConnectionPresentation.xml");
+                    presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "SearchResultsConnectionPresentation.xml");
                     break;
             }
 
@@ -133,6 +133,12 @@ namespace Profiles.Search
 
         private void LoadAssets()
         {
+            HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
+            body.Attributes.Add("class", "search");
+
+            PlaceHolder pageColumnLeft = (PlaceHolder)Page.Master.FindControl("PageColumnLeft");
+            pageColumnLeft.Visible = true;
+
             HtmlLink Searchcss = new HtmlLink();
             Searchcss.Href = Root.Domain + "/Search/CSS/search.css";
             Searchcss.Attributes["rel"] = "stylesheet";
@@ -158,12 +164,14 @@ namespace Profiles.Search
             script.Text = "<script>var _path = \"" + Root.Domain + "\";</script>";
             Page.Header.Controls.Add(script);
 
-            HtmlLink UCSFcss = new HtmlLink();
-            UCSFcss.Href = Root.Domain + "/Search/CSS/UCSF.css";
-            UCSFcss.Attributes["rel"] = "stylesheet";
-            UCSFcss.Attributes["type"] = "text/css";
-            UCSFcss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(UCSFcss);
+            // This should get included automatically, but isn't working for Search for some reason
+            HtmlLink ThemeCss = new HtmlLink();
+            //ThemeCss.Href = Root.GetThemedFile(Page, "Search/CSS/Theme.css");
+            ThemeCss.Href = Root.Domain + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".css";
+            ThemeCss.Attributes["rel"] = "stylesheet";
+            ThemeCss.Attributes["type"] = "text/css";
+            ThemeCss.Attributes["media"] = "all";
+            Page.Header.Controls.Add(ThemeCss);
 
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");

@@ -4,7 +4,7 @@
     <xsl:if test="rdf:RDF/rdf:Description[1]/vivo:awardOrHonor">
      
       <div class="awardsList">
-        <table>
+        <table  class="collapsible">
           <tbody>
             <xsl:for-each select="rdf:RDF/rdf:Description[1]/vivo:awardOrHonor">
               <xsl:variable name="awardUri" select="@rdf:resource"/>              
@@ -12,10 +12,10 @@
                 <td stlye="white-space:nowrap;">
                   <xsl:value-of select="/rdf:RDF[1]/rdf:Description[@rdf:about=$awardUri]/prns:awardConferredBy"/>
                 </td>
-                <td>
+                <td class="awardStartDate">
                   <xsl:value-of select="/rdf:RDF[1]/rdf:Description[@rdf:about=$awardUri]/prns:startDate"/>
                   <xsl:if test="/rdf:RDF[1]/rdf:Description[@rdf:about=$awardUri]/prns:endDate">
-                    -
+                    &#160;-
                   </xsl:if>
                 </td>
                 <td>

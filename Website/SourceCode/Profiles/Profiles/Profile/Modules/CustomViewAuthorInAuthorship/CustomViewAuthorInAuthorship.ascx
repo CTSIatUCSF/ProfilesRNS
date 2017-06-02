@@ -4,7 +4,7 @@
 <div class='publicationList'>	
 	<div style="font-weight:bold;color:#888;margin-bottom: 12px;margin-top:6px">
 		Publications listed below are automatically derived from MEDLINE/PubMed and other sources, which might result in incorrect or missing publications. 
-		Researchers can <asp:Literal runat='server' ID='loginLiteral'></asp:Literal> to make corrections and additions, or <a href="mailto:profiles@ucsf.edu">contact us for help</a>.
+		Researchers can <asp:Literal runat='server' ID='loginLiteral'></asp:Literal> to make corrections and additions, or <asp:Hyperlink ID="Contact" SkinID="contact" runat="server" />.  
 	</div>
 	<div class="anchor-tab">
 		<a class='selected' tabindex="0">List All</a> 
@@ -15,7 +15,7 @@
 		Publications by year:
 		<div id="publicationTimelineGraph">
 			<a id="divShowTimelineTable" tabindex="0">View visualization as text</a><br />
-			<img id='timelineBar' runat='server' border='0' width='595' height='100'/>
+			<img id='timelineBar' runat='server' border='0' width='620' height='100'/>
 		</div>
 	</div>	
 
@@ -111,15 +111,4 @@
         });
     });
 
-    setTimeout(function () {
-        $("#publicationListAll li[data-pmid] div.viewIn").each(function () {
-            var pmid = $(this).parent().attr('data-pmid');
-            if (pmid && pmid[0]) {
-                $(this).append(
-                " <span class='altmetric-embed' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" +
-                pmid + "'></span>")
-            }
-        });
-        $.getScript('//d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
-    }, 7000);
 </script>

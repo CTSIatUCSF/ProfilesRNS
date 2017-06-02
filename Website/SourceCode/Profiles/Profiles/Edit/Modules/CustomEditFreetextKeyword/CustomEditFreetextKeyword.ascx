@@ -33,13 +33,13 @@
                             <br />
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phEditProperty" runat="server">
-                            <asp:LinkButton ID="btnEditProperty" runat="server" OnClick="btnEditProperty_OnClick" 
-                                CssClass="profileHypLinks"><asp:Image runat="server" ID="imbAddArror" AlternateText=" " ImageUrl="../../../Framework/Images/icon_squareArrow.gif"/>&nbsp;Add Keyword(s)</asp:LinkButton>
+							<asp:LinkButton ID="btnEditProperty" runat="server" OnClick="btnEditProperty_OnClick" 
+                                CssClass="profileHypLinks" AlternateText=" "> Add Keyword(s)</asp:LinkButton>
                             <br />
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phDelAll" runat="server" Visible="false">
-                            <asp:LinkButton ID="btnDelAll" runat="server" OnClick="btnDelAll_OnClick" 
-                                CssClass="profileHypLinks"><asp:Image runat="server" ID="imbDelArrow" AlternateText=" " ImageUrl="../../../Framework/Images/icon_squareArrow.gif"/>&nbsp;Delete All Keyword(s)</asp:LinkButton>
+							<asp:LinkButton ID="btnDelAll" runat="server" OnClick="btnDelAll_OnClick" 
+                                CssClass="profileHypLinks"> Delete All Keyword(s)</asp:LinkButton>
                         </asp:PlaceHolder>
                     </div>
                 </td>

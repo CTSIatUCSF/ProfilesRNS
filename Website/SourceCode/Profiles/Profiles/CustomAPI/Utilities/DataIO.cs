@@ -17,6 +17,7 @@ using System.Data.SqlClient;
 using System.Xml;
 using System.Configuration;
 using System.Web.Script.Serialization;
+using System.Web;
 using Profiles.Framework.Utilities;
 
 namespace Profiles.CustomAPI.Utilities
@@ -31,6 +32,42 @@ namespace Profiles.CustomAPI.Utilities
 
         static readonly string PERSON = "Person";
         static readonly string DISAMBIGUATION = "Disambiguation";
+
+        public UCSFIDSet GetPerson(HttpRequest request)
+        {
+            string Subject = request["Subject"];
+            string PersonId = request["Person"];
+            string EmployeeID = request["EmployeeID"];
+            string FNO = request["FNO"];
+            string PrettyURL = request["PrettyURL"];
+            string UserName = request["UserName"];
+
+            if (Subject != null)
+            {
+                return Framework.Utilities.UCSFIDSet.ByNodeId[Convert.ToInt64(Subject)];
+            }
+            else if (PrettyURL != null)
+            {
+                return Framework.Utilities.UCSFIDSet.ByPrettyURL[PrettyURL.ToLower()];
+            }
+            else if (PersonId != null)
+            {
+                return Framework.Utilities.UCSFIDSet.ByPersonId[Convert.ToInt32(PersonId)];
+            }
+            else if (FNO != null)
+            {
+                return Profiles.Framework.Utilities.UCSFIDSet.ByFNO[FNO.ToLower()];
+            }
+            else if (EmployeeID != null)
+            {
+                return Profiles.Framework.Utilities.UCSFIDSet.ByEmployeeID[EmployeeID];
+            }
+            else if (UserName != null)
+            {
+                return Profiles.Framework.Utilities.UCSFIDSet.ByUserName[UserName];
+            }
+            return null;
+        }
 
         public string GetPublicationInclusionSource(int personId, string PMID)
         {
@@ -139,5 +176,18 @@ namespace Profiles.CustomAPI.Utilities
             return isactive;
         }
 
+        public string GetRejectedPMIDs(Int64 personid)
+        {
+            string retval = "";
+            string sql = "select PMID from [Profile.Data].[Publication.Person.Exclude] WHERE PMID IS NOT NULL AND PersonID = " + personid;
+            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+            {
+                while (sqldr.Read())
+                {
+                    retval += ", " + sqldr[0].ToString();
+                }
+            }
+            return String.IsNullOrEmpty(retval) ? "" : retval.Substring(2);
+        }
     }
 }

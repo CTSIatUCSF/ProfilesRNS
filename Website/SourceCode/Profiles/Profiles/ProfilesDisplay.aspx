@@ -1,1 +1,1 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProfilesDisplay.aspx.cs" Inherits="Profiles.ProfilesDisplay" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProfilesDisplay.aspx.cs" Inherits="Profiles.ProfilesDisplay" EnableTheming="false" Theme="" %>

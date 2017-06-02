@@ -84,29 +84,17 @@
             <xsl:variable name="connectionResource" select="./prns:hasConnectionDetails/@rdf:resource"/>
             <xsl:variable name="whyLink" select="./@rdf:about"/>
             <xsl:variable name="detailsResource" select="./prns:hasConnectionDetails/@rdf:resource"/>
-            <tr  onclick="doURL('{$objectResource}')" onkeypress="if (event.keyCode == 13) doURL('{$objectResource}')" onmouseover="doListTableRowOver(this)" onfocus="doListTableRowOver(this)">
+            <tr  onclick="doURL('{$objectResource}')" onkeypress="if (event.keyCode == 13) doURL('{$objectResource}')">
               <xsl:choose>
                 <xsl:when test="position() mod 2 = 0">
                   <xsl:attribute name="class">
                     <xsl:value-of select="'evenRow'"/>
                   </xsl:attribute>
-                  <xsl:attribute name="onmouseout">
-                    <xsl:value-of  select="'doListTableRowOut(this,0)'"/>
-                  </xsl:attribute>
-                  <xsl:attribute name="onblur">
-                    <xsl:value-of  select="'doListTableRowOut(this,0)'"/>
-                  </xsl:attribute>                  
                   <xsl:attribute name="tabindex">0</xsl:attribute>
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:attribute name="class">
                     <xsl:value-of select="'oddRow'"/>
-                  </xsl:attribute>
-                  <xsl:attribute name="onmouseout">
-                    <xsl:value-of  select="'doListTableRowOut(this,1)'"/>
-                  </xsl:attribute>
-                  <xsl:attribute name="onblur">
-                    <xsl:value-of  select="'doListTableRowOut(this,1)'"/>
                   </xsl:attribute>
                   <xsl:attribute name="tabindex">0</xsl:attribute>
                 </xsl:otherwise>

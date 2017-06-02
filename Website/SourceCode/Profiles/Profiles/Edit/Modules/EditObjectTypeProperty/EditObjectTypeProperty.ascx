@@ -83,7 +83,7 @@
                     </asp:PlaceHolder>
                     <asp:PlaceHolder ID="phAddByURL" runat="server">
                         <div style="padding-bottom: 10px;">
-                            <asp:ImageButton runat="server" ID="imgAddArror" ImageUrl="~/Framework/Images/icon_squareArrow.gif"
+                            <asp:ImageButton runat="server" ID="imgAddArror" SkinID="searchIconSquareArrow"
                                 OnClick="btnAddByURI_OnClick" />&nbsp;
                             <asp:LinkButton ID="btnEditProperty" runat="server" CommandArgument="Show" OnClick="btnAddByURI_OnClick"
                                 CssClass="profileHypLinks">Add Item By URL</asp:LinkButton>
@@ -92,7 +92,7 @@
                     </asp:PlaceHolder>
                     <asp:PlaceHolder ID="phAddBySearch" runat="server">
                         <div style="padding-bottom: 10px;">
-                            <asp:ImageButton runat="server" ID="imgAddSearch" ImageUrl="~/Framework/Images/icon_squareArrow.gif"
+                            <asp:ImageButton runat="server" ID="imgAddSearch" SkinID="searchIconSquareArrow"
                                 OnClick="btnAddBySearch_OnClick" />&nbsp;
                             <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument="Show" OnClick="btnAddBySearch_OnClick"
                                 CssClass="profileHypLinks">Add Item by Search</asp:LinkButton>
@@ -101,7 +101,7 @@
                     </asp:PlaceHolder>
                     <asp:PlaceHolder ID="phAddNew" runat="server">
                         <div style="padding-bottom: 10px;">
-                            <asp:ImageButton runat="server" ID="imgAddNew" ImageUrl="~/Framework/Images/icon_squareArrow.gif"
+                            <asp:ImageButton runat="server" ID="imgAddNew" SkinID="searchIconSquareArrow"
                                 OnClick="btnAddNew_OnClick" />&nbsp;
                             <asp:LinkButton ID="lnkAddNew" runat="server" CommandArgument="Show" OnClick="btnAddNew_OnClick"
                                 CssClass="profileHypLinks">Add New Item</asp:LinkButton>

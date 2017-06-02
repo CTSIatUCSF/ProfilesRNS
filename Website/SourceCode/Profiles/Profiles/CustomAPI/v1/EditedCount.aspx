@@ -1,1 +1,1 @@
-﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" CodeBehind="EditedCount.aspx.cs" Inherits="EditedCount" %>
+﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" CodeBehind="EditedCount.aspx.cs" Inherits="EditedCount" EnableTheming="false" Theme="" %>

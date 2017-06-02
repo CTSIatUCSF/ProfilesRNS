@@ -29,6 +29,7 @@ namespace Profiles.Search.Modules.SearchPerson
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // hate to hard code this, but not sure how else to do it now
             if (!Request.Form[this.hdnSearch.UniqueID].IsNullOrEmpty())
             {
                 this.Search();

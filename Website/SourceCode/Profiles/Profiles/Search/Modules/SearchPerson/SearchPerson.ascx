@@ -3,8 +3,6 @@
 <%@ Register Src="ComboTreeCheck.ascx" TagName="ComboTreeCheck" TagPrefix="uc1" %>
 
 <style type="text/css">
-.profiles .profilesContentMain { width: 584px; }
-.profiles .profilesPageColumnLeft { padding: 6px 6px 0 8px;}
 .profiles .profilesContentMain .pageTitle h2 { display: none; }
 </style>
 
@@ -117,9 +115,6 @@
             }
         }
     }
-    $(document).ready(function () {
-	buildGadgetAds();
-    });
 </script>
 
 <asp:HiddenField ID="hdnSearch" runat="server" Value="hdnSearch"></asp:HiddenField>
@@ -130,12 +125,13 @@
                 <tbody align="left">
                     <tr>
                         <td colspan='3'>
-                            <%-- New class to replace inline heading styles --%>
-                            <div class="headings">
+                            <div class='header'>
+                                Find People by Research Topic or Name
+							</div>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="3"  style="padding: 0 2px">
                             <div class="searchSection" id="divSearchSection">
                                 <table width="100%" class='searchForm'>
                                     <tr>
@@ -172,9 +168,6 @@
                             </div>
                         </td>
                     </tr>
-            </table>
-            <div id="andor"><span>and/or</span></div>
-            <table width="100%" id="searchOptions">
 <!--
                 <tr>
                     <td colspan='3'>
@@ -184,9 +177,29 @@
                 </tr>
 -->
                 <tr>
-                    <td colspan='3'>
+                    <td colspan='3' style="padding: 0 2px">
                         <div class="searchSection" id="div1">
+							<span id="andor">and/or</span>
                             <table width="100%" class='searchForm'>
+							<asp:Panel ID="ClinicalTrialsUSC" runat="server" SkinID="USC" Visible="false">
+								<tr>
+                                    <th>
+                                        Clinical Trials
+                                    </th>
+                                    <td colspan="2">
+                                        <input type="checkbox" class="trials2" />
+                                    </td>
+                                </tr>
+								<tr>
+                                    <th>
+                                        Find Mentors <span class="notice">New!</span>
+                                    </th>
+                                    <td colspan="2">
+                                        <input type="checkbox" class="student2" /> Student Mentors
+                                        <input type="checkbox" class="faculty2" /> Faculty Mentors
+                                    </td>
+                                </tr>
+							</asp:Panel>
                                 <tr>
                                     <th>
                                         Last Name
@@ -203,6 +216,7 @@
                                         <asp:TextBox runat="server" ID="txtFname" CssClass="inputText"></asp:TextBox>
                                     </td>
                                 </tr>
+							<asp:Panel ID="SearchPersonFormHideUCSD" runat="server" SkinID="HideUCSD" Visible="true">
                                 <tr runat="server" id="trInstitution">
                                     <th>
                                         School
@@ -268,13 +282,13 @@
                                     <td colspan='2'>
                                         <input type="hidden" id="hiddenToggle" value="off" />
                                         <select id="selOtherOptions" style="width: 249px; height: 20px">
-                                            <option value=""></option>
+                                            <option value="" style="font-size: 1px"></option>
                                         </select>
                                         <table>
                                             <tr>
                                                 <td>
-                                                    <div id="divOtherOptions">
-                                                        <br />
+                                                    <div id="divOtherOptions" style="padding-top:2px">
+                                                        <!-- <br /> -->
                                                         <uc1:ComboTreeCheck ID="ctcFirst" runat="server" Width="255px" />
                                                     </div>
                                                 </td>
@@ -282,6 +296,17 @@
                                         </table>
                                     </td>
                                 </tr>
+							</asp:Panel>
+							<asp:Panel ID="ClinicalTrialsUCSF" runat="server" SkinID="UCSF" Visible="false">
+								<tr>
+                                    <th>
+                                        Clinical Trials <span class="notice">New!</span>
+                                    </th>
+                                    <td colspan="2">
+                                        <input type="checkbox" class="trials2" />
+                                    </td>
+                                </tr>
+							</asp:Panel>
 <!--
                                 <tr>
                                     <th>
@@ -304,6 +329,17 @@
                 </tr>
             </table>
         </div>
-            <p style="text-align:right; margin-right: 20px"><img src="<%=GetURLDomain()%>/Search/Images/icon_squareArrow.gif" /> <a href="<%=GetURLDomain()%>/direct">Search other institutions</a></p>
+			<asp:Panel ID="DirectSearchUCSF" runat="server" SkinID="UCSF" Visible="false">
+				<p style="text-align:right;margin-right:20px;margin-bottom:160px;"><a href="<%=GetURLDomain()%>/direct" class="dblarrow">Search other institutions</a></p>
+			</asp:Panel>
+			<asp:Panel ID="DirectSearchUSC" runat="server" SkinID="USC" Visible="false">
+				<p style="margin-bottom:160px;"><a href="<%=GetURLDomain()%>/direct" class="dblarrow">Find Collaborators at other Research Institutions</a></p>
+			</asp:Panel>
+			<asp:Panel ID="SearchPersonFormNoteUCSD" runat="server" SkinID="UCSD" Visible="false">
+				<p><span class="notice">Important Note: </span>
+					If you are a faculty member within UCSD and your profile page is not found, it is most likely that your title in Blink is not listed with your academic faculty title. For example, if you listed your department name as your title in blink, you would have to change blink to reflect either Professor, Research Scientists etc. Blink updates have to be initiated either by the UCSD employee directly or their home department. Once blink is updated, your profile will be automatically generated with the next refresh cycle.
+				</p>
+			</asp:Panel>
+
     </div>
 </div>

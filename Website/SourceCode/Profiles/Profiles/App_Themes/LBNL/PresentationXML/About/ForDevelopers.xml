@@ -1,0 +1,76 @@
+﻿<Presentation PresentationClass="profile">
+  <PageOptions Columns="2"/>
+  <WindowName>About</WindowName>  
+  <PageTitle>Use Profiles Data for Your Website</PageTitle>
+  <PageBackLinkName></PageBackLinkName>
+  <PageBackLinkURL></PageBackLinkURL>
+  <PageSubTitle></PageSubTitle>
+  <PageDescription></PageDescription>  
+  <PanelList>
+    <Panel type="header"  />
+    <Panel type="page" />
+    <Panel Type="active">
+      <Module ID="MainMenu"/>
+    </Panel>
+    <Panel Type="main">
+      <Module ID="HTMLBlock">
+        <ParamList>
+          <Param Name="HTML">
+		  
+<script type="text/javascript">
+$('#suckerfishmenu li#data a').addClass('active'); 
+</script>
+
+<h2 class="about">Available Data</h2>
+<p>Enhance your website with automated data of the following:</p>
+<ul >
+  <li>Data on 3,000+ LBNL researchers and personnel – <em>Updated daily</em></li>
+  <li>Data on over 20,000 LBNL publications – <em>Updated weekly</em></li>
+  <li>Manually entered data (e.g., photos, research overview descriptions) - <em>Updated either immediately, or daily</em></li>
+</ul>
+
+<div style="width:29%;float:left;">
+<p>General (supported in all APIs)</p>
+<ul>
+    <li>Name</li>
+    <li>Photo URL</li>
+    <li>School</li>
+    <li>Titles</li>
+    <li>Email</li>
+    <li>Street address (includes lat/lon)</li>
+    <li>Telephone and Fax</li>
+</ul>
+</div>
+<div style="width:29%;float:left;padding-right:15px;">	
+<p>Research-Related</p>
+<ul>
+    <li>Narrative</li>
+    <li>Top research keywords (based on publications)</li>
+    <li>Publications (includes source, title, URL)</li>
+    <li>LBNL Co-authors</li>
+    <li>Similar researchers at LBNL</li>
+    <li>Websites (JSON API only)</li>
+</ul>
+</div>
+<div style="width:29%;float:left;">	
+<p>Search (supported in XML API)</p>
+<ul>
+    <li>Find people by name</li>
+    <li>Find people by department</li>
+    <li>Find people by faculty rank</li>
+</ul>
+</div>
+
+
+<h2 style="clear:left;padding-top:15px" class="about" id="gethelp">Have Questions?</h2>
+<p class="dblarrow"><a href="mailto:profiles@lbl.gov">Contact us at profiles@lbl.gov</a></p>
+ 
+          </Param>
+        </ParamList>
+      </Module>
+      <Panel Type="passive"/>
+      <Panel type="footer" />
+    </Panel> 
+  </PanelList>
+</Presentation>
+

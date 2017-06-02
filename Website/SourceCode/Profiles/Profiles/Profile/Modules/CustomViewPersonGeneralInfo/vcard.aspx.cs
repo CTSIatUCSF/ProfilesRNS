@@ -71,7 +71,14 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
 
             if (this.RDFData.SelectSingleNode("rdf:RDF/rdf:Description[1]/prns:mainImage/@rdf:resource", namespaces) != null)
             {
-                vcard.Image = data.GetUserPhotoList(base.RDFTriple.Subject);
+                Stream stream = data.GetUserPhotoList150x300(base.RDFTriple.Subject);
+
+                if (stream != null)
+                {
+                   
+                        vcard.Image = ReadFully(stream);
+                   
+                }
             }
 
             vcard.FirstName = this.RDFData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:firstName", namespaces).InnerText;

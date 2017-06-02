@@ -87,8 +87,8 @@
   <ItemGroup>
     <Content Include="503.html" />
     <Content Include="About\AboutProfiles.aspx" />
+    <Content Include="About\FAQ.aspx" />
     <Content Include="About\CloseBrowser.aspx" />
-    <Content Include="About\CSS\UCSF.css" />
     <Content Include="About\expeditionaryaquili.aspx" />
     <Content Include="About\ForDevelopers.aspx" />
     <Content Include="About\GadgetLibrary.aspx" />
@@ -128,20 +128,166 @@
     <Content Include="About\Images\toc.jpg" />
     <Content Include="About\Images\tryit.gif" />
     <Content Include="About\Images\video.JPG" />
-    <Content Include="About\JavaScript\UCSF.js" />
-    <Content Include="About\Modules\Statistics\Statistics.ascx" />
     <Content Include="About\NewFeatures.aspx" />
     <Content Include="About\Optin.aspx" />
     <Content Include="About\PresentationXML\AboutProfiles.xml" />
     <Content Include="About\PresentationXML\CloseBrowser.xml" />
+    <Content Include="About\PresentationXML\FAQ.xml" />
     <Content Include="About\PresentationXML\ForDevelopers.xml" />
     <Content Include="About\PresentationXML\GadgetLibrary.xml" />
     <Content Include="About\PresentationXML\Help.xml" />
     <Content Include="About\PresentationXML\HowProfilesWorks.xml" />
-    <Content Include="About\PresentationXML\NewFeatures.xml" />
+    <Content Include="About\PresentationXML\NewFeatures.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="About\PresentationXML\Optin.xml" />
-    <Content Include="ActiveNetwork\CSS\UCSF.css" />
-    <Content Include="ActiveNetwork\JavaScript\UCSF.js" />
+    <Content Include="Activity\CSS\activity.css" />
+    <Content Include="Activity\Modules\ActivityHistory\ActivityDetails.aspx" />
+    <Content Include="Activity\Modules\ActivityHistory\ActivityHistory.ascx" />
+    <Content Include="Activity\Modules\LatestUpdates\LatestUpdates.ascx" />
+    <Content Include="Activity\Modules\ModuleCatalogue.xml" />
+    <Content Include="Activity\Modules\Statistics\Statistics.ascx" />
+    <Content Include="Activity\PresentationXML\ActivityDetails.xml" />
+    <Content Include="App_Themes\LBNL\Images\lbl-logo.png" />
+    <Content Include="App_Themes\LBNL\Images\lbl-new-social-iconsB.png" />
+    <Content Include="App_Themes\LBNL\Images\seal-department-of-energy.png" />
+    <Content Include="App_Themes\LBNL\Images\seal-university-of-california.png" />
+    <Content Include="App_Themes\UC\Images\backtotop.gif" />
+    <Content Include="App_Themes\UC\Images\comment.gif" />
+    <Content Include="App_Themes\UC\Images\favicon.ico" />
+    <Content Include="App_Themes\UC\Images\gear.gif" />
+    <Content Include="App_Themes\UC\Images\help.gif" />
+    <Content Include="App_Themes\UC\Images\ucbg.jpg" />
+    <Content Include="App_Themes\UC\Images\uclogo137.png" />
+    <Content Include="App_Themes\UC\UC.css" />
+    <Content Include="App_Themes\UC\UC.js" />
+    <Content Include="App_Themes\UC\PresentationXML\About\AboutProfiles.xml" />
+    <Content Include="App_Themes\UC\PresentationXML\About\CloseBrowser.xml" />
+    <Content Include="App_Themes\UC\PresentationXML\About\FAQ.xml" />
+    <Content Include="App_Themes\UC\PresentationXML\About\ForDevelopers.xml" />
+    <Content Include="App_Themes\UC\PresentationXML\About\GadgetLibrary.xml" />
+    <Content Include="App_Themes\UC\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UC\PresentationXML\About\HowProfilesWorks.xml" />
+    <Content Include="App_Themes\UC\PresentationXML\About\NewFeatures.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Themes\UC\PresentationXML\About\Optin.xml" />
+    <Content Include="App_Themes\LBNL\Images\backtotop.gif" />
+    <Content Include="App_Themes\LBNL\Images\comment.gif" />
+    <Content Include="App_Themes\LBNL\Images\favicon.ico" />
+    <Content Include="App_Themes\LBNL\Images\gear.gif" />
+    <Content Include="App_Themes\LBNL\Images\help.gif" />
+    <Content Include="App_Themes\LBNL\PresentationXML\About\AboutProfiles.xml" />
+    <Content Include="App_Themes\LBNL\PresentationXML\About\CloseBrowser.xml" />
+    <Content Include="App_Themes\LBNL\PresentationXML\About\FAQ.xml" />
+    <Content Include="App_Themes\LBNL\PresentationXML\About\ForDevelopers.xml" />
+    <Content Include="App_Themes\LBNL\PresentationXML\About\GadgetLibrary.xml" />
+    <Content Include="App_Themes\LBNL\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\LBNL\PresentationXML\About\HowProfilesWorks.xml" />
+    <Content Include="App_Themes\LBNL\PresentationXML\About\NewFeatures.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Themes\LBNL\PresentationXML\About\Optin.xml" />
+    <Content Include="App_Themes\LBNL\LBNL.css" />
+    <Content Include="App_Themes\LBNL\LBNL.js" />
+    <Content Include="App_Themes\USC\Images\actri-logo.png" />
+    <Content Include="App_Themes\USC\Images\backtotop.gif" />
+    <Content Include="App_Themes\USC\Images\college-alumni.png" />
+    <Content Include="App_Themes\USC\Images\comment.gif" />
+    <Content Include="App_Themes\USC\Images\develop-profile.gif" />
+    <Content Include="App_Themes\USC\Images\editProfile.gif" />
+    <Content Include="App_Themes\USC\Images\favicon.ico" />
+    <Content Include="App_Themes\USC\Images\gear.gif" />
+    <Content Include="App_Themes\USC\Images\help.gif" />
+    <Content Include="App_Themes\USC\Images\icon_squareArrow.gif" />
+    <Content Include="App_Themes\USC\Images\network.png" />
+    <Content Include="App_Themes\USC\Images\powered_by_scctsi.jpg" />
+    <Content Include="App_Themes\USC\Images\profiles.jpg" />
+    <Content Include="App_Themes\USC\Images\profilesnapshot.png" />
+    <Content Include="App_Themes\USC\Images\search-icon.gif" />
+    <Content Include="App_Themes\USC\Images\usc-ctsi.jpg" />
+    <Content Include="App_Themes\USC\PresentationXML\About\AboutProfiles.xml" />
+    <Content Include="App_Themes\USC\PresentationXML\About\CloseBrowser.xml" />
+    <Content Include="App_Themes\USC\PresentationXML\About\FAQ.xml" />
+    <Content Include="App_Themes\USC\PresentationXML\About\ForDevelopers.xml" />
+    <Content Include="App_Themes\USC\PresentationXML\About\GadgetLibrary.xml" />
+    <Content Include="App_Themes\USC\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\USC\PresentationXML\About\HowProfilesWorks.xml" />
+    <Content Include="App_Themes\USC\PresentationXML\About\NewFeatures.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Themes\USC\PresentationXML\About\Optin.xml" />
+    <Content Include="App_Themes\USC\USC.css" />
+    <Content Include="App_Themes\USC\USC.js" />
+    <Content Include="App_Themes\UCSD\Images\actri-logo.png" />
+    <Content Include="App_Themes\UCSD\Images\comment.gif" />
+    <Content Include="App_Themes\UCSD\Images\develop-profile.gif" />
+    <Content Include="App_Themes\UCSD\Images\favicon.ico" />
+    <Content Include="App_Themes\UCSD\Images\gear.gif" />
+    <Content Include="App_Themes\UCSD\Images\help.gif" />
+    <Content Include="App_Themes\UCSD\Images\network.png" />
+    <Content Include="App_Themes\UCSD\Images\profilesnapshot.png" />
+    <Content Include="App_Themes\UCSD\Images\search-icon.gif" />
+    <Content Include="App_Themes\UCSD\Images\ucsdlogo.png" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\AboutProfiles.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\CloseBrowser.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\ForDevelopers.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\GadgetLibrary.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\HowProfilesWorks.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\Optin.xml" />
+    <Content Include="App_Themes\UCSF\Images\favicon.ico" />
+    <Content Include="App_Themes\UCSF\Images\funding.png" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\AboutProfiles.xml" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\CloseBrowser.xml" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\ForDevelopers.xml" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\GadgetLibrary.xml" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\HowProfilesWorks.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\NewFeatures.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Themes\UCSF\PresentationXML\About\NewFeatures.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Themes\UCSF\PresentationXML\About\Optin.xml" />
+    <Content Include="App_Themes\UCSD\Images\backtotop.gif" />
+    <Content Include="App_Themes\UCSD\Images\icon_squareArrow.gif" />
+    <Content Include="App_Themes\UCSD\Images\ucsd.png" />
+    <Content Include="App_Themes\UCSD\Images\ucsdhs.png" />
+    <Content Include="App_Themes\UCSD\Images\college-alumni.png" />
+    <Content Include="App_Themes\UCSD\UCSD.css" />
+    <Content Include="App_Themes\DEFAULT.css" />
+    <Content Include="App_Themes\UCSD\UCSD.js" />
+    <Content Include="App_Themes\UCSF\Images\backtotop.gif" />
+    <Content Include="App_Themes\UCSF\Images\clinicaltrials.png" />
+    <Content Include="App_Themes\UCSF\Images\conceptsearch.jpg" />
+    <Content Include="App_Themes\UCSF\Images\dashboard.png" />
+    <Content Include="App_Themes\UCSF\Images\detailstab.jpg" />
+    <Content Include="App_Themes\UCSF\Images\extCoAuth.png" />
+    <Content Include="App_Themes\UCSF\Images\featuredPubs.png" />
+    <Content Include="App_Themes\UCSF\Images\featuredVideos.png" />
+    <Content Include="App_Themes\UCSF\Images\listMaker.png" />
+    <Content Include="App_Themes\UCSF\Images\orangeArrow.gif" />
+    <Content Include="App_Themes\UCSF\Images\pubsgraph.jpg" />
+    <Content Include="App_Themes\UCSF\Images\timeline.jpg" />
+    <Content Include="App_Themes\UCSF\Images\toc.jpg" />
+    <Content Include="App_Themes\UCSF\Images\ucsfProfilesLogo.png" />
+    <Content Include="App_Themes\UCSF\UCSF.js" />
+    <Content Include="CustomAPI\v1\RejectedPMIDs.aspx" />
+    <Content Include="Edit\Images\img_arrow.png" />
+    <Content Include="Error\PresentationXML\HttpRequestValidationExceptionPresentation.xml" />
+    <Content Include="favicon.ico" />
+    <Content Include="Framework\Images\collapseRound.gif" />
+    <Content Include="Framework\Images\expandRound.gif" />
+    <Content Include="App_Themes\UCSF\Images\icon_squareArrow.gif" />
+    <Content Include="Framework\Images\icon_squareDownArrow.gif" />
+    <Content Include="Framework\JavaScript\UCSF.js" />
+    <Content Include="App_Themes\UCSF\Images\ucsf_alumni_blue.jpg" />
+    <Content Include="HttpBL.csproj" />
+    <Content Include="Profile\JavaScript\UCSF.js" />
+    <Content Include="App_Themes\UCSF\UCSF.css" />
+    <Content Include="Search\JavaScript\UCSF.js" />
     <Content Include="CustomAPI\v1\EditedCount.aspx" />
     <Content Include="CustomAPI\v1\JSONProfile.aspx" />
     <Content Include="CustomAPI\v1\PubDate.aspx" />
@@ -150,9 +296,7 @@
     <Content Include="CustomAPI\v2\Default.aspx" />
     <Content Include="denied.txt" />
     <Content Include="DirectService.aspx" />
-    <Content Include="DIRECT\CSS\UCSF.css" />
     <Content Include="DIRECT\JavaScript\UCSF.js" />
-    <Content Include="Edit\CSS\UCSF.css" />
     <Content Include="Edit\Images\Icons_downSort.gif" />
     <Content Include="Edit\Images\icons_greenStar.gif" />
     <Content Include="Edit\Images\icons_green_BlueRow.gif" />
@@ -167,16 +311,11 @@
     <Content Include="Edit\Modules\CustomEditFreetextKeyword\keywordAutocomplete.aspx" />
     <Content Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx" />
     <Content Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx" />
-    <Content Include="Framework\CSS\UCSF.css" />
     <Content Include="Framework\Images\arrow-orgbg.gif" />
     <Content Include="Framework\Images\arrow-tealbg.gif" />
-    <Content Include="Framework\Images\backtotop.gif" />
     <Content Include="Framework\Images\chatter-follow.png" />
     <Content Include="Framework\Images\chatter-group.png" />
-    <Content Include="Framework\Images\collapseRound.gif" />
     <Content Include="Framework\Images\connection.gif" />
-    <Content Include="Framework\Images\ctsi16.png" />
-    <Content Include="Framework\Images\expandRound.gif" />
     <Content Include="Framework\Images\favicon.gif" />
     <Content Include="Framework\Images\glyphicons-halflings.png" />
     <Content Include="Framework\Images\info1.png" />
@@ -191,13 +330,9 @@
     <Content Include="Framework\Images\search-icon.gif" />
     <Content Include="Framework\Images\ucsf.png" />
     <Content Include="Framework\Images\video-ad.png" />
-    <Content Include="Framework\JavaScript\UCSF.js" />
     <Content Include="GitVersion.txt" />
     <Content Include="Global.asax" />
     <Content Include="google6b93ad5a56d431a7.html" />
-    <Content Include="History\ActivityDetails.aspx" />
-    <Content Include="History\Modules\ActivityHistory\ActivityHistory.ascx" />
-    <Content Include="History\PresentationXML\ActivityDetails.xml" />
     <Content Include="Login\Modules\ShibLogin\ShibLogin.ascx" />
     <Content Include="Login\PresentationXML\ADLoginFormPresentation.xml" />
     <Content Include="Login\PresentationXML\ShibbolethLoginPresentation.xml" />
@@ -237,7 +372,6 @@
     <Content Include="ORCID\Utilities\ProfilesRNSDLL\DAL\SQLFiles\CreateStoredProcedures.txt" />
     <Content Include="ORCID\Utilities\ProfilesRNSDLL\DAL\SQLFiles\CreateTablesScript.txt" />
     <Content Include="ORNG\Dashboard.aspx" />
-    <Content Include="ORNG\CSS\UCSF.css" />
     <Content Include="ORNG\Images\orng-asterisk.png" />
     <Content Include="ORNG\Images\orng.gif" />
     <Content Include="ORNG\Images\orng.png" />
@@ -247,7 +381,6 @@
     <Content Include="ORNG\JavaScript\jsonld\jsonld.js" />
     <Content Include="ORNG\JavaScript\orng.min.js" />
     <Content Include="ORNG\JavaScript\prettyprint.js" />
-    <Content Include="ORNG\JavaScript\UCSF.js" />
     <Content Include="ORNG\JSONLD\Default.aspx" />
     <Content Include="ORNG\CSS\gadgets.css" />
     <Content Include="ORNG\Default.aspx" />
@@ -267,11 +400,9 @@
     <Content Include="ORNG\PresentationXML\DashboardPresentation.xml" />
     <Content Include="ORNG\PresentationXML\GadgetDetailsPresentation.xml" />
     <Content Include="ORNG\PresentationXML\SandboxFormPresentation.xml" />
-    <Content Include="Profile\CSS\UCSF.css" />
     <Content Include="Profile\CSS\viz.css" />
     <Content Include="Profile\Images\default_img.png" />
     <Content Include="Profile\Images\ucsf_alumni_blue.jpg" />
-    <Content Include="Profile\JavaScript\UCSF.js" />
     <Content Include="Profile\Modules\CustomViewEagleI\CustomViewEagleI.ascx" />
     <Content Include="Profile\Modules\CustomViewEagleI\Images\logo.gif" />
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />
@@ -321,10 +452,6 @@
     <Content Include="Profile\XSLT\FreetextKeyword.xslt" />
     <Content Include="Profile\XSLT\NetworkTable.xslt" />
     <Content Include="RobotsTxt.aspx" />
-    <Content Include="Search\CSS\UCSF.css" />
-    <Content Include="Search\Images\icon_squareArrow.gif" />
-    <Content Include="Search\Images\search-red.jpg" />
-    <Content Include="Search\JavaScript\UCSF.js" />
     <Content Include="SiteMap.aspx" />
     <Content Include="trace.aspx" />
     <Content Include="Web.config">
@@ -338,6 +465,13 @@
     </Compile>
     <Compile Include="About\AboutProfiles.aspx.designer.cs">
       <DependentUpon>AboutProfiles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="About\FAQ.aspx.cs">
+      <DependentUpon>FAQ.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About\FAQ.aspx.designer.cs">
+      <DependentUpon>FAQ.aspx</DependentUpon>
     </Compile>
     <Compile Include="About\CloseBrowser.aspx.cs">
       <DependentUpon>CloseBrowser.aspx</DependentUpon>
@@ -388,13 +522,6 @@
     <Compile Include="About\Modules\About\About.ascx.designer.cs">
       <DependentUpon>About.ascx</DependentUpon>
     </Compile>
-    <Compile Include="About\Modules\Statistics\Statistics.ascx.cs">
-      <DependentUpon>Statistics.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About\Modules\Statistics\Statistics.ascx.designer.cs">
-      <DependentUpon>Statistics.ascx</DependentUpon>
-    </Compile>
     <Compile Include="About\NewFeatures.aspx.cs">
       <DependentUpon>NewFeatures.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -409,7 +536,6 @@
     <Compile Include="About\Optin.aspx.designer.cs">
       <DependentUpon>Optin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="About\Utilities\DataIO.cs" />
     <Compile Include="ActiveNetwork\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -424,7 +550,42 @@
     <Compile Include="ActiveNetwork\Modules\MyNetwork\MyNetwork.ascx.designer.cs">
       <DependentUpon>MyNetwork.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Activity\Modules\ActivityHistory\ActivityDetails.aspx.cs">
+      <DependentUpon>ActivityDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Activity\Modules\ActivityHistory\ActivityDetails.aspx.designer.cs">
+      <DependentUpon>ActivityDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Activity\Modules\ActivityHistory\ActivityHistory.ascx.cs">
+      <DependentUpon>ActivityHistory.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Activity\Modules\ActivityHistory\ActivityHistory.ascx.designer.cs">
+      <DependentUpon>ActivityHistory.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Activity\Modules\LatestUpdates\LatestUpdates.ascx.cs">
+      <DependentUpon>LatestUpdates.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Activity\Modules\LatestUpdates\LatestUpdates.ascx.designer.cs">
+      <DependentUpon>LatestUpdates.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Activity\Modules\Statistics\Statistics.ascx.cs">
+      <DependentUpon>Statistics.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Activity\Modules\Statistics\Statistics.ascx.designer.cs">
+      <DependentUpon>Statistics.ascx</DependentUpon>
+    </Compile>
     <Compile Include="CustomAPI\Utilities\DataIO.cs" />
+    <Compile Include="CustomAPI\v1\RejectedPMIDs.aspx.cs">
+      <DependentUpon>RejectedPMIDs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v1\RejectedPMIDs.aspx.designer.cs">
+      <DependentUpon>RejectedPMIDs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CustomAPI\v1\EditedCount.aspx.cs">
       <DependentUpon>EditedCount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -452,6 +613,8 @@
     <Compile Include="CustomAPI\v2\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Activity\Utilities\Activity.cs" />
+    <Compile Include="Activity\Utilities\DataIO.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -520,13 +683,6 @@
     </Compile>
     <Compile Include="Framework\Utilities\UCSFIDSet.cs" />
     <Compile Include="Framework\Utilities\UserHistory.cs" />
-    <Compile Include="History\ActivityDetails.aspx.cs">
-      <DependentUpon>ActivityDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="History\ActivityDetails.aspx.designer.cs">
-      <DependentUpon>ActivityDetails.aspx</DependentUpon>
-    </Compile>
     <Compile Include="History\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -534,14 +690,6 @@
     <Compile Include="History\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="History\Modules\ActivityHistory\ActivityHistory.ascx.cs">
-      <DependentUpon>ActivityHistory.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="History\Modules\ActivityHistory\ActivityHistory.ascx.designer.cs">
-      <DependentUpon>ActivityHistory.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="History\Utilities\Activity.cs" />
     <Compile Include="History\Modules\HistoryByType\HistoryByType.ascx.cs">
       <DependentUpon>HistoryByType.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -556,7 +704,6 @@
     <Compile Include="History\Modules\HistoryList\HistoryList.ascx.designer.cs">
       <DependentUpon>HistoryList.ascx</DependentUpon>
     </Compile>
-    <Compile Include="History\Utilities\DataIO.cs" />
     <Compile Include="Login\Modules\ADLogin\ADLogin.ascx.cs">
       <DependentUpon>ADLogin.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1056,9 +1203,6 @@
     <Compile Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx.designer.cs">
       <DependentUpon>CustomViewListProperty.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailAudioHandler.ashx.cs">
-      <DependentUpon>EmailAudioHandler.ashx</DependentUpon>
-    </Compile>
     <Compile Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx.cs">
       <DependentUpon>vcard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1326,13 +1470,6 @@
     </Compile>
     <Compile Include="Profile\Modules\ConceptConnection\ConceptConnection.ascx.designer.cs">
       <DependentUpon>ConceptConnection.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Profile\Modules\NetworkDetails\NetworkDetails.ascx.cs">
-      <DependentUpon>NetworkDetails.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Profile\Modules\NetworkDetails\NetworkDetails.ascx.designer.cs">
-      <DependentUpon>NetworkDetails.ascx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\PassiveList\PassiveList.ascx.cs">
       <DependentUpon>PassiveList.ascx</DependentUpon>
@@ -1660,7 +1797,9 @@
     <Content Include="ActiveNetwork\Default.aspx" />
     <Content Include="ActiveNetwork\Modules\ModuleCatalogue.xml" />
     <Content Include="ActiveNetwork\Modules\MyNetwork\MyNetwork.ascx" />
-    <Content Include="ActiveNetwork\PresentationXML\MyNetwork.xml" />
+    <Content Include="ActiveNetwork\PresentationXML\MyNetwork.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ApplicationModuleCatalogue.xml" />
     <Content Include="About\Default.aspx" />
     <Content Include="Default.aspx" />
@@ -1669,8 +1808,12 @@
     <Content Include="History\Default.aspx" />
     <Content Include="History\Modules\HistoryByType\HistoryByType.ascx" />
     <Content Include="History\Modules\HistoryList\HistoryList.ascx" />
-    <Content Include="History\Modules\ModuleCatalogue.xml" />
-    <Content Include="History\PresentationXML\History.xml" />
+    <Content Include="History\Modules\ModuleCatalogue.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="History\PresentationXML\History.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Login\Modules\Login\Login.ascx" />
     <Content Include="Login\Modules\ModuleCatalogue.xml" />
     <Content Include="Login\PresentationXML\LogoutFormPresentation.xml" />
@@ -1721,7 +1864,9 @@
     <Content Include="DIRECT\Modules\DirectSearch\Config.xml" />
     <Content Include="DIRECT\Modules\DirectSearch\DirectService.aspx" />
     <Content Include="DIRECT\Modules\DirectSearch\DirectSearch.ascx" />
-    <Content Include="DIRECT\PresentationXML\DirectPresentation.xml" />
+    <Content Include="DIRECT\PresentationXML\DirectPresentation.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Edit\default.aspx" />
     <Content Include="Edit\Images\cal.gif" />
     <Content Include="Edit\Images\icons_blank.gif" />
@@ -1750,7 +1895,6 @@
     <Content Include="Framework\Images\connection_left.gif" />
     <Content Include="Framework\Images\connection_right.gif" />
     <Content Include="Framework\Images\icon_alert.gif" />
-    <Content Include="Framework\Images\icon_squareDownArrow.gif" />
     <Content Include="Framework\Images\passive_back1.gif" />
     <Content Include="Framework\Images\passive_backtile.gif" />
     <Content Include="Framework\Images\search.png" />
@@ -1760,10 +1904,6 @@
     <Content Include="Framework\JavaScript\ui.dropdownchecklist.js" />
     <Content Include="Framework\Modules\MainMenu\SetActiveNetworks.ascx" />
     <Content Include="Profile\Modules\NetworkList\SortIntermediate.xslt" />
-    <Content Include="Profile\Modules\NetworkDetails\NetworkDetails.ascx" />
-    <Content Include="Profile\Modules\NetworkDetails\NetworkDetails.xslt">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Profile\Modules\PassiveList\PassiveList.ascx" />
     <Content Include="Profile\Modules\PassiveList\PassiveList.xslt">
       <SubType>Designer</SubType>
@@ -1842,7 +1982,9 @@
     <Content Include="Search\Modules\SearchOptions\SearchOptions.ascx" />
     <Content Include="Search\PresentationXML\SearchResultsConnectionPresentation.xml" />
     <Content Include="Search\PresentationXML\SearchResultsPersonPresentation.xml" />
-    <Content Include="Search\PresentationXML\SearchFormPresentation.xml" />
+    <Content Include="Search\PresentationXML\SearchFormPresentation.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Search\PresentationXML\SearchResultsEverythingPresentation.xml" />
     <Content Include="Search\Modules\SearchResults\EverythingResults.xslt">
       <SubType>Designer</SubType>
@@ -1884,7 +2026,6 @@
     <Content Include="Framework\Images\icon_network.gif" />
     <Content Include="Framework\Images\icon_profile.gif" />
     <Content Include="Framework\Images\icon_roundArrow.gif" />
-    <Content Include="Framework\Images\icon_squareArrow.gif" />
     <Content Include="Framework\Images\info.png" />
     <Content Include="Framework\Images\info2.png" />
     <Content Include="Framework\Images\info3.png" />
@@ -1909,8 +2050,13 @@
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailHandler.ashx" />
     <None Include="About\Images\Thumbs.db" />
     <None Include="About\ListMakerGuidance.pdf" />
+    <Content Include="App_Themes\UCSF\UCSF.skin" />
+    <Content Include="App_Themes\UCSD\UCSD.skin" />
+    <Content Include="App_Themes\UCSD\MentoringUCSD.pdf" />
+    <Content Include="App_Themes\USC\USC.skin" />
+    <Content Include="App_Themes\LBNL\LBNL.skin" />
+    <Content Include="App_Themes\UC\UC.skin" />
     <None Include="ORCID\ORCIDPrivacySettingsandProfiles.pdf" />
-    <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailAudioHandler.ashx" />
     <Content Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master" />
     <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\CHANGELOG" />
     <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\MIT-LICENSE" />
@@ -1932,7 +2078,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Search\Default.aspx" />
-    <Content Include="Search\Images\search.jpg" />
     <Content Include="SPARQL\Modules\ModuleCatalogue.xml" />
   </ItemGroup>
   <ItemGroup>

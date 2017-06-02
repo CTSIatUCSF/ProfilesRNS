@@ -2,8 +2,6 @@
     Inherits="Profiles.Search.Modules.SearchEverything.SearchEverything" %>
 
 <style type="text/css">
-.profiles .profilesContentMain { width: 584px; }
-.profiles .profilesContentPassive { margin-right: 20px; }
 .profiles .profilesContentMain .pageTitle h2 { display: none; }
 </style>
 <script type="text/javascript">
@@ -38,8 +36,8 @@
             <table width="100%">
                 <tr>
                     <td colspan='3'>
-                        <%-- Replaced inline styles with class below --%>
-                        <div class="headings">
+                        <div class="header">
+                            Find Research Publications by Topic
                         </div>
                     </td>
                 </tr>

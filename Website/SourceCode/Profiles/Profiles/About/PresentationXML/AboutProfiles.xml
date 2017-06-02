@@ -17,9 +17,9 @@
         <ParamList>
           <Param Name="HTML">
 
-<style type="text/css">
-#suckerfishmenu li#about a { background-color: #6A7D7D !important; }
-</style>
+<script type="text/javascript">
+$('#suckerfishmenu li#about a').addClass('active'); 
+</script>
 <h3 style="text-align:center;font-size:20px;padding:10px 0 16px;color:#999;margin:0">
   A Research Networking and Expertise Mining Tool</h3>
 <p class="sautter"><a href="http://ctsi.ucsf.edu/news/about-ctsi/ucsf-profiles-receives-2013-sautter-award" target="_blank">Winner of the 2013 UC Sautter Golden Award</a></p>
@@ -60,8 +60,8 @@
        <li>Edit your publications if necessary</li>
     </ul>
      <p style="text-align:center;margin:15px 40px 6px;padding:5px 0;border-left: solid 1px #8fb5b5;
-       border-top: solid 1px #8fb5b5;background-color:#FFF;">
-       <a href="../login/default.aspx?method=login&amp;edit=true" class="doublearrow">Edit your profile now</a></p>
+       border-top: solid 1px #8fb5b5;background-color:#FFF;font-weight:bold;">
+       <a href="../login/default.aspx?method=login&amp;edit=true">Edit your profile now &#187;</a></p>
  </td>
  </tr>
  <tr>

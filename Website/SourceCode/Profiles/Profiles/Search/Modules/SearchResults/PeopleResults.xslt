@@ -64,7 +64,7 @@
 
         <table>
           <tr>
-            <td style="width:33%;">
+            <td style="width:33%;vertical-align:middle;">
               <div style="float:right">
                 Sort&#160;<select id="selSort" title="Query Relevance" onchange="JavaScript:DropdownSort();">
                   <option value="">Query Relevance</option>
@@ -155,7 +155,7 @@
                 </select>
               </div>
             </td>
-            <td style="width:33%;">
+            <td style="width:33%;vertical-align:middle;">
               <div style="float: right;">
                 <input type="hidden" id="hiddenToggle" value="off" />
                 Show&#160;
@@ -190,7 +190,7 @@
                 </table>
               </div>
             </td>
-            <td style="width:33%;">
+            <td style="width:33%;vertical-align:middle;">
               <xsl:choose>
                 <xsl:when test="$why">
                   <div id="why">
@@ -233,7 +233,7 @@
                         </a>
                       </th>
                       <xsl:if test="$institution='true'">
-                        <th>
+                        <th class="alignLeft">
                           <a href="JavaScript:Sort('institution');">
                             School
                             <xsl:choose>
@@ -252,7 +252,7 @@
                         </th>
                       </xsl:if>
                       <xsl:if test="$department='true'">
-                        <th>
+                        <th class="alignLeft">
                           <a href="JavaScript:Sort('department');">
                             Department
                             <xsl:choose>
@@ -272,7 +272,7 @@
                       </xsl:if>
 
                       <xsl:if test="$facrank='true'">
-                        <th>
+                        <th class="alignLeft">
                           <a href="JavaScript:Sort('facrank');">
                             Researcher Type
                             <xsl:choose>
@@ -292,7 +292,7 @@
                       </xsl:if>
                       <xsl:choose>
                         <xsl:when test="$why">
-                          <th>Why</th>
+                          <th class="alignCenter">Why</th>
                         </xsl:when>
                       </xsl:choose>
                     </tr>
@@ -681,19 +681,18 @@
       NavToPage();
       }
 
-     //cp window.location = root + '/search/default.aspx?searchtype=whypeople<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>nodeuri=' + uri + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchfor=' + searchfor + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>exactphrase=' + exactphrase + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>perpage=' + perpage + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>offset=' + offset + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>page=' + page + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>totalpages=' + totalpages + '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>searchrequest=' + searchrequest +  '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortby=' + sortby+ '<xsl:text disable-output-escaping="yes"><![CDATA[&]]></xsl:text>sortdirection=' + sortdirection;
       function ShowDetails(nodeURI,obj){
 
-      doListTableRowOver(obj);
-      debugger;
-      document.getElementById('divItemDetails').innerHTML = document.getElementById(nodeURI).value;
+//      doListTableRowOver(obj);
+//      debugger;
+//      document.getElementById('divItemDetails').innerHTML = document.getElementById(nodeURI).value;
 
       }
 
       function HideDetails(obj,ord){
 
-      doListTableRowOut(obj,ord);
-      document.getElementById('divItemDetails').innerHTML = '';
+//      doListTableRowOut(obj,ord);
+//      document.getElementById('divItemDetails').innerHTML = '';
       }
 
 
@@ -736,7 +735,8 @@
       $("#divColSelect").hide();
 
       // hide/show event occurs on click of dropdown
-      $("#selColSelect").click(function() {
+      $("#selColSelect").focus(function() {
+	  $("#selColSelect").click();
       if ($("#divColSelect").is(":visible")) {
       $("#divColSelect").hide();
 
@@ -874,9 +874,6 @@
       
       <td class="alignLeft" style="width:250px" onclick="javascript:GoTo('{$nodeURI}')">
         <xsl:value-of select ="$doc/rdf:Description[@rdf:about=$institutionlabel]"/>
-
-  
-
       </td>
     </xsl:if>
 

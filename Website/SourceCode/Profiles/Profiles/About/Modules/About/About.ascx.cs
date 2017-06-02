@@ -87,13 +87,6 @@ namespace Profiles.About.Modules.About
 
             tabs += Tabs.DrawTabsEnd();
             litTabs.Text = tabs;
-
-
-            imgProfilesIcon.ImageUrl = Root.Domain + "/framework/images/icon_profile.gif";
-            imgNetworkIcon.ImageUrl = Root.Domain + "/framework/images/icon_network.gif";
-            imgConnectionIcon.ImageUrl = Root.Domain + "/framework/images/icon_connection.gif";
-            imgVis.ImageUrl = Root.Domain + "/framework/images/about_visualizations.jpg";
-
         }
     }
 }

@@ -27,7 +27,7 @@
 				<div style='padding-right: 3px;'><%= this.GetModuleParamString("TimelineCaption").Replace("@ConceptName", this.ConceptName) %></div>
 				<div id="publicationTimelineGraph">
 					<a id="divShowTimelineTable" tabindex="0">View visualization as text</a>
-					<img id='timeline' runat='server' border='0' width='595' height='100'/>
+					<img id='timeline' runat='server' border='0' width='620' height='100'/>
                     <!--cp <div style="text-align:left">To see the data from this visualization as text, <a id="divShowTimelineTable" tabindex="0">click here.</a></div> -->
 				</div>
                 <div id="divTimelineTable" class="listTable" style="display:none;margin-top:12px;margin-bottom:8px;">

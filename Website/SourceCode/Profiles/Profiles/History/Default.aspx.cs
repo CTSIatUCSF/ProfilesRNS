@@ -41,14 +41,15 @@ namespace Profiles.History
 
         private void LoadAssets()
         {
-
+            HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
+            body.Attributes.Add("class", "history");
         }
 
         public void LoadPresentationXML()
         {
             string presentationxml = string.Empty;
 
-            presentationxml = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/History/PresentationXML/History.xml");
+            presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, "History.xml");
             
             this.PresentationXML = new XmlDocument();
             this.PresentationXML.LoadXml(presentationxml);

@@ -24,7 +24,7 @@ namespace Profiles.Profile.Modules.ProfileImage
     public class PhotoHandler : IHttpHandler, System.Web.SessionState.IRequiresSessionState
     {
         static byte[] silhouetteImage = null;
-        static readonly string IMAGE_CACHE_PREFIX = "UCSF.Image_";
+        static readonly string IMAGE_CACHE_PREFIX = "Image_";
 
         static PhotoHandler()
         {
@@ -39,21 +39,31 @@ namespace Profiles.Profile.Modules.ProfileImage
         public void ProcessRequest(HttpContext context)
         {
             Utilities.DataIO data = new Profiles.Profile.Utilities.DataIO();
-
+            // Set up the response settings
+            context.Response.ContentType = "image/jpeg";
+            context.Response.Cache.SetCacheability(HttpCacheability.Public);
+            context.Response.BufferOutput = false;
+            
             Int64 nodeid = -1;
-            if (!string.IsNullOrEmpty(context.Request.QueryString["NodeID"]))
+            try
             {
-                // get the id for the image
-                nodeid = Convert.ToInt32(context.Request.QueryString["NodeID"]);
+                if (!string.IsNullOrEmpty(context.Request.QueryString["NodeID"]))
+                {
+                    // get the id for the image
+                    nodeid = Convert.ToInt64(context.Request.QueryString["NodeID"]);
+                }
+                else if (!string.IsNullOrEmpty(context.Request.QueryString["person"]))
+                {
+                    // UCSF.  Allow old id to work
+                    nodeid = Framework.Utilities.UCSFIDSet.ByPersonId[Convert.ToInt64(context.Request.QueryString["person"])].NodeId;
+                }
             }
-            else if (!string.IsNullOrEmpty(context.Request.QueryString["person"]))
+            catch (Exception e)
             {
-                // UCSF.  Allow old id to work
-                nodeid = Framework.Utilities.UCSFIDSet.ByPersonId[Convert.ToInt64(context.Request.QueryString["person"])].NodeId;
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
             }
             if (nodeid > 0)
             {
-                // UCSF items
                 bool thumbnail = false;
                 int width = 150;
                 int height = 300;
@@ -72,7 +82,7 @@ namespace Profiles.Profile.Modules.ProfileImage
                 }
 
                 byte[] image = (byte[])Framework.Utilities.Cache.FetchObject(GetCacheKey(nodeid, width, height));
-
+                // UCSF items
                 if (image == null)
                 {
                     // stuff below this and if statement is what makes it slow
@@ -130,6 +140,7 @@ namespace Profiles.Profile.Modules.ProfileImage
                 {
                     context.Response.Write("No Image Found");
                 }
+
             }
         }
 

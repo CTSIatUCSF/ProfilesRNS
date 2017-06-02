@@ -12,6 +12,8 @@
     <Panel Type="active">
       <Module ID="MainMenu">
       </Module>
+    </Panel>
+    <Panel Type="info">
       <Module ID="Gadgets" >
         <ParamList>
           <Param Name="GadgetDiv">gadgets-tools-left</Param>
@@ -25,6 +27,8 @@
           <Param Name="Show">3</Param>
           <Param Name="SeeMore">True</Param>
         </ParamList>
+      </Module>
+      <Module ID="LatestUpdates">
       </Module>
     </Panel>
     <Panel Name="Find People" Alias="people" Type="main" TabType="Default" TabSort="0">

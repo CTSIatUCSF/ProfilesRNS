@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditPropertyList.ascx.cs"
     Inherits="Profiles.Edit.Modules.EditPropertyList.EditPropertyList" %>
 <asp:Literal runat="server" ID="litBackLink"></asp:Literal>
-<br />
 <!--
+<br />
 <br />
 Below are the types of content that can be included on this profile. Locked items
 <asp:Image runat="server" ID="imgLock" alt=""/>
@@ -13,15 +13,24 @@ this website.
 <br />
 <br />
 -->
-<h3>Components:</h3>
+<h3>
+	<span id="editHR" style="display:block; padding-bottom: 20px">
+		<asp:Hyperlink runat="server" ID="hypEditHRDataLink" Text="Request a change to your name, address, or email" Target="_blank" Visible="false"/>
+	</span>
+Components:</h3>
 <div id="profile-components">
   <table style="width:100%;margin-bottom:0;">
-    <tr style="border-bottom:1px solid #CCC;">
+    <tr id="namedegreerow">
        <td class="padding" id="namedegree">Name and Degrees</td>
        <td colspan="2">
          <span id="public"><img src="Images/icons_lock.gif" />&nbsp;Always Public</span>
-         <span id="cls">This info is drawn from the Campus Locator System. 
-         Please contact your HR representative for corrections.</span>
+         <asp:Panel ID="EditPropListUCSF" runat="server" SkinID="UCSF" Visible="false" CssClass="inlineBlock"><span id="cls">This info is drawn from the Campus Locator System. 
+         Please contact your HR representative for corrections.</span></asp:Panel>
+         <asp:Panel ID="EditPropListUCSD" runat="server" SkinID="UCSD" Visible="false" CssClass="inlineBlock"><span id="cls">This info is drawn from an automatic data feed.</span></asp:Panel>
+         <asp:Panel ID="EditPropListUSC" runat="server" SkinID="USC" Visible="false" CssClass="inlineBlock"><span id="cls">This info is drawn from the Campus Locator System. 
+         Please contact your HR representative for corrections.</span></asp:Panel>
+         <asp:Panel ID="EditPropListLBNL" runat="server" SkinID="LBNL" Visible="false" CssClass="inlineBlock"><span id="cls">This info is drawn from the Campus Locator System. 
+         Please contact your HR representative for corrections.</span></asp:Panel>
        </td>
     </tr>
   </table>
@@ -83,9 +92,7 @@ this website.
      </td>
     </tr>
 </table>
-<p class="orng"><img style="border-width:0px;" src="../ORNG/Images/orng-asterisk.png" /> Components developed by the UCSF <a href="http://www.orng.info/index.html" target="_blank">Open Research Networking Gadgets (ORNG)</a> initiative. 
-Have an idea for a new component you would like to see in Profiles, or are you a software developer who knows HTML and Javascript that would like to build 
-one yourself? Contact <a href="mailto:profiles@ucsf.edu">profiles@ucsf.edu</a> to let us know!</p>
+<p class="orng-credit"><img style="border-width:0px;" src="../ORNG/Images/orng-asterisk.png" /> Components developed by the UCSF <a href="http://www.orng.info/index.html" target="_blank">Open Research Networking Gadgets (ORNG)</a> initiative. Have an idea for a new component you would like to see? Or are you a Javascript software developer who would like to build one? <a href="http://www.orng.info/contact-us.html" target="_blank">Let us know!</a></p>
 <!-- for testing -->
 <asp:Literal runat="server" ID="litGadget" Visible="false"/>
 

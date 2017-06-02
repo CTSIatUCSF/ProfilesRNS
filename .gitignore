@@ -6,6 +6,9 @@
 *.suo
 *.csproj.user
 *.vspscc
+*.orig
+*.dll.config
+/Website/SourceCode/Profiles/Profiles/GitVersion.txt
 /Website/SourceCode/Profiles/Profiles/Profiles.Publish.xml
 /Website/SourceCode/Profiles/Profiles/ProfilesDebuggingLog.txt
 /Website/SourceCode/Profiles/Profiles/obj/Debug

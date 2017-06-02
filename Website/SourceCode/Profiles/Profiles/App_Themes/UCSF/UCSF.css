@@ -1,0 +1,49 @@
+﻿/* highlight color */
+#powered-by-block a, #powered-by-block a:visited, .highlight,
+.dblarrow:before, #about h2, h2.about, .content-block h2, .searchForm td div.header,
+.passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
+#ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
+.profiles .profilesContentMain .pageTitle h2 { color: #F26D04; }
+.profiles a.search-button, .more span, .less span { background-color: #F26D04; }
+.profiles a.search-button:hover { background-color: #F48024; box-shadow: none; }
+
+/* active menu color */
+.search #suckerfishmenu .item-home a,
+#suckerfishmenu	 a.active { background-color: #052049; }
+
+/* UCSF only elements */
+.profiles .button-link a, .profiles .button-link a:visited,
+#new-features a, #new-features a:visited { 
+padding: 6px; margin: 0; display: inline-block; font-family: Arial, Helvetica, sans serif; font-size: 14px; background-color: #F26D04; color: #FFF; text-decoration: none; }
+#new-features a:hover, .profiles .button-link a:hover  { background-color: #F48024; }
+.button-link { padding-top: 20px; padding-bottom: 20px; }
+#new-features { clear: right; float: right; width: 300px; margin: 20px 20px 0 0; }
+#new-features a { width: 198px; text-align: center; float: right; padding: 6px 0; }
+
+ul.highlights { padding-left: 20px; }
+ul.highlights li {
+  background:transparent url(Images/orangeArrow.gif) no-repeat scroll 0px 0.45em;
+  list-style-image:none;
+  list-style-position:outside;
+  list-style-type:none;
+  margin: 0;
+  padding: 0 0 5px 18px;
+  font-size: 14px;
+}
+.sautter { text-align: center; margin-top: 0; font-size: 15px; font-style: italic; } 
+
+.screenshot {
+-webkit-box-shadow: 10px 10px 10px -10px rgba(153,153,153,1);
+-moz-box-shadow: 10px 10px 10px -10px rgba(153,153,153,1);
+box-shadow: 10px 10px 10px -10px rgba(153,153,153,1);
+}
+
+
+.alumni { background-image: url(Images/ucsf_alumni_blue.jpg); }
+
+
+
+
+ 
+
+

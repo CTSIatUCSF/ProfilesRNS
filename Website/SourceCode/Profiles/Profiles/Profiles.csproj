@@ -150,6 +150,8 @@
     <Content Include="Activity\PresentationXML\ActivityDetails.xml" />
     <Content Include="App_Themes\LBNL\Images\lbl-logo.png" />
     <Content Include="App_Themes\LBNL\Images\lbl-new-social-iconsB.png" />
+    <Content Include="App_Themes\LBNL\Images\ProfilesLogo.gif" />
+    <Content Include="App_Themes\LBNL\Images\profilesnapshot.png" />
     <Content Include="App_Themes\LBNL\Images\seal-department-of-energy.png" />
     <Content Include="App_Themes\LBNL\Images\seal-university-of-california.png" />
     <Content Include="App_Themes\UC\Images\backtotop.gif" />

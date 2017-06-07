@@ -380,7 +380,7 @@ namespace Profiles.Search.Modules.SearchResults
             switch (searchtype.ToLower())
             {
                 case "everything":
-                    litEverythingResults.Text = XslHelper.TransformInMemory(Server.MapPath("~/Search/Modules/SearchResults/EverythingResults.xslt"), args, this.SearchData.OuterXml);
+                    litEverythingResults.Text = XslHelper.TransformInMemory(Server.MapPath("~/Search/Modules/SearchResults/EverythingResults.xslt"), args, Brand.ReplaceDomain(this.SearchData.OuterXml));
                     break;
                 case "people":
 

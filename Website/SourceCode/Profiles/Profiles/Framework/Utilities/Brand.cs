@@ -74,6 +74,18 @@ namespace Profiles.Framework.Utilities
             return GetByTheme(GetSystemTheme());
         }
 
+        public static string ReplaceDomain(string content)
+        {
+            // this is the nuclean option
+            return content.Replace(Root.Domain, GetDomain());
+        }
+
+        public static string DebrandURI(string uri)
+        {
+            // this is the nuclean option
+            return uri.Replace(GetDomain(), Root.Domain);
+        }
+
         public static string CleanURL(string uri)
         {
             // if it's a match to a person URI, swap in their URL

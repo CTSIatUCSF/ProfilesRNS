@@ -37,7 +37,7 @@ namespace Profiles.Search.Modules
             List<DirectConnection> directconnections = new List<DirectConnection>();
             List<IndirectConnection> indirectconnections = new List<IndirectConnection>();
 
-            string nodeuri = Request.QueryString["nodeuri"].ToString();
+            string nodeuri = Brand.DebrandURI(Request.QueryString["nodeuri"].ToString());
             string url = Request.RawUrl.Split('?')[1];
             bool person = false;
 
@@ -65,9 +65,9 @@ namespace Profiles.Search.Modules
             backlink.Text = "<a href='" + Brand.GetDomain() + "/search/default.aspx?" + url + "' class='dblarrow'>Back to Search Results</a>";
             litSearchURL.Text = "<a href='" + Brand.GetDomain() + "/search/default.aspx?" + url + "'>Search Results</a>";
 
-            litPersonURI.Text = "<a href='" + nodeuri + "'>" + node.SelectSingleNode("rdfs:label", base.Namespaces).InnerText + "</a>";
+            litPersonURI.Text = "<a href='" + Brand.CleanURL(nodeuri) + "'>" + node.SelectSingleNode("rdfs:label", base.Namespaces).InnerText + "</a>";
 
-            litNodeURI.Text = "<a href='" + nodeuri + "'>" + node.SelectSingleNode("rdfs:label", base.Namespaces).InnerText + "</a>";
+            litNodeURI.Text = "<a href='" + Brand.CleanURL(nodeuri) + "'>" + node.SelectSingleNode("rdfs:label", base.Namespaces).InnerText + "</a>";
 
             if (node != null)
             {
@@ -199,7 +199,7 @@ namespace Profiles.Search.Modules
             {
                 this.Property = property;
                 this.Value = value;
-                this.URI = uri;
+                this.URI = Brand.CleanURL(uri);
 
             }
             public string Property { get; set; }
@@ -214,7 +214,7 @@ namespace Profiles.Search.Modules
             {
                 this.ItemType = itemtype;
                 this.Name = name;
-                this.URI = uri;
+                this.URI = Brand.CleanURL(uri);
             }
             public string ItemType { get; set; }
             public string Name { get; set; }

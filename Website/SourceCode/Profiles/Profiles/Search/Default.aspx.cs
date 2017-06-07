@@ -319,7 +319,7 @@ namespace Profiles.Search
 
             if (Request.QueryString["nodeuri"].IsNullOrEmpty() == false)
             {
-                nodeuri = Request.QueryString["nodeuri"];
+                nodeuri = Brand.DebrandURI(Request.QueryString["nodeuri"]);
                 nodeid = nodeuri.Substring(nodeuri.LastIndexOf("/") + 1);
             }
 

@@ -1,0 +1,5 @@
+This worked:
+https://blogs.msdn.microsoft.com/varunm/2013/06/18/bind-multiple-sites-on-same-ip-address-and-port-in-ssl/
+
+This didnt:
+https://www.sslshopper.com/article-ssl-host-headers-in-iis-7.html

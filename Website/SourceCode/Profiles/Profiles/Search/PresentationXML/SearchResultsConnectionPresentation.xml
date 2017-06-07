@@ -11,8 +11,7 @@
     <Panel Type="page" />
     <Panel Type="active">
       <Module ID="MiniSearch"  />
-      <Module ID="MainMenu">
-      </Module>
+      <Module ID="MainMenu"/>
     </Panel>
     <Panel Name="" Alias="" Type="main" TabType="Fixed" TabSort="1" >
       <Module ID="SearchConnection" />

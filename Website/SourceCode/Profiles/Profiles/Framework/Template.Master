@@ -243,6 +243,35 @@
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderLBNL" runat="server" SkinID="LBNL" Visible="false">
+                <div class="institutionHeader">
+                    <div id="site-logo">
+                        <h1>
+							<a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/App_Themes/LBNL/Images/lbl-logo.png" alt="Berkeley Lab Profiles" /></a>
+                        </h1>
+                    </div>
+                    <div id="powered-by-block">
+						<a class="last-item" href="http://map.lbl.gov" target="_blank">MAP</a>
+						<a href="http://www.lbl.gov/lab-index/" target="_blank">A-Z INDEX</a>
+						<a href="http://search.lbl.gov/" target="_blank">SEARCH LBNL</a>
+                    </div>
+                </div>
+				<div id="suckerfish-container">
+				  <div id="suckerfishmenu">
+                    <div class="content">
+                        <ul class="menu">
+                            <li class="item-home"><a href="<%=GetURLDomain()%>">Search</a></li>
+                            <li id="about"><a href="<%=GetURLDomain()%>/about/AboutProfiles.aspx">About</a></li>
+                            <li id="data"><a href="<%=GetURLDomain()%>/about/ForDevelopers.aspx">Use our Data</a></li>
+                            <li id="contact"><a href="<%=GetURLDomain()%>/about/Help.aspx">Help / Contact Us</a></li>
+                        </ul>
+                    </div>
+				</div>
+                <div id="active-nav" class="profiles">
+                    <span id="signin">
+                        <a href="<%=GetURLDomain()%>/login/default.aspx?method=login&amp;edit=true" id="signinlink">Sign in</a>
+                        to edit your profile (add interests, overview, photo, etc.)</span>
+                    <ul id="editmenu"></ul>
+                </div>
             </asp:Panel>
 
 			<div class="profilesContentActive">
@@ -451,6 +480,45 @@
                         </div>
                     </asp:Panel>
                     <asp:Panel ID="MasterPageFooterLBNL" runat="server" SkinID="LBNL" Visible="false">
+						<div class="disclaimer-logos">
+							<ul class="disclaimer-logos">
+								<li class="disclaimer-logos item1"></li>
+								<li class="disclaimer-logos item2"></li>
+							</ul>
+						</div>
+						<div class="disclaimer-text">
+							<p>A U.S. Department of Energy National Laboratory Managed by the University of California</p>
+						</div>
+						<div class="lbl-disclaimer">
+							<p>
+								<a class="disclaimer-left" href="http://wwwdev.lbl.gov/web-support/">Questions & Comments</a>
+								<a class="disclaimer-right" href="http://wwwdev.lbl.gov/disclaimers/">Privacy & Security Notice</a>
+							</p>
+						</div>
+						<div class="social">
+							<ul class="social-links">
+								<li class="social-links">
+									<a class="item1 ir" target="_blank" href="http://twitter.com/BerkeleyLab">twitter</a>
+								</li>
+								<li class="social-links">
+									<a class="item2 ir" target="_blank" href="http://instagram.com/berkeleylab#">instagram</a>
+								</li>
+								<li class="social-links">
+									<a class="item3 ir" target="_blank" href="https://plus.google.com/+BerkeleyLab/posts">google plus</a>
+								</li>
+								<li class="social-links">
+									<a class="item4 ir" target="_blank" href="http://www.facebook.com/BerkeleyLab">facebook</a>
+								</li>
+								<li class="social-links">
+									<a class="item5 ir" target="_blank" href="http://www.youtube.com/user/BerkeleyLab">youtube</a>
+								</li>
+							</ul>
+						</div>
+						<div class="version">
+                            <p>
+							This site is running Profiles RNS version <%=GetVersion()%>.
+                            </p>
+						</div>
                     </asp:Panel>
                     <asp:ContentPlaceHolder ID="ContentFooter" runat="server">
                         <asp:Repeater runat="server" ID="rptFooter" OnItemDataBound="DrawModule">

@@ -9,6 +9,9 @@
   <PanelList>
     <Panel type="header"  />
     <Panel type="page" />
+    <Panel Type="active">
+      <Module ID="MainMenu"/>
+    </Panel>
     <Panel Type="main" TabType="Fixed" TabSort="0" >
       <Module ID="SearchResults">        
       </Module>

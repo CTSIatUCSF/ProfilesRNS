@@ -10,8 +10,7 @@
     <Panel Type="header"  />
     <Panel Type="page" />
     <Panel Type="active">
-      <Module ID="MainMenu">
-      </Module>
+      <Module ID="MainMenu"/>
     </Panel>
     <Panel Type="info">
       <Module ID="Gadgets" >

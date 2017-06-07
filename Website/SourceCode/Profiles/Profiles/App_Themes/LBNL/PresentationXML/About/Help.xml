@@ -19,21 +19,180 @@
 
 <script type="text/javascript">
 $('#suckerfishmenu li#contact a').addClass('active'); 
+$('.profiles .profilesContentMain .pageTitle').hide();
 </script>
-
-<h2 class="about"><a href="../login/default.aspx?method=login&amp;edit=true">Sign in</a> in to edit information on your profile page</h2>
-<ul>
-  <li>Publications,</li>
-  <li>Photo,</li>
-  <li>Narrative,</li>
-  <li>Awards and honors,</li>
-  <li>and more.</li>
-</ul>
-<h2 class="about">Name, Degree, Contact Information</h2>
-    <p>Profiles gets this data from the USC GDS System. Please direct changes to your data to the Payroll/Personnel Analyst for your USC campus department. If unsure who this person is, contact your department's Business Officer. 
+<div style="width:940px">
+  <div class="content-block" style="width:570px; padding-right: 80px;">
+    <h2 style="font-size:30px">Need Help?</h2>
+    <p><strong>Publications</strong>: To add, remove, or fix a publication, 
+       <a href="../login/default.aspx?method=login&amp;edit=true">sign in to edit</a> your profile page.
     </p>
-    <p><a href="../About/FAQ.aspx" class="dblarrow">FAQ: View Frequently Asked Questions</a></p>
-    <p><a href="mailto:profiles@sc-ctsi.org" class="dblarrow">Contact the Profiles team</a></p>
+    <p><strong>Photo</strong>: To add or remove a photo, 
+       <a href="../login/default.aspx?method=login&amp;edit=true">sign in to edit</a> your profile page.
+    </p>
+    <p><strong>Name/Degree/Contact Information</strong>: We get data such as name and organization 	from the LBNL HR system. Changes to this data should be directed to your local HR Center 	contact, which can be found at <a href="https://commons.lbl.gov/display/hr/Contact+HR" target="_blank">https://commons.lbl.gov/display/hr/Contact+HR</a>. Contact information comes from the LBNL directory, which allows self-service updates at <a 	href="http://www.lbl.gov/ds/index.html">http://www.lbl.gov/ds/index.html</a>. 
+    </p>
+    <p><a href="#faq" class="doublearrow">Frequently Asked Questions</a></p>
+  </div>
+ 
+  <div class="content-block" style="width:250px; padding-right: 0">
+    <h2 style="font-size:30px">Contact Us</h2>
+    <p>Please <a href="mailto:profiles@lbl.gov">share your feedback</a> about how to improve
+       LBNL Profiles, and let us know if LBNL Profiles has enabled your research in any way.
+       Your success stories are important to enable the continued support and expansion of this
+       important tool.
+    </p>
+    <p><strong>Email us at <a href="mailto:profiles@lbl.gov">profiles@lbl.gov</a></strong></p>
+  </div>
+</div>
+
+<h2 id="info" class="about" style="clear:left; padding-top:20px;">Information about LBNL Profiles</h2>
+<h3>When you view a person's profile, you will see:</h3>
+
+<table width="940">
+<tr>
+<td valign="top" style="font-size:11px;line-height:16px;padding-top:120px;">
+<strong>Information about the individual</strong><br /><br />
+At a minimum, an individual's profile will include the person's name, degrees and basic contact information (sourced from the LBNL Directory). <br /><br /><br /><br />
+Profile owners can edit and enhance their own profiles by providing a research overview, a photo, awards, links to other sites, etc. <br /><br /><br /><br />
+Any published articles available in PubMed are listed, and Profile owners can add additional publications.
+</td>
+<td valign="top" style="padding-bottom:15px;"><img src="../App_Themes/LBNL/Images/profilesnapshot.png" /></td>
+<td valign="top" style="font-size:11px;line-height:16px;padding-top:120px;">
+<strong>Networks &#38; other information about the individual's research</strong><br /><br />
+If the individual has publications available from PubMed, LBNL Profiles builds and displays networks related to their research.<br /><br />
+Lists of research concepts/topics based on PubMed "MeSH" terms<br /><br /><br />
+Co-authors<br /><br /><br />
+Researchers working on the same topics<br /><br /><br />
+People working in the same department
+</td>
+</tr>
+</table>
+
+<h2 id="faq" class="about">Frequently Asked Questions</h2>
+<ul> 
+  <li><a href="#who">Who is listed in LBNL Profiles?</a></li>
+  <li><a href="#view">Who can view LBNL Profiles?</a></li>
+  <li><a href="#enhance">How do I edit and enhance a profile page?</a></li>
+  <li><a href="#login">How do I sign in to LBNL Profiles?</a></li>
+  <li><a href="#why">Why should I sign in to LBNL Profiles?</a></li>
+  <li><a href="#datasources">Where does the information in LBNL Profiles originate?</a></li>
+  <li><a href="#network">What are the lists of networks on the right side of my profile?</a></li>
+  <li><a href="#missing">Why are there missing or incorrect publications in my profile? How can I correct this?</a></li>
+  <li><a href="#update">How frequently are the data in LBNL Profiles updated?</a></li>
+  <li><a href="#keyword">Can I add/edit research, career and academic interests?</a></li>
+  <li><a href="#mynetwork">Can I edit my co-authors or related authors network lists?</a></li>
+  <li><a href="#learn">How can I learn more about LBNL Profiles?</a></li>
+  <li><a href="#ideas">Where should I send my ideas on how to improve the tool?</a></li>
+<!--  <li><a href="#sysreq">What are the system requirements for using LBNL Profiles?</a></li> -->
+  <li><a href="#manage">Who manages LBNL Profiles?</a></li>
+</ul>
+
+<h3 id="who">Who is listed in LBNL Profiles?</h3>
+
+<ul>
+  <li>LBNL Profiles was created for research networking so we initially loaded all employees (i.e.,
+excluding Affiliates, Student Assistants, and GSRAs) in all Divisions other than Ops.</li>
+</ul>
+
+<h3 id="view">Who can view LBNL Profiles?</h3>
+<ul>
+  <li>LBNL Profiles is open to the internet and can be viewed by the general public.</li>
+</ul>
+
+<h3 id="enhance">How do I edit and enhance a profile page?</h3>
+<ul>
+  <li>To edit your own profile page, click the <strong><a href="../login/default.aspx?method=login&amp;edit=true">Sign in</a></strong> link from any page. Use your Berkeley Lab credentials to sign in. Then click Edit My Profile.
+  <ul>
+    <li>You can designate a "proxy" to manage your profile page information for you.</li>
+  </ul></li>
+  <li>If you are a proxy and need to edit someone else's profile page, sign in as above. Search for the person’s page you want to edit. The menu will then show the option to "Edit this Profile." Click that link to go to the editing page. </li>
+  <li>A profile page is divided into several sections: directory information (not editable in Profiles), photo, awards and honors, overview, interests, featured publications, several other optional sections and publications.
+  <ul>
+  <li>For directory information, LBNL Profiles uses Berkeley Lab Directory. You can update
+your contact info at lbl.</li>
+  <li>You can upload a photo, add an overview (bio), add/edit awards and many other optional sections.</li>
+  <li><em>Interests</em> are research topics that you can add or edit yourself. These are searchable so people can find you if they search using these terms. This is useful for new areas of research on which you haven't published a paper yet.</li>
+  <li>Publications are automatically added from PubMed, and you can also add other publications yourself. Co-authors, Related Authors and Related Concepts are derived from your publications. </li>
+  <li>Sections can be set to the privacy levels of your choice.</li>
+  </ul></li>
+  <li><a href="mailto:profiles@lbl.gov">Contact us</a> if you have questions about editing a profile.</li>
+</ul>
+
+<h3 id="login">How do I sign in to LBNL Profiles?</h3>
+<p>Click the <strong><a href="../login/default.aspx?method=login&amp;edit=true">Sign in</a></strong> link on any LBNL Profiles page. Then enter your Berkeley Lab (aka LDAP) username and password.</p>
+<ul>
+  <li>If you have never used your Berkeley Lab account or for password support, learn about <a href="https://commons.lbl.gov/display/itdivision/Passwords+and+User+Accounts" title="Go to the LBNL IT website" target="_blank">Passwords and User Accounts</a>.</li> 
+</ul>
+
+<h3 id="why">Why should I sign in to LBNL Profiles?</h3>
+<ul>
+  <li>Many special LBNL Profiles features are available only if you're logged-in. These include:
+  <ul>
+  <li>Editing your profile page content to keep it current.</li>
+  <li>Designating a proxy to manage your profile page for you.</li>
+  <li>Creating a group of individuals based on search results. </li>
+  </ul></li>
+</ul>
+
+<h3 id="datasources">Where does the information in LBNL Profiles originate?</h3> 
+  <ul>
+  <li>Contact information is obtained from the LBNL Directory. </li>
+  <li>Publications are derived from the MEDLINE/PubMed citation database. These are retrieved monthly.</li>
+  <li>Grant information from NIH RePORTER is updated monthly. </li>
+  <li>Overview and other personalized information is entered by the profile owner or a designated proxy. </li>
+</ul>
+
+<h3 id="network">What are the lists of networks on the right side of my profile?</h3>
+<ul>
+  <li>The lists at the right side of a profile page provide additional information about the individual. The first three lists are based on MeSH terms assigned to the individual's publications by the National Library of Medicine.
+  <ul>
+  <li>"Related Concepts" includes the top five research concepts derived from publications' MeSH terms. There is also a link to show all the concepts associated with this individual.</li>
+  <li>"Co-Authors" includes those who have published with this individual.</li>
+  <li>"Related Authors" includes people who have research concepts/MeSH terms in common with this individual. </li>
+  </ul></li>
+</ul>
+
+<h3 id="missing">Why are there missing or incorrect publications in my profile? How can I correct this?</h3> 
+<ul>
+  <li>LBNL Profiles uses a complex mix of names, institution, and manually entered publication information to find your publications in PubMed's repository. Unfortunately, there is no easy way to exactly match all articles in PubMed to LBNL authors with complete precision and accuracy. The algorithm used to find articles from PubMed attempts to minimize the number of publications incorrectly added to a profile; however, this method may result in some missing or incorrectly listed publications.</li>
+  <li>People who have common names, who published under multiple names or whose articles were written at other institutions are most likely to have incomplete publication lists. </li>
+  <li>You can make corrections by manually searching PubMed from within Profiles to add, edit or delete publications (see <a href="Help.aspx#enhance">How do I edit my Profile?</a> above). By curating publications manually, you are helping LBNL Profiles to identify which concepts and co-authors are correctly associated with your profile, thereby increasing the likelihood of finding the right publications on subsequent attempts. </li>
+  <li>We encourage you to sign in to the site and add any missing publications or remove incorrect ones.</li>
+</ul>
+
+<h3 id="update">How frequently are the data in LBNL Profiles updated?</h3>
+<ul>
+  <li>Changes made to LBNL's HR system or the LBNL Directory will be automatically updated once a week.</li>
+  <li>Publications are added from PubMed weekly. MeSH terms and other publication data are updated monthly.</li>
+  <li>Changes made to a profile manually will be reflected immediately.</li>
+</ul>
+
+<h3 id="keyword">Can I add/edit research, career and academic interests?</h3>
+<ul>
+  <li>Yes. You can enter interests when you are editing your profile. These are useful to indicate research topics or fields in which you haven’t yet published. Users who search LBNL Profiles by these topics will find your profile. </li>
+  <li>Interests you add are  different from the concepts associated to your publications (MeSH terms derived by the National Library of Medicine) automatically, which are not editable. However, you can ensure these accurately reflect your work by keeping your publications up to date and correct in LBNL Profiles. Please note that system updates to your related concepts, co-authors, and related authors after you have modified your publications will happen after the next weekly update.</li> 
+</ul>
+
+<h3 id="mynetwork">Can I edit my co-authors or related authors network lists?</h3>
+<ul>
+  <li>These networks are automatically derived from publications and their MeSH terms. Keeping your publications accurate and up to date will improve these networks. However, these lists can't be edited directly.</li>
+</ul>
+
+<h3 id="learn">How can I learn more about LBNL Profiles?</h3>
+<ul>
+  <li><a href="AboutProfiles.aspx">Read more</a> about the LBNL Profiles tool, ongoing development and exciting collaborations.</li>
+  <li>If you have specific questions not answered here, please <a href="mailto:profiles@lbl.gov">contact us</a>.</li>
+</ul>
+
+<h3 id="ideas">Where should I send my ideas on how to improve the tool?</h3> 
+<ul>
+  <li>We encourage you to <a href="mailto:profiles@lbl.gov">share your thoughts</a> on how to improve LBNL Profiles.</li>
+  <li>To tell us how we're doing or for questions please send a note to <a href="mailto:profiles@lbl.gov">profiles@lbl.gov</a>.</li>
+</ul>
+
+<h3 id="manage">Who manages LBNL Profiles?</h3>
+<p>LBNL Profiles is managed by the LBNL IT Division.</p>
 
           </Param>
         </ParamList>

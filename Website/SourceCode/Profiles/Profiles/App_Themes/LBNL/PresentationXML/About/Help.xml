@@ -19,7 +19,7 @@
 
 <script type="text/javascript">
 $('#suckerfishmenu li#contact a').addClass('active'); 
-.pageTitle { display: none; }
+$('.profiles .profilesContentMain .pageTitle').hide();
 </script>
 <div style="width:940px">
   <div class="content-block" style="width:570px; padding-right: 80px;">

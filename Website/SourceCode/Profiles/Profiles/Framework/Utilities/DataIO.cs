@@ -920,7 +920,7 @@ namespace Profiles.Framework.Utilities
             String IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.urlname, u.UserName, '' from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID";
             if ("UCSF".Equals(Root.GetDefaultTheme()))
             {
-                IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.urlname, u.UserName, f.UID_USERID from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID join import_ucsf.dbo.vw_FNO f on p.InternalUsername = f.INDIVIDUAL_ID";
+                IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.urlname, u.UserName, ISNULL(f.UID_USERID, '') from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID left outer join import_ucsf.dbo.vw_FNO f on p.InternalUsername = f.INDIVIDUAL_ID";
             }
 
             using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,

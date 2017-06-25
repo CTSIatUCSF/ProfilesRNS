@@ -411,7 +411,7 @@
                                 UCSF Profiles is managed by the UCSF 
                                 <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
                                 part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
-                                Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%>.
+                                Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
                             </p>
                         </div>
                         <div id="footer-contact">

@@ -39,8 +39,11 @@ namespace Profiles.Framework.Utilities
             ByEmployeeID[this.EmployeeID] = this;
             ByPrettyURL[this.PrettyURL] = this;
             ByUserName[this.UserName] = this;
-            ByFNO[this.FNO] = this;
-
+            if (!this.FNO.IsNullOrEmpty())
+            {
+                ByFNO[this.FNO] = this;
+            }
+            
             PrettyURLs.Add(PrettyURL);
             string[] uriparts = PrettyURL.Split('/');
             PrettyURLApplicationNames.Add(uriparts[uriparts.Length - 1]);

@@ -77,13 +77,15 @@ namespace Profiles.Framework.Utilities
         public static string ReplaceDomain(string content)
         {
             // this is the nuclean option
-            return content.Replace(Root.Domain, GetDomain());
+            return content;
+            //return content.Replace(Root.Domain, GetDomain());
         }
 
         public static string DebrandURI(string uri)
         {
             // this is the nuclean option
-            return uri.Replace(GetDomain(), Root.Domain);
+            return uri;
+            //return uri.Replace(GetDomain(), Root.Domain);
         }
 
         public static string CleanURL(string uri)
@@ -111,10 +113,13 @@ namespace Profiles.Framework.Utilities
             }
              **/
             // see if it is the Root.Domain and swap in the themed one. 
+
+            /** 6/26/2017 change to only brand person centric pages
             if (uri.StartsWith(Root.Domain)) 
             {
                 return uri.Replace(Root.Domain, GetDomain());
             }
+            **/
             return uri;
         }
 

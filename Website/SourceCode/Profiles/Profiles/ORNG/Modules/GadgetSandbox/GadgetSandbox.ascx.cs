@@ -118,7 +118,7 @@ namespace Profiles.ORNG.Modules.GadgetSandbox
 
             Profiles.Login.Utilities.User user = new Profiles.Login.Utilities.User();
             user.UserName = txtUserName.Text.Trim();
-            user.Password = txtUserName.Text.Trim();  // works on dev just now, need to change!
+            //user.Password = txtUserName.Text.Trim();  // works on dev just now, need to change!
 
             if (user.UserName.Length == 0 && user.Password.Length == 0)
             {
@@ -129,7 +129,7 @@ namespace Profiles.ORNG.Modules.GadgetSandbox
                 Session[OpenSocialManager.ORNG_NOCACHE] = !chkUseCache.Checked;
                 Response.Redirect(Brand.GetDomain());
             }
-            else if (sandboxPassword.Equals(txtPassword.Text.Trim()) && data.UserLogin(ref user))
+            else if (sandboxPassword.Equals(txtPassword.Text.Trim()) && data.UserLoginExternal(ref user))
             {
                 // User logged in, now add the gadgets
                 // add the gadgets

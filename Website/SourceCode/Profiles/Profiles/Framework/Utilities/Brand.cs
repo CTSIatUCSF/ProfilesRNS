@@ -92,14 +92,12 @@ namespace Profiles.Framework.Utilities
         {
             // if it's a match to a person URI, swap in their URL
             long nodeid = -1;
-            bool isNumeric = Int64.TryParse("123", out nodeid);
             if (uri.StartsWith(Root.Domain + "/profile/") && Int64.TryParse(uri.Substring(Root.Domain.Length + 9), out nodeid) && UCSFIDSet.ByNodeId.ContainsKey(nodeid))
             {
                 // its a person!
                 return UCSFIDSet.ByNodeId[nodeid].PrettyURL;
             }
             // see if we have a person in the current context and this is a prefix to their URI
-            /**
             UCSFIDSet person = (UCSFIDSet)HttpContext.Current.Items["UCSFIDSet"];
             if (person != null && person.Brand != null)
             {
@@ -111,7 +109,6 @@ namespace Profiles.Framework.Utilities
                     return uri.Replace(Root.Domain + "/profile/" + person.NodeId, person.PrettyURL);
                 }
             }
-             **/
             // see if it is the Root.Domain and swap in the themed one. 
 
             /** 6/26/2017 change to only brand person centric pages

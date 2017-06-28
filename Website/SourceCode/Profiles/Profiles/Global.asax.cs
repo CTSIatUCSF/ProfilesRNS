@@ -109,7 +109,7 @@ namespace Profiles
             {
                 PrettyURLRouteHandler purh = new PrettyURLRouteHandler(applicationName);
                 routes.Add(applicationName, new Route(applicationName, purh));
-                //routes.Add(applicationName + "2", new Route(applicationName + "/{Param2}", purh));
+                routes.Add(applicationName + "2", new Route(applicationName + "/{Param2}", purh));
                 /************  These things take a long time to make so they might be expensive to IIS. Uncomment more as you need them 
                     and make  sure To make Brand.CleanURL is OK with it!      :)                  ****************/
                 //routes.Add(applicationName + "3", new Route(applicationName + "/{Param2}/{Param3}", purh));

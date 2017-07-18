@@ -122,10 +122,9 @@ namespace Profiles.Profile
             UCSFjs.Attributes.Add("src", Root.Domain + "/Profile/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
 
-            // amp.. Look up by SubjectID, see if URL to lower matche pretty name and if so see if first letter is i, then have fun
+            // AMP, turned on for all ucsf now
             if (Page.Theme.Equals("UCSF") && UCSFIDSet.ByNodeId.ContainsKey(base.RDFTriple.Subject) && 
-                HttpContext.Current.Request.Url.ToString().ToLower().EndsWith(UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL) &&
-                UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL.StartsWith("i"))
+                HttpContext.Current.Request.Url.ToString().ToLower().EndsWith(UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL))
             {
                 HtmlLink AmpLink = new HtmlLink();
                 AmpLink.Href = "http://amp.profiles.ucsf.edu/" + UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL;

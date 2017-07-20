@@ -290,15 +290,79 @@ ul#editmenu li span { color: #666; }
 #ctl00_trbody .rdf { list-style-type: none; margin: 20px 10px; width: 190px; }
 
 /* NAVBAR SEARCH */
-#navbarsearch { float: right; width: 400px; text-align: right; padding-right: 20px; margin: 6px 0 0;
-  margin: 0\9; }
-#navbarsearch input { display:inline-block;width:198px;height:24px;padding: 0;font-size:13px;color:#4D4D4D;
-  background-color:#fff;border:1px solid #ccc;
-  vertical-align: middle; margin: 0; }
-#navbarsearch input#searchterm { padding-left: 2px; line-height: 22px\9; }
-#navbarsearch input#navbarsubmit { width: 20px; height: 20px; margin: 0 0 0 -21px; border: none;
-  background: #FFF url(../Framework/images/glyphicons-halflings.png) no-repeat -47px 3px; }
-#navbarsearch input#navbarsubmit:hover { cursor: pointer; border: none; border-image-repeat: none; }
+#navbarsearch { 
+    float: right; 
+	padding-right: 20px; 
+	margin: 6px 0 0; 
+	position:relative;
+	/* font-size: 0;  remove space between inline elements */
+}
+.nav-searchfield-outer {
+    margin: 0;
+    width: 300px;
+	display: inline-block;
+	vertical-align: top;
+}
+#nav-searchfield {
+    /* border: 1px solid #CCC; 
+    color:#4D4D4D;*/
+    height: 26px;
+    margin: 0;
+    padding: 0 3px 0 5px;
+    width: 300px;
+    display:inline-block; 
+    background-color:#fff;
+	border: none;
+}
+#navbarsearch input#navbarsubmit { 
+    width: 30px;
+  	height: 26px;
+	margin: 0; 
+    background: #f2a900 url(../Framework/Images/search.png) no-repeat scroll center center / contain; 
+	border: 4px solid #f2a900;
+	text-indent: -1000px;
+	vertical-align: top;
+}
+#navbarsearch input#navbarsubmit:hover { cursor: pointer; } /* colors within themes */
+#nav-search-in {
+    display: inline-block;
+    height: 26px;
+	line-height: 27px;
+    overflow: hidden;
+	border-right: 1px solid #999;
+	background-color: #f7f7f8;
+	width: 100px;
+	background: #f7f7f8 url(../Framework/Images/sort_desc.gif) no-repeat scroll 86px 10px;
+}
+#nav-search-in #nav-search-in-content {
+    color: #444;
+    display: inline-block;
+    font-size: 11px;
+    padding: 0 10px 0 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#nav-search-in.nav-facade-active .nav-down-arrow {
+	position: absolute; left: 85px;
+}
+.nav-facade-active #searchDropdownBox {
+    left: 0;
+    opacity: 0;
+    top: 0;
+	height: 26px;
+    visibility: visible;
+    width: 100px;
+}
+#searchDropdownBox {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    visibility: hidden;
+	width: 100px;
+}
+#searchDropdownBox option {
+	padding-bottom: 4px;
+}
 
 /* gadget badges */
 ul#badge { list-style-type: none; padding-left: 0; margin: 0\9; }

@@ -33,33 +33,23 @@
   }
 	
     // navbarsearch
-    // move & hide on main search pages
+    // move & hide on network pages
   if ($('#navbarsearch') && $('#navbarsearch').length) {
     $('#navbarsearch').appendTo('#suckerfishmenu');
     if ($('.nonavbar').length) {
         $('#navbarsearch').remove();
     }
-    // placeholder text
-    function initiateSearchText() {
-        $("#searchterm").css('color', '#989898');
-        $("#searchterm").attr('value', 'e.g. Smith or HIV');
-    }
-    initiateSearchText();
-
-    var default_value = $("#searchterm").value;
-    $("#searchterm").focus(function () {
-        if ($("#searchterm").value == default_value) {
-            this.value = '';
-            $(this).css('color', '#000');
-        }
-    });
-    $("#searchterm").blur(function () {
-        if ($("#searchterm").value == '') {
-            $("#searchterm").css('color', '#999');
-            $("#searchterm").value = default_value;
-        }
-    });
   }
+  $("#searchDropdownBox").change(function(){
+    var Search_Str = $(this).val();
+    //replace search str in span value, set search type
+    $("#nav-search-in-content").text(Search_Str);
+	if (Search_Str == 'Research' || Search_Str == 'Concepts'){
+		$('#searchtype').val('everything');
+    } else {
+		$('#searchtype').val('people');
+	}
+  });
 
   if(window.location.href.indexOf("coauthors") == -1) {
     $("table").removeAttr("border").removeAttr("rules");

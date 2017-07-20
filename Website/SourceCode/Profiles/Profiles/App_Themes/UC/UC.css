@@ -3,8 +3,8 @@
 .passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
 .profiles .profilesContentMain .pageTitle h2 { color: #f2a900; }
-.profiles a.search-button, .more span, .less span { background-color: #f2a900; }
-.profiles a.search-button:hover { background-color: #FFB815; box-shadow: none; }
+.profiles a.search-button, #navbarsearch input#navbarsubmit, .more span, .less span { background-color: #f2a900; }
+.profiles a.search-button:hover, #navbarsearch input#navbarsubmit:hover { background-color: #FFB815; box-shadow: none; }
 
 /* banner */
 .institutionHeader { padding: 0; background: #FFFCED url("Images/ucbg.jpg") no-repeat scroll top right; width: 980px; }

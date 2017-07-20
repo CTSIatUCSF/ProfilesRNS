@@ -120,7 +120,7 @@
 <asp:HiddenField ID="hdnSearch" runat="server" Value="hdnSearch"></asp:HiddenField>
 <div class="content_container">
     <div class="tabContainer">
-        <div class="searchForm nonavbar">
+        <div class="searchForm">
             <table onkeypress="JavaScript:runScript(event);" width="100%">
                 <tbody align="left">
                     <tr>

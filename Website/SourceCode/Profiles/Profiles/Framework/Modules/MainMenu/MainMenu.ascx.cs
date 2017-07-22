@@ -28,11 +28,12 @@ namespace Profiles.Framework.Modules.MainMenu
     public partial class MainMenu : BaseModule
     {
 
-        System.Text.StringBuilder menulist;
-        SessionManagement sm;
-        protected void Page_Init(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            DrawProfilesModule();
+            if (!IsPostBack)
+            {
+                DrawProfilesModule();
+            }
         }
 
         public MainMenu() : base() { }
@@ -40,13 +41,13 @@ namespace Profiles.Framework.Modules.MainMenu
         public MainMenu(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
             : base(pagedata, moduleparams, pagenamespaces)
         {
-            menulist = new System.Text.StringBuilder();
-            sm = new SessionManagement();
             //ActiveNetworkRelationshipTypes.ClassURI = "";
         }
 
         private void DrawProfilesModule()
         {
+            System.Text.StringBuilder menulist = new System.Text.StringBuilder();
+            SessionManagement sm = new SessionManagement();
             Int64 subject = 0;
 
             if (Request.QueryString["subject"] != null)
@@ -181,7 +182,92 @@ namespace Profiles.Framework.Modules.MainMenu
 
 
             panelMenu.InnerHtml = menulist.ToString();
+            DrawSearchBar();
+        }
 
+
+        // For megasearch items
+        public string GetURLDomain()
+        {
+            return Brand.GetDomain();
+        }
+
+        protected void DrawSearchBar()
+        {
+            int ndx = searchTypeDropDown.Items.Count;
+            foreach (Brand brand in Brand.GetAll())
+            {
+                if (!String.IsNullOrEmpty(brand.PersonFilter))
+                {
+                    searchTypeDropDown.Items.Insert(ndx, new ListItem(HttpUtility.HtmlDecode("&nbsp;&nbsp;&nbsp;") + brand.PersonFilter + " People", brand.Theme));
+                }
+                else if (!String.IsNullOrEmpty(brand.InstitutionAbbreviation))
+                {
+                    searchTypeDropDown.Items.Add(new ListItem(HttpUtility.HtmlDecode("&nbsp;&nbsp;&nbsp;") + brand.InstitutionAbbreviation + " People", brand.Theme));
+                }
+            }
+
+            // pick one to select
+            ListItem selected = null;
+            if (!String.IsNullOrEmpty(Request.Params["classgroupuri"]))
+            {
+                selected = searchTypeDropDown.Items.FindByValue(Request.Params["classgroupuri"]);
+            }
+            else if (!Request.Path.ToLower().Contains("/search/"))
+            {
+                selected = searchTypeDropDown.Items.FindByValue(Brand.GetCurrentBrand().Theme);
+            }
+            if (selected != null)
+            {
+                searchTypeDropDown.SelectedIndex = searchTypeDropDown.Items.IndexOf(selected);
+            }
+        }
+
+
+        protected void ProcessSearch()
+        {
+            string searchTypeDropDownValue = this.searchTypeDropDown.SelectedItem.Value;
+            string searchType = "everything";
+            string classGroupURI = "";
+            string institution = "";
+            string otherFilters = "";
+            string searchFor = Request.Form["mainMenuSearchFor"];
+
+            Brand brand = Brand.GetByTheme(searchTypeDropDownValue);
+            if (brand != null)
+            {
+                searchType = "people";
+
+                if (brand.InstitutionAbbreviation != null)
+                {
+                    institution = brand.InstitutionAbbreviation;
+                }
+                else if (brand.PersonFilter != null)
+                {
+                    otherFilters = brand.PersonFilter;
+                }
+            }
+            else if ("People".Equals(searchTypeDropDownValue))
+            {
+                searchType = "people";
+            }
+            else if (searchTypeDropDownValue.StartsWith("http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroup"))
+            {
+                classGroupURI = searchTypeDropDownValue;
+            }
+
+            Response.Redirect(Brand.GetDomain() + "/search/default.aspx?searchtype=" + searchType +
+                                "&searchfor=" + HttpUtility.UrlEncode(searchFor) +
+                                "&classgroupuri=" + HttpUtility.UrlEncode(classGroupURI) +
+                                "&institution=" + HttpUtility.UrlEncode(institution) +
+                                "&otherfilters=" + HttpUtility.UrlEncode(otherFilters) +
+                                "&exactphrase=false", false);
+            HttpContext.Current.ApplicationInstance.CompleteRequest(); 
+        }
+
+        protected void Submit_Click(object sender, EventArgs e)
+        {
+            ProcessSearch();
         }
 
     }

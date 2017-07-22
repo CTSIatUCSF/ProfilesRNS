@@ -100,8 +100,6 @@ namespace Profiles.Framework
 
 
                 this.DrawTabs();
-
-
             }
             catch (Exception ex)
             {

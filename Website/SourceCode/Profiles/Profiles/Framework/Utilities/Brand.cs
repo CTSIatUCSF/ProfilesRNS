@@ -40,6 +40,11 @@ namespace Profiles.Framework.Utilities
             return brand != null ? brand.BasePath : Root.Domain;
         }
 
+        public static List<Brand> GetAll()
+        {
+            return ByTheme.Values.ToList();
+        }
+
         public static Brand GetByTheme(string Theme)
         {
             return ByTheme.ContainsKey(Theme) ? ByTheme[Theme] : null;

@@ -28,33 +28,26 @@
   }
 
     // copyright year
-  if ($('#copyright-year') && $('#copyright-year').length) {
-    $("#copyright-year").text( (new Date).getFullYear() );
-  }
+	if ($('#copyright-year') && $('#copyright-year').length) {
+		$("#copyright-year").text( (new Date).getFullYear() );
+	}
 	
     // navbarsearch
-    // move & hide on network pages
-  if ($('#navbarsearch') && $('#navbarsearch').length) {
-    $('#navbarsearch').appendTo('#suckerfishmenu');
-    if ($('.nonavbar').length) {
+    // remove from network pages - still necessary?
+	if ($('.nonavbar') && $('.nonavbar').length) {
         $('#navbarsearch').remove();
     }
-  }
-  $("#searchDropdownBox").change(function(){
-    var Search_Str = $(this).val();
-    //replace search str in span value, set search type
-    $("#nav-search-in-content").text(Search_Str);
-	if (Search_Str == 'Research' || Search_Str == 'Concepts'){
-		$('#searchtype').val('everything');
-    } else {
-		$('#searchtype').val('people');
-	}
-  });
+    // scope text drawn from selected option's title
+	$('#nav-search-in-content').text($('#searchDropdownBox select').find("option:selected").attr("title"));
+	$('#searchDropdownBox select').change(function() {
+		$('#nav-search-in-content').text($(this).find("option:selected").attr("title"));
+    });
 
+    // Back to top http://typicalwhiner.com/116/effortless-jquery-floating-back-to-top-script-v2/
+	// Not used on network pages
   if(window.location.href.indexOf("coauthors") == -1) {
     $("table").removeAttr("border").removeAttr("rules");
 
-    // Back to top http://typicalwhiner.com/116/effortless-jquery-floating-back-to-top-script-v2/
     var pxShow = 300; //height on which the button will show  
     var fadeInTime = 1000;  //how slow/fast you want the button to show  
     var fadeOutTime = 1000;  //how slow/fast you want the button to hide  

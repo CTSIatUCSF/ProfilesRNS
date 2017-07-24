@@ -3,8 +3,10 @@
 .passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
 .profiles .profilesContentMain .pageTitle h2 { color: #f2a900; }
-.profiles a.search-button, #navbarsearch input#navbarsubmit, .more span, .less span { background-color: #f2a900; }
-.profiles a.search-button:hover, #navbarsearch input#navbarsubmit:hover { background-color: #FFB815; box-shadow: none; }
+.profiles a.search-button, #navbarsearch input[type=submit], .more span, .less span { background-color: #f2a900; }
+.profiles a.search-button:hover, #navbarsearch input[type=submit]:hover { background-color: #FFB815; box-shadow: none; }
+#navbarsearch input[type=submit]  { border: 4px solid #f2a900; }
+#navbarsearch input[type=submit]:hover  { border: 4px solid #FFB815; }
 
 /* banner */
 .institutionHeader { padding: 0; background: #FFFCED url("Images/ucbg.jpg") no-repeat scroll top right; width: 980px; }
@@ -30,6 +32,6 @@
 
 /* navbar & footer colors */
 .profiles .profilesFooter,
-#suckerfishmenu, #suckerfishmenu a { background-color: #1295d8; }
+#suckerfish-container, #suckerfishmenu a { background-color: #1295d8; }
 .search #suckerfishmenu .item-home a,
 #suckerfishmenu	 a.active, #suckerfishmenu a:hover { background-color: #42B5E7; }

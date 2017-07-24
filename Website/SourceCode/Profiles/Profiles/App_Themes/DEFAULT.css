@@ -20,7 +20,7 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
 #powered-by-block a, #powered-by-block a:visited { font-size: 13px; font-weight: bold; }
 #page-container { background-color: #FFF; } 
 .profiles { margin-top: 0; max-width: 980px; }
-.profiles .profilesPage { padding-top: 15px; }
+.profiles .profilesPage { padding-top: 45px; }
 .profiles .profilesPage table { border-color: transparent; }
 .profiles .profilesPageColumnRightCenter { border: none; box-shadow: none; border-radius: 0; }
 .profilesMainColumnRight { background-color: transparent; border-left:none; width: 180px; }
@@ -64,7 +64,7 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
   background-image: url('../Framework/Images/tab_back.gif'); }
 .searchForm th { color: #000; }
 .searchForm .pan td { padding: 2px 0; }
-.searchForm td div.header { font-size: 28px; font-weight: bold; margin: 16px 0 8px; }
+.searchForm td div.header { font-size: 28px; font-weight: bold; margin: 10px 0; }
 .searchForm .searchSection { margin-bottom: 0; border: 1px solid #CCC; }
 .searchForm #divSearchSection { border-width: 1px 1px 0 1px; }
 .searchForm #div1 th { font-weight: normal; width: 140px; }
@@ -237,13 +237,15 @@ ul.highlights li {
 #footer-copyright p { padding: 6px; margin: 0; font-size: 90%; }
 
 /* MENU */
-#suckerfish-container { clear: both; width: 980px; margin: 0 auto; }
-#suckerfishmenu {
+#suckerfish-container { clear: both; width: 980px; margin: 0 auto; 
 	background-color: #506480; 
 	line-height: 35px; 
-	width: 980px; height: 37px;
+	height: 37px;
 	font-family: Arial,Sans-Serif; 
 	font-size: 13px;
+}
+#suckerfishmenu {
+	float: left;
 }
 #suckerfishmenu	 ul.menu { /* top level ul */
   padding: 0;
@@ -275,7 +277,7 @@ ul.highlights li {
 }
 
 /* login & edit links */
-#active-nav { text-align: left; padding: 5px 0; width: 100%; height: 21px; font-size: 13px; }
+#active-nav { clear: left; text-align: left; padding: 5px 0; width: 100%; height: 21px; font-size: 13px; }
 #signin { display: block; padding-left: 20px; font-weight: bold; color: #666; }
 #signin a { font-size: 110%; }
 #stats { color: #000; }
@@ -295,7 +297,6 @@ ul#editmenu li span { color: #666; }
 	padding-right: 20px; 
 	margin: 6px 0 0; 
 	position:relative;
-	/* font-size: 0;  remove space between inline elements */
 }
 .nav-searchfield-outer {
     margin: 0;
@@ -304,8 +305,6 @@ ul#editmenu li span { color: #666; }
 	vertical-align: top;
 }
 #nav-searchfield {
-    /* border: 1px solid #CCC; 
-    color:#4D4D4D;*/
     height: 26px;
     margin: 0;
     padding: 0 3px 0 5px;
@@ -314,16 +313,16 @@ ul#editmenu li span { color: #666; }
     background-color:#fff;
 	border: none;
 }
-#navbarsearch input#navbarsubmit { 
+#navbarsearch input[type=submit] { 
     width: 30px;
   	height: 26px;
 	margin: 0; 
-    background: #f2a900 url(../Framework/Images/search.png) no-repeat scroll center center / contain; 
-	border: 4px solid #f2a900;
+    background: #f2a900 url(../Framework/Images/search.png) no-repeat scroll center center; 
+	background-size: contain;
 	text-indent: -1000px;
 	vertical-align: top;
 }
-#navbarsearch input#navbarsubmit:hover { cursor: pointer; } /* colors within themes */
+#navbarsearch input[type=submit]:hover { cursor: pointer; } /* colors within themes */
 #nav-search-in {
     display: inline-block;
     height: 26px;
@@ -337,21 +336,16 @@ ul#editmenu li span { color: #666; }
 #nav-search-in #nav-search-in-content {
     color: #444;
     display: inline-block;
-    font-size: 11px;
+    line-height: 28px;
     padding: 0 10px 0 5px;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-#nav-search-in.nav-facade-active .nav-down-arrow {
-	position: absolute; left: 85px;
-}
 .nav-facade-active #searchDropdownBox {
     left: 0;
     opacity: 0;
-    top: 0;
-	height: 26px;
+    top: 4px;
     visibility: visible;
-    width: 100px;
 }
 #searchDropdownBox {
     margin: 0;
@@ -360,8 +354,8 @@ ul#editmenu li span { color: #666; }
     visibility: hidden;
 	width: 100px;
 }
-#searchDropdownBox option {
-	padding-bottom: 4px;
+.nav-facade-active .searchSelect option {
+	padding-bottom: 4px;   /* no effect except Firefox */
 }
 
 /* gadget badges */
@@ -397,6 +391,7 @@ h2.badge-top  { padding: 12px 0 14px 4px; margin: -68px 0 0 60px; width: 70px; f
 
 /* Metrics & Activity Stream */
 .panelActive { padding: 0 0 0 12px; }
+.panelActive.navbar { padding: 0; }  /* THIS */
 .metrics { margin: 0 0 20px !important; padding: 0 0 12px; border-bottom: 1px solid #ccc; }
 .metrics .act-heading { font-size: 13px; }
 .metrics span { display: inline-block; width: 4em; text-align: right; font-family: "Courier New", Courier, monospace; }

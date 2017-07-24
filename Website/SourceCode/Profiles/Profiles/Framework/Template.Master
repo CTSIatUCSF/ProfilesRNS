@@ -191,7 +191,7 @@
             </asp:Panel>
 
 			<div class="profilesContentActive">
-				<div class="panelActive">
+				<div class="panelActive navbar">
 					<asp:ContentPlaceHolder ID="ContentActive" runat="server">
 						<asp:Repeater runat="server" ID="rptActive" OnItemDataBound="DrawModule">
 							<ItemTemplate>

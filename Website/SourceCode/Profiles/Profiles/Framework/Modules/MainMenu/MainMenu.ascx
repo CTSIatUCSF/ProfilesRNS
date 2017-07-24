@@ -23,38 +23,28 @@
                 <li id="contact"><a href="<%=GetURLDomain()%>/about/Help.aspx">Help / Contact Us</a></li>
             </ul>
         </div>
-    </div>
+	</div>
     <div id="navbarsearch">
         <asp:Panel runat="server" ID="pnlNavBarSearch" Visible="true">
             <!--input type="hidden" name="searchtype" id="searchtype" value="people" />
-		<input type="hidden" name="exactphrase" value="false" /-->
+			<input type="hidden" name="exactphrase" value="false" /-->
             <span class="nav-facade-active" id="nav-search-in">
-                <asp:DropDownList ID="searchTypeDropDown" CssClass="searchSelect" runat="server">
-                    <asp:ListItem Value="Everything" Text="Everything" />
-                    <asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupResearch" Text="Research" />
-                    <asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupConcepts" Text="Concepts" />
-                    <asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupAwards" Text="Awards" />
-                    <asp:ListItem Value="People" Text="People" />
-                </asp:DropDownList>
-                <!--span data-value="search-alias=aps" id="nav-search-in-content">UCSF People</!span>
-            <select title="Search in" class="searchSelect" id="searchDropdownBox" name="facet">
-				<option value="Everything">Everything</option>
-				<option value="Research" title="Research">Research</option>
-				<option value="Concepts" title="Concepts">Concepts</option>
-				<option value="People" title="People">People</option>
-				<option value="UC People" title="UC People">&nbsp;&nbsp;&nbsp;UC</option>
-				<option value="UCSD People" title="UCSD People">&nbsp;&nbsp;&nbsp;UC San Diego</option>
-				<option value="UCSF People" title="UCSF People" selected="selected">&nbsp;&nbsp;&nbsp;UC San Francisco</option>
-				<option value="LBNL People" title="LBNL People">&nbsp;&nbsp;&nbsp;Lawrence Berkeley National Laboratories (LBNL)</option>
-				<option value="USC People" title="USC People">&nbsp;&nbsp;&nbsp;University of Southern California (USC)</option>
-			</select-->
-                <!-- next few tags are weird to remove space between -->
-            </span>
-            <div class="nav-searchfield-outer">
+                <span id="nav-search-in-content"></span>
+				<div class="searchSelect" id="searchDropdownBox">
+					<asp:DropDownList ID="searchTypeDropDown" CssClass="searchSelect" runat="server">
+						<asp:ListItem Value="Everything" Text="Everything" />
+						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupResearch" Text="Research" />
+						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupConcepts" Text="Concepts" />
+						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupAwards" Text="Awards" />
+						<asp:ListItem Value="People" Text="People" />
+					</asp:DropDownList>
+				</div>
+			<!-- next few tags have > on next line to remove space between -->
+            </span
+            ><div class="nav-searchfield-outer">
                 <input type="text" autocomplete="off" name="mainMenuSearchFor" placeholder="e.g. Smith or HIV" title="Search For" id="nav-searchfield" />
-            </div>
-            <!--input type="submit" title="Search" id="navbarsubmit" class="nav-submit-input" value="Search"/-->
-            <asp:Button runat="server" Text="Search" OnClick="Submit_Click" />
+            </div
+            ><asp:Button runat="server" Text="Search" OnClick="Submit_Click" />
         </asp:Panel>
     </div>
     <div id="active-nav" class="profiles">

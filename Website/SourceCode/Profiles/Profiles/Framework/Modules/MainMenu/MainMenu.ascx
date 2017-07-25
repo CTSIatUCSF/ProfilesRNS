@@ -31,12 +31,17 @@
             <span class="nav-facade-active" id="nav-search-in">
                 <span id="nav-search-in-content"></span>
 				<div class="searchSelect" id="searchDropdownBox">
-					<asp:DropDownList ID="searchTypeDropDown" CssClass="searchSelect" runat="server">
+					<asp:DropDownList ID="searchTypeDropDown" CssClass="searchSelect" EnableViewState="true" runat="server">
 						<asp:ListItem Value="Everything" Text="Everything" />
 						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupResearch" Text="Research" />
 						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupConcepts" Text="Concepts" />
 						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupAwards" Text="Awards" />
 						<asp:ListItem Value="People" Text="People" />
+						<asp:ListItem Value="UC" Text="&nbsp;&nbsp;&nbsp;UC People" />
+						<asp:ListItem Value="UCSD" Text="&nbsp;&nbsp;&nbsp;UCSD People" />
+						<asp:ListItem Value="UCSF" Text="&nbsp;&nbsp;&nbsp;UCSF People" />
+						<asp:ListItem Value="LBNL" Text="&nbsp;&nbsp;&nbsp;LBNL People" />
+						<asp:ListItem Value="USC" Text="&nbsp;&nbsp;&nbsp;USC People" />
 					</asp:DropDownList>
 				</div>
 			<!-- next few tags have > on next line to remove space between -->

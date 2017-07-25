@@ -10,11 +10,24 @@ namespace Profiles.Framework.Utilities
         protected override void OnPreInit(EventArgs e)
         {
             // set the theme based on the request.
-            Brand brand = Brand.GetByURL(Request.Url.ToString());
-            HttpContext.Current.Items["Brand"] = brand;
-            if (Page.EnableTheming)
+            // first see if it has been explicity set
+            Brand brand = null;
+            if (!String.IsNullOrEmpty(Request.Params["Theme"]))
             {
-                Page.Theme = brand.Theme;
+                brand = Brand.GetByTheme(Request.Params["Theme"]);
+            }
+            else
+            {
+                brand = Brand.GetByURL(Request.Url.ToString());
+            }
+
+            if (brand != null)
+            {
+                HttpContext.Current.Items["Brand"] = brand;
+                if (Page.EnableTheming)
+                {
+                    Page.Theme = brand.Theme;
+                }
             }
         }
 

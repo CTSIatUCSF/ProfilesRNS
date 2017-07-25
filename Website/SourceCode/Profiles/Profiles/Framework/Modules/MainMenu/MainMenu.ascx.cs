@@ -28,7 +28,7 @@ namespace Profiles.Framework.Modules.MainMenu
     public partial class MainMenu : BaseModule
     {
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
@@ -194,6 +194,7 @@ namespace Profiles.Framework.Modules.MainMenu
 
         protected void DrawSearchBar()
         {
+            /** Dynamic controls SUCK in .net
             int ndx = searchTypeDropDown.Items.Count;
             foreach (Brand brand in Brand.GetAll())
             {
@@ -206,6 +207,13 @@ namespace Profiles.Framework.Modules.MainMenu
                     searchTypeDropDown.Items.Add(new ListItem(HttpUtility.HtmlDecode("&nbsp;&nbsp;&nbsp;") + brand.InstitutionAbbreviation + " People", brand.Theme));
                 }
             }
+            **********/
+
+            // add Title to the dropdownlist items
+            foreach (ListItem item in searchTypeDropDown.Items)
+            {
+                item.Attributes.Add("Title", item.Text.Trim());
+            }
 
             // pick one to select
             ListItem selected = null;
@@ -213,10 +221,11 @@ namespace Profiles.Framework.Modules.MainMenu
             {
                 selected = searchTypeDropDown.Items.FindByValue(Request.Params["classgroupuri"]);
             }
-            else if (!Request.Path.ToLower().Contains("/search/"))
+            else if (!Request.Path.ToLower().Contains("/search/") || Request.QueryString["searchtype"] != null || Request.Form["searchtype"] != null) //if (!Request.Path.ToLower().Contains("/search/"))
             {
                 selected = searchTypeDropDown.Items.FindByValue(Brand.GetCurrentBrand().Theme);
             }
+
             if (selected != null)
             {
                 searchTypeDropDown.SelectedIndex = searchTypeDropDown.Items.IndexOf(selected);
@@ -232,6 +241,7 @@ namespace Profiles.Framework.Modules.MainMenu
             string institution = "";
             string otherFilters = "";
             string searchFor = Request.Form["mainMenuSearchFor"];
+            string theme = "UC"; // short term hack
 
             Brand brand = Brand.GetByTheme(searchTypeDropDownValue);
             if (brand != null)
@@ -240,7 +250,9 @@ namespace Profiles.Framework.Modules.MainMenu
 
                 if (brand.InstitutionAbbreviation != null)
                 {
-                    institution = brand.InstitutionAbbreviation;
+                    Profiles.Search.Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
+                    institution = data.GetConvertedListItem(data.GetInstitutions(), brand.InstitutionName);
+                    theme = brand.Theme;
                 }
                 else if (brand.PersonFilter != null)
                 {
@@ -261,6 +273,7 @@ namespace Profiles.Framework.Modules.MainMenu
                                 "&classgroupuri=" + HttpUtility.UrlEncode(classGroupURI) +
                                 "&institution=" + HttpUtility.UrlEncode(institution) +
                                 "&otherfilters=" + HttpUtility.UrlEncode(otherFilters) +
+                                "&Theme=" + theme + 
                                 "&exactphrase=false", false);
             HttpContext.Current.ApplicationInstance.CompleteRequest(); 
         }

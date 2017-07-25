@@ -248,7 +248,7 @@ namespace Profiles.Framework.Modules.MainMenu
             {
                 searchType = "people";
 
-                if (brand.InstitutionAbbreviation != null)
+                if (!brand.IsMultiInstitutional())
                 {
                     Profiles.Search.Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
                     institution = data.GetConvertedListItem(data.GetInstitutions(), brand.InstitutionName);

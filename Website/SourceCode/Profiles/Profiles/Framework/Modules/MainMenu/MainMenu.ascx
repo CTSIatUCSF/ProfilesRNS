@@ -40,7 +40,6 @@
 						<asp:ListItem Value="UC" Text="&nbsp;&nbsp;&nbsp;UC People" />
 						<asp:ListItem Value="UCSD" Text="&nbsp;&nbsp;&nbsp;UCSD People" />
 						<asp:ListItem Value="UCSF" Text="&nbsp;&nbsp;&nbsp;UCSF People" />
-						<asp:ListItem Value="LBNL" Text="&nbsp;&nbsp;&nbsp;LBNL People" />
 						<asp:ListItem Value="USC" Text="&nbsp;&nbsp;&nbsp;USC People" />
 					</asp:DropDownList>
 				</div>

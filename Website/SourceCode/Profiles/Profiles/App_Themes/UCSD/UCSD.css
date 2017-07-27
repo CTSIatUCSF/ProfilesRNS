@@ -5,6 +5,8 @@
 .profiles .profilesContentMain .pageTitle h2 { color: #CD2040; }
 .profiles a.search-button, .more span, .less span { background-color: #CD2040; }
 .profiles a.search-button:hover { background-color: #B01B37; box-shadow: none; }
+#navbarsearch input[type=submit]  { background-color: #CD2040; border: 4px solid #CD2040; }
+#navbarsearch input[type=submit]:hover  { background-color: #B01B37; border: 4px solid #B01B37; }
 
 /* banner */
 .institutionHeader { padding: 0; }

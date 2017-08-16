@@ -28,8 +28,8 @@
         <asp:Panel runat="server" ID="pnlNavBarSearch" Visible="true">
             <!--input type="hidden" name="searchtype" id="searchtype" value="people" />
 			<input type="hidden" name="exactphrase" value="false" /-->
-            <span class="nav-facade-active" id="nav-search-in">
-                <span id="nav-search-in-content"></span>
+            <div class="nav-facade-active" id="nav-search-in">
+                <div id="nav-search-in-content"></div>
 				<div class="searchSelect" id="searchDropdownBox">
 					<asp:DropDownList ID="searchTypeDropDown" CssClass="searchSelect" EnableViewState="true" runat="server">
 						<asp:ListItem Value="Everything" Text="Everything" />
@@ -44,7 +44,7 @@
 					</asp:DropDownList>
 				</div>
 			<!-- next few tags have > on next line to remove space between -->
-            </span
+            </div
             ><div class="nav-searchfield-outer">
                 <input type="text" autocomplete="off" name="mainMenuSearchFor" placeholder="e.g. Smith or HIV" title="Search For" id="nav-searchfield" />
             </div

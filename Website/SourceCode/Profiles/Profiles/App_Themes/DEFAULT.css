@@ -300,7 +300,7 @@ ul#editmenu li span { color: #666; }
 }
 .nav-searchfield-outer {
     margin: 0;
-    width: 300px;
+    width: 250px;
 	display: inline-block;
 	vertical-align: top;
 }
@@ -308,7 +308,7 @@ ul#editmenu li span { color: #666; }
     height: 26px;
     margin: 0;
     padding: 0 3px 0 5px;
-    width: 300px;
+    width: 250px;
     display:inline-block; 
     background-color:#fff;
 	border: none;
@@ -330,8 +330,8 @@ ul#editmenu li span { color: #666; }
     overflow: hidden;
 	border-right: 1px solid #999;
 	background-color: #f7f7f8;
-	width: 100px;
-	background: #f7f7f8 url(../Framework/Images/sort_desc.gif) no-repeat scroll 86px 10px;
+	width: 105px;
+	background: #f7f7f8 url(../Framework/Images/sort_desc.gif) no-repeat scroll 92px 10px;
 }
 #nav-search-in #nav-search-in-content {
     color: #444;

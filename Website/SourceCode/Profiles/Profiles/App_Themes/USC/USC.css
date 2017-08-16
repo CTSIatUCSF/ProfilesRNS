@@ -6,6 +6,8 @@
 .profiles .profilesContentMain .pageTitle h2 { color: #000; }
 .profiles a.search-button, .more span, .less span { background-color: #771111; }
 .profiles a.search-button:hover { background-color: #990000; box-shadow: none; color: #FFF; }
+#navbarsearch input[type=submit]  { background-color: #771111; border: 4px solid #771111; }
+#navbarsearch input[type=submit]:hover  { background-color: #990000; border: 4px solid #990000; }
 
 /* banner */
 

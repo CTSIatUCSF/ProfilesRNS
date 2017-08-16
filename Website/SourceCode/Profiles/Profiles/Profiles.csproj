@@ -154,6 +154,26 @@
     <Content Include="App_Themes\LBNL\Images\profilesnapshot.png" />
     <Content Include="App_Themes\LBNL\Images\seal-department-of-energy.png" />
     <Content Include="App_Themes\LBNL\Images\seal-university-of-california.png" />
+    <Content Include="App_Themes\Default\Images\backtotop.gif" />
+    <Content Include="App_Themes\Default\Images\comment.gif" />
+    <Content Include="App_Themes\Default\Images\favicon.ico" />
+    <Content Include="App_Themes\Default\Images\gear.gif" />
+    <Content Include="App_Themes\Default\Images\help.gif" />
+    <Content Include="App_Themes\Default\Images\ucbg.jpg" />
+    <Content Include="App_Themes\Default\Images\uclogo137.png" />
+    <Content Include="App_Themes\Default\PresentationXML\About\AboutProfiles.xml" />
+    <Content Include="App_Themes\Default\PresentationXML\About\CloseBrowser.xml" />
+    <Content Include="App_Themes\Default\PresentationXML\About\FAQ.xml" />
+    <Content Include="App_Themes\Default\PresentationXML\About\ForDevelopers.xml" />
+    <Content Include="App_Themes\Default\PresentationXML\About\GadgetLibrary.xml" />
+    <Content Include="App_Themes\Default\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\Default\PresentationXML\About\HowProfilesWorks.xml" />
+    <Content Include="App_Themes\Default\PresentationXML\About\NewFeatures.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Themes\Default\PresentationXML\About\Optin.xml" />
+    <Content Include="App_Themes\Default\Default.css" />
+    <Content Include="App_Themes\Default\Default.js" />
     <Content Include="App_Themes\UC\Images\backtotop.gif" />
     <Content Include="App_Themes\UC\Images\comment.gif" />
     <Content Include="App_Themes\UC\Images\favicon.ico" />
@@ -2062,6 +2082,7 @@
     <Content Include="App_Themes\USC\USC.skin" />
     <Content Include="App_Themes\LBNL\LBNL.skin" />
     <Content Include="App_Themes\UC\UC.skin" />
+    <Content Include="App_Themes\Default\Default.skin" />
     <None Include="ORCID\ORCIDPrivacySettingsandProfiles.pdf" />
     <Content Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master" />
     <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\CHANGELOG" />

@@ -169,14 +169,14 @@ GO
 
 
 CREATE VIEW [UCSF.].[vwBrand] AS  
-SELECT a.Theme,
+SELECT DISTINCT t.Theme,
 	   t.BasePath,
 	   CASE WHEN t.Shared = 1 THEN NULL ELSE i.InstitutionName END AS Exclusive2Institution,
 	   CASE WHEN t.Shared = 1 THEN NULL ELSE a.InstitutionAbbreviation END AS InstitutionAbbreviation,
 	   CASE WHEN a.Theme = 'UC' THEN 'UC' ELSE NULL END AS PersonFilter -- note that this is hacked to do what we need it to do. For a view, that is sort of OK
-FROM [UCSF.].[InstitutionAbbreviation2Theme] a
-	JOIN [UCSF.].[Theme] t on a.Theme = t.Theme
-	JOIN [Profile.Data].[Organization.Institution] i on a.InstitutionAbbreviation = i.InstitutionAbbreviation
+FROM [UCSF.].[Theme] t
+	LEFT OUTER JOIN [UCSF.].[InstitutionAbbreviation2Theme] a on a.Theme = t.Theme
+	LEFT OUTER JOIN [Profile.Data].[Organization.Institution] i on a.InstitutionAbbreviation = i.InstitutionAbbreviation
 
 GO
 ---------------------------------------------------------------------------------------------------------------------

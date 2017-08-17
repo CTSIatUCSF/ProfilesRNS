@@ -131,12 +131,8 @@
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderDefault" runat="server" SkinID="Default" Visible="false">
                 <div class="institutionHeader">
-                    <div id="uc">
-                        <a target="_blank" href="https://www.universityofcalifornia.edu/">
-                            <img src="<%=GetURLDomain()%>/App_Themes/UC/Images/uclogo137.png" alt="Mega Profiles" /></a>
-                    </div>
                     <div id="site-logo">
-                        <h1><a href="<%=GetURLDomain()%>/">Mega Profiles
+                        <h1><a href="<%=GetURLDomain()%>/">Research Profiles
 							<div id="tagline">search, discover, network</div>
                         </a></h1>
                     </div>

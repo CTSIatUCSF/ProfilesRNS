@@ -9,13 +9,10 @@
 #navbarsearch input[type=submit]:hover  { border: 4px solid #FFB815; }
 
 /* banner */
-.institutionHeader { padding: 0; background: #FFFCED url("Images/ucbg.jpg") no-repeat scroll top right; width: 980px; }
-#uc{ float:left; width: 230px; height: 95px; }
-#uc img { padding: 15px 0 0 20px; }
 #site-logo h1 {
     font-size: 34px;
     margin: 6px 0 0;
-    padding: 15px 0 12px 30px;
+    padding: 15px 0 12px 0;
 	height: 86px;
 }
  #tagline { color: #666; font-weight: bold; padding-top: 8px; }

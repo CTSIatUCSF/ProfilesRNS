@@ -37,7 +37,7 @@ namespace Profiles.Search.Modules
             List<DirectConnection> directconnections = new List<DirectConnection>();
             List<IndirectConnection> indirectconnections = new List<IndirectConnection>();
 
-            string nodeuri = Brand.DebrandURI(Request.QueryString["nodeuri"].ToString());
+            string nodeuri = Request.QueryString["nodeuri"].ToString();
             string url = Request.RawUrl.Split('?')[1];
             bool person = false;
 

@@ -77,7 +77,7 @@ namespace Profiles.Search.Modules.SearchPerson
                 {
                     trDivision.Visible = false;
                 }
-                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowOtherOptions"]) == false)
+                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowOtherOptions"]) == false || !String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
                 {
                     trOtherOptions.Visible = false;
                 }
@@ -345,6 +345,10 @@ namespace Profiles.Search.Modules.SearchPerson
             }
 
             string otherfilters = Request.Form["hdnSelectedText"];
+            if (!String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
+            {
+                otherfilters += "," + Brand.GetCurrentBrand().PersonFilter;
+            }
 
             string classuri = "http://xmlns.com/foaf/0.1/Person";
 

@@ -241,7 +241,7 @@ namespace Profiles.Framework.Modules.MainMenu
             string institution = "";
             string otherFilters = "";
             string searchFor = Request.Form["mainMenuSearchFor"];
-            string theme = "UC"; // short term hack
+            string theme = Brand.GetSystemTheme(); 
 
             Brand brand = Brand.GetByTheme(searchTypeDropDownValue);
             if (brand != null)

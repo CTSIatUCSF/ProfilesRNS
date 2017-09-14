@@ -63,10 +63,25 @@ namespace Profiles.Edit.Modules.EditPropertyList
 
             foreach (XmlNode group in this.PropertyList.SelectNodes("//PropertyList/PropertyGroup"))
             {
+                // Skip ORNG if gadgets are turned off
+                if ("http://orng.info/ontology/orng#PropertyGroupORNGApplications".Equals(group.SelectSingleNode("@URI").Value) && !ORNGSettings.getSettings().Enabled)
+                {
+                    continue;
+                }
                 singlesi = new List<SecurityItem>();
 
                 foreach (XmlNode node in group.SelectNodes("Property"))
                 {
+                    // for multi institutional implementations. If an ORNG gadget is scoped to an institution that this user does not belong to, remove it
+                    if (node.SelectSingleNode("@URI").Value.StartsWith(Profiles.ORNG.Utilities.OpenSocialManager.ORNG_ONTOLOGY_PREFIX)) 
+                    {
+                        GadgetSpec spec = OpenSocialManager.GetGadgetByPropertyURI(node.SelectSingleNode("@URI").Value);
+                        if (spec != null && !String.IsNullOrEmpty(spec.GetInstitutionName()) && !spec.GetInstitutionName().Equals(Brand.GetForSubject(Subject).InstitutionName))
+                        {
+                            continue;
+                        }
+                    }
+
                     if (node.SelectSingleNode("@EditExisting").Value == "false"
                         && node.SelectSingleNode("@EditAddExisting").Value == "false"
                         && node.SelectSingleNode("@EditAddNew").Value == "false"

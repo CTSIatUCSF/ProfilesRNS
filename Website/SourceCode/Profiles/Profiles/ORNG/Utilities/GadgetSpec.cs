@@ -17,15 +17,17 @@ namespace Profiles.ORNG.Utilities
         private string label;
         private string openSocialGadgetURL;
         private bool enabled;
+        private string institutionName;
         private bool unrecognized = false;
         private Dictionary<string, GadgetViewRequirements> viewRequirements = new Dictionary<string, GadgetViewRequirements>();
 
         // these are loaded from the DB
-        public GadgetSpec(int appId, string label, string openSocialGadgetURL, bool enabled)
+        public GadgetSpec(int appId, string label, string openSocialGadgetURL, string institutionName, bool enabled)
         {
             this.openSocialGadgetURL = openSocialGadgetURL;
             this.label = label;
             this.appId = appId;
+            this.institutionName = institutionName;
             this.enabled = enabled;
             this.unrecognized = false;
 
@@ -94,6 +96,11 @@ namespace Profiles.ORNG.Utilities
         public String GetGadgetURL()
         {
             return openSocialGadgetURL;
+        }
+
+        public String GetInstitutionName()
+        {
+            return institutionName;
         }
 
         public GadgetViewRequirements GetGadgetViewRequirements(String page)

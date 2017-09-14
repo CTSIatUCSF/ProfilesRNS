@@ -18,11 +18,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using System.Xml.Xsl;
-
+using System.Configuration;
 
 using Profiles.Profile.Utilities;
-
 using Profiles.Framework.Utilities;
+
 namespace Profiles.Framework.Modules.MainMenu
 {
     public partial class MainMenu : BaseModule
@@ -65,38 +65,46 @@ namespace Profiles.Framework.Modules.MainMenu
 
             menulist.Append("<li><a href='" + Brand.GetDomain() + "/about/default.aspx'>About This Site</a></li>");
 
+            Brand userBrand = Brand.GetCurrentBrand();
             // logged in Person
             if (sm.Session().NodeID > 0)
             {
-                menulist.Append("<li><img src='" + Brand.GetDomain() + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + sm.Session().NodeID + "&Thumbnail=True&Width=20' width='20' height='40'></li>");
-                menulist.Append("<li><a href='" + sm.Session().PersonURI + "'>" + sm.Session().ShortDisplayName + "</a></li>");
+                userBrand = Brand.GetForSubject(sm.Session().NodeID);
+                menulist.Append("<li><img src='" + userBrand.BasePath + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + sm.Session().NodeID + "&Thumbnail=True&Width=20' width='20' height='40'></li>");
+                menulist.Append("<li><a href='" + UCSFIDSet.ByNodeId[sm.Session().NodeID].PrettyURL + "'>" + sm.Session().ShortDisplayName + "</a></li>");
             }
             else if (!String.IsNullOrEmpty(sm.Session().ShortDisplayName)) // logged in person
             {
                 menulist.Append("<li>" + sm.Session().ShortDisplayName + "</li>");
             }
+            else if (!String.IsNullOrEmpty(Request.Headers.Get(ConfigurationManager.AppSettings["Shibboleth.UserNameHeader"].ToString())))
+            {
+                // they are logged into shibboleth but not profiles. Redirect them through shibboleth
+                DebugLogging.Log("Redirecting user logged into Shibboleth but not profiles :" + Request.Headers.Get(ConfigurationManager.AppSettings["Shibboleth.UserNameHeader"].ToString()));
+                Response.Redirect(Brand.GetDomain() + "/login/default.aspx?method=shibboleth&redirectto=" + Brand.GetDomain() + Root.AbsolutePath, false);
+            }
             
             if (sm.Session().NodeID > 0)
             {
-                menulist.Append("<li><a href='" + Brand.GetDomain() + "/login/default.aspx?method=login&edit=true'>Edit My Profile</a></li>");
+                menulist.Append("<li><a href='" + userBrand.BasePath + "/login/default.aspx?method=login&edit=true'>Edit My Profile</a></li>");
             }
 
 
             if (base.MasterPage.CanEdit)
             {
-                menulist.Append("<li><a href='" + Brand.GetDomain() + "/edit/" + subject.ToString() + "'>Edit This Profile</a></li>");
+                menulist.Append("<li><a href='" + userBrand.BasePath + "/edit/" + subject.ToString() + "'>Edit This Profile</a></li>");
             }
 
 
             // ORNG 
             if (sm.Session().NodeID > 0)
             {
-                menulist.Append("<li><a href='" + Brand.GetDomain() + "/ORNG/Dashboard.aspx?owner=" + sm.Session().PersonURI + "'>See My Dashboard</a></li>");
+                menulist.Append("<li><a href='" + userBrand.BasePath + "/ORNG/Dashboard.aspx?owner=" + sm.Session().PersonURI + "'>See My Dashboard</a></li>");
             }
 
             if (sm.Session().NodeID > 0)
             {
-                menulist.Append("<li><a href='" + Brand.GetDomain() + "/proxy/default.aspx?subject=" + sm.Session().NodeID.ToString() + "'>Manage Proxies</a></li>");
+                menulist.Append("<li><a href='" + userBrand.BasePath + "/proxy/default.aspx?subject=" + sm.Session().NodeID.ToString() + "'>Manage Proxies</a></li>");
             }
 
             if (base.BaseData.SelectSingleNode(".").OuterXml != string.Empty && !Root.AbsolutePath.ToLower().Contains("/search"))

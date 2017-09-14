@@ -77,7 +77,7 @@ namespace Profiles.Edit
             HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
             body.Attributes.Add("class", "edit");
 
-            this.Master.FindControl("pnlNavBarSearch").Visible = false;
+//            this.Master.FindControl("pnlNavBarSearch").Visible = false;
 
             HtmlLink Displaycss = new HtmlLink();
             Displaycss.Href = Brand.GetDomain() + "/Profile/CSS/display.css";

@@ -75,5 +75,25 @@ namespace Profiles.Search.Modules.TopSearchPhrase
         {
             return Brand.GetDomain();
         }
+
+        public string GetBrandingQueryArgs()
+        {
+            string queryArgs = "";
+            Brand brand = Brand.GetCurrentBrand();
+            if (brand != null)
+            {
+                if (!String.IsNullOrEmpty(brand.PersonFilter))
+                {
+                    queryArgs += "&otherfilters=" + brand.PersonFilter;
+                }
+                if (!brand.IsMultiInstitutional())
+                {
+                    // we need an institution object!
+                    Profiles.Search.Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
+                    queryArgs += "&institution=" + data.GetConvertedListItem(data.GetInstitutions(), brand.InstitutionName);
+                }
+            }
+            return queryArgs;
+        }
     }
 }

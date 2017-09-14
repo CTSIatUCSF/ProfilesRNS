@@ -61,7 +61,7 @@
 
 
 
-<!-- UCSF, this is the Harvard stuff. We might show this and hide it but we should find a better way 
+<!-- UCSF, this is the Harvard stuff. We might show this and hide it but we should find a better way -->
 <div class="activeContainer" id="defaultmenu">
     <div class="activeContainerTop"></div>
     <div class="activeContainerCenter">
@@ -75,5 +75,4 @@
     </div>
     <div class="activeContainerBottom"></div>
 </div>
--->
 

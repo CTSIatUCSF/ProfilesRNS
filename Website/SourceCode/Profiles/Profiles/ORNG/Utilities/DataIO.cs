@@ -33,7 +33,8 @@ namespace Profiles.ORNG.Utilities
 
         public SqlDataReader GetGadgets()
         {
-            string sql = "select AppID, Name, Url, Enabled from [ORNG.].[Apps]";
+            string sql = "select AppID, Name, Url, InstitutionName, enabled from [ORNG.].[Apps] a " +
+                          "LEFT OUTER JOIN [Profile.Data].[Organization.Institution] i on a.InstitutionID = i.InstitutionID";
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }

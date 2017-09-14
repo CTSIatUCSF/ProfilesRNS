@@ -38,7 +38,7 @@ namespace Profiles.Login.Modules.ShibLogin
 
                     sm.SessionLogout();
                     sm.SessionDestroy();
-                    Response.Redirect(Request.QueryString["redirectto"].ToString());
+                    Response.Redirect(ConfigurationManager.AppSettings["Shibboleth.LogoutURL"] + "?return=" + Request.QueryString["redirectto"].ToString());
                 }
                 else if (Request.QueryString["method"].ToString() == "shibboleth")
                 {
@@ -65,7 +65,7 @@ namespace Profiles.Login.Modules.ShibLogin
                     if (!authenticated)
                     {
                         // try and just put their name in the session.
-                        sm.Session().ShortDisplayName = Request.Headers.Get("ShibdisplayName");
+                        sm.Session().ShortDisplayName = String.IsNullOrEmpty(Request.Headers.Get("ShibdisplayName")) ? Request.Headers.Get(ConfigurationManager.AppSettings["Shibboleth.UserNameHeader"].ToString()) : Request.Headers.Get("ShibdisplayName");
                         RedirectAuthenticatedUser();
                     }
                 }

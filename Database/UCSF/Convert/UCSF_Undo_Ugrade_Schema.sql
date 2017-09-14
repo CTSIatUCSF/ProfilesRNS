@@ -13,6 +13,9 @@ DROP TABLE [UCSF.].[InstitutionAbbreviation2Theme]
 DROP TABLE [UCSF.].[Theme]
 DROP SCHEMA [UCSF.]
 
+ALTER TABLE [ORNG.].[Apps] DROP CONSTRAINT [FK_orng_apps_institution]
+ALTER TABLE [ORNG.].[Apps] DROP COLUMN InstitutionID
+
 DROP PROCEDURE [UCSF.CTSASearch].[Publication.Pubmed.AddCoAuthorXML]
 DROP PROCEDURE [UCSF.CTSASearch].[Publication.Pubmed.GetAllPMIDs]
 DROP PROCEDURE [UCSF.CTSASearch].[Publication.Pubmed.ParseCoAuthorXML]

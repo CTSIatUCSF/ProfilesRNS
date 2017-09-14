@@ -642,7 +642,7 @@ UPDATE [Ontology.Presentation].[XML] SET [PresentationXML]=CONVERT(xml,N'<Presen
 commit
 
 --- UCWide Branding work
-INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('Default', 'http://stage-profiles.ucsf.edu/mega', 1);
+INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('Default', 'http://stage-profiles.ucsf.edu/godzilla', 1);
 INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UC', 'http://stage-profiles.ucsf.edu/profiles_uc', 1);
 INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCSF', 'http://stage-profiles.ucsf.edu/ucsf', 0);
 INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCSD', 'http://stage-profiles.ucsf.edu/ucsd', 0);

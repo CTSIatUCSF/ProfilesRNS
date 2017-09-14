@@ -917,12 +917,29 @@ END
 
 GO
 
+
 ---------------------------------------------------------------------------------------------------------------------
 --
 --	[ORNG.] sp's that are good for 
 --
 ---------------------------------------------------------------------------------------------------------------------
 
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER TABLE [ORNG.].[Apps]	ADD  InstitutionID int NULL
+GO
+
+ALTER TABLE [ORNG.].[Apps]  WITH CHECK ADD  CONSTRAINT [FK_orng_apps_institution] FOREIGN KEY([InstitutionID])
+REFERENCES [Profile.Data].[Organization.Institution] ([InstitutionID])
+GO
+
+ALTER TABLE [ORNG.].[Apps] CHECK CONSTRAINT [FK_orng_apps_institution]
+GO
 
 ---------------------------------------------------------------------------------------------------------------------
 --

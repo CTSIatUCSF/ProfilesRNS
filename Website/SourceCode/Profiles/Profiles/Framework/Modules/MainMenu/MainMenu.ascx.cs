@@ -258,8 +258,7 @@ namespace Profiles.Framework.Modules.MainMenu
 
                 if (!brand.IsMultiInstitutional())
                 {
-                    Profiles.Search.Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
-                    institution = data.GetConvertedListItem(data.GetInstitutions(), brand.InstitutionName);
+                    institution = brand.GetInstitution().GetURI();
                     theme = brand.Theme;
                 }
                 else if (brand.PersonFilter != null)

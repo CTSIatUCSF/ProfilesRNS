@@ -614,8 +614,8 @@ namespace Profiles.Profile.Utilities
             dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
             if (brand != null && brand.PersonFilter != null)
                 dbcommand.Parameters.Add(new SqlParameter("@PersonFilter", brand.PersonFilter));
-            if (brand != null && brand.InstitutionAbbreviation != null)
-                dbcommand.Parameters.Add(new SqlParameter("@InstitutionAbbreviation", brand.InstitutionAbbreviation));
+            if (brand != null && brand.GetInstitution() != null)
+                dbcommand.Parameters.Add(new SqlParameter("@InstitutionAbbreviation", brand.GetInstitution().GetAbbreviation()));
             // Return reader
             return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
         }
@@ -689,8 +689,8 @@ namespace Profiles.Profile.Utilities
             Brand brand = Brand.GetCurrentBrand();
             if (brand != null && brand.PersonFilter != null)
                 dbcommand.Parameters.Add(new SqlParameter("@PersonFilter", brand.PersonFilter));
-            if (brand != null && brand.InstitutionAbbreviation != null)
-                dbcommand.Parameters.Add(new SqlParameter("@InstitutionAbbreviation", brand.InstitutionAbbreviation));
+            if (brand != null && brand.GetInstitution() != null)
+                dbcommand.Parameters.Add(new SqlParameter("@InstitutionAbbreviation", brand.GetInstitution().GetAbbreviation()));
             // Return reader
             return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
         }

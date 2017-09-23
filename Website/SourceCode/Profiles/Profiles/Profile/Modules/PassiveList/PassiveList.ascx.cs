@@ -109,6 +109,11 @@ namespace Profiles.Profile.Modules.PassiveList
                             documentdata.Append(" PersonID=\"" + i.personid);
                             documentdata.Append("\"");
                         }
+                        if (Brand.GetByURL(i.itemurl) != null && Brand.GetByURL(i.itemurl).GetInstitution() != null)
+                        {
+                            documentdata.Append(" InstitutionAbbreviation=\"" + Brand.GetByURL(i.itemurl).GetInstitution().GetAbbreviation());
+                            documentdata.Append("\"");
+                        }
                     }
                     documentdata.Append(">");
                     documentdata.Append(i.item);

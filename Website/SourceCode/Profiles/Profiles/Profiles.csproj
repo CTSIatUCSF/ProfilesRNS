@@ -707,6 +707,7 @@
     <Compile Include="Framework\Utilities\BrandedPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Framework\Utilities\Institution.cs" />
     <Compile Include="Framework\Utilities\UCSFIDSet.cs" />
     <Compile Include="Framework\Utilities\UserHistory.cs" />
     <Compile Include="History\Default.aspx.cs">

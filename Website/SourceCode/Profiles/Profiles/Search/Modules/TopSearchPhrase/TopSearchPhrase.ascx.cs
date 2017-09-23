@@ -88,9 +88,7 @@ namespace Profiles.Search.Modules.TopSearchPhrase
                 }
                 if (!brand.IsMultiInstitutional())
                 {
-                    // we need an institution object!
-                    Profiles.Search.Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
-                    queryArgs += "&institution=" + data.GetConvertedListItem(data.GetInstitutions(), brand.InstitutionName);
+                    queryArgs += "&institution=" + brand.GetInstitution().GetURI();
                 }
             }
             return queryArgs;

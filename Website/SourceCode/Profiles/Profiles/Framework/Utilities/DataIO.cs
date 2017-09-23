@@ -920,11 +920,11 @@ namespace Profiles.Framework.Utilities
             //new Brand(Brand.DefaultBrandName, Brand.GetSystemTheme(), null, GetRESTBasePath(), true);
 
             using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
-                "select Theme, BasePath, Exclusive2Institution, InstitutionAbbreviation, PersonFilter from [UCSF.].[vwBrand]", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+                "select Theme, BasePath, InstitutionAbbreviation, PersonFilter from [UCSF.].[vwBrand]", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    new Brand(reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString());
+                    new Brand(reader[0].ToString(), reader[1].ToString(), Institution.GetByAbbreviation(reader[2].ToString()), reader[3].ToString());
                 }
             }
         }
@@ -948,5 +948,16 @@ namespace Profiles.Framework.Utilities
             }
         }
 
+        public void LoadInstitutions()
+        {
+            using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
+                "EXEC [Profile.Data].[Organization.GetInstitutions]", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    new Institution(Convert.ToInt32(reader[0]), reader[1].ToString(), reader[2].ToString(), Convert.ToInt64(reader[3]), reader[4].ToString());
+                }
+            }
+        }
     }
 }

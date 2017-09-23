@@ -23,7 +23,7 @@ namespace Profiles.Profile.Modules
 		{
 			DrawProfilesModule();
 			ConceptName = this.BaseData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]", this.Namespaces).InnerText;
-            Institution = Brand.GetCurrentBrand() != null && !Brand.GetCurrentBrand().IsMultiInstitutional() ? Brand.GetCurrentBrand().InstitutionAbbreviation : "";
+            Institution = Brand.GetCurrentBrand() != null && !Brand.GetCurrentBrand().IsMultiInstitutional() ? Brand.GetCurrentBrand().GetInstitution().GetAbbreviation() : "";
 		}
 
 		public CustomViewConceptPublication() : base() { }

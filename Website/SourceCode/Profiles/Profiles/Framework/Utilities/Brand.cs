@@ -14,13 +14,12 @@ namespace Profiles.Framework.Utilities
 
         public string Theme { get; set; }
         public string BasePath { get; set; }
-        public string InstitutionName { get; set; }
-        public string InstitutionAbbreviation { get; set; }
+        public Institution InstitutionObj { get; set; }
         public string PersonFilter { get; set; }
 
         public bool IsMultiInstitutional()
         {
-            return String.IsNullOrEmpty(InstitutionName);
+            return InstitutionObj == null;
         }
 
         public static Brand GetCurrentBrand()
@@ -118,12 +117,16 @@ namespace Profiles.Framework.Utilities
             return pages.Theme;
         }
 
-        public Brand(string Theme, string BasePath, string InstitutionName, string InstitutionAbbreviation, string PersonFilter)
+        public Institution GetInstitution()
+        {
+            return InstitutionObj;
+        }
+
+        public Brand(string Theme, string BasePath, Institution Institution, string PersonFilter)
         {
             this.Theme = Theme;
             this.BasePath = BasePath;
-            this.InstitutionName = InstitutionName;
-            this.InstitutionAbbreviation = InstitutionAbbreviation;
+            this.InstitutionObj = Institution;
             this.PersonFilter = PersonFilter;
 
             ByTheme[this.Theme] = this;

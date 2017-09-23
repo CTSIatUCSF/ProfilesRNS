@@ -715,43 +715,16 @@ namespace Profiles.Search.Utilities
         /// <returns></returns>
         public List<GenericListItem> GetInstitutions()
         {
+
+            // UCSF, we preload this so just use what we have
             List<GenericListItem> institutions = new List<GenericListItem>();
-
-            if (Framework.Utilities.Cache.FetchObject("GetInstitutions") == null)
+            foreach (Institution institution in Institution.GetAll())
             {
-                try
-                {
-
-                    string sql = "EXEC [Profile.Data].[Organization.GetInstitutions]";
-
-                    SqlDataReader sqldr = this.GetSQLDataReader("", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
-
-                    while (sqldr.Read())
-                        institutions.Add(new GenericListItem(sqldr["InstitutionName"].ToString(), sqldr["URI"].ToString()));
-
-                    //Always close your readers
-                    if (!sqldr.IsClosed)
-                        sqldr.Close();
-
-                    //Defaulted this to be one hour
-                    Framework.Utilities.Cache.SetWithTimeout("GetInstitutions", institutions, 3600);
-
-
-                }
-                catch (Exception e)
-                {
-                    Framework.Utilities.DebugLogging.Log(e.Message + " " + e.StackTrace);
-                    throw new Exception(e.Message);
-                }
+                institutions.Add(new GenericListItem(institution.GetName(), institution.GetURI()));
             }
-            else
-            {
-                institutions = (List<GenericListItem>)Framework.Utilities.Cache.FetchObject("GetInstitutions");
-
-            }
-
             return institutions;
         }
+
         public DataSet GetFilters()
         {
             DataSet ds = new DataSet();

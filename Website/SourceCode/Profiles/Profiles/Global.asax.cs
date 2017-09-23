@@ -43,6 +43,7 @@ namespace Profiles
         /// <param name="e"> .Net Event Arguments</param>
         protected void Application_Start(object sender, EventArgs e)
         {
+            new Framework.Utilities.DataIO().LoadInstitutions();
             new Framework.Utilities.DataIO().LoadBrands();
             new Framework.Utilities.DataIO().LoadUCSFIdSet();
             RegisterRoutes(RouteTable.Routes);

@@ -76,7 +76,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                     if (node.SelectSingleNode("@URI").Value.StartsWith(Profiles.ORNG.Utilities.OpenSocialManager.ORNG_ONTOLOGY_PREFIX)) 
                     {
                         GadgetSpec spec = OpenSocialManager.GetGadgetByPropertyURI(node.SelectSingleNode("@URI").Value);
-                        if (spec != null && !String.IsNullOrEmpty(spec.GetInstitutionName()) && !spec.GetInstitutionName().Equals(Brand.GetForSubject(Subject).InstitutionName))
+                        if (spec != null && !String.IsNullOrEmpty(spec.GetInstitutionName()) && !spec.GetInstitutionName().Equals(Brand.GetForSubject(Subject).GetInstitution().GetName()))
                         {
                             continue;
                         }

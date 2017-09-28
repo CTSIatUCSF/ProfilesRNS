@@ -18,7 +18,17 @@
     <div id="suckerfishmenu">
         <div class="content">
             <ul class="menu">
-                <li class="item-home"><a href="<%=GetURLDomain()%>">Find People</a></li>
+                <li class="item-home"><a href="<%=GetURLDomain()%>">Advanced Search</a>
+					<ul>
+						<li><a href="http://stage-profiles.ucsf.edu/ucd/search/">UC Davis</a></li>
+						<li><a href="http://stage-profiles.ucsf.edu/uci/search/">UC Irvine</a></li>
+						<li><a href="http://stage-profiles.ucsf.edu/ucsd/search/">UC San Diego</a></li>
+						<li><a href="http://stage-profiles.ucsf.edu/ucsf/search/">UC San Francisco</a></li>
+						<li><a href="http://stage-profiles.ucsf.edu/profiles_uc/search/">All UC</a></li>
+						<li><a href="http://stage-profiles.ucsf.edu/usc/search/">University of Southern California</a></li>
+						<li><a href="http://stage-profiles.ucsf.edu/godzilla/search/">All</a></li>
+					</ul>
+				</li>
                 <li id="about"><a href="<%=GetURLDomain()%>/about/AboutProfiles.aspx">About</a></li>
                 <li id="contact"><a href="<%=GetURLDomain()%>/about/Help.aspx">Help / Contact Us</a></li>
             </ul>

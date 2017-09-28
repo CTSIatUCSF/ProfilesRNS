@@ -2,6 +2,7 @@
 .dblarrow:before, #about h2, h2.about, .content-block h2, .searchForm td div.header, .highlight,
 .passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
+.profiles a .authInst, .profiles a .authInst:hover, 
 .profiles .profilesContentMain .pageTitle h2 { color: #CD2040; }
 .profiles a.search-button, .more span, .less span { background-color: #CD2040; }
 .profiles a.search-button:hover { background-color: #B01B37; box-shadow: none; }
@@ -33,8 +34,8 @@
 
 /* navbar & footer colors */
 .profiles .profilesFooter,
-#suckerfishmenu, #suckerfishmenu a { background-color: #2D84AF; }
-.search #suckerfishmenu .item-home a,
+#suckerfish-container, #suckerfishmenu, #suckerfishmenu a { background-color: #2D84AF; }
+.search #suckerfishmenu .item-home > a,
 #suckerfishmenu	 a.active, #suckerfishmenu a:hover { background-color: #77AFCB; }
 
 /* about pages */

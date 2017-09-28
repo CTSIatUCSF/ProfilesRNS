@@ -1,4 +1,5 @@
 ﻿/* highlight color */
+.profiles a .authInst, .profiles a .authInst:hover, 
 .dblarrow:before, .highlight { color: #771111; }
 #about h2, h2.about, .content-block h2, .searchForm td div.header, 
 .passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
@@ -50,9 +51,9 @@
 .profiles .profilesFooter a, .profiles .profilesFooter a:hover { color: #FFCC00; }
 
 /* navbar & footer colors */
-#suckerfishmenu, #suckerfishmenu a { background-color: #771111; }
+#suckerfish-container, #suckerfishmenu, #suckerfishmenu a { background-color: #771111; }
 #suckerfishmenu li { border-right: none; }
-.search #suckerfishmenu .item-home a,
+.search #suckerfishmenu .item-home > a,
 #suckerfishmenu	 a.active, #suckerfishmenu a:hover { background-color: #990000; }
 #header-ucsf, .profiles .profilesFooter { background-color: #000; }
 .profiles .profilesFooter { border: none; }

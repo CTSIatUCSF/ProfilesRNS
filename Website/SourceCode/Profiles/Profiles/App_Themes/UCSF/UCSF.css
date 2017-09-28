@@ -3,6 +3,7 @@
 .dblarrow:before, #about h2, h2.about, .content-block h2, .searchForm td div.header,
 .passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
+.profiles a .authInst, .profiles a .authInst:hover, 
 .profiles .profilesContentMain .pageTitle h2 { color: #F26D04; }
 .profiles a.search-button, .more span, .less span { background-color: #F26D04; }
 .profiles a.search-button:hover { background-color: #F48024; box-shadow: none; }
@@ -10,7 +11,7 @@
 #navbarsearch input[type=submit]:hover  { background-color: #F48024; border: 4px solid #F48024; }
 
 /* active menu color */
-.search #suckerfishmenu .item-home a,
+.search #suckerfishmenu .item-home > a,
 #suckerfishmenu	 a.active { background-color: #052049; }
 
 /* UCSF only elements */

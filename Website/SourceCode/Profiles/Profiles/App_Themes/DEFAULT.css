@@ -166,6 +166,8 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 #publicationTimelineGraph { width: auto;  }
 #publicationTimelineGraph img { padding: 10px 0 20px; }
 .profiles .profilesContentMain  .awardsList td.awardStartDate { white-space: nowrap; }
+.authInst { display: inline-block; padding-left: 4px; font-size: 10px; }
+.profilesContentPassive .authInst { padding-left: 26px; }
 
 /* PROFILE show & hide */
 .overview { max-height: 179px; overflow: hidden; }
@@ -275,6 +277,10 @@ ul.highlights li {
   font-variant: normal;
   border-right: 1px solid #FFF;
 }
+#suckerfishmenu	 ul.menu li ul { position: absolute; left: -999px; padding: 0; }
+#suckerfishmenu	 ul.menu li:hover ul { left: auto; }
+#suckerfishmenu	 ul.menu li ul li { display: block; float: none; border-top: 1px solid #DDD; }
+.item-home > a:after { content:'\25BC'; padding-left: 8px; font-size: 80%; display: inline-block; height: 10px; }
 
 /* login & edit links */
 #active-nav { clear: left; text-align: left; padding: 5px 0; width: 100%; height: 21px; font-size: 13px; }

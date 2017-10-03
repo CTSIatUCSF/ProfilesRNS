@@ -302,9 +302,6 @@ namespace Profiles
         {
             string url = HttpContext.Current.Request.Url.ToString().ToLower();
             string prettyUrl = url.Substring(0, url.IndexOf(applicationName)) + applicationName;
-            HttpContext.Current.Items["Param0"] = "display";
-            HttpContext.Current.Items["Param1"] = UCSFIDSet.ByPrettyURL[prettyUrl].NodeId;
-
 
             //Loop each of the parts of the path and pack them into the current request context as 
             //parameters so they can be processed by the REST.aspx process
@@ -312,6 +309,9 @@ namespace Profiles
             {
                 HttpContext.Current.Items[urlParm.Key] = urlParm.Value;
             }
+
+            HttpContext.Current.Items["Param0"] = HttpContext.Current.Items.Contains("Param2") ? "profile" : "display";
+            HttpContext.Current.Items["Param1"] = UCSFIDSet.ByPrettyURL[prettyUrl].NodeId;
 
             return BuildManager.CreateInstanceFromVirtualPath("~/REST.aspx", typeof(Page)) as IHttpHandler;
         }

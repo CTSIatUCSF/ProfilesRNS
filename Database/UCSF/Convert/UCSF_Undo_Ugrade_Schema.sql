@@ -16,6 +16,9 @@ DROP SCHEMA [UCSF.]
 ALTER TABLE [ORNG.].[Apps] DROP CONSTRAINT [FK_orng_apps_institution]
 ALTER TABLE [ORNG.].[Apps] DROP COLUMN InstitutionID
 
+ALTER TABLE [Profile.Data].[Publication.PubMed.DisambiguationAffiliation]  DROP CONSTRAINT [FK_pubmed_disambiguation_affiliation_institution]
+ALTER TABLE [Profile.Data].[Publication.PubMed.DisambiguationAffiliation]  DROP COLUMN InstitutionID
+
 DROP PROCEDURE [UCSF.CTSASearch].[Publication.Pubmed.AddCoAuthorXML]
 DROP PROCEDURE [UCSF.CTSASearch].[Publication.Pubmed.GetAllPMIDs]
 DROP PROCEDURE [UCSF.CTSASearch].[Publication.Pubmed.ParseCoAuthorXML]

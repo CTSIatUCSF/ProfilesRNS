@@ -22,9 +22,10 @@ namespace Profiles.Framework.Utilities
         public string PrettyURL { get; set; }
         public string UserName { get; set; }
         public string FNO { get; set; }
+        public Institution Institution { get; set; }
         public Brand Brand { get; set; }
 
-        public UCSFIDSet(Int64 PersonId, Int64 NodeId, string EmployeeID, string PrettyURL, string UserName, string FNO, Brand Brand)
+        public UCSFIDSet(Int64 PersonId, Int64 NodeId, string EmployeeID, string PrettyURL, string UserName, string FNO, Institution Institution, Brand Brand)
         {
             this.PersonId = PersonId;
             this.NodeId = NodeId;
@@ -32,6 +33,7 @@ namespace Profiles.Framework.Utilities
             this.PrettyURL = PrettyURL.ToLower();
             this.UserName = UserName;
             this.FNO = FNO.ToLower();
+            this.Institution = Institution;
             this.Brand = Brand;
 
             ByPersonId[this.PersonId] = this;

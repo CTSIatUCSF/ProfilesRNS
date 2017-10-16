@@ -108,10 +108,7 @@ namespace Profiles.Profile.Modules.PassiveList
                         {
                             documentdata.Append(" PersonID=\"" + i.personid);
                             documentdata.Append("\"");
-                        }
-                        if (Brand.GetByURL(i.itemurl) != null && Brand.GetByURL(i.itemurl).GetInstitution() != null)
-                        {
-                            documentdata.Append(" InstitutionAbbreviation=\"" + Brand.GetByURL(i.itemurl).GetInstitution().GetAbbreviation());
+                            documentdata.Append(" InstitutionAbbreviation=\"" + UCSFIDSet.ByPersonId[Int64.Parse(i.personid)].Institution.GetAbbreviation());
                             documentdata.Append("\"");
                         }
                     }

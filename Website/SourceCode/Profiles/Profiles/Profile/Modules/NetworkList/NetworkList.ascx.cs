@@ -231,6 +231,12 @@ namespace Profiles.Framework.Modules.NetworkList
                             }
                         }
 
+                        if (UCSFIDSet.ByPrettyURL.ContainsKey(i.itemurl))
+                        {
+                            documentdata.Append(" InstitutionAbbreviation=\"" + UCSFIDSet.ByPrettyURL[i.itemurl].Institution.GetAbbreviation());
+                            documentdata.Append("\"");
+                        }
+
                         string itemxpath = i.itemxpath;
                         if (itemxpath != string.Empty)
                             item = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about= '" + itemxpath + "']/rdfs:label", base.Namespaces).InnerText;

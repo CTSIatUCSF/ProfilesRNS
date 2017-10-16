@@ -86,10 +86,7 @@ namespace Profiles.Activity.Modules.ActivityHistory
                 linkThumbnail.NavigateUrl = activity.Profile.URL;
                 linkProfileURL.NavigateUrl = activity.Profile.URL;
                 linkProfileURL.Text = activity.Profile.Name;
-                if (Brand.GetForSubject(activity.Profile.NodeID) != null && Brand.GetForSubject(activity.Profile.NodeID).GetInstitution() != null)
-                {
-                    linkProfileURL.Text += "<span class=\"authInst\">" + Brand.GetForSubject(activity.Profile.NodeID).GetInstitution().GetAbbreviation() + "</span>";
-                }
+                linkProfileURL.Text += "<span class=\"authInst\">" + UCSFIDSet.ByNodeId[activity.Profile.NodeID].Institution.GetAbbreviation() + "</span>";
 
                 litDate.Text = activity.Date;
                 litMessage.Text = activity.Message;

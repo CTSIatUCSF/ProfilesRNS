@@ -189,5 +189,48 @@ namespace Profiles.CustomAPI.Utilities
             }
             return String.IsNullOrEmpty(retval) ? "" : retval.Substring(2);
         }
+
+        public List<Dictionary<string, object>> GetRejectedPMIDsAsJSON(Int64 personid)
+        {
+            List<int> pmids = new List<int>();
+            string sql = "select PMID from [Profile.Data].[Publication.Person.Exclude] WHERE PMID IS NOT NULL AND PersonID = " + personid;
+            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+            {
+                while (sqldr.Read())
+                {
+                    pmids.Add(Convert.ToInt32(sqldr[0]));
+                }
+            }
+
+            List<Dictionary<string, object>> retval = new List<Dictionary<string, object>>();
+            foreach(int pmid in pmids)
+            {
+                retval.Add(GetPubMedPublication(pmid));
+            }
+            return retval;
+        }
+
+        private Dictionary<string, object> GetPubMedPublication(int pmid)
+        {
+            Dictionary<string, object> publication = new Dictionary<string, object>();
+            Dictionary<string, string> publicationSource = new Dictionary<string, string>();
+            string sql = "select [EntityName], [Reference], [EntityDate], [PubYear], [URL] from [Profile.Data].[vwPublication.Entity.InformationResource] where PMID = " + pmid;
+            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+            {
+                publicationSource["PublicationSourceName"] = "PubMed";
+                publication["PublicationSource"] = publicationSource;
+                publicationSource["PMID"] = "" + pmid;
+
+                if (sqldr.Read())
+                {
+                    publication["Title"] = sqldr[0].ToString();
+                    publication["Publication"] = sqldr[1].ToString();
+                    publication["Date"] = sqldr[2].ToString();
+                    publication["Year"] = sqldr[3].ToString();
+                    publicationSource["PublicationSourceURL"] = sqldr[4].ToString();
+                }
+            }
+            return publication;
+        }
     }
 }

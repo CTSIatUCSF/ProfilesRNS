@@ -80,6 +80,19 @@
         </script>
 
         <div id='page-container'>
+            <asp:Panel ID="MasterPageHeaderUC" runat="server" SkinID="UC" Visible="false">
+                <div class="institutionHeader">
+                    <div id="uc">
+                        <a target="_blank" href="https://www.universityofcalifornia.edu/">
+                            <img src="<%=GetURLDomain()%>/App_Themes/UC/Images/uclogo137.png" alt="University of California" /></a>
+                    </div>
+                    <div id="site-logo">
+                        <h1><a href="<%=GetURLDomain()%>/">UC Profiles
+							<div id="tagline">search, discover, network</div>
+                        </a></h1>
+                    </div>
+                </div>
+            </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCSF" runat="server" SkinID="UCSF" Visible="false">
                 <div id="header-ucsf">
                     <div id="ucsfnav">
@@ -138,14 +151,53 @@
                     </div>
                 </div>
             </asp:Panel>
-            <asp:Panel ID="MasterPageHeaderUC" runat="server" SkinID="UC" Visible="false">
+            <asp:Panel ID="MasterPageHeaderUCI" runat="server" SkinID="UCI" Visible="false">
                 <div class="institutionHeader">
-                    <div id="uc">
-                        <a target="_blank" href="https://www.universityofcalifornia.edu/">
-                            <img src="<%=GetURLDomain()%>/App_Themes/UC/Images/uclogo137.png" alt="University of California" /></a>
+                    <div id="uci">
+                        <a target="_blank" href="https://www.uci.edu/">
+                            <img src="<%=GetURLDomain()%>/App_Themes/UCI/Images/uclogo137.png" alt="University of California Irvine" /></a>
                     </div>
                     <div id="site-logo">
-                        <h1><a href="<%=GetURLDomain()%>/">UC Profiles
+                        <h1><a href="<%=GetURLDomain()%>/">UCI Profiles
+							<div id="tagline">search, discover, network</div>
+                        </a></h1>
+                    </div>
+                </div>
+            </asp:Panel>
+            <asp:Panel ID="MasterPageHeaderUCD" runat="server" SkinID="UCD" Visible="false">
+                <div class="institutionHeader">
+                    <div id="ucd">
+                        <a target="_blank" href="https://www.ucd.edu/">
+                            <img src="<%=GetURLDomain()%>/App_Themes/UCD/Images/uclogo137.png" alt="University of California Davis" /></a>
+                    </div>
+                    <div id="site-logo">
+                        <h1><a href="<%=GetURLDomain()%>/">UCD Profiles
+							<div id="tagline">search, discover, network</div>
+                        </a></h1>
+                    </div>
+                </div>
+            </asp:Panel>
+            <asp:Panel ID="MasterPageHeaderUCLA" runat="server" SkinID="UCLA" Visible="false">
+                <div class="institutionHeader">
+                    <div id="ucla">
+                        <a target="_blank" href="https://www.ucla.edu/">
+                            <img src="<%=GetURLDomain()%>/App_Themes/UCLA/Images/uclogo137.png" alt="University of California Los Angeles" /></a>
+                    </div>
+                    <div id="site-logo">
+                        <h1><a href="<%=GetURLDomain()%>/">UCLA Profiles
+							<div id="tagline">search, discover, network</div>
+                        </a></h1>
+                    </div>
+                </div>
+            </asp:Panel>
+            <asp:Panel ID="MasterPageHeaderUCR" runat="server" SkinID="UCR" Visible="false">
+                <div class="institutionHeader">
+                    <div id="ucr">
+                        <a target="_blank" href="https://www.ucr.edu/">
+                            <img src="<%=GetURLDomain()%>/App_Themes/UCR/Images/uclogo137.png" alt="University of California Riverside" /></a>
+                    </div>
+                    <div id="site-logo">
+                        <h1><a href="<%=GetURLDomain()%>/">UCR Profiles
 							<div id="tagline">search, discover, network</div>
                         </a></h1>
                     </div>

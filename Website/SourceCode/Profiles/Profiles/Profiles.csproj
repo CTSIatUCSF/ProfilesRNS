@@ -388,6 +388,20 @@
     <Content Include="Framework\JavaScript\UCSF.js" />
     <Content Include="App_Themes\UCSF\Images\ucsf_alumni_blue.jpg" />
     <Content Include="HttpBL.csproj" />
+    <Content Include="Login\Images\berkeley.edu.png" />
+    <Content Include="Login\Images\ucdavis.edu.png" />
+    <Content Include="Login\Images\uci.edu.gif" />
+    <Content Include="Login\Images\ucla.edu.gif" />
+    <Content Include="Login\Images\ucmerced.edu.jpg" />
+    <Content Include="Login\Images\ucop.edu.gif" />
+    <Content Include="Login\Images\ucr.edu.jpg" />
+    <Content Include="Login\Images\ucsb.edu.png" />
+    <Content Include="Login\Images\ucsc.edu.jpg" />
+    <Content Include="Login\Images\ucsd.edu.png" />
+    <Content Include="Login\Images\ucsf.edu.png" />
+    <Content Include="Login\Modules\MultiShibLogin\MultiShibLogin.ascx" />
+    <Content Include="Login\MultiShibbolethLogin.aspx" />
+    <Content Include="Login\PresentationXML\MultiShibbolethLogin.xml" />
     <Content Include="Profile\JavaScript\UCSF.js" />
     <Content Include="App_Themes\UCSF\UCSF.css" />
     <Content Include="Search\JavaScript\UCSF.js" />
@@ -818,6 +832,20 @@
     </Compile>
     <Compile Include="History\Modules\HistoryList\HistoryList.ascx.designer.cs">
       <DependentUpon>HistoryList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Login\Modules\MultiShibLogin\MultiShibLogin.ascx.cs">
+      <DependentUpon>MultiShibLogin.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login\Modules\MultiShibLogin\MultiShibLogin.ascx.designer.cs">
+      <DependentUpon>MultiShibLogin.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Login\MultiShibbolethLogin.aspx.cs">
+      <DependentUpon>MultiShibbolethLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login\MultiShibbolethLogin.aspx.designer.cs">
+      <DependentUpon>MultiShibbolethLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login\Modules\ADLogin\ADLogin.ascx.cs">
       <DependentUpon>ADLogin.ascx</DependentUpon>

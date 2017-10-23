@@ -18,7 +18,7 @@
     <div id="suckerfishmenu">
         <div class="content">
             <ul class="menu">
-                <li class="item-home"><a href="<%=GetURLDomain()%>">Advanced Search</a>
+                <li class="item-home"><a href="<%=GetURLDomain()%>">Search Options</a>
 					<ul>
 						<li><a href="http://stage-profiles.ucsf.edu/ucd/search/">UC Davis</a></li>
 						<li><a href="http://stage-profiles.ucsf.edu/uci/search/">UC Irvine</a></li>

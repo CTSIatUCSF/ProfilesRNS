@@ -411,3 +411,7 @@ h2.badge-top  { padding: 12px 0 14px 4px; margin: -68px 0 0 60px; width: 70px; f
 .panelMain .act-heading { display: none; }
 .panelMain .act-userdate { float: left; width: 160px; padding-right: 10px; }
 .panelMain .act-msg { clear: none; float: left; width: 360px; padding: 0; margin-top: -2px; }
+
+/* Login */
+.login .searchForm .searchSection { background-color: #FFF; }
+.login input[type="image"] { max-width: 150px; padding:30px; vertical-align: middle; }

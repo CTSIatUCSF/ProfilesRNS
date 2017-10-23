@@ -152,26 +152,39 @@
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCI" runat="server" SkinID="UCI" Visible="false">
+                <div id="header-ucsf">
+                    <div id="ucsfnav">
+                        <ul>
+                            <li class="first">
+                                <a href="https://uci.edu" target="_blank">University of California, Irvine</a>
+								</a>
+                            </li>
+						</ul>
+					</div>
+				</div>
                 <div class="institutionHeader">
-                    <div id="uci">
-                        <a target="_blank" href="https://www.uci.edu/">
-                            <img src="<%=GetURLDomain()%>/App_Themes/UCI/Images/uclogo137.png" alt="University of California Irvine" /></a>
-                    </div>
                     <div id="site-logo">
-                        <h1><a href="<%=GetURLDomain()%>/">UCI Profiles
+                        <h1><a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/App_Themes/UCI/Images/ucilogo.png" alt="University of California, Irvine" /> Profiles
 							<div id="tagline">search, discover, network</div>
                         </a></h1>
                     </div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCD" runat="server" SkinID="UCD" Visible="false">
-                <div class="institutionHeader">
-                    <div id="ucd">
-                        <a target="_blank" href="https://www.ucd.edu/">
-                            <img src="<%=GetURLDomain()%>/App_Themes/UCD/Images/uclogo137.png" alt="University of California Davis" /></a>
-                    </div>
+                <div id="header-ucsf">
+                    <div id="ucsfnav">
+                        <ul>
+                            <li class="first">
+                                <a href="https://www.ucdavis.edu/" target="_blank">University of California, Davis</a>
+									<!-- <img src="<%=GetURLDomain()%>/App_Themes/UCD/Images/davis-logo-white.svg" alt="University of California, Davis" height="20" /> -->
+								</a>
+                            </li>
+						</ul>
+					</div>
+				</div>
+				<div class="institutionHeader">
                     <div id="site-logo">
-                        <h1><a href="<%=GetURLDomain()%>/">UCD Profiles
+                        <h1><a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/App_Themes/UCD/Images/ucdavis-logo.png" alt="University of California, Davis" /> Profiles
 							<div id="tagline">search, discover, network</div>
                         </a></h1>
                     </div>
@@ -421,6 +434,50 @@
                             <p>
                                 Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California. 
                                            All Rights Reserved.
+                            </p>
+                        </div>
+                    </asp:Panel>
+                    <asp:Panel ID="MasterPageFooterUCD" runat="server" SkinID="UCD" Visible="false">
+                        <div id="footer-collaboration">
+                            <p>
+                                UCD Profiles is managed by the UCSF 
+                                <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
+                                part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
+                                Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%>.
+                            </p>
+                        </div>
+                        <div id="footer-contact">
+                            <ul>
+                                <li><a href="<%=GetURLDomain()%>/">Home</a></li>
+                                <li><a href="mailto:profiles@ucop.edu">Contact us</a></li>
+                            </ul>
+                        </div>
+                        <div id="footer-copyright">
+                            <p>
+                                Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California. 
+                                All Rights Reserved.
+                            </p>
+                        </div>
+                    </asp:Panel>
+                    <asp:Panel ID="MasterPageFooterUCI" runat="server" SkinID="UCI" Visible="false">
+                        <div id="footer-collaboration">
+                            <p>
+                                UCI Profiles is managed by the UCSF 
+                                <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
+                                part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
+                                Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%>.
+                            </p>
+                        </div>
+                        <div id="footer-contact">
+                            <ul>
+                                <li><a href="<%=GetURLDomain()%>/">Home</a></li>
+                                <li><a href="mailto:profiles@ucop.edu">Contact us</a></li>
+                            </ul>
+                        </div>
+                        <div id="footer-copyright">
+                            <p>
+                                Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California. 
+                                All Rights Reserved.
                             </p>
                         </div>
                     </asp:Panel>

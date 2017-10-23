@@ -1,26 +1,20 @@
 ﻿/* highlight color */
-.dblarrow:before, #about h2, h2.about, .content-block h2, .searchForm td div.header, .highlight,
+.dblarrow:before, #about h2, h2.about, .content-block h2, .highlight,
 .passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
-.profiles a .authInst, .profiles a .authInst:hover, 
-.profiles .profilesContentMain .pageTitle h2 { color: #f2a900; }
-.profiles a.search-button, #navbarsearch input[type=submit], .more span, .less span { background-color: #f2a900; }
-.profiles a.search-button:hover, #navbarsearch input[type=submit]:hover { background-color: #FFB815; box-shadow: none; }
-#navbarsearch input[type=submit]  { border: 4px solid #f2a900; }
-#navbarsearch input[type=submit]:hover  { border: 4px solid #FFB815; }
+.profiles a .authInst, .profiles a .authInst:hover { color: #f78d2d; }
+.searchForm td div.header, .profiles .profilesContentMain .pageTitle h2 { color: #1b3d6d; }
+.profiles a.search-button, #navbarsearch input[type=submit], .more span, .less span { background-color: #f78d2d; }
+.profiles a.search-button:hover, #navbarsearch input[type=submit]:hover { background-color: #ffd200; box-shadow: none; }
+#navbarsearch input[type=submit]  { border: 4px solid #f78d2d; }
+#navbarsearch input[type=submit]:hover  { border: 4px solid #ffd200; }
 
 /* banner */
-.institutionHeader { padding: 0; background: #FFFCED url("Images/ucbg.jpg") no-repeat scroll top right; width: 980px; }
-#uc{ float:left; width: 230px; height: 95px; }
-#uc img { padding: 15px 0 0 20px; }
-#site-logo h1 {
-    font-size: 34px;
-    margin: 6px 0 0;
-    padding: 15px 0 12px 30px;
-	height: 86px;
-}
- #tagline { color: #666; font-weight: bold; padding-top: 8px; }
- #powered-by-block { padding: 50px 0 0;  }
+#header-ucsf { background-color: #222; }
+.profiles .profilesFooter, .institutionHeader { background-color: #0064a4; }
+#site-logo h1 { font-size: 33px; font-weight: normal; }
+#site-logo h1 a img { height: 24px; }
+#tagline { padding-top: 8px; color: #FFF; }
 
 /* LINK Color */
 .profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000; }
@@ -29,10 +23,14 @@
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child, 
 #profile-components table td#namedegree, .listTable .listTableLink, .linky, 
 .institutionHeader a, .institutionHeader a:hover,
-.profiles a, .profiles a:visited { color: #1295d8; }
+.profiles a, .profiles a:visited { color: #0064a4; }
+#site-logo h1 a { color: #FFF; }
+#site-logo h1 a:hover, #site-logo h1 a:hover #tagline { color: #c6beb5; }
 
 /* navbar & footer colors */
-.profiles .profilesFooter,
-#suckerfish-container, #suckerfishmenu a { background-color: #1295d8; }
+#suckerfish-container { border-bottom: 3px solid #0064a4; }
+#suckerfishmenu li { border-color: #c6beb5; }
+#suckerfish-container, #suckerfishmenu a { background-color: #ffd200; }
 .search #suckerfishmenu .item-home > a,
-#suckerfishmenu	 a.active, #suckerfishmenu a:hover { background-color: #42B5E7; }
+#suckerfishmenu	 a.active, #suckerfishmenu a:hover { background-color: #fefae6; }
+#suckerfishmenu a { color: #000; }

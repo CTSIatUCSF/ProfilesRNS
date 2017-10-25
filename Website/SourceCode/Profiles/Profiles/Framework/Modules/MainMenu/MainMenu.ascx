@@ -48,6 +48,8 @@
 						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupAwards" Text="Awards" />
 						<asp:ListItem Value="People" Text="People" />
 						<asp:ListItem Value="UC" Text="&nbsp;&nbsp;&nbsp;UC People" />
+						<asp:ListItem Value="UCD" Text="&nbsp;&nbsp;&nbsp;UC Davis People" />
+						<asp:ListItem Value="UCI" Text="&nbsp;&nbsp;&nbsp;UCI People" />
 						<asp:ListItem Value="UCSD" Text="&nbsp;&nbsp;&nbsp;UCSD People" />
 						<asp:ListItem Value="UCSF" Text="&nbsp;&nbsp;&nbsp;UCSF People" />
 						<asp:ListItem Value="USC" Text="&nbsp;&nbsp;&nbsp;USC People" />

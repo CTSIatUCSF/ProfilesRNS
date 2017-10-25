@@ -173,7 +173,7 @@ CREATE VIEW [UCSF.].[vwBrand] AS
 SELECT DISTINCT t.Theme,
 	   t.BasePath,
 	   CASE WHEN t.Shared = 1 THEN NULL ELSE a.InstitutionAbbreviation END AS InstitutionAbbreviation,
-	   CASE WHEN a.Theme = 'UC' THEN 'UC' ELSE NULL END AS PersonFilter -- note that this is hacked to do what we need it to do. For a view, that is sort of OK
+	   CASE WHEN t.Theme = 'UC' THEN 'UC' ELSE NULL END AS PersonFilter -- note that this is hacked to do what we need it to do. For a view, that is sort of OK
 FROM [UCSF.].[Theme] t
 	LEFT OUTER JOIN [UCSF.].[InstitutionAbbreviation2Theme] a on a.Theme = t.Theme
 

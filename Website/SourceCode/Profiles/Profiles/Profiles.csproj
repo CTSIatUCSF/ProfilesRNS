@@ -174,6 +174,9 @@
     <Content Include="App_Themes\Default\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\Default\Default.css" />
     <Content Include="App_Themes\Default\Default.js" />
+    <Content Include="App_Themes\UCD\Images\davisheader.svg" />
+    <Content Include="App_Themes\UCD\Images\ucdavis-logo.png" />
+    <Content Include="App_Themes\UCI\Images\uciLogo.png" />
     <Content Include="App_Themes\UCR\Images\backtotop.gif" />
     <Content Include="App_Themes\UCR\Images\comment.gif" />
     <Content Include="App_Themes\UCR\Images\favicon.ico" />
@@ -219,8 +222,6 @@
     <Content Include="App_Themes\UCD\Images\favicon.ico" />
     <Content Include="App_Themes\UCD\Images\gear.gif" />
     <Content Include="App_Themes\UCD\Images\help.gif" />
-    <Content Include="App_Themes\UCD\Images\ucbg.jpg" />
-    <Content Include="App_Themes\UCD\Images\uclogo137.png" />
     <Content Include="App_Themes\UCD\PresentationXML\About\AboutProfiles.xml" />
     <Content Include="App_Themes\UCD\PresentationXML\About\CloseBrowser.xml" />
     <Content Include="App_Themes\UCD\PresentationXML\About\FAQ.xml" />
@@ -239,8 +240,6 @@
     <Content Include="App_Themes\UCI\Images\favicon.ico" />
     <Content Include="App_Themes\UCI\Images\gear.gif" />
     <Content Include="App_Themes\UCI\Images\help.gif" />
-    <Content Include="App_Themes\UCI\Images\ucbg.jpg" />
-    <Content Include="App_Themes\UCI\Images\uclogo137.png" />
     <Content Include="App_Themes\UCI\PresentationXML\About\AboutProfiles.xml" />
     <Content Include="App_Themes\UCI\PresentationXML\About\CloseBrowser.xml" />
     <Content Include="App_Themes\UCI\PresentationXML\About\FAQ.xml" />

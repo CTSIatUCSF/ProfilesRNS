@@ -647,9 +647,11 @@ INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UC', 'http://stag
 INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCSF', 'http://stage-profiles.ucsf.edu/ucsf', 0);
 INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCSD', 'http://stage-profiles.ucsf.edu/ucsd', 0);
 INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('USC', 'http://stage-profiles.ucsf.edu/usc', 0);
+INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCI', 'http://stage-profiles.ucsf.edu/uci', 0);
+INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCD', 'http://stage-profiles.ucsf.edu/ucd', 0);
 
-INSERT INTO [UCSF.].[InstitutionAbbreviation2Theme] (InstitutionAbbreviation, Theme) VALUES ('UCI', 'UC');
-INSERT INTO [UCSF.].[InstitutionAbbreviation2Theme] (InstitutionAbbreviation, Theme) VALUES ('UCD', 'UC');
+INSERT INTO [UCSF.].[InstitutionAbbreviation2Theme] (InstitutionAbbreviation, Theme) VALUES ('UCI', 'UCI');
+INSERT INTO [UCSF.].[InstitutionAbbreviation2Theme] (InstitutionAbbreviation, Theme) VALUES ('UCD', 'UCD');
 INSERT INTO [UCSF.].[InstitutionAbbreviation2Theme] (InstitutionAbbreviation, Theme) VALUES ('UCSF', 'UCSF');
 INSERT INTO [UCSF.].[InstitutionAbbreviation2Theme] (InstitutionAbbreviation, Theme) VALUES ('UCSD', 'UCSD');
 INSERT INTO [UCSF.].[InstitutionAbbreviation2Theme] (InstitutionAbbreviation, Theme) VALUES ('USC', 'USC');

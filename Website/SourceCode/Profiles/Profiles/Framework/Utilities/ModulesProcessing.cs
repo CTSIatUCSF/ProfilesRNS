@@ -36,9 +36,10 @@ namespace Profiles.Framework.Utilities
                 {
                     constructor.Invoke(ctl, constructorParameters);
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    throw new MemberAccessException("Could not construct " + ctl.GetType().BaseType.ToString() + " from " + UserControlPath, e);
+                    DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
+                    throw new MemberAccessException("Could not construct " + ctl.GetType().BaseType.ToString() + " from " + UserControlPath, ex);
                 }
             }
 

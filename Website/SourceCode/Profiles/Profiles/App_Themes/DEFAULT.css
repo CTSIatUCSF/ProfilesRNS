@@ -280,7 +280,7 @@ ul.highlights li {
 #suckerfishmenu	 ul.menu li ul { position: absolute; left: -999px; padding: 0; }
 #suckerfishmenu	 ul.menu li:hover ul { left: auto; }
 #suckerfishmenu	 ul.menu li ul li { display: block; float: none; border-top: 1px solid #DDD; }
-.item-home > a:after { content:'\25BC'; padding-left: 8px; font-size: 80%; display: inline-block; height: 10px; }
+.item-home > a:after { content:'\25BC'; padding-left: 8px; font-size: 80%; display: inline-block; height: 10px; vertical-align: top; }
 
 /* login & edit links */
 #active-nav { clear: left; text-align: left; padding: 5px 0; width: 100%; height: 21px; font-size: 13px; }

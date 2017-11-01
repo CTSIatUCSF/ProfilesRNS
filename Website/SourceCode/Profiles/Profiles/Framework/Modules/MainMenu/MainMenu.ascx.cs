@@ -200,6 +200,12 @@ namespace Profiles.Framework.Modules.MainMenu
             return Brand.GetDomain();
         }
 
+        public string GetDomainFor(String theme)
+        {
+            return Brand.GetByTheme(theme).BasePath;
+
+        }
+
         protected void DrawSearchBar()
         {
             /** Dynamic controls SUCK in .net

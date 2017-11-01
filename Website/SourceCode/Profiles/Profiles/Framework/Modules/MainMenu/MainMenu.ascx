@@ -20,13 +20,13 @@
             <ul class="menu">
                 <li class="item-home"><a href="<%=GetURLDomain()%>">Search Options</a>
 					<ul>
-						<li><a href="http://stage-profiles.ucsf.edu/ucd/search/">UC Davis</a></li>
-						<li><a href="http://stage-profiles.ucsf.edu/uci/search/">UC Irvine</a></li>
-						<li><a href="http://stage-profiles.ucsf.edu/ucsd/search/">UC San Diego</a></li>
-						<li><a href="http://stage-profiles.ucsf.edu/ucsf/search/">UC San Francisco</a></li>
-						<li><a href="http://stage-profiles.ucsf.edu/profiles_uc/search/">All UC</a></li>
-						<li><a href="http://stage-profiles.ucsf.edu/usc/search/">University of Southern California</a></li>
-						<li><a href="http://stage-profiles.ucsf.edu/godzilla/search/">All</a></li>
+						<li><a href="<%=GetDomainFor("UCD")%>/search/">UC Davis</a></li>
+						<li><a href="<%=GetDomainFor("UCI")%>/search/">UC Irvine</a></li>
+						<li><a href="<%=GetDomainFor("UCSD")%>/search/">UC San Diego</a></li>
+						<li><a href="<%=GetDomainFor("UCSF")%>/search/">UC San Francisco</a></li>
+						<li><a href="<%=GetDomainFor("UC")%>/search/">All UC</a></li>
+						<li><a href="<%=GetDomainFor("USC")%>/search/">University of Southern California</a></li>
+						<li><a href="<%=GetDomainFor("Default")%>/search/">All</a></li>
 					</ul>
 				</li>
                 <li id="about"><a href="<%=GetURLDomain()%>/about/AboutProfiles.aspx">About</a></li>

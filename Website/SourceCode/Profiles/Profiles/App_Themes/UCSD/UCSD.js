@@ -23,7 +23,7 @@
                 pmid[0] + "'></span>")
             }
         });
-        $.getScript('http://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
+        $.getScript('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
       }
     }, 7000);
  

@@ -1,0 +1,12 @@
+To get people:
+select (str(?s) as ?person) ?f ?l ?t where
+{?s a <http://xmlns.com/foaf/0.1/Person> .
+  ?s <http://xmlns.com/foaf/0.1/firstName> ?f .
+    ?s <http://xmlns.com/foaf/0.1/lastName> ?l .
+  OPTIONAL { ?s <http://vivoweb.org/ontology/core#preferredTitle> ?t} }
+
+
+
+To get pubs:
+select (str(?s) as ?person) (str(?p) as ?pub) where
+{  ?s <http://xmlns.com/foaf/0.1/publications> ?p

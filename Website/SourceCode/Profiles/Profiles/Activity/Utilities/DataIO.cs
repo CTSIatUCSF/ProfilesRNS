@@ -160,156 +160,181 @@ namespace Profiles.Activity.Utilities
         private SortedList<Int64, Activity> GetRecentActivity(Int64 lastActivityLogID, int count, bool older)
         {
             SortedList<Int64, Activity> activities = new SortedList<Int64, Activity>(new ReverseComparer());
+            bool getMore = true;
 
-            string sql = "SELECT top " + count + "  i.activityLogID," +
-                            "p.personid,n.nodeid,p.firstname,p.lastname," +
-                            "i.methodName,i.property,cp._PropertyLabel as propertyLabel,i.param1,i.param2,i.createdDT " +
-                            "FROM [Framework.].[Log.Activity] i " +
-                            "LEFT OUTER JOIN [Profile.Data].[Person] p ON i.personId = p.personID " +
-                            "LEFT OUTER JOIN [RDF.Stage].internalnodemap n on n.internalid = p.personId and n.[class] = 'http://xmlns.com/foaf/0.1/Person' "+
-                            "LEFT OUTER JOIN [Ontology.].[ClassProperty] cp ON cp.Property = i.property  and cp.Class = 'http://xmlns.com/foaf/0.1/Person' " +
-                            "LEFT OUTER JOIN [RDF.].[Node] rn on [RDF.].fnValueHash(null, null, i.property) = rn.ValueHash " +
-                            //"LEFT OUTER JOIN [RDF.].[Node] rn on i.property = rn.value COLLATE Latin1_General_Bin " +
-	                        "LEFT OUTER JOIN [RDF.Security].[NodeProperty] np on n.NodeID = np.NodeID and rn.NodeID = np.Property " +
-                            "where p.IsActive=1 and (np.ViewSecurityGroup = -1 or (i.privacyCode = -1 and np.ViewSecurityGroup is null) or (i.privacyCode is null and np.ViewSecurityGroup is null))" +
-                            (lastActivityLogID != -1 ? (" and i.activityLogID " + (older ? "<" : ">") + lastActivityLogID) : "") +
-                            " order by i.activityLogID desc";
-            using (SqlDataReader reader = GetQueryOutputReader(sql))
+            while (getMore)
             {
-                while (reader.Read())
+                int foundCnt = 0; 
+
+                string sql = "SELECT top " + count + "  i.activityLogID," +
+                                "p.personid,n.nodeid,p.firstname,p.lastname," +
+                                "i.methodName,i.property,cp._PropertyLabel as propertyLabel,i.param1,i.param2,i.createdDT " +
+                                "FROM [Framework.].[Log.Activity] i " +
+                                "LEFT OUTER JOIN [Profile.Data].[Person] p ON i.personId = p.personID " +
+                                "LEFT OUTER JOIN [RDF.Stage].internalnodemap n on n.internalid = p.personId and n.[class] = 'http://xmlns.com/foaf/0.1/Person' " +
+                                "LEFT OUTER JOIN [Ontology.].[ClassProperty] cp ON cp.Property = i.property  and cp.Class = 'http://xmlns.com/foaf/0.1/Person' " +
+                                "LEFT OUTER JOIN [RDF.].[Node] rn on [RDF.].fnValueHash(null, null, i.property) = rn.ValueHash " +
+                    //"LEFT OUTER JOIN [RDF.].[Node] rn on i.property = rn.value COLLATE Latin1_General_Bin " +
+                                "LEFT OUTER JOIN [RDF.Security].[NodeProperty] np on n.NodeID = np.NodeID and rn.NodeID = np.Property " +
+                                "where p.IsActive=1 and (np.ViewSecurityGroup = -1 or (i.privacyCode = -1 and np.ViewSecurityGroup is null) or (i.privacyCode is null and np.ViewSecurityGroup is null))" +
+                                (lastActivityLogID != -1 ? (" and i.activityLogID " + (older ? "<" : ">") + lastActivityLogID) : "") +
+                                " order by i.activityLogID desc";
+                using (SqlDataReader reader = GetQueryOutputReader(sql))
                 {
-                    try
+                    while (reader.Read())
                     {
-                        string param1 = reader["param1"].ToString();
-                        string param2 = reader["param2"].ToString();
-                        string activityLogId = reader["activityLogId"].ToString();
-                        string property = reader["property"].ToString();
-                        string propertyLabel = reader["propertyLabel"].ToString();
-                        string personid = reader["personid"].ToString();
-                        string nodeid = reader["nodeid"].ToString();
-                        string firstname = reader["firstname"].ToString();
-                        string lastname = reader["lastname"].ToString();
-                        string methodName = reader["methodName"].ToString();
+                        foundCnt++;
+                        try
+                        {
+                            string param1 = reader["param1"].ToString();
+                            string param2 = reader["param2"].ToString();
+                            string activityLogId = reader["activityLogId"].ToString();
+                            string property = reader["property"].ToString();
+                            string propertyLabel = reader["propertyLabel"].ToString();
+                            string personid = reader["personid"].ToString();
+                            string nodeid = reader["nodeid"].ToString();
+                            string firstname = reader["firstname"].ToString();
+                            string lastname = reader["lastname"].ToString();
+                            string methodName = reader["methodName"].ToString();
 
-                        string journalTitle = "";
-                        string url = "";
-                        string queryTitle = "";
-                        string title = "";
-                        string body = "";
-                        if (param1 == "PMID" || param1 == "Add PMID")
-                        {
-                            url = "http://www.ncbi.nlm.nih.gov/pubmed/" + param2;
-                            queryTitle = "SELECT JournalTitle FROM [Profile.Data].[Publication.PubMed.General] " +
-                                            "WHERE PMID = cast(" + param2 + " as int)";
-                            journalTitle = GetStringValue(queryTitle, "JournalTitle");
-                        }
-                        if (property == "http://vivoweb.org/ontology/core#ResearcherRole")
-                        {
+                            lastActivityLogID = Convert.ToInt64(activityLogId);
 
-                            queryTitle = "select AgreementLabel from [Profile.Data].[Funding.Role] r " +
-                                            "join [Profile.Data].[Funding.Agreement] a " +
-                                            "on r.FundingAgreementID = a.FundingAgreementID " +
-                                            " and r.FundingRoleID = '" + param1 + "'";
-                            journalTitle = GetStringValue(queryTitle, "AgreementLabel");
-                        }
-                        if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.AddPublication") == 0)
-                        {
-                            title = "added a PubMed publication";
-                            body = "added a publication from: " + journalTitle;
-                        }
-                        else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.AddCustomPublication") == 0)
-                        {
-                            title = "added a custom publication";
-                            body = "added \"" + param1 + "\" into " + propertyLabel +
-                                " section : " + param2;
-                        }
-                        else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.UpdateSecuritySetting") == 0)
-                        {
-                            title = "made a section visible";
-                            body = "made \"" + propertyLabel + "\"public";
-                        }
-                        else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.AddUpdateFunding") == 0)
-                        {
-                            title = "added a research activity or funding";
-                            body = "added a research activity or funding: " + journalTitle;
-                        }
-                        else if (methodName.CompareTo("[Profile.Data].[Funding.LoadDisambiguationResults]") == 0)
-                        {
-                            title = "has a new research activity or funding";
-                            body = "has a new research activity or funding: " + journalTitle;
-                        }
-                        else if (methodName.IndexOf("Profiles.Edit.Utilities.DataIO.Add") == 0)
-                        {
-                            title = "added an item";
-                            if (param1.Length != 0)
+                            string journalTitle = "";
+                            string url = "";
+                            string queryTitle = "";
+                            string title = "";
+                            string body = "";
+                            if (param1 == "PMID" || param1 == "Add PMID")
                             {
-                                body = "added \"" + param1 + "\" into " + propertyLabel + " section";
+                                url = "http://www.ncbi.nlm.nih.gov/pubmed/" + param2;
+                                queryTitle = "SELECT JournalTitle FROM [Profile.Data].[Publication.PubMed.General] " +
+                                                "WHERE PMID = cast(" + param2 + " as int)";
+                                journalTitle = GetStringValue(queryTitle, "JournalTitle");
                             }
-                            else
+                            if (property == "http://vivoweb.org/ontology/core#ResearcherRole")
                             {
-                                body = "added \"" + propertyLabel + "\" section";
-                            }
 
-                        }
-                        else if (methodName.IndexOf("Profiles.Edit.Utilities.DataIO.Update") == 0)
-                        {
-                            title = "updated an item";
-                            if (param1.Length != 0)
-                            {
-                                body = "updated \"" + param1 + "\" in " + propertyLabel + " section";
+                                queryTitle = "select AgreementLabel from [Profile.Data].[Funding.Role] r " +
+                                                "join [Profile.Data].[Funding.Agreement] a " +
+                                                "on r.FundingAgreementID = a.FundingAgreementID " +
+                                                " and r.FundingRoleID = '" + param1 + "'";
+                                journalTitle = GetStringValue(queryTitle, "AgreementLabel");
                             }
-                            else
+                            if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.AddPublication") == 0)
                             {
-                                body = "updated \"" + propertyLabel + "\" section";
+                                title = "added a PubMed publication";
+                                body = "added a publication from: " + journalTitle;
                             }
-                        }
-                        else if (methodName.CompareTo("[Profile.Data].[Publication.Pubmed.LoadDisambiguationResults]") == 0 && param1.CompareTo("Add PMID") == 0)
-                        {
-                            title = "has a new PubMed publication";
-                            body = "has a new publication listed from: " + journalTitle;
-                        }
-                        else if (methodName.CompareTo("[Profile.Import].[LoadProfilesData]") == 0 && param1.CompareTo("Person Insert") == 0)
-                        {
-                            title = "added to Profiles";
-                            body = "now has a Profile page";
-                        }
-                        else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.ClaimOnePublication") == 0 && param1.CompareTo("PMID") == 0)
-                        {
-                            title = "confirmed a PubMed publication found by Profiles";
-                            body = "confirmed a publication from: " + journalTitle;
-                        }
-
-                        // there are situations where a new person is loaded but we don't yet have them in the system
-                        // best to skip them for now
-                        if (!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(nodeid) && UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)] != null)
-                        {
-
-                            Activity act = new Activity
+                            else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.AddCustomPublication") == 0)
                             {
-                                Id = Convert.ToInt64(activityLogId),
-                                Message = body,
-                                LinkUrl = url,
-                                Title = title,
-                                CreatedDT = Convert.ToDateTime(reader["CreatedDT"]),
-                                CreatedById = activityLogId,
-                                Profile = new Profile
+                                title = "added a custom publication";
+                                body = "added \"" + param1 + "\" into " + propertyLabel +
+                                    " section : " + param2;
+                            }
+                            else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.UpdateSecuritySetting") == 0)
+                            {
+                                title = "made a section visible";
+                                body = "made \"" + propertyLabel + "\"public";
+                            }
+                            else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.AddUpdateFunding") == 0)
+                            {
+                                title = "added a research activity or funding";
+                                body = "added a research activity or funding: " + journalTitle;
+                            }
+                            else if (methodName.CompareTo("[Profile.Data].[Funding.LoadDisambiguationResults]") == 0)
+                            {
+                                title = "has a new research activity or funding";
+                                body = "has a new research activity or funding: " + journalTitle;
+                            }
+                            else if (methodName.IndexOf("Profiles.Edit.Utilities.DataIO.Add") == 0)
+                            {
+                                title = "added an item";
+                                if (param1.Length != 0)
                                 {
-                                    Name = firstname + " " + lastname,
-                                    PersonId = Convert.ToInt32(personid),
-                                    NodeID = Convert.ToInt64(nodeid),
-                                    URL = Root.Domain + "/" + UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)].PrettyURL,
-                                    Thumbnail = Root.Domain + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + nodeid + "&Thumbnail=True&Width=45"
+                                    body = "added \"" + param1 + "\" into " + propertyLabel + " section";
                                 }
-                            };
-                            activities.Add(act.Id, act);
+                                else
+                                {
+                                    body = "added \"" + propertyLabel + "\" section";
+                                }
+
+                            }
+                            else if (methodName.IndexOf("Profiles.Edit.Utilities.DataIO.Update") == 0)
+                            {
+                                title = "updated an item";
+                                if (param1.Length != 0)
+                                {
+                                    body = "updated \"" + param1 + "\" in " + propertyLabel + " section";
+                                }
+                                else
+                                {
+                                    body = "updated \"" + propertyLabel + "\" section";
+                                }
+                            }
+                            else if (methodName.CompareTo("[Profile.Data].[Publication.Pubmed.LoadDisambiguationResults]") == 0 && param1.CompareTo("Add PMID") == 0)
+                            {
+                                title = "has a new PubMed publication";
+                                body = "has a new publication listed from: " + journalTitle;
+                            }
+                            else if (methodName.CompareTo("[Profile.Import].[LoadProfilesData]") == 0 && param1.CompareTo("Person Insert") == 0)
+                            {
+                                title = "added to Profiles";
+                                body = "now has a Profile page";
+                            }
+                            else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.ClaimOnePublication") == 0 && param1.CompareTo("PMID") == 0)
+                            {
+                                title = "confirmed a PubMed publication found by Profiles";
+                                body = "confirmed a publication from: " + journalTitle;
+                            }
+
+                            // there are situations where a new person is loaded but we don't yet have them in the system
+                            // best to skip them for now
+                            if (!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(nodeid) && UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)] != null)
+                            {
+
+                                Activity act = new Activity
+                                {
+                                    Id = Convert.ToInt64(activityLogId),
+                                    Message = body,
+                                    LinkUrl = url,
+                                    Title = title,
+                                    CreatedDT = Convert.ToDateTime(reader["CreatedDT"]),
+                                    CreatedById = activityLogId,
+                                    Profile = new Profile
+                                    {
+                                        Name = firstname + " " + lastname,
+                                        PersonId = Convert.ToInt32(personid),
+                                        NodeID = Convert.ToInt64(nodeid),
+                                        URL = Root.Domain + "/" + UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)].PrettyURL,
+                                        Thumbnail = Root.Domain + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + nodeid + "&Thumbnail=True&Width=45"
+                                    }
+                                };
+                                activities.Add(act.Id, act);
+
+                                // dont' grab more than we need
+                                if (activities.Count >= count)
+                                {
+                                    break;
+                                }
+                            }
                         }
-                    }
-                    catch (Exception e)
-                    {
-                        Framework.Utilities.DebugLogging.Log("Exception loading activities :" + e.Message);
+                        catch (Exception e)
+                        {
+                            Framework.Utilities.DebugLogging.Log("Exception loading activities :" + e.Message);
+                        }
                     }
                 }
+                //sometimes we need to look deeper
+                if (older && activities.Count < count && foundCnt == count)
+                {
+                    getMore = true;
+                }
+                else
+                {
+                    getMore = false;
+                }
             }
+
             return activities;
         }
 		
@@ -376,7 +401,9 @@ namespace Profiles.Activity.Utilities
                 dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
             }
             catch (Exception ex)
-            { string dd = ex.Message; }
+            { 
+                Framework.Utilities.DebugLogging.Log(ex.Message); 
+            }
             return dbreader;
         }
 

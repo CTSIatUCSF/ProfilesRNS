@@ -38,7 +38,10 @@ namespace Profiles.Framework.Utilities
                 }
                 catch (Exception ex)
                 {
-                    DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
+                    if (ex.GetBaseException() != null)
+                    {
+                        DebugLogging.Log("Base exception invoking constructor for " + ctl.GetType().BaseType.ToString() + " : " + ex.GetBaseException().Message + " ++ " + ex.GetBaseException().StackTrace);
+                    }
                     throw new MemberAccessException("Could not construct " + ctl.GetType().BaseType.ToString() + " from " + UserControlPath, ex);
                 }
             }

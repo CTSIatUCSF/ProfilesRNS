@@ -49,8 +49,8 @@
     //Overview expand/collapse
     if ($('.basicInfo') && $('.basicInfo').length) {
         $('.PropertyItemHeader:contains("verview")').next('.PropertyGroupData').attr("id", "narrative");
-		$('#narrative > div').addClass('overview');
-        if ($('.overview').text().length > 800) {
+        if ($('#narrative').height() > 280) {
+			$('#narrative > div').addClass('overview');
             $("<div class='expand-collapse'><div class='more'>Show more <span>+</span></div><div class='less' style='display:none;margin-top:-20px;'>Show less <span>-</span></div></div>").insertAfter('.overview');
         }
 		$('.expand-collapse').click(function(){

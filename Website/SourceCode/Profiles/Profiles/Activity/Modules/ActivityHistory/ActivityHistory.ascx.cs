@@ -40,7 +40,7 @@ namespace Profiles.Activity.Modules.ActivityHistory
         public ActivityHistory(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
             : base(pagedata, moduleparams, pagenamespaces)
         {
-            DrawProfilesModule(); 
+            DrawProfilesModule();
         }
 
         public void setModuleParams(List<ModuleParams> moduleparams)
@@ -66,7 +66,16 @@ namespace Profiles.Activity.Modules.ActivityHistory
 
             // grab a bunch of activities from the Database
             Profiles.Activity.Utilities.DataIO data = new Profiles.Activity.Utilities.DataIO();
-            List<Profiles.Activity.Utilities.Activity> activities = data.GetActivity(-1, count, true);
+            List<Profiles.Activity.Utilities.Activity> activities = new List<Profiles.Activity.Utilities.Activity>();
+            try
+            {
+                activities.AddRange(data.GetActivity(-1, count, true));
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log("Error in ActivityHistory data.GetActivity " + e.Message + "; " + e.StackTrace);
+            }
+
             rptActivityHistory.DataSource = activities;
             rptActivityHistory.DataBind();
         }

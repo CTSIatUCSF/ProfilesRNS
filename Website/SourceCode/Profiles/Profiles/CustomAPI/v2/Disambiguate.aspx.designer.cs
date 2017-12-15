@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Login {
+namespace Profiles.CustomAPI.v2 {
     
     
-    public partial class MultiShibbolethLogin {
+    public partial class Disambiguate {
     }
 }

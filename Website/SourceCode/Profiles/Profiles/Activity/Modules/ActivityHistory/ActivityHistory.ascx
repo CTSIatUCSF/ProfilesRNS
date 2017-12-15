@@ -29,7 +29,7 @@
         $.ajax({
             type: "POST",
             url: "<%=GetURLDomain()%>/Activity/Modules/ActivityHistory/ActivityDetails.aspx/GetActivities",
-            data: '{"referenceActivityId": "' + referenceActivityId + '", "count": "' + activitySize + '", "newActivities": "' + newActivities + '"}',
+            data: '{"referenceActivityId": "' + referenceActivityId + '", "count": "' + (activitySize || 100) + '", "newActivities": "' + newActivities + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: OnSuccess,

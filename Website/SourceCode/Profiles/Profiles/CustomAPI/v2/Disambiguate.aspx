@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Framework/Template.Master" ValidateRequest="false" AutoEventWireup="true" CodeBehind="MultiShibbolethLogin.aspx.cs" Inherits="Profiles.Login.MultiShibbolethLogin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Disambiguate.aspx.cs" Inherits="Profiles.CustomAPI.v2.Disambiguate" EnableTheming="false" Theme="" %>
  <%--
     Copyright (c) 2008-2012 by the President and Fellows of Harvard College. All rights reserved.  
     Profiles Research Networking Software was developed under the supervision of Griffin M Weber, MD, PhD.,

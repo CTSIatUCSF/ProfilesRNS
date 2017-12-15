@@ -138,7 +138,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 hypEditHRDataLink.Visible = true;
                 hypEditHRDataLink.NavigateUrl = ConfigurationSettings.AppSettings["HR_NameServiceURL"] +
                     //http://ctripro.ucsd.edu/ProfilesCR/PersonalDataChangeRequest.php?id=" 
-                UCSFIDSet.ByNodeId[this.Subject].EmployeeID;
+                UCSFIDSet.ByNodeId[this.Subject].UserName;
             }
         }
 

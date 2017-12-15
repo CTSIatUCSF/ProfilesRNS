@@ -26,27 +26,27 @@
                             <table class="searchForm" style="display: inline;">
                                 <tr>
                                     <asp:ImageButton ImageUrl="~/login/images/berkeley.edu.png" runat="server" ID="LoginUCB"
-                                            EntityID="urn:mace:incommon:berkeley.edu" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
+                                            InstitutionAbbreviation="UCB" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
                                 </tr>
                                 <tr>
                                     <asp:ImageButton ImageUrl="~/login/images/ucdavis.edu.png" runat="server" ID="LoginUCD"
-                                            EntityID="urn:mace:incommon:ucdavis.edu" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
+                                            InstitutionAbbreviation="UCD" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
                                 </tr>
                                 <tr>
                                     <asp:ImageButton ImageUrl="~/login/images/uci.edu.gif" runat="server" ID="LoginUCI"
-                                            EntityID="urn:mace:incommon:uci.edu" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
+                                            InstitutionAbbreviation="UCI" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
                                 </tr>
                                 <tr>
                                     <asp:ImageButton ImageUrl="~/login/images/ucla.edu.gif" runat="server" ID="LoginUCLA"
-                                            EntityID="urn:mace:incommon:ucla.edu" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
+                                            InstitutionAbbreviation="UCLA" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
                                 </tr>
                                 <tr>
                                     <asp:ImageButton ImageUrl="~/login/images/ucsd.edu.png" runat="server" ID="LoginUCSD"
-                                            EntityID="urn:mace:incommon:ucsd.edu" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
+                                            InstitutionAbbreviation="UCSD" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
                                 </tr>
                                 <tr>
                                     <asp:ImageButton ImageUrl="~/login/images/ucsf.edu.png" runat="server" ID="LoginUCSF"
-                                            EntityID="urn:mace:incommon:ucsf.edu" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
+                                            InstitutionAbbreviation="UCSF" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
                                 </tr>
                             </table>
                         </div>

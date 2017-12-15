@@ -11,7 +11,6 @@ using Connects.Profiles.Common;
 using Connects.Profiles.Service.DataContracts;
 using Connects.Profiles.Utility;
 using System.Web.Script.Serialization;
-using Profiles.CustomAPI.Utilities;
 using Profiles.Framework.Utilities;
 
 public partial class XMLProfile : BrandedPage
@@ -21,25 +20,16 @@ public partial class XMLProfile : BrandedPage
     {
         try
         {
-            string personId = Request["Person"];
-            string EmployeeID = Request["EmployeeID"];
-            string FNO = Request["FNO"];
+            Profiles.CustomAPI.Utilities.DataIO data = new Profiles.CustomAPI.Utilities.DataIO();
+            UCSFIDSet person = data.GetPerson(Request);
 
             // get response text
             string xmlProfiles = "{}";
             try
             {
-                if (personId != null && personId.Length > 0)
+                if (person != null)
                 {
-                    xmlProfiles = GetXMLProfiles(Int32.Parse(personId));
-                }
-                else if (EmployeeID != null && EmployeeID.Length > 0)
-                {
-                    xmlProfiles = GetXMLProfilesFromEmployeeID(EmployeeID);
-                }
-                else if (FNO != null && FNO.Length > 0)
-                {
-                    xmlProfiles = GetXMLProfilesFromFNO(FNO);
+                    xmlProfiles = GetXMLProfiles(person.PersonId);
                 }
             }
             catch (Exception ex)
@@ -60,20 +50,6 @@ public partial class XMLProfile : BrandedPage
         {
             Response.Write("ERROR" + Environment.NewLine + ex.Message + Environment.NewLine);
         }
-    }
-
-    private string GetXMLProfilesFromEmployeeID(string employeeID)
-    {
-        // lookup personid 
-        int personId = (int)UCSFIDSet.ByEmployeeID[employeeID].PersonId;
-        return GetXMLProfiles(personId);
-    }
-
-    private string GetXMLProfilesFromFNO(string FNO)
-    {
-        // lookup personid from FNO
-        int personId = (int)UCSFIDSet.ByFNO[FNO.ToLower()].PersonId;
-        return GetXMLProfiles(personId);
     }
 
     private string GetXMLProfiles(int personId)

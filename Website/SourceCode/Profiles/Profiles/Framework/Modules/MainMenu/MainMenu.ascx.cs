@@ -71,17 +71,11 @@ namespace Profiles.Framework.Modules.MainMenu
             {
                 userBrand = Brand.GetForSubject(sm.Session().NodeID);
                 menulist.Append("<li><img src='" + userBrand.BasePath + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + sm.Session().NodeID + "&Thumbnail=True&Width=20' width='20' height='40'></li>");
-                menulist.Append("<li><a href='" + UCSFIDSet.ByNodeId[sm.Session().NodeID].PrettyURL + "'>" + sm.Session().ShortDisplayName + "</a></li>");
+                menulist.Append("<li><a href='" + UCSFIDSet.ByNodeId[sm.Session().NodeID].PrettyURL + "'>" + sm.Session().DisplayName + "</a></li>");
             }
-            else if (!String.IsNullOrEmpty(sm.Session().ShortDisplayName)) // logged in person
+            else if (!String.IsNullOrEmpty(sm.Session().DisplayName)) // logged in person
             {
-                menulist.Append("<li>" + sm.Session().ShortDisplayName + "</li>");
-            }
-            else if (!String.IsNullOrEmpty(Request.Headers.Get(ConfigurationManager.AppSettings["Shibboleth.UserNameHeader"].ToString())))
-            {
-                // they are logged into shibboleth but not profiles. Redirect them through shibboleth
-                DebugLogging.Log("Redirecting user logged into Shibboleth but not profiles :" + Request.Headers.Get(ConfigurationManager.AppSettings["Shibboleth.UserNameHeader"].ToString()));
-                Response.Redirect(Brand.GetDomain() + "/login/default.aspx?method=shibboleth&redirectto=" + Brand.GetDomain() + Root.AbsolutePath, false);
+                menulist.Append("<li>" + sm.Session().DisplayName + "</li>");
             }
             
             if (sm.Session().NodeID > 0)
@@ -145,7 +139,7 @@ namespace Profiles.Framework.Modules.MainMenu
             }
 
 
-            if (sm.Session().UserID == 0 && String.IsNullOrEmpty(sm.Session().ShortDisplayName))
+            if (!sm.Session().IsLoggedIn())
             {
                 if (!Root.AbsolutePath.Contains("login"))
                 {

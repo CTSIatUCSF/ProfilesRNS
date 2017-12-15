@@ -37,8 +37,6 @@ namespace Profiles.CustomAPI.Utilities
         {
             string Subject = request["Subject"];
             string PersonId = request["Person"];
-            string EmployeeID = request["EmployeeID"];
-            string FNO = request["FNO"];
             string PrettyURL = request["PrettyURL"];
             string UserName = request["UserName"];
 
@@ -48,19 +46,11 @@ namespace Profiles.CustomAPI.Utilities
             }
             else if (PrettyURL != null)
             {
-                return Framework.Utilities.UCSFIDSet.ByPrettyURL[PrettyURL.ToLower()];
+                return Framework.Utilities.UCSFIDSet.ByPrettyURL[Brand.GetDomain() + "/" + PrettyURL.ToLower()];
             }
             else if (PersonId != null)
             {
                 return Framework.Utilities.UCSFIDSet.ByPersonId[Convert.ToInt32(PersonId)];
-            }
-            else if (FNO != null)
-            {
-                return Profiles.Framework.Utilities.UCSFIDSet.ByFNO[FNO.ToLower()];
-            }
-            else if (EmployeeID != null)
-            {
-                return Profiles.Framework.Utilities.UCSFIDSet.ByEmployeeID[EmployeeID];
             }
             else if (UserName != null)
             {

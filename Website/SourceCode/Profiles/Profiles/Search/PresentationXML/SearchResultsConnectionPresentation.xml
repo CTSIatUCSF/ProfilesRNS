@@ -13,7 +13,7 @@
       <Module ID="MiniSearch"  />
       <Module ID="MainMenu"/>
     </Panel>
-    <Panel Name="" Alias="" Type="main" TabType="Fixed" TabSort="1" >
+    <Panel Name="" Alias="" Type="main" TabType="Fixed" TabSort="0" >
       <Module ID="SearchConnection" />
     </Panel>
     <Panel Type="passive">

@@ -31,6 +31,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -147,7 +148,9 @@
     <Content Include="Activity\Modules\LatestUpdates\LatestUpdates.ascx" />
     <Content Include="Activity\Modules\ModuleCatalogue.xml" />
     <Content Include="Activity\Modules\Statistics\Statistics.ascx" />
-    <Content Include="Activity\PresentationXML\ActivityDetails.xml" />
+    <Content Include="Activity\PresentationXML\ActivityDetails.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Themes\LBNL\Images\lbl-logo.png" />
     <Content Include="App_Themes\LBNL\Images\lbl-new-social-iconsB.png" />
     <Content Include="App_Themes\LBNL\Images\ProfilesLogo.gif" />
@@ -377,6 +380,7 @@
     <Content Include="App_Themes\UCSF\UCSF.js" />
     <Content Include="CustomAPI\v1\EasyJSONPlus.aspx" />
     <Content Include="CustomAPI\v1\RejectedPMIDs.aspx" />
+    <Content Include="CustomAPI\v2\Disambiguate.aspx" />
     <Content Include="Edit\Images\img_arrow.png" />
     <Content Include="Error\PresentationXML\HttpRequestValidationExceptionPresentation.xml" />
     <Content Include="favicon.ico" />
@@ -399,8 +403,9 @@
     <Content Include="Login\Images\ucsd.edu.png" />
     <Content Include="Login\Images\ucsf.edu.png" />
     <Content Include="Login\Modules\MultiShibLogin\MultiShibLogin.ascx" />
-    <Content Include="Login\MultiShibbolethLogin.aspx" />
-    <Content Include="Login\PresentationXML\MultiShibbolethLogin.xml" />
+    <Content Include="Login\PresentationXML\MultiShibbolethLoginPresentation.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Profile\JavaScript\UCSF.js" />
     <Content Include="App_Themes\UCSF\UCSF.css" />
     <Content Include="Search\JavaScript\UCSF.js" />
@@ -738,6 +743,13 @@
     </Compile>
     <Compile Include="Activity\Utilities\Activity.cs" />
     <Compile Include="Activity\Utilities\DataIO.cs" />
+    <Compile Include="CustomAPI\v2\Disambiguate.aspx.cs">
+      <DependentUpon>Disambiguate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v2\Disambiguate.aspx.designer.cs">
+      <DependentUpon>Disambiguate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -838,13 +850,6 @@
     </Compile>
     <Compile Include="Login\Modules\MultiShibLogin\MultiShibLogin.ascx.designer.cs">
       <DependentUpon>MultiShibLogin.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Login\MultiShibbolethLogin.aspx.cs">
-      <DependentUpon>MultiShibbolethLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login\MultiShibbolethLogin.aspx.designer.cs">
-      <DependentUpon>MultiShibbolethLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login\Modules\ADLogin\ADLogin.ascx.cs">
       <DependentUpon>ADLogin.ascx</DependentUpon>
@@ -2122,7 +2127,9 @@
     <Content Include="Search\Modules\SearchCriteria\SearchCriteria.ascx" />
     <Content Include="Search\Modules\SearchEverything\SearchEverything.ascx" />
     <Content Include="Search\Modules\SearchOptions\SearchOptions.ascx" />
-    <Content Include="Search\PresentationXML\SearchResultsConnectionPresentation.xml" />
+    <Content Include="Search\PresentationXML\SearchResultsConnectionPresentation.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Search\PresentationXML\SearchResultsPersonPresentation.xml" />
     <Content Include="Search\PresentationXML\SearchFormPresentation.xml">
       <SubType>Designer</SubType>

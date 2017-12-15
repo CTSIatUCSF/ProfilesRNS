@@ -11,7 +11,7 @@ using Connects.Profiles.Common;
 using Connects.Profiles.Service.DataContracts;
 using Connects.Profiles.Utility;
 using System.Web.Script.Serialization;
-using Profiles.CustomAPI.Utilities;
+using Profiles.Framework.Utilities;
 
 public partial class JSONProfile : Profiles.Framework.Utilities.BrandedPage
 {
@@ -20,9 +20,8 @@ public partial class JSONProfile : Profiles.Framework.Utilities.BrandedPage
     {
         try
         {
-            string personId = Request["Person"];
-            string EmployeeID = Request["EmployeeID"];
-            string FNO = Request["FNO"];
+            Profiles.CustomAPI.Utilities.DataIO data = new Profiles.CustomAPI.Utilities.DataIO();
+            UCSFIDSet person = data.GetPerson(Request);
             string callback = Request["callback"];
             bool mobile = "on".Equals(Request["mobile"], StringComparison.CurrentCultureIgnoreCase) || "1".Equals(Request["mobile"]);
             bool showPublications = "full".Equals(Request["publications"], StringComparison.CurrentCultureIgnoreCase);
@@ -31,17 +30,9 @@ public partial class JSONProfile : Profiles.Framework.Utilities.BrandedPage
             string jsonProfiles = "{}";
             try
             {
-                if (personId != null && personId.Length > 0)
+                if (person != null)
                 {
-                    jsonProfiles = GetJSONProfiles(Int32.Parse(personId), showPublications, mobile);
-                }
-                else if (EmployeeID != null && EmployeeID.Length > 0)
-                {
-                    jsonProfiles = GetJSONProfilesFromEmployeeID(EmployeeID, showPublications, mobile);
-                }
-                else if (FNO != null && FNO.Length > 0)
-                {
-                    jsonProfiles = GetJSONProfilesFromFNO(FNO, showPublications, mobile);
+                    jsonProfiles = GetJSONProfiles(person.PersonId, showPublications, mobile);
                 }
             }
             catch (Exception ex)
@@ -70,25 +61,13 @@ public partial class JSONProfile : Profiles.Framework.Utilities.BrandedPage
         }
     }
 
-    private string GetJSONProfilesFromEmployeeID(string employeeID, bool showPublications, bool mobile)
-    {
-        int personId = (int)Profiles.Framework.Utilities.UCSFIDSet.ByEmployeeID[employeeID].PersonId;
-        return GetJSONProfiles(personId, showPublications, mobile);
-    }
-
-    private string GetJSONProfilesFromFNO(string FNO, bool showPublications, bool mobile)
-    {
-        int personId = (int)Profiles.Framework.Utilities.UCSFIDSet.ByFNO[FNO.ToLower()].PersonId;
-        return GetJSONProfiles(personId, showPublications, mobile);
-    }
-
     private string GetJSONProfiles(int personId, bool showPublications, bool mobile)
     {
         Dictionary<string, Object> personData = new Dictionary<string, Object>();
         List<Dictionary<string, Object>> personDataList = new List<Dictionary<string, object>>();
         Dictionary<string, Object> profileData = new Dictionary<string, Object>();
 
-        if (!new DataIO().GetIsActive(personId))
+        if (!new Profiles.CustomAPI.Utilities.DataIO().GetIsActive(personId))
         {
             // this will cause a safe {} to be returned 
             throw new Exception("Person does not have an active profile");

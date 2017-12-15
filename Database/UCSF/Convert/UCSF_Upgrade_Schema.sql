@@ -66,7 +66,7 @@ PRIMARY KEY CLUSTERED
 
 GO
 
-/****** Object:  Table [UCSF.].[InstitutionAbbreviation2Theme]    Script Date: 12/16/2015 10:51:55 AM ******/
+/****** Object:  Table [UCSF.].[InstitutionAdditions]    Script Date: 12/16/2015 10:51:55 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -76,9 +76,10 @@ GO
 SET ANSI_PADDING ON
 GO
 
-CREATE TABLE [UCSF.].[InstitutionAbbreviation2Theme](
+CREATE TABLE [UCSF.].[InstitutionAdditions](
 	[InstitutionAbbreviation] [nvarchar](50) NOT NULL,
 	[Theme] [nvarchar](50) NOT NULL,
+	[ShibbolethIdP] [nvarchar](255) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[InstitutionAbbreviation] ASC
@@ -86,7 +87,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 
 GO
-ALTER TABLE [UCSF.].[InstitutionAbbreviation2Theme]  WITH CHECK ADD  CONSTRAINT [FK_institution2theme] FOREIGN KEY([Theme])
+ALTER TABLE [UCSF.].[InstitutionAdditions]  WITH CHECK ADD  CONSTRAINT [FK_institution_theme] FOREIGN KEY([Theme])
 REFERENCES [UCSF.].[Theme] ([Theme])
 GO
 
@@ -141,7 +142,7 @@ SELECT p.[PersonID]
   FROM [Profile.Data].[Person] p 
 	JOIN [Profile.Data].[Person.Affiliation] a on p.PersonID = a.PersonID and a.IsPrimary = 1
 	JOIN [Profile.Data].[Organization.Institution] i on a.InstitutionID = i.InstitutionID
-	JOIN [UCSF.].[InstitutionAbbreviation2Theme] t on i.InstitutionAbbreviation = t.InstitutionAbbreviation --this is where and how we assign a theme to a profile.
+	JOIN [UCSF.].[InstitutionAdditions] t on i.InstitutionAbbreviation = t.InstitutionAbbreviation --this is where and how we assign a theme to a profile.
 	JOIN [UCSF.].[NameAdditions] na on na.internalusername = p.internalusername
 	JOIN [RDF.Stage].internalnodemap n on n.internalid = p.personId AND n.[class] = 'http://xmlns.com/foaf/0.1/Person' 
 
@@ -175,7 +176,7 @@ SELECT DISTINCT t.Theme,
 	   CASE WHEN t.Shared = 1 THEN NULL ELSE a.InstitutionAbbreviation END AS InstitutionAbbreviation,
 	   CASE WHEN t.Theme = 'UC' THEN 'UC' ELSE NULL END AS PersonFilter -- note that this is hacked to do what we need it to do. For a view, that is sort of OK
 FROM [UCSF.].[Theme] t
-	LEFT OUTER JOIN [UCSF.].[InstitutionAbbreviation2Theme] a on a.Theme = t.Theme
+	LEFT OUTER JOIN [UCSF.].[InstitutionAdditions] a on a.Theme = t.Theme
 
 GO
 ---------------------------------------------------------------------------------------------------------------------
@@ -328,7 +329,7 @@ BEGIN
 					 @CleanSuffix=n.CleanSuffix,
  					 @CleanGivenName=n.CleanGivenName
 		FROM [UCSF.].[NameAdditions] n JOIN [Profile.Import].[PersonAffiliation] a on n.internalusername=a.internalusername and a.primaryaffiliation=1
-			LEFT OUTER JOIN [UCSF.].[InstitutionAbbreviation2Theme] it on it.InstitutionAbbreviation=a.institutionabbreviation -- associate theme to person by instutition 
+			LEFT OUTER JOIN [UCSF.].[InstitutionAdditions] it on it.InstitutionAbbreviation=a.institutionabbreviation -- associate theme to person by instutition 
 			LEFT OUTER JOIN [UCSF.].[Theme] t on t.Theme=it.Theme 
 			WHERE n.PrettyURL is null ORDER BY len(n.CleanMiddle) + len(n.CleanSuffix)					 
 
@@ -960,6 +961,10 @@ GO
 
 ALTER TABLE [Profile.Data].[Publication.PubMed.DisambiguationAffiliation]  WITH CHECK ADD  CONSTRAINT [FK_pubmed_disambiguation_affiliation_institution] FOREIGN KEY([InstitutionID])
 REFERENCES [Profile.Data].[Organization.Institution] ([InstitutionID])
+GO
+
+
+ALTER TABLE [User.Session].[Session] ADD DisplayName varchar(255) NULL
 GO
 -- =============================================
 -- Author:		<Author,,Name>
@@ -2346,14 +2351,14 @@ GO
 
 ALTER PROCEDURE [User.Session].[UpdateSession]
 	@SessionID UNIQUEIDENTIFIER, 
-	@UserID INT=NULL, 
+	@UserID INT=NULL OUTPUT,  -- UCSF added as output for MultiShibbolethLogin
 	@LastUsedDate DATETIME=NULL, 
 	@LogoutDate DATETIME=NULL,
 	@SessionPersonNodeID BIGINT = NULL OUTPUT,
 	@SessionPersonURI VARCHAR(400) = NULL OUTPUT,
 	@UserURI VARCHAR(400) = NULL OUTPUT,
 	@SecurityGroupID BIGINT = NULL OUTPUT,
-	@ShortDisplayName VARCHAR(400) = NULL OUTPUT  -- Added by UCSF
+	@DisplayName VARCHAR(255) = NULL OUTPUT  -- Added by UCSF
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -2362,13 +2367,17 @@ BEGIN
 	
 	-- See if there is a PersonID associated with this session	
 	DECLARE @PersonID INT
-	SELECT @PersonID = PersonID
+	SELECT @PersonID = PersonID, 
+		@UserID = ISNULL(@UserID, UserID) -- UCSF added this line
 		FROM [User.Session].[Session]
 		WHERE SessionID = @SessionID
-	IF @PersonID IS NULL AND @UserID IS NOT NULL
-		SELECT @PersonID = PersonID
+	IF @UserID IS NOT NULL
+		SELECT @PersonID = ISNULL(@PersonID, PersonID),
+			@DisplayName = FirstName + ' ' + LastName  -- UCSF
 			FROM [User.Account].[User]
 			WHERE UserID = @UserID
+
+	-- UCSF. Set the @UserID from the @SessionID
 
 	-- Get the NodeID and URI of the PersonID
 	IF @PersonID IS NOT NULL
@@ -2387,6 +2396,7 @@ BEGIN
 			SET	UserID = IsNull(@UserID,UserID),
 				UserNode = IsNull((SELECT NodeID FROM [User.Account].[User] WHERE UserID = @UserID AND @UserID IS NOT NULL),UserNode),
 				PersonID = IsNull(@PersonID,PersonID),
+				DisplayName = IsNull(@DisplayName, DisplayName), -- UCSF
 				LastUsedDate = IsNull(@LastUsedDate,LastUsedDate),
 				LogoutDate = IsNull(@LogoutDate,LogoutDate)
 			WHERE SessionID = @SessionID
@@ -2413,8 +2423,6 @@ BEGIN
 				AND m.Class = 'http://profiles.catalyst.harvard.edu/ontology/prns#User'
 				AND p.ParameterID = 'baseURI'
 	END
-	-- UCSF
-	SELECT @ShortDisplayName = FirstName + ' ' + LastName FROM [User.Account].[User] WHERE UserID = @UserID AND @UserID IS NOT NULL
 END
 
 GO
@@ -3302,6 +3310,44 @@ SELECT @batchcount=@@ROWCOUNT
 
 SELECT @BatchID,@batchcount,*
   FROM #batch 
+END
+
+GO
+
+/****** Object:  StoredProcedure [Profile.Data].[Organization.GetInstitutions]    Script Date: 12/11/2017 10:49:18 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [Profile.Data].[Organization.GetInstitutions]
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	SELECT x.InstitutionID, x.InstitutionName, x.InstitutionAbbreviation, n.NodeID, n.Value URI, a.ShibbolethIdP
+		FROM (
+				SELECT CAST(MAX(InstitutionID) AS VARCHAR(50)) InstitutionID,
+						LTRIM(RTRIM(InstitutionName)) InstitutionName, 
+						MIN(institutionabbreviation) InstitutionAbbreviation
+				FROM [Profile.Data].[Organization.Institution] WITH (NOLOCK)
+				GROUP BY LTRIM(RTRIM(InstitutionName))
+			) x 
+			LEFT OUTER JOIN [RDF.Stage].InternalNodeMap m WITH (NOLOCK)
+				ON m.class = 'http://xmlns.com/foaf/0.1/Organization'
+					AND m.InternalType = 'Institution'
+					AND m.InternalID = CAST(x.InstitutionID AS VARCHAR(50))
+			LEFT OUTER JOIN [RDF.].Node n WITH (NOLOCK)
+				ON m.NodeID = n.NodeID
+					AND n.ViewSecurityGroup = -1
+			LEFT OUTER JOIN [UCSF.].[InstitutionAdditions] a WITH (NOLOCK)
+				ON x.InstitutionAbbreviation = a.InstitutionAbbreviation
+		ORDER BY InstitutionName
+
 END
 
 GO

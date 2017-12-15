@@ -171,7 +171,7 @@ namespace ProfilesSearchAPI.Utilities
             dbcommand.CommandTimeout = this.GetCommandTimeout();
 
             param[0] = new SqlParameter("@SessionID", session.SessionID);
-            param[1] = new SqlParameter("@UserID", session.UserID);
+            param[1] = session.UserID > 0 ? new SqlParameter("@UserID", session.UserID) : new SqlParameter("@UserID", DBNull.Value);
 
             param[2] = new SqlParameter("@LastUsedDate", DateTime.Now);
 
@@ -182,7 +182,7 @@ namespace ProfilesSearchAPI.Utilities
             param[4].Direction = ParameterDirection.Output;
 
             // UCSF
-            param[5] = new SqlParameter("@ShortDisplayName", SqlDbType.VarChar, 400);
+            param[5] = new SqlParameter("@DisplayName", SqlDbType.VarChar, 400);
             param[5].Direction = ParameterDirection.Output;
 
             if (session.LogoutDate > DateTime.Now.AddDays(-5))

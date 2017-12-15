@@ -27,45 +27,46 @@ namespace Profiles.Login.Modules.ShibLogin
 {
     public partial class ShibLogin : System.Web.UI.UserControl
     {
-        Framework.Utilities.SessionManagement sm;
+        Framework.Utilities.SessionManagement sm = new SessionManagement();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                string loginUrl = ConfigurationManager.AppSettings["Shibboleth.LoginURL"];
+                string logoutUrl = ConfigurationManager.AppSettings["Shibboleth.LogoutURL"];
+                string userNameHeader = ConfigurationManager.AppSettings["Shibboleth.UserNameHeader"];
+                string displayNameHeader = ConfigurationManager.AppSettings["Shibboleth.DisplayNameHeader"];
 
                 if (Request.QueryString["method"].ToString() == "logout")
                 {
 
                     sm.SessionLogout();
                     sm.SessionDestroy();
-                    Response.Redirect(ConfigurationManager.AppSettings["Shibboleth.LogoutURL"] + "?return=" + Request.QueryString["redirectto"].ToString());
+                    Response.Redirect(logoutUrl + "?return=" + HttpUtility.UrlEncode(Request.QueryString["redirectto"].ToString()));
                 }
                 else if (Request.QueryString["method"].ToString() == "shibboleth")
                 {
                     // added by Eric
                     // If they specify an Idp, then check that they logged in from the configured IDP
                     bool authenticated = false;
-                    if (ConfigurationManager.AppSettings["Shibboleth.ShibIdentityProvider"] == null ||
-                        ConfigurationManager.AppSettings["Shibboleth.ShibIdentityProvider"].ToString().Equals(Request.Headers.Get("ShibIdentityProvider").ToString(), StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        String userName = Request.Headers.Get(ConfigurationManager.AppSettings["Shibboleth.UserNameHeader"].ToString()); //"025693078";
-                        if (userName != null && userName.Trim().Length > 0)
-                        {
-                            Profiles.Login.Utilities.DataIO data = new Profiles.Login.Utilities.DataIO();
-                            Profiles.Login.Utilities.User user = new Profiles.Login.Utilities.User();
 
-                            user.UserName = userName;
-                            if (data.UserLoginExternal(ref user))
-                            {
-                                authenticated = true;
-                                RedirectAuthenticatedUser();
-                            }
+                    String userName = Request.Headers.Get(userNameHeader); //"025693078";
+                    if (userName != null && userName.Trim().Length > 0)
+                    {
+                        Profiles.Login.Utilities.DataIO data = new Profiles.Login.Utilities.DataIO();
+                        Profiles.Login.Utilities.User user = new Profiles.Login.Utilities.User();
+
+                        user.UserName = userName;
+                        if (data.UserLoginExternal(ref user))
+                        {
+                            authenticated = true;
+                            RedirectAuthenticatedUser();
                         }
                     }
                     if (!authenticated)
                     {
                         // try and just put their name in the session.
-                        sm.Session().ShortDisplayName = String.IsNullOrEmpty(Request.Headers.Get("ShibdisplayName")) ? Request.Headers.Get(ConfigurationManager.AppSettings["Shibboleth.UserNameHeader"].ToString()) : Request.Headers.Get("ShibdisplayName");
+                        sm.Session().DisplayName = String.IsNullOrEmpty(Request.Headers.Get(displayNameHeader)) ? Request.Headers.Get(userNameHeader) : Request.Headers.Get(displayNameHeader);
                         RedirectAuthenticatedUser();
                     }
                 }
@@ -73,8 +74,7 @@ namespace Profiles.Login.Modules.ShibLogin
                 {
                     // see if they already have a login session, if so don't send them to shibboleth
                     Profiles.Framework.Utilities.SessionManagement sm = new Profiles.Framework.Utilities.SessionManagement();
-                    String viewerId = sm.Session().PersonURI;
-                    if (viewerId != null && viewerId.Trim().Length > 0)
+                    if (sm.Session().IsLoggedIn())
                     {
                         RedirectAuthenticatedUser();
                     }
@@ -86,8 +86,7 @@ namespace Profiles.Login.Modules.ShibLogin
                         else
                             redirect += "&redirectto=" + Request.QueryString["redirectto"].ToString();
 
-                        Response.Redirect(ConfigurationManager.AppSettings["Shibboleth.LoginURL"].ToString().Trim() +
-                            HttpUtility.UrlEncode(redirect));
+                        Response.Redirect(loginUrl + "?target=" + HttpUtility.UrlEncode(redirect));
                     }
                 }
 
@@ -98,26 +97,44 @@ namespace Profiles.Login.Modules.ShibLogin
 
         private void RedirectAuthenticatedUser()
         {
+            Framework.Utilities.DebugLogging.Log("ShibLogin redirect authenticated user query = " + Request.Url.Query);
             if (Request.QueryString["redirectto"] == null && Request.QueryString["edit"] == "true")
             {
-                Response.Redirect(Brand.GetDomain() + "/edit/" + sm.Session().NodeID);
+                Response.Redirect(Brand.GetForSubject(sm.Session().NodeID).BasePath + "/edit/" + sm.Session().NodeID);
             }
             else if (Request.QueryString["redirectto"] != null)
             {
-                if ("mypage".Equals(Request.QueryString["redirectto"].ToLower())) 
-                {
-                    Response.Redirect(Brand.GetDomain() + "/profile/" + sm.Session().NodeID);
-                }
-                else if ("myproxies".Equals(Request.QueryString["redirectto"].ToLower()))
-                {
-                    Response.Redirect(Brand.GetDomain() + "/proxy/default.aspx?subject=" + sm.Session().NodeID);
-                }
-                else 
-                {
-                    Response.Redirect(Request.QueryString["redirectto"].ToString());
-                }
+                Response.Redirect(ShibLogin.GetRedirectForAuthenticatedUser(Request.QueryString["redirectto"]));
             }
             Response.Redirect(Brand.GetDomain());
+        }
+
+        public static string GetRedirectForAuthenticatedUser(string redirectto)
+        {
+            Framework.Utilities.SessionManagement sm = new SessionManagement();
+            if (String.IsNullOrEmpty(redirectto))
+            {
+                return Brand.GetDomain();
+            }
+            else if ("mypage".Equals(redirectto.ToLower()))
+            {
+                return Brand.GetForSubject(sm.Session().NodeID).BasePath + "/profile/" + sm.Session().NodeID;
+            }
+            else if ("myproxies".Equals(redirectto.ToLower()))
+            {
+                return Brand.GetForSubject(sm.Session().NodeID).BasePath + "/proxy/default.aspx?subject=" + sm.Session().NodeID;
+            }
+            else if ("edit".Equals(redirectto.ToLower()))
+            {
+                return Brand.GetForSubject(sm.Session().NodeID).BasePath + "/edit/" + sm.Session().NodeID;
+            }
+            else 
+            {
+                // use full part of query after the redirectto parameter because it might have 
+                // LOG THIS!
+                return redirectto;
+                //Response.Redirect(Request.Url.Query.Substring(Request.Url.Query.IndexOf("redirectto=") + "redirectto=".Length));
+            }
         }
 
         public ShibLogin() { }

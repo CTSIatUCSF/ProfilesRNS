@@ -8,8 +8,8 @@ DROP FUNCTION [UCSF.].[fn_UrlCleanName]
 DROP FUNCTION [UCSF.].[fn_ApplicationNameFromPrettyUrl]
 DROP FUNCTION [UCSF.].fn_LegacyInternalusername2EPPN
 DROP TABLE [UCSF.].[NameAdditions]
-DROP VIEW [UCSF].[vwBrand]
-DROP TABLE [UCSF.].[InstitutionAbbreviation2Theme]
+DROP VIEW [UCSF.].[vwBrand]
+DROP TABLE [UCSF.].[InstitutionAdditions]
 DROP TABLE [UCSF.].[Theme]
 DROP SCHEMA [UCSF.]
 
@@ -29,6 +29,7 @@ DROP TABLE [UCSF.CTSASearch].[Publication.PubMed.CoAuthorXML]
 DROP SCHEMA [UCSF.CTSASearch]
 
 ALTER TABLE [Profile.Data].[Publication.Entity.InformationResource]	DROP COLUMN Authors
+--ALTER TABLE [User.Session].[Session]	DROP COLUMN DisplayName -- The User.Session.UpdateSession SP now depends on this, so need to roll that back to do this
 DROP PROCEDURE [Profile.Data].[Publication.ClaimOnePublication]
 
 -- we do NOT replace all the existing SP's we altered.

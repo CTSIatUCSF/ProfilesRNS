@@ -25,14 +25,16 @@ namespace Profiles.Framework.Utilities
         private string Abbreviation;
         private Int64 NodeID;
         private string URI;
+        private string ShibbolethIdP;
 
-        public Institution(int Id, string Name, string Abbreviation, Int64 NodeID, string URI)
+        public Institution(int Id, string Name, string Abbreviation, Int64 NodeID, string URI, string ShibbolethIdP)
         {
             this.Id = Id;
             this.Name = Name;
             this.Abbreviation = Abbreviation;
             this.NodeID = NodeID;
             this.URI = URI;
+            this.ShibbolethIdP = ShibbolethIdP;
             ByAbbreviation.Add(Abbreviation, this);
             ByURI.Add(URI, this);
         }
@@ -62,5 +64,9 @@ namespace Profiles.Framework.Utilities
             return URI;
         }
 
+        public string GetShibbolethIdP()
+        {
+            return ShibbolethIdP;
+        }
     }
 }

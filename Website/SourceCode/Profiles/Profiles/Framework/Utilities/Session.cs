@@ -53,7 +53,13 @@ namespace Profiles.Framework.Utilities
             return IsBot ? "BOT" : (UserID == 0 ? "ANONYMOUS" : SessionID);
         }
         public string UserURI { get; set; } // added by UCSF for ORNG
-        public string ShortDisplayName { get; set; } // added by UCSF for menu
+        public string DisplayName { get; set; } // added by UCSF for menu
+
+        // by UCSF
+        public bool IsLoggedIn()
+        {
+            return UserID != 0 || !String.IsNullOrEmpty(DisplayName);
+        }
     }
 
     public class SessionHistory

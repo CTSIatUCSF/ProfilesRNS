@@ -650,11 +650,11 @@ INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('USC', 'http://sta
 INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCI', 'http://stage-profiles.ucsf.edu/uci', 0);
 INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCD', 'http://stage-profiles.ucsf.edu/ucd', 0);
 
-INSERT INTO [UCSF.].[InstitutionAbbreviation2Theme] (InstitutionAbbreviation, Theme) VALUES ('UCI', 'UCI');
-INSERT INTO [UCSF.].[InstitutionAbbreviation2Theme] (InstitutionAbbreviation, Theme) VALUES ('UCD', 'UCD');
-INSERT INTO [UCSF.].[InstitutionAbbreviation2Theme] (InstitutionAbbreviation, Theme) VALUES ('UCSF', 'UCSF');
-INSERT INTO [UCSF.].[InstitutionAbbreviation2Theme] (InstitutionAbbreviation, Theme) VALUES ('UCSD', 'UCSD');
-INSERT INTO [UCSF.].[InstitutionAbbreviation2Theme] (InstitutionAbbreviation, Theme) VALUES ('USC', 'USC');
+INSERT INTO [UCSF.].[InstitutionAbbreviationAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCI', 'UCI', 'urn:mace:incommon:uci.edu');
+INSERT INTO [UCSF.].[InstitutionAbbreviationAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCD', 'UCD', 'urn:mace:incommon:ucdavis.edu');
+INSERT INTO [UCSF.].[InstitutionAbbreviationAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCSF', 'UCSF', 'urn:mace:incommon:ucsf.edu');
+INSERT INTO [UCSF.].[InstitutionAbbreviationAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCSD', 'UCSD', 'urn:mace:incommon:ucsd.edu');
+INSERT INTO [UCSF.].[InstitutionAbbreviationAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('USC', 'USC', 'https://shibboleth.usc.edu/shibboleth-idp');
 
 --rollback
 --commit

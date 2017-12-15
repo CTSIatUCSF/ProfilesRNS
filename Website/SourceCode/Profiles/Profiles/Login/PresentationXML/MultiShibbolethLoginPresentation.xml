@@ -11,12 +11,10 @@
     <Panel type="page" />
     <Panel Type="active">
       <Module ID="MiniSearch"  />
-      <Module ID="MainMenu">
-      </Module>
     </Panel>
     <Panel Name="" Alias="" Type="main" TabType="Default" TabSort="0" >
-      <Module ID="MultiShibLogin" >
-      </Module>
+      <Module ID="MultiShibLogin"/>
+      <!--Module ID="Login" /-->
     </Panel>
     <Panel type="footer" />
   </PanelList>

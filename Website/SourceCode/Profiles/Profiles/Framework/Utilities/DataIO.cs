@@ -428,12 +428,13 @@ namespace Profiles.Framework.Utilities
                 sqlcmd = new SqlCommand(CmdText, GetDBConnection(SqlConnectionString));
                 sqlcmd.CommandType = CmdType;
                 sqlcmd.CommandTimeout = GetCommandTimeout();
+                /********** Commented out by UCSF
                 Framework.Utilities.DebugLogging.Log("CONNECTION STRING " + SqlConnectionString);
                 Framework.Utilities.DebugLogging.Log("COMMAND TEXT " + CmdText);
                 Framework.Utilities.DebugLogging.Log("COMMAND TYPE " + CmdType.ToString());
                 if (sqlParam != null)
                     Framework.Utilities.DebugLogging.Log("NUMBER OF PARAMS " + sqlParam.Length);
-
+                ********************************/
 
                 if (sqlParam != null)
                     AddSQLParameters(sqlcmd, sqlParam);
@@ -645,7 +646,9 @@ namespace Profiles.Framework.Utilities
             dbcommand.CommandTimeout = this.GetCommandTimeout();
 
             param[0] = new SqlParameter("@SessionID", session.SessionID);
-            param[1] = new SqlParameter("@UserID", session.UserID);
+
+            param[1] = session.UserID > 0 ? new SqlParameter("@UserID", session.UserID) : new SqlParameter("@UserID", SqlDbType.Int);
+            param[1].Direction = ParameterDirection.InputOutput;
 
             param[2] = new SqlParameter("@LastUsedDate", session.LastUsedDate);
 
@@ -661,8 +664,8 @@ namespace Profiles.Framework.Utilities
             param[5].Direction = ParameterDirection.Output;
 
             // UCSF
-            param[6] = new SqlParameter("@ShortDisplayName", SqlDbType.VarChar, 400);
-            param[6].Direction = ParameterDirection.Output;
+            param[6] = String.IsNullOrEmpty(session.DisplayName) ? new SqlParameter("@DisplayName", SqlDbType.VarChar, 255) : new SqlParameter("@DisplayName", session.DisplayName);
+            param[6].Direction = ParameterDirection.InputOutput;
 
             if (session.LogoutDate > DateTime.Now.AddDays(-5))
             {
@@ -684,6 +687,10 @@ namespace Profiles.Framework.Utilities
             try
             {
                 dbcommand.Connection.Close();
+                if (param[1].Value != null && param[1].Value != DBNull.Value)
+                {
+                    session.UserID = Convert.ToInt32(param[1].Value);
+                }
                 if (param[3].Value != null && param[3].Value != DBNull.Value)
                 {
                     session.NodeID = Convert.ToInt64(param[3].Value);
@@ -693,7 +700,7 @@ namespace Profiles.Framework.Utilities
                     session.PersonURI = param[4].Value.ToString();
                 }
                 session.UserURI = param[5].Value.ToString();
-                session.ShortDisplayName = param[6].Value.ToString();
+                session.DisplayName = param[6].Value.ToString();
             }
             catch (Exception ex)
             {
@@ -932,18 +939,14 @@ namespace Profiles.Framework.Utilities
         // Load all the ID's for people so we don't have to hit the DB all the time
         public void LoadUCSFIdSet()
         {
-            string IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.prettyurl, u.UserName, '', p.InstitutionAbbreviation, p.Theme from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID";
-            if ("UCSF".Equals(Brand.GetSystemTheme()))
-            {
-                IDSetSQL = "select p.personid, p.nodeid, p.internalusername, p.prettyurl, u.UserName, ISNULL(f.UID_USERID, ''), p.InstitutionAbbreviation, p.Theme from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID left outer join import_ucsf.dbo.vw_FNO f on p.InternalUsername = f.INDIVIDUAL_ID";
-            }
+            string IDSetSQL = "select p.personid, p.nodeid, p.prettyurl, u.internalusername, p.InstitutionAbbreviation, p.Theme from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID";
 
             using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
                 IDSetSQL, CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    new UCSFIDSet(Convert.ToInt64(reader[0]), Convert.ToInt64(reader[1]), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), Institution.GetByAbbreviation(reader[6].ToString()), Brand.GetByTheme(reader[7].ToString()));
+                    new UCSFIDSet(Convert.ToInt32(reader[0]), Convert.ToInt64(reader[1]), reader[2].ToString(), reader[3].ToString(), Institution.GetByAbbreviation(reader[4].ToString()), Brand.GetByTheme(reader[5].ToString()));
                 }
             }
         }
@@ -955,7 +958,7 @@ namespace Profiles.Framework.Utilities
             {
                 while (reader.Read())
                 {
-                    new Institution(Convert.ToInt32(reader[0]), reader[1].ToString(), reader[2].ToString(), Convert.ToInt64(reader[3]), reader[4].ToString());
+                    new Institution(Convert.ToInt32(reader[0]), reader[1].ToString(), reader[2].ToString(), Convert.ToInt64(reader[3]), reader[4].ToString(), reader[5].ToString());
                 }
             }
         }

@@ -46,9 +46,9 @@ namespace Profiles.Login.Modules.Login
                     if (Request.QueryString["redirectto"] == null && Request.QueryString["edit"] == "true")
                     {
                         if (Request.QueryString["editparams"] == null)
-                            Response.Redirect(Brand.GetDomain() + "/edit/" + sm.Session().NodeID);
+                            Response.Redirect(Brand.GetForSubject(sm.Session().NodeID).BasePath + "/edit/" + sm.Session().NodeID);
                         else
-                            Response.Redirect(Brand.GetDomain() + "/edit/default.aspx?subject=" + sm.Session().NodeID + "&" + Request.QueryString["editparams"]);
+                            Response.Redirect(Brand.GetForSubject(sm.Session().NodeID).BasePath + "/edit/default.aspx?subject=" + sm.Session().NodeID + "&" + Request.QueryString["editparams"]);
                     }
                     else
                         Response.Redirect(Request.QueryString["redirectto"].ToString());

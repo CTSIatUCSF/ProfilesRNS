@@ -27,8 +27,6 @@
           <Param Name="SeeMore">True</Param>
         </ParamList>
       </Module>
-      <Module ID="LatestUpdates">
-      </Module>
     </Panel>
     <Panel Type="main">
       <Module ID="SearchPerson">

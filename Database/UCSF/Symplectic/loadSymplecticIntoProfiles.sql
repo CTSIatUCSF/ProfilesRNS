@@ -1,5 +1,29 @@
-use profiles_ucsf
-drop table #AuthorList
+USE [profiles_ucsf]
+GO
+
+/****** Object:  StoredProcedure [UCSF.].[loadSymplecticIntoProfiles]    Script Date: 12/20/2017 10:33:57 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [UCSF.].[loadSymplecticIntoProfiles] 
+	-- Add the parameters for the stored procedure here
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+IF OBJECT_ID('tempdb..#AuthorList') IS NOT NULL DROP TABLE #AuthorList;
 		SELECT ImportPubID, 
 			(
 				SELECT IsNull((
@@ -66,13 +90,16 @@ truncate table [Profile.Data].[Publication.Import.General]
 
 select '[Profile.Data].[Publication.Import.General]',* from [Profile.Data].[Publication.Import.General]
 ---------------------
-drop table #myPubGeneral
+IF OBJECT_ID('tempdb..#myPubGeneral') IS NOT NULL DROP TABLE #myPubGeneral;
+
+
 SELECT g.ImportPubID, p.PersonID
 		INTO #MyPubGeneral
 		FROM [Profile.Data].[Publication.Import.General] g
 			INNER JOIN [Profile.Data].[Publication.Import.Author] p
 				ON g.ImportPubID = p.ImportPubID
 		where personid is not null
+		and p.ImportPubID<0
 
 		--select * from [Profile.Data].[Publication.Import.General]
 		select 'myPubGeneral',* from #MyPubGeneral
@@ -83,6 +110,7 @@ SELECT g.ImportPubID, p.PersonID
 			SELECT *
 				FROM [Profile.Data].[Publication.Person.Include] i
 				WHERE g.ImportPubID=i.PMID AND g.PersonID=i.PersonID
+				and g.ImportPubID<0
 		)
 
 		select 'myPubGeneral_1',* from #MyPubGeneral
@@ -93,14 +121,18 @@ SELECT g.ImportPubID, p.PersonID
 			SELECT *
 			FROM [Profile.Data].[Publication.Person.Exclude] e
 			WHERE g.ImportPubID=e.PMID AND g.PersonID=e.PersonID
+			and g.ImportPubID<0
 		)
 
 			select 'myPubGeneral_2',* from #MyPubGeneral
 
-
-		drop table #NewPMID
-		delete from [Profile.Data].[Publication.PubMed.General]
+IF OBJECT_ID('tempdb..#NewPMID') IS NOT NULL DROP TABLE #NewPMID;
+	ALTER TABLE [Profile.Data].[Publication.PubMed.Author]  NOCHECK CONSTRAINT [FK_pm_pubs_authors_pm_pubs_general];
+	delete from [Profile.Data].[Publication.PubMed.General]
 	where pmid<-1
+	delete from [Profile.Data].[Publication.Entity.InformationResource]
+	where pmid<0;
+	ALTER TABLE [Profile.Data].[Publication.PubMed.Author]  CHECK CONSTRAINT [FK_pm_pubs_authors_pm_pubs_general];
 
 SELECT DISTINCT ImportPubID
 		INTO #NewPMID
@@ -119,6 +151,8 @@ select 'NewPMID',* from #NewPMID
 		FROM [Profile.Data].[Publication.Import.General]
 		WHERE ImportPubID IN (SELECT ImportPubID FROM #NewPMID) 
 	
+	delete from [UCSF.].[Publication.URL]
+	where pmid<0
 	insert into [UCSF.].[Publication.URL] (pmid,DBType,issn,doi,url)
 	select   pmid,[ActualIDType],ISSN,DOI,[URL]
 	FROM [Profile.Data].[Publication.Import.General]
@@ -151,8 +185,12 @@ select 'NewPMID',* from #NewPMID
 
 	select '[Profile.Data].[Publication.Person.Include]',* from [Profile.Data].[Publication.Person.Include]
 	where pmid <0
-/*
-EXEC [Framework.].[RunJobGroup] @JobGroup = 4
-EXEC [Framework.].[RunJobGroup] @JobGroup = 5
-EXEC [Framework.].[RunJobGroup] @JobGroup = 6
-*/
+
+END
+
+
+
+
+GO
+
+

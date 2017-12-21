@@ -207,11 +207,14 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 .edit tr { border-color: #CCC; }
 
 /* ABOUT */
+.about-subheading { text-align: center; font-size: 20px; padding: 0 0 16px; color: #777; margin:0; font-weight: normal; line-height: 26px; }
+#about { border-bottom: 3px solid #EDEDEE; }
 #about h2 { text-align: center; font-size: 20px; padding: 14px 0 8px; margin: 0; }
-#about h3 { font-size: 14px; padding-bottom: 4px; padding-top: 4px; margin: 0; }
-#about td { width:230px; vertical-align:top;border-top:2px solid #B8D0D0; }
+#about h3 { font-size: 14px; padding-bottom: 4px; padding-top: 4px; margin: 0; color: #333; }
+#about td { vertical-align: top; text-align: center; border-top: 3px solid #EDEDEE; }
+#about img { padding: 5px; }
 h2.about { font-size: 16px; }
-ul.square { padding-left: 14px; margin-top: 6px; margin-left: 8px; margin-bottom: 8px; }
+ul.square { padding-left: 14px; margin: 6px 8px 8px; text-align: left; }
 ul.square li { list-style-type: square; } 
 .content-block { width: 370px; float: left; padding-right: 40px; }
 .content-block h2 { font-size: 16px; line-height: 20px; margin-top: 12px; 

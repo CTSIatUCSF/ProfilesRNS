@@ -191,13 +191,18 @@
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCLA" runat="server" SkinID="UCLA" Visible="false">
+                <div id="header-ucsf">
+                    <div id="ucsfnav">
+                        <ul>
+                            <li class="first">
+                                <a href="http://www.ucla.edu/" target="_blank">UCLA</a>
+                            </li>
+						</ul>
+					</div>
+				</div>
                 <div class="institutionHeader">
-                    <div id="ucla">
-                        <a target="_blank" href="https://www.ucla.edu/">
-                            <img src="<%=GetURLDomain()%>/App_Themes/UCLA/Images/uclogo137.png" alt="University of California Los Angeles" /></a>
-                    </div>
                     <div id="site-logo">
-                        <h1><a href="<%=GetURLDomain()%>/">UCLA Profiles
+                        <h1><a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/App_Themes/UCLA/Images/ucla-logo.png" alt="UCLA" /> Profiles
 							<div id="tagline">search, discover, network</div>
                         </a></h1>
                     </div>
@@ -463,6 +468,28 @@
                         <div id="footer-collaboration">
                             <p>
                                 UCI Profiles is managed by the UCSF 
+                                <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
+                                part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
+                                Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%>.
+                            </p>
+                        </div>
+                        <div id="footer-contact">
+                            <ul>
+                                <li><a href="<%=GetURLDomain()%>/">Home</a></li>
+                                <li><a href="mailto:profiles@ucop.edu">Contact us</a></li>
+                            </ul>
+                        </div>
+                        <div id="footer-copyright">
+                            <p>
+                                Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California. 
+                                All Rights Reserved.
+                            </p>
+                        </div>
+                    </asp:Panel>
+                    <asp:Panel ID="MasterPageFooterUCLA" runat="server" SkinID="UCLA" Visible="false">
+                        <div id="footer-collaboration">
+                            <p>
+                                UCLA Profiles is managed by the UCSF 
                                 <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
                                 part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
                                 Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%>.

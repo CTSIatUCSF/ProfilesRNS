@@ -22,6 +22,7 @@
 					<ul>
 						<li><a href="<%=GetDomainFor("UCD")%>/search/">UC Davis</a></li>
 						<li><a href="<%=GetDomainFor("UCI")%>/search/">UC Irvine</a></li>
+						<li><a href="<%=GetDomainFor("UCLA")%>/search/">UCLA</a></li>
 						<li><a href="<%=GetDomainFor("UCSD")%>/search/">UC San Diego</a></li>
 						<li><a href="<%=GetDomainFor("UCSF")%>/search/">UC San Francisco</a></li>
 						<li><a href="<%=GetDomainFor("UC")%>/search/">All UC</a></li>
@@ -50,6 +51,7 @@
 						<asp:ListItem Value="UC" Text="&nbsp;&nbsp;&nbsp;UC People" />
 						<asp:ListItem Value="UCD" Text="&nbsp;&nbsp;&nbsp;UC Davis People" />
 						<asp:ListItem Value="UCI" Text="&nbsp;&nbsp;&nbsp;UCI People" />
+						<asp:ListItem Value="UCLA" Text="&nbsp;&nbsp;&nbsp;UCLA People" />
 						<asp:ListItem Value="UCSD" Text="&nbsp;&nbsp;&nbsp;UCSD People" />
 						<asp:ListItem Value="UCSF" Text="&nbsp;&nbsp;&nbsp;UCSF People" />
 						<asp:ListItem Value="USC" Text="&nbsp;&nbsp;&nbsp;USC People" />

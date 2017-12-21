@@ -1,12 +1,13 @@
 USE [profiles_ucsf]
 GO
 
-/****** Object:  StoredProcedure [UCSF.].[loadSymplecticIntoProfiles]    Script Date: 12/20/2017 10:33:57 AM ******/
+/****** Object:  StoredProcedure [UCSF.].[loadSymplecticIntoProfiles]    Script Date: 12/20/2017 5:11:27 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 
 
@@ -23,6 +24,23 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
+
+-- clean existing CDL data in Profiles tables -----
+	delete from [Profile.Data].[Publication.PubMed.Author]
+	where pmid<0
+	--ALTER TABLE [Profile.Data].[Publication.PubMed.Author]  NOCHECK CONSTRAINT [FK_pm_pubs_authors_pm_pubs_general];
+	delete from [Profile.Data].[Publication.Person.Include]
+	where pmid<0
+	delete from [Profile.Data].[Publication.PubMed.General]
+	where pmid<0
+	delete from [Profile.Data].[Publication.Entity.InformationResource]
+	where pmid<0;
+	--ALTER TABLE [Profile.Data].[Publication.PubMed.Author]  CHECK CONSTRAINT [FK_pm_pubs_authors_pm_pubs_general];
+	delete from [UCSF.].[Publication.URL]
+	where pmid<0
+
+
+----------
 IF OBJECT_ID('tempdb..#AuthorList') IS NOT NULL DROP TABLE #AuthorList;
 		SELECT ImportPubID, 
 			(
@@ -127,12 +145,6 @@ SELECT g.ImportPubID, p.PersonID
 			select 'myPubGeneral_2',* from #MyPubGeneral
 
 IF OBJECT_ID('tempdb..#NewPMID') IS NOT NULL DROP TABLE #NewPMID;
-	ALTER TABLE [Profile.Data].[Publication.PubMed.Author]  NOCHECK CONSTRAINT [FK_pm_pubs_authors_pm_pubs_general];
-	delete from [Profile.Data].[Publication.PubMed.General]
-	where pmid<-1
-	delete from [Profile.Data].[Publication.Entity.InformationResource]
-	where pmid<0;
-	ALTER TABLE [Profile.Data].[Publication.PubMed.Author]  CHECK CONSTRAINT [FK_pm_pubs_authors_pm_pubs_general];
 
 SELECT DISTINCT ImportPubID
 		INTO #NewPMID
@@ -151,8 +163,7 @@ select 'NewPMID',* from #NewPMID
 		FROM [Profile.Data].[Publication.Import.General]
 		WHERE ImportPubID IN (SELECT ImportPubID FROM #NewPMID) 
 	
-	delete from [UCSF.].[Publication.URL]
-	where pmid<0
+
 	insert into [UCSF.].[Publication.URL] (pmid,DBType,issn,doi,url)
 	select   pmid,[ActualIDType],ISSN,DOI,[URL]
 	FROM [Profile.Data].[Publication.Import.General]
@@ -164,8 +175,6 @@ select 'NewPMID',* from #NewPMID
 	select '[Profile.Data].[Publication.PubMed.General]',* from [Profile.Data].[Publication.PubMed.General]
 	where PMID<0
 
-	delete from [Profile.Data].[Publication.PubMed.Author]
-	where pmid<-1
 	INSERT INTO [Profile.Data].[Publication.PubMed.Author] (PMID, ValidYN, LastName, FirstName, ForeName, Suffix, Initials, Affiliation)
 		SELECT ImportPubID, 'Y', LastName, FirstName, IsNull(ForeName,FirstName), SuffixName, 
 			Left(LastName,1)+Coalesce(Left(FirstName,1),Left(ForeName,1),''), NULL
@@ -176,8 +185,6 @@ select 'NewPMID',* from #NewPMID
 	select '[Profile.Data].[Publication.PubMed.Author]',* from [Profile.Data].[Publication.PubMed.Author]
 	where PMID<0
 --------------------
-	delete from [Profile.Data].[Publication.Person.Include]
-	where pmid<0
 
 	INSERT INTO [Profile.Data].[Publication.Person.Include] (PubID, PersonID, PMID, MPID)
 		SELECT NewID(), g.PersonID, ImportPubID, NULL MPID
@@ -187,6 +194,7 @@ select 'NewPMID',* from #NewPMID
 	where pmid <0
 
 END
+
 
 
 

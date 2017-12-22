@@ -281,6 +281,8 @@ BEGIN
 		RETURN cast(@legacyinternalusername as varchar) + '@uci.edu'
 	ELSE IF (@institutionabbreviation = 'usc')
 		RETURN cast(@legacyinternalusername as varchar) + '@usc.edu'
+	ELSE IF (@institutionabbreviation = 'ucla')
+		RETURN cast(@legacyinternalusername as varchar) + '@ucla.edu'
 	RETURN 'Unrecognized institution :' + @institutionabbreviation
 END
 

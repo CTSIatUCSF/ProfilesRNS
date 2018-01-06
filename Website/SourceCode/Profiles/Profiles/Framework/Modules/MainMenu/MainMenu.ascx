@@ -16,61 +16,59 @@
 
 <div id="suckerfish-container">
     <div id="suckerfishmenu">
-        <div class="content">
-            <ul class="menu">
-                <li class="item-home"><a href="<%=GetURLDomain()%>">Search Options</a>
-					<ul>
-						<li><a href="<%=GetDomainFor("UCD")%>/search/">UC Davis</a></li>
-						<li><a href="<%=GetDomainFor("UCI")%>/search/">UC Irvine</a></li>
-						<li><a href="<%=GetDomainFor("UCLA")%>/search/">UCLA</a></li>
-						<li><a href="<%=GetDomainFor("UCSD")%>/search/">UC San Diego</a></li>
-						<li><a href="<%=GetDomainFor("UCSF")%>/search/">UC San Francisco</a></li>
-						<li><a href="<%=GetDomainFor("UC")%>/search/">All UC</a></li>
-						<li><a href="<%=GetDomainFor("USC")%>/search/">University of Southern California</a></li>
-						<li><a href="<%=GetDomainFor("Default")%>/search/">All</a></li>
-					</ul>
-				</li>
-                <li id="about"><a href="<%=GetURLDomain()%>/about/AboutProfiles.aspx">About</a></li>
-                <li id="contact"><a href="<%=GetURLDomain()%>/about/Help.aspx">Help / Contact Us</a></li>
-            </ul>
-        </div>
+		<ul class="menu">
+			<li class="item-home"><a href="<%=GetURLDomain()%>">Search Options</a>
+				<ul>
+					<li><a href="<%=GetDomainFor("UCD")%>/search/">UC Davis</a></li>
+					<li><a href="<%=GetDomainFor("UCI")%>/search/">UCI</a></li>
+					<li><a href="<%=GetDomainFor("UCLA")%>/search/">UCLA</a></li>
+					<li><a href="<%=GetDomainFor("UCSD")%>/search/">UCSD</a></li>
+					<li><a href="<%=GetDomainFor("UCSF")%>/search/">UCSF</a></li>
+					<li><a href="<%=GetDomainFor("UC")%>/search/">All UC</a></li>
+					<li><a href="<%=GetDomainFor("USC")%>/search/">USC</a></li>
+					<li><a href="<%=GetDomainFor("Default")%>/search/">All</a></li>
+				</ul>
+			</li>
+			<li id="about"><a href="<%=GetURLDomain()%>/about/AboutProfiles.aspx">About</a></li>
+			<li id="contact"><a href="<%=GetURLDomain()%>/about/Help.aspx">Help</a></li>
+		</ul>
+		<div id="active-nav">
+			<span id="signin">
+				<a href="<%=GetURLDomain()%>/login/default.aspx?method=login&amp;edit=true" id="signinlink">Sign in</a>
+				to see private stats on your profile page — or add photo, interests, videos, mentoring, etc.</span>
+			<ul id="editmenu"></ul>
+		</div>
 	</div>
-    <div id="navbarsearch">
-        <asp:Panel runat="server" ID="pnlNavBarSearch" Visible="true">
-            <!--input type="hidden" name="searchtype" id="searchtype" value="people" />
-			<input type="hidden" name="exactphrase" value="false" /-->
-            <div class="nav-facade-active" id="nav-search-in">
-                <div id="nav-search-in-content"></div>
-				<div class="searchSelect" id="searchDropdownBox">
-					<asp:DropDownList ID="searchTypeDropDown" CssClass="searchSelect" EnableViewState="true" runat="server">
-						<asp:ListItem Value="Everything" Text="Everything" />
-						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupResearch" Text="Research" />
-						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupConcepts" Text="Concepts" />
-						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupAwards" Text="Awards" />
-						<asp:ListItem Value="People" Text="People" />
-						<asp:ListItem Value="UC" Text="&nbsp;&nbsp;&nbsp;UC People" />
-						<asp:ListItem Value="UCD" Text="&nbsp;&nbsp;&nbsp;UC Davis People" />
-						<asp:ListItem Value="UCI" Text="&nbsp;&nbsp;&nbsp;UCI People" />
-						<asp:ListItem Value="UCLA" Text="&nbsp;&nbsp;&nbsp;UCLA People" />
-						<asp:ListItem Value="UCSD" Text="&nbsp;&nbsp;&nbsp;UCSD People" />
-						<asp:ListItem Value="UCSF" Text="&nbsp;&nbsp;&nbsp;UCSF People" />
-						<asp:ListItem Value="USC" Text="&nbsp;&nbsp;&nbsp;USC People" />
-					</asp:DropDownList>
-				</div>
-			<!-- next few tags have > on next line to remove space between -->
-            </div
-            ><div class="nav-searchfield-outer">
-                <input type="text" autocomplete="off" name="mainMenuSearchFor" placeholder="e.g. Smith or HIV" title="Search For" id="nav-searchfield" />
-            </div
-            ><asp:Button runat="server" Text="Search" OnClick="Submit_Click" />
-        </asp:Panel>
-    </div>
-    <div id="active-nav" class="profiles">
-        <span id="signin">
-            <a href="<%=GetURLDomain()%>/login/default.aspx?method=login&amp;edit=true" id="signinlink">Sign in</a>
-            to edit your profile (add interests, mentoring, photo, etc.)</span>
-        <ul id="editmenu"></ul>
-    </div>
+</div>
+<div id="navbarsearch">
+	<asp:Panel runat="server" ID="pnlNavBarSearch" Visible="true">
+		<!--input type="hidden" name="searchtype" id="searchtype" value="people" />
+		<input type="hidden" name="exactphrase" value="false" /-->
+		<div class="nav-facade-active" id="nav-search-in">
+			<div id="nav-search-in-content"></div>
+			<div class="searchSelect" id="searchDropdownBox">
+				<asp:DropDownList ID="searchTypeDropDown" CssClass="searchSelect" EnableViewState="true" runat="server">
+					<asp:ListItem Value="Everything" Text="Everything" />
+					<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupResearch" Text="Research" />
+					<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupConcepts" Text="Concepts" />
+					<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupAwards" Text="Awards" />
+					<asp:ListItem Value="People" Text="People" />
+					<asp:ListItem Value="UC" Text="&nbsp;&nbsp;&nbsp;UC People" />
+					<asp:ListItem Value="UCD" Text="&nbsp;&nbsp;&nbsp;UC Davis People" />
+					<asp:ListItem Value="UCI" Text="&nbsp;&nbsp;&nbsp;UCI People" />
+					<asp:ListItem Value="UCLA" Text="&nbsp;&nbsp;&nbsp;UCLA People" />
+					<asp:ListItem Value="UCSD" Text="&nbsp;&nbsp;&nbsp;UCSD People" />
+					<asp:ListItem Value="UCSF" Text="&nbsp;&nbsp;&nbsp;UCSF People" />
+					<asp:ListItem Value="USC" Text="&nbsp;&nbsp;&nbsp;USC People" />
+				</asp:DropDownList>
+			</div>
+		<!-- next few tags have > on next line to remove space between -->
+		</div
+		><div class="nav-searchfield-outer">
+			<input type="text" autocomplete="off" name="mainMenuSearchFor" placeholder="e.g. Smith or HIV" title="Search For" id="nav-searchfield" />
+		</div
+		><asp:Button runat="server" Text="Search" OnClick="Submit_Click" />
+	</asp:Panel>
 </div>
 
 

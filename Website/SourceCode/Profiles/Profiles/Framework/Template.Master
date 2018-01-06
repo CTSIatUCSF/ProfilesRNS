@@ -86,11 +86,13 @@
                         <a target="_blank" href="https://www.universityofcalifornia.edu/">
                             <img src="<%=GetURLDomain()%>/App_Themes/UC/Images/uclogo137.png" alt="University of California" /></a>
                     </div>
-                    <div id="site-logo">
-                        <h1><a href="<%=GetURLDomain()%>/">UC Profiles
-							<div id="tagline">search, discover, network</div>
-                        </a></h1>
-                    </div>
+					<div id="site-branding">
+						<div id="site-logo">
+							<h1><a href="<%=GetURLDomain()%>/">UC Profiles
+								<div id="tagline">search, discover, network</div>
+							</a></h1>
+						</div>
+					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCSF" runat="server" SkinID="UCSF" Visible="false">
@@ -113,42 +115,40 @@
                     </div>
                 </div>
                 <div class="institutionHeader">
-                    <div id="site-logo">
-                        <h1><a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/App_themes/UCSF/Images/ucsfProfilesLogo.png" alt="UCSF Profiles" />
-							<div id="tagline">search, discover, network</div>
-                        </a></h1>
-                    </div>
-                    <div id="powered-by-block">
-                        <a id="powered-by-ctsi" href="http://ctsi.ucsf.edu/" target="_blank">Powered by CTSI</a>
-                    </div>
-                    <div id="new-features">
-                        <a href="<%=GetURLDomain()%>/about/NewFeatures.aspx">New Features: Learn more &nbsp;&#10095;</a>
-                    </div>
+					<div id="site-branding">
+						<div id="site-logo">
+							<h1><a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/App_themes/UCSF/Images/ucsfProfilesLogo.png" alt="UCSF Profiles" /></a></h1>
+						</div>
+                    </div>					
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCSD" runat="server" SkinID="UCSD" Visible="false">
                 <div class="institutionHeader">
-                    <div id="ucsd">
-                        <a target="_blank" href="http://ucsd.edu/">
-                            <img src="<%=GetURLDomain()%>/App_Themes/UCSD/Images/ucsdlogo.png" alt="UC San Diego" /></a>
-                    </div>
-                    <div id="site-logo">
-                        <h1><a href="<%=GetURLDomain()%>/">UCSD Profiles
-							<div id="tagline">search, discover, network</div>
-                        </a></h1>
-                    </div>
-                    <div id="powered-by-block">
-                        <a id="powered-by-ctsi" href="http://actri.ucsd.edu/Pages/default.aspx" target="_blank">Powered by Altman Clinical and <br />Translational Research Institute</a>
-                    </div>
+					<div id="site-branding">
+						<div id="ucsd">
+							<a target="_blank" href="http://ucsd.edu/">
+								<img src="<%=GetURLDomain()%>/App_Themes/UCSD/Images/ucsdlogo.png" alt="UC San Diego" /></a>
+						</div>
+						<div id="site-logo">
+							<h1><a href="<%=GetURLDomain()%>/">UCSD Profiles
+								<div id="tagline">search, discover, network</div>
+							</a></h1>
+						</div>
+						<div id="powered-by-block">
+							<a id="powered-by-ctsi" href="http://actri.ucsd.edu/Pages/default.aspx" target="_blank">Powered by Altman Clinical and <br />Translational Research Institute</a>
+						</div>
+					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderDefault" runat="server" SkinID="Default" Visible="false">
                 <div class="institutionHeader">
-                    <div id="site-logo">
-                        <h1><a href="<%=GetURLDomain()%>/">Research Profiles
-							<div id="tagline">search, discover, network</div>
-                        </a></h1>
-                    </div>
+					<div id="site-branding">
+						<div id="site-logo">
+							<h1><a href="<%=GetURLDomain()%>/">Research Profiles
+								<div id="tagline">search, discover, network</div>
+							</a></h1>
+						</div>
+					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCI" runat="server" SkinID="UCI" Visible="false">
@@ -163,11 +163,13 @@
 					</div>
 				</div>
                 <div class="institutionHeader">
-                    <div id="site-logo">
-                        <h1><a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/App_Themes/UCI/Images/ucilogo.png" alt="University of California, Irvine" /> Profiles
-							<div id="tagline">search, discover, network</div>
-                        </a></h1>
-                    </div>
+					<div id="site-branding">
+						<div id="site-logo">
+							<h1><a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/App_Themes/UCI/Images/ucilogo.png" alt="University of California, Irvine" /> Profiles
+								<div id="tagline">search, discover, network</div>
+							</a></h1>
+						</div>
+					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCD" runat="server" SkinID="UCD" Visible="false">
@@ -183,11 +185,13 @@
 					</div>
 				</div>
 				<div class="institutionHeader">
-                    <div id="site-logo">
-                        <h1><a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/App_Themes/UCD/Images/ucdavis-logo.png" alt="University of California, Davis" /> Profiles
-							<div id="tagline">search, discover, network</div>
-                        </a></h1>
-                    </div>
+					<div id="site-branding">
+						<div id="site-logo">
+							<h1><a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/App_Themes/UCD/Images/ucdavis-logo.png" alt="University of California, Davis" /> Profiles
+								<div id="tagline">search, discover, network</div>
+							</a></h1>
+						</div>
+					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCLA" runat="server" SkinID="UCLA" Visible="false">
@@ -201,24 +205,28 @@
 					</div>
 				</div>
                 <div class="institutionHeader">
-                    <div id="site-logo">
-                        <h1><a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/App_Themes/UCLA/Images/ucla-logo.png" alt="UCLA" /> Profiles
-							<div id="tagline">search, discover, network</div>
-                        </a></h1>
-                    </div>
+					<div id="site-branding">
+						<div id="site-logo">
+							<h1><a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/App_Themes/UCLA/Images/ucla-logo.png" alt="UCLA" /> Profiles
+								<div id="tagline">search, discover, network</div>
+							</a></h1>
+						</div>
+					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCR" runat="server" SkinID="UCR" Visible="false">
                 <div class="institutionHeader">
-                    <div id="ucr">
-                        <a target="_blank" href="https://www.ucr.edu/">
-                            <img src="<%=GetURLDomain()%>/App_Themes/UCR/Images/uclogo137.png" alt="University of California Riverside" /></a>
-                    </div>
-                    <div id="site-logo">
-                        <h1><a href="<%=GetURLDomain()%>/">UCR Profiles
-							<div id="tagline">search, discover, network</div>
-                        </a></h1>
-                    </div>
+					<div id="site-branding">
+						<div id="ucr">
+							<a target="_blank" href="https://www.ucr.edu/">
+								<img src="<%=GetURLDomain()%>/App_Themes/UCR/Images/uclogo137.png" alt="University of California Riverside" /></a>
+						</div>
+						<div id="site-logo">
+							<h1><a href="<%=GetURLDomain()%>/">UCR Profiles
+								<div id="tagline">search, discover, network</div>
+							</a></h1>
+						</div>
+					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUSC" runat="server" SkinID="USC" Visible="false">
@@ -241,31 +249,35 @@
                     </div>
                 </div>
                 <div class="institutionHeader">
-                    <div id="site-logo">
-                        <h1>
-							<a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/App_Themes/USC/Images/usc-ctsi.jpg" alt="USC Health Sciences Profiles" /></a>
-                        </h1>
-                    </div>
-                    <div id="powered-by-block">
-                        <a id="powered-by-ctsi" href="http://sc-ctsi.org/" target="_blank">Powered by SC CTSI</a>
-                    </div>
-                    <div id="new-features">
-                        <a href="http://sc-ctsi.org/index.php/resources/resources_overview" class="dblarrow" target="_blank">Find more Research Resources</a>
-                    </div>
+					<div id="site-branding">
+						<div id="site-logo">
+							<h1>
+								<a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/App_Themes/USC/Images/usc-ctsi.jpg" alt="USC Health Sciences Profiles" /></a>
+							</h1>
+						</div>
+						<div id="powered-by-block">
+							<a id="powered-by-ctsi" href="http://sc-ctsi.org/" target="_blank">Powered by SC CTSI</a>
+						</div>
+						<div id="new-features">
+							<a href="http://sc-ctsi.org/index.php/resources/resources_overview" class="dblarrow" target="_blank">Find more Research Resources</a>
+						</div>
+					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderLBNL" runat="server" SkinID="LBNL" Visible="false">
                 <div class="institutionHeader">
-                    <div id="site-logo">
-                        <h1>
-							<a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/App_Themes/LBNL/Images/lbl-logo.png" alt="Berkeley Lab Profiles" /></a>
-                        </h1>
-                    </div>
-                    <div id="powered-by-block">
-						<a class="last-item" href="http://map.lbl.gov" target="_blank">MAP</a>
-						<a href="http://www.lbl.gov/lab-index/" target="_blank">A-Z INDEX</a>
-						<a href="http://search.lbl.gov/" target="_blank">SEARCH LBNL</a>
-                    </div>
+					<div id="site-branding">
+						<div id="site-logo">
+							<h1>
+								<a href="<%=GetURLDomain()%>/"><img src="<%=GetURLDomain()%>/App_Themes/LBNL/Images/lbl-logo.png" alt="Berkeley Lab Profiles" /></a>
+							</h1>
+						</div>
+						<div id="powered-by-block">
+							<a class="last-item" href="http://map.lbl.gov" target="_blank">MAP</a>
+							<a href="http://www.lbl.gov/lab-index/" target="_blank">A-Z INDEX</a>
+							<a href="http://search.lbl.gov/" target="_blank">SEARCH LBNL</a>
+						</div>
+					</div>
                 </div>
             </asp:Panel>
 

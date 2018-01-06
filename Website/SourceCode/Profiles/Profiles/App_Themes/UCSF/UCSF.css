@@ -12,7 +12,9 @@
 
 /* active menu color */
 .search #suckerfishmenu .item-home > a,
-#suckerfishmenu	 a.active { background-color: #052049; }
+#suckerfishmenu	 a.active, #suckerfishmenu a:hover { border-bottom: 2px solid #FBCCA7; }
+#suckerfishmenu	 ul.menu li ul li:hover { border-color: #FBCCA7; }
+#suckerfishmenu	 ul.menu li ul li a:hover { border-bottom: none; }
 
 /* UCSF only elements */
 .profiles .button-link a, .profiles .button-link a:visited,

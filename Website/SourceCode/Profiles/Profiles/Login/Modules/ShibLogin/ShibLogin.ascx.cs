@@ -116,15 +116,15 @@ namespace Profiles.Login.Modules.ShibLogin
             {
                 return Brand.GetDomain();
             }
-            else if ("mypage".Equals(redirectto.ToLower()))
+            else if ("mypage".Equals(redirectto.ToLower()) && sm.Session().NodeID > 0)
             {
                 return Brand.GetForSubject(sm.Session().NodeID).BasePath + "/profile/" + sm.Session().NodeID;
             }
-            else if ("myproxies".Equals(redirectto.ToLower()))
+            else if ("myproxies".Equals(redirectto.ToLower()) && sm.Session().NodeID > 0)
             {
                 return Brand.GetForSubject(sm.Session().NodeID).BasePath + "/proxy/default.aspx?subject=" + sm.Session().NodeID;
             }
-            else if ("edit".Equals(redirectto.ToLower()))
+            else if ("edit".Equals(redirectto.ToLower()) && sm.Session().NodeID > 0)
             {
                 return Brand.GetForSubject(sm.Session().NodeID).BasePath + "/edit/" + sm.Session().NodeID;
             }

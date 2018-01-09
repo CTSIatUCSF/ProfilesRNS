@@ -180,6 +180,7 @@
     <Content Include="App_Themes\UCD\Images\davisheader.svg" />
     <Content Include="App_Themes\UCD\Images\ucdavis-logo.png" />
     <Content Include="App_Themes\UCI\Images\uciLogo.png" />
+    <Content Include="App_Themes\UCLA\Images\ucla-logo.png" />
     <Content Include="App_Themes\UCR\Images\backtotop.gif" />
     <Content Include="App_Themes\UCR\Images\comment.gif" />
     <Content Include="App_Themes\UCR\Images\favicon.ico" />
@@ -205,8 +206,6 @@
     <Content Include="App_Themes\UCLA\Images\favicon.ico" />
     <Content Include="App_Themes\UCLA\Images\gear.gif" />
     <Content Include="App_Themes\UCLA\Images\help.gif" />
-    <Content Include="App_Themes\UCLA\Images\ucbg.jpg" />
-    <Content Include="App_Themes\UCLA\Images\uclogo137.png" />
     <Content Include="App_Themes\UCLA\PresentationXML\About\AboutProfiles.xml" />
     <Content Include="App_Themes\UCLA\PresentationXML\About\CloseBrowser.xml" />
     <Content Include="App_Themes\UCLA\PresentationXML\About\FAQ.xml" />

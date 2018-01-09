@@ -10,12 +10,6 @@
 #navbarsearch input[type=submit]  { background-color: #F26D04; border: 4px solid #F26D04; }
 #navbarsearch input[type=submit]:hover  { background-color: #F48024; border: 4px solid #F48024; }
 
-/* active menu color */
-.search #suckerfishmenu .item-home > a,
-#suckerfishmenu	 a.active, #suckerfishmenu a:hover { border-bottom: 2px solid #FBCCA7; }
-#suckerfishmenu	 ul.menu li ul li:hover { border-color: #FBCCA7; }
-#suckerfishmenu	 ul.menu li ul li a:hover { border-bottom: none; }
-
 /* UCSF only elements */
 .profiles .button-link a, .profiles .button-link a:visited,
 #new-features a, #new-features a:visited { 
@@ -42,7 +36,6 @@ ul.highlights li {
 -moz-box-shadow: 10px 10px 10px -10px rgba(153,153,153,1);
 box-shadow: 10px 10px 10px -10px rgba(153,153,153,1);
 }
-
 
 .alumni { background-image: url(Images/ucsf_alumni_blue.jpg); }
 

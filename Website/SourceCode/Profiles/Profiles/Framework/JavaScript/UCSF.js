@@ -4,27 +4,18 @@
     $('#defaultmenu ul').addClass('mainmenu');
     $(".mainmenu li:contains('RDF')").addClass('rdf').appendTo('.profilesMainColumnRight').hide();
     if ($('.mainmenu li').last().text() == 'Login to Profiles') {
-        var login = $('.mainmenu li:last-child a').attr('href');
-        $('#signinlink').attr('href', login);
+		$('.mainmenu li').last().addClass('signin');
+		$('.signin a').text('Sign in');
+		$('.signin').append(' <span>to see private stats on your profile page — or add photo, interests, videos, mentoring, etc.</span>');
     }
-    if ($('.mainmenu li').last().text() == 'Sign out' ||
-      $('.mainmenu li').last().text() == 'Logout') {
-        $("#signin").hide();
-        for (var index = 3; index < $('.mainmenu li').length; index++) {
-            $('.mainmenu li').eq(index).clone().appendTo('#editmenu');
-        }
-        $("#active-nav").css('background-color', '#ECECEC');
-        $('#editmenu li').last().css('border-right', 'none');
-        $("#editmenu li:contains('Sign out')").addClass('logout');
-        if ($('#editmenu li:first-child img').length) {
-            $('#editmenu li:first-child img').prependTo('#editmenu li:nth-child(2) a').wrap('<div id="menuthumb" />');
-            $('#editmenu li:first-child').remove();
-        }
-        if ($('.mainmenu li:nth-child(4)').text() == 'Edit My Profile' ||
-         $('.mainmenu li:nth-child(5)').text() == 'Edit My Profile') {
-            $('#editmenu li:first-child').append(' <span>is signed in</span>');
-        }
-    }
+	for (var index = 3; index < $('.mainmenu li').length; index++) {
+		$('.mainmenu li').eq(index).clone().appendTo('.menu');
+	}
+	$('.menu li img').parent().addClass('photo');
+	$('.photo').next().addClass('editmy');
+	$('.photo img').prependTo('.editmy a').wrap('<div id="menuthumb" />');
+	$('.photo').remove();
+	$('.menu').append("<li class='stretch'></li>");
   }
 
     // copyright year

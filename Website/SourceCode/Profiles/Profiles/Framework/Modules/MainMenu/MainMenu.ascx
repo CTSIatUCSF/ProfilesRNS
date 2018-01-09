@@ -12,8 +12,38 @@
     For details, see: LICENSE.txt 
 --%>
 
-
-
+<div id="navbarsearch-container">
+	<div id="navbarsearch">
+		<asp:Panel runat="server" ID="pnlNavBarSearch" Visible="true">
+			<!--input type="hidden" name="searchtype" id="searchtype" value="people" />
+			<input type="hidden" name="exactphrase" value="false" /-->
+			<div class="nav-facade-active" id="nav-search-in">
+				<div id="nav-search-in-content"></div>
+				<div class="searchSelect" id="searchDropdownBox">
+					<asp:DropDownList ID="searchTypeDropDown" CssClass="searchSelect" EnableViewState="true" runat="server">
+						<asp:ListItem Value="Everything" Text="Everything" />
+						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupResearch" Text="Research" />
+						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupConcepts" Text="Concepts" />
+						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupAwards" Text="Awards" />
+						<asp:ListItem Value="People" Text="People" />
+						<asp:ListItem Value="UC" Text="&nbsp;&nbsp;&nbsp;UC People" />
+						<asp:ListItem Value="UCD" Text="&nbsp;&nbsp;&nbsp;UC Davis People" />
+						<asp:ListItem Value="UCI" Text="&nbsp;&nbsp;&nbsp;UCI People" />
+						<asp:ListItem Value="UCLA" Text="&nbsp;&nbsp;&nbsp;UCLA People" />
+						<asp:ListItem Value="UCSD" Text="&nbsp;&nbsp;&nbsp;UCSD People" />
+						<asp:ListItem Value="UCSF" Text="&nbsp;&nbsp;&nbsp;UCSF People" />
+						<asp:ListItem Value="USC" Text="&nbsp;&nbsp;&nbsp;USC People" />
+					</asp:DropDownList>
+				</div>
+			<!-- next few tags have > on next line to remove space between -->
+			</div
+			><div class="nav-searchfield-outer">
+				<input type="text" autocomplete="off" name="mainMenuSearchFor" placeholder="e.g. Smith or HIV" title="Search For" id="nav-searchfield" />
+			</div
+			><asp:Button runat="server" Text="Search" OnClick="Submit_Click" />
+		</asp:Panel>
+	</div>
+</div>
 <div id="suckerfish-container">
     <div id="suckerfishmenu">
 		<ul class="menu">
@@ -31,46 +61,13 @@
 			</li>
 			<li id="about"><a href="<%=GetURLDomain()%>/about/AboutProfiles.aspx">About</a></li>
 			<li id="contact"><a href="<%=GetURLDomain()%>/about/Help.aspx">Help</a></li>
+<!--
+			<li id="signin"><a href="<%=GetURLDomain()%>/login/default.aspx?method=login&amp;edit=true" id="signinlink">Sign in</a>
+				to see private stats on your profile page — or add photo, interests, videos, mentoring, etc.</li>
+				-->
 		</ul>
-		<div id="active-nav">
-			<span id="signin">
-				<a href="<%=GetURLDomain()%>/login/default.aspx?method=login&amp;edit=true" id="signinlink">Sign in</a>
-				to see private stats on your profile page — or add photo, interests, videos, mentoring, etc.</span>
-			<ul id="editmenu"></ul>
-		</div>
 	</div>
 </div>
-<div id="navbarsearch">
-	<asp:Panel runat="server" ID="pnlNavBarSearch" Visible="true">
-		<!--input type="hidden" name="searchtype" id="searchtype" value="people" />
-		<input type="hidden" name="exactphrase" value="false" /-->
-		<div class="nav-facade-active" id="nav-search-in">
-			<div id="nav-search-in-content"></div>
-			<div class="searchSelect" id="searchDropdownBox">
-				<asp:DropDownList ID="searchTypeDropDown" CssClass="searchSelect" EnableViewState="true" runat="server">
-					<asp:ListItem Value="Everything" Text="Everything" />
-					<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupResearch" Text="Research" />
-					<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupConcepts" Text="Concepts" />
-					<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupAwards" Text="Awards" />
-					<asp:ListItem Value="People" Text="People" />
-					<asp:ListItem Value="UC" Text="&nbsp;&nbsp;&nbsp;UC People" />
-					<asp:ListItem Value="UCD" Text="&nbsp;&nbsp;&nbsp;UC Davis People" />
-					<asp:ListItem Value="UCI" Text="&nbsp;&nbsp;&nbsp;UCI People" />
-					<asp:ListItem Value="UCLA" Text="&nbsp;&nbsp;&nbsp;UCLA People" />
-					<asp:ListItem Value="UCSD" Text="&nbsp;&nbsp;&nbsp;UCSD People" />
-					<asp:ListItem Value="UCSF" Text="&nbsp;&nbsp;&nbsp;UCSF People" />
-					<asp:ListItem Value="USC" Text="&nbsp;&nbsp;&nbsp;USC People" />
-				</asp:DropDownList>
-			</div>
-		<!-- next few tags have > on next line to remove space between -->
-		</div
-		><div class="nav-searchfield-outer">
-			<input type="text" autocomplete="off" name="mainMenuSearchFor" placeholder="e.g. Smith or HIV" title="Search For" id="nav-searchfield" />
-		</div
-		><asp:Button runat="server" Text="Search" OnClick="Submit_Click" />
-	</asp:Panel>
-</div>
-
 
 
 <!-- UCSF, this is the Harvard stuff. We might show this and hide it but we should find a better way -->

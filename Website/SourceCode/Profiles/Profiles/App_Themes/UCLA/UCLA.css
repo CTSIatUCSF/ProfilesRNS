@@ -11,10 +11,8 @@
 
 /* banner */
 #header-ucsf { background-color: #93d3eb; }
-.profiles .profilesFooter, .institutionHeader { background-color: #2c5e91; }
-#site-logo h1 { font-size: 33px; font-weight: normal; }
-#site-logo h1 a img { height: 24px; }
-#tagline { padding-top: 8px; color: #FFF; }
+#header-ucsf div#ucsfnav ul li a, #header-ucsf div#ucsfnav ul li a:visited { color: #000; }
+.profilesFooter, .institutionHeader { background-color: #2c5e91; }
 
 /* LINK Color */
 .profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000; }
@@ -26,9 +24,3 @@
 .profiles a, .profiles a:visited { color: #1295d8; }
 #site-logo h1 a { color: #FFF; }
 #site-logo h1 a:hover, #site-logo h1 a:hover #tagline { color: #93d3eb; }
-
-/* navbar & footer colors */
-.profiles .profilesFooter { background-color: #2c5e91; }
-#suckerfish-container, #suckerfishmenu a { background-color: #00a5e5; }
-.search #suckerfishmenu .item-home > a,
-#suckerfishmenu	 a.active, #suckerfishmenu a:hover { background-color: #93d3eb; }

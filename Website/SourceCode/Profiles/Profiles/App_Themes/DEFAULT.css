@@ -6,16 +6,16 @@
 }
 .profiles .profilesMainColumnLeft, .profiles .profilesMainColumnLeft td, .profiles .profilesMainColumnLeft th, .profiles .profilesMainColumnLeft ul, .profiles .profilesMainColumnLeft ol { line-height: 20px; }
 #header-ucsf { background-color: #052049; }
-#header-ucsf div#ucsfnav { height:30px; }
-#header-ucsf ul { padding: 5px 0 0 10px; list-style-type: none; }
-#header-ucsf ul li { display: inline; }
-#header-ucsf div#ucsfnav ul li a { text-decoration: none; font-size:13px; color:#fff; padding:0 0 0 26px; }
+#header-ucsf div#ucsfnav { height: 30px; }
+#header-ucsf ul { padding: 0 10px; margin: 0; }
+#header-ucsf ul li { display: inline; list-style-type: none; padding-right: 26px; line-height: 28px; }
+#header-ucsf div#ucsfnav ul li a { text-decoration: none; font-size:13px; color:#fff; }
 #header-ucsf div#ucsfnav ul li a:hover { text-decoration: underline; }
-#header-ucsf div#ucsfnav ul li.first a { padding:0 370px 0 0; }
 .institutionHeader { background-color: #FFF; height: 95px; border-bottom: none; padding: 0; text-align: left; overflow: hidden;  }
 #site-logo { width: 400px; float: left; line-height: 30px; }
-#site-logo h1 { margin: 40px 0 0 10px; }
+#site-logo h1 { margin: 40px 0 0 10px; font-size: 36px; font-weight: normal; }
 h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
+#site-logo h1 a img { height: 28px; vertical-align: -1px; padding-right: 4px; }
 #tagline { color: #506480; font-size: 20px; font-style: italic; font-weight: normal; line-height: 16px; letter-spacing: 0.2px; padding: 0; margin: 0; }
 #powered-by-block { float: right; padding: 18px 20px 0; }
 #powered-by-block a, #powered-by-block a:visited { font-size: 13px; font-weight: bold; }
@@ -50,6 +50,7 @@ h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child, 
 #profile-components table td#namedegree, .listTable .listTableLink, .linky, 
 .institutionHeader a, .institutionHeader a:hover,
+.profilesfooter a, .profilesfooter a:visited, 
 .profiles a, .profiles a:visited { text-decoration: none; color: #007CBE; cursor: pointer; }
 .profiles .profilesContentMain .kwCloud0 a { color: #5DAFDB !important; }
 .profiles .basicInfo .grants a:hover,
@@ -233,7 +234,7 @@ ul.highlights li {
 }
 
 /* FOOTER */
-.profilesFooter { background-color: #506480; text-align: center; border-top: 3px solid #9AA5B6; }
+.profilesFooter { background-color: #506480; text-align: center; border-top: 3px solid #9AA5B6; margin-top: 20px; }
 #footer-collaboration { background-color: #FFF; }
 #footer-collaboration p { padding: 12px 0; width: 820px; font-size: 12px; }
 #footer-contact { padding: 6px; }
@@ -252,7 +253,7 @@ ul.highlights li {
   list-style: none;
   z-index: 100;
   text-align: justify;
-  font-size: 15px;
+  font-size: 14px;
 } 
 #suckerfishmenu	 li {
   display: inline;
@@ -264,26 +265,30 @@ ul.highlights li {
   text-decoration: none;
   font-weight: bold;
   color: #000;
-  display: inline-block; max-width: 200px;
+  display: inline-block; 
+  vertical-align: top;
+  border-bottom: 2px solid #FFF;
 }
-#signin span { color: #444; }
+#suckerfishmenu li.editmy a {
+  max-width: 200px;
+  text-align: left;
+}  
+.signin span { color: #444; }
 #suckerfishmenu	 a:active,
 #suckerfishmenu	 a:hover {
-  text-decoration: none;
+  border-bottom: 2px solid #CCC;
 }
-#suckerfishmenu	 ul.menu li ul { position: absolute; left: -999px; padding: 0; }
-#suckerfishmenu	 ul.menu li:hover ul { left: auto; margin: 0; }
-#suckerfishmenu	 ul.menu li ul li { display: block; float: none; border-bottom: 1px solid #DDD; background-color: #F8F8F9; padding: 10px 15px; width: 102px; }
+#suckerfishmenu	 ul.menu li ul { position: absolute; left: -999px; padding: 0; margin: -3px 0 0; }
+#suckerfishmenu	 ul.menu li:hover ul { left: auto; }
+#suckerfishmenu	 ul.menu li ul li { display: block; float: none; border-bottom: 1px solid #DDD; background-color: #F8F8F9; padding: 8px 15px 6px; width: 97px; }
 .item-home > a:after { content:'\25BC'; padding-left: 8px; font-size: 80%; display: inline-block; height: 10px; vertical-align: 1px; }
 #suckerfishmenu li.stretch { display: inline-block; width: 100%; } /* trick to justify menu */
-/* active menu border */
 .search #suckerfishmenu .item-home > a,
-#suckerfishmenu	 a.active, #suckerfishmenu a:hover { border-bottom: 2px solid #CCC; }
 #suckerfishmenu	 ul.menu li ul li:hover { border-color: #666; }
-#suckerfishmenu	 ul.menu li ul li a:hover { border-bottom: none; }
+#suckerfishmenu	 ul.menu li ul li a { border-bottom: none; width: 100%; }
 
 /* login & edit links */
-#menuthumb { display: inline-block; height: 20px; width: 20px; overflow: hidden; margin-right: 4px; background-color: #666; vertical-align: bottom; }
+#menuthumb { float: left; height: 20px; width: 20px; overflow: hidden; margin-right: 4px; background-color: #666; vertical-align: bottom; }
 #menuthumb img { width: 20px; height: auto; margin-top: -10%; }
 #ctl00_trbody .rdf { list-style-type: none; margin: 20px 10px; width: 190px; }
 

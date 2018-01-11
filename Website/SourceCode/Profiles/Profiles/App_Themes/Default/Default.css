@@ -8,16 +8,6 @@
 #navbarsearch input[type=submit]  { border: 4px solid #f2a900; }
 #navbarsearch input[type=submit]:hover  { border: 4px solid #FFB815; }
 
-/* banner */
-#site-logo h1 {
-    font-size: 34px;
-    margin: 6px 0 0;
-    padding: 15px 0 12px 0;
-	height: 86px;
-}
- #tagline { color: #666; font-weight: bold; padding-top: 8px; }
- #powered-by-block { padding: 50px 0 0;  }
-
 /* LINK Color */
 .profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000; }
 .profiles .basicInfo .grants a, .profiles .basicInfo .grants a:visited, 
@@ -25,11 +15,10 @@
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child, 
 #profile-components table td#namedegree, .listTable .listTableLink, .linky, 
 .institutionHeader a, .institutionHeader a:hover,
+.profilesfooter a, .profilesfooter a:visited, 
 .profiles a, .profiles a:visited { color: #1295d8; }
 
-/* navbar & footer colors */
+ #header-ucsf, .profilesFooter { background-color: #000; }
+ #header-ucsf div#ucsfnav ul li:first-child a { padding-left: 300px; }
  #suckerfishmenu li#contact { display: none; }
-.profiles .profilesFooter,
-#suckerfish-container, #suckerfishmenu a { background-color: #1295d8; }
-.search #suckerfishmenu .item-home a,
-#suckerfishmenu	 a.active, #suckerfishmenu a:hover { background-color: #42B5E7; }
+

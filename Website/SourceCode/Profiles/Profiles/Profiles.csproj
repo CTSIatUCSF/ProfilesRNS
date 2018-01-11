@@ -177,7 +177,8 @@
     <Content Include="App_Themes\Default\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\Default\Default.css" />
     <Content Include="App_Themes\Default\Default.js" />
-    <Content Include="App_Themes\UCD\Images\davisheader.svg" />
+    <Content Include="App_Themes\UCD\Images\davis-logo-white.svg" />
+    <Content Include="App_Themes\UCD\Images\global-header-bg.svg" />
     <Content Include="App_Themes\UCD\Images\ucdavis-logo.png" />
     <Content Include="App_Themes\UCI\Images\uciLogo.png" />
     <Content Include="App_Themes\UCLA\Images\ucla-logo.png" />

@@ -1,2 +1,12 @@
 To process Sympectic data start
-runPS.bat UCLibrary_Pubs.ps1
+1.create working directory with any name
+2.copy to this directory files:
+	Symplectic.xml
+	executeCDL.bat
+	UCLibrary_Pubs.ps1
+	createAllTables.sql
+
+3. in new environment execute createAllTables.sql
+4.next 2 steps are in job ucsf_getCDLdata
+-executeCDL.bat
+-exec loadSymplecticIntoProfiles.sql

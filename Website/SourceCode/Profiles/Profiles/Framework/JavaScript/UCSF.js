@@ -15,7 +15,8 @@
 	$('.photo').next().addClass('editmy');
 	$('.photo img').prependTo('.editmy a').wrap('<div id="menuthumb" />');
 	$('.photo').remove();
-	$('.menu').append("<li class='stretch'></li>");
+	$(".menu:contains('Proxies')").addClass('auth');
+	$(".menu:contains('Edit This Profile')").addClass('proxy');
   }
 
     // copyright year

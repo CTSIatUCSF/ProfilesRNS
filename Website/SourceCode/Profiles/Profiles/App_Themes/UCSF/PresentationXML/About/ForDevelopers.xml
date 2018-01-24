@@ -18,7 +18,7 @@
           <Param Name="HTML">
 		  
 <script type="text/javascript">
-$('#suckerfishmenu li#data a').addClass('active'); 
+$('#suckerfishmenu li#about a').addClass('active'); 
 </script>
 
 <p>Over two dozen UCSF websites and apps use data from UCSF Profiles. Users include the UCSF School of Medicine, UCSF Department of Surgery, and UCSF Directory.</p>

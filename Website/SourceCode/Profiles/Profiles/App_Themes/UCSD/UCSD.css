@@ -1,5 +1,5 @@
 ﻿/* highlight color */
-.dblarrow:before, #about h2, h2.about, .content-block h2, .searchForm td div.header, .highlight,
+.dblarrow:before, .about .profiles h2, .content-block h2, .searchForm td div.header, .highlight,
 .passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
 .profiles a .authInst, .profiles a .authInst:hover, 
@@ -32,10 +32,7 @@
 .institutionHeader a:hover { color: #2b92b9; }
 .institutionHeader a { font-weight: normal; }
 
-/* about pages */
-.toolbox, .questions, .share { padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #bbcddc; }
-.toolbox { background: transparent url(Images/gear.gif) no-repeat 20px 14px; }
-.questions { background: transparent url(Images/help.gif) no-repeat 20px 12px; }
-.share { background: transparent url(Images/comment.gif) no-repeat 20px 14px; }
-
+/* misc */
+.aboutProfiles .shaded { background-color: #bbcddc; }
+.aboutProfiles { border-color: #bbcddc; }
 .alumni { background-image: url(Images/college-alumni.png); }

@@ -191,7 +191,7 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
 #namedegreerow { border-bottom:1px solid #CCC; }
 #namedegreerow:hover #cls { display: inline-block; }
 #namedegreerow:hover #public { display: none; }
-#cls { float: right; color: #990000; font-size: 10px; line-height: 13px; width: 260px; margin-right: -10px; }
+#cls { float: right; color: #990000; font-size: 11px; line-height: 13px; width: 230px; }
 #public { color: #000; }
 #public img { margin: 0 47px 0 79px; }
 .profiles .emphasize { font-weight: bold; font-size: 16px; }

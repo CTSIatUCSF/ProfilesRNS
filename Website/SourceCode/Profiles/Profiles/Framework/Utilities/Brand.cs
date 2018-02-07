@@ -51,9 +51,11 @@ namespace Profiles.Framework.Utilities
 
         static public Brand GetByURL(string URL)
         {
+            Uri pageUri = new Uri(URL);
             foreach (Brand brand in ByTheme.Values)
             {
-                if (URL.ToLower().StartsWith(brand.BasePath.ToLower()))
+                Uri brandUri = new Uri(brand.BasePath);
+                if (pageUri.Host.Equals(brandUri.Host, StringComparison.InvariantCultureIgnoreCase))
                 {
                     return brand;
                 }

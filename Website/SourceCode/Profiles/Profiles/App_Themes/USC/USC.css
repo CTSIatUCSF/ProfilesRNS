@@ -1,7 +1,7 @@
 ﻿/* highlight color */
 .profiles a .authInst, .profiles a .authInst:hover, 
 .dblarrow:before, .highlight { color: #771111; }
-#about h2, h2.about, .content-block h2, .searchForm td div.header, 
+.about .profiles h2, .content-block h2, .searchForm td div.header, 
 .passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
 .profiles .profilesContentMain .pageTitle h2 { color: #000; }
@@ -21,7 +21,7 @@
 }
 #site-logo h1 { margin: 0; padding: 8px 0 0 10px; }
 #site-logo h1 a img { height: auto; }
-#new-features { clear: right; float: right; width: 300px; margin: 50px 10px 0 0; }
+#new-features { clear: right; float: right; width: 300px; margin: 55px 10px 0 0; }
 #new-features a, #new-features a:visited {
     padding: 6px;
     margin: 0;
@@ -51,8 +51,9 @@
 .faculty2 { margin-left: 12px; }
 .student2, .faculty2 { vertical-align: -2px; }
 .tour { background-color: #f8f8f9; font-weight: bold; margin-top: 15px; padding: 6px; }
-#about td { border-top: none; }
 .profile .passive-header { background-color: #f8f8f9; text-align: center; margin: 10px 0 -8px; padding: 8px 2px; }
 div.PlumX-Popup { display: inline; margin-left: 10px; }
 .PlumX-Popup .ppp-container.ppp-badge > a { font-family: arial,helvetica,sans serif !important; }
 #gadgets-gadget-title-bar-119 { background-color: #FFF; }
+.aboutProfiles .shaded { background-color: #CCC; }
+.aboutProfiles { border-color: #CCC; }

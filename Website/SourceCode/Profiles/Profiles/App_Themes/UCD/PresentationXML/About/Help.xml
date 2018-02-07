@@ -19,21 +19,80 @@
 
 <script type="text/javascript">
 $('#suckerfishmenu li#contact a').addClass('active'); 
+$('.profiles .profilesContentMain .pageTitle h2').hide();
 </script>
 
-<h2 class="about"><a href="../login/default.aspx?method=login&amp;edit=true">Sign in</a> in to edit information on your profile page</h2>
-<ul>
-  <li>Publications,</li>
-  <li>Photo,</li>
-  <li>Narrative,</li>
-  <li>Awards and honors,</li>
-  <li>and more.</li>
-</ul>
-<h2 class="about">Name, Degree, Contact Information</h2>
-    <p>Profiles gets this data from the USC GDS System. Please direct changes to your data to the Payroll/Personnel Analyst for your USC campus department. If unsure who this person is, contact your department's Business Officer. 
+  <div class="content-block" style="width:420px; padding-right: 50px;">
+    <h2 style="font-size:30px">Need Help?</h2>
+    <p><strong>Publications</strong>: To add, remove, or fix a publication, 
+       <strong><a href="../login/default.aspx?method=login&amp;edit=true">sign in to edit</a></strong> your profile page.
     </p>
-    <p><a href="../About/FAQ.aspx" class="dblarrow">FAQ: View Frequently Asked Questions</a></p>
-    <p><a href="mailto:profiles@sc-ctsi.org" class="dblarrow">Contact the Profiles team</a></p>
+    <p><strong>Photo</strong>: To add or remove a photo, 
+       <strong><a href="../login/default.aspx?method=login&amp;edit=true">sign in to edit</a></strong> your profile page.
+    </p>
+    <p><strong>Name/Degree/Contact Information</strong>: We get this data from the UC Davis HR system(s). Ask your HR 
+	   representative to make those changes or ask your UC Davis campus department how to make changes to your HR record. 
+    </p>
+  </div>
+ 
+  <div class="content-block" style="width:260px; padding-right: 0;">
+    <h2 style="font-size:30px">Contact Us</h2>
+    <p>Please <a href="mailto:profiles@ucdavis.edu">share your feedback</a> about how to improve
+       UC Davis Profiles, and let us know if UC Davis Profiles has enabled your research in any way.
+       Your success stories are important to enable the continued support and expansion of this
+       important tool.
+    </p>
+    <p><strong>Email us at <a href="mailto:profiles@ucdavis.edu">profiles@ucdavis.edu</a></strong></p>
+  </div>
+
+<h2 class="about" style="clear:left">Frequently Asked Questions</h2>
+<ul> 
+  <li><a href="#who">Who is listed in UC Davis Profiles?</a></li>
+  <li><a href="#view">Who can view UC Davis Profiles?</a></li>
+  <li><a href="#login">How do I sign in to UC Davis Profiles?</a></li>
+  <li><a href="#pubs">Why are there missing or incorrect publications in my profile? How can I correct this?</a></li>
+  <li><a href="#manage">Who manages UC Davis Profiles?</a></li>
+</ul>
+
+<h3 id="who">Who is listed in UC Davis Profiles?</h3>
+
+<ul>
+  <li>UC Davis Profiles was created for research networking so we initially focused on adding UC Davis faculty members, 
+  researchers with academic leadership appointments, and non-faculty academic researchers. </li>
+  <li>We are happy to include research staff and other individuals in the UC Davis community, on request and if possible. 
+  Send requests, with full name and employee ID, to <a href="mailto:profiles@ucdavis.edu">profiles@ucdavis.edu</a></li>
+</ul>
+
+<h3 id="view">Who can view UC Davis Profiles?</h3>
+<ul>
+  <li>UC Davis Profiles is searchable on the web and can be viewed by the general public as well as the UC Davis community.</li>
+</ul>
+
+<h3 id="login">How do I sign in to UC Davis Profiles?</h3>
+<ul>
+  <li>Click the <strong><a href="../login/default.aspx?method=login&amp;edit=true">Sign in</a></strong> link on any UC Davis Profiles page.
+  Then enter your single sign on (SSO) username and password.</li>
+  <li>If you have never used SSO, or for password support, go to 
+  <a href="http://iaminfo.ucdavis.edu/faq.cfm" target="_blank">UC Davis Identity and Access Management</a> 
+  or contact your Home Departmental Administrator.</li> 
+</ul>
+
+<h3 id="pubs">Why are there missing or incorrect publications in my profile? How can I correct this?</h3> 
+<ul>
+  <li>UC Davis Profiles uses a complex mix of names, institution, and publication information to find your  publications in PubMed's repository. 
+  Unfortunately, there is no easy way to  match all articles in PubMed to Profiles authors with complete precision and accuracy. </li>
+  <li>People who have common names, who published under multiple names or whose articles were written while at other 
+  institutions are most likely to have incomplete publication lists. </li>
+  <li>You can make corrections by searching PubMed from within Profiles to add, edit or delete publications. By curating publications 
+  manually, you are helping UC Davis Profiles to identify which concepts and co-authors are correctly associated with your profile, 
+  thereby increasing the likelihood of finding the right publications on subsequent attempts. </li>
+</ul>
+
+<h3 id="manage">Who manages UC Davis Profiles?</h3>
+<ul>
+  <li>UC Davis Profiles is managed by the <a href="https://ctsi.ucsf.edu/about-us/programs/research-technology" target="_blank">Research Technology</a> 
+  program of UCSF's <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>.</li>
+</ul>
 
           </Param>
         </ParamList>

@@ -457,7 +457,7 @@
 					<div id="footer-collaboration">
 						<p>
 							UCSD Profiles is managed by the UC San Diego
-									  <a href="https://actri.ucsd.edu/Pages/default.aspx" target="_blank">Altman Clinical and Translational Research Institute (ACTRI)</a>. This site is running Profiles RNS version <%=GetVersion()%>.
+									  <a href="https://actri.ucsd.edu/Pages/default.aspx" target="_blank">Altman Clinical and Translational Research Institute (ACTRI)</a>. This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
 					<div id="footer-contact">
@@ -479,7 +479,7 @@
 							UCD Profiles is managed by the UCSF 
 							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
 							part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
-							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%>.
+							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
 					<div id="footer-contact">
@@ -501,7 +501,7 @@
 							UCI Profiles is managed by the UCSF 
 							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
 							part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
-							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%>.
+							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
 					<div id="footer-contact">
@@ -523,7 +523,7 @@
 							UCLA Profiles is managed by the UCSF 
 							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
 							part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
-							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%>.
+							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
 					<div id="footer-contact">
@@ -545,7 +545,7 @@
 							Research Profiles is managed by the UCSF 
 							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
 							part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
-							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%>.
+							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
 					<div id="footer-contact">
@@ -567,7 +567,7 @@
 							UC Profiles is managed by the UCSF 
 							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
 							part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
-							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%>.
+							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
 					<div id="footer-contact">
@@ -589,7 +589,7 @@
 						NIH Funding Acknowledgment: Important - All publications resulting from the utilization of SC CTSI resources are required to credit the SC CTSI grant by including the <a href="http://sc-ctsi.org/index.php/home/NIH_acknowledgement">NIH funding acknowledgment</a> and must comply with the <a target="blank" href="http://publicaccess.nih.gov/">NIH Public Access Policy.</a>
 						</p>
 						<p>
-						This site is running Profiles RNS version <%=GetVersion()%>.
+						This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
 				</asp:Panel>
@@ -630,7 +630,7 @@
 					</div>
 					<div class="version">
 						<p>
-						This site is running Profiles RNS version <%=GetVersion()%>.
+						This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
 				</asp:Panel>

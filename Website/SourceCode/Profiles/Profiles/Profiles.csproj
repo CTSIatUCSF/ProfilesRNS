@@ -32,6 +32,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -167,17 +169,6 @@
     <Content Include="App_Themes\Default\Images\help.gif" />
     <Content Include="App_Themes\Default\Images\ucbg.jpg" />
     <Content Include="App_Themes\Default\Images\uclogo137.png" />
-    <Content Include="App_Themes\Default\PresentationXML\About\AboutProfiles.xml" />
-    <Content Include="App_Themes\Default\PresentationXML\About\CloseBrowser.xml" />
-    <Content Include="App_Themes\Default\PresentationXML\About\FAQ.xml" />
-    <Content Include="App_Themes\Default\PresentationXML\About\ForDevelopers.xml" />
-    <Content Include="App_Themes\Default\PresentationXML\About\GadgetLibrary.xml" />
-    <Content Include="App_Themes\Default\PresentationXML\About\Help.xml" />
-    <Content Include="App_Themes\Default\PresentationXML\About\HowProfilesWorks.xml" />
-    <Content Include="App_Themes\Default\PresentationXML\About\NewFeatures.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Themes\Default\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\Default\Default.css" />
     <Content Include="App_Themes\Default\Default.js" />
     <Content Include="App_Themes\UCD\Images\davis-logo-white.svg" />
@@ -210,17 +201,7 @@
     <Content Include="App_Themes\UCLA\Images\favicon.ico" />
     <Content Include="App_Themes\UCLA\Images\gear.gif" />
     <Content Include="App_Themes\UCLA\Images\help.gif" />
-    <Content Include="App_Themes\UCLA\PresentationXML\About\AboutProfiles.xml" />
-    <Content Include="App_Themes\UCLA\PresentationXML\About\CloseBrowser.xml" />
-    <Content Include="App_Themes\UCLA\PresentationXML\About\FAQ.xml" />
-    <Content Include="App_Themes\UCLA\PresentationXML\About\ForDevelopers.xml" />
-    <Content Include="App_Themes\UCLA\PresentationXML\About\GadgetLibrary.xml" />
     <Content Include="App_Themes\UCLA\PresentationXML\About\Help.xml" />
-    <Content Include="App_Themes\UCLA\PresentationXML\About\HowProfilesWorks.xml" />
-    <Content Include="App_Themes\UCLA\PresentationXML\About\NewFeatures.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Themes\UCLA\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\UCLA\UCLA.css" />
     <Content Include="App_Themes\UCLA\UCLA.js" />
     <Content Include="App_Themes\UCD\Images\backtotop.gif" />
@@ -228,17 +209,7 @@
     <Content Include="App_Themes\UCD\Images\favicon.ico" />
     <Content Include="App_Themes\UCD\Images\gear.gif" />
     <Content Include="App_Themes\UCD\Images\help.gif" />
-    <Content Include="App_Themes\UCD\PresentationXML\About\AboutProfiles.xml" />
-    <Content Include="App_Themes\UCD\PresentationXML\About\CloseBrowser.xml" />
-    <Content Include="App_Themes\UCD\PresentationXML\About\FAQ.xml" />
-    <Content Include="App_Themes\UCD\PresentationXML\About\ForDevelopers.xml" />
-    <Content Include="App_Themes\UCD\PresentationXML\About\GadgetLibrary.xml" />
     <Content Include="App_Themes\UCD\PresentationXML\About\Help.xml" />
-    <Content Include="App_Themes\UCD\PresentationXML\About\HowProfilesWorks.xml" />
-    <Content Include="App_Themes\UCD\PresentationXML\About\NewFeatures.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Themes\UCD\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\UCD\UCD.css" />
     <Content Include="App_Themes\UCD\UCD.js" />
     <Content Include="App_Themes\UCI\Images\backtotop.gif" />
@@ -246,17 +217,7 @@
     <Content Include="App_Themes\UCI\Images\favicon.ico" />
     <Content Include="App_Themes\UCI\Images\gear.gif" />
     <Content Include="App_Themes\UCI\Images\help.gif" />
-    <Content Include="App_Themes\UCI\PresentationXML\About\AboutProfiles.xml" />
-    <Content Include="App_Themes\UCI\PresentationXML\About\CloseBrowser.xml" />
-    <Content Include="App_Themes\UCI\PresentationXML\About\FAQ.xml" />
-    <Content Include="App_Themes\UCI\PresentationXML\About\ForDevelopers.xml" />
-    <Content Include="App_Themes\UCI\PresentationXML\About\GadgetLibrary.xml" />
     <Content Include="App_Themes\UCI\PresentationXML\About\Help.xml" />
-    <Content Include="App_Themes\UCI\PresentationXML\About\HowProfilesWorks.xml" />
-    <Content Include="App_Themes\UCI\PresentationXML\About\NewFeatures.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Themes\UCI\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\UCI\UCI.css" />
     <Content Include="App_Themes\UCI\UCI.js" />
     <Content Include="App_Themes\UC\Images\backtotop.gif" />
@@ -268,17 +229,6 @@
     <Content Include="App_Themes\UC\Images\uclogo137.png" />
     <Content Include="App_Themes\UC\UC.css" />
     <Content Include="App_Themes\UC\UC.js" />
-    <Content Include="App_Themes\UC\PresentationXML\About\AboutProfiles.xml" />
-    <Content Include="App_Themes\UC\PresentationXML\About\CloseBrowser.xml" />
-    <Content Include="App_Themes\UC\PresentationXML\About\FAQ.xml" />
-    <Content Include="App_Themes\UC\PresentationXML\About\ForDevelopers.xml" />
-    <Content Include="App_Themes\UC\PresentationXML\About\GadgetLibrary.xml" />
-    <Content Include="App_Themes\UC\PresentationXML\About\Help.xml" />
-    <Content Include="App_Themes\UC\PresentationXML\About\HowProfilesWorks.xml" />
-    <Content Include="App_Themes\UC\PresentationXML\About\NewFeatures.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Themes\UC\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\LBNL\Images\backtotop.gif" />
     <Content Include="App_Themes\LBNL\Images\comment.gif" />
     <Content Include="App_Themes\LBNL\Images\favicon.ico" />
@@ -315,16 +265,9 @@
     <Content Include="App_Themes\USC\Images\search-icon.gif" />
     <Content Include="App_Themes\USC\Images\usc-ctsi.jpg" />
     <Content Include="App_Themes\USC\PresentationXML\About\AboutProfiles.xml" />
-    <Content Include="App_Themes\USC\PresentationXML\About\CloseBrowser.xml" />
     <Content Include="App_Themes\USC\PresentationXML\About\FAQ.xml" />
     <Content Include="App_Themes\USC\PresentationXML\About\ForDevelopers.xml" />
-    <Content Include="App_Themes\USC\PresentationXML\About\GadgetLibrary.xml" />
     <Content Include="App_Themes\USC\PresentationXML\About\Help.xml" />
-    <Content Include="App_Themes\USC\PresentationXML\About\HowProfilesWorks.xml" />
-    <Content Include="App_Themes\USC\PresentationXML\About\NewFeatures.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Themes\USC\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\USC\USC.css" />
     <Content Include="App_Themes\USC\USC.js" />
     <Content Include="App_Themes\UCSD\Images\actri-logo.png" />
@@ -338,27 +281,15 @@
     <Content Include="App_Themes\UCSD\Images\search-icon.gif" />
     <Content Include="App_Themes\UCSD\Images\ucsdlogo.png" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\AboutProfiles.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\About\CloseBrowser.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\About\ForDevelopers.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\About\GadgetLibrary.xml" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\Help.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\About\HowProfilesWorks.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\UCSF\Images\favicon.ico" />
     <Content Include="App_Themes\UCSF\Images\funding.png" />
     <Content Include="App_Themes\UCSF\PresentationXML\About\AboutProfiles.xml" />
-    <Content Include="App_Themes\UCSF\PresentationXML\About\CloseBrowser.xml" />
     <Content Include="App_Themes\UCSF\PresentationXML\About\ForDevelopers.xml" />
-    <Content Include="App_Themes\UCSF\PresentationXML\About\GadgetLibrary.xml" />
     <Content Include="App_Themes\UCSF\PresentationXML\About\Help.xml" />
-    <Content Include="App_Themes\UCSF\PresentationXML\About\HowProfilesWorks.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\About\NewFeatures.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="App_Themes\UCSF\PresentationXML\About\NewFeatures.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Themes\UCSF\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\UCSD\Images\backtotop.gif" />
     <Content Include="App_Themes\UCSD\Images\icon_squareArrow.gif" />
     <Content Include="App_Themes\UCSD\Images\ucsd.png" />
@@ -2230,7 +2161,7 @@
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\MIT-LICENSE" />
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\README.rdoc" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\PhotoHandler.ashx" />
-    <None Include="Properties\PublishProfiles\Profile1.pubxml" />
+    <None Include="Properties\PublishProfiles\UCSF Stage.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2244,6 +2175,8 @@
   <ItemGroup>
     <Folder Include="ActiveNetwork\Utilities\" />
     <Folder Include="App_Data\" />
+    <Folder Include="App_Themes\Default\PresentationXML\About\" />
+    <Folder Include="App_Themes\UC\PresentationXML\About\" />
     <Folder Include="Login\Modules\App_LocalResources\" />
     <Folder Include="ORCID\XSLT\" />
   </ItemGroup>

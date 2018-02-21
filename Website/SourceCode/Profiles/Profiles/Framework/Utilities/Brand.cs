@@ -51,11 +51,10 @@ namespace Profiles.Framework.Utilities
 
         static public Brand GetByURL(string URL)
         {
-            Uri pageUri = new Uri(URL);
             foreach (Brand brand in ByTheme.Values)
             {
-                Uri brandUri = new Uri(brand.BasePath);
-                if (pageUri.Host.Equals(brandUri.Host, StringComparison.InvariantCultureIgnoreCase))
+                // cheap way to ignore protocol
+                if (URL.ToLower().Replace("http:", "https:").StartsWith(brand.BasePath.ToLower().Replace("http:", "https:")))
                 {
                     return brand;
                 }

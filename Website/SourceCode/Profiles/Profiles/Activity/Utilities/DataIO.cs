@@ -400,13 +400,13 @@ namespace Profiles.Activity.Utilities
 
         private string GetBrandedJoin()
         {
-            if (Brand.GetCurrentBrand().GetInstitution() != null)
+            if (!String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
             {
-                return "";
+                return " join [Profile.Data].[Person.FilterRelationship] r on p.personid = r.personid join [Profile.Data].[Person.Filter] f on r.personfilterid = f.personfilterid";
             }
             else
             {
-                return " join [Profile.Data].[Person.FilterRelationship] r on p.personid = r.personid join [Profile.Data].[Person.Filter] f on r.personfilterid = f.personfilterid";
+                return "";
             }
         }
 
@@ -416,9 +416,13 @@ namespace Profiles.Activity.Utilities
             {
                 return currentWhere + " and p.institutionabbreviation = '" + Brand.GetCurrentBrand().GetInstitution().GetAbbreviation() + "'";
             }
-            else
+            else if (!String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
             {
                 return currentWhere + " and f.personfilter = '" + Brand.GetCurrentBrand().PersonFilter + "'";
+            }
+            else
+            {
+                return currentWhere;
             }
         }
 

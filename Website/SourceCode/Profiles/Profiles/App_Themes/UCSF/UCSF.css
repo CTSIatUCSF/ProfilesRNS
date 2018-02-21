@@ -12,7 +12,9 @@
 
 /* UCSF only elements */
 #site-logo h1 a img { height: auto; }
-#header-ucsf div#ucsfnav ul li.first { padding-right: 370px; }
+#header-ucsf div#ucsfnav ul { display: inline-block; }
+#header-ucsf div#ucsfnav ul.right { float: right; }
+#header-ucsf div#ucsfnav ul.right li { text-align: right; }
 .profiles .button-link a, .profiles .button-link a:visited,
 #new-features a, #new-features a:visited { 
 padding: 6px; margin: 0; display: inline-block; font-family: Arial, Helvetica, sans serif; font-size: 14px; background-color: #F26D04; color: #FFF; text-decoration: none; }

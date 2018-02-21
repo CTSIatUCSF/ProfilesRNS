@@ -26,7 +26,7 @@
 						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupConcepts" Text="Concepts" />
 						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupAwards" Text="Awards" />
 						<asp:ListItem Value="People" Text="People" />
-						<asp:ListItem Value="UC" Text="&nbsp;&nbsp;&nbsp;UC People" />
+						<asp:ListItem Value="UC" Text="&nbsp;&nbsp;&nbsp;UC Health People" />
 						<asp:ListItem Value="UCD" Text="&nbsp;&nbsp;&nbsp;UC Davis People" />
 						<asp:ListItem Value="UCI" Text="&nbsp;&nbsp;&nbsp;UCI People" />
 						<asp:ListItem Value="UCLA" Text="&nbsp;&nbsp;&nbsp;UCLA People" />
@@ -54,7 +54,7 @@
 					<li><a href="<%=GetDomainFor("UCLA")%>/search/">UCLA</a></li>
 					<li><a href="<%=GetDomainFor("UCSD")%>/search/">UCSD</a></li>
 					<li><a href="<%=GetDomainFor("UCSF")%>/search/">UCSF</a></li>
-					<li><a href="<%=GetDomainFor("UC")%>/search/">All UC</a></li>
+					<li><a href="<%=GetDomainFor("UC")%>/search/">All UC Health</a></li>
 					<li><a href="<%=GetDomainFor("USC")%>/search/">USC</a></li>
 					<li><a href="<%=GetDomainFor("Default")%>/search/">All</a></li>
 				</ul>

@@ -6,7 +6,7 @@
     if ($('.mainmenu li').last().text() == 'Login to Profiles') {
 		$('.mainmenu li').last().addClass('signin');
 		$('.signin a').text('Sign in');
-		$('.signin').append(' <span>to see private stats on your profile page — or add photo, interests, videos, mentoring, etc.</span>');
+		$('.signin').append(' <span> to edit your profile (add photo, interests, videos, mentoring, etc.)</span>');
     }
 	for (var index = 3; index < $('.mainmenu li').length; index++) {
 		$('.mainmenu li').eq(index).clone().appendTo('.menu');

@@ -101,6 +101,7 @@
     <Content Include="About\Images\conceptsearch.jpg" />
     <Content Include="About\Images\detailstab.jpg" />
     <Content Include="About\Images\develop-profile.gif" />
+    <Content Include="About\Images\experts.png" />
     <Content Include="About\Images\extCoAuth.png" />
     <Content Include="About\Images\featuredPubs.png" />
     <Content Include="About\Images\featuredVideos.png" />
@@ -114,6 +115,7 @@
     <Content Include="About\Images\mentorGadget.png" />
     <Content Include="About\Images\minisearch.jpg" />
     <Content Include="About\Images\minisearch.png" />
+    <Content Include="About\Images\network.png" />
     <Content Include="About\Images\newfeatures.gif" />
     <Content Include="About\Images\opensocial-slideset.jpeg" />
     <Content Include="About\Images\orange-tick.gif" />
@@ -125,6 +127,7 @@
     <Content Include="About\Images\pubsgraph.jpg" />
     <Content Include="About\Images\quote-begin.png" />
     <Content Include="About\Images\search-icon.gif" />
+    <Content Include="About\Images\search.png" />
     <Content Include="About\Images\timeline.jpg" />
     <Content Include="About\Images\toc.jpg" />
     <Content Include="About\Images\tryit.gif" />
@@ -177,7 +180,8 @@
     <Content Include="App_Themes\Default\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\Default\Default.css" />
     <Content Include="App_Themes\Default\Default.js" />
-    <Content Include="App_Themes\UCD\Images\davisheader.svg" />
+    <Content Include="App_Themes\UCD\Images\davis-logo-white.svg" />
+    <Content Include="App_Themes\UCD\Images\global-header-bg.svg" />
     <Content Include="App_Themes\UCD\Images\ucdavis-logo.png" />
     <Content Include="App_Themes\UCI\Images\uciLogo.png" />
     <Content Include="App_Themes\UCLA\Images\ucla-logo.png" />
@@ -305,6 +309,7 @@
     <Content Include="App_Themes\USC\Images\icon_squareArrow.gif" />
     <Content Include="App_Themes\USC\Images\network.png" />
     <Content Include="App_Themes\USC\Images\powered_by_scctsi.jpg" />
+    <Content Include="App_Themes\USC\Images\powered_by_scctsi.png" />
     <Content Include="App_Themes\USC\Images\profiles.jpg" />
     <Content Include="App_Themes\USC\Images\profilesnapshot.png" />
     <Content Include="App_Themes\USC\Images\search-icon.gif" />

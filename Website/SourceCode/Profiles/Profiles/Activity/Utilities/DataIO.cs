@@ -370,7 +370,7 @@ namespace Profiles.Activity.Utilities
 		
         public int GetEditedCount()
         {
-            string sql = "select count(*) from [Profile.Data].Person p " +
+            string sql = "select count(*) from [UCSF.].[vwPerson] p " +
                             "join (select InternalID as PersonID from [RDF.Stage].InternalNodeMap i " +
                             "join (select distinct subject from [RDF.].Triple t " +
                             "join [RDF.].Node n on t.Predicate = n.NodeID and n.value in " +
@@ -379,22 +379,47 @@ namespace Profiles.Activity.Utilities
                             "on i.NodeID = t.Subject and i.Class = 'http://xmlns.com/foaf/0.1/Person' union " +
                             "select distinct personid from [Profile.Data].[Publication.Person.Add] union " +
                             "select distinct personid from [Profile.Data].[Publication.Person.Exclude] as u) t " +
-                            "on t.PersonID = p.PersonID " +
-                            "and p.IsActive = 1";
+                            "on t.PersonID = p.PersonID " + GetBrandedJoin() + GetBrandedWhere(" where p.isactive = 1");
                 
             return GetCount(sql);
         }
 
         public int GetProfilesCount()
         {
-            return GetCount("select count(*) from [Profile.Data].[Person] where isactive = 1;");
+            return GetCount("select count(*) from [UCSF.].[vwPerson] p" + GetBrandedJoin() + GetBrandedWhere(" where p.isactive = 1"));
         }
 
         public int GetPublicationsCount()
         {
-            string sql = "select (select count(distinct(PMID)) from [Profile.Data].[Publication.Person.Include] i join [Profile.Data].[Person] p on p.personid = i.personid where PMID is not null and isactive = 1) + " +
-                                "(select count(distinct(MPID)) from [Profile.Data].[Publication.Person.Include] i join [Profile.Data].[Person] p on p.personid = i.personid where MPID is not null and isactive = 1);";
+            string sql = "select (select count(distinct(PMID)) from [Profile.Data].[Publication.Person.Include] i join [UCSF.].[vwPerson] p on p.personid = i.personid " + 
+                                GetBrandedJoin() + GetBrandedWhere(" where i.PMID is not null and p.isactive = 1") + ") + " +
+                                "(select count(distinct(MPID)) from [Profile.Data].[Publication.Person.Include] i join [UCSF.].[vwPerson] p on p.personid = i.personid " + 
+                                GetBrandedJoin() + GetBrandedWhere(" where i.MPID is not null and p.isactive = 1") + ")";
             return GetCount(sql);
+        }
+
+        private string GetBrandedJoin()
+        {
+            if (Brand.GetCurrentBrand().GetInstitution() != null)
+            {
+                return "";
+            }
+            else
+            {
+                return " join [Profile.Data].[Person.FilterRelationship] r on p.personid = r.personid join [Profile.Data].[Person.Filter] f on r.personfilterid = f.personfilterid";
+            }
+        }
+
+        private string GetBrandedWhere(string currentWhere)
+        {
+            if (Brand.GetCurrentBrand().GetInstitution() != null)
+            {
+                return currentWhere + " and p.institutionabbreviation = '" + Brand.GetCurrentBrand().GetInstitution().GetAbbreviation() + "'";
+            }
+            else
+            {
+                return currentWhere + " and f.personfilter = '" + Brand.GetCurrentBrand().PersonFilter + "'";
+            }
         }
 
         private int GetCount(string sql)

@@ -648,7 +648,7 @@ INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCSF', 'http://st
 INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCSD', 'http://stage-profiles.ucsf.edu/ucsd', 0);
 INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('USC', 'http://stage-profiles.ucsf.edu/usc', 0);
 INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCI', 'http://stage-profiles.ucsf.edu/uci', 0);
-INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCD', 'http://stage-profiles.ucsf.edu/ucd', 0);
+INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UC Davis', 'http://stage-profiles.ucsf.edu/ucd', 0);
 
 INSERT INTO [UCSF.].[InstitutionAbbreviationAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCI', 'UCI', 'urn:mace:incommon:uci.edu');
 INSERT INTO [UCSF.].[InstitutionAbbreviationAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCD', 'UCD', 'urn:mace:incommon:ucdavis.edu');

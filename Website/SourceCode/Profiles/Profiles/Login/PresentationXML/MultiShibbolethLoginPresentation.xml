@@ -1,7 +1,7 @@
 ﻿<Presentation PresentationClass="profile">
   <PageOptions Columns="2"/>
   <WindowName>Login</WindowName>  
-  <PageTitle>Click Your Campus to Login</PageTitle>
+  <PageTitle>Click Your Campus to Sign in</PageTitle>
   <PageBackLinkName></PageBackLinkName>
   <PageBackLinkURL></PageBackLinkURL>
   <PageSubTitle></PageSubTitle>

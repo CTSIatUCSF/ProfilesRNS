@@ -10,49 +10,44 @@
     Code licensed under a BSD License. 
     For details, see: LICENSE.txt 
  --%>
-<div class="content_container">
-    <div class="tabContainer" style="margin-top: 0px;">
-        <div class="searchForm">
-        </div>
-    </div>
+ <div class="login_container">
+	<row>
+		<div>
+			<asp:ImageButton ImageUrl="~/login/images/ucsd.edu.png" runat="server" ID="LoginUCSD"
+					InstitutionAbbreviation="UCSD" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login to UCSD"/>
+		</div>
+		<div>
+			<asp:ImageButton ImageUrl="~/login/images/ucsf.edu.png" runat="server" ID="LoginUCSF"
+					InstitutionAbbreviation="UCSF" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login to UCSF"/>
+		</div>
+		<div>
+			<asp:ImageButton ImageUrl="~/login/images/lbnl.gov.png" runat="server" ID="LoginLBNL"
+					InstitutionAbbreviation="LBNL" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login to LBNL"/>
+		</div>
+		<div>
+			<asp:ImageButton ImageUrl="~/login/images/usc.edu.png" runat="server" ID="LoginUSC"
+					InstitutionAbbreviation="USC" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login to USC"/>
+		</div>
+	</row>
+<!--
+	<row>
+		<div>
+			<asp:ImageButton ImageUrl="~/login/images/ucdavis.edu.png" runat="server" ID="LoginUCD"
+                InstitutionAbbreviation="UCD" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login to UC Davis"/>
+		</div>
+		<div>
+			<asp:ImageButton ImageUrl="~/login/images/uci.edu.gif" runat="server" ID="LoginUCI"
+                InstitutionAbbreviation="UCI" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login to UCI"/>
+		</div>
+		<div>
+			<asp:ImageButton ImageUrl="~/login/images/ucla.edu.gif" runat="server" ID="LoginUCLA"
+                InstitutionAbbreviation="UCLA" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login to UCLA"/>
+		</div>
+		<div>
+			
+			
+		</div>
+	</row>
+-->	
 </div>
-<div class="content_container">
-    <div class="tabContainer" style="margin-top: 0px;">
-        <div class="searchForm">
-            <table width="100%">
-                <tr>
-                    <td colspan="3">
-                        <div class="searchSection" style="text-align: center; margin: 0px auto;">
-                            <table class="searchForm" style="display: inline;">
-                                <tr>
-                                    <asp:ImageButton ImageUrl="~/login/images/berkeley.edu.png" runat="server" ID="LoginUCB"
-                                            InstitutionAbbreviation="UCB" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
-                                </tr>
-                                <tr>
-                                    <asp:ImageButton ImageUrl="~/login/images/ucdavis.edu.png" runat="server" ID="LoginUCD"
-                                            InstitutionAbbreviation="UCD" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
-                                </tr>
-                                <tr>
-                                    <asp:ImageButton ImageUrl="~/login/images/uci.edu.gif" runat="server" ID="LoginUCI"
-                                            InstitutionAbbreviation="UCI" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
-                                </tr>
-                                <tr>
-                                    <asp:ImageButton ImageUrl="~/login/images/ucla.edu.gif" runat="server" ID="LoginUCLA"
-                                            InstitutionAbbreviation="UCLA" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
-                                </tr>
-                                <tr>
-                                    <asp:ImageButton ImageUrl="~/login/images/ucsd.edu.png" runat="server" ID="LoginUCSD"
-                                            InstitutionAbbreviation="UCSD" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
-                                </tr>
-                                <tr>
-                                    <asp:ImageButton ImageUrl="~/login/images/ucsf.edu.png" runat="server" ID="LoginUCSF"
-                                            InstitutionAbbreviation="UCSF" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login"/>
-                                </tr>
-                            </table>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-</div>
+

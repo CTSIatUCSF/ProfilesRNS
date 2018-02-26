@@ -596,39 +596,41 @@
 					</div>
 				</asp:Panel>
 				<asp:Panel ID="MasterPageFooterLBNL" runat="server" SkinID="LBNL" Visible="false">
-					<div class="disclaimer-logos">
-						<ul class="disclaimer-logos">
-							<li class="disclaimer-logos item1"></li>
-							<li class="disclaimer-logos item2"></li>
-						</ul>
-					</div>
-					<div class="disclaimer-text">
-						<p>A U.S. Department of Energy National Laboratory Managed by the University of California</p>
-					</div>
-					<div class="lbl-disclaimer">
-						<p>
-							<a class="disclaimer-left" href="http://wwwdev.lbl.gov/web-support/">Questions & Comments</a>
-							<a class="disclaimer-right" href="http://wwwdev.lbl.gov/disclaimers/">Privacy & Security Notice</a>
-						</p>
-					</div>
-					<div class="social">
-						<ul class="social-links">
-							<li class="social-links">
-								<a class="item1 ir" target="_blank" href="http://twitter.com/BerkeleyLab">twitter</a>
-							</li>
-							<li class="social-links">
-								<a class="item2 ir" target="_blank" href="http://instagram.com/berkeleylab#">instagram</a>
-							</li>
-							<li class="social-links">
-								<a class="item3 ir" target="_blank" href="https://plus.google.com/+BerkeleyLab/posts">google plus</a>
-							</li>
-							<li class="social-links">
-								<a class="item4 ir" target="_blank" href="http://www.facebook.com/BerkeleyLab">facebook</a>
-							</li>
-							<li class="social-links">
-								<a class="item5 ir" target="_blank" href="http://www.youtube.com/user/BerkeleyLab">youtube</a>
-							</li>
-						</ul>
+					<div id="footer">
+						<div class="disclaimer-logos">
+							<ul class="disclaimer-logos">
+								<li class="disclaimer-logos item1"></li>
+								<li class="disclaimer-logos item2"></li>
+							</ul>
+						</div>
+						<div class="disclaimer-text">
+							<p>A U.S. Department of Energy National Laboratory Managed by the University of California</p>
+						</div>
+						<div class="lbl-disclaimer">
+							<p>
+								<a class="disclaimer-left" href="http://wwwdev.lbl.gov/web-support/">Questions & Comments</a>
+								<a class="disclaimer-right" href="http://wwwdev.lbl.gov/disclaimers/">Privacy & Security Notice</a>
+							</p>
+						</div>
+						<div class="social">
+							<ul class="social-links">
+								<li class="social-links">
+									<a class="item1 ir" target="_blank" href="http://twitter.com/BerkeleyLab">twitter</a>
+								</li>
+								<li class="social-links">
+									<a class="item2 ir" target="_blank" href="http://instagram.com/berkeleylab#">instagram</a>
+								</li>
+								<li class="social-links">
+									<a class="item3 ir" target="_blank" href="https://plus.google.com/+BerkeleyLab/posts">google plus</a>
+								</li>
+								<li class="social-links">
+									<a class="item4 ir" target="_blank" href="http://www.facebook.com/BerkeleyLab">facebook</a>
+								</li>
+								<li class="social-links">
+									<a class="item5 ir" target="_blank" href="http://www.youtube.com/user/BerkeleyLab">youtube</a>
+								</li>
+							</ul>
+						</div>
 					</div>
 					<div class="version">
 						<p>

@@ -1,20 +1,19 @@
 ﻿/* highlight color */
-.dblarrow:before, .highlight,
-#about h2, h2.about, .content-block h2, .searchForm td div.header, 
+.dblarrow:before, .about .profiles h2, .content-block h2, .searchForm td div.header,
 .passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
-.profiles .profilesContentMain .pageTitle h2 { color: #F26D04; }
-.profiles a.search-button, .more span, .less span { background-color: #F26D04; }
-.profiles a.search-button:hover { background-color: #F48024; box-shadow: none; color: #FFF; }
-#navbarsearch input[type=submit]  { background-color: #F26D04; border: 4px solid #F26D04; }
-#navbarsearch input[type=submit]:hover  { background-color: #F48024; border: 4px solid #F48024; }
+.profiles a .authInst, .profiles a .authInst:hover, 
+.profiles .profilesContentMain .pageTitle h2 { color: #D57800; }
+.profiles a.search-button, .more span, .less span { background-color: #D57800; }
+.profiles a.search-button:hover { background-color: #EEAA00; box-shadow: none; color: #FFF; }
+#navbarsearch input[type=submit]  { background-color: #D57800; border: 4px solid #D57800; }
+#navbarsearch input[type=submit]:hover  { background-color: #EEAA00; border: 4px solid #EEAA00; }
 
 /* banner */
-body { border-top: 100px solid #0E4059; background-color: #fff; width: 100%; }
-body > form { width: 980px; margin: -100px auto 0; }
-.institutionHeader { background-color: #0E4059; height: 100px; }
-#site-logo h1 { margin: 0; padding: 10px 0 0 0; }
-#powered-by-block { margin: 15px 20px 0 0; padding: 0;}
+.institutionHeader { background-color: #00385B; height: 100px; }
+#site-logo h1 { margin: 0; padding: 10px 0 0 10px; }
+#site-logo h1 a img { height: 77px; }
+#powered-by-block { margin: 10px 10px 0 0; padding: 0;}
 #powered-by-block  a, #powered-by-block  a:visited {  
     border-right: 1px solid #fff;
     color: #fff;
@@ -28,7 +27,8 @@ body > form { width: 980px; margin: -100px auto 0; }
     text-decoration: none;
 }
 #powered-by-block  a:hover { text-decoration: underline; color: #fff; }
-#powered-by-block a.last-item { border: none; }
+#powered-by-block a.last-item { border: none; padding-right: 0; }
+#navbarsearch { top: -73px; }
 
 /* LINK Color */
 .profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000; }
@@ -41,18 +41,12 @@ body > form { width: 980px; margin: -100px auto 0; }
 .profiles a:hover { color: #005580; }
 
 /* Search form */
-#ctl00_ContentMain_rptMain_ctl00_ctl00_trInstitution, #ctl00_ContentMain_rptMain_ctl00_ctl00_trOtherOptions { display: none; }
+#trDivision, #trOtherOptions { display: none; }
 
-/* navbar & footer colors */
-#suckerfishmenu { border-top: 3px solid #fff; }
-#suckerfishmenu, #suckerfishmenu a { background-color: #98b2c9; }
-#suckerfishmenu a { font-weight: normal; }
-#suckerfishmenu a:hover { text-decoration: underline; }
-#suckerfishmenu li { border-right: 3px solid #fff; }
-.search #suckerfishmenu .item-home a, #suckerfishmenu a:hover,
-#suckerfishmenu	 a.active { background-color: #999; }
-.profiles .profilesFooter { border-top: 1px solid #ccc; background-color: #fff; text-align: left; padding: 20px 0; margin-top: 30px; }
-.profiles .profilesFooter  p  { color: #444; font-size: 11px; margin: 0; padding: 0; }
+/* Footer */
+.profilesFooter { border-top: 1px solid #ccc; background-color: #fff; text-align: left; padding: 20px 0; margin-top: 30px; }
+.profilesFooter #footer { width: 960px; margin: 0 auto; }
+.profilesFooter  p  { color: #666; font-size: 11px; margin: 0; padding: 0; }
 .disclaimer-logos {
     display: block;
     float: left;
@@ -194,9 +188,8 @@ body > form { width: 980px; margin: -100px auto 0; }
     text-align: left;
     text-indent: -999em;
 }
-.profiles .profilesFooter  .version { clear: left; text-align: center; margin: 40px 0 0; background-color: #999; }
-.profiles .profilesFooter  .version  p { color: #fff; padding: 8px 0; }
+.profilesFooter .version { clear: left; text-align: center; margin: 40px 0 0; background-color: #63666A; }
+.profilesFooter .version  p { color: #fff; padding: 8px 0; }
 
-/* About pages */
-#about td { border-top: 2px solid #dbe4ec; }
+
 

@@ -220,8 +220,10 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; }
   border-bottom: solid 1px #DDD; background-color: #FFF; }
 .center { text-align: center; }
 ul.square { padding-left: 14px; margin: 6px 8px 8px; text-align: left; }
-ul.square li { list-style-type: square; } 
-.content-block { width: 370px; float: left; padding-right: 40px; }
+ul.square li { list-style-type: square; }
+.content-block-container { width: 960px; } 
+.content-block { width: 260px; float: left; }
+.content-block:first-child { width: 500px; padding-right: 100px; }
 .content-block h2 { font-size: 16px; line-height: 20px; margin-top: 12px; 
   padding: 0; margin-bottom: 14px; }
 h3.toolbox, .aboutProfiles h3.toolbox, .aboutProfiles h3.questions, .aboutProfiles h3.share { 
@@ -414,7 +416,7 @@ h2.badge-top  { padding: 12px 0 14px 4px; margin: -68px 0 0 60px; width: 70px; f
 /* Metrics & Activity Stream */
 .panelActive.navbar { padding: 0; } 
 .metrics { margin: 0 0 20px; padding: 0 0 12px; border-bottom: 1px solid #ccc; }
-.metrics .act-heading { padding-bottom: 12px; }
+.metrics .act-heading, .activities .act-heading { padding-bottom: 12px; }
 .metricsDetails span { display: inline-block; width: 4em; text-align: right; font-family: "Courier New", Courier, monospace; }
 .activities { max-width: 600px; padding-bottom: 0; margin-bottom: 0; }
 .act { margin-bottom: 10px; padding: 0 0 8px; clear: left; border-bottom: 1px solid #ccc; min-height: 48px; }
@@ -428,5 +430,7 @@ h2.badge-top  { padding: 12px 0 14px 4px; margin: -68px 0 0 60px; width: 70px; f
 .panelMain .act-msg { clear: none; float: left; width: 360px; padding: 0; margin-top: -2px; }
 
 /* Login */
-.login .searchForm .searchSection { background-color: #FFF; }
-.login input[type="image"] { max-width: 150px; padding:30px; vertical-align: middle; }
+.login_container { border: 1px solid #CCC; display: table; width: 960px; }
+.login_container row { display: table-row; }
+.login_container div { display: table-cell; text-align: middle; }
+.login input[type="image"] { max-width: 200px; padding:20px; vertical-align: middle; }

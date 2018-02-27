@@ -22,30 +22,74 @@ $('#suckerfishmenu li#contact a').addClass('active');
 $('.profiles .profilesContentMain .pageTitle h2').hide();
 </script>
 
-  <div class="content-block" style="width:420px; padding-right: 50px;">
-    <h2 style="font-size:30px">Need Help?</h2>
-    <p><strong>Publications</strong>: To add, remove, or fix a publication, 
-       <strong><a href="../login/default.aspx?method=login&amp;edit=true">sign in to edit</a></strong> your profile page.
-    </p>
-    <p><strong>Photo</strong>: To add or remove a photo, 
-       <strong><a href="../login/default.aspx?method=login&amp;edit=true">sign in to edit</a></strong> your profile page.
-    </p>
-    <p><strong>Name/Degree/Contact Information</strong>: We get this data from the UC Davis HR system(s). Ask your HR 
-	   representative to make those changes or ask your UC Davis campus department how to make changes to your HR record. 
-    </p>
-  </div>
- 
-  <div class="content-block" style="width:260px; padding-right: 0;">
-    <h2 style="font-size:30px">Contact Us</h2>
-    <p>Please <a href="mailto:profiles@ucdavis.edu">share your feedback</a> about how to improve
-       UC Davis Profiles, and let us know if UC Davis Profiles has enabled your research in any way.
-       Your success stories are important to enable the continued support and expansion of this
-       important tool.
-    </p>
-    <p><strong>Email us at <a href="mailto:profiles@ucdavis.edu">profiles@ucdavis.edu</a></strong></p>
-  </div>
+	<div class="content-block-container">
+	  <div class="content-block">
+		<h2 style="font-size:30px">Need Help?</h2>
+		<p><strong>Publications</strong>: To add, remove, or fix a publication, 
+		   <strong><a href="../login/default.aspx?method=login&amp;edit=true">sign in to edit</a></strong> your profile page.
+		</p>
+		<p><strong>Photo</strong>: To add or remove a photo, 
+		   <strong><a href="../login/default.aspx?method=login&amp;edit=true">sign in to edit</a></strong> your profile page.
+		</p>
+		<p><strong>Name/Degree/Contact Information</strong>: We get this data from the UC Davis HR system(s). Ask your HR 
+		   representative to make those changes or ask your UC Davis campus department how to make changes to your HR record. 
+		</p>
+		<p><a href="#faq" class="dblarrow">Frequently Asked Questions</a></p>
+	  </div>
+	 
+	  <div class="content-block">
+		<h2 style="font-size:30px">Contact Us</h2>
+		<p>Please <a href="mailto:profiles@ucdavis.edu">share your feedback</a> about how to improve
+		   UC Davis Profiles, and let us know if UC Davis Profiles has enabled your research in any way.
+		   Your success stories are important to enable the continued support and expansion of this
+		   important tool.
+		</p>
+		<p><strong>Email us at <a href="mailto:profiles@ucdavis.edu">profiles@ucdavis.edu</a></strong></p>
+	  </div>
+	</div>
 
-<h2 class="about" style="clear:left">Frequently Asked Questions</h2>
+<h2 style="clear:left; padding-top:20px;">Researcher Information</h2>
+<p>An individual's profile page shows data drawn from external sources, and may also display 
+custom content added by the researcher.</p> 
+
+<table width="940">
+<tr>
+<td valign="top" style="font-size:12px;line-height:16px;padding-top:23px;">
+Name, degrees and contact information are imported from campus systems. <br /><br />
+Profile owners may add:
+<ul class="square" style="font-size:12px;line-height:16px;margin:0;">
+<li>Photo</li>
+<li>Education and Training</li>
+<li>Awards and Honors</li>
+<li>Research Overview</li>
+<li>Interests</li>
+<li>Featured Publications</li>
+<li>Faculty Mentoring</li>
+<li>Student Projects</li>
+<li>Twitter and other feeds</li>
+<li>Videos</li>
+<li>Websites</li>
+<li>News Links</li>
+</ul>
+<br />
+Research Activities and Funding come from NIH ExPORTER. Other grants <br />may be added.
+<br /><br /><br />Published articles available <br />
+in PubMed are listed automatically. Other <span style="white-space:nowrap">publications may be added.</span>
+</td>
+<td valign="top"><img src="images/profilesnapshot.png" width="600" alt="" /></td>
+<td valign="top" style="font-size:12px;line-height:16px;padding-top:23px;">
+Networks are generated from research available in PubMed.
+<br /><br /><br />
+Research concepts/topics <span style="white-space:nowrap">based on PubMed MeSH terms</span><br /><br /><br /><br />
+Co-authors from the same institution<br /><br /><br /><br /><br /><br />
+Co-authors from external institutions<br /><br /><br /><br /><br /><br />
+Researchers working on the same topics
+</td>
+</tr>
+</table>
+<p>Many researchers also have Clinical Trials information based on trials listed in clinicaltrials.gov.</p>
+
+<h2 class="about" id="faq">Frequently Asked Questions</h2>
 <ul> 
   <li><a href="#who">Who is listed in UC Davis Profiles?</a></li>
   <li><a href="#view">Who can view UC Davis Profiles?</a></li>
@@ -90,8 +134,8 @@ $('.profiles .profilesContentMain .pageTitle h2').hide();
 
 <h3 id="manage">Who manages UC Davis Profiles?</h3>
 <ul>
-  <li>UC Davis Profiles is managed by the <a href="https://ctsi.ucsf.edu/about-us/programs/research-technology" target="_blank">Research Technology</a> 
-  program of UCSF's <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>.</li>
+  <li>UC Davis Profiles is managed by the Research Technology program of UCSF's Clinical and Translational Science Institute (CTSI) 
+  on behalf of the UC Davis <a href="http://www.ucdmc.ucdavis.edu/ctsc/index.html" target="_blank">Clinical and Translational Science Center</a>. </li>
 </ul>
 
           </Param>

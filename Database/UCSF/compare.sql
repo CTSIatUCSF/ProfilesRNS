@@ -23,14 +23,14 @@ SET ANSI_PADDING ON
 GO
 
 CREATE TABLE [UCSF.].[NameAdditions] (
-	[InternalUserName] [nvarchar](50) NOT NULL,
+	[InternalUserName] [varchar](9) NOT NULL,
 	[CleanFirst] [nvarchar](50) NULL,
 	[CleanMiddle] [nvarchar](50) NULL,
 	[CleanLast] [nvarchar](50) NULL,
 	[CleanSuffix] [nvarchar](50) NULL,
 	[GivenName] [nvarchar](50) NULL,  
 	[CleanGivenName] [nvarchar](50) NULL,  
-	[PrettyURL] [nvarchar](255) NULL,
+	[UrlName] [nvarchar](255) NULL,
 	[Strategy] [nvarchar](50) NULL,
 	[PublishingFirst] [nvarchar](50) NULL,
  CONSTRAINT [PK_uniqueNames] PRIMARY KEY CLUSTERED 
@@ -40,55 +40,11 @@ CREATE TABLE [UCSF.].[NameAdditions] (
 ) ON [PRIMARY]
 
 
-CREATE UNIQUE INDEX prettyUrlUnique ON [UCSF.].[NameAdditions]([PrettyURL])
-WHERE [PrettyURL] IS NOT NULL
+CREATE UNIQUE INDEX urlNameUnique ON [UCSF.].[NameAdditions](UrlName)
+WHERE UrlName IS NOT NULL
 GO
 
-/****** Object:  Table [UCSF.].[Theme]    Script Date: 12/16/2015 10:51:55 AM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-SET ANSI_PADDING ON
-GO
-
-CREATE TABLE [UCSF.].[Theme](
-	[Theme] [nvarchar](50) NOT NULL,
-	[BasePath] [nvarchar](50) NOT NULL,
-	[Shared] bit NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Theme] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
-/****** Object:  Table [UCSF.].[InstitutionAdditions]    Script Date: 12/16/2015 10:51:55 AM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-SET ANSI_PADDING ON
-GO
-
-CREATE TABLE [UCSF.].[InstitutionAdditions](
-	[InstitutionAbbreviation] [nvarchar](50) NOT NULL,
-	[Theme] [nvarchar](50) NOT NULL,
-	[ShibbolethIdP] [nvarchar](255) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[InstitutionAbbreviation] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-ALTER TABLE [UCSF.].[InstitutionAdditions]  WITH CHECK ADD  CONSTRAINT [FK_institution_theme] FOREIGN KEY([Theme])
-REFERENCES [UCSF.].[Theme] ([Theme])
+SET ANSI_PADDING OFF
 GO
 
 ---------------------------------------------------------------------------------------------------------------------
@@ -109,7 +65,7 @@ as
 SELECT p.[PersonID]
       ,p.[UserID]
       ,n.nodeid
-      ,na.PrettyURL
+      ,na.UrlName
       ,p.[FirstName]
       ,isnull(na.[PublishingFirst], isnull(na.[GivenName], p.[FirstName])) [PublishingFirst]
       ,p.[LastName]
@@ -137,14 +93,76 @@ SELECT p.[PersonID]
       ,p.[FacultyRankID]
       ,p.[InternalUsername]
       ,p.[Visible]
-	  ,i.InstitutionAbbreviation
-	  ,t.Theme  
   FROM [Profile.Data].[Person] p 
-	JOIN [Profile.Data].[Person.Affiliation] a on p.PersonID = a.PersonID and a.IsPrimary = 1
-	JOIN [Profile.Data].[Organization.Institution] i on a.InstitutionID = i.InstitutionID
-	JOIN [UCSF.].[InstitutionAdditions] t on i.InstitutionAbbreviation = t.InstitutionAbbreviation --this is where and how we assign a theme to a profile.
-	JOIN [UCSF.].[NameAdditions] na on na.internalusername = p.internalusername
-	JOIN [RDF.Stage].internalnodemap n on n.internalid = p.personId AND n.[class] = 'http://xmlns.com/foaf/0.1/Person' 
+	LEFT JOIN [UCSF.].[NameAdditions] na on na.internalusername = p.internalusername
+	LEFT JOIN [RDF.Stage].internalnodemap n on n.internalid = p.personId
+	where n.[class] = 'http://xmlns.com/foaf/0.1/Person' 
+
+
+GO
+
+/****** Object:  View [UCSF.].[vwPersonExport]    Script Date: 10/11/2013 11:32:07 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE view [UCSF.].[vwPersonExport]
+as
+		SELECT p.personid,
+					 p.userid,
+					 p.nodeid,
+					 p.UrlName,
+					 p.internalusername,
+					 p.firstname,
+					 p.publishingfirst,
+					 p.MiddleName,
+					 p.lastname,
+					 p.displayname, 
+					 pa.title,
+					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN p.addressline1 END addressline1,
+					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN p.addressline2 END addressline2,
+					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN p.addressline3 END addressline3,
+					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN p.addressline4 END addressline4,
+					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN p.addressstring END addressstring, 
+					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN  p.building END building,
+					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN  p.room END room,
+					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN  p.floor END floor, 
+					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN  p.latitude END latitude, 
+					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN  p.longitude END longitude,
+					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN p.phone END phone,
+					 CASE WHEN ISNULL(dp.ShowAddress,'Y')='Y' THEN p.fax END fax,  
+					 CASE WHEN ISNULL(dp.ShowEmail,'Y') = 'Y' THEN p.emailaddr END emailaddr,
+					 i2.institutionname,
+					 i2.institutionabbreviation, 
+					 de.departmentname,
+					 dv.divisionname,  
+					 fr.facultyrank, 
+					 fr.facultyranksort, 
+					 p.isactive,
+					 ISNULL(dp.ShowAddress,'Y')ShowAddress,
+					 ISNULL(dp.ShowPhone,'Y')ShowPhone,
+					 ISNULL(dp.Showfax,'Y')Showfax,
+					 ISNULL(dp.ShowEmail,'Y')ShowEmail,
+					 ISNULL(dp.ShowPhoto,'N')ShowPhoto,
+					 ISNULL(dp.ShowAwards,'N')ShowAwards,
+					 ISNULL(dp.ShowNarrative,'N')ShowNarrative,
+					 ISNULL(dp.ShowPublications,'Y')ShowPublications, 
+					 ISNULL(p.visible,1)visible,
+					 0 numpublications
+			FROM [UCSF.].vwPerson p
+ --LEFT JOIN [Profile.Cache].Person ps				 ON ps.personid = p.personid
+ LEFT JOIN [Profile.Data].[Person.Affiliation] pa				 ON pa.personid = p.personid
+																				AND pa.isprimary=1 
+ LEFT JOIN [Profile.Data].[Organization.Institution] i2				 ON pa.institutionid = i2.institutionid 
+ LEFT JOIN [Profile.Data].[Organization.Department] de				 ON de.departmentid = pa.departmentid
+ LEFT JOIN [Profile.Data].[Organization.Division] dv				 ON dv.divisionid = pa.divisionid
+ LEFT OUTER JOIN [Profile.Data].[Person.FacultyRank] fr on fr.facultyrankid = pa.facultyrankid 
+ LEFT OUTER JOIN [Profile.Import].[Beta.DisplayPreference] dp on dp.PersonID=p.PersonID 
+ --OUTER APPLY(SELECT TOP 1 facultyrank ,facultyranksort from [Profile.Data].[Person.Affiliation] pa JOIN [Profile.Data].[Person.FacultyRank] fr on fr.facultyrankid = pa.facultyrankid  where personid = p.personid order by facultyranksort asc)a
+ WHERE p.isactive = 1
 
 GO
 
@@ -159,24 +177,6 @@ GO
 CREATE VIEW [UCSF.].[vwPublication.MyPub.General] AS
 SELECT ir.EntityID, g.* FROM [Profile.Data].[Publication.Entity.InformationResource] ir JOIN [Profile.Data].[Publication.MyPub.General] g ON
 ir.MPID = g.MPID WHERE ir.MPID IS NOT NULL;
-
-GO
-
-/****** Object:  View [UCSF.].[vwBrand]    Script Date: 10/13/2016 12:52:26 PM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-
-CREATE VIEW [UCSF.].[vwBrand] AS  
-SELECT DISTINCT t.Theme,
-	   t.BasePath,
-	   CASE WHEN t.Shared = 1 THEN NULL ELSE a.InstitutionAbbreviation END AS InstitutionAbbreviation,
-	   CASE WHEN t.Theme = 'UC' THEN 'UC' ELSE NULL END AS PersonFilter -- note that this is hacked to do what we need it to do. For a view, that is sort of OK
-FROM [UCSF.].[Theme] t
-	LEFT OUTER JOIN [UCSF.].[InstitutionAdditions] a on a.Theme = t.Theme
 
 GO
 ---------------------------------------------------------------------------------------------------------------------
@@ -235,133 +235,43 @@ END
 
 GO
 
-/****** Object:  UserDefinedFunction [UCSF.].[fn_UrlCleanName]    Script Date: 4/26/2017 3:12:58 PM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE FUNCTION [UCSF.].[fn_ApplicationNameFromPrettyUrl]
-(
-	@CompleteURL varchar(255)
-)
-RETURNS varchar(255)
-AS
-BEGIN
-
-	RETURN REVERSE(RTRIM(SUBSTRING(REVERSE (@CompleteURL), 
-					(CHARINDEX('?', REVERSE (@CompleteURL), 1)+1), 
-					((CHARINDEX('/', REVERSE (@CompleteURL), 1)) - (CHARINDEX('?', REVERSE (@CompleteURL), 1))- 1)))) 
-END
-
-
-GO
-
-/****** Object:  UserDefinedFunction [UCSF.].[fn_LegacyInternalusername2EPPN]    Script Date: 4/26/2017 3:12:58 PM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE FUNCTION [UCSF.].fn_LegacyInternalusername2EPPN
-(
-	@legacyinternalusername nvarchar(50),
-	@institutionabbreviation nvarchar(50)	
-)
-RETURNS nvarchar(50)
-AS
-BEGIN
-	IF (@institutionabbreviation = 'ucsf') 
-		RETURN SUBSTRING(@legacyinternalusername, 3, 6) + '@ucsf.edu'
-	ELSE IF (@institutionabbreviation = 'ucsd')
-		RETURN cast(cast(@legacyinternalusername as Int) as varchar) + '@ucsd.edu'
-	ELSE IF (@institutionabbreviation = 'uci')
-		RETURN cast(@legacyinternalusername as varchar) + '@uci.edu'
-	ELSE IF (@institutionabbreviation = 'usc')
-		RETURN cast(@legacyinternalusername as varchar) + '@usc.edu'
-	ELSE IF (@institutionabbreviation = 'ucla')
-		RETURN cast(@legacyinternalusername as varchar) + '@ucla.edu'
-	ELSE IF (@institutionabbreviation = 'lbnl')
-		RETURN cast(@legacyinternalusername as varchar) + '@lbl.gov'
-	RETURN 'Unrecognized institution :' + @institutionabbreviation
-END
-
-
-GO
-
-/****** Object:  UserDefinedFunction [UCSF.].[[fn_CleanResearcherType]]    Script Date: 2/22/2018 2:35:58 PM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE FUNCTION [UCSF.].[fn_CleanResearcherType]
-(
-	@ResearcherType varchar(255), @ReturnOrder bit
-)
-RETURNS varchar(255)
-AS
-BEGIN
-	DECLARE @tab TABLE(RankOrder int, ResearcherType  varchar(255))
-	DECLARE @RankOrder int
-	DECLARE @CleanResearcherType varchar(255)
-	INSERT INTO @tab VALUES (1, 'Professor'),(2, 'Assistant Professor'),(3, 'Associate Professor'),(4, 'Instructor'),(5, 'Lecturer'),
-							(6, 'Resident/Fellow'),(7, 'Postdoctoral Scholar'),(8, 'Clinical Research Coordinator'),(9, 'Other Academic/Other')
-
-	SELECT @RankOrder = RankOrder, @CleanResearcherType = ResearcherType FROM @tab WHERE ResearcherType = LTRIM(RTRIM(@ResearcherType))
-	RETURN CASE WHEN @ReturnOrder = 1 THEN CAST(ISNULL(@RankOrder,9) as varchar(255)) ELSE ISNULL(@CleanResearcherType, 'Other Academic/Other') END
-END
-
-
-GO
 ---------------------------------------------------------------------------------------------------------------------
 --
 --	Create Stored Procedures
 --
 ---------------------------------------------------------------------------------------------------------------------
 
-/****** Object:  StoredProcedure [UCSF.].[CreatePrettyURLs]    Script Date: 10/11/2013 10:52:39 ******/
+/****** Object:  StoredProcedure [UCSF.].[CreateURLNames]    Script Date: 10/11/2013 10:52:39 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE [UCSF.].[CreatePrettyURLs] 
+CREATE PROCEDURE [UCSF.].[CreateURLNames] 
 AS
 BEGIN
 		
-	DECLARE @id nvarchar(50)
+	DECLARE @id varchar(9)
 	DECLARE @CleanFirst nvarchar(255)
 	DECLARE @CleanMiddle nvarchar(255)
 	DECLARE @CleanLast nvarchar(255)
 	DECLARE @CleanSuffix nvarchar(255)
 	DECLARE @CleanGivenName nvarchar(255)
-	DECLARE @PrettyURL nvarchar(255)
+	DECLARE @UrlName nvarchar(255)
 	DECLARE @Strategy nvarchar(50)
 	DECLARE @i int
-	DECLARE @BaseDomain nvarchar(255)
-	DECLARE @Domain nvarchar(255)
-
-	SELECT @BaseDomain=Value FROM [Framework.].[Parameter] WHERE ParameterID='basePath'
 		
 	WHILE exists (SELECT *
-		FROM [UCSF.].[NameAdditions] WHERE PrettyURL is null)
+		FROM [UCSF.].[NameAdditions] WHERE UrlName is null)
 	BEGIN
-		SELECT TOP 1 @id=n.internalusername,
-					 @Domain=ISNULL(t.BasePath, @BaseDomain) + '/',
-					 @CleanFirst=n.CleanFirst, 
-					 @CleanMiddle=n.CleanMiddle,
-					 @CleanLast=n.CleanLast,
-					 @CleanSuffix=n.CleanSuffix,
- 					 @CleanGivenName=n.CleanGivenName
-		FROM [UCSF.].[NameAdditions] n JOIN [Profile.Import].[PersonAffiliation] a on n.internalusername=a.internalusername and a.primaryaffiliation=1
-			LEFT OUTER JOIN [UCSF.].[InstitutionAdditions] it on it.InstitutionAbbreviation=a.institutionabbreviation -- associate theme to person by instutition 
-			LEFT OUTER JOIN [UCSF.].[Theme] t on t.Theme=it.Theme 
-			WHERE n.PrettyURL is null ORDER BY len(n.CleanMiddle) + len(n.CleanSuffix)					 
+		SELECT TOP 1 @id=internalusername,
+					 @CleanFirst=CleanFirst, 
+					 @CleanMiddle=CleanMiddle,
+					 @CleanLast=CleanLast,
+					 @CleanSuffix=CleanSuffix,
+ 					 @CleanGivenName=CleanGivenName
+		FROM [UCSF.].[NameAdditions] WHERE UrlName is null ORDER BY len(CleanMiddle) + len(CleanSuffix)					 
 
 		-- try different strategies
 		-- P = preferred first name
@@ -383,43 +293,43 @@ BEGIN
 			SET @CleanMiddle = ''
 
 		SET @strategy = 'P.L'
-		SET @PrettyURL = @Domain + @CleanFirst + '.' + @CleanLast -- first and last
+		SET @UrlName = @CleanFirst + '.' + @CleanLast -- first and last
 		
-		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE PrettyURL = @PrettyURL) AND len(@CleanMiddle) > 0
+		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE UrlName = @UrlName) AND len(@CleanMiddle) > 0
 		BEGIN
 			SET @strategy = 'P.I.L'
-			SET @PrettyURL = @Domain + @CleanFirst + '.' + substring(@CleanMiddle,1,1) + '.' + @CleanLast -- middle initial
+			SET @UrlName = @CleanFirst + '.' + substring(@CleanMiddle,1,1) + '.' + @CleanLast -- middle initial
 		END
-		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE PrettyURL = @PrettyURL) AND len(@CleanMiddle) > 0
+		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE UrlName = @UrlName) AND len(@CleanMiddle) > 0
 		BEGIN
 			SET @strategy = 'P.M.L'
-			SET @PrettyURL = @Domain + @CleanFirst + '.' + @CleanMiddle + '.' + @CleanLast -- middle name
+			SET @UrlName = @CleanFirst + '.' + @CleanMiddle + '.' + @CleanLast -- middle name
 		END
-		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE PrettyURL = @PrettyURL) AND len(@CleanSuffix) > 0
+		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE UrlName = @UrlName) AND len(@CleanSuffix) > 0
 		BEGIN
 			SET @strategy = 'P.L.S'
-			SET @PrettyURL = @Domain + @CleanFirst + '.' + @CleanLast + '.' + @CleanSuffix -- suffix
+			SET @UrlName = @CleanFirst + '.' + @CleanLast + '.' + @CleanSuffix -- suffix
 		END
-		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE PrettyURL = @PrettyURL) AND len(@CleanMiddle) > 0 AND len(@CleanSuffix) > 0
+		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE UrlName = @UrlName) AND len(@CleanMiddle) > 0 AND len(@CleanSuffix) > 0
 		BEGIN
 			SET @strategy = 'P.I.L.S'
-			SET @PrettyURL = @Domain + @CleanFirst + '.' + substring(@CleanMiddle,1,1) + '.' + @CleanLast + '.' + @CleanSuffix-- middle initial and suffix
+			SET @UrlName = @CleanFirst + '.' + substring(@CleanMiddle,1,1) + '.' + @CleanLast + '.' + @CleanSuffix-- middle initial and suffix
 		END
-		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE PrettyURL = @PrettyURL) AND len(@CleanMiddle) > 0 AND len(@CleanSuffix) > 0
+		IF exists (SELECT * from [UCSF.].[NameAdditions] WHERE UrlName = @UrlName) AND len(@CleanMiddle) > 0 AND len(@CleanSuffix) > 0
 		BEGIN
 			SET @strategy = 'P.M.L.S'
-			SET @PrettyURL = @Domain + @CleanFirst + '.' + @CleanMiddle + '.' + @CleanLast + '.' + @CleanSuffix -- middle name and suffix
+			SET @UrlName = @CleanFirst + '.' + @CleanMiddle + '.' + @CleanLast + '.' + @CleanSuffix -- middle name and suffix
 		END
 		-- if all else fails, add numbers
 		SET @i = 2
-		WHILE exists (SELECT * from [UCSF.].[NameAdditions] WHERE PrettyURL = @PrettyURL)
+		WHILE exists (SELECT * from [UCSF.].[NameAdditions] WHERE UrlName = @UrlName)
 		BEGIN
 			SET @strategy = 'P.L.N'
-			SET @PrettyURL = @Domain + @CleanFirst + '.' + @CleanLast + '.' + CAST(@i as varchar)			
+			SET @UrlName = @CleanFirst + '.' + @CleanLast + '.' + CAST(@i as varchar)			
 			SET @i = @i + 1
 		END				
 		-- it should be unique at this point
-		UPDATE [UCSF.].[NameAdditions] SET PrettyURL = @PrettyURL, [Strategy] = @strategy WHERE internalusername = @id
+		UPDATE [UCSF.].[NameAdditions] SET UrlName = @UrlName, [Strategy] = @strategy WHERE internalusername = @id
 		IF @@Error != 0 
             RETURN
 	END
@@ -460,12 +370,12 @@ CREATE PROCEDURE [UCSF.].[ReadActivityLog] @methodName nvarchar(255), @afterDT d
 AS   
 
 IF @methodName is not null
-	SELECT p.personid, p.displayname, p.prettyurl, p.emailaddr, l.createdDT, l.methodName, l.param1, l.param2
+	SELECT p.personid, p.displayname, p.urlname, p.emailaddr, l.createdDT, l.methodName, l.param1, l.param2
 	  FROM [Framework.].[Log.Activity] l  join [UCSF.].[vwPerson] p on l.personId = p.PersonID
 	  where l.methodName = @methodName and l.createdDT >= isnull(@afterDT, '01/01/1970') 
 	   order by activityLogId desc;
 ELSE
-	SELECT p.personid, p.displayname, p.prettyurl, p.emailaddr, l.createdDT, l.methodName, l.param1, l.param2
+	SELECT p.personid, p.displayname, p.urlname, p.emailaddr, l.createdDT, l.methodName, l.param1, l.param2
 	  FROM [Framework.].[Log.Activity] l  join [UCSF.].[vwPerson] p on l.personId = p.PersonID
 	  where l.createdDT >= isnull(@afterDT, '01/01/1970') 
 	   order by activityLogId desc;
@@ -880,7 +790,8 @@ BEGIN
 	ELSE IF CHARINDEX(@localBaseURI, @s) = 1
 	BEGIN
 		-- Nick, you'll need to add your own logic here!
-		SELECT @str = na.prettyurl FROM [UCSF.].[NameAdditions] na JOIN [Profile.Data].[Person] p on 
+		SELECT @str = Value + '/' FROM [Framework.].[Parameter] WHERE ParameterID = 'BasePath'
+		SELECT @str = @str + na.UrlName FROM [UCSF.].[NameAdditions] na JOIN [Profile.Data].[Person] p on 
 			na.InternalUserName = p.InternalUserName JOIN [RDF.Stage].[InternalNodeMap] n on n.internalid = p.personId
 			and n.[class] = 'http://xmlns.com/foaf/0.1/Person' 
 			WHERE n.nodeid = CAST(SUBSTRING(@s, LEN(@localBaseURI) + 1, LEN(@s) - LEN(@localBaseURI)) as bigint)
@@ -947,29 +858,12 @@ END
 
 GO
 
-
 ---------------------------------------------------------------------------------------------------------------------
 --
 --	[ORNG.] sp's that are good for 
 --
 ---------------------------------------------------------------------------------------------------------------------
 
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-
-ALTER TABLE [ORNG.].[Apps]	ADD  InstitutionID int NULL
-GO
-
-ALTER TABLE [ORNG.].[Apps]  WITH CHECK ADD  CONSTRAINT [FK_orng_apps_institution] FOREIGN KEY([InstitutionID])
-REFERENCES [Profile.Data].[Organization.Institution] ([InstitutionID])
-GO
-
-ALTER TABLE [ORNG.].[Apps] CHECK CONSTRAINT [FK_orng_apps_institution]
-GO
 
 ---------------------------------------------------------------------------------------------------------------------
 --
@@ -986,16 +880,6 @@ GO
 ALTER TABLE [Profile.Data].[Publication.Entity.InformationResource]	ADD  Authors varchar(4000) NULL
 GO
 
-ALTER TABLE [Profile.Data].[Publication.PubMed.DisambiguationAffiliation] ADD InstitutionID int NULL
-GO
-
-ALTER TABLE [Profile.Data].[Publication.PubMed.DisambiguationAffiliation]  WITH CHECK ADD  CONSTRAINT [FK_pubmed_disambiguation_affiliation_institution] FOREIGN KEY([InstitutionID])
-REFERENCES [Profile.Data].[Organization.Institution] ([InstitutionID])
-GO
-
-
-ALTER TABLE [User.Session].[Session] ADD DisplayName varchar(255) NULL
-GO
 -- =============================================
 -- Author:		<Author,,Name>
 -- Create date: <Create Date,,>
@@ -1049,7 +933,9 @@ BEGIN
 		where k = 1
 	create unique clustered index idx_ap on #authorid_personid(pmid, personid, pmpubsauthorid)
 
+	DECLARE @basePath varchar(200)
 	DECLARE @baseURI varchar(200)
+	SELECT @basePath = Value FROM [Framework.].[Parameter] WHERE ParameterID = 'basePath'
 	SELECT @baseURI = Value FROM [Framework.].[Parameter] WHERE ParameterID = 'baseURI'
  
 	-- set coauthor links for local authors
@@ -1059,7 +945,7 @@ BEGIN
 
 	-- this is currenlty specific to UCSF "pretty names". To make generic, just set the URL to the same value as the URI, or for those 
 	-- that use URL's of the form ../profile/name something else can be done 
-	UPDATE a set a.URI = @baseURI + cast(n.nodeid as varchar), a.URL = na.PrettyURL 
+	UPDATE a set a.URI = @baseURI + cast(n.nodeid as varchar), a.URL = @basePath +'/' + na.UrlName 
 		from [UCSF.CTSASearch].[Publication.PubMed.Author] a join #authorid_personid p on a.PmPubsAuthorID = p.pmpubsauthorid
 			join [RDF.Stage].internalnodemap n on n.internalid = p.personId
 			and n.[class] = 'http://xmlns.com/foaf/0.1/Person' join
@@ -1180,6 +1066,9 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
+
+
 
 
 ALTER PROCEDURE [Profile.Data].[Publication.Entity.UpdateEntity]
@@ -1996,11 +1885,9 @@ BEGIN
 
 
 /*
-
 	--------------------------------------------------------------
 	-- Version 1 : Create all RDF using ProcessDataMap
 	--------------------------------------------------------------
-
 	CREATE TABLE #sql (
 		i INT IDENTITY(0,1) PRIMARY KEY,
 		s NVARCHAR(MAX)
@@ -2036,7 +1923,6 @@ BEGIN
 					AND NetworkProperty IS NULL
 		) t
 		ORDER BY DataMapID
-
 	DECLARE @s NVARCHAR(MAX)
 	WHILE EXISTS (SELECT * FROM #sql)
 	BEGIN
@@ -2049,16 +1935,13 @@ BEGIN
 			FROM #sql
 			WHERE i = (SELECT MIN(i) FROM #sql)
 	END
-
 */
 
 
 /*
-
 	---------------------------------------------------------------------------------
 	-- Version 2 : Create new entities using ProcessDataMap, and triples manually
 	---------------------------------------------------------------------------------
-
 	CREATE TABLE #sql (
 		i INT IDENTITY(0,1) PRIMARY KEY,
 		s NVARCHAR(MAX)
@@ -2082,10 +1965,8 @@ BEGIN
 					AND NetworkProperty IS NULL
 		) t
 		ORDER BY DataMapID
-
 	--select * from #sql
 	--return
-
 	DECLARE @s NVARCHAR(MAX)
 	WHILE EXISTS (SELECT * FROM #sql)
 	BEGIN
@@ -2098,8 +1979,6 @@ BEGIN
 			FROM #sql
 			WHERE i = (SELECT MIN(i) FROM #sql)
 	END
-
-
 	CREATE TABLE #a (
 		PersonID INT,
 		AuthorshipID INT,
@@ -2188,9 +2067,6 @@ BEGIN
 	--select * from #a
 	--return
 	--select * from [ontology.].datamap
-
-
-
 	SELECT a.IsActive, a.subject, m._PropertyNode predicate, a.object, 
 			a.TripleWeight, 0 ObjectType, a.SortOrder,
 			IsNull(s.ViewSecurityGroup, m.ViewSecurityGroup) ViewSecurityGroup,
@@ -2249,9 +2125,7 @@ BEGIN
 			LEFT OUTER JOIN [RDF.Security].[NodeProperty] s
 				ON s.NodeID = a.subject
 					AND s.Property = m._PropertyNode
-
 	--SELECT * FROM #b ORDER BY X, subject, property, IsActive, sortorder
-
 	-- Delete
 	DELETE
 		FROM [RDF.].Triple
@@ -2261,7 +2135,6 @@ BEGIN
 			WHERE IsActive = 0 AND TripleID IS NOT NULL
 		)
 	--select @@ROWCOUNT
-
 	-- Update
 	UPDATE t
 		SET t.SortOrder = b.SortOrder
@@ -2272,7 +2145,6 @@ BEGIN
 				AND b.TripleID IS NOT NULL
 				AND b.SortOrder <> b.ExistingSortOrder
 	--select @@ROWCOUNT
-
 	-- Insert
 	INSERT INTO [RDF.].Triple (Subject,Predicate,Object,TripleHash,Weight,Reitification,ObjectType,SortOrder,ViewSecurityGroup,Graph)
 		SELECT Subject,Predicate,Object,
@@ -2281,7 +2153,6 @@ BEGIN
 			FROM #b
 			WHERE IsActive = 1 AND TripleID IS NULL
 	--select @@ROWCOUNT
-
 */
 
 
@@ -2381,14 +2252,14 @@ GO
 
 ALTER PROCEDURE [User.Session].[UpdateSession]
 	@SessionID UNIQUEIDENTIFIER, 
-	@UserID INT=NULL OUTPUT,  -- UCSF added as output for MultiShibbolethLogin
+	@UserID INT=NULL, 
 	@LastUsedDate DATETIME=NULL, 
 	@LogoutDate DATETIME=NULL,
 	@SessionPersonNodeID BIGINT = NULL OUTPUT,
 	@SessionPersonURI VARCHAR(400) = NULL OUTPUT,
 	@UserURI VARCHAR(400) = NULL OUTPUT,
 	@SecurityGroupID BIGINT = NULL OUTPUT,
-	@DisplayName VARCHAR(255) = NULL OUTPUT  -- Added by UCSF
+	@ShortDisplayName VARCHAR(400) = NULL OUTPUT  -- Added by UCSF
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -2397,17 +2268,13 @@ BEGIN
 	
 	-- See if there is a PersonID associated with this session	
 	DECLARE @PersonID INT
-	SELECT @PersonID = PersonID, 
-		@UserID = ISNULL(@UserID, UserID) -- UCSF added this line
+	SELECT @PersonID = PersonID
 		FROM [User.Session].[Session]
 		WHERE SessionID = @SessionID
-	IF @UserID IS NOT NULL
-		SELECT @PersonID = ISNULL(@PersonID, PersonID),
-			@DisplayName = FirstName + ' ' + LastName  -- UCSF
+	IF @PersonID IS NULL AND @UserID IS NOT NULL
+		SELECT @PersonID = PersonID
 			FROM [User.Account].[User]
 			WHERE UserID = @UserID
-
-	-- UCSF. Set the @UserID from the @SessionID
 
 	-- Get the NodeID and URI of the PersonID
 	IF @PersonID IS NOT NULL
@@ -2426,7 +2293,6 @@ BEGIN
 			SET	UserID = IsNull(@UserID,UserID),
 				UserNode = IsNull((SELECT NodeID FROM [User.Account].[User] WHERE UserID = @UserID AND @UserID IS NOT NULL),UserNode),
 				PersonID = IsNull(@PersonID,PersonID),
-				DisplayName = IsNull(@DisplayName, DisplayName), -- UCSF
 				LastUsedDate = IsNull(@LastUsedDate,LastUsedDate),
 				LogoutDate = IsNull(@LogoutDate,LogoutDate)
 			WHERE SessionID = @SessionID
@@ -2453,1005 +2319,320 @@ BEGIN
 				AND m.Class = 'http://profiles.catalyst.harvard.edu/ontology/prns#User'
 				AND p.ParameterID = 'baseURI'
 	END
+	-- UCSF
+	SELECT @ShortDisplayName = FirstName + ' ' + LastName FROM [User.Account].[User] WHERE UserID = @UserID AND @UserID IS NOT NULL
 END
 
 GO
 
-/****** Object:  StoredProcedure [Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]    Script Date: 5/17/2017 12:16:54 PM ******/
+/****** Object:  StoredProcedure [Profile.Framework].[ResolveURL]    Script Date: 10/31/2013 12:53:32 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER PROCEDURE [Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]
-	@NodeID BIGINT,
-	@PersonFilter VARCHAR(200)=NULL,
-	@InstitutionAbbreviation VARCHAR(200)=NULL 
+
+ALTER PROCEDURE [Profile.Framework].[ResolveURL]
+	@ApplicationName varchar(1000) = '',
+	@param1 varchar(1000) = '',
+	@param2 varchar(1000) = '',
+	@param3 varchar(1000) = '',
+	@param4 varchar(1000) = '',
+	@param5 varchar(1000) = '',
+	@param6 varchar(1000) = '',
+	@param7 varchar(1000) = '',
+	@param8 varchar(1000) = '',
+	@param9 varchar(1000) = '',
+	@SessionID uniqueidentifier = null,
+	@ContentType varchar(255) = null,
+	@Resolved bit = NULL OUTPUT,
+	@ErrorDescription varchar(max) = NULL OUTPUT,
+	@ResponseURL varchar(1000) = NULL OUTPUT,
+	@ResponseContentType varchar(255) = NULL OUTPUT,
+	@ResponseStatusCode int = NULL OUTPUT,
+	@ResponseRedirect bit = NULL OUTPUT,
+	@ResponseIncludePostData bit = NULL OUTPUT,
+	@subject BIGINT = NULL OUTPUT,
+	@predicate BIGINT = NULL OUTPUT,
+	@object BIGINT = NULL OUTPUT
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-	DECLARE @DescriptorName NVARCHAR(255)
- 	SELECT @DescriptorName = d.DescriptorName
-		FROM [RDF.Stage].[InternalNodeMap] m, [RDF.].Node n,
-			[Profile.Data].[Concept.Mesh.Descriptor] d
-		WHERE m.Status = 3 AND m.ValueHash = n.ValueHash AND n.NodeID = @NodeID
-			AND m.InternalID = d.DescriptorUI
+	-- URL Pattern String:
+	-- domainname	/{profile | display}	/{sNodeID | sAliasType/sAliasID}	/{pNodeID | pAliasType/pAliasID | sTab}	/{oNodeID | oAliasType/oAliasID | pTab}	/oTab	/sNodeID_pNodeID_oNodeID.rdf
 
-    -- Insert statements for procedure here
-	declare @gc varchar(max)
+	DECLARE @SessionHistory XML
 
-	declare @y table (
-		y int,
-		A int,
-		B int
-	)
+	-- By default we were not able to resolve the URL
+	SELECT @Resolved = 0
 
-	insert into @y (y,A,B)
-		select n.n y, coalesce(t.A,0) A, coalesce(t.B,0) B
-		from [Utility.Math].[N] left outer join (
-			select (case when y < 1970 then 1970 else y end) y,
-				sum(A) A,
-				sum(B) B
-			from (
-				select pmid, pubyear y, (case when w = 1 then 1 else 0 end) A, (case when w < 1 then 1 else 0 end) B
-				from (
-					select distinct pmid, pubyear, topicweight w
-					from [Profile.Cache].[Concept.Mesh.PersonPublication]
-					where meshheader = @DescriptorName 
-					-- UCSF Changes
-					AND (@PersonFilter is null OR personid in 
-						(select personid from [Profile.Data].[Person.Filter] f join [Profile.Data].[Person.FilterRelationship] r 
-						on f.PersonFilterID = r.PersonFilterID AND f.PersonFilter = @PersonFilter)) 
-					AND (@InstitutionAbbreviation is null OR personid in 
-						(select personid from [Profile.Data].[vwPerson] WHERE InstitutionAbbreviation = @InstitutionAbbreviation)) 
-				) t
-			) t
-			group by y
-		) t on n.n = t.y
-		where n.n between 1980 and year(getdate())
+	-- Load param values into a table
+	DECLARE @params TABLE (id int, val varchar(1000))
+	INSERT INTO @params (id, val) VALUES (1, @param1)
+	INSERT INTO @params (id, val) VALUES (2, @param2)
+	INSERT INTO @params (id, val) VALUES (3, @param3)
+	INSERT INTO @params (id, val) VALUES (4, @param4)
+	INSERT INTO @params (id, val) VALUES (5, @param5)
+	INSERT INTO @params (id, val) VALUES (6, @param6)
+	INSERT INTO @params (id, val) VALUES (7, @param7)
+	INSERT INTO @params (id, val) VALUES (8, @param8)
+	INSERT INTO @params (id, val) VALUES (9, @param9)
 
-	declare @x int
+	DECLARE @MaxParam int
+	SELECT @MaxParam = 0
+	SELECT @MaxParam = MAX(id) FROM @params WHERE val > ''
 
-	select @x = max(A+B)
-		from @y
+	DECLARE @Tab VARCHAR(1000)
+	DECLARE @File VARCHAR(1000)
+	DECLARE @ViewAs VARCHAR(50)
+	
+	SELECT @subject=NULL, @predicate=NULL, @object=NULL, @Tab=NULL, @File=NULL
+	
+	SELECT @File = val, @MaxParam = @MaxParam-1
+		FROM @params
+		WHERE id = @MaxParam and val like '%.%'
 
-	if coalesce(@x,0) > 0
-	begin
-		declare @v varchar(1000)
-		declare @z int
-		declare @k int
-		declare @i int
-
-		set @z = power(10,floor(log(@x)/log(10)))
-		set @k = floor(@x/@z)
-		if @x > @z*@k
-			select @k = @k + 1
-		if @k > 5
-			select @k = floor(@k/2.0+0.5), @z = @z*2
-
-		set @v = ''
-		set @i = 0
-		while @i <= @k
-		begin
-			set @v = @v + '|' + cast(@z*@i as varchar(50))
-			set @i = @i + 1
-		end
-		set @v = '|0|'+cast(@x as varchar(50))
-		--set @v = '|0|50|100'
-
-		declare @h varchar(1000)
-		set @h = ''
-		select @h = @h + '|' + (case when y % 2 = 1 then '' else ''''+right(cast(y as varchar(50)),2) end)
-			from @y
-			order by y 
-
-		declare @w float
-		--set @w = @k*@z
-		set @w = @x
-
-		declare @d varchar(max)
-		set @d = ''
-		select @d = @d + cast(floor(0.5 + 100*A/@w) as varchar(50)) + ','
-			from @y
-			order by y
-		set @d = left(@d,len(@d)-1) + '|'
-		select @d = @d + cast(floor(0.5 + 100*B/@w) as varchar(50)) + ','
-			from @y
-			order by y
-		set @d = left(@d,len(@d)-1)
-
-		declare @c varchar(50)
-		set @c = 'b23f45,b4b9bF'
-		--set @c = 'FB8072,80B1D3'
-		--set @c = 'FB8072,B3DE69,80B1D3'
-		--set @c = 'F96452,a8dc4f,68a4cc'
-		--set @c = 'fea643,76cbbd,b56cb5'
-
-		--select @v, @h, @d
-
-		--set @gc = '//chart.googleapis.com/chart?chs=595x100&chf=bg,s,ffffff|c,s,ffffff&chxt=x,y&chxl=0:' + @h + '|1:' + @v + '&cht=bvs&chd=t:' + @d + '&chdl=First+Author|Middle or Unkown|Last+Author&chco='+@c+'&chbh=10'
-		--set @gc = '//chart.googleapis.com/chart?chs=595x100&chf=bg,s,ffffff|c,s,ffffff&chxt=x,y&chxl=0:' + @h + '|1:' + @v + '&cht=bvs&chd=t:' + @d + '&chdl=Major+Topic|Minor+Topic&chco='+@c+'&chbh=10'
-		set @gc = '//chart.googleapis.com/chart?chs=620x100&chf=bg,s,ffffff|c,s,ffffff&chxt=x,y&chxl=0:' + @h + '|1:' + @v + '&cht=bvs&chd=t:' + @d + '&chdl=Major+Topic|Minor+Topic&chco='+@c+'&chbh=9'
-
-
-		declare @asText varchar(max)
-		set @asText = '<table style="width:592px"><tr><th>Year</th><th>Major Topic</th><th>Minor Topic</th><th>Total</th></tr>'
-		select @asText = @asText + '<tr><td>' + cast(y as varchar(50)) + '</td><td>' + cast(A as varchar(50)) + '</td><td>' + cast(B as varchar(50)) + '</td><td>' + cast(A + B as varchar(50)) + '</td></tr>'
-			from @y
-			where A + B > 0
-			order by y 
-		select @asText = @asText + '</table>'
-
-		declare @alt varchar(max)
-		select @alt = 'Bar chart showing ' + cast(sum(A + B) as varchar(50))+ ' publications over ' + cast(count(*) as varchar(50)) + ' distinct years, with a maximum of ' + cast(@x as varchar(50)) + ' publications in ' from @y where A + B > 0
-		select @alt = @alt + cast(y as varchar(50)) + ' and '
-			from @y
-			where A + B = @x
-			order by y 
-		select @alt = left(@alt, len(@alt) - 4)
-
-		select @gc gc, @alt alt, @asText asText --, @w w
-
-		--select * from @y order by y
-
-	end
-
-END
-
-GO
-
-/****** Object:  StoredProcedure [Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]    Script Date: 10/3/2017 11:15:48 AM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER PROCEDURE [Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]
-	@NodeID BIGINT,
-	@ShowAuthorPosition BIT = 0
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
+	DECLARE @pointer INT
+	SELECT @pointer=1
+	
+	DECLARE @aliases INT
+	SELECT @aliases = 0
+	
+	-- UCSF subject when Application name is based on URL_NAME
+	DECLARE @URL_NAME VARCHAR(1000)
+	DECLARE @InternalUserName VARCHAR(100)
 	DECLARE @PersonID INT
- 	SELECT @PersonID = CAST(m.InternalID AS INT)
-		FROM [RDF.Stage].[InternalNodeMap] m, [RDF.].Node n
-		WHERE m.Status = 3 AND m.ValueHash = n.ValueHash AND n.NodeID = @NodeID
- 
-    -- Insert statements for procedure here
-	declare @gc varchar(max)
+	IF (@MaxParam IS NULL) 
+	BEGIN
+		SELECT @PersonID = PersonID from [Profile.Data].[Person] p JOIN [UCSF.].NameAdditions n ON
+			p.InternalUserName = n.InternalUserName WHERE n.UrlName = @ApplicationName
+  		SELECT @subject = i.nodeid from  [RDF.Stage].internalnodemap i with(nolock) where 
+			i.class = 'http://xmlns.com/foaf/0.1/Person' and i.internalid = @PersonID
+        IF @subject is not null
+			SELECT @URL_NAME=@subject				
+	END
+	-- subject
+	IF (@MaxParam >= @pointer)
+	BEGIN
+		SELECT @subject = CAST(val AS BIGINT), @pointer = @pointer + 1
+			FROM @params 
+			WHERE id=@pointer AND val NOT LIKE '%[^0-9]%'
+		IF @subject IS NULL AND @MaxParam > @pointer
+			SELECT @subject = NodeID, @pointer = @pointer + 2, @aliases = @aliases + 1
+				FROM [RDF.].Alias 
+				WHERE AliasType = (SELECT val FROM @params WHERE id = @pointer)
+					AND AliasID = (SELECT val FROM @params WHERE id = @pointer+1)
+		IF @subject IS NULL
+			SELECT @ErrorDescription = 'The subject cannot be found.'
+	END
 
-	declare @y table (
-		y int,
-		A int,
-		B int,
-		C int,
-		T int
-	)
+	-- UCSF if we only have Subject and this is for a person, replace with URL_NAME
+	IF (@MaxParam = 1) AND (@Subject IS NOT NULL)
+	    SELECT @InternalUserName = InternalUserName FROM [Profile.Data].[Person] WHERE
+			PersonID = (select InternalID from [RDF.Stage].internalnodemap i with(nolock) where i.class = 'http://xmlns.com/foaf/0.1/Person' and i.nodeId = @Subject)		
+		SELECT @URL_NAME = UrlName from [UCSF.].[NameAdditions] WHERE InternalUserName = @InternalUserName
 
-	insert into @y (y,A,B,C,T)
-		select n.n y, coalesce(t.A,0) A, coalesce(t.B,0) B, coalesce(t.C,0) C, coalesce(t.T,0) T
-		from [Utility.Math].[N] left outer join (
-			select (case when y < 1970 then 1970 else y end) y,
-				sum(case when r in ('F','S') then 1 else 0 end) A,
-				sum(case when r not in ('F','S','L') then 1 else 0 end) B,
-				sum(case when r in ('L') then 1 else 0 end) C,
-				count(*) T
-			from (
-				select coalesce(p.AuthorPosition,'U') r, year(coalesce(p.pubdate,m.publicationdt,'1/1/1970')) y
-				from [Profile.Data].[Publication.Person.Include] a
-					left outer join [Profile.Cache].[Publication.PubMed.AuthorPosition] p on a.pmid = p.pmid and p.personid = a.personid
-					left outer join [Profile.Data].[Publication.MyPub.General] m on a.mpid = m.mpid
-				where a.personid = @PersonID
-			) t
-			group by y
-		) t on n.n = t.y
-		where n.n between 1980 and year(getdate())
+	-- predicate
+	IF (@MaxParam >= @pointer) AND (@subject IS NOT NULL)
+	BEGIN
+		SELECT @predicate = CAST(val AS BIGINT), @pointer = @pointer + 1
+			FROM @params 
+			WHERE id=@pointer AND val NOT LIKE '%[^0-9]%'
+		IF @predicate IS NULL AND @MaxParam > @pointer
+			SELECT @predicate = NodeID, @pointer = @pointer + 2, @aliases = @aliases + 1
+				FROM [RDF.].Alias 
+				WHERE AliasType = (SELECT val FROM @params WHERE id = @pointer)
+					AND AliasID = (SELECT val FROM @params WHERE id = @pointer+1)
+		IF @predicate IS NULL AND @MaxParam = @pointer
+			SELECT @Tab=(SELECT val FROM @params WHERE id = @pointer)
+		IF @predicate IS NULL AND @Tab IS NULL
+			SELECT @ErrorDescription = 'The predicate cannot be found.'
+	END
+	
+	-- object
+	IF (@MaxParam >= @pointer) AND (@predicate IS NOT NULL)
+	BEGIN
+		SELECT @object = CAST(val AS BIGINT), @pointer = @pointer + 1
+			FROM @params 
+			WHERE id=@pointer AND val NOT LIKE '%[^0-9]%'
+		IF @object IS NULL AND @MaxParam > @pointer
+			SELECT @object = NodeID, @pointer = @pointer + 2, @aliases = @aliases + 1
+				FROM [RDF.].Alias 
+				WHERE AliasType = (SELECT val FROM @params WHERE id = @pointer)
+					AND AliasID = (SELECT val FROM @params WHERE id = @pointer+1)
+		IF @object IS NULL AND @MaxParam = @pointer
+			SELECT @Tab=(SELECT val FROM @params WHERE id = @pointer)
+		IF @object IS NULL AND @Tab IS NULL
+			SELECT @ErrorDescription = 'The object cannot be found.'
+	END
+	
+	-- tab
+	IF (@MaxParam = @pointer) AND (@object IS NOT NULL) AND (@Tab IS NULL)
+		SELECT @Tab=(SELECT val FROM @params WHERE id = @pointer)
+	
+	-- Return results
+	IF (@ErrorDescription IS NULL)
+	BEGIN
 
-	declare @x int
+		declare @basePath nvarchar(400)
+		select @basePath = value from [Framework.].Parameter where ParameterID = 'basePath'
 
-	--select @x = max(A+B+C)
-	--	from @y
+		-- Default
+		SELECT	@Resolved = 1,
+				@ErrorDescription = '',
+				@ResponseContentType = @ContentType,
+				@ResponseStatusCode = 200,
+				@ResponseRedirect = 0,
+				@ResponseIncludePostData = 0,
+				@ResponseURL = '~/profile/Profile.aspx?'
+					+ 'subject=' + IsNull(cast(@subject as varchar(50)),'')
+					+ '&predicate=' + IsNull(cast(@predicate as varchar(50)),'')
+					+ '&object=' + IsNull(cast(@object as varchar(50)),'')
+					+ '&tab=' + IsNull(@tab,'')
+					+ '&file=' + IsNull(@file,'')
 
-	select @x = max(T)
-		from @y
+		DECLARE @FileRDF varchar(1000)
+		SELECT @FileRDF =	IsNull(cast(@subject as varchar(50)),'')
+							+IsNull('_'+cast(@predicate as varchar(50)),'')
+							+IsNull('_'+cast(@object as varchar(50)),'')+'.rdf'
 
-	if coalesce(@x,0) > 0
-	begin
-		declare @v varchar(1000)
-		declare @z int
-		declare @k int
-		declare @i int
+		DECLARE @FilePresentationXML varchar(1000)
+		SELECT @FilePresentationXML = 'presentation_'
+							+IsNull(cast(@subject as varchar(50)),'')
+							+IsNull('_'+cast(@predicate as varchar(50)),'')
+							+IsNull('_'+cast(@object as varchar(50)),'')+'.xml'
 
-		set @z = power(10,floor(log(@x)/log(10)))
-		set @k = floor(@x/@z)
-		if @x > @z*@k
-			select @k = @k + 1
-		if @k > 5
-			select @k = floor(@k/2.0+0.5), @z = @z*2
-
-		set @v = ''
-		set @i = 0
-		while @i <= @k
-		begin
-			set @v = @v + '|' + cast(@z*@i as varchar(50))
-			set @i = @i + 1
-		end
-		set @v = '|0|'+cast(@x as varchar(50))
-		--set @v = '|0|50|100'
-
-		declare @h varchar(1000)
-		set @h = ''
-		select @h = @h + '|' + (case when y % 2 = 1 then '' else ''''+right(cast(y as varchar(50)),2) end)
-			from @y
-			order by y 
-
-		declare @w float
-		--set @w = @k*@z
-		set @w = @x
-
-		declare @c varchar(50)
-		declare @d varchar(max)
-		set @d = ''
-
-		if @ShowAuthorPosition = 0
-		begin
-			select @d = @d + cast(floor(0.5 + 100*T/@w) as varchar(50)) + ','
-				from @y
-				order by y
-			set @d = left(@d,len(@d)-1)
-
-			--set @c = 'AC1B30'
-			--set @c = '178CCB'
-			set @c = '999999'
-			set @gc = '//chart.googleapis.com/chart?chs=620x100&chf=bg,s,ffffff|c,s,ffffff&chxt=x,y&chxl=0:' + @h + '|1:' + @v + '&cht=bvs&chd=t:' + @d + '&chco='+@c+'&chbh=10'
-		end
-		else
-		begin
-			select @d = @d + cast(floor(0.5 + 100*A/@w) as varchar(50)) + ','
-				from @y
-				order by y
-			set @d = left(@d,len(@d)-1) + '|'
-			select @d = @d + cast(floor(0.5 + 100*B/@w) as varchar(50)) + ','
-				from @y
-				order by y
-			set @d = left(@d,len(@d)-1) + '|'
-			select @d = @d + cast(floor(0.5 + 100*C/@w) as varchar(50)) + ','
-				from @y
-				order by y
-			set @d = left(@d,len(@d)-1)
-
-			set @c = 'FB8072,B3DE69,80B1D3'
-			set @gc = '//chart.googleapis.com/chart?chs=620x100&chf=bg,s,ffffff|c,s,ffffff&chxt=x,y&chxl=0:' + @h + '|1:' + @v + '&cht=bvs&chd=t:' + @d + '&chdl=First+Author|Middle or Unkown|Last+Author&chco='+@c+'&chbh=10'
-		end
-		
-		declare @asText varchar(max)
-		set @asText = '<table style="width:592px"><tr><th>Year</th><th>Publications</th></tr>'
-		select @asText = @asText + '<tr><td>' + cast(y as varchar(50)) + '</td><td>' + cast(t as varchar(50)) + '</td></tr>'
-			from @y
-			where t > 0
-			order by y 
-		select @asText = @asText + '</table>'
-		
-			declare @alt varchar(max)
-		select @alt = 'Bar chart showing ' + cast(sum(t) as varchar(50))+ ' publications over ' + cast(count(*) as varchar(50)) + ' distinct years, with a maximum of ' + cast(@x as varchar(50)) + ' publications in ' from @y where t > 0
-		select @alt = @alt + cast(y as varchar(50)) + ' and '
-			from @y
-			where t = @x
-			order by y 
-		select @alt = left(@alt, len(@alt) - 4)
-
-
-		select @gc gc, @alt alt, @asText asText --, @w w
-	end
-
-END
-
-GO
-
-/****** Object:  StoredProcedure [Profile.Data].[Concept.Mesh.GetPublications]    Script Date: 5/17/2017 12:28:37 PM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER PROCEDURE [Profile.Data].[Concept.Mesh.GetPublications]
-	@NodeID BIGINT,
-	@ListType varchar(50) = NULL,
-	@LastDate datetime = '1/1/1900',
-	@PersonFilter VARCHAR(200)=NULL,
-	@InstitutionAbbreviation VARCHAR(200)=NULL 
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-	DECLARE @DescriptorName NVARCHAR(255)
- 	SELECT @DescriptorName = d.DescriptorName
-		FROM [RDF.Stage].[InternalNodeMap] m, [RDF.].Node n,
-			[Profile.Data].[Concept.Mesh.Descriptor] d
-		WHERE m.Status = 3 AND m.ValueHash = n.ValueHash AND n.NodeID = @NodeID
-			AND m.InternalID = d.DescriptorUI
-
-	if @ListType = 'Newest' or @ListType IS NULL
-	begin
-
-		select *
-		from (
-			select top 10 g.pmid, g.pubdate, [Profile.Cache].[fnPublication.Pubmed.General2Reference](g.pmid, ArticleDay, ArticleMonth, ArticleYear, ArticleTitle, Authors, AuthorListCompleteYN, Issue, JournalDay, JournalMonth, JournalYear, MedlineDate, MedlinePgn, MedlineTA, Volume, 0) reference
-			from [Profile.Data].[Publication.PubMed.General] g, (
-				select m.pmid, max(MajorTopicYN) MajorTopicYN
-				from [Profile.Data].[Publication.Person.Include] i, [Profile.Data].[Publication.PubMed.Mesh] m
-				where i.pmid = m.pmid and i.pmid is not null and m.descriptorname = @DescriptorName
-				-- UCSF changes
-				AND (@PersonFilter is null OR i.personid in 
-						(select personid from [Profile.Data].[Person.Filter] f join [Profile.Data].[Person.FilterRelationship] r 
-						on f.PersonFilterID = r.PersonFilterID AND f.PersonFilter = @PersonFilter)) 
-				AND (@InstitutionAbbreviation is null OR i.personid in 
-						(select personid from [Profile.Data].[vwPerson] WHERE InstitutionAbbreviation = @InstitutionAbbreviation)) 
-				group by m.pmid
-			) m
-			where g.pmid = m.pmid
-			order by g.pubdate desc
-		) t
-		order by pubdate desc
-
-	end
-
-	if @ListType = 'Oldest' or @ListType IS NULL
-	begin
-
-		select *
-		from (
-			select top 10 g.pmid, g.pubdate, [Profile.Cache].[fnPublication.Pubmed.General2Reference](g.pmid, ArticleDay, ArticleMonth, ArticleYear, ArticleTitle, Authors, AuthorListCompleteYN, Issue, JournalDay, JournalMonth, JournalYear, MedlineDate, MedlinePgn, MedlineTA, Volume, 0) reference
-			from [Profile.Data].[Publication.PubMed.General] g, (
-				select m.pmid, max(MajorTopicYN) MajorTopicYN
-				from [Profile.Data].[Publication.Person.Include] i, [Profile.Data].[Publication.PubMed.Mesh] m
-				where i.pmid = m.pmid and i.pmid is not null and m.descriptorname = @DescriptorName
-				-- UCSF changes
-				AND (@PersonFilter is null OR i.personid in 
-						(select personid from [Profile.Data].[Person.Filter] f join [Profile.Data].[Person.FilterRelationship] r 
-						on f.PersonFilterID = r.PersonFilterID AND f.PersonFilter = @PersonFilter)) 
-				AND (@InstitutionAbbreviation is null OR i.personid in 
-						(select personid from [Profile.Data].[vwPerson] WHERE InstitutionAbbreviation = @InstitutionAbbreviation)) 
-				group by m.pmid
-			) m
-			where g.pmid = m.pmid --and g.pubdate < @LastDate
-			order by g.pubdate
-		) t
-		order by pubdate
-
-	end
+		IF (@ApplicationName = 'profile') AND (@File = @FileRDF)
+				-- Display as RDF
+				SELECT	@ResponseContentType = 'application/rdf+xml',
+						@ResponseURL = @ResponseURL + '&viewas=RDF'
+		ELSE IF (@ApplicationName = 'profile') AND (@File = @FilePresentationXML)
+				-- Display PresentationXML
+				SELECT	@ResponseContentType = 'application/rdf+xml',
+						@ResponseURL = @ResponseURL + '&viewas=PresentationXML'
+		ELSE IF (@ApplicationName = 'profile') AND (@ContentType = 'application/rdf+xml')
+				-- Redirect 303 to the RDF URL
+				SELECT	@ResponseContentType = 'application/rdf+xml',
+						@ResponseStatusCode = 303,
+						@ResponseRedirect = 1,
+						@ResponseIncludePostData = 1,
+						@ResponseURL = @basePath + '/profile'
+							+ IsNull('/'+cast(@subject as varchar(50)),'')
+							+ IsNull('/'+cast(@predicate as varchar(50)),'')
+							+ IsNull('/'+cast(@object as varchar(50)),'')
+							+ '/' + @FileRDF
+		ELSE IF (@ApplicationName = 'profile')
+				-- Redirect 303 to the HTML URL
+				SELECT	@ResponseContentType = @ContentType,
+						@ResponseStatusCode = (CASE WHEN @URL_NAME IS NOT NULL THEN 301 ELSE 303 END),
+						@ResponseRedirect = 1,
+						@ResponseIncludePostData = 1,
+						@ResponseURL = @basePath + 
+							(CASE WHEN @URL_NAME IS NOT NULL THEN '/' + @URL_NAME
+							ELSE '/display' 
+							+ (CASE WHEN @Subject IS NULL THEN ''
+									ELSE IsNull((SELECT TOP 1 '/'+Subject
+											FROM (
+												SELECT 1 k, AliasType+'/'+AliasID Subject
+													FROM [RDF.].Alias
+													WHERE NodeID = @Subject AND Preferred = 1
+												UNION ALL
+												SELECT 2, CAST(@Subject AS VARCHAR(50))
+											) t
+											ORDER BY k, Subject),'')
+									END)
+							+ (CASE WHEN @Predicate IS NULL THEN ''
+									ELSE IsNull((SELECT TOP 1 '/'+Subject
+											FROM (
+												SELECT 1 k, AliasType+'/'+AliasID Subject
+													FROM [RDF.].Alias
+													WHERE NodeID = @Predicate AND Preferred = 1
+												UNION ALL
+												SELECT 2, CAST(@Predicate AS VARCHAR(50))
+											) t
+											ORDER BY k, Subject),'')
+									END)
+							+ (CASE WHEN @Object IS NULL THEN ''
+									ELSE IsNull((SELECT TOP 1 '/'+Subject
+											FROM (
+												SELECT 1 k, AliasType+'/'+AliasID Subject
+													FROM [RDF.].Alias
+													WHERE NodeID = @Object AND Preferred = 1
+												UNION ALL
+												SELECT 2, CAST(@Object AS VARCHAR(50))
+											) t
+											ORDER BY k, Subject),'')
+									END)
+								END)
+							+ (CASE WHEN @MaxParam >= 1 AND @Pointer <= 1 THEN '/'+@param1 ELSE '' END)
+							+ (CASE WHEN @MaxParam >= 2 AND @Pointer <= 2 THEN '/'+@param2 ELSE '' END)
+							+ (CASE WHEN @MaxParam >= 3 AND @Pointer <= 3 THEN '/'+@param3 ELSE '' END)
+							+ (CASE WHEN @MaxParam >= 4 AND @Pointer <= 4 THEN '/'+@param4 ELSE '' END)
+							+ (CASE WHEN @MaxParam >= 5 AND @Pointer <= 5 THEN '/'+@param5 ELSE '' END)
+							+ (CASE WHEN @MaxParam >= 6 AND @Pointer <= 6 THEN '/'+@param6 ELSE '' END)
+							+ (CASE WHEN @MaxParam >= 7 AND @Pointer <= 7 THEN '/'+@param7 ELSE '' END)
+							+ (CASE WHEN @MaxParam >= 8 AND @Pointer <= 8 THEN '/'+@param8 ELSE '' END)
+							+ (CASE WHEN @MaxParam >= 9 AND @Pointer <= 9 THEN '/'+@param9 ELSE '' END)
+		ELSE IF (@ApplicationName = 'presentation')
+				-- Display as HTML
+				SELECT	@ResponseURL = @ResponseURL + '&viewas=PresentationXML'
+		ELSE
+				-- Display as HTML
+				SELECT	@ResponseURL = replace(@ResponseURL,'~/Profile/Profile.aspx','~/Profile/Display.aspx') + '&viewas=HTML'
 
 
-	if @ListType = 'Cited' or @ListType IS NULL
-	begin
+		IF @ResponseRedirect = 0
+			SELECT @ResponseURL = @ResponseURL + '&ContentType='+IsNull(@ResponseContentType,'') + '&StatusCode='+IsNull(cast(@ResponseStatusCode as varchar(50)),'')
 
-		;with pm_citation_count as (
-			select pmid, 0 n
-			from [Profile.Data].[Publication.PubMed.General]
-		)
-		select *
-		from (
-			select top 10 g.pmid, g.pubdate, c.n, [Profile.Cache].[fnPublication.Pubmed.General2Reference](g.pmid, ArticleDay, ArticleMonth, ArticleYear, ArticleTitle, Authors, AuthorListCompleteYN, Issue, JournalDay, JournalMonth, JournalYear, MedlineDate, MedlinePgn, MedlineTA, Volume, 0) reference
-			from [Profile.Data].[Publication.PubMed.General] g, (
-				select m.pmid, max(MajorTopicYN) MajorTopicYN
-				from [Profile.Data].[Publication.Person.Include] i, [Profile.Data].[Publication.PubMed.Mesh] m
-				where i.pmid = m.pmid and i.pmid is not null and m.descriptorname = @DescriptorName
-				-- UCSF changes
-				AND (@PersonFilter is null OR i.personid in 
-						(select personid from [Profile.Data].[Person.Filter] f join [Profile.Data].[Person.FilterRelationship] r 
-						on f.PersonFilterID = r.PersonFilterID AND f.PersonFilter = @PersonFilter)) 
-				AND (@InstitutionAbbreviation is null OR i.personid in 
-						(select personid from [Profile.Data].[vwPerson] WHERE InstitutionAbbreviation = @InstitutionAbbreviation)) 
-				group by m.pmid
-			) m, pm_citation_count c
-			where g.pmid = m.pmid and m.pmid = c.pmid
-			order by c.n desc, g.pubdate desc
-		) t
-		order by n desc, pubdate desc
+	END
 
-	end
+	/*
+		Valid Rest Paths (T=text, N=numeric):
+		T
+		T/N
+			T/N/N
+				T/N/N/N
+					T/N/N/N/T
+				T/N/N/T
+				T/N/N/T/T
+					T/N/N/T/T/T
+			T/N/T
+			T/N/T/T
+				T/N/T/T/N
+					T/N/T/T/N/T
+				T/N/T/T/T
+				T/N/T/T/T/T
+					T/N/T/T/T/T/T
+		T/T/T
+			T/T/T/N
+				T/T/T/N/N
+					T/T/T/N/N/T
+				T/T/T/N/T
+				T/T/T/N/T/T
+					T/T/T/N/T/T/T
+			T/T/T/T
+			T/T/T/T/T
+				T/T/T/T/T/N
+					T/T/T/T/T/N/T
+				T/T/T/T/T/T
+				T/T/T/T/T/T/T
+					T/T/T/T/T/T/T/T
+	*/
 
 END
 
-GO
 
-/****** Object:  StoredProcedure [Profile.Module].[CustomViewPersonSameDepartment.GetList]    Script Date: 5/23/2017 12:57:51 PM ******/
-SET ANSI_NULLS ON
-GO
 
-SET QUOTED_IDENTIFIER ON
-GO
 
-ALTER PROCEDURE [Profile.Module].[CustomViewPersonSameDepartment.GetList]
-	@NodeID BIGINT,
-	@baseURI nvarchar(400),
-	@SessionID UNIQUEIDENTIFIER = NULL
-AS
-BEGIN
- 
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
- 
-	declare @labelID bigint
-	select @labelID = [RDF.].fnURI2NodeID('http://www.w3.org/2000/01/rdf-schema#label')
-
-	DECLARE @PersonID INT
- 	SELECT @PersonID = CAST(m.InternalID AS INT)
-		FROM [RDF.Stage].[InternalNodeMap] m, [RDF.].Node n
-		WHERE m.Status = 3 AND m.ValueHash = n.ValueHash AND n.NodeID = @NodeID
-
-	declare @i nvarchar(500)
-	declare @d nvarchar(500)
-	declare @v nvarchar(500)
-
-	select @i = institutionname, @d = departmentname, @v = divisionfullname
-		from [Profile.Cache].[Person]
-		where personid = @personid
-
-	declare @InstitutionURI varchar(400)
-	declare @DepartmentURI varchar(400)
-
-	select	@InstitutionURI = @baseURI + cast(j.NodeID as varchar(50)),
-			@DepartmentURI = @baseURI + cast(e.NodeID as varchar(50))
-		from [Profile.Data].[Organization.Institution] i,
-			[Profile.Data].[Organization.Department] d,
-			[RDF.Stage].[InternalNodeMap] j,
-			[RDF.Stage].[InternalNodeMap] e
-		where i.InstitutionName = @i and d.DepartmentName = @d
-			and j.InternalType = 'Institution' and j.Class = 'http://xmlns.com/foaf/0.1/Organization' and j.InternalID = cast(i.InstitutionID as varchar(50))
-			and e.InternalType = 'Department' and e.Class = 'http://xmlns.com/foaf/0.1/Organization' and e.InternalID = cast(d.DepartmentID as varchar(50))
-
-	declare @x xml
-
-	;with a as (
-		select a.personid, 
-			max(case when a.divisionname = @v then 1 else 0 end) v,
-			max(case when s.numpublications > 0 then 1 else 0 end) p
-			--row_number() over (order by newid()) k
-		from [Profile.Cache].[Person.Affiliation] a, [Profile.Cache].[Person] s
-		where a.personid <> @personid
-			and a.instititutionname = @i and a.departmentname = @d
-			and a.personid = s.personid
-		group by a.personid
-	), b as (
-		select top(5) *
-		from a
-		order by v desc, p desc, newid()
-	), c as (
-		select m.NodeID, n.Value URI, l.Value Label
-		from b
-			inner join [RDF.Stage].[InternalNodeMap] m
-				on m.InternalType = 'Person' and m.Class = 'http://xmlns.com/foaf/0.1/Person' and m.InternalID = cast(b.personid as varchar(50))
-			inner join [RDF.].[Node] n
-				on n.NodeID = m.NodeID and n.ViewSecurityGroup = -1
-			inner join [RDF.].[Triple] t
-				on t.subject = n.NodeID and t.predicate = @labelID and t.ViewSecurityGroup = -1
-			inner join [RDF.].[Node] l
-				on l.NodeID = t.object and l.ViewSecurityGroup = -1
-	)
-	select @x = (
-			select	(select count(*) from a) "NumberOfConnections",
-					@InstitutionURI "InstitutionURI",
-					@DepartmentURI "DepartmentURI",
-					(select	NodeID "Connection/@NodeID",
-							URI "Connection/@URI",
-							Label "Connection"
-						from c
-						order by Label
-						for xml path(''), type
-					)
-			for xml path('Network'), type
-		)
-
-	select @x XML
-
-END
-
-GO
-
-/****** Object:  StoredProcedure [Profile.Module].[NetworkCategory.Person.HasResearchArea.GetXML]    Script Date: 5/23/2017 12:39:45 PM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
--- Stored Procedure
-
-ALTER PROCEDURE [Profile.Module].[NetworkCategory.Person.HasResearchArea.GetXML]
-	@NodeID BIGINT,
-	@baseURI NVARCHAR(400)
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-	DECLARE @hasResearchAreaID BIGINT
-	SELECT @hasResearchAreaID = [RDF.].fnURI2NodeID('http://vivoweb.org/ontology/core#hasResearchArea')	
-
-	DECLARE @labelID BIGINT
-	SELECT @labelID = [RDF.].fnURI2NodeID('http://www.w3.org/2000/01/rdf-schema#label')	
-
-	DECLARE @meshSemanticGroupNameID BIGINT
-	SELECT @meshSemanticGroupNameID = [RDF.].fnURI2NodeID('http://profiles.catalyst.harvard.edu/ontology/prns#meshSemanticGroupName')	
-
-	SELECT *
-		INTO #t
-		FROM (
-			SELECT t.SortOrder, t.Weight, @baseURI+CAST(t.Object AS VARCHAR(50)) URI, n.Value Concept, m.Value Category,
-				ROW_NUMBER() OVER (PARTITION BY s.Object ORDER BY t.Weight DESC) CategoryRank
-			FROM [RDF.].[Triple] t
-				INNER JOIN [RDF.].[Triple] l
-					ON t.Object = l.Subject AND l.Predicate = @labelID
-				INNER JOIN [RDF.].[Node] n
-					ON l.Object = n.NodeID
-				INNER JOIN [RDF.].[Triple] s
-					ON t.Object = s.Subject AND s.Predicate = @meshSemanticGroupNameID
-				INNER JOIN [RDF.].[Node] m
-					ON s.Object = m.NodeID
-			WHERE t.Subject = @NodeID AND t.Predicate = @hasResearchAreaID
-		) t
-		WHERE CategoryRank <= 10
-
-	SELECT (
-		SELECT	'Concepts listed here are grouped according to their ''semantic'' categories. Within each category, up to ten concepts are shown, in decreasing order of relevance.' "@InfoCaption",
-				(
-					SELECT a.Category "DetailList/@Category",
-						(SELECT	'' "Item/@ItemURLText",
-								URI "Item/@URL",
-								Concept "Item"
-							FROM #t b
-							WHERE b.Category = a.Category
-							ORDER BY b.CategoryRank
-							FOR XML PATH(''), TYPE
-						) "DetailList"
-					FROM (SELECT DISTINCT Category FROM #t) a
-					ORDER BY a.Category
-					FOR XML PATH(''), TYPE
-				)
-		FOR XML PATH('Items'), TYPE
-	) ItemsXML
-
-END
-
-GO
-
-/****** Object:  StoredProcedure [Profile.Module].[NetworkCloud.Person.HasResearchArea.GetXML]    Script Date: 5/23/2017 12:59:21 PM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
--- Stored Procedure
-
-ALTER PROCEDURE [Profile.Module].[NetworkCloud.Person.HasResearchArea.GetXML]
-	@NodeID BIGINT,
-	@baseURI NVARCHAR(400)
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-	DECLARE @hasResearchAreaID BIGINT
-	SELECT @hasResearchAreaID = [RDF.].fnURI2NodeID('http://vivoweb.org/ontology/core#hasResearchArea')	
-
-	DECLARE @labelID BIGINT
-	SELECT @labelID = [RDF.].fnURI2NodeID('http://www.w3.org/2000/01/rdf-schema#label')	
-
-	SELECT (
-		SELECT	'' "@Description",
-				'In this concept ''cloud'', the sizes of the concepts are based not only on the number of corresponding publications, but also how relevant the concepts are to the overall topics of the publications, how long ago the publications were written, whether the person was the first or senior author, and how many other people have written about the same topic. The largest concepts are those that are most unique to this person.' "@InfoCaption",
-				2 "@Columns",
-				(
-					SELECT	Value "@ItemURLText", 
-							SortOrder "@sortOrder", 
-							(CASE WHEN SortOrder <= 5 THEN 'big'
-								WHEN Quintile = 1 THEN 'big'
-								WHEN Quintile = 5 THEN 'small'
-								ELSE 'med' END) "@Weight",
-							URI "@ItemURL"
-					FROM (
-						SELECT t.SortOrder, t.Weight, @baseURI+CAST(t.Object AS VARCHAR(50)) URI, n.Value,
-							NTILE(5) OVER (ORDER BY t.SortOrder) Quintile
-						FROM [RDF.].[Triple] t
-							INNER JOIN [RDF.].[Triple] l
-								ON t.Object = l.Subject AND l.Predicate = @labelID
-							INNER JOIN [RDF.].[Node] n
-								ON l.Object = n.NodeID
-						WHERE t.Subject = @NodeID AND t.Predicate = @hasResearchAreaID
-					) t
-					ORDER BY Value
-					FOR XML PATH('Item'), TYPE
-				)
-		FOR XML PATH('ListView'), TYPE
-	) ListViewXML
-
-END
-
-GO
-
-/****** Object:  StoredProcedure [Profile.Module].[NetworkTimeline.Person.CoAuthorOf.GetData]    Script Date: 5/23/2017 1:08:46 PM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER PROCEDURE [Profile.Module].[NetworkTimeline.Person.CoAuthorOf.GetData]
-	@NodeID BIGINT,
-	@baseURI NVARCHAR(400)
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-	DECLARE @PersonID INT
- 	SELECT @PersonID = CAST(m.InternalID AS INT)
-		FROM [RDF.Stage].[InternalNodeMap] m, [RDF.].Node n
-		WHERE m.Status = 3 AND m.ValueHash = n.ValueHash AND n.NodeID = @NodeID
- 
- 	--DECLARE @baseURI NVARCHAR(400) Eric Meeks. Because we are getting URI's for people we just leave this as the base URI. The code will 
-	-- always swap in the proper theme for a person URI.
-	SELECT @baseURI = value FROM [Framework.].Parameter WHERE ParameterID = 'baseURI'
-
-	;with e as (
-		select top 20 s.PersonID1, s.PersonID2, s.n PublicationCount, 
-			year(s.FirstPubDate) FirstPublicationYear, year(s.LastPubDate) LastPublicationYear, 
-			p.DisplayName DisplayName2, ltrim(rtrim(p.FirstName+' '+p.LastName)) FirstLast2, s.w OverallWeight
-		from [Profile.Cache].[SNA.Coauthor] s, [Profile.Cache].[Person] p
-		where personid1 = @PersonID and personid2 = p.personid
-		order by w desc, personid2
-	), f as (
-		select e.*, g.pubdate
-		from [Profile.Data].[Publication.Person.Include] a, 
-			[Profile.Data].[Publication.Person.Include] b, 
-			[Profile.Data].[Publication.PubMed.General] g,
-			e
-		where a.personid = e.personid1 and b.personid = e.personid2 and a.pmid = b.pmid and a.pmid = g.pmid
-			and g.pubdate > '1/1/1900'
-	), g as (
-		select min(year(pubdate))-1 a, max(year(pubdate))+1 b,
-			cast(cast('1/1/'+cast(min(year(pubdate))-1 as varchar(10)) as datetime) as float) f,
-			cast(cast('1/1/'+cast(max(year(pubdate))+1 as varchar(10)) as datetime) as float) g
-		from f
-	), h as (
-		select f.*, (cast(pubdate as float)-f)/(g-f) x, a, b, f, g
-		from f, g
-	), i as (
-		select personid2, min(x) MinX, max(x) MaxX, avg(x) AvgX
-		from h
-		group by personid2
-	)
-	select h.*, MinX, MaxX, AvgX, h.FirstLast2 label, (select count(distinct personid2) from i) n,
-		@baseURI + cast(m.NodeID as varchar(50)) ObjectURI
-	from h, i, [RDF.Stage].[InternalNodeMap] m
-	where h.personid2 = i.personid2 and cast(i.personid2 as varchar(50)) = m.InternalID
-		and m.Class = 'http://xmlns.com/foaf/0.1/Person' and m.InternalType = 'Person'
-	order by AvgX, firstpublicationyear, lastpublicationyear, personid2, pubdate
-
-END
-
-GO
-
-/****** Object:  StoredProcedure [Profile.Module].[NetworkTimeline.Person.HasResearchArea.GetData]    Script Date: 5/23/2017 1:04:11 PM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER PROCEDURE [Profile.Module].[NetworkTimeline.Person.HasResearchArea.GetData]
-	@NodeID BIGINT,
-	@baseURI NVARCHAR(400)
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-	DECLARE @PersonID INT
- 	SELECT @PersonID = CAST(m.InternalID AS INT)
-		FROM [RDF.Stage].[InternalNodeMap] m, [RDF.].Node n
-		WHERE m.Status = 3 AND m.ValueHash = n.ValueHash AND n.NodeID = @NodeID
- 
-	;with a as (
-		select t.*, g.pubdate
-		from (
-			select top 20 *, 
-				--numpubsthis/sqrt(numpubsall+100)/sqrt((LastPublicationYear+1 - FirstPublicationYear)*1.00000) w
-				--numpubsthis/sqrt(numpubsall+100)/((LastPublicationYear+1 - FirstPublicationYear)*1.00000) w
-				--WeightNTA/((LastPublicationYear+2 - FirstPublicationYear)*1.00000) w
-				weight w
-			from [Profile.Cache].[Concept.Mesh.Person]
-			where personid = @PersonID
-			order by w desc, meshheader
-		) t, [Profile.Cache].[Concept.Mesh.PersonPublication] m, [Profile.Data].[Publication.PubMed.General] g
-		where t.meshheader = m.meshheader and t.personid = m.personid and m.pmid = g.pmid and year(g.pubdate) > 1900
-	), b as (
-		select min(firstpublicationyear)-1 a, max(lastpublicationyear)+1 b,
-			cast(cast('1/1/'+cast(min(firstpublicationyear)-1 as varchar(10)) as datetime) as float) f,
-			cast(cast('1/1/'+cast(max(lastpublicationyear)+1 as varchar(10)) as datetime) as float) g
-		from a
-	), c as (
-		select a.*, (cast(pubdate as float)-f)/(g-f) x, a, b, f, g
-		from a, b
-	), d as (
-		select meshheader, min(x) MinX, max(x) MaxX, avg(x) AvgX
-				--, (select avg(cast(g.pubdate as float))
-				--from resnav_people_hmsopen.dbo.pm_pubs_general g, (
-				--	select distinct pmid
-				--	from resnav_people_hmsopen.dbo.cache_pub_mesh m
-				--	where m.meshheader = c.meshheader
-				--) t
-				--where g.pmid = t.pmid) AvgAllX
-		from c
-		group by meshheader
-	)
-	select c.*, d.MinX, d.MaxX, d.AvgX,	c.meshheader label, (select count(distinct meshheader) from a) n, p.DescriptorUI
-		into #t
-		from c, d, [Profile.Data].[Concept.Mesh.Descriptor] p
-		where c.meshheader = d.meshheader and d.meshheader = p.DescriptorName
-
-	select t.*, @baseURI + cast(m.NodeID as varchar(50)) ObjectURI
-		from #t t, [RDF.Stage].[InternalNodeMap] m
-		where t.DescriptorUI = m.InternalID
-			and m.Class = 'http://www.w3.org/2004/02/skos/core#Concept' and m.InternalType = 'MeshDescriptor'
-		order by AvgX, firstpublicationyear, lastpublicationyear, meshheader, pubdate
-
-END
-
-GO
-
-/****** Object:  StoredProcedure [Profile.Data].[Publication.PubMed.GetPersonInfoForDisambiguation]    Script Date: 10/5/2017 4:08:54 PM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER procedure [Profile.Data].[Publication.PubMed.GetPersonInfoForDisambiguation] 
-AS
-BEGIN
-SET nocount  ON;
- 
- 
-DECLARE  @search XML,
-            @batchID UNIQUEIDENTIFIER,
-            @batchcount INT,
-            @threshold FLOAT,
-            @baseURI NVARCHAR(max),
-			@orcidNodeID NVARCHAR(max)
-
---SET Custom Threshold based on internal Institutional Logic, default is .98
-SELECT @threshold = .98
-
-SELECT @batchID=NEWID()
-
-SELECT @baseURI = [Value] FROM [Framework.].[Parameter] WHERE [ParameterID] = 'baseURI'
-SELECT @orcidNodeID = NodeID from [RDF.].Node where Value = 'http://vivoweb.org/ontology/core#orcidId'
-
-SELECT personid, 
-                   (SELECT ISNULL(RTRIM(firstname),'')  "Name/First",
-                                          ISNULL(RTRIM(middlename),'') "Name/Middle",
-                                          ISNULL(RTRIM(p.lastname),'') "Name/Last",
-                                          ISNULL(RTRIM(suffix),'')     "Name/Suffix",
-                                          CASE 
-                                                 WHEN a.n IS NOT NULL OR b.n IS NOT NULL 
-                                                          /*  Below is example of a custom piece of logic to alter the disambiguation by telling the disambiguation service
-                                                            to Require First Name usage in the algorithm for faculty who are lower in rank */
-                                                      OR facultyranksort > 4 
-                                                      THEN 'true'
-                                                ELSE 'false'
-                                          END "RequireFirstName",
-                                          d.cnt                                                                              "LocalDuplicateNames",
-                                          @threshold                                                                   "MatchThreshold",
-                                          (SELECT DISTINCT ISNULL(LTRIM(ISNULL(emailaddress,p.emailaddr)),'') Email
-                                                      FROM [Profile.Data].[Person.Affiliation] pa
-                                                WHERE pa.personid = p.personid
-                                                FOR XML PATH(''),TYPE) AS "EmailList",
-                                          (SELECT Affiliation
-                                                      FROM [Profile.Data].[Person.Affiliation] pa 
-													  JOIN [Profile.Data].[Publication.PubMed.DisambiguationAffiliation] d ON pa.InstitutionID = d.InstitutionID AND pa.IsPrimary = 1
-                                                WHERE pa.personid = p.personid
-                                                FOR XML PATH(''),TYPE) AS "AffiliationList",
-                                          (SELECT PMID
-                                             FROM [Profile.Data].[Publication.Person.Add]
-                                            WHERE personid =p2.personid
-                                        FOR XML PATH(''),ROOT('PMIDAddList'),TYPE),
-                                          (SELECT PMID
-                                             FROM [Profile.Data].[Publication.Person.Exclude]
-                                            WHERE personid =p2.personid
-                                        FOR XML PATH(''),ROOT('PMIDExcludeList'),TYPE),
-                                          (SELECT @baseURI + CAST(i.NodeID AS VARCHAR) 
-                                        FOR XML PATH(''),ROOT('URI'),TYPE),
-										  (select n.Value as '*' from [RDF.].Node n join
-											[RDF.].Triple t  on n.NodeID = t.Object
-											and t.Subject = i.NodeID
-											and t.Predicate = @orcidNodeID
-										FOR XML PATH(''),ROOT('ORCID'),TYPE)
-                              FROM [Profile.Data].Person p
-                                       LEFT JOIN ( 
-                                                
-                                                         --case 1
-                                                            SELECT LEFT(firstname,1)  f,
-                                                                              LEFT(middlename,1) m,
-                                                                              lastname,
-                                                                              COUNT(* )          n
-                                                              FROM [Profile.Data].Person
-                                                            GROUP BY LEFT(firstname,1),
-                                                                              LEFT(middlename,1),
-                                                                              lastname
-                                                            HAVING COUNT(* ) > 1
-                                                      )A ON a.lastname = p.lastname
-                                                        AND a.f=LEFT(firstname,1)
-                                                        AND a.m = LEFT(middlename,1)
-                              LEFT JOIN (               
- 
-                                                      --case 2
-                                                      SELECT LEFT(firstname,1) f,
-                                                                        lastname,
-                                                                        COUNT(* )         n
-                                                        FROM [Profile.Data].Person
-                                                      GROUP BY LEFT(firstname,1),
-                                                                        lastname
-                                                      HAVING COUNT(* ) > 1
-                                                                        AND SUM(CASE 
-                                                                                                       WHEN middlename = '' THEN 1
-                                                                                                      ELSE 0
-                                                                                                END) > 0
-                                                                                                
-                                                )B ON b.f = LEFT(firstname,1)
-                                                  AND b.lastname = p.lastname
-                              LEFT JOIN ( SELECT [Utility.NLP].[fnNamePart1](firstname)F,
-                                                                                          lastname,
-                                                                                          COUNT(*)cnt
-                                                                              FROM [Profile.Data].Person 
-                                                                         GROUP BY [Utility.NLP].[fnNamePart1](firstname), 
-                                                                                          lastname
-                                                                  )d ON d.f = [Utility.NLP].[fnNamePart1](p2.firstname)
-                                                                        AND d.lastname = p2.lastname
-
-                              LEFT JOIN [RDF.Stage].[InternalNodeMap] i
-								 ON [InternalType] = 'Person' AND [Class] = 'http://xmlns.com/foaf/0.1/Person' AND [InternalID] = CAST(p2.personid AS VARCHAR(50))                             
-                         WHERE p.personid = p2.personid
-                        
-                        FOR XML PATH(''),ROOT('FindPMIDs')) XML--as xml)
-  INTO #batch
-  FROM [Profile.Data].vwperson  p2
-  
-   
-SELECT @batchcount=@@ROWCOUNT
-
-SELECT @BatchID,@batchcount,*
-  FROM #batch 
-END
-
-GO
-
-/****** Object:  StoredProcedure [Profile.Data].[Organization.GetInstitutions]    Script Date: 12/11/2017 10:49:18 AM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER PROCEDURE [Profile.Data].[Organization.GetInstitutions]
-
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-	SELECT x.InstitutionID, x.InstitutionName, x.InstitutionAbbreviation, n.NodeID, n.Value URI, a.ShibbolethIdP
-		FROM (
-				SELECT CAST(MAX(InstitutionID) AS VARCHAR(50)) InstitutionID,
-						LTRIM(RTRIM(InstitutionName)) InstitutionName, 
-						MIN(institutionabbreviation) InstitutionAbbreviation
-				FROM [Profile.Data].[Organization.Institution] WITH (NOLOCK)
-				GROUP BY LTRIM(RTRIM(InstitutionName))
-			) x 
-			LEFT OUTER JOIN [RDF.Stage].InternalNodeMap m WITH (NOLOCK)
-				ON m.class = 'http://xmlns.com/foaf/0.1/Organization'
-					AND m.InternalType = 'Institution'
-					AND m.InternalID = CAST(x.InstitutionID AS VARCHAR(50))
-			LEFT OUTER JOIN [RDF.].Node n WITH (NOLOCK)
-				ON m.NodeID = n.NodeID
-					AND n.ViewSecurityGroup = -1
-			LEFT OUTER JOIN [UCSF.].[InstitutionAdditions] a WITH (NOLOCK)
-				ON x.InstitutionAbbreviation = a.InstitutionAbbreviation
-		ORDER BY InstitutionName
-
-END
 
 GO
 
 
-/****** Object:  StoredProcedure [Profile.Data].[Organization.GetDepartments]    Script Date: 3/5/2018 10:37:17 AM ******/
-SET ANSI_NULLS ON
-GO
 
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER PROCEDURE [Profile.Data].[Organization.GetDepartments] 
-	@InstitutionAbbreviation varchar(50) 
-AS
-BEGIN
-
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-	SELECT x.DepartmentID, x.DepartmentName Department, n.NodeID, n.Value URI
-		FROM (
-				SELECT *
-				FROM [Profile.Data].[Organization.Department] WITH (NOLOCK)
-				WHERE Visible = 1 AND LTRIM(RTRIM(DepartmentName))<>'' AND DepartmentName IN (SELECT departmentname FROM [Profile.Import].[PersonAffiliation] WHERE institutionabbreviation = @InstitutionAbbreviation and departmentname IS NOT NULL)
-			) x 
-			LEFT OUTER JOIN [RDF.Stage].InternalNodeMap m WITH (NOLOCK)
-				ON m.class = 'http://xmlns.com/foaf/0.1/Organization'
-					AND m.InternalType = 'Department'
-					AND m.InternalID = CAST(x.DepartmentID AS VARCHAR(50))
-			LEFT OUTER JOIN [RDF.].Node n WITH (NOLOCK)
-				ON m.NodeID = n.NodeID
-					AND n.ViewSecurityGroup = -1
-		ORDER BY Department
-
-END
-
-GO
-
-/****** Object:  StoredProcedure [Profile.Data].[Organization.GetDivisions]    Script Date: 3/5/2018 11:12:17 AM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER PROCEDURE [Profile.Data].[Organization.GetDivisions]
-	@InstitutionAbbreviation varchar(50) 
-AS
-BEGIN
-
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-	SELECT x.DivisionID, x.DivisionName, n.NodeID, n.Value URI
-		FROM (
-				SELECT *
-				FROM [Profile.Data].[Organization.Division] WITH (NOLOCK)
-				WHERE LTRIM(RTRIM(DivisionName))<>'' AND DivisionName IN (SELECT [divisionname] FROM [Profile.Import].[PersonAffiliation] WHERE institutionabbreviation = @InstitutionAbbreviation and [divisionname] IS NOT NULL)
-			) x 
-			LEFT OUTER JOIN [RDF.Stage].InternalNodeMap m WITH (NOLOCK)
-				ON m.class = 'http://xmlns.com/foaf/0.1/Organization'
-					AND m.InternalType = 'Division'
-					AND m.InternalID = CAST(x.DivisionID AS VARCHAR(50))
-			LEFT OUTER JOIN [RDF.].Node n WITH (NOLOCK)
-				ON m.NodeID = n.NodeID
-					AND n.ViewSecurityGroup = -1
-		ORDER BY DivisionName
-
-END
-
-GO
 
 
 

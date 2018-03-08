@@ -661,54 +661,6 @@ namespace Profiles.Search.Utilities
             return rtnlistitem.Text;
         }
 
-
-
-        /// <summary>
-        /// To return the list of all the Divisions
-        /// </summary>
-        /// <returns></returns>
-        public List<GenericListItem> GetDivisions()
-        {
-
-            List<GenericListItem> divisions = new List<GenericListItem>();
-
-
-            if (Framework.Utilities.Cache.FetchObject("GetDivisions") == null)
-            {
-                try
-                {
-
-                    string sql = "EXEC [Profile.Data].[Organization.GetDivisions]";
-
-                    SqlDataReader sqldr = this.GetSQLDataReader("", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
-
-                    while (sqldr.Read())
-                        divisions.Add(new GenericListItem(sqldr["DivisionName"].ToString(), sqldr["URI"].ToString()));
-                    //Always close your readers
-                    if (!sqldr.IsClosed)
-                        sqldr.Close();
-
-
-                    //Defaulted this to be one hour
-                    Framework.Utilities.Cache.SetWithTimeout("GetDivisions", divisions, 3600);
-
-
-                }
-                catch (Exception e)
-                {
-                    Framework.Utilities.DebugLogging.Log(e.Message + " " + e.StackTrace);
-                    throw new Exception(e.Message);
-                }
-            }
-            else
-            {
-                divisions = (List<GenericListItem>)Framework.Utilities.Cache.FetchObject("GetDivisions");
-
-            }
-
-            return divisions;
-        }
-
         /// <summary>
         /// To return the list of all the Institutions
         /// </summary>
@@ -763,32 +715,40 @@ namespace Profiles.Search.Utilities
         }
 
         /// <summary>
-        /// To return the list of all the Departments
+        /// To return the list of all the Departments or Divisions. Type MUST be Departments or Divisions
         /// </summary>
         /// <returns></returns>
-        public List<GenericListItem> GetDepartments()
+        public List<GenericListItem> GetInstitutionalItemsOfType(String types, Institution institution)
         {
-            List<GenericListItem> departments = new List<GenericListItem>();
-
-            if (Framework.Utilities.Cache.FetchObject("GetDepartments") == null)
+            List<GenericListItem> items = new List<GenericListItem>();
+            String cacheKey = "Get" + types + " for " + institution.GetAbbreviation();
+            if (Framework.Utilities.Cache.FetchObject(cacheKey) == null)
             {
                 try
                 {
-                    string sql = "EXEC [Profile.Data].[Organization.GetDepartments]";
+                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
 
+                    using (SqlConnection dbconnection = new SqlConnection(connstr))
+                    {
+                        SqlCommand dbcommand = new SqlCommand();
 
-                    SqlDataReader sqldr = this.GetSQLDataReader("", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
+                        dbconnection.Open();
+                        dbcommand.CommandType = CommandType.StoredProcedure;
 
-                    while (sqldr.Read())
-                        departments.Add(new GenericListItem(sqldr["Department"].ToString(), sqldr["URI"].ToString()));
+                        dbcommand.CommandText = "[Profile.Data].[Organization.Get" + types + "]";
+                        dbcommand.CommandTimeout = base.GetCommandTimeout();
 
-                    //Always close your readers
-                    if (!sqldr.IsClosed)
-                        sqldr.Close();
+                        dbcommand.Parameters.Add(new SqlParameter("@InstitutionAbbreviation", institution.GetAbbreviation()));
+                        dbcommand.Connection = dbconnection;
 
+                        using (SqlDataReader dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (dbreader.Read())
+                                items.Add(new GenericListItem(dbreader["Departments".Equals(types) ? "Department" : "DivisionName" ].ToString(), dbreader["URI"].ToString()));
+                        }
+                    }
                     //Defaulted this to be one hour
-                    Framework.Utilities.Cache.SetWithTimeout("GetDepartments", departments, 3600);
-
+                    Framework.Utilities.Cache.SetWithTimeout(cacheKey, items, 3600);
                 }
                 catch (Exception e)
                 {
@@ -798,10 +758,10 @@ namespace Profiles.Search.Utilities
             }
             else
             {
-                departments = (List<GenericListItem>)Framework.Utilities.Cache.FetchObject("GetDepartments");
+                items = (List<GenericListItem>)Framework.Utilities.Cache.FetchObject(cacheKey);
 
             }
-            return departments;
+            return items;
         }
 
         /// To return the list of all the Departments

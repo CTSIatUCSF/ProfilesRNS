@@ -42,7 +42,7 @@ BEGIN
 			--SELECT @oldNodeID, @keyword, @sortorder
 			--DELETE FROM tmpPeopleMap
 			--BREAK
-			EXEC [RDF.].[GetStoreNode] @Value = @value, @NodeID = @valueNodeID OUTPUT
+			EXEC [RDF.].[GetStoreNode] @Value = @value, @SortOrder = @sortorder, @NodeID = @valueNodeID OUTPUT
 			IF (@valueNodeID IS NOT NULL)
 				EXEC [RDF.].[GetStoreTriple]	@SubjectID = @newNodeID,
 												@PredicateURI = @Property,

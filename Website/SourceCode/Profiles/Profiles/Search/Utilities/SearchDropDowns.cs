@@ -10,7 +10,7 @@ namespace Profiles.Search.Utilities
     public static class SearchDropDowns
     {
 
-        private static List<GenericListItem> GetList(string type)
+        private static List<GenericListItem> GetList(string type, Institution institution)
         {
             Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
 
@@ -20,16 +20,16 @@ namespace Profiles.Search.Utilities
                     return data.GetInstitutions();
 
                 case "department":
-                    return data.GetDepartments();
+                    return data.GetInstitutionalItemsOfType("Departments", institution);
                 case "division":
-                    return data.GetDivisions();
+                    return data.GetInstitutionalItemsOfType("Divisions", institution);
             }
             return null;
         }
 
-        public static string GetDefaultItemValue(string type, string defaultitem)
+        public static string GetDefaultItemValue(string type, string defaultitem, Institution institution)
         {
-            List<GenericListItem> list = GetList(type);
+            List<GenericListItem> list = GetList(type, institution);
             foreach (GenericListItem item in list)
             {       // Eric Meeks adding check for item.Text as well
                 if (defaultitem == item.Value || defaultitem.Equals(item.Text))
@@ -38,11 +38,11 @@ namespace Profiles.Search.Utilities
             return null;
         }
 
-        public static string BuildDropdown(string type, string width, string defaultitem)
+        public static string BuildDropdown(string type, string width, string defaultitem, Institution institution)
         {
             string output = "<option value=\"\"></option>";
 
-            List<GenericListItem> list = GetList(type);
+            List<GenericListItem> list = GetList(type, institution);
 
             foreach (GenericListItem item in list)
             {       // Eric Meeks adding check for item.Text as well

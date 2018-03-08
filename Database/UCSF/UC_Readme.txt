@@ -4,6 +4,7 @@ Follow the basic install instructions for everything else and stop at "Loading P
 Run UCSF_Upgrade_Schema.sql
 Run ORNG_FixUntilHarvardNextRelease.sql
 Run UCSF_Upgrade_Data.sql
+Run 2.10 to 2.10.1 upgrade!
 
 IMPORT HR DATA
 

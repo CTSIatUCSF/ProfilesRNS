@@ -1,5 +1,5 @@
 -- Updates to PresentationXML
-Begin tran 
+Begin tran
 UPDATE [Ontology.Presentation].[XML] SET [PresentationXML]=CONVERT(xml,N'<Presentation PresentationClass="profile">
   <PageOptions Columns="3" />
   <WindowName>{{{rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]}}}</WindowName>
@@ -648,13 +648,17 @@ INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCSF', 'http://st
 INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCSD', 'http://stage-profiles.ucsf.edu/ucsd', 0);
 INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('USC', 'http://stage-profiles.ucsf.edu/usc', 0);
 INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCI', 'http://stage-profiles.ucsf.edu/uci', 0);
-INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UC Davis', 'http://stage-profiles.ucsf.edu/ucd', 0);
+INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('LBNL', 'http://stage-profiles.ucsf.edu/lbl', 0);
+INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCLA', 'http://stage-profiles.ucsf.edu/ucla', 0);
+INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCD', 'http://stage-profiles.ucsf.edu/ucd', 0);
 
-INSERT INTO [UCSF.].[InstitutionAbbreviationAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCI', 'UCI', 'urn:mace:incommon:uci.edu');
-INSERT INTO [UCSF.].[InstitutionAbbreviationAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCD', 'UCD', 'urn:mace:incommon:ucdavis.edu');
-INSERT INTO [UCSF.].[InstitutionAbbreviationAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCSF', 'UCSF', 'urn:mace:incommon:ucsf.edu');
-INSERT INTO [UCSF.].[InstitutionAbbreviationAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCSD', 'UCSD', 'urn:mace:incommon:ucsd.edu');
-INSERT INTO [UCSF.].[InstitutionAbbreviationAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('USC', 'USC', 'https://shibboleth.usc.edu/shibboleth-idp');
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCI', 'UCI', 'urn:mace:incommon:uci.edu');
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UC Davis', 'UCD', 'urn:mace:incommon:ucdavis.edu');
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCSF', 'UCSF', 'urn:mace:incommon:ucsf.edu');
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCSD', 'UCSD', 'urn:mace:incommon:ucsd.edu');
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCLA', 'UCLA', 'urn:mace:incommon:ucla.edu');
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('LBNL', 'LBNL', 'https://login.lbl.gov/idp/shibboleth');
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('USC', 'USC', 'https://shibboleth.usc.edu/shibboleth-idp');
 
 --rollback
 --commit

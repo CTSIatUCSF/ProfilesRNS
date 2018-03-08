@@ -56,13 +56,13 @@ namespace Profiles.Search.Modules.SearchPerson
                 //Profiles.Search.Utilities.DataIO dropdowns = new Profiles.Search.Utilities.DataIO();
                 if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowInstitutions"]) == true)
                 {
-                    litInstitution.Text = SearchDropDowns.BuildDropdown("institution", "249", Brand.GetCurrentBrand().IsMultiInstitutional() ? "" : Brand.GetCurrentBrand().GetInstitution().GetName());
+                    litInstitution.Text = SearchDropDowns.BuildDropdown("institution", "249", Brand.GetCurrentBrand().IsMultiInstitutional() ? "" : Brand.GetCurrentBrand().GetInstitution().GetName(), Brand.GetCurrentBrand().GetInstitution());
                 }
                 trInstitution.Visible = Brand.GetCurrentBrand().IsMultiInstitutional();
 
                 if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowDepartments"]) == true && !Brand.GetCurrentBrand().IsMultiInstitutional())
                 {
-                    litDepartment.Text = SearchDropDowns.BuildDropdown("department", "249", "");
+                    litDepartment.Text = SearchDropDowns.BuildDropdown("department", "249", "", Brand.GetCurrentBrand().GetInstitution());
                 }
                 else
                 {
@@ -71,7 +71,7 @@ namespace Profiles.Search.Modules.SearchPerson
 
                 if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowDivisions"]) == true && !Brand.GetCurrentBrand().IsMultiInstitutional())
                 {
-                    litDivision.Text = SearchDropDowns.BuildDropdown("division", "249", "");
+                    litDivision.Text = SearchDropDowns.BuildDropdown("division", "249", "", Brand.GetCurrentBrand().GetInstitution());
                 }
                 else
                 {
@@ -145,7 +145,7 @@ namespace Profiles.Search.Modules.SearchPerson
                     {
 
 
-                        litInstitution.Text = SearchDropDowns.BuildDropdown("institution", "249", x.InnerText);
+                        litInstitution.Text = SearchDropDowns.BuildDropdown("institution", "249", x.InnerText, Brand.GetCurrentBrand().GetInstitution());
                         institutiondropdown = true;
 
                         if (x.SelectSingleNode("@IsExclude").Value == "1")
@@ -156,7 +156,7 @@ namespace Profiles.Search.Modules.SearchPerson
 
                     if (x.SelectSingleNode("@Property").Value == "http://vivoweb.org/ontology/core#personInPosition" && x.SelectSingleNode("@Property2").Value == "http://profiles.catalyst.harvard.edu/ontology/prns#positionInDepartment")
                     {
-                        litDepartment.Text = SearchDropDowns.BuildDropdown("department", "249", x.InnerText);
+                        litDepartment.Text = SearchDropDowns.BuildDropdown("department", "249", x.InnerText, Brand.GetCurrentBrand().GetInstitution());
                         departmentdropdown = true;
 
                         if (x.SelectSingleNode("@IsExclude").Value == "1")
@@ -168,7 +168,7 @@ namespace Profiles.Search.Modules.SearchPerson
 
                     if (x.SelectSingleNode("@Property").Value == "http://vivoweb.org/ontology/core#personInPosition" && x.SelectSingleNode("@Property2").Value == "http://profiles.catalyst.harvard.edu/ontology/prns#positionInDivision")
                     {
-                        litDivision.Text = SearchDropDowns.BuildDropdown("division", "249", x.InnerText);
+                        litDivision.Text = SearchDropDowns.BuildDropdown("division", "249", x.InnerText, Brand.GetCurrentBrand().GetInstitution());
                         divisiondropdown = true;
 
                         if (x.SelectSingleNode("@IsExclude").Value == "1")
@@ -199,13 +199,13 @@ namespace Profiles.Search.Modules.SearchPerson
             }
 
             if (!institutiondropdown)
-                litInstitution.Text = SearchDropDowns.BuildDropdown("institution", "249", "");
+                litInstitution.Text = SearchDropDowns.BuildDropdown("institution", "249", "", Brand.GetCurrentBrand().GetInstitution());
 
             if (!departmentdropdown)
-                litDepartment.Text = SearchDropDowns.BuildDropdown("department", "249", "");
+                litDepartment.Text = SearchDropDowns.BuildDropdown("department", "249", "", Brand.GetCurrentBrand().GetInstitution());
 
             if (!divisiondropdown)
-                litDivision.Text = SearchDropDowns.BuildDropdown("division", "249", "");
+                litDivision.Text = SearchDropDowns.BuildDropdown("division", "249", "", Brand.GetCurrentBrand().GetInstitution());
 
 
 
@@ -330,7 +330,7 @@ namespace Profiles.Search.Modules.SearchPerson
 
             if (!Brand.GetCurrentBrand().IsMultiInstitutional())
             {
-                institution = SearchDropDowns.GetDefaultItemValue("institution", Brand.GetCurrentBrand().GetInstitution().GetName());
+                institution = SearchDropDowns.GetDefaultItemValue("institution", Brand.GetCurrentBrand().GetInstitution().GetName(), Brand.GetCurrentBrand().GetInstitution());
             }
             else if (Request.Form["institution"] != null)
             {

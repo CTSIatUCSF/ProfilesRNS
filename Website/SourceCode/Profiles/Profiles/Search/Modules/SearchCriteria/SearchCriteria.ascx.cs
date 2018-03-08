@@ -102,13 +102,13 @@ namespace Profiles.Search.Modules.SearchCriteria
                 if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://profiles.catalyst.harvard.edu/ontology/prns#positionInDepartment']/@IsExclude", base.Namespaces).Value == "1")
                     Department = "(Except) ";
 
-                Department += data.GetConvertedURIListItem(data.GetDepartments(), base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://profiles.catalyst.harvard.edu/ontology/prns#positionInDepartment']", base.Namespaces).InnerText);
+                Department += data.GetConvertedURIListItem(data.GetInstitutionalItemsOfType("Departments", Brand.GetCurrentBrand().GetInstitution()), base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://profiles.catalyst.harvard.edu/ontology/prns#positionInDepartment']", base.Namespaces).InnerText);
                 output += "<li>" + Department + "</li>";
             }
 
             if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://profiles.catalyst.harvard.edu/ontology/prns#positionInDivision']", base.Namespaces) != null)
             {
-                Division = data.GetConvertedURIListItem(data.GetDivisions(), base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://profiles.catalyst.harvard.edu/ontology/prns#positionInDivision']", base.Namespaces).InnerText);
+                Division = data.GetConvertedURIListItem(data.GetInstitutionalItemsOfType("Divisions", Brand.GetCurrentBrand().GetInstitution()), base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://profiles.catalyst.harvard.edu/ontology/prns#positionInDivision']", base.Namespaces).InnerText);
                 output += "<li>" + Division + "</li>";
             }
 

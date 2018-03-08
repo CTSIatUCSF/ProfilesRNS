@@ -147,7 +147,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="About\PresentationXML\Optin.xml" />
-    <Content Include="Activity\CSS\activity.css" />
     <Content Include="Activity\Modules\ActivityHistory\ActivityDetails.aspx" />
     <Content Include="Activity\Modules\ActivityHistory\ActivityHistory.ascx" />
     <Content Include="Activity\Modules\LatestUpdates\LatestUpdates.ascx" />
@@ -235,16 +234,7 @@
     <Content Include="App_Themes\LBNL\Images\gear.gif" />
     <Content Include="App_Themes\LBNL\Images\help.gif" />
     <Content Include="App_Themes\LBNL\PresentationXML\About\AboutProfiles.xml" />
-    <Content Include="App_Themes\LBNL\PresentationXML\About\CloseBrowser.xml" />
-    <Content Include="App_Themes\LBNL\PresentationXML\About\FAQ.xml" />
-    <Content Include="App_Themes\LBNL\PresentationXML\About\ForDevelopers.xml" />
-    <Content Include="App_Themes\LBNL\PresentationXML\About\GadgetLibrary.xml" />
     <Content Include="App_Themes\LBNL\PresentationXML\About\Help.xml" />
-    <Content Include="App_Themes\LBNL\PresentationXML\About\HowProfilesWorks.xml" />
-    <Content Include="App_Themes\LBNL\PresentationXML\About\NewFeatures.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Themes\LBNL\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\LBNL\LBNL.css" />
     <Content Include="App_Themes\LBNL\LBNL.js" />
     <Content Include="App_Themes\USC\Images\actri-logo.png" />
@@ -327,6 +317,7 @@
     <Content Include="App_Themes\UCSF\Images\ucsf_alumni_blue.jpg" />
     <Content Include="HttpBL.csproj" />
     <Content Include="Login\Images\berkeley.edu.png" />
+    <Content Include="Login\Images\lbnl.gov.png" />
     <Content Include="Login\Images\ucdavis.edu.png" />
     <Content Include="Login\Images\uci.edu.gif" />
     <Content Include="Login\Images\ucla.edu.gif" />
@@ -337,6 +328,7 @@
     <Content Include="Login\Images\ucsc.edu.jpg" />
     <Content Include="Login\Images\ucsd.edu.png" />
     <Content Include="Login\Images\ucsf.edu.png" />
+    <Content Include="Login\Images\usc.edu.png" />
     <Content Include="Login\Modules\MultiShibLogin\MultiShibLogin.ascx" />
     <Content Include="Login\PresentationXML\MultiShibbolethLoginPresentation.xml">
       <SubType>Designer</SubType>
@@ -2174,6 +2166,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ActiveNetwork\Utilities\" />
+    <Folder Include="Activity\CSS\" />
     <Folder Include="App_Data\" />
     <Folder Include="App_Themes\Default\PresentationXML\About\" />
     <Folder Include="App_Themes\UC\PresentationXML\About\" />

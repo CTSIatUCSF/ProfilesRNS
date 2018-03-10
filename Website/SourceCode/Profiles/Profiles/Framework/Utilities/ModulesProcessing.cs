@@ -32,7 +32,18 @@ namespace Profiles.Framework.Utilities
                 throw new MemberAccessException("The requested constructor was not found on : " + ctl.GetType().BaseType.ToString());
             else
             {
-                constructor.Invoke(ctl, constructorParameters);
+                try
+                {
+                    constructor.Invoke(ctl, constructorParameters);
+                }
+                catch (Exception ex)
+                {
+                    if (ex.GetBaseException() != null)
+                    {
+                        DebugLogging.Log("Base exception invoking constructor for " + ctl.GetType().BaseType.ToString() + " : " + ex.GetBaseException().Message + " ++ " + ex.GetBaseException().StackTrace);
+                    }
+                    throw new MemberAccessException("Could not construct " + ctl.GetType().BaseType.ToString() + " from " + UserControlPath, ex);
+                }
             }
 
             return ctl;

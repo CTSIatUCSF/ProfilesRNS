@@ -652,13 +652,14 @@ INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('LBNL', 'http://st
 INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCLA', 'http://stage-profiles.ucsf.edu/ucla', 0);
 INSERT INTO [UCSF.].[Theme] (Theme, BasePath, Shared) VALUES ('UCD', 'http://stage-profiles.ucsf.edu/ucd', 0);
 
-INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCI', 'UCI', 'urn:mace:incommon:uci.edu');
-INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UC Davis', 'UCD', 'urn:mace:incommon:ucdavis.edu');
-INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCSF', 'UCSF', 'urn:mace:incommon:ucsf.edu');
-INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCSD', 'UCSD', 'urn:mace:incommon:ucsd.edu');
-INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('UCLA', 'UCLA', 'urn:mace:incommon:ucla.edu');
-INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('LBNL', 'LBNL', 'https://login.lbl.gov/idp/shibboleth');
-INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP) VALUES ('USC', 'USC', 'https://shibboleth.usc.edu/shibboleth-idp');
+--truncate table [UCSF.].[InstitutionAdditions]
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP, ShibbolethUserNameHeader, ShibbolethDisplayNameHeader) VALUES ('UCI', 'UCI', 'urn:mace:incommon:uci.edu', NULL, NULL);
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP, ShibbolethUserNameHeader, ShibbolethDisplayNameHeader) VALUES ('UC Davis', 'UCD', 'urn:mace:incommon:ucdavis.edu', NULL, NULL);
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP, ShibbolethUserNameHeader, ShibbolethDisplayNameHeader) VALUES ('UCSF', 'UCSF', 'urn:mace:incommon:ucsf.edu', 'eppn', 'ShibdisplayName');
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP, ShibbolethUserNameHeader, ShibbolethDisplayNameHeader) VALUES ('UCSD', 'UCSD', 'urn:mace:incommon:ucsd.edu', 'scopedCampusEmployeeID', NULL);
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP, ShibbolethUserNameHeader, ShibbolethDisplayNameHeader) VALUES ('UCLA', 'UCLA', 'urn:mace:incommon:ucla.edu', NULL, NULL);
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP, ShibbolethUserNameHeader, ShibbolethDisplayNameHeader) VALUES ('LBNL', 'LBNL', 'https://login.lbl.gov/idp/shibboleth', 'ShibuscUSCID', NULL);
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, Theme, ShibbolethIdP, ShibbolethUserNameHeader, ShibbolethDisplayNameHeader) VALUES ('USC', 'USC', 'https://shibboleth.usc.edu/shibboleth-idp', 'employeeNumber', NULL);
 
 --rollback
 --commit

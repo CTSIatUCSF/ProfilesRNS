@@ -80,6 +80,8 @@ CREATE TABLE [UCSF.].[InstitutionAdditions](
 	[InstitutionAbbreviation] [nvarchar](50) NOT NULL,
 	[Theme] [nvarchar](50) NOT NULL,
 	[ShibbolethIdP] [nvarchar](255) NULL,
+	[ShibbolethUserNameHeader] [nvarchar](255) NULL,
+	[ShibbolethDisplayNameHeader] [nvarchar](255) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[InstitutionAbbreviation] ASC
@@ -174,7 +176,7 @@ CREATE VIEW [UCSF.].[vwBrand] AS
 SELECT DISTINCT t.Theme,
 	   t.BasePath,
 	   CASE WHEN t.Shared = 1 THEN NULL ELSE a.InstitutionAbbreviation END AS InstitutionAbbreviation,
-	   CASE WHEN t.Theme = 'UC' THEN 'UC' ELSE NULL END AS PersonFilter -- note that this is hacked to do what we need it to do. For a view, that is sort of OK
+	   CASE WHEN t.Theme = 'UC' THEN 'UC Health' ELSE NULL END AS PersonFilter -- note that this is hacked to do what we need it to do. For a view, that is sort of OK
 FROM [UCSF.].[Theme] t
 	LEFT OUTER JOIN [UCSF.].[InstitutionAdditions] a on a.Theme = t.Theme
 
@@ -276,7 +278,7 @@ BEGIN
 	IF (@institutionabbreviation = 'ucsf') 
 		RETURN SUBSTRING(@legacyinternalusername, 3, 6) + '@ucsf.edu'
 	ELSE IF (@institutionabbreviation = 'ucsd')
-		RETURN cast(cast(@legacyinternalusername as Int) as varchar) + '@ucsd.edu'
+		RETURN cast(@legacyinternalusername as varchar) + '@ucsd.edu'
 	ELSE IF (@institutionabbreviation = 'uci')
 		RETURN cast(@legacyinternalusername as varchar) + '@uci.edu'
 	ELSE IF (@institutionabbreviation = 'usc')
@@ -286,6 +288,32 @@ BEGIN
 	ELSE IF (@institutionabbreviation = 'lbnl')
 		RETURN cast(@legacyinternalusername as varchar) + '@lbl.gov'
 	RETURN 'Unrecognized institution :' + @institutionabbreviation
+END
+
+
+GO
+
+/****** Object:  UserDefinedFunction [UCSF.].[fn_InternalUserName2UserName]    Script Date: 3/16/2018 3:12:58 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE FUNCTION [UCSF.].fn_InternalUserName2UserName
+(
+	@internalusername nvarchar(50)
+)
+RETURNS nvarchar(50)
+AS
+BEGIN
+	IF (@internalusername LIKE '%@usc.edu') 
+		RETURN REPLACE(@internalusername, '@usc.edu', '')
+	ELSE IF (@internalusername LIKE '%@ucsd.edu')
+		RETURN cast(cast(REPLACE(@internalusername, '@ucsd.edu', '') as Int) as varchar) + '@ucsd.edu'
+	ELSE IF (@internalusername LIKE '%@lbl.gov')
+		RETURN REPLACE(@internalusername, '@lbl.gov', '')
+	RETURN @internalusername
 END
 
 
@@ -3359,7 +3387,7 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-	SELECT x.InstitutionID, x.InstitutionName, x.InstitutionAbbreviation, n.NodeID, n.Value URI, a.ShibbolethIdP
+	SELECT x.InstitutionID, x.InstitutionName, x.InstitutionAbbreviation, n.NodeID, n.Value URI, a.ShibbolethIdP, a.ShibbolethUserNameHeader, a.ShibbolethDisplayNameHeader
 		FROM (
 				SELECT CAST(MAX(InstitutionID) AS VARCHAR(50)) InstitutionID,
 						LTRIM(RTRIM(InstitutionName)) InstitutionName, 

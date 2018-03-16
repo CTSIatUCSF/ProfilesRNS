@@ -958,7 +958,7 @@ namespace Profiles.Framework.Utilities
             {
                 while (reader.Read())
                 {
-                    new Institution(Convert.ToInt32(reader[0]), reader[1].ToString(), reader[2].ToString(), Convert.ToInt64(reader[3]), reader[4].ToString(), reader[5].ToString());
+                    new Institution(Convert.ToInt32(reader[0]), reader[1].ToString(), reader[2].ToString(), Convert.ToInt64(reader[3]), reader[4].ToString(), reader[5].ToString(), reader[6].ToString(), reader[7].ToString());
                 }
             }
         }

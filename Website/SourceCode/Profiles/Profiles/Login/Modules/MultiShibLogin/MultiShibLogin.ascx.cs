@@ -31,8 +31,6 @@ namespace Profiles.Login.Modules.MultiShibLogin
         {
             if (!IsPostBack)
             {
-                string userNameHeader = ConfigurationManager.AppSettings["Shibboleth.UserNameHeader"];
-                string displayNameHeader = ConfigurationManager.AppSettings["Shibboleth.DisplayNameHeader"];
                 string redirectto = "true".Equals(Request["edit"]) ? "edit" : Request["redirectto"];
 
                 Framework.Utilities.SessionManagement sm = new SessionManagement();
@@ -61,12 +59,14 @@ namespace Profiles.Login.Modules.MultiShibLogin
                     {
                         remainingDomains = Request["remainingDomains"];
                     }
-                    Response.Redirect(GetRedirect(false, remainingDomains, "continue", Request["redirectto"]));
+                    Response.Redirect(GetRedirect(false, remainingDomains, "continue", "", "", Request["redirectto"]));
                 }
                 else if ("shibboleth".Equals(Request["method"]))
                 {
                     Session session = sm.Session();
                     string remainingDomains = String.IsNullOrEmpty(Request["remainingDomains"]) ? String.Empty : Request["remainingDomains"];
+                    string userNameHeader = Request["userNameHeader"];
+                    string displayNameHeader = Request["displayNameHeader"];
 
                     if (String.IsNullOrEmpty(Request["sessionId"]))
                     {
@@ -97,7 +97,7 @@ namespace Profiles.Login.Modules.MultiShibLogin
                         session.SessionID = Request["sessionId"];
                         data.SessionUpdate(ref session);
                     }
-                    Response.Redirect(GetRedirect(true, remainingDomains, session.SessionID, redirectto));
+                    Response.Redirect(GetRedirect(true, remainingDomains, session.SessionID, userNameHeader, displayNameHeader, redirectto));
                 }
             }
         }
@@ -124,9 +124,11 @@ namespace Profiles.Login.Modules.MultiShibLogin
 
             // Have login to just one Shibboleth instance and then just pass SessionID to everyone
             Institution institution = Institution.GetByAbbreviation(((ImageButton)sender).Attributes["InstitutionAbbreviation"]);
+            string userNameHeader = institution.GetShibbolethUserNameHeader();  //ConfigurationManager.AppSettings["Shibboleth.UserNameHeader"];
+            string displayNameHeader = institution.GetShibbolethDisplayNameHeader(); //ConfigurationManager.AppSettings["Shibboleth.DisplayNameHeader"];
 
             // this is the only time we pass through Shibboleth. We currently assume Root.domain is the one that is set up.
-            string target = GetRedirect(true, remainingDomains, "", Request["redirectto"]);
+            string target = GetRedirect(true, remainingDomains, "", userNameHeader, String.IsNullOrEmpty(displayNameHeader) ? userNameHeader : displayNameHeader, Request["redirectto"]);
        
             string url = ConfigurationManager.AppSettings["Shibboleth.LoginURL"] + "?entityID=" + HttpUtility.UrlEncode(institution.GetShibbolethIdP()) +
                     "&target=" + HttpUtility.UrlEncode(target);
@@ -134,7 +136,7 @@ namespace Profiles.Login.Modules.MultiShibLogin
             Response.Redirect(url);
         }
 
-        private string GetRedirect(bool login, string remainingDomains, string sessionId, string redirectto)
+        private string GetRedirect(bool login, string remainingDomains, string sessionId, string userNameHeader, string displayNameHeader, string redirectto)
         {
             string url = null;
             // if we have many domains, redirect to the first one
@@ -143,7 +145,8 @@ namespace Profiles.Login.Modules.MultiShibLogin
                 string nextDomain = remainingDomains.Split(',')[0];
                 url = nextDomain + "/login/default.aspx?method=" + (login ? "shibboleth" : "logout") +
                     "&remainingDomains=" + HttpUtility.UrlEncode(remainingDomains.Replace(nextDomain + ",", "")) +
-                    "&sessionId=" + sessionId + "&redirectto=" + HttpUtility.UrlEncode(redirectto);
+                    "&sessionId=" + sessionId + "&userNameHeader=" + HttpUtility.UrlEncode(userNameHeader) + 
+                    "&displayNameHeader=" + HttpUtility.UrlEncode(displayNameHeader) + "&redirectto=" + HttpUtility.UrlEncode(redirectto);
             }
             else if (login)
             {

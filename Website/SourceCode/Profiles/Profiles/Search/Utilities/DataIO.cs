@@ -862,6 +862,11 @@ namespace Profiles.Search.Utilities
 
             foreach (DataRow pRow in personTypes.Tables[0].Rows)
             {
+                // added by UCSF
+                if (pRow.IsNull("personFilterSort"))
+                {
+                    continue;
+                }
                 currentParentTag = Convert.ToString(pRow["PersonFilterCategory"]);
                 currentChildTag = Convert.ToString(pRow["personfilter"]);
                 getChild = false;

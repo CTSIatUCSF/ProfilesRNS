@@ -56,3 +56,12 @@ BEGIN
 	DELETE FROM tmpOrng WHERE AppID = @AppID
 END
 DROP TABLE tmpOrng
+
+/***** LOOK AT THIS FIRST *********
+insert [Profile.Data].[Person.Filter] (PersonFilter, PersonFilterCategory, PersonFilterSort) 
+	select PersonFilter, PersonFilterCategory, PersonFilterSort
+	FROM [profiles_ucsf].[Profile.Data].[Person.Filter] order by PersonFilterSort
+
+select * from [ORNG.].Apps
+update a set a.PersonFilterID = f.PersonFilterId FROM [ORNG.].Apps a JOIN [Profile.Data].[Person.Filter] f on a.Name = f.PersonFilter
+*******************/

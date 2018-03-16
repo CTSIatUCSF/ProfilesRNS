@@ -46,3 +46,21 @@ JOIN [' + @SourceDB + '].[ORNG.].[AppData] a on a.NodeID = s.NodeID JOIN [' + @S
 --SELECT @SQL
 EXEC dbo.sp_executesql @SQL
 
+/************** FOR AFTER THE ADD IF FILTERS WERE ADDED LATER
+SELECT s.NodeID, a.AppID INTO tmpOrng FROM [RDF.].Triple t JOIN [Ontology.].ClassProperty c on t.Predicate = c._PropertyNode 
+JOIN [ORNG.].Apps a on a.Name = c._PropertyLabel JOIN [UCSF.].vwPerson s on t.Subject = s.NodeID
+
+--select * from tmpOrng
+DECLARE @NodeID bigint 
+DECLARE @AppID int
+
+WHILE EXISTS (SELECT * FROM tmpOrng)
+BEGIN 
+	SELECT TOP 1 @NodeID = NodeID, @AppID = AppID FROM tmpOrng
+
+	EXEC [ORNG.].[AddAppToPerson] @SubjectID = @NodeID, @AppID = @AppID
+
+	DELETE FROM tmpOrng WHERE NodeID = @NodeID AND AppID = @AppID 
+END
+DROP TABLE tmpOrng
+*****************/

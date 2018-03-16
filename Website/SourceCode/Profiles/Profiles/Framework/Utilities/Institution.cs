@@ -26,8 +26,10 @@ namespace Profiles.Framework.Utilities
         private Int64 NodeID;
         private string URI;
         private string ShibbolethIdP;
+        private string ShibbolethUserNameHeader;
+        private string ShibbolethDisplayNameHeader;
 
-        public Institution(int Id, string Name, string Abbreviation, Int64 NodeID, string URI, string ShibbolethIdP)
+        public Institution(int Id, string Name, string Abbreviation, Int64 NodeID, string URI, string ShibbolethIdP, string ShibbolethUserNameHeader, string ShibbolethDisplayNameHeader)
         {
             this.Id = Id;
             this.Name = Name;
@@ -35,6 +37,8 @@ namespace Profiles.Framework.Utilities
             this.NodeID = NodeID;
             this.URI = URI;
             this.ShibbolethIdP = ShibbolethIdP;
+            this.ShibbolethUserNameHeader = ShibbolethUserNameHeader;
+            this.ShibbolethDisplayNameHeader = ShibbolethDisplayNameHeader;
             ByAbbreviation.Add(Abbreviation, this);
             ByURI.Add(URI, this);
         }
@@ -67,6 +71,15 @@ namespace Profiles.Framework.Utilities
         public string GetShibbolethIdP()
         {
             return ShibbolethIdP;
+        }
+
+        public string GetShibbolethUserNameHeader()
+        {
+            return ShibbolethUserNameHeader;
+        }
+        public string GetShibbolethDisplayNameHeader()
+        {
+            return ShibbolethDisplayNameHeader;
         }
     }
 }

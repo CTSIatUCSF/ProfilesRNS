@@ -30,3 +30,4 @@ BEGIN
 	DELETE FROM tmpOrng WHERE AppID = @AppID
 END
 DROP TABLE tmpOrng
+

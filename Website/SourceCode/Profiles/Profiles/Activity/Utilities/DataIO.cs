@@ -368,15 +368,15 @@ namespace Profiles.Activity.Utilities
             return activities;
         }
 		
-        public int GetEditedCount()
+        public string GetEditedCount()
         {
             string sql = "select count(*) from [UCSF.].[vwPerson] p " +
-                            "join (select InternalID as PersonID from [RDF.Stage].InternalNodeMap i " +
+                            "join (select PersonID from [UCSF.].[vwPerson] i " +
                             "join (select distinct subject from [RDF.].Triple t " +
                             "join [RDF.].Node n on t.Predicate = n.NodeID and n.value in " +
                             "('http://profiles.catalyst.harvard.edu/ontology/prns#mainImage', 'http://vivoweb.org/ontology/core#awardOrHonor', " +
                             "'http://vivoweb.org/ontology/core#educationalTraining', 'http://vivoweb.org/ontology/core#freetextKeyword', 'http://vivoweb.org/ontology/core#overview')) t " +
-                            "on i.NodeID = t.Subject and i.Class = 'http://xmlns.com/foaf/0.1/Person' union " +
+                            "on i.NodeID = t.Subject union " +
                             "select distinct personid from [Profile.Data].[Publication.Person.Add] union " +
                             "select distinct personid from [Profile.Data].[Publication.Person.Exclude] as u) t " +
                             "on t.PersonID = p.PersonID " + GetBrandedJoin() + GetBrandedWhere(" where p.isactive = 1");
@@ -384,12 +384,12 @@ namespace Profiles.Activity.Utilities
             return GetCount(sql);
         }
 
-        public int GetProfilesCount()
+        public string GetProfilesCount()
         {
             return GetCount("select count(*) from [UCSF.].[vwPerson] p" + GetBrandedJoin() + GetBrandedWhere(" where p.isactive = 1"));
         }
 
-        public int GetPublicationsCount()
+        public string GetPublicationsCount()
         {
             string sql = "select (select count(distinct(PMID)) from [Profile.Data].[Publication.Person.Include] i join [UCSF.].[vwPerson] p on p.personid = i.personid " + 
                                 GetBrandedJoin() + GetBrandedWhere(" where i.PMID is not null and p.isactive = 1") + ") + " +
@@ -426,24 +426,33 @@ namespace Profiles.Activity.Utilities
             }
         }
 
-        private int GetCount(string sql)
+        private string GetCount(string sql)
         {
             string key = "Statistics: " + sql;
             // store this in the cache. Use the sql as part of the key
             string cnt = (string)Framework.Utilities.Cache.FetchObject(key);
 
-            if (String.IsNullOrEmpty(cnt))
+            try
             {
-                using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+                if (String.IsNullOrEmpty(cnt))
                 {
-                    if (sqldr.Read())
+                    using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
                     {
-                        cnt = sqldr[0].ToString();
-                        Framework.Utilities.Cache.Set(key, cnt);
+                        if (sqldr.Read())
+                        {
+                            cnt = sqldr[0].ToString();
+                            Framework.Utilities.Cache.Set(key, cnt);
+                        }
                     }
                 }
             }
-            return Convert.ToInt32(cnt);
+            catch (Exception ex)
+            {
+                Framework.Utilities.DebugLogging.Log("Exception in GetCount calling: " + sql);
+                Framework.Utilities.DebugLogging.Log("Exception in GetCount: " + ex.Message);
+                cnt = "...";
+            }
+            return cnt;
         }
 
         private string GetStringValue(string sql, string columnName)

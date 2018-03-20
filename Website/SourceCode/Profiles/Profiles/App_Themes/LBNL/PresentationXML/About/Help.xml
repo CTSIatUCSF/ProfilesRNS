@@ -31,7 +31,7 @@ $('.profiles .profilesContentMain .pageTitle').hide();
 		<p><strong>Photo</strong>: To add or remove a photo, 
 		   <a href="../login/default.aspx?method=login&amp;edit=true">sign in to edit</a> your profile page.
 		</p>
-		<p><strong>Name/Degree/Contact Information</strong>: We get data such as name and organization 	from the LBNL HR system. Changes to this data should be directed to your local HR Center 	contact, which can be found at <a href="https://commons.lbl.gov/display/hr/Contact+HR" target="_blank">https://commons.lbl.gov/display/hr/Contact+HR</a>. Contact information comes from the LBNL directory, which allows self-service updates at <a 	href="http://www.lbl.gov/ds/index.html">http://www.lbl.gov/ds/index.html</a>. 
+		<p><strong>Name/Degree/Contact Information</strong>: We get data such as name and organization 	from the LBL HR system. Changes to this data should be directed to your local HR Center 	contact, which can be found at <a href="https://commons.lbl.gov/display/hr/Contact+HR" target="_blank">https://commons.lbl.gov/display/hr/Contact+HR</a>. Contact information comes from the LBL directory, which allows self-service updates at <a 	href="http://www.lbl.gov/ds/index.html">http://www.lbl.gov/ds/index.html</a>. 
 		</p>
 		<p><a href="#faq" class="dblarrow">Frequently Asked Questions</a></p>
 	  </div>
@@ -39,7 +39,7 @@ $('.profiles .profilesContentMain .pageTitle').hide();
 	  <div class="content-block">
 		<h2 style="font-size:30px">Contact Us</h2>
 		<p>Please <a href="mailto:profiles@lbl.gov">share your feedback</a> about how to improve
-		   LBNL Profiles, and let us know if LBNL Profiles has enabled your research in any way.
+		   LBL Profiles, and let us know if LBL Profiles has enabled your research in any way.
 		   Your success stories are important to enable the continued support and expansion of this
 		   important tool.
 		</p>
@@ -89,46 +89,46 @@ Researchers working on the same topics
 
 <h2 id="faq" class="about">Frequently Asked Questions</h2>
 <ul> 
-  <li><a href="#who">Who is listed in LBNL Profiles?</a></li>
-  <li><a href="#view">Who can view LBNL Profiles?</a></li>
-  <li><a href="#login">How do I sign in to LBNL Profiles?</a></li>
+  <li><a href="#who">Who is listed in LBL Profiles?</a></li>
+  <li><a href="#view">Who can view LBL Profiles?</a></li>
+  <li><a href="#login">How do I sign in to LBL Profiles?</a></li>
   <li><a href="#pubs">Why are there missing or incorrect publications in my profile? How can I correct this?</a></li>
-  <li><a href="#manage">Who manages LBNL Profiles?</a></li>
+  <li><a href="#manage">Who manages LBL Profiles?</a></li>
 </ul>
 
-<h3 id="who">Who is listed in LBNL Profiles?</h3>
+<h3 id="who">Who is listed in LBL Profiles?</h3>
 
 <ul>
-  <li>LBNL Profiles was created for research networking so we initially loaded all employees (i.e., 
+  <li>LBL Profiles was created for research networking so we initially loaded all employees (i.e., 
   excluding Affiliates, Student Assistants, and GSRAs) in all Divisions other than Ops.</li>
 </ul>
 
-<h3 id="view">Who can view LBNL Profiles?</h3>
+<h3 id="view">Who can view LBL Profiles?</h3>
 <ul>
-  <li>LBNL Profiles is open to the internet and can be viewed by the general public.</li>
+  <li>LBL Profiles is open to the internet and can be viewed by the general public.</li>
 </ul>
 
-<h3 id="login">How do I sign in to LBNL Profiles?</h3>
+<h3 id="login">How do I sign in to LBL Profiles?</h3>
 <ul>
-  <li>Click the <strong><a href="../login/default.aspx?method=login&amp;edit=true">Sign in</a></strong> link on any LBNL Profiles page. 
+  <li>Click the <strong><a href="../login/default.aspx?method=login&amp;edit=true">Sign in</a></strong> link on any LBL Profiles page. 
   Then enter your Berkeley Lab (aka LDAP) username and password.</li>
-  <li>If you have never used your Berkeley Lab account or for password support, learn about <a href="https://commons.lbl.gov/display/itdivision/Passwords+and+User+Accounts" title="Go to the LBNL IT website" target="_blank">Passwords and User Accounts</a>.</li> 
+  <li>If you have never used your Berkeley Lab account or for password support, learn about <a href="https://commons.lbl.gov/display/itdivision/Passwords+and+User+Accounts" title="Go to the LBL IT website" target="_blank">Passwords and User Accounts</a>.</li> 
 </ul>
 
 <h3 id="pubs">Why are there missing or incorrect publications in my profile? How can I correct this?</h3> 
 <ul>
-  <li>LBNL Profiles uses a complex mix of names, institution, and publication information to find your publications in PubMed's repository. 
+  <li>LBL Profiles uses a complex mix of names, institution, and publication information to find your publications in PubMed's repository. 
   Unfortunately, there is no easy way to match all articles in PubMed to Profiles authors with complete precision and accuracy.</li>
   <li>People who have common names, who published under multiple names or whose articles were written while at other institutions 
   are most likely to have incomplete publication lists. </li>
   <li>You can make corrections by searching PubMed from within Profiles to add, edit or delete publications. By curating publications 
-  manually, you are helping LBNL Profiles to identify which concepts and co-authors are correctly associated with your profile, 
+  manually, you are helping LBL Profiles to identify which concepts and co-authors are correctly associated with your profile, 
   thereby increasing the likelihood of finding the right publications on subsequent attempts. </li>
 </ul>
 
-<h3 id="manage">Who manages LBNL Profiles?</h3>
+<h3 id="manage">Who manages LBL Profiles?</h3>
 <ul>
-  <li>LBNL Profiles is managed by the LBNL IT Division.</li>
+  <li>LBL Profiles is managed by the LBL IT Division.</li>
 </ul>
 
           </Param>

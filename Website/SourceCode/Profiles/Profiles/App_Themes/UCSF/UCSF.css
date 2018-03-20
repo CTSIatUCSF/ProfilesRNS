@@ -11,7 +11,7 @@
 #navbarsearch input[type=submit]:hover  { background-color: #F48024; border: 4px solid #F48024; }
 
 /* UCSF only elements */
-#site-logo h1 a img { height: auto; }
+#site-logo h1 a img { height: 40px; }
 #header-ucsf div#ucsfnav ul { display: inline-block; }
 #header-ucsf div#ucsfnav ul.right { float: right; }
 #header-ucsf div#ucsfnav ul.right li { text-align: right; }
@@ -35,8 +35,9 @@ ul.highlights li {
 }
 .sautter { text-align: center; margin-top: 0; font-size: 15px; font-style: italic; } 
 .alumni { background-image: url(Images/ucsf_alumni_blue.jpg); }
-
-
+#page-container { background: transparent url(Images/hero.png) no-repeat scroll center 180px; }
+#page-container.hero { background-image: url(Images/hero-photos.png); }
+#page-container.hero .profiles .profilesPage { padding-top: 60px; }
 
 
  

@@ -56,7 +56,7 @@
 					<li><a href="<%=GetDomainFor("UCSD")%>/search/">UCSD</a></li>
 					<li><a href="<%=GetDomainFor("UCSF")%>/search/">UCSF</a></li>
 					<li><a href="<%=GetDomainFor("UC")%>/search/">All UC Health</a></li>
-					<li><a href="<%=GetDomainFor("LBNL")%>/search/">Lawrence Berkeley Lab</a></li>
+					<li><a href="<%=GetDomainFor("LBNL")%>/search/">Berkeley Lab</a></li>
 					<li><a href="<%=GetDomainFor("USC")%>/search/">USC</a></li>
 					<li><a href="<%=GetDomainFor("Default")%>/search/">All</a></li>
 				</ul>

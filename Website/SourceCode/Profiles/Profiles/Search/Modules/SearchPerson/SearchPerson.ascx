@@ -8,8 +8,9 @@
 
 <script type="text/javascript">
 
-
-    function runScript(e) {
+	$('#page-container').addClass('hero');
+    
+	function runScript(e) {
         if (e.keyCode == 13) {
             search();            
         }

@@ -219,6 +219,8 @@
     <Content Include="App_Themes\UCI\PresentationXML\About\Help.xml" />
     <Content Include="App_Themes\UCI\UCI.css" />
     <Content Include="App_Themes\UCI\UCI.js" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos.png" />
+    <Content Include="App_Themes\UCSF\Images\hero.png" />
     <Content Include="App_Themes\UC\Images\backtotop.gif" />
     <Content Include="App_Themes\UC\Images\comment.gif" />
     <Content Include="App_Themes\UC\Images\favicon.ico" />
@@ -318,6 +320,7 @@
     <Content Include="HttpBL.csproj" />
     <Content Include="Login\Images\berkeley.edu.png" />
     <Content Include="Login\Images\lbnl.gov.png" />
+    <Content Include="Login\Images\padlock.jpg" />
     <Content Include="Login\Images\ucdavis.edu.png" />
     <Content Include="Login\Images\uci.edu.gif" />
     <Content Include="Login\Images\ucla.edu.gif" />
@@ -333,6 +336,7 @@
     <Content Include="Login\PresentationXML\MultiShibbolethLoginPresentation.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Login\SigninDisabled.html" />
     <Content Include="Profile\JavaScript\UCSF.js" />
     <Content Include="App_Themes\UCSF\UCSF.css" />
     <Content Include="Search\JavaScript\UCSF.js" />

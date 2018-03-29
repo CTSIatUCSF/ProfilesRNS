@@ -57,6 +57,7 @@ GO
 CREATE TABLE [UCSF.].[Theme](
 	[Theme] [nvarchar](50) NOT NULL,
 	[BasePath] [nvarchar](50) NOT NULL,
+	[GATrackingId] [nvarchar](50) NULL,
 	[Shared] bit NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
@@ -175,6 +176,7 @@ GO
 CREATE VIEW [UCSF.].[vwBrand] AS  
 SELECT DISTINCT t.Theme,
 	   t.BasePath,
+	   t.GATrackingID,
 	   CASE WHEN t.Shared = 1 THEN NULL ELSE a.InstitutionAbbreviation END AS InstitutionAbbreviation,
 	   CASE WHEN t.Theme = 'UC' THEN 'UC Health' ELSE NULL END AS PersonFilter -- note that this is hacked to do what we need it to do. For a view, that is sort of OK
 FROM [UCSF.].[Theme] t
@@ -350,6 +352,21 @@ GO
 --	Create Stored Procedures
 --
 ---------------------------------------------------------------------------------------------------------------------
+
+/****** Object:  StoredProcedure [UCSF.].[[CreateNewLogins]]    Script Date: 10/11/2013 10:52:39 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [UCSF.].[CreateNewLogins] 
+AS
+BEGIN
+	UPDATE [User.Account].[User] set UserName = [UCSF.].fn_InternalUserName2UserName(InternalUserName) where UserName is null and InternalUserName is not null
+END
+
+GO
 
 /****** Object:  StoredProcedure [UCSF.].[CreatePrettyURLs]    Script Date: 10/11/2013 10:52:39 ******/
 SET ANSI_NULLS ON

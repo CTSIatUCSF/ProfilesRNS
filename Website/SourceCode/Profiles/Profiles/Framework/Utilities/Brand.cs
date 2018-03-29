@@ -14,6 +14,7 @@ namespace Profiles.Framework.Utilities
 
         public string Theme { get; set; }
         public string BasePath { get; set; }
+        public string GATrackingID { get; set; }
         public Institution InstitutionObj { get; set; }
         public string PersonFilter { get; set; }
 
@@ -31,6 +32,12 @@ namespace Profiles.Framework.Utilities
         {
             Brand brand = GetCurrentBrand();
             return brand != null ? brand.BasePath : Root.Domain;
+        }
+
+        public static string GetGATrackingID()
+        {
+            Brand brand = GetCurrentBrand();
+            return brand != null ? brand.GATrackingID : null;
         }
 
         public static string GetDomainMatching(string URL)
@@ -123,10 +130,11 @@ namespace Profiles.Framework.Utilities
             return InstitutionObj;
         }
 
-        public Brand(string Theme, string BasePath, Institution Institution, string PersonFilter)
+        public Brand(string Theme, string BasePath, string GATrackingID, Institution Institution, string PersonFilter)
         {
             this.Theme = Theme;
             this.BasePath = BasePath;
+            this.GATrackingID = GATrackingID;
             this.InstitutionObj = Institution;
             this.PersonFilter = PersonFilter;
 

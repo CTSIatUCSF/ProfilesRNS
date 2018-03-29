@@ -61,7 +61,7 @@ namespace Profiles.Framework.Utilities
         {
             //		AppRelativeVirtualPath	"~/about/AboutProfiles.aspx"	string
             string directory = page.AppRelativeVirtualPath.Split('/')[1];
-            string cacheKey = "PresentationXML:" + directory + "/" + fileName;
+            string cacheKey = "PresentationXML:" + directory + "/" + fileName + ":" +  page.Theme;
             string contents = (string)Framework.Utilities.Cache.FetchObject(cacheKey);
             if (contents != null)
             {

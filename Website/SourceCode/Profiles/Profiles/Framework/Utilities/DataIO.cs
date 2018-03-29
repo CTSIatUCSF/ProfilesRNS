@@ -927,11 +927,11 @@ namespace Profiles.Framework.Utilities
             //new Brand(Brand.DefaultBrandName, Brand.GetSystemTheme(), null, GetRESTBasePath(), true);
 
             using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
-                "select Theme, BasePath, InstitutionAbbreviation, PersonFilter from [UCSF.].[vwBrand]", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+                "select Theme, BasePath, GATrackingID, InstitutionAbbreviation, PersonFilter from [UCSF.].[vwBrand]", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    new Brand(reader[0].ToString(), reader[1].ToString(), Institution.GetByAbbreviation(reader[2].ToString()), reader[3].ToString());
+                    new Brand(reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), Institution.GetByAbbreviation(reader[3].ToString()), reader[4].ToString());
                 }
             }
         }

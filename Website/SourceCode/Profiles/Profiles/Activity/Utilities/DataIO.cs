@@ -400,29 +400,29 @@ namespace Profiles.Activity.Utilities
 
         private string GetBrandedJoin()
         {
-            if (!String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
+            if (Brand.GetCurrentBrand() == null || String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
             {
-                return " join [Profile.Data].[Person.FilterRelationship] r on p.personid = r.personid join [Profile.Data].[Person.Filter] f on r.personfilterid = f.personfilterid";
+                return "";
             }
             else
             {
-                return "";
+                return " join [Profile.Data].[Person.FilterRelationship] r on p.personid = r.personid join [Profile.Data].[Person.Filter] f on r.personfilterid = f.personfilterid";
             }
         }
 
         private string GetBrandedWhere(string currentWhere)
         {
-            if (Brand.GetCurrentBrand().GetInstitution() != null)
+            if (Brand.GetCurrentBrand() != null && Brand.GetCurrentBrand().GetInstitution() != null)
             {
                 return currentWhere + " and p.institutionabbreviation = '" + Brand.GetCurrentBrand().GetInstitution().GetAbbreviation() + "'";
             }
-            else if (!String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
+            else if (Brand.GetCurrentBrand() == null || String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
             {
-                return currentWhere + " and f.personfilter = '" + Brand.GetCurrentBrand().PersonFilter + "'";
+                return currentWhere;
             }
             else
             {
-                return currentWhere;
+                return currentWhere + " and f.personfilter = '" + Brand.GetCurrentBrand().PersonFilter + "'";
             }
         }
 

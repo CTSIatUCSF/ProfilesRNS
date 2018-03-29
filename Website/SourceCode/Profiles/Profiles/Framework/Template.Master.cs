@@ -169,17 +169,16 @@ namespace Profiles.Framework
             //}
 
 
-            if (ConfigurationManager.AppSettings["GoogleAnalytics.TrackingID"] != null && !ConfigurationManager.AppSettings["GoogleAnalytics.TrackingID"].ToString().Trim().IsNullOrEmpty())
+            if (Brand.GetGATrackingID() != null)
             {
                 HtmlGenericControl gaTrackingjs = new HtmlGenericControl("script");
-
+                // UCSF Maybe it is OK to have this other stuff be site wide in Godzilla? NULL is certainly OK
                 string domain = ConfigurationManager.AppSettings["GoogleAnalytics.Domain"] != null ? ConfigurationManager.AppSettings["GoogleAnalytics.Domain"].ToString().Trim() : null;
                 string trackingID2 = ConfigurationManager.AppSettings["GoogleAnalytics.TrackingID2"] != null ? ConfigurationManager.AppSettings["GoogleAnalytics.TrackingID2"].ToString().Trim() : null;
                 string domain2 = ConfigurationManager.AppSettings["GoogleAnalytics.Domain2"] != null ? ConfigurationManager.AppSettings["GoogleAnalytics.Domain2"].ToString().Trim() : null;
 
                 gaTrackingjs.Attributes.Add("type", "text/javascript");
-                gaTrackingjs.InnerHtml = GetUniversalAnalyticsJavascipt(
-                        ConfigurationManager.AppSettings["GoogleAnalytics.TrackingID"].ToString().Trim(), domain, trackingID2, domain2);
+                gaTrackingjs.InnerHtml = GetUniversalAnalyticsJavascipt(Brand.GetGATrackingID(), domain, trackingID2, domain2);
 
                 Page.Header.Controls.Add(gaTrackingjs);
             }

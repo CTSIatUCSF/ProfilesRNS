@@ -65,14 +65,16 @@ namespace Profiles.Login.Modules.MultiShibLogin
                 {
                     Session session = sm.Session();
                     string remainingDomains = String.IsNullOrEmpty(Request["remainingDomains"]) ? String.Empty : Request["remainingDomains"];
-                    string userNameHeader = Request["userNameHeader"];
-                    string displayNameHeader = Request["displayNameHeader"];
 
                     if (String.IsNullOrEmpty(Request["sessionId"]))
                     {
                         Profiles.Login.Utilities.DataIO data = new Profiles.Login.Utilities.DataIO();
                         // they just logged in
                         bool inProfiles = false;
+
+                        string userNameHeader = Request["userNameHeader"];
+                        string displayNameHeader = Request["displayNameHeader"];
+
                         string userName = Request.Headers.Get(userNameHeader); //"025693078";
                         Framework.Utilities.DebugLogging.Log("Logging in " + userName);
                         if (userName != null && userName.Trim().Length > 0)
@@ -97,7 +99,7 @@ namespace Profiles.Login.Modules.MultiShibLogin
                         session.SessionID = Request["sessionId"];
                         data.SessionUpdate(ref session);
                     }
-                    Response.Redirect(GetRedirect(true, remainingDomains, session.SessionID, userNameHeader, displayNameHeader, redirectto));
+                    Response.Redirect(GetRedirect(true, remainingDomains, session.SessionID, "", "", redirectto));
                 }
             }
         }

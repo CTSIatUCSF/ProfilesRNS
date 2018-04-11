@@ -113,12 +113,14 @@ namespace Profiles.Login.Modules.MultiShibLogin
         protected void cmdSubmit_Click(object sender, EventArgs e)
         {
 
-            // root.domain (the one that matches the domain of the Shibboleth.LoginURL) needs to be first 
-            string remainingDomains = Root.Domain + ",";
+            // the Domain that matches that of the Shibboleth.LoginURL needs to be first 
+            Uri shibbolethLogin = new Uri(ConfigurationManager.AppSettings["Shibboleth.LoginURL"]);
+            string shibDomain = shibbolethLogin.Scheme + "://" + shibbolethLogin.Host;
+            string remainingDomains = shibDomain  + ",";
             // go through all the different Domains
             foreach (Brand brand in Brand.GetAll())
             {
-                if (!brand.BasePath.Equals(Root.Domain))
+                if (!brand.BasePath.Equals(shibDomain))
                 {
                     remainingDomains += brand.BasePath + ",";
                 }

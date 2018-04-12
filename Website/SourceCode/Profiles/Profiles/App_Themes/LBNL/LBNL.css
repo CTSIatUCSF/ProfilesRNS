@@ -28,7 +28,7 @@
 }
 #powered-by-block  a:hover { text-decoration: underline; color: #fff; }
 #powered-by-block a.last-item { border: none; padding-right: 0; }
-#navbarsearch { top: -73px; }
+#navbarsearch { top: -63px; }
 
 /* LINK Color */
 .profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000; }

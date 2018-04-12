@@ -47,43 +47,30 @@
 </div>
 <div id="suckerfish-container">
     <div id="suckerfishmenu">
-		<ul class="menu">
-			<li class="item-home"><a href="<%=GetURLDomain()%>">Search Options</a>
-				<ul>
-					<li><a href="<%=GetDomainFor("UCD")%>/search/">UC Davis</a></li>
-					<li><a href="<%=GetDomainFor("UCI")%>/search/">UCI</a></li>
-					<li><a href="<%=GetDomainFor("UCLA")%>/search/">UCLA</a></li>
-					<li><a href="<%=GetDomainFor("UCSD")%>/search/">UCSD</a></li>
-					<li><a href="<%=GetDomainFor("UCSF")%>/search/">UCSF</a></li>
-					<li><a href="<%=GetDomainFor("UC")%>/search/">All UC Health</a></li>
-					<li><a href="<%=GetDomainFor("LBNL")%>/search/">Berkeley Lab</a></li>
-					<li><a href="<%=GetDomainFor("USC")%>/search/">USC</a></li>
-					<li><a href="<%=GetDomainFor("Default")%>/search/">All</a></li>
-				</ul>
-			</li>
-			<li id="about"><a href="<%=GetURLDomain()%>/about/AboutProfiles.aspx">About</a></li>
-			<li id="contact"><a href="<%=GetURLDomain()%>/about/Help.aspx">Help</a></li>
-<!--
-			<li id="signin"><a href="<%=GetURLDomain()%>/login/default.aspx?method=login&amp;edit=true" id="signinlink">Sign in</a>
-				to see private stats on your profile page — or add photo, interests, videos, mentoring, etc.</li>
-				-->
-		</ul>
+		<div class="activeContainer" id="defaultmenu">
+			<ul class="menu">
+				<span runat="server" id="panelMenu" visible="true"></span>
+				<li id="about"><a href="<%=GetURLDomain()%>/about/AboutProfiles.aspx">ABOUT</a></li>
+				<li id="contact"><a href="<%=GetURLDomain()%>/about/Help.aspx">HELP</a></li>
+				<li class="item-home"><a href="<%=GetURLDomain()%>">SEARCH OPTIONS</a>
+					<ul>
+						<li><a href="<%=GetDomainFor("UCD")%>/search/">UC Davis</a></li>
+						<li><a href="<%=GetDomainFor("UCI")%>/search/">UCI</a></li>
+						<li><a href="<%=GetDomainFor("UCLA")%>/search/">UCLA</a></li>
+						<li><a href="<%=GetDomainFor("UCSD")%>/search/">UCSD</a></li>
+						<li><a href="<%=GetDomainFor("UCSF")%>/search/">UCSF</a></li>
+						<li><a href="<%=GetDomainFor("UC")%>/search/">All UC Health</a></li>
+						<li><a href="<%=GetDomainFor("LBNL")%>/search/">Berkeley Lab</a></li>
+						<li><a href="<%=GetDomainFor("USC")%>/search/">USC</a></li>
+						<li><a href="<%=GetDomainFor("Default")%>/search/">All</a></li>
+					</ul>
+				</li>
+			</ul>
+<!--			<HistoryItem:History runat="server" ID="ProfileHistory" Visible="false" />  -->
+		</div>
 	</div>
 </div>
 
 
-<!-- UCSF, this is the Harvard stuff. We might show this and hide it but we should find a better way -->
-<div class="activeContainer" id="defaultmenu">
-    <div class="activeContainerTop"></div>
-    <div class="activeContainerCenter">
-        <div class="activeSection">
-            <div class="activeSectionHead">Menu</div>
-            <div class="activeSectionBody">
-                <div runat="server" id="panelMenu" visible="true"></div>
-            </div>
-        </div>
-        <HistoryItem:History runat="server" ID="ProfileHistory" Visible="false" />
-    </div>
-    <div class="activeContainerBottom"></div>
-</div>
+
 

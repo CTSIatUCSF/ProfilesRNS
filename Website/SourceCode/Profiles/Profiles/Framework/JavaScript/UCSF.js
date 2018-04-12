@@ -1,39 +1,23 @@
 ﻿$(document).ready(function () {
     // logged in/out subnav
   if ($('#defaultmenu') && $('#defaultmenu').length) {
-    $('#defaultmenu ul').addClass('mainmenu');
     $(".mainmenu li:contains('RDF')").addClass('rdf').appendTo('.profilesMainColumnRight').hide();
-    if ($('.mainmenu li').last().text() == 'Login to Profiles') {
-		$('.mainmenu li').last().addClass('signin');
-		$('.signin a').text('Sign in');
-		$('.signin').append(' <span> to edit your profile (add photo, interests, videos, mentoring, etc.)</span>');
-    }
-	for (var index = 3; index < $('.mainmenu li').length; index++) {
-		$('.mainmenu li').eq(index).clone().appendTo('.menu');
-	}
-	$('.menu li img').parent().addClass('photo');
-	$('.photo').next().addClass('editmy');
-	$('.photo img').prependTo('.editmy a').wrap('<div id="menuthumb" />');
-	$('.photo').remove();
 	$(".menu:contains('Proxies')").addClass('auth');
 	$(".menu:contains('Edit This Profile')").addClass('proxy');
   }
-
+ 
     // copyright year
 	if ($('#copyright-year') && $('#copyright-year').length) {
 		$("#copyright-year").text( (new Date).getFullYear() );
 	}
 	
     // navbarsearch
-    // remove from network pages - still necessary?
-	if ($('.nonavbar') && $('.nonavbar').length) {
-        $('#navbarsearch').remove();
-    }
-    // scope text drawn from selected option's title
-	$('#nav-search-in-content').text($('#searchDropdownBox select').find("option:selected").attr("title"));
-	$('#searchDropdownBox select').change(function() {
-		$('#nav-search-in-content').text($(this).find("option:selected").attr("title"));
-    });
+	if ($('#nav-search-in-content') && $('#nav-search-in-content').length) {
+		$('#nav-search-in-content').text($('#searchDropdownBox select').find("option:selected").attr("title"));
+		$('#searchDropdownBox select').change(function() {
+			$('#nav-search-in-content').text($(this).find("option:selected").attr("title"));
+		});
+	}
 
     // Back to top http://typicalwhiner.com/116/effortless-jquery-floating-back-to-top-script-v2/
 	// Not used on network pages

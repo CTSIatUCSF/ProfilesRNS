@@ -112,18 +112,21 @@ namespace Profiles.Login.Modules.MultiShibLogin
 
         protected void cmdSubmit_Click(object sender, EventArgs e)
         {
-
-            // the Domain that matches that of the Shibboleth.LoginURL needs to be first 
-            Uri shibbolethLogin = new Uri(ConfigurationManager.AppSettings["Shibboleth.LoginURL"]);
-            string shibDomain = shibbolethLogin.Scheme + "://" + shibbolethLogin.Host;
-            string remainingDomains = shibDomain  + ",";
+            string remainingDomains = Root.Domain + ",";
             // go through all the different Domains
             foreach (Brand brand in Brand.GetAll())
             {
-                if (!brand.BasePath.Equals(shibDomain))
+                if (!brand.BasePath.Equals(Root.Domain))
                 {
                     remainingDomains += brand.BasePath + ",";
                 }
+            }
+            // Make sure that the first domain matches that of the Shibboleth.LoginURL. 
+            // If it does not then add it and assume the person who set up Profiles on this server knew what they were doing!
+            Uri shibbolethLogin = new Uri(ConfigurationManager.AppSettings["Shibboleth.LoginURL"]);
+            if (!remainingDomains.Split(',')[0].Contains(shibbolethLogin.Host))
+            {
+                remainingDomains = shibbolethLogin.Scheme + "://" + shibbolethLogin.Host + "," + remainingDomains;
             }
 
             // Have login to just one Shibboleth instance and then just pass SessionID to everyone

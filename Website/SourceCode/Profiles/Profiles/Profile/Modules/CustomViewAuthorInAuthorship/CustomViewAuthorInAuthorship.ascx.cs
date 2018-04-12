@@ -70,7 +70,7 @@ namespace Profiles.Profile.Modules
 
 
             // Login link
-            loginLiteral.Text = String.Format("<a href='{0}'>login</a>", Brand.GetDomain() + "/login/default.aspx?pin=send&method=login&edit=true");
+            loginLiteral.Text = String.Format("<a href='{0}'>login</a>", Brand.GetThemedDomain() + "/login/default.aspx?pin=send&method=login&edit=true");
 
             Framework.Utilities.DebugLogging.Log("PUBLICATION MODULE end Milliseconds:" + (DateTime.Now - d).TotalSeconds);
 

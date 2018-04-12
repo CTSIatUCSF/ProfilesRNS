@@ -59,7 +59,7 @@ namespace Profiles.Framework.Modules.NetworkList
 
             XslCompiledTransform xslt = new XslCompiledTransform();
             XsltArgumentList args = new XsltArgumentList();
-            args.AddParam("root", "", Brand.GetDomain());
+            args.AddParam("root", "", Brand.GetThemedDomain());
 
             litListView.Text = XslHelper.TransformInMemory(Server.MapPath("~/Profile/Modules/NetworkList/NetworkList.xslt"), args, document.OuterXml);
         }

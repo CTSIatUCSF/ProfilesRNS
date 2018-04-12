@@ -138,7 +138,7 @@ namespace Profiles.ORCID.Utilities
         private void LoadAssets()
         {
             HtmlLink ORCIDcss = new HtmlLink();
-            ORCIDcss.Href = Brand.GetDomain() + "/ORCID/CSS/ORCID.css";
+            ORCIDcss.Href = Brand.GetThemedDomain() + "/ORCID/CSS/ORCID.css";
             ORCIDcss.Attributes["rel"] = "stylesheet";
             ORCIDcss.Attributes["type"] = "text/css";
             ORCIDcss.Attributes["media"] = "all";
@@ -146,7 +146,7 @@ namespace Profiles.ORCID.Utilities
 
             HtmlGenericControl ORCIDjs = new HtmlGenericControl("script");
             ORCIDjs.Attributes.Add("type", "text/javascript");
-            ORCIDjs.Attributes.Add("src", Brand.GetDomain() + "/ORCID/JavaScript/orcid.js?v=1");
+            ORCIDjs.Attributes.Add("src", Brand.GetThemedDomain() + "/ORCID/JavaScript/orcid.js?v=1");
             Page.Header.Controls.Add(ORCIDjs);
         }
     }

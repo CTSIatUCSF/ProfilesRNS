@@ -39,7 +39,7 @@ namespace Profiles.Profile.Modules.NetworkCluster
         protected void InitAssets()
         {
             System.Web.UI.HtmlControls.HtmlLink NetworkBrowsercss = new System.Web.UI.HtmlControls.HtmlLink();
-            NetworkBrowsercss.Href = Brand.GetDomain() + "/Profile/CSS/NetworkBrowser.css";
+            NetworkBrowsercss.Href = Brand.GetThemedDomain() + "/Profile/CSS/NetworkBrowser.css";
             NetworkBrowsercss.Attributes["rel"] = "stylesheet";
             NetworkBrowsercss.Attributes["type"] = "text/css";
             NetworkBrowsercss.Attributes["media"] = "all";
@@ -47,27 +47,27 @@ namespace Profiles.Profile.Modules.NetworkCluster
 
             HtmlGenericControl jsscript0 = new HtmlGenericControl("script");
             jsscript0.Attributes.Add("type", "text/javascript");
-            jsscript0.Attributes.Add("src", Brand.GetDomain() + "/Profile/Modules/NetworkRadial/JavaScript/watchdog.js");
+            jsscript0.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/NetworkRadial/JavaScript/watchdog.js");
             Page.Header.Controls.Add(jsscript0);
 
             HtmlGenericControl jsscript1 = new HtmlGenericControl("script");
             jsscript1.Attributes.Add("type", "text/javascript");
-			jsscript1.Attributes.Add("src", Brand.GetDomain() + "/Profile/Modules/NetworkCluster/scriptaculous/lib/prototype.js");
+			jsscript1.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/NetworkCluster/scriptaculous/lib/prototype.js");
             Page.Header.Controls.Add(jsscript1);
 
             HtmlGenericControl jsscript2 = new HtmlGenericControl("script");
             jsscript2.Attributes.Add("type", "text/javascript");
-			jsscript2.Attributes.Add("src", Brand.GetDomain() + "/Profile/Modules/NetworkCluster/scriptaculous/src/scriptaculous.js");
+			jsscript2.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/NetworkCluster/scriptaculous/src/scriptaculous.js");
             Page.Header.Controls.Add(jsscript2);
 
             HtmlGenericControl jsscript3 = new HtmlGenericControl("script");
             jsscript3.Attributes.Add("type", "text/javascript");
-            jsscript3.Attributes.Add("src", Brand.GetDomain() + "/Profile/Modules/NetworkCluster/JavaScript/networkBrowserClass.js");
+            jsscript3.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/NetworkCluster/JavaScript/networkBrowserClass.js");
             Page.Header.Controls.Add(jsscript3);
 
             HtmlGenericControl jsscript4 = new HtmlGenericControl("script");
             jsscript4.Attributes.Add("type", "text/javascript");
-            jsscript4.Attributes.Add("src", Brand.GetDomain() + "/Profile/Modules/NetworkCluster/JavaScript/networkClusterLayoutEngine.js");
+            jsscript4.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/NetworkCluster/JavaScript/networkClusterLayoutEngine.js");
             Page.Header.Controls.Add(jsscript4);
 
             HtmlGenericControl jsscript5 = new HtmlGenericControl("script");
@@ -79,7 +79,7 @@ namespace Profiles.Profile.Modules.NetworkCluster
             HtmlGenericControl script = new HtmlGenericControl("script");
             script.Attributes.Add("type", "text/javascript");
             script.InnerHtml = "function loadClusterView() {" +
-                " network_browser.Init('" + Brand.GetDomain() + "/profile/modules/NetworkCluster/NetworkClusterSvc.aspx?p='); " +
+                " network_browser.Init('" + Brand.GetThemedDomain() + "/profile/modules/NetworkCluster/NetworkClusterSvc.aspx?p='); " +
                 " network_browser.loadNetwork('" + Request.QueryString["Subject"].ToString() + "'); " +
                 "};";
             Page.Header.Controls.Add(script);
@@ -89,12 +89,12 @@ namespace Profiles.Profile.Modules.NetworkCluster
             RDFTriple request = new RDFTriple(Convert.ToInt64(Request.QueryString["subject"]));
             XmlDocument x = data.GetProfileNetworkForBrowserXML(request);
             System.Xml.Xsl.XsltArgumentList args = new System.Xml.Xsl.XsltArgumentList();
-            args.AddParam("root", "", Brand.GetDomain());
+            args.AddParam("root", "", Brand.GetThemedDomain());
             DateTime d = DateTime.Now;
             System.Xml.Xsl.XslCompiledTransform xslt = new System.Xml.Xsl.XslCompiledTransform();
             litNetworkText.Text = Profiles.Framework.Utilities.XslHelper.TransformInMemory(Server.MapPath("~/profile/XSLT/NetworkTable.xslt"), args, x.InnerXml);
 
-            iFrameFlashGraph.Attributes.Add("data-src", Brand.GetDomain() + "/profile/Modules/NetworkClusterFlash/Default.aspx?Subject=" + Request.QueryString["subject"] + "&Predicate=" + Request.QueryString["Predicate"]);
+            iFrameFlashGraph.Attributes.Add("data-src", Brand.GetThemedDomain() + "/profile/Modules/NetworkClusterFlash/Default.aspx?Subject=" + Request.QueryString["subject"] + "&Predicate=" + Request.QueryString["Predicate"]);
 
         }
     }

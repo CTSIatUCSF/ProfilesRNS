@@ -56,22 +56,19 @@ namespace Profiles.Framework.Modules.MainMenu
             Utilities.DataIO data = new Profiles.Framework.Utilities.DataIO();
             menulist.Append("<ul>");
 
-            menulist.Append("<li><a href='" + Brand.GetDomain() + "/search'>Find People</a></li>");
-            menulist.Append("<li><a href='" + Brand.GetDomain() + "/search/all'>Find Everything</a></li>");
-
             //-50 is the profiles Admin
             if (data.GetSessionSecurityGroup() == -50)
-                menulist.Append("<li><a href='" + Brand.GetDomain() + "/SPARQL/default.aspx'>SPARQL Query</a></li>");
-
-            menulist.Append("<li><a href='" + Brand.GetDomain() + "/about/default.aspx'>About This Site</a></li>");
+                menulist.Append("<li><a href='" + Brand.GetThemedDomain() + "/SPARQL/default.aspx'>SPARQL Query</a></li>");
 
             Brand userBrand = Brand.GetCurrentBrand();
             // logged in Person
             if (sm.Session().NodeID > 0)
             {
                 userBrand = Brand.GetForSubject(sm.Session().NodeID);
-                menulist.Append("<li><img src='" + userBrand.BasePath + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + sm.Session().NodeID + "&Thumbnail=True&Width=20' width='20' height='40'></li>");
-                menulist.Append("<li><a href='" + UCSFIDSet.ByNodeId[sm.Session().NodeID].PrettyURL + "'>" + sm.Session().DisplayName + "</a></li>");
+                menulist.Append("<li id='myprofile'><a href='" + UCSFIDSet.ByNodeId[sm.Session().NodeID].PrettyURL 
+					+ "'><div id='menuthumb'><img src='" + userBrand.BasePath + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" 
+					+ sm.Session().NodeID + "&Thumbnail=True&Width=20' width='20' alt=''></div>"
+					+ sm.Session().DisplayName + "</a></li>");
             }
             else if (!String.IsNullOrEmpty(sm.Session().DisplayName)) // logged in person
             {
@@ -80,7 +77,7 @@ namespace Profiles.Framework.Modules.MainMenu
             
             if (sm.Session().NodeID > 0)
             {
-                menulist.Append("<li><a href='" + userBrand.BasePath + "/login/default.aspx?method=login&edit=true'>Edit My Profile</a></li>");
+                menulist.Append("<li id='editmy'><a href='" + userBrand.BasePath + "/login/default.aspx?method=login&edit=true'>Edit Your Profile</a></li>");
             }
 
 
@@ -93,7 +90,7 @@ namespace Profiles.Framework.Modules.MainMenu
             // ORNG 
             if (sm.Session().NodeID > 0)
             {
-                menulist.Append("<li><a href='" + userBrand.BasePath + "/ORNG/Dashboard.aspx?owner=" + sm.Session().PersonURI + "'>See My Dashboard</a></li>");
+                menulist.Append("<li id='dashboard'><a href='" + userBrand.BasePath + "/ORNG/Dashboard.aspx?owner=" + sm.Session().PersonURI + "'>Dashboard</a></li>");
             }
 
             if (sm.Session().NodeID > 0)
@@ -143,12 +140,13 @@ namespace Profiles.Framework.Modules.MainMenu
             {
                 if (!Root.AbsolutePath.Contains("login"))
                 {
-                    menulist.Append("<li><a href='" + Brand.GetDomain() + "/login/default.aspx?pin=send&method=login&redirectto=" + Brand.GetDomain() + Root.AbsolutePath + "'>Login to Profiles</a></li>");
+                    menulist.Append("<li id='signin'><a href='" + Brand.GetThemedDomain() + "/login/default.aspx?pin=send&method=login&redirectto=" + Brand.GetThemedDomain() + Root.AbsolutePath 
+						+ "'>SIGN IN TO EDIT</a></li>");
                 }
             }
             else
             {
-                menulist.Append("<li><a href='" + Brand.GetDomain() + "/login/default.aspx?method=logout&redirectto=" + Brand.GetDomain() + "/About/CloseBrowser.aspx" + "'>Sign out</a></li>");
+                menulist.Append("<li><a href='" + Brand.GetThemedDomain() + "/login/default.aspx?method=logout&redirectto=" + Brand.GetThemedDomain() + "/About/CloseBrowser.aspx" + "'>SIGN OUT</a></li>");
             }
 
             menulist.Append("</ul>");
@@ -191,7 +189,7 @@ namespace Profiles.Framework.Modules.MainMenu
         // For megasearch items
         public string GetURLDomain()
         {
-            return Brand.GetDomain();
+            return Brand.GetThemedDomain();
         }
 
         public string GetDomainFor(String theme)
@@ -275,7 +273,7 @@ namespace Profiles.Framework.Modules.MainMenu
                 classGroupURI = searchTypeDropDownValue;
             }
 
-            Response.Redirect(Brand.GetDomain() + "/search/default.aspx?searchtype=" + searchType +
+            Response.Redirect(Brand.GetThemedDomain() + "/search/default.aspx?searchtype=" + searchType +
                                 "&searchfor=" + HttpUtility.UrlEncode(searchFor) +
                                 "&classgroupuri=" + HttpUtility.UrlEncode(classGroupURI) +
                                 "&institution=" + HttpUtility.UrlEncode(institution) +

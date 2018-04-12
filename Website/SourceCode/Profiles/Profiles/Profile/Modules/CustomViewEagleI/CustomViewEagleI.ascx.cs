@@ -42,7 +42,7 @@ namespace Profiles.Profile.Modules
             litHead.Text = "<table><tr><td><table style='width:480px;font-weight:bold;color:#888;padding:5px 0px;'>" +
                 "<tr><td valign='top' xstyle='width:90%'>This researcher has shared information about their research resources <br/>in the eagle-i Network.  To update or add resource records, contact <br/>" +
                 "<a href='mailto:" + eagleIEmail + "'>" + eagleIEmail + "</a>.</td>" +
-                "</tr></table></td><td align='center' valign='middle'><img src='" + Brand.GetDomain() + "/profile/modules/CustomViewEagleI/Images/logo.gif'/></td></tr></table>";
+                "</tr></table></td><td align='center' valign='middle'><img src='" + Brand.GetThemedDomain() + "/profile/modules/CustomViewEagleI/Images/logo.gif'/></td></tr></table>";
                 
 
             for (int i = 0; i < reader.Count; i++)

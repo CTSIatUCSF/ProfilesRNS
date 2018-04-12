@@ -80,7 +80,7 @@ namespace Profiles.ORCID.Modules.CustomEditORCID
 
             base.GetNetworkProfile(this.SubjectID, this.PredicateID);
 
-            litBackLink.Text = "<a href='" + Brand.GetDomain() + "/edit/" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+            litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
 
 
             securityOptions.Subject = this.SubjectID;
@@ -134,7 +134,7 @@ namespace Profiles.ORCID.Modules.CustomEditORCID
             if (data.GetSessionSecurityGroup() == -50)
             {
                 pnlORCIDAdmin.Visible = true;
-                litORCIDAdmin.Text = "<img src='" + Brand.GetDomain() + "/framework/images/icon_squareArrow.gif' border='0'/>&nbsp;<a href='" + Brand.GetDomain() + "/ORCID/CreateBatch.aspx'>Batch Upload</a><br><img src='" + Brand.GetDomain() + "/framework/images/icon_squareArrow.gif' border='0'/>&nbsp;<a href='" + Brand.GetDomain() + "/ORCID/UpdateSecurityGroupDefaultDecisions.aspx'>ORCID Privacy Mapping</a></li>";
+                litORCIDAdmin.Text = "<img src='" + Brand.GetThemedDomain() + "/framework/images/icon_squareArrow.gif' border='0'/>&nbsp;<a href='" + Brand.GetThemedDomain() + "/ORCID/CreateBatch.aspx'>Batch Upload</a><br><img src='" + Brand.GetThemedDomain() + "/framework/images/icon_squareArrow.gif' border='0'/>&nbsp;<a href='" + Brand.GetThemedDomain() + "/ORCID/UpdateSecurityGroupDefaultDecisions.aspx'>ORCID Privacy Mapping</a></li>";
             }
 
         }

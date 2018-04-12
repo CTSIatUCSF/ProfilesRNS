@@ -52,14 +52,14 @@ namespace Profiles.ORNG.JSONLD
             }
             else
             {
-                Response.Redirect(Profiles.Framework.Utilities.Brand.GetDomain() + "/ORNG/JSONLD/Test.htm");
+                Response.Redirect(Profiles.Framework.Utilities.Brand.GetThemedDomain() + "/ORNG/JSONLD/Test.htm");
             }
 
             Response.Clear();
             Response.Charset = "charset=UTF-8";
             Response.StatusCode = Convert.ToInt16("200");
 
-            string URL = Profiles.Framework.Utilities.Brand.GetDomain() + "/Profile/Profile.aspx?Subject=" + nodeid;
+            string URL = Profiles.Framework.Utilities.Brand.GetThemedDomain() + "/Profile/Profile.aspx?Subject=" + nodeid;
             if (predicate != null) 
                 URL += "&Predicate=" + predicate;
             if (obj != null) 

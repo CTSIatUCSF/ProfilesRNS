@@ -41,7 +41,7 @@ namespace Profiles.ORNG
             {
                 // go ahead and swap in the pretty URL
                 Literal backlink = (Literal)masterpage.FindControl("litBackLink");
-                backlink.Text = "<a href='" + Brand.GetDomain() + "/" +
+                backlink.Text = "<a href='" + Brand.GetThemedDomain() + "/" +
                     UCSFIDSet.ByNodeId[Convert.ToInt64(Request["owner"].Substring(Request["owner"].LastIndexOf("/") + 1))].PrettyURL + 
                     "'>Back to Profile</a>";
             }

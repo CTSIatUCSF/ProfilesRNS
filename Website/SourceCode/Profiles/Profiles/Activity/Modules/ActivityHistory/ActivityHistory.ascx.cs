@@ -111,13 +111,13 @@ namespace Profiles.Activity.Modules.ActivityHistory
 
         public string GetURLDomain()
         {
-            return Brand.GetDomain();
+            return Brand.GetThemedDomain();
         }
 
         private void LoadAssets()
         {
             HtmlLink Searchcss = new HtmlLink();
-            Searchcss.Href = Brand.GetDomain() + "/Activity/CSS/activity.css";
+            Searchcss.Href = Brand.GetThemedDomain() + "/Activity/CSS/activity.css";
             Searchcss.Attributes["rel"] = "stylesheet";
             Searchcss.Attributes["type"] = "text/css";
             Searchcss.Attributes["media"] = "all";
@@ -125,7 +125,7 @@ namespace Profiles.Activity.Modules.ActivityHistory
 
             // Inject script into HEADER
             Literal script = new Literal();
-            script.Text = "<script>var _path = \"" + Brand.GetDomain() + "\";</script>";
+            script.Text = "<script>var _path = \"" + Brand.GetThemedDomain() + "\";</script>";
             Page.Header.Controls.Add(script);
         }
     }

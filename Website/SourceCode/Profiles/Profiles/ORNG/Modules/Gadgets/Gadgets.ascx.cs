@@ -46,10 +46,10 @@ namespace Profiles.ORNG.Modules.Gadgets
                 XmlNode node = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/@rdf:about", base.Namespaces);
                 uri = node != null ? node.Value : null;
                 // we know the structure of the URI and need to take advantage of that
-                if (uri != null && uri.StartsWith(Brand.GetDomain() + "/profile/"))
+                if (uri != null && uri.StartsWith(Brand.GetThemedDomain() + "/profile/"))
                 {
-                    string suffix = uri.Substring((Brand.GetDomain() + "/profile/").Length);
-                    uri = Brand.GetDomain() + "/profile/" + suffix.Split('/')[0];
+                    string suffix = uri.Substring((Brand.GetThemedDomain() + "/profile/").Length);
+                    uri = Brand.GetThemedDomain() + "/profile/" + suffix.Split('/')[0];
                 }
             }
             else if ("True".Equals(base.GetModuleParamString("AllowSetOwnerFromRequest")))

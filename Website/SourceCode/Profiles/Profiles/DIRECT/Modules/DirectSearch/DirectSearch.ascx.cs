@@ -16,7 +16,7 @@ namespace Profiles.DIRECT.Modules.DirectSearch
     public partial class DirectSearch : System.Web.UI.UserControl
     {
         string KeywordString = string.Empty;
-        string directwaitingimageURL = Brand.GetDomain() + "/DIRECT/images/yui-loading.gif";
+        string directwaitingimageURL = Brand.GetThemedDomain() + "/DIRECT/images/yui-loading.gif";
 
         
 
@@ -32,7 +32,7 @@ namespace Profiles.DIRECT.Modules.DirectSearch
         {
 
             HtmlLink Displaycss = new HtmlLink();
-            Displaycss.Href = Brand.GetDomain() + "/DIRECT/CSS/Direct.css";
+            Displaycss.Href = Brand.GetThemedDomain() + "/DIRECT/CSS/Direct.css";
             Displaycss.Attributes["rel"] = "stylesheet";
             Displaycss.Attributes["type"] = "text/css";
             Displaycss.Attributes["media"] = "all";
@@ -173,10 +173,10 @@ namespace Profiles.DIRECT.Modules.DirectSearch
                 sb.Append(ColNames[i]);
 
                 if (ColIcons[i] == "1")
-                    sb.Append("<img src='" + Brand.GetDomain() + "/framework/images/sort_asc.gif' alt='Sort Descending'/>");
+                    sb.Append("<img src='" + Brand.GetThemedDomain() + "/framework/images/sort_asc.gif' alt='Sort Descending'/>");
 
                 if (ColIcons[i] == "2")
-                    sb.Append("<img src='" + Brand.GetDomain() + "/framework/images/sort_desc.gif' alt='Sort Ascending'/>");
+                    sb.Append("<img src='" + Brand.GetThemedDomain() + "/framework/images/sort_desc.gif' alt='Sort Ascending'/>");
 
                 sb.Append("</a>");
                 sb.Append("</td>");
@@ -271,7 +271,7 @@ namespace Profiles.DIRECT.Modules.DirectSearch
 
         public string DirectServiceURL()
         {
-            return Brand.GetDomain() + "/DIRECT/Modules/DirectSearch/DirectService.aspx";
+            return Brand.GetThemedDomain() + "/DIRECT/Modules/DirectSearch/DirectService.aspx";
         }
         public string DirectWaitingImageURL()
         {

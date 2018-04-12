@@ -107,7 +107,7 @@ namespace Profiles.Framework
                 Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
 
                 HttpContext.Current.Session["GLOBAL_ERROR"] = ex.Message + " ++ " + ex.StackTrace;
-                Response.Redirect(Brand.GetDomain() + "/error/default.aspx");
+                Response.Redirect(Brand.GetThemedDomain() + "/error/default.aspx");
             }
 
 
@@ -124,7 +124,7 @@ namespace Profiles.Framework
             //What application is currently being viewed then set the correct asset link.
 
             HtmlLink Profilescss = new HtmlLink();
-            Profilescss.Href = Brand.GetDomain() + "/Framework/CSS/profiles.css";
+            Profilescss.Href = Brand.GetThemedDomain() + "/Framework/CSS/profiles.css";
             Profilescss.Attributes["rel"] = "stylesheet";
             Profilescss.Attributes["type"] = "text/css";
             Profilescss.Attributes["media"] = "all";
@@ -132,7 +132,7 @@ namespace Profiles.Framework
             head.Controls.Add(Profilescss);
 
             HtmlLink DEFAULTcss = new HtmlLink();
-            DEFAULTcss.Href = Brand.GetDomain() + "/App_Themes/DEFAULT.css";
+            DEFAULTcss.Href = Brand.GetThemedDomain() + "/App_Themes/DEFAULT.css";
             DEFAULTcss.Attributes["rel"] = "stylesheet";
             DEFAULTcss.Attributes["type"] = "text/css";
             DEFAULTcss.Attributes["media"] = "all";
@@ -141,24 +141,24 @@ namespace Profiles.Framework
             
             HtmlGenericControl jsscript = new HtmlGenericControl("script");
             jsscript.Attributes.Add("type", "text/javascript");
-            jsscript.Attributes.Add("src", Brand.GetDomain() + "/Framework/JavaScript/profiles.js");
+            jsscript.Attributes.Add("src", Brand.GetThemedDomain() + "/Framework/JavaScript/profiles.js");
             Page.Header.Controls.Add(jsscript);
 
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");
-            UCSFjs.Attributes.Add("src", Brand.GetDomain() + "/Framework/JavaScript/UCSF.js");
+            UCSFjs.Attributes.Add("src", Brand.GetThemedDomain() + "/Framework/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
 
             // add one specific to the theme
             HtmlGenericControl ThemeJs = new HtmlGenericControl("script");
             ThemeJs.Attributes.Add("type", "text/javascript");
-            ThemeJs.Attributes.Add("src", Brand.GetDomain() + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".js");
+            ThemeJs.Attributes.Add("src", Brand.GetThemedDomain() + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".js");
             Page.Header.Controls.Add(ThemeJs);
 
             // UCSF. This is handy to have in JavaScript form and is required for ORNG
             HtmlGenericControl rootDomainjs = new HtmlGenericControl("script");
             rootDomainjs.Attributes.Add("type", "text/javascript");
-            rootDomainjs.InnerHtml = Environment.NewLine + "var _rootDomain = \"" + Brand.GetDomain() + "\";" + Environment.NewLine;
+            rootDomainjs.InnerHtml = Environment.NewLine + "var _rootDomain = \"" + Brand.GetThemedDomain() + "\";" + Environment.NewLine;
             Page.Header.Controls.Add(rootDomainjs);
 
             //The below statement was adding inline styles to the left side navigation. Not needed anymore.
@@ -191,7 +191,7 @@ namespace Profiles.Framework
 					<link rel='stylesheet' type='text/css' href='{0}/Framework/CSS/profiles-ie.css' />
 				<![endif]-->
 			",
-            Brand.GetDomain());
+            Brand.GetThemedDomain());
             Page.Header.Controls.Add(ieCss);
 
 
@@ -258,11 +258,11 @@ namespace Profiles.Framework
 
                             if (this.Tab != string.Empty)
                             {
-                                t.URL = Brand.GetDomain() + t.URL + "/" + newtab;
+                                t.URL = Brand.GetThemedDomain() + t.URL + "/" + newtab;
                             }
                             else
                             {
-                                t.URL = Brand.GetDomain() + t.URL;
+                                t.URL = Brand.GetThemedDomain() + t.URL;
                             }
 
 
@@ -280,20 +280,20 @@ namespace Profiles.Framework
                                 if (url.Length == 2)
                                 {
 
-                                    t.URL = Brand.GetDomain() + Root.AbsolutePath + "/" + t.URL;
+                                    t.URL = Brand.GetThemedDomain() + Root.AbsolutePath + "/" + t.URL;
                                 }
                                 else
                                 {
                                     for (int i = 0; i < url.Length - 1; i++)
                                         buffer = buffer + url[i] + "/";
 
-                                    t.URL = Brand.GetDomain() + buffer + t.URL;
+                                    t.URL = Brand.GetThemedDomain() + buffer + t.URL;
                                 }
 
                             }
                             else
                             {
-                                t.URL = Brand.GetDomain() + Root.AbsolutePath + "/" + t.URL;
+                                t.URL = Brand.GetThemedDomain() + Root.AbsolutePath + "/" + t.URL;
                             }
 
                             tabs.Append(Framework.Utilities.Tabs.DrawDisabledTab(t.Name, t.URL));
@@ -411,7 +411,7 @@ namespace Profiles.Framework
                 {
                     buffer = "<span itemprop=\"name\">" + buffer + "</span>";
                 }
-                litPageTitle.Text = "<h2><a><img class=\"pageIcon\" src=\"" + Brand.GetDomain() + "/Framework/Images/icon_" + PresentationClass + ".gif\"/></a>" + buffer + "</h2>";
+                litPageTitle.Text = "<h2><a><img class=\"pageIcon\" src=\"" + Brand.GetThemedDomain() + "/Framework/Images/icon_" + PresentationClass + ".gif\"/></a>" + buffer + "</h2>";
             }
 
             // PageSubTitle
@@ -436,9 +436,9 @@ namespace Profiles.Framework
                 string url = string.Empty;
 
                 if (PageBackLinkURL.Contains("~/"))
-                    url = Brand.GetDomain() + "/" + PageBackLinkURL.Replace("~/", "");
+                    url = Brand.GetThemedDomain() + "/" + PageBackLinkURL.Replace("~/", "");
                 else if (PageBackLinkURL.Contains("~"))
-                    url = Brand.GetDomain() + PageBackLinkURL.Replace("~", "");
+                    url = Brand.GetThemedDomain() + PageBackLinkURL.Replace("~", "");
                 else
                     url = Brand.CleanURL(PageBackLinkURL);
 
@@ -593,7 +593,7 @@ namespace Profiles.Framework
 
         public string GetURLDomain()
         {
-            return Brand.GetDomain();
+            return Brand.GetThemedDomain();
         }
 
         public string GetVersion()

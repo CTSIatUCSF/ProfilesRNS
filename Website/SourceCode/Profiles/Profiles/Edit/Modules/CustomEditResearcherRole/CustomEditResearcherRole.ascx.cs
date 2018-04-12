@@ -135,7 +135,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             data = new Edit.Utilities.DataIO();
             string predicateuri = Request.QueryString["predicateuri"].Replace("!", "#");
             this.PropertyListXML = propdata.GetPropertyList(this.BaseData, base.PresentationXML, predicateuri, false, true, false);
-            litBackLink.Text = "<a Title='Edit Menu' href='" + Brand.GetDomain() + "/edit/" + _subject + "'>Edit Menu</a>" + " &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+            litBackLink.Text = "<a Title='Edit Menu' href='" + Brand.GetThemedDomain() + "/edit/" + _subject + "'>Edit Menu</a>" + " &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
             LoadProjectYears();
             FillResearchGrid(true);
             
@@ -323,7 +323,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             {
                 _rowzero = true;
                 Image img = (Image)e.Row.FindControl("imgArrow");
-                img.ImageUrl = Brand.GetDomain() + "/Edit/images/img_arrow.png";
+                img.ImageUrl = Brand.GetThemedDomain() + "/Edit/images/img_arrow.png";
             }
 
             for (int i = 0; i < grdGrantSearchResults.Columns.Count; i++)
@@ -1267,7 +1267,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         }
         public string GetURLDomain()
         {
-            return Brand.GetDomain();
+            return Brand.GetThemedDomain();
         }
 
         private Int64 SubjectID { get; set; }

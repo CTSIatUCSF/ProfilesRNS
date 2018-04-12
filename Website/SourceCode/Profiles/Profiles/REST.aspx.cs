@@ -160,6 +160,7 @@ namespace Profiles
                 param9 = HttpContext.Current.Items["Param9"].ToString();
             }
             else { }
+            //Framework.Utilities.DebugLogging.Log("{UCSF REST.aspx.cs} ProcessRequest() params " + param0 + "/" + param1 + "/" + param2 + "/" + param3 + "/" + param4 + "/" + param5 + "/" + param6 + "/" + param7 + "/" + param8 + "/" + param9);
 
             DataIO data = new DataIO();
 
@@ -200,7 +201,7 @@ namespace Profiles
                                    param8,
                                    param9,
                                    session.SessionID,
-                                   Brand.GetDomain() + Root.AbsolutePath,
+                                   Brand.GetThemedDomain() + Root.AbsolutePath,
                                    session.UserAgent,
                                    getBestAcceptType(HttpContext.Current.Request.AcceptTypes));
 
@@ -214,11 +215,11 @@ namespace Profiles
             }
             else if (resolve.Resolved && resolve.Redirect)
             {
-                Response.Redirect(resolve.ResponseURL.Replace(Root.Domain, Brand.GetDomain()), true);
+                Response.Redirect(resolve.ResponseURL.Replace(Root.Domain, Brand.GetThemedDomain()), true);
             }
             else
-            {
-                Response.Redirect(Brand.GetDomain() + "/search", true);
+            {   // if we are not on a branded version, we need to be, so we redirect to the default
+                Response.Redirect(Brand.GetThemedDomain() + "/search", true);
 
 
                 //Response.Write("<b>Debug 404-- Your URL does not match a known Profiles RESTful pattern ---</b><br/><br/> ");

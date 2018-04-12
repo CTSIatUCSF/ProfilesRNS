@@ -73,7 +73,7 @@ namespace Profiles.Search.Modules.TopSearchPhrase
 
         public string GetURLDomain()
         {
-            return Brand.GetDomain();
+            return Brand.GetThemedDomain();
         }
 
         public string GetBrandingQueryArgs()

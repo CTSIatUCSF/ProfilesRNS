@@ -67,7 +67,7 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
 
             base.GetNetworkProfile(this.SubjectID, this.PredicateID);
 
-            litBackLink.Text = "<a href='" + Brand.GetDomain() + "/edit/" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+            litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
 
 
             securityOptions.Subject = this.SubjectID;

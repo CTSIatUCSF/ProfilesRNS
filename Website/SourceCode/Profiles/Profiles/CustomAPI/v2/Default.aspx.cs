@@ -74,7 +74,7 @@ namespace Profiles.CustomAPI.v2
             if ("JSON-LD".Equals(Request["Format"]))
             {
                 string URL = ConfigurationManager.AppSettings["OpenSocial.ShindigURL"] + "/rest/rdf?userId=" +
-                    HttpUtility.UrlEncode(Brand.GetDomain() + "/CustomAPI/v2/Default.aspx?Subject=" + person.NodeId + "&Expand=" + request.Expand + "&ShowDetails=" + request.ShowDetails);
+                    HttpUtility.UrlEncode(Brand.GetThemedDomain() + "/CustomAPI/v2/Default.aspx?Subject=" + person.NodeId + "&Expand=" + request.Expand + "&ShowDetails=" + request.ShowDetails);
                 WebClient client = new WebClient();
                 String jsonProfiles = client.DownloadString(URL);
                 if (callback != null && callback.Length > 0)

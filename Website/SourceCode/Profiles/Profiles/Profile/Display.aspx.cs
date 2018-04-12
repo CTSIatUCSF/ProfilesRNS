@@ -97,7 +97,7 @@ namespace Profiles.Profile
             body.Attributes.Add("class", "profile");
 
             HtmlLink Displaycss = new HtmlLink();
-            Displaycss.Href = Brand.GetDomain() + "/Profile/CSS/display.css";
+            Displaycss.Href = Brand.GetThemedDomain() + "/Profile/CSS/display.css";
             Displaycss.Attributes["rel"] = "stylesheet";
             Displaycss.Attributes["type"] = "text/css";
             Displaycss.Attributes["media"] = "all";
@@ -105,7 +105,7 @@ namespace Profiles.Profile
 
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");
-            UCSFjs.Attributes.Add("src", Brand.GetDomain() + "/Profile/JavaScript/UCSF.js");
+            UCSFjs.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
 
             // AMP, turned on for all ucsf now
@@ -113,7 +113,7 @@ namespace Profiles.Profile
                 HttpContext.Current.Request.Url.ToString().ToLower().Equals(UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL))
             {
                 HtmlLink AmpLink = new HtmlLink();
-                AmpLink.Href = UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL.Replace(Brand.GetDomain(),  "http://amp.profiles.ucsf.edu");
+                AmpLink.Href = UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL.Replace(Brand.GetThemedDomain(),  "http://amp.profiles.ucsf.edu");
                 AmpLink.Attributes["rel"] = "amphtml";
                 Page.Header.Controls.Add(AmpLink);
             }

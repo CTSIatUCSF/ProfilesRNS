@@ -33,7 +33,7 @@ namespace Profiles.Profile.Modules.CustomViewInformationResource
         {
 
             XsltArgumentList args = new XsltArgumentList();
-            args.AddParam("root", "", Brand.GetDomain());
+            args.AddParam("root", "", Brand.GetThemedDomain());
 
             List<GenericListItem> subjectareas = new List<GenericListItem>();
             List<GenericListItem> authors = new List<GenericListItem>();
@@ -55,9 +55,9 @@ namespace Profiles.Profile.Modules.CustomViewInformationResource
             }
 
 
-            imgSubjectArea.Src = Brand.GetDomain() + "/Profile/Modules/PropertyList/images/minusSign.gif";
+            imgSubjectArea.Src = Brand.GetThemedDomain() + "/Profile/Modules/PropertyList/images/minusSign.gif";
 
-            imgAuthor.Src = Brand.GetDomain() + "/Profile/Modules/PropertyList/images/minusSign.gif";
+            imgAuthor.Src = Brand.GetThemedDomain() + "/Profile/Modules/PropertyList/images/minusSign.gif";
 
 
             if (subjectareas.Count > 0)

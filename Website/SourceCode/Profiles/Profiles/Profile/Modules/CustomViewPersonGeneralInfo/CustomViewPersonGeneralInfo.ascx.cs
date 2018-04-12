@@ -49,15 +49,15 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
                 email = this.BaseData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/prns:emailEncrypted", this.Namespaces).InnerText;
                 //imageemailurl = string.Format(Brand.GetDomain() + "/profile/modules/CustomViewPersonGeneralInfo/" + "EmailHandler.ashx?msg={0}", HttpUtility.UrlEncode(email));
                 emailPlainText = getEmailPlainText(email);
-                audioemailurl = string.Format(Brand.GetDomain() + "/profile/modules/CustomViewPersonGeneralInfo/" + "EmailAudioHandler.ashx?msg={0}", HttpUtility.UrlEncode(email));
+                audioemailurl = string.Format(Brand.GetThemedDomain() + "/profile/modules/CustomViewPersonGeneralInfo/" + "EmailAudioHandler.ashx?msg={0}", HttpUtility.UrlEncode(email));
             }
             
-            args.AddParam("root", "", Brand.GetDomain());
+            args.AddParam("root", "", Brand.GetThemedDomain());
             if (email != string.Empty)
             {
                 //args.AddParam("email", "", imageemailurl);
                 args.AddParam("email", "", emailPlainText);
-                args.AddParam("emailAudioImg", "", Brand.GetDomain() + "/Framework/Images/listen.jpg");
+                args.AddParam("emailAudioImg", "", Brand.GetThemedDomain() + "/Framework/Images/listen.jpg");
             }
             args.AddParam("imgguid", "", Guid.NewGuid().ToString());
 
@@ -68,7 +68,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
                 args.AddParam("orcid", "", base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/vivo:orcidId", base.Namespaces).InnerText);
                 args.AddParam("orcidurl", "", Profiles.ORCID.Utilities.config.ORCID_URL + "/" + base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/vivo:orcidId", base.Namespaces).InnerText);
                 args.AddParam("orcidinfosite", "", Profiles.ORCID.Utilities.config.InfoSite);
-                args.AddParam("orcidimage", "", Brand.GetDomain() + "/Framework/Images/orcid_16x16(1).gif");
+                args.AddParam("orcidimage", "", Brand.GetThemedDomain() + "/Framework/Images/orcid_16x16(1).gif");
                 args.AddParam("orcidimageguid", "", Guid.NewGuid().ToString());
             }
             else if (Profiles.ORCID.Utilities.config.ShowNoORCIDMessage && Profiles.ORCID.Utilities.config.Enabled)
@@ -82,8 +82,8 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
                     args.AddParam("orcid", "", "Login to create your ORCID iD");
                     args.AddParam("orcidinfosite", "", Profiles.ORCID.Utilities.config.InfoSite);
                     string qs = HttpUtility.UrlEncode("predicateuri=http%3a%2f%2fvivoweb.org%2fontology%2fcore!orcidId&module=DisplayItemToEdit&ObjectType=Literal");
-                    args.AddParam("orcidurl", "", Brand.GetDomain() + "/login/default.aspx?method=login&edit=true&editparams=" + qs);
-                    args.AddParam("orcidimage", "", Brand.GetDomain() + "/Framework/Images/orcid_16x16(1).gif");
+                    args.AddParam("orcidurl", "", Brand.GetThemedDomain() + "/login/default.aspx?method=login&edit=true&editparams=" + qs);
+                    args.AddParam("orcidimage", "", Brand.GetThemedDomain() + "/Framework/Images/orcid_16x16(1).gif");
                     args.AddParam("orcidimageguid", "", Guid.NewGuid().ToString());
                    }
             }

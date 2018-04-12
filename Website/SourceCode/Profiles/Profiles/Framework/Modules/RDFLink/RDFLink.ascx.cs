@@ -41,13 +41,13 @@ namespace Profiles.Framework.Modules.RDFLink
             string uri = base.BaseData.SelectSingleNode("//rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
 
             //IF the URI is in our system then we build the link. If not then we do not build the link for the data.
-            if (uri.Contains(Brand.GetDomain()))
+            if (uri.Contains(Brand.GetThemedDomain()))
             {
                 string file = string.Empty;
                 string spostring = string.Empty;
                 string[] spoarray;                
 
-                spostring = uri.ToLower().Replace(Brand.GetDomain().ToLower() + "/profile/", "");
+                spostring = uri.ToLower().Replace(Brand.GetThemedDomain().ToLower() + "/profile/", "");
                 spoarray = spostring.Split('/');
 
                 for (int i = 0; i < spoarray.Length; i++)

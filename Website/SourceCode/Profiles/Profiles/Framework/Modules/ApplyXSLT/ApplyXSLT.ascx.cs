@@ -43,7 +43,7 @@ namespace Profiles.Framework.Modules.ApplyXSLT
         {
 
             XsltArgumentList args = new XsltArgumentList();
-            args.AddParam("root", "", Brand.GetDomain());
+            args.AddParam("root", "", Brand.GetThemedDomain());
 
             //If your module performs a data request, based on the DataURI parameter then call ReLoadBaseData
             base.GetDataByURI();
@@ -56,7 +56,7 @@ namespace Profiles.Framework.Modules.ApplyXSLT
             XslCompiledTransform xslt = new XslCompiledTransform();
 
             // Eric Meeks, theme work
-            litGeneric.Text = Utilities.XslHelper.TransformInMemory(Server.MapPath(base.GetModuleParamString("XSLTPath")), args, base.BaseData.OuterXml).Replace(Root.Domain, Brand.GetDomain());            
+            litGeneric.Text = Utilities.XslHelper.TransformInMemory(Server.MapPath(base.GetModuleParamString("XSLTPath")), args, base.BaseData.OuterXml).Replace(Root.Domain, Brand.GetThemedDomain());            
             Framework.Utilities.DebugLogging.Log("{ApplyXSLT End} Milliseconds:" + (DateTime.Now - d).TotalMilliseconds);
 
         }

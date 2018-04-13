@@ -46,7 +46,7 @@ namespace Profiles.CustomAPI.Utilities
             }
             else if (PrettyURL != null)
             {
-                return Framework.Utilities.UCSFIDSet.ByPrettyURL[Brand.GetDomain() + "/" + PrettyURL.ToLower()];
+                return Framework.Utilities.UCSFIDSet.ByPrettyURL[Brand.GetThemedDomain() + "/" + PrettyURL.ToLower()];
             }
             else if (PersonId != null)
             {

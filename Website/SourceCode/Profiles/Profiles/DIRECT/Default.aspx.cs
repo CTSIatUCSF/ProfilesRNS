@@ -53,7 +53,7 @@ namespace Profiles.DIRECT
 
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");
-            UCSFjs.Attributes.Add("src", Brand.GetDomain() + "/DIRECT/JavaScript/UCSF.js");
+            UCSFjs.Attributes.Add("src", Brand.GetThemedDomain() + "/DIRECT/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
         }
 

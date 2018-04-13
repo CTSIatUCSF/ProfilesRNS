@@ -77,7 +77,7 @@ namespace Profiles.ORCID.Modules.CreationConfirmation
             {
                 pnlUserText.Visible = false;
                 pnlProxyText.Visible = true;
-                imgORCIDProxy.Src = Brand.GetDomain() + "/Framework/Images/orcid_16x16(1).gif";
+                imgORCIDProxy.Src = Brand.GetThemedDomain() + "/Framework/Images/orcid_16x16(1).gif";
                 string userORCID = Request.Params["UserORCID"];
 
                 hlORCIDUrlProxy.Text = Profiles.ORCID.Utilities.config.ORCID_URL + "/" + userORCID;
@@ -88,7 +88,7 @@ namespace Profiles.ORCID.Modules.CreationConfirmation
             {
                 pnlUserText.Visible = true;
                 pnlProxyText.Visible = false;
-                imgOrcid.Src = Brand.GetDomain() + "/Framework/Images/orcid_16x16(1).gif";
+                imgOrcid.Src = Brand.GetThemedDomain() + "/Framework/Images/orcid_16x16(1).gif";
                 Profiles.ORCID.Utilities.ProfilesRNSDLL.BO.ORCID.Person person = GetPerson();
                 if (person.Exists && !person.ORCIDIsNull && !person.ORCID.Equals(string.Empty))
                 {

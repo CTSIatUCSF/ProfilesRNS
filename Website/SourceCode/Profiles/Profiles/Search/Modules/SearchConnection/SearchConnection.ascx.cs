@@ -62,8 +62,8 @@ namespace Profiles.Search.Modules
                 url = url.Replace("searchtype=whyeverything", "searchtype=everything");
             }
 
-            backlink.Text = "<a href='" + Brand.GetDomain() + "/search/default.aspx?" + url + "' class='dblarrow'>Back to Search Results</a>";
-            litSearchURL.Text = "<a href='" + Brand.GetDomain() + "/search/default.aspx?" + url + "'>Search Results</a>";
+            backlink.Text = "<a href='" + Brand.GetThemedDomain() + "/search/default.aspx?" + url + "' class='dblarrow'>Back to Search Results</a>";
+            litSearchURL.Text = "<a href='" + Brand.GetThemedDomain() + "/search/default.aspx?" + url + "'>Search Results</a>";
 
             litPersonURI.Text = "<a href='" + Brand.CleanURL(nodeuri) + "'>" + node.SelectSingleNode("rdfs:label", base.Namespaces).InnerText + "</a>";
 
@@ -222,7 +222,7 @@ namespace Profiles.Search.Modules
         }
         public string GetURLDomain()
         {
-            return Brand.GetDomain();
+            return Brand.GetThemedDomain();
         }
 
 

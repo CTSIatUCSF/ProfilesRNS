@@ -60,7 +60,7 @@ namespace Profiles.ORCID.Modules.CustomEditBasicORCID
             else
                 Response.Redirect("~/search");
 
-            litBackLink.Text = "<a href='" + Brand.GetDomain() + "/edit/" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+            litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
 
             litEditProperty.Text = "Add " + PropertyLabel;
 

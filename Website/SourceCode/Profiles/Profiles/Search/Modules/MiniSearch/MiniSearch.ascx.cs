@@ -61,7 +61,7 @@ namespace Profiles.Search.Modules.MiniSearch
 
         public string GetURLDomain()
         {
-            return Brand.GetDomain();
+            return Brand.GetThemedDomain();
         }
 
 

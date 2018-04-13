@@ -48,7 +48,7 @@ namespace Profiles.About
             body.Attributes.Add("class", "about");
 
             HtmlLink Aboutcss = new HtmlLink();
-            Aboutcss.Href = Brand.GetDomain() + "/About/CSS/about.css";
+            Aboutcss.Href = Brand.GetThemedDomain() + "/About/CSS/about.css";
             Aboutcss.Attributes["rel"] = "stylesheet";
             Aboutcss.Attributes["type"] = "text/css";
             Aboutcss.Attributes["media"] = "all";

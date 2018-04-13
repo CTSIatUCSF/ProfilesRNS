@@ -41,7 +41,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
         public EditPropertyList(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
             : base(pagedata, moduleparams, pagenamespaces)
         {
-            imgLock.ImageUrl = Brand.GetDomain() + "/edit/images/icons_lock.gif";
+            imgLock.ImageUrl = Brand.GetThemedDomain() + "/edit/images/icons_lock.gif";
         }
 
         private void DrawProfilesModule()
@@ -105,7 +105,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                             break;
                     }
 
-                    string editlink = "<a class=listTableLink href=\"" + Brand.GetDomain() + "/edit/default.aspx?subject=" + this.Subject.ToString() + "&predicateuri=" + node.SelectSingleNode("@URI").Value.Replace("#", "!") + "&module=DisplayItemToEdit&ObjectType=" + objecttype + "\" >" + node.SelectSingleNode("@Label").Value + "</a>";
+                    string editlink = "<a class=listTableLink href=\"" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + this.Subject.ToString() + "&predicateuri=" + node.SelectSingleNode("@URI").Value.Replace("#", "!") + "&module=DisplayItemToEdit&ObjectType=" + objecttype + "\" >" + node.SelectSingleNode("@Label").Value + "</a>";
 
                     singlesi.Add(new SecurityItem(node.ParentNode.SelectSingleNode("@Label").Value, node.SelectSingleNode("@Label").Value,
                         node.SelectSingleNode("@URI").Value,
@@ -204,7 +204,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                         break;
                 }
 
-                string editlink = "javascript:GoTo('" + Brand.GetDomain() + "/edit/default.aspx?subject=" + this.Subject.ToString() + "&predicateuri=" + hf.Value.Replace("#", "!") + "&module=DisplayItemToEdit&ObjectType=" + objecttype + "')";
+                string editlink = "javascript:GoTo('" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + this.Subject.ToString() + "&predicateuri=" + hf.Value.Replace("#", "!") + "&module=DisplayItemToEdit&ObjectType=" + objecttype + "')";
 
                 if (e.Row.RowState == DataControlRowState.Alternate)
                 {
@@ -216,7 +216,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                     e.Row.Attributes.Add("class", "evenRow");
                     e.Row.Attributes.Add("onclick", editlink);
                     e.Row.Attributes.Add("onkeypress", "if (event.keyCode == 13) " + editlink);
-                    blankimage.ImageUrl = Brand.GetDomain() + "/edit/images/icons_blankAlt.gif";
+                    blankimage.ImageUrl = Brand.GetThemedDomain() + "/edit/images/icons_blankAlt.gif";
                     blankimage.Attributes.Add("style", "opacity:0.0;filter:alpha(opacity=0);");
                 }
                 else
@@ -229,7 +229,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                     e.Row.Attributes.Add("class", "oddRow");
                     e.Row.Attributes.Add("onclick", editlink);
                     e.Row.Attributes.Add("onkeypress", "if (event.keyCode == 13) " + editlink);
-                    blankimage.ImageUrl = Brand.GetDomain() + "/edit/images/icons_blankAlt.gif";
+                    blankimage.ImageUrl = Brand.GetThemedDomain() + "/edit/images/icons_blankAlt.gif";
                     blankimage.Attributes.Add("style", "opacity:0.0;filter:alpha(opacity=0);");
                 }
 
@@ -293,7 +293,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 }
             }
 
-            Response.Redirect(Brand.GetDomain() + "/edit/" + this.Subject.ToString());
+            Response.Redirect(Brand.GetThemedDomain() + "/edit/" + this.Subject.ToString());
         }
         protected void updateSecurity(object sender, EventArgs e)
         {
@@ -302,7 +302,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
             HiddenField hf = (HiddenField)grow.FindControl("hfPropertyURI");
             this.PredicateURI = hf.Value;
             this.UpdateSecuritySetting(hdn.SelectedValue);
-            Response.Redirect(Brand.GetDomain() + "/edit/" + this.Subject.ToString());
+            Response.Redirect(Brand.GetThemedDomain() + "/edit/" + this.Subject.ToString());
         }
 
         private void UpdateSecuritySetting(string securitygroup)

@@ -80,7 +80,7 @@ namespace Profiles.Login.Modules.ShibLogin
                     }
                     else
                     {
-                        string redirect = Brand.GetDomain() + "/login/default.aspx?method=shibboleth";
+                        string redirect = Brand.GetThemedDomain() + "/login/default.aspx?method=shibboleth";
                         if (Request.QueryString["redirectto"] == null && Request.QueryString["edit"] == "true")
                             redirect += "&edit=true";
                         else
@@ -106,7 +106,7 @@ namespace Profiles.Login.Modules.ShibLogin
             {
                 Response.Redirect(ShibLogin.GetRedirectForAuthenticatedUser(Request.QueryString["redirectto"]));
             }
-            Response.Redirect(Brand.GetDomain());
+            Response.Redirect(Brand.GetThemedDomain());
         }
 
         public static string GetRedirectForAuthenticatedUser(string redirectto)
@@ -114,7 +114,7 @@ namespace Profiles.Login.Modules.ShibLogin
             Framework.Utilities.SessionManagement sm = new SessionManagement();
             if (String.IsNullOrEmpty(redirectto))
             {
-                return Brand.GetDomain();
+                return Brand.GetThemedDomain();
             }
             else if ("mypage".Equals(redirectto.ToLower()) && sm.Session().NodeID > 0)
             {

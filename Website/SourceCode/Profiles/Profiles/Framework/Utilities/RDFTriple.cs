@@ -153,7 +153,7 @@ namespace Profiles.Framework.Utilities
                 if (this.URI == string.Empty)
                 {
 
-                    rtn = Brand.GetDomain() + "/" + this.Subject.ToString();
+                    rtn = Brand.GetThemedDomain() + "/" + this.Subject.ToString();
 
                     if (this.Predicate != 0)
                         rtn += "/" + this.Predicate;

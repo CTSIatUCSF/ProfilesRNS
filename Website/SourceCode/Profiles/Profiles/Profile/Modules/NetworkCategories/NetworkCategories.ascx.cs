@@ -56,7 +56,7 @@ namespace Profiles.Profile.Modules.NetworkCategories
 
             XslCompiledTransform xslt = new XslCompiledTransform();
             XsltArgumentList args = new XsltArgumentList();
-            args.AddParam("root", "", Brand.GetDomain());
+            args.AddParam("root", "", Brand.GetThemedDomain());
 
             litCategoryList.Text = Framework.Utilities.XslHelper.TransformInMemory(Server.MapPath("~/Profile/modules/NetworkCategories/NetworkCategories.xslt"), args, document.OuterXml);
 

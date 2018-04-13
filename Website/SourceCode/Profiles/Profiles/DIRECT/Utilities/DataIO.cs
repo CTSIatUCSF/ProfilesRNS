@@ -40,16 +40,16 @@ namespace Profiles.DIRECT.Utilities
 
 
                 HttpWebRequest request = null;
-                request = (HttpWebRequest)WebRequest.Create(Brand.GetDomain() + "/search/default.aspx?searchtype=people&classuri=http://xmlns.com/foaf/0.1/Person&searchfor=" + searchfor + "&exactPhrase=false");
+                request = (HttpWebRequest)WebRequest.Create(Brand.GetThemedDomain() + "/search/default.aspx?searchtype=people&classuri=http://xmlns.com/foaf/0.1/Person&searchfor=" + searchfor + "&exactPhrase=false");
                 request.Method = "POST";
 
                 request.ContentType = "application/x-www-form-urlencoded";
-                request.ContentLength = (Brand.GetDomain() + "/search/default.aspx?searchtype=people&classuri=http://xmlns.com/foaf/0.1/Person&searchfor=" + searchfor + "&exactPhrase=false").Length;
+                request.ContentLength = (Brand.GetThemedDomain() + "/search/default.aspx?searchtype=people&classuri=http://xmlns.com/foaf/0.1/Person&searchfor=" + searchfor + "&exactPhrase=false").Length;
 
                 using (Stream writeStream = request.GetRequestStream())
                 {
                     UTF8Encoding encoding = new UTF8Encoding();
-                    byte[] bytes = encoding.GetBytes(Brand.GetDomain() + "/search/default.aspx?searchtype=people&classuri=http://xmlns.com/foaf/0.1/Person&searchfor=" + searchfor + "&exactPhrase=false");
+                    byte[] bytes = encoding.GetBytes(Brand.GetThemedDomain() + "/search/default.aspx?searchtype=people&classuri=http://xmlns.com/foaf/0.1/Person&searchfor=" + searchfor + "&exactPhrase=false");
                     writeStream.Write(bytes, 0, bytes.Length);
                 }
 

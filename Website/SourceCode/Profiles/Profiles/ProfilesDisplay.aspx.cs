@@ -14,7 +14,7 @@ namespace Profiles
         {   
             if (Request.QueryString["Person"] != null)
             {
-                Response.Redirect(Brand.GetDomain() + "/profile/ecommons/" + Request.QueryString["Person"], true);
+                Response.Redirect(Brand.GetThemedDomain() + "/profile/ecommons/" + Request.QueryString["Person"], true);
             }
         }
     }

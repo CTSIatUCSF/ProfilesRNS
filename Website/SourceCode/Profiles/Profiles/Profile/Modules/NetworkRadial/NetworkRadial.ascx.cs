@@ -34,14 +34,14 @@ namespace Profiles.Profile.Modules.NetworkRadial
         protected void InitAssets()
         {
             System.Web.UI.HtmlControls.HtmlLink NetworkBrowsercss = new System.Web.UI.HtmlControls.HtmlLink();
-            NetworkBrowsercss.Href = Brand.GetDomain() + "/Profile/CSS/NetworkBrowser.css";
+            NetworkBrowsercss.Href = Brand.GetThemedDomain() + "/Profile/CSS/NetworkBrowser.css";
             NetworkBrowsercss.Attributes["rel"] = "stylesheet";
             NetworkBrowsercss.Attributes["type"] = "text/css";
             NetworkBrowsercss.Attributes["media"] = "all";
             Page.Header.Controls.Add(NetworkBrowsercss);
 
             System.Web.UI.HtmlControls.HtmlLink vizcss = new System.Web.UI.HtmlControls.HtmlLink();
-            vizcss.Href = Brand.GetDomain() + "/Profile/CSS/viz.css";
+            vizcss.Href = Brand.GetThemedDomain() + "/Profile/CSS/viz.css";
             vizcss.Attributes["rel"] = "stylesheet";
             vizcss.Attributes["type"] = "text/css";
             vizcss.Attributes["media"] = "all";
@@ -49,32 +49,32 @@ namespace Profiles.Profile.Modules.NetworkRadial
 
             HtmlGenericControl jsscript0 = new HtmlGenericControl("script");
             jsscript0.Attributes.Add("type", "text/javascript");
-            jsscript0.Attributes.Add("src", Brand.GetDomain() + "/Profile/Modules/NetworkRadial/JavaScript/watchdog.js");
+            jsscript0.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/NetworkRadial/JavaScript/watchdog.js");
             Page.Header.Controls.Add(jsscript0);
 
             HtmlGenericControl jsscript1 = new HtmlGenericControl("script");
             jsscript1.Attributes.Add("type", "text/javascript");
-            jsscript1.Attributes.Add("src", Brand.GetDomain() + "/Profile/Modules/NetworkRadial/scriptaculous/lib/prototype.js");
+            jsscript1.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/NetworkRadial/scriptaculous/lib/prototype.js");
             Page.Header.Controls.Add(jsscript1);
 
             HtmlGenericControl jsscript2 = new HtmlGenericControl("script");
             jsscript2.Attributes.Add("type", "text/javascript");
-            jsscript2.Attributes.Add("src", Brand.GetDomain() + "/Profile/Modules/NetworkRadial/scriptaculous/src/scriptaculous.js");
+            jsscript2.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/NetworkRadial/scriptaculous/src/scriptaculous.js");
             Page.Header.Controls.Add(jsscript2);
 
             HtmlGenericControl jsscript3 = new HtmlGenericControl("script");
             jsscript3.Attributes.Add("type", "text/javascript");
-            jsscript3.Attributes.Add("src", Brand.GetDomain() + "/Profile/Modules/NetworkRadial/JavaScript/layout_balanced.js");
+            jsscript3.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/NetworkRadial/JavaScript/layout_balanced.js");
             Page.Header.Controls.Add(jsscript3);
 
             HtmlGenericControl jsscript4 = new HtmlGenericControl("script");
             jsscript4.Attributes.Add("type", "text/javascript");
-            jsscript4.Attributes.Add("src", Brand.GetDomain() + "/Profile/Modules/NetworkRadial/JavaScript/sliders.js");
+            jsscript4.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/NetworkRadial/JavaScript/sliders.js");
             Page.Header.Controls.Add(jsscript4);
 
             HtmlGenericControl jsscript5 = new HtmlGenericControl("script");
             jsscript5.Attributes.Add("type", "text/javascript");
-            jsscript5.Attributes.Add("src", Brand.GetDomain() + "/Profile/Modules/NetworkRadial/JavaScript/viz.js");
+            jsscript5.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/NetworkRadial/JavaScript/viz.js");
             Page.Header.Controls.Add(jsscript5);
 
             HtmlGenericControl jsscript6 = new HtmlGenericControl("script");
@@ -89,7 +89,7 @@ namespace Profiles.Profile.Modules.NetworkRadial
             script.InnerHtml = "jQuery(document).ready(function() {try{" +
                 " radial_viz = new RadialGraph_Visualization(jQuery('#radial_view')[0], {radius: 100});" +
                 //" radial_viz.loadNetwork('" + Brand.GetDomain() + "/profile/modules/NetworkRadial/NetworkRadialSvc.aspx?p=" + Request.QueryString["Subject"].ToString() + "', '" + Request.QueryString["Subject"].ToString() + "'); " +
-                " radial_viz.loadNetwork('" + Brand.GetDomain() + "/profile/modules/NetworkRadial/NetworkRadialSvc.aspx?p=" + Request.QueryString["Subject"].ToString() + "', '" + personID + "'); " +
+                " radial_viz.loadNetwork('" + Brand.GetThemedDomain() + "/profile/modules/NetworkRadial/NetworkRadialSvc.aspx?p=" + Request.QueryString["Subject"].ToString() + "', '" + personID + "'); " +
                 "} catch(e){}});";
             Page.Header.Controls.Add(script);
 
@@ -98,7 +98,7 @@ namespace Profiles.Profile.Modules.NetworkRadial
             RDFTriple request = new RDFTriple(Convert.ToInt64(Request.QueryString["subject"]));
             XmlDocument x = data.GetProfileNetworkForBrowserXML(request);
             System.Xml.Xsl.XsltArgumentList args = new System.Xml.Xsl.XsltArgumentList();
-            args.AddParam("root", "", Brand.GetDomain());
+            args.AddParam("root", "", Brand.GetThemedDomain());
 
             System.Xml.Xsl.XslCompiledTransform xslt = new System.Xml.Xsl.XslCompiledTransform();
 
@@ -107,7 +107,7 @@ namespace Profiles.Profile.Modules.NetworkRadial
 
             litNetworkText.Text = Profiles.Framework.Utilities.XslHelper.TransformInMemory(Server.MapPath("~/profile/XSLT/NetworkTable.xslt"), args, x.InnerXml);
 
-            iFrameFlashGraph.Attributes.Add("data-src", Brand.GetDomain() + "/profile/Modules/NetworkRadialFlash/Default.aspx?Subject=" + Request.QueryString["subject"] + "&Predicate=" + Request.QueryString["Predicate"]);
+            iFrameFlashGraph.Attributes.Add("data-src", Brand.GetThemedDomain() + "/profile/Modules/NetworkRadialFlash/Default.aspx?Subject=" + Request.QueryString["subject"] + "&Predicate=" + Request.QueryString["Predicate"]);
 
         }
     }

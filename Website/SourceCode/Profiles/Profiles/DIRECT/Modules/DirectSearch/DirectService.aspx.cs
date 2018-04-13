@@ -38,8 +38,8 @@ namespace Profiles.DIRECT.Modules.DirectSearch
 
             Profiles.Search.Utilities.DataIO profileDataIO;
 
-            string DirectServiceURL = Brand.GetDomain() + "/DIRECT/Modules/DirectSearch/directservice.aspx";// Request.Url.AbsoluteUri.Replace("&", "&amp;");
-            string ProfilesURL = Brand.GetDomain();
+            string DirectServiceURL = Brand.GetThemedDomain() + "/DIRECT/Modules/DirectSearch/directservice.aspx";// Request.Url.AbsoluteUri.Replace("&", "&amp;");
+            string ProfilesURL = Brand.GetThemedDomain();
             string PopulationTypeText = oDataIO.GetDirectConfig().PopulationType;
             int QueryTimeout = oDataIO.GetDirectConfig().Timeout;
             XmlDocument query = new XmlDocument();

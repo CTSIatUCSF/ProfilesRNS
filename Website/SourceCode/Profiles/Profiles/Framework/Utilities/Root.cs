@@ -61,7 +61,7 @@ namespace Profiles.Framework.Utilities
         {
             get
             {
-                String url = HttpContext.Current.Request.Url.ToString().ToLower().Replace(Brand.GetDomain().ToLower(), "").Replace("/default.aspx", "");
+                String url = HttpContext.Current.Request.Url.ToString().ToLower().Replace(Brand.GetThemedDomain().ToLower(), "").Replace("/default.aspx", "");
 
                 if (url.Contains("?"))
                 {                    

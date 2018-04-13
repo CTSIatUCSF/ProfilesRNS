@@ -28,10 +28,11 @@ namespace Profiles.Framework.Utilities
             return (Brand)HttpContext.Current.Items["Brand"];
         }
 
-        public static string GetDomain()
+        public static string GetThemedDomain()
         {
             Brand brand = GetCurrentBrand();
-            return brand != null ? brand.BasePath : Root.Domain;
+            //return brand != null ? brand.BasePath : Root.Domain;
+            return brand != null ? brand.BasePath : Brand.GetByTheme("Default").BasePath;
         }
 
         public static string GetGATrackingID()
@@ -78,7 +79,7 @@ namespace Profiles.Framework.Utilities
 
         static public string GetThemedFile(Page page, string file)
         {
-            return GetDomain() + "/App_Themes/" + page.Theme + "/" + file;
+            return GetThemedDomain() + "/App_Themes/" + page.Theme + "/" + file;
         }
 
         static public Brand getDefault()

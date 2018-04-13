@@ -148,7 +148,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             data = new Edit.Utilities.DataIO();
             string predicateuri = Request.QueryString["predicateuri"].Replace("!", "#");
             this.PropertyListXML = propdata.GetPropertyList(this.BaseData, base.PresentationXML, predicateuri, false, true, false);
-            litBackLink.Text = "<a href='" + Brand.GetDomain() + "/edit/" + _subject + "'>Edit Menu</a>" + " &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+            litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/" + _subject + "'>Edit Menu</a>" + " &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
 
         }
 

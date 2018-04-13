@@ -383,7 +383,7 @@ namespace Profiles.ORCID.Modules.UploadInfoToORCID
 
         public string RootDomain()
         {
-            return Brand.GetDomain();
+            return Brand.GetThemedDomain();
         }
     }
 }

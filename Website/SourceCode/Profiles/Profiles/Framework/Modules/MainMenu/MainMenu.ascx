@@ -50,9 +50,9 @@
 		<div class="activeContainer" id="defaultmenu">
 			<ul class="menu">
 				<span runat="server" id="panelMenu" visible="true"></span>
-				<li id="about"><a href="<%=GetURLDomain()%>/about/AboutProfiles.aspx">ABOUT</a></li>
-				<li id="contact"><a href="<%=GetURLDomain()%>/about/Help.aspx">HELP</a></li>
-				<li class="item-home"><a href="<%=GetURLDomain()%>">SEARCH OPTIONS</a>
+				<li id="about"><a href="<%=GetThemedDomain()%>/about/AboutProfiles.aspx">ABOUT</a></li>
+				<li id="contact"><a href="<%=GetThemedDomain()%>/about/Help.aspx">HELP</a></li>
+				<li class="item-home"><a href="<%=GetThemedDomain()%>">SEARCH OPTIONS</a>
 					<ul>
 						<li><a href="<%=GetDomainFor("UCD")%>/search/">UC Davis</a></li>
 						<li><a href="<%=GetDomainFor("UCI")%>/search/">UCI</a></li>

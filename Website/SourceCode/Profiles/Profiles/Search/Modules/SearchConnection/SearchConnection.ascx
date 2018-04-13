@@ -11,7 +11,7 @@
                         </div>
                     </td>
                     <td class="connectionContainerArrow" style="vertical-align: middle">
-                        <img src="<%=GetURLDomain()%>/Framework/Images/connection.gif" />
+                        <img src="<%=GetThemedDomain()%>/Framework/Images/connection.gif" />
 <!--
                         <table class="connectionArrowTable">
                             <tbody>
@@ -25,14 +25,14 @@
                                 </tr>
                                 <tr>
                                     <td class="connectionLine">
-                                        <img src="<%=GetURLDomain()%>/Framework/Images/connection_left.gif" alt=""/>
+                                        <img src="<%=GetThemedDomain()%>/Framework/Images/connection_left.gif" alt=""/>
                                     </td>
                                     <td class="connectionLine">
                                         <div>
                                         </div>
                                     </td>
                                     <td class="connectionLine">
-                                        <img src="<%=GetURLDomain()%>/Framework/Images/connection_right.gif" alt=""/>
+                                        <img src="<%=GetThemedDomain()%>/Framework/Images/connection_right.gif" alt=""/>
                                     </td>
                                 </tr>
                                 <tr>

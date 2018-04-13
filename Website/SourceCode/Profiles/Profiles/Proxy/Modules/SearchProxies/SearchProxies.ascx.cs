@@ -100,7 +100,7 @@ namespace Profiles.Proxy.Modules.SearchProxies
                 this.ExecuteSearch(false);
             }
         }
-        public string GetURLDomain()
+        public string GetThemedDomain()
         {
             return Brand.GetThemedDomain();
         }

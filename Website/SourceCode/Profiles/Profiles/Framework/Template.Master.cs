@@ -591,7 +591,7 @@ namespace Profiles.Framework
         }
 
 
-        public string GetURLDomain()
+        public string GetThemedDomain()
         {
             return Brand.GetThemedDomain();
         }

@@ -220,7 +220,7 @@ namespace Profiles.Search.Modules
             public string Name { get; set; }
             public string URI { get; set; }
         }
-        public string GetURLDomain()
+        public string GetThemedDomain()
         {
             return Brand.GetThemedDomain();
         }

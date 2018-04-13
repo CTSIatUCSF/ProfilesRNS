@@ -28,7 +28,7 @@
         activitySize = activitySize || $(".act-id").length;
         $.ajax({
             type: "POST",
-            url: "<%=GetURLDomain()%>/Activity/Modules/ActivityHistory/ActivityDetails.aspx/GetActivities",
+            url: "<%=GetThemedDomain()%>/Activity/Modules/ActivityHistory/ActivityDetails.aspx/GetActivities",
             data: '{"referenceActivityId": "' + referenceActivityId + '", "count": "' + (activitySize || 100) + '", "newActivities": "' + newActivities + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -135,6 +135,6 @@
 <div id="divStatus" style="display: none">
     <div class="loader">
         <span>
-            <img alt="Loading..." id="loader" src="<%=GetURLDomain()%>/Edit/Images/loader.gif" width="400" height="213" /></span>
+            <img alt="Loading..." id="loader" src="<%=GetThemedDomain()%>/Edit/Images/loader.gif" width="400" height="213" /></span>
     </div>
 </div>

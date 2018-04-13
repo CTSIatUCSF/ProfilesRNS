@@ -58,7 +58,7 @@ namespace Profiles.Framework.Modules.MainMenu
 
             //-50 is the profiles Admin
             if (data.GetSessionSecurityGroup() == -50)
-                menulist.Append("<li><a href='" + Brand.GetDomain() + "/SPARQL/default.aspx'>SPARQL Query</a></li>");
+                menulist.Append("<li><a href='" + Brand.GetThemedDomain() + "/SPARQL/default.aspx'>SPARQL Query</a></li>");
 
             Brand userBrand = Brand.GetCurrentBrand();
             // logged in Person
@@ -140,13 +140,13 @@ namespace Profiles.Framework.Modules.MainMenu
             {
                 if (!Root.AbsolutePath.Contains("login"))
                 {
-                    menulist.Append("<li id='signin'><a href='" + Brand.GetDomain() + "/login/default.aspx?pin=send&method=login&redirectto=" + Brand.GetDomain() + Root.AbsolutePath 
+                    menulist.Append("<li id='signin'><a href='" + Brand.GetThemedDomain() + "/login/default.aspx?pin=send&method=login&redirectto=" + Brand.GetThemedDomain() + Root.AbsolutePath 
 						+ "'>SIGN IN TO EDIT</a></li>");
                 }
             }
             else
             {
-                menulist.Append("<li><a href='" + Brand.GetDomain() + "/login/default.aspx?method=logout&redirectto=" + Brand.GetDomain() + "/About/CloseBrowser.aspx" + "'>SIGN OUT</a></li>");
+                menulist.Append("<li><a href='" + Brand.GetThemedDomain() + "/login/default.aspx?method=logout&redirectto=" + Brand.GetThemedDomain() + "/About/CloseBrowser.aspx" + "'>SIGN OUT</a></li>");
             }
 
             menulist.Append("</ul>");
@@ -187,9 +187,9 @@ namespace Profiles.Framework.Modules.MainMenu
 
 
         // For megasearch items
-        public string GetURLDomain()
+        public string GetThemedDomain()
         {
-            return Brand.GetDomain();
+            return Brand.GetThemedDomain();
         }
 
         public string GetDomainFor(String theme)
@@ -273,7 +273,7 @@ namespace Profiles.Framework.Modules.MainMenu
                 classGroupURI = searchTypeDropDownValue;
             }
 
-            Response.Redirect(Brand.GetDomain() + "/search/default.aspx?searchtype=" + searchType +
+            Response.Redirect(Brand.GetThemedDomain() + "/search/default.aspx?searchtype=" + searchType +
                                 "&searchfor=" + HttpUtility.UrlEncode(searchFor) +
                                 "&classgroupuri=" + HttpUtility.UrlEncode(classGroupURI) +
                                 "&institution=" + HttpUtility.UrlEncode(institution) +

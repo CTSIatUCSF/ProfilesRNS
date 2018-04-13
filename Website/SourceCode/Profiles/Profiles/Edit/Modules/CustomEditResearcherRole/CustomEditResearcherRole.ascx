@@ -20,10 +20,10 @@
 <script type="text/javascript">
     $("[src*=expand]").live("click", function () {
         $(this).closest("tr").after("<tr><td colspan = '999'>" + $(this).next().html() + "</td></tr>")
-        $(this).attr("src", "<%=GetURLDomain()%>/framework/images/collapse.gif");
+        $(this).attr("src", "<%=GetThemedDomain()%>/framework/images/collapse.gif");
     });
     $("[src*=collapse]").live("click", function () {
-        $(this).attr("src", "<%=GetURLDomain()%>/framework/images/expand.gif");
+        $(this).attr("src", "<%=GetThemedDomain()%>/framework/images/expand.gif");
         $(this).closest("tr").next().remove();
     });
 </script>
@@ -35,7 +35,7 @@
                     right: 0; left: 0; z-index: 9999999; opacity: 0.7;">
                     <span style="border-width: 0px; position: fixed; padding: 50px; background-color: #FFFFFF;
                         font-size: 12px; left: 40%; top: 40%;">
-                        <img alt="Loading..." src="<%=GetURLDomain()%>/edit/images/loader.gif" /><br />
+                        <img alt="Loading..." src="<%=GetThemedDomain()%>/edit/images/loader.gif" /><br />
                         <i>This operation might take several minutes to complete. Please do not close your browser.</i>
                     </span>
                 </div>
@@ -189,7 +189,7 @@
                                     <Columns>
                                         <asp:TemplateField ItemStyle-BorderStyle="None" ItemStyle-Width="20px">
                                             <ItemTemplate>
-                                                <img alt="" style="cursor: pointer" src="<%=GetURLDomain()%>/framework/images/expand.gif" />
+                                                <img alt="" style="cursor: pointer" src="<%=GetThemedDomain()%>/framework/images/expand.gif" />
                                                 <asp:Panel ID="pnlSearchResults" runat="server" Style="display: none">
                                                     <asp:GridView EnableViewState="true" ShowHeader="false" ID="grdSubGrantSearchResults"
                                                         runat="server" GridLines="None" DataKeyNames="FullFundingID" AutoGenerateColumns="false"

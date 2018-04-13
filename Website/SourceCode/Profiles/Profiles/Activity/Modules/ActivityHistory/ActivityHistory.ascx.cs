@@ -109,7 +109,7 @@ namespace Profiles.Activity.Modules.ActivityHistory
             return "True".Equals(base.GetModuleParamString("Scrolling")) ? "" : "True";
         }
 
-        public string GetURLDomain()
+        public string GetThemedDomain()
         {
             return Brand.GetThemedDomain();
         }

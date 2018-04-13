@@ -38,7 +38,7 @@
         }
         
         var classuri = 'http://xmlns.com/foaf/0.1/Person';
-        document.location.href = '<%=GetURLDomain()%>/search/default.aspx?searchtype=people&lname=' + lname + '&searchfor=' + keyword + '&exactphrase=false&institution=' + institution + '&classuri=' + classuri + '&perpage=15&offset=0';
+        document.location.href = '<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&lname=' + lname + '&searchfor=' + keyword + '&exactphrase=false&institution=' + institution + '&classuri=' + classuri + '&perpage=15&offset=0';
         return false;
     }
 
@@ -89,7 +89,7 @@
                                 <input type="button" onclick="JavaScript:search();" value="Find People" />
                                 <br />
                                 <br />
-                                <a href="<%=GetURLDomain()%>/search/people">More Search Options </a>
+                                <a href="<%=GetThemedDomain()%>/search/people">More Search Options </a>
                             </div>
                         </td>
                     </tr>

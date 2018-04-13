@@ -1265,7 +1265,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
 
 
         }
-        public string GetURLDomain()
+        public string GetThemedDomain()
         {
             return Brand.GetThemedDomain();
         }

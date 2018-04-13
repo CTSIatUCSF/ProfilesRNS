@@ -213,7 +213,7 @@ namespace Profiles.Search.Modules.SearchPerson
 
         }
 
-        public string GetURLDomain()
+        public string GetThemedDomain()
         {
             return Brand.GetThemedDomain();
         }

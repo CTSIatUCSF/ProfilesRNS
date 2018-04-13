@@ -188,7 +188,7 @@ namespace Profiles.Proxy.Modules.ManageProxies
                 // e.Row.Cells[3].HorizontalAlign = HorizontalAlign.Center;
             }
         }
-        public string GetURLDomain()
+        public string GetThemedDomain()
         {
             return Brand.GetThemedDomain();
         }

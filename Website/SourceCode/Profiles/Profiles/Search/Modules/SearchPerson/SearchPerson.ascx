@@ -158,7 +158,7 @@
                                                     <%--Inline styles on this is no longer needed as the button is now all CSS--%>
                                                     <a href="JavaScript:search();" class="search-button">
                                                     <%--    No longer need a search button as an image--%>
-                                                        <%--<img src="<%=GetURLDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />--%>
+                                                        <%--<img src="<%=GetThemedDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />--%>
                                                         Search
 						    </a>
                                                 </div>
@@ -317,7 +317,7 @@
                                     <td colspan="2">
                                         <div class="search-button-container"><%--Inline styles on this is no longer needed as the button is now all CSS--%>
                                             <a href="JavaScript:search();" class="search-button">
-                                                <%--<img src="<%=GetURLDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />--%>
+                                                <%--<img src="<%=GetThemedDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />--%>
                                                 Search
                                             </a>
                                         </div>
@@ -333,10 +333,10 @@
             </table>
         </div>
 			<asp:Panel ID="DirectSearchUCSF" runat="server" SkinID="UCSF" Visible="false">
-				<p style="text-align:right;margin-right:20px;margin-bottom:160px;"><a href="<%=GetURLDomain()%>/direct" class="dblarrow">Search other institutions</a></p>
+				<p style="text-align:right;margin-right:20px;margin-bottom:160px;"><a href="<%=GetThemedDomain()%>/direct" class="dblarrow">Search other institutions</a></p>
 			</asp:Panel>
 			<asp:Panel ID="DirectSearchUSC" runat="server" SkinID="USC" Visible="false">
-				<p style="margin-bottom:160px;"><a href="<%=GetURLDomain()%>/direct" class="dblarrow">Find Collaborators at other Research Institutions</a></p>
+				<p style="margin-bottom:160px;"><a href="<%=GetThemedDomain()%>/direct" class="dblarrow">Find Collaborators at other Research Institutions</a></p>
 			</asp:Panel>
 			<asp:Panel ID="SearchPersonFormNoteUCSD" runat="server" SkinID="UCSD" Visible="false">
 				<p><span class="notice">Important Note: </span>

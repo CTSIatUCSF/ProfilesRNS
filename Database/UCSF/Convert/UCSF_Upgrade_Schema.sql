@@ -3499,6 +3499,7 @@ END
 GO
 
 /****** Object:  StoredProcedure [Edit.Module].[CustomEditAuthorInAuthorship.GetList]    Script Date: 4/11/2018 10:50:10 AM ******/
+-- needed for Claimed pubs
 SET ANSI_NULLS ON
 GO
 
@@ -3536,3 +3537,41 @@ BEGIN
 	ORDER BY EntityDate DESC, EntityID
 
 END
+
+
+/****** Object:  StoredProcedure [Profile.Data].[Person.GetFacultyRanks]    Script Date: 4/16/2018 1:57:23 PM ******/
+-- faculty rank sort bug
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER procedure [Profile.Data].[Person.GetFacultyRanks]
+	-- Add the parameters for the stored procedure here
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	SELECT x.FacultyRankID, x.FacultyRank,  n.NodeID, n.Value URI--, x.FacultyRankSort
+		FROM (
+				SELECT CAST(MAX(FacultyRankID) AS VARCHAR(50)) FacultyRankID,
+						LTRIM(RTRIM(FacultyRank)) FacultyRank, FacultyRankSort				
+				FROM [Profile.Data].[Person.FacultyRank] WITH (NOLOCK) where facultyrank <> ''				
+				group by FacultyRank ,FacultyRankSort 
+			) x 
+			LEFT OUTER JOIN [RDF.Stage].InternalNodeMap m WITH (NOLOCK)
+				ON m.class = 'http://profiles.catalyst.harvard.edu/ontology/prns#FacultyRank'
+					AND m.InternalType = 'FacultyRank'
+					AND m.InternalID = CAST(x.FacultyRankID AS VARCHAR(50))
+			LEFT OUTER JOIN [RDF.].Node n WITH (NOLOCK)
+				ON m.NodeID = n.NodeID
+					AND n.ViewSecurityGroup = -1
+		ORDER BY FacultyRankSort
+
+END
+
+GO

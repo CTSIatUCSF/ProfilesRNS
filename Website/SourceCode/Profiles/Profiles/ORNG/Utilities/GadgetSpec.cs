@@ -17,22 +17,21 @@ namespace Profiles.ORNG.Utilities
         private string label;
         private string openSocialGadgetURL;
         private bool enabled;
-        private string institutionName;
         private bool unrecognized = false;
         private Dictionary<string, GadgetViewRequirements> viewRequirements = new Dictionary<string, GadgetViewRequirements>();
+        private Dictionary<Institution, string> institionalizedApps = null; // keep NULL unless we have real entreis
 
         // these are loaded from the DB
-        public GadgetSpec(int appId, string label, string openSocialGadgetURL, string institutionName, bool enabled)
+        public GadgetSpec(int appId, string label, string openSocialGadgetURL, bool enabled)
         {
             this.openSocialGadgetURL = openSocialGadgetURL;
             this.label = label;
             this.appId = appId;
-            this.institutionName = institutionName;
             this.enabled = enabled;
             this.unrecognized = false;
 
-            // load view requirements
             Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
+            // load view requirements
             using (SqlDataReader dr = data.GetGadgetViewRequirements(appId))
             {
                 while (dr.Read())
@@ -40,6 +39,19 @@ namespace Profiles.ORNG.Utilities
                     viewRequirements.Add(dr[0].ToString().ToLower(), new GadgetViewRequirements(dr[0].ToString().ToLower(),
                             dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
                             dr.IsDBNull(4) ? Int32.MaxValue : dr.GetInt32(4), dr[5].ToString()));
+                }
+            }
+
+            // load institutional data if 
+            using (SqlDataReader dr = data.GetInstitutionalizedApps(appId))
+            {
+                if (dr.HasRows)
+                {
+                    institionalizedApps = new Dictionary<Institution, string>();
+                }
+                while (dr.Read())
+                {
+                    institionalizedApps.Add(Institution.GetByID(dr.GetInt32(0)), dr[1].ToString());
                 }
             }
         }
@@ -56,6 +68,11 @@ namespace Profiles.ORNG.Utilities
             }
             this.enabled = true;
             this.unrecognized = true;
+        }
+
+        public bool IsVisibleFor(Institution inst)
+        {
+            return institionalizedApps == null || (inst != null && institionalizedApps.ContainsKey(inst));
         }
 
         internal void MergeWithUnrecognizedGadget(GadgetSpec unrecognizedGadget)
@@ -79,7 +96,7 @@ namespace Profiles.ORNG.Utilities
 
         public string GetFileName()
         {
-            return GetGadgetFileNameFromURL(GetGadgetURL());
+            return GetGadgetFileNameFromURL(GetGadgetURL(null));
         }
 
         public static string GetGadgetFileNameFromURL(string url)
@@ -93,14 +110,9 @@ namespace Profiles.ORNG.Utilities
             return label;
         }
 
-        public String GetGadgetURL()
+        public String GetGadgetURL(Institution inst)
         {
-            return openSocialGadgetURL;
-        }
-
-        public String GetInstitutionName()
-        {
-            return institutionName;
+            return institionalizedApps != null && inst != null && institionalizedApps.ContainsKey(inst) ? institionalizedApps[inst] : openSocialGadgetURL;
         }
 
         public GadgetViewRequirements GetGadgetViewRequirements(String page)

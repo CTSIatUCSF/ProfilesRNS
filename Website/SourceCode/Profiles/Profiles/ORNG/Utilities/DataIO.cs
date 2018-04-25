@@ -31,10 +31,16 @@ namespace Profiles.ORNG.Utilities
             return sqldr;
         }
 
+        public SqlDataReader GetInstitutionalizedApps(int appId)
+        {
+            string sql = "select InstitutionID, Url FROM [ORNG.].[InstitutionalizedApps] where AppID = " + appId;
+            SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
+            return sqldr;
+        }
+
         public SqlDataReader GetGadgets()
         {
-            string sql = "select AppID, Name, Url, InstitutionName, enabled from [ORNG.].[Apps] a " +
-                          "LEFT OUTER JOIN [Profile.Data].[Organization.Institution] i on a.InstitutionID = i.InstitutionID";
+            string sql = "select AppID, Name, Url, enabled from [ORNG.].[Apps]";
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }
@@ -58,7 +64,7 @@ namespace Profiles.ORNG.Utilities
             if (spec != null)
             {
                 AddPersonalGadget(Subject, spec.GetAppId());
-                EditActivityLog(Subject, propertyURI, "" + privacyCode, "ORNGApplication", spec.GetGadgetURL());
+                EditActivityLog(Subject, propertyURI, "" + privacyCode, "ORNGApplication", spec.GetGadgetURL(null));
             }
         }
 
@@ -94,7 +100,7 @@ namespace Profiles.ORNG.Utilities
             if (spec != null)
             {
                 RemovePersonalGadget(Subject, spec.GetAppId());
-                EditActivityLog(Subject, propertyURI, "" +privacyCode, "ORNGApplication", "" + spec.GetGadgetURL());
+                EditActivityLog(Subject, propertyURI, "" +privacyCode, "ORNGApplication", "" + spec.GetGadgetURL(null));
             }
         }
 

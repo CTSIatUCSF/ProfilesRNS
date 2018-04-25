@@ -998,23 +998,36 @@ GO
 --	[ORNG.] sp's that are good for 
 --
 ---------------------------------------------------------------------------------------------------------------------
-
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-
-ALTER TABLE [ORNG.].[Apps]	ADD  InstitutionID int NULL
+SET ANSI_PADDING ON
 GO
 
-ALTER TABLE [ORNG.].[Apps]  WITH CHECK ADD  CONSTRAINT [FK_orng_apps_institution] FOREIGN KEY([InstitutionID])
+CREATE TABLE [ORNG.].[InstitutionalizedApps] (
+	[AppID] int NOT NULL,
+	[InstitutionID] int NOT NULL,
+	[Url] [nvarchar](255) NULL
+) ON [PRIMARY]
+
+ALTER TABLE [ORNG.].[InstitutionalizedApps]  WITH CHECK ADD  CONSTRAINT [FK_orng_apps_apps] FOREIGN KEY([AppID])
+REFERENCES [ORNG.].[Apps] ([AppID])
+GO
+
+ALTER TABLE [ORNG.].[InstitutionalizedApps]  WITH CHECK ADD  CONSTRAINT [FK_orng_apps_institution] FOREIGN KEY([InstitutionID])
 REFERENCES [Profile.Data].[Organization.Institution] ([InstitutionID])
 GO
 
-ALTER TABLE [ORNG.].[Apps] CHECK CONSTRAINT [FK_orng_apps_institution]
+ALTER TABLE [ORNG.].[InstitutionalizedApps] CHECK CONSTRAINT [FK_orng_apps_apps]
 GO
+
+ALTER TABLE [ORNG.].[InstitutionalizedApps] CHECK CONSTRAINT [FK_orng_apps_institution]
+GO
+
+-- DROP TABLE [ORNG.].[InstitutionalizedApps]
 
 ---------------------------------------------------------------------------------------------------------------------
 --

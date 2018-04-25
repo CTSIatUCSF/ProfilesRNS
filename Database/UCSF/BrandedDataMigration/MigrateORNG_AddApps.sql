@@ -31,3 +31,21 @@ BEGIN
 END
 DROP TABLE tmpOrng
 
+
+/************** New Structure for Institutional Apps *******************/
+-- First rewire the USC ones. Look first that ID's make sense
+UPDATE [ORNG.].[Apps] SET AppID = 127 WHERE Name = 'Tag Editor'
+UPDATE [ORNG.].[Apps] SET AppID = 128 WHERE Name = 'Scholarly Project Student Mentor'
+UPDATE [ORNG.].[Apps] SET AppID = 129 WHERE Name = 'Required Scholarly Project Mentor'
+
+-- now add those in for USC
+INSERT INTO [ORNG.].[InstitutionalizedApps] SELECT a.AppID, i.InstitutionID, a.Url FROM [ORNG.].[Apps] a JOIN [Profile.Data].[Organization.Institution] i on i.InstitutionAbbreviation = 'USC'
+	 WHERE a.Name in ('Tag Editor', 'Scholarly Project Student Mentor', 'Required Scholarly Project Mentor')
+
+-- now the Faculty Mentoring one USC, UCSD and UCSF
+INSERT INTO [ORNG.].[InstitutionalizedApps] SELECT a.AppID, i.InstitutionID, REPLACE(a.Url, 'apps_godzilla', 'apps_' + LOWER(i.InstitutionAbbreviation)) FROM [Profile.Data].[Organization.Institution] i JOIN [ORNG.].[Apps] a on a.Name = 'Faculty Mentoring' 
+	WHERE i.InstitutionAbbreviation in ('UCSF', 'UCSD', 'USC')
+
+UPDATE [ORNG.].[Apps] SET Url = REPLACE(Url, 'apps_godzilla', '[INSTITUTION_SPECIFIC]') WHERE Name = 'Faculty Mentoring' 
+
+--ALTER TABLE [ORNG.].Apps DROP COLUMN InstitutionID

@@ -427,7 +427,7 @@ namespace Profiles.ORNG.Utilities
                 {
                     while (dr.Read())
                     {
-                        GadgetSpec spec = new GadgetSpec(Convert.ToInt32(dr[0]), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), Convert.ToBoolean(dr[4]));
+                        GadgetSpec spec = new GadgetSpec(Convert.ToInt32(dr[0]), dr[1].ToString(), dr[2].ToString(), Convert.ToBoolean(dr[3]));
                         dbApps.Add(spec.GetFileName(), spec);
                     }
                 }

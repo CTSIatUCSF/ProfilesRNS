@@ -25,8 +25,8 @@ BEGIN
 END
 
 SELECT @SQL = N'
-INSERT INTO [ORNG.].[Apps] (AppID, Name, Url, PersonFilterID, OAuthSecret, Enabled, InstitutionID) 
-SELECT AppID, Name, REPLACE(Url, ''apps_ucsf'', ''apps_godzilla''), NULL, OAuthSecret, [Enabled], Null FROM [' + @SourceDB + '].[ORNG.].[Apps] WHERE Enabled = 1'
+INSERT INTO [ORNG.].[Apps] (AppID, Name, Url, PersonFilterID, OAuthSecret, Enabled) 
+SELECT AppID, Name, REPLACE(Url, ''apps_ucsf'', ''apps_godzilla''), NULL, OAuthSecret, [Enabled] FROM [' + @SourceDB + '].[ORNG.].[Apps] WHERE Enabled = 1'
 --SELECT @SQL
 EXEC dbo.sp_executesql @SQL
 

@@ -48,7 +48,7 @@ namespace Profiles.ORNG.Modules.GadgetSandbox
                     string gadgetURLs = "";
                     foreach (GadgetSpec gadget in OpenSocialManager.GetAllDBGadgets(false).Values)
                     {
-                        gadgetURLs += gadget.GetGadgetURL() + Environment.NewLine;
+                        gadgetURLs += gadget.GetGadgetURL(null) + Environment.NewLine;
                     }
                     txtGadgetURLS.Text = gadgetURLs;
                 }

@@ -83,12 +83,12 @@ namespace Profiles.Framework.Modules.MainMenu
 
             if (base.MasterPage.CanEdit)
             {
-                menulist.Append("<li><a href='" + userBrand.BasePath + "/edit/" + subject.ToString() + "'>Edit This Profile</a></li>");
+                menulist.Append("<li><a href='" + Brand.GetForSubject(subject).BasePath + "/edit/" + subject.ToString() + "'>Edit This Profile</a></li>");
             }
 
 
-            // ORNG 
-            if (sm.Session().NodeID > 0)
+            // ORNG Dashboard (only show for UCSF for now)
+            if (sm.Session().NodeID > 0 && userBrand.GetInstitution() != null && "UCSF".Equals(userBrand.GetInstitution().GetAbbreviation()))
             {
                 menulist.Append("<li id='dashboard'><a href='" + userBrand.BasePath + "/ORNG/Dashboard.aspx?owner=" + sm.Session().PersonURI + "'>Dashboard</a></li>");
             }

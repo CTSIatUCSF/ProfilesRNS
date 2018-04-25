@@ -12,9 +12,6 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using System.Configuration;
@@ -77,7 +74,7 @@ namespace Profiles.Search.Modules.SearchPerson
                 {
                     trDivision.Visible = false;
                 }
-                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowOtherOptions"]) == false || !String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
+                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowOtherOptions"]) == false)// || !String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
                 {
                     trOtherOptions.Visible = false;
                 }

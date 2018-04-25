@@ -12,20 +12,12 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Data.SqlClient;
-using System.Data.Common;
-using System.Globalization;
 using System.Text;
 using System.Xml;
-using System.Xml.Xsl;
 using System.Configuration;
 using Profiles.Framework.Utilities;
-using Profiles.Profile.Utilities;
-using Profiles.Edit.Utilities;
 using Profiles.ORNG.Utilities;
 
 namespace Profiles.Edit.Modules.EditPropertyList
@@ -76,7 +68,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                     if (node.SelectSingleNode("@URI").Value.StartsWith(Profiles.ORNG.Utilities.OpenSocialManager.ORNG_ONTOLOGY_PREFIX)) 
                     {
                         GadgetSpec spec = OpenSocialManager.GetGadgetByPropertyURI(node.SelectSingleNode("@URI").Value);
-                        if (spec != null && spec.IsVisibleFor(UCSFIDSet.ByNodeId[Subject].Institution))
+                        if (spec != null && !spec.IsVisibleFor(UCSFIDSet.ByNodeId[Subject].Institution))
                         {
                             continue;
                         }

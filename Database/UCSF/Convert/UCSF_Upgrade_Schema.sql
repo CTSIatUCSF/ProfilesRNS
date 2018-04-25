@@ -1010,7 +1010,8 @@ GO
 CREATE TABLE [ORNG.].[InstitutionalizedApps] (
 	[AppID] int NOT NULL,
 	[InstitutionID] int NOT NULL,
-	[Url] [nvarchar](255) NULL
+	[Url] [nvarchar](255) NULL,
+	primary key ([AppID], [InstitutionID])
 ) ON [PRIMARY]
 
 ALTER TABLE [ORNG.].[InstitutionalizedApps]  WITH CHECK ADD  CONSTRAINT [FK_orng_apps_apps] FOREIGN KEY([AppID])

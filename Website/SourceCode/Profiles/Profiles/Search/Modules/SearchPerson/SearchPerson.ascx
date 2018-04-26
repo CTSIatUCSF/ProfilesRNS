@@ -193,7 +193,7 @@
                                 </tr>
 								<tr>
                                     <th>
-                                        Find Mentors <span class="notice">New!</span>
+                                        Find Mentors
                                     </th>
                                     <td colspan="2">
                                         <input type="checkbox" class="student2" /> Student Mentors
@@ -300,10 +300,20 @@
                                     </td>
                                 </tr>
 							</asp:Panel>
+							<asp:Panel ID="ClinicalTrialsUC" runat="server" SkinID="UC" Visible="false">
+								<tr>
+                                    <th>
+                                        Clinical Trials
+                                    </th>
+                                    <td colspan="2">
+                                        <input type="checkbox" class="trials2" />
+                                    </td>
+                                </tr>
+							</asp:Panel>
 							<asp:Panel ID="ClinicalTrialsUCSF" runat="server" SkinID="UCSF" Visible="false">
 								<tr>
                                     <th>
-                                        Clinical Trials <span class="notice">New!</span>
+                                        Clinical Trials
                                     </th>
                                     <td colspan="2">
                                         <input type="checkbox" class="trials2" />

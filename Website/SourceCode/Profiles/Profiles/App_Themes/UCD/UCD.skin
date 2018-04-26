@@ -17,5 +17,5 @@ Default skin template. The following skins are provided as examples only.
 <asp:Panel runat="server" SkinID="HideUCD" Visible="false"/>
 <asp:Image runat="server" SkinID="backtotop" ImageURL="Images/backtotop.gif" border="0" alt="Back to TOP" />
 <asp:Image runat="server" SkinID="searchIconSquareArrow" ImageURL="Images/icon_squareArrow.gif" />
-<asp:Hyperlink runat="server" SkinID="contact" NavigateUrl = "mailto:profiles@ucdavis.edu" Text = "contact us for help" />
+<asp:Hyperlink runat="server" SkinID="contact" NavigateUrl = "mailto:profiles@ucsf.edu" Text = "contact us for help" />
 <asp:Label runat="server" SkinID="Acronym" Text = "UC Davis" />

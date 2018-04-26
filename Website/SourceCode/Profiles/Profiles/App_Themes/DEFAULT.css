@@ -267,7 +267,7 @@ box-shadow: 10px 10px 10px -10px rgba(153,153,153,1);
 #suckerfishmenu	 ul.menu { 
   position: absolute;
   right: 10px;
-  padding: 0; margin: 0; 
+  padding: 0; margin: 5px 0 0; 
   list-style: none;
   z-index: 100;
   font-size: 14px;
@@ -299,7 +299,7 @@ box-shadow: 10px 10px 10px -10px rgba(153,153,153,1);
 #suckerfishmenu	 ul.menu li ul { position: absolute; right: -999px; padding: 0; margin: -2px 0 0 0; }
 #suckerfishmenu	 ul.menu li:hover ul { right: 0; }
 #suckerfishmenu	 ul.menu li ul li { display: block; float: none; border-bottom: 1px solid #DDD; background-color: #F8F8F9; 
-   padding: 8px 15px 6px; width: 114px; text-transform: none; }
+   padding: 8px 15px 6px; width: 114px; text-transform: none; margin: 0; }
 .item-home > a:after { content:'\25BC'; padding-left: 8px; font-size: 80%; display: inline-block; height: 10px; vertical-align: 1px; }
 #suckerfishmenu	 ul.menu li ul li:first-child { border-top: 2px solid #666; }
 .search #suckerfishmenu .item-home > a, .about #suckerfishmenu .active,

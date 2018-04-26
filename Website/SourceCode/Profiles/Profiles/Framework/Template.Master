@@ -453,8 +453,7 @@
 					</div>
 					<div id="footer-copyright">
 						<p>
-							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California. 
-							All Rights Reserved.
+							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California
 						</p>
 					</div>
 				</asp:Panel>
@@ -462,7 +461,8 @@
 					<div id="footer-collaboration">
 						<p>
 							UCSD Profiles is managed by the UC San Diego
-									  <a href="https://actri.ucsd.edu/Pages/default.aspx" target="_blank">Altman Clinical and Translational Research Institute (ACTRI)</a>. This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
+							<a href="https://actri.ucsd.edu/Pages/default.aspx" target="_blank">Altman Clinical and Translational Research Institute (ACTRI)</a>.<br />
+							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
 					<div id="footer-contact">
@@ -473,8 +473,7 @@
 					</div>
 					<div id="footer-copyright">
 						<p>
-							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California. 
-									   All Rights Reserved.
+							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California
 						</p>
 					</div>
 				</asp:Panel>
@@ -484,19 +483,19 @@
 							UCD Profiles is managed by the UCSF 
 							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
 							part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
-							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
+							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). <br />
+							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
 					<div id="footer-contact">
 						<ul>
 							<li><a href="<%=GetThemedDomain()%>/">Home</a></li>
-							<li><a href="mailto:profiles@ucop.edu">Contact us</a></li>
+							<li><a href="mailto:profiles@ucsf.edu">Contact us</a></li>
 						</ul>
 					</div>
 					<div id="footer-copyright">
 						<p>
-							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California. 
-							All Rights Reserved.
+							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California 
 						</p>
 					</div>
 				</asp:Panel>
@@ -506,7 +505,8 @@
 							UCI Profiles is managed by the UCSF 
 							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
 							part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
-							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
+							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). <br />
+							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
 					<div id="footer-contact">
@@ -517,8 +517,7 @@
 					</div>
 					<div id="footer-copyright">
 						<p>
-							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California. 
-							All Rights Reserved.
+							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California 
 						</p>
 					</div>
 				</asp:Panel>
@@ -528,19 +527,19 @@
 							UCLA Profiles is managed by the UCSF 
 							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
 							part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
-							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
+							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). <br />
+							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
 					<div id="footer-contact">
 						<ul>
 							<li><a href="<%=GetThemedDomain()%>/">Home</a></li>
-							<li><a href="mailto:profiles@ucop.edu">Contact us</a></li>
+							<li><a href="mailto:profiles@ucsf.edu">Contact us</a></li>
 						</ul>
 					</div>
 					<div id="footer-copyright">
 						<p>
-							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California. 
-							All Rights Reserved.
+							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California
 						</p>
 					</div>
 				</asp:Panel>
@@ -550,19 +549,13 @@
 							Research Profiles is managed by the UCSF 
 							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
 							part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
-							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
+							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). <br />
+							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
-					</div>
-					<div id="footer-contact">
-						<ul>
-							<li><a href="<%=GetThemedDomain()%>/">Home</a></li>
-							<li><a href="mailto:profiles@ucop.edu">Contact us</a></li>
-						</ul>
 					</div>
 					<div id="footer-copyright">
 						<p>
-							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California. 
-							All Rights Reserved.
+							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California
 						</p>
 					</div>
 				</asp:Panel>
@@ -572,19 +565,13 @@
 							UC Profiles is managed by the UCSF 
 							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
 							part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
-							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
+							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). <br />
+							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
-					</div>
-					<div id="footer-contact">
-						<ul>
-							<li><a href="<%=GetThemedDomain()%>/">Home</a></li>
-							<li><a href="mailto:profiles@ucop.edu">Contact us</a></li>
-						</ul>
 					</div>
 					<div id="footer-copyright">
 						<p>
-							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California. 
-							All Rights Reserved.
+							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California 
 						</p>
 					</div>
 				</asp:Panel>

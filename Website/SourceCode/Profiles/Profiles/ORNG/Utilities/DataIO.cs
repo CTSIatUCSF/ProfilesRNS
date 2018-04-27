@@ -33,7 +33,7 @@ namespace Profiles.ORNG.Utilities
 
         public SqlDataReader GetInstitutionalizedApps(int appId)
         {
-            string sql = "select InstitutionID, Url FROM [ORNG.].[InstitutionalizedApps] where AppID = " + appId;
+            string sql = "select InstitutionAbbreviation, Url FROM [UCSF.ORNG].[InstitutionalizedApps] where AppID = " + appId;
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }

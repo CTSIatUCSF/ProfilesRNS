@@ -5,22 +5,25 @@ using System.Web;
 using System.Web.UI;
 using System.Configuration;
 using System.Web.Configuration;
+using Profiles.ORNG.Utilities;
 
 namespace Profiles.Framework.Utilities
 {
     public class Brand
     {
         private static Dictionary<string, Brand> ByTheme = new Dictionary<string, Brand>();
+        private static Dictionary<Institution, Brand> ByPrimaryInstitution = new Dictionary<Institution, Brand>();
 
         public string Theme { get; set; }
         public string BasePath { get; set; }
         public string GATrackingID { get; set; }
-        public Institution InstitutionObj { get; set; }
         public string PersonFilter { get; set; }
+        private List<Institution> RestrictedInstitutions = null;
 
         public bool IsMultiInstitutional()
         {
-            return InstitutionObj == null;
+            // having NO institutions means you work for all of them
+            return RestrictedInstitutions.Count != 1;
         }
 
         public static Brand GetCurrentBrand()
@@ -55,6 +58,10 @@ namespace Profiles.Framework.Utilities
         public static Brand GetByTheme(string Theme)
         {
             return ByTheme.ContainsKey(Theme) ? ByTheme[Theme] : null;
+        }
+        public static Brand GetByPrimaryInstituion(Institution institution)
+        {
+            return ByPrimaryInstitution[institution];
         }
 
         static public Brand GetByURL(string URL)
@@ -126,20 +133,53 @@ namespace Profiles.Framework.Utilities
             return pages.Theme;
         }
 
+        // return if it only has one! 
         public Institution GetInstitution()
         {
-            return InstitutionObj;
+            return RestrictedInstitutions.Count == 1 ? RestrictedInstitutions[0] : null;
         }
 
-        public Brand(string Theme, string BasePath, string GATrackingID, Institution Institution, string PersonFilter)
+        //don't show gadget filters that don't make sense for this brand
+        public bool IsApplicableForFilter(string filter)
+        {
+            if (RestrictedInstitutions.Count > 0)
+            {
+                foreach (GadgetSpec gadget in OpenSocialManager.GetAllDBGadgets(true).Values)
+                {
+                    if (gadget.GetLabel().Equals(filter))
+                    {
+                        // see if this gadget is scoped to an included institution
+                        foreach (Institution inst in RestrictedInstitutions)
+                        {
+                            if (gadget.IsVisibleFor(inst))
+                            {
+                                return true;
+                            }
+                        }
+                        // this filter is a gadget but not for these folks
+                        return false;
+                    }
+                }
+            }
+            // this filter is not a gadget
+            return true;
+        }
+
+        public Brand(string Theme, string BasePath, string GATrackingID, string PersonFilter, List<Institution> institutions)
         {
             this.Theme = Theme;
             this.BasePath = BasePath;
             this.GATrackingID = GATrackingID;
-            this.InstitutionObj = Institution;
             this.PersonFilter = PersonFilter;
+            this.RestrictedInstitutions = institutions;
 
             ByTheme[this.Theme] = this;
+
+            // should only have one primary
+            if (GetInstitution() != null)
+            {
+                ByPrimaryInstitution[GetInstitution()] = this;
+            }
         }
     }
 }

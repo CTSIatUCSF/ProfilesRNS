@@ -51,7 +51,7 @@ namespace Profiles.ORNG.Utilities
                 }
                 while (dr.Read())
                 {
-                    institionalizedApps.Add(Institution.GetByID(dr.GetInt32(0)), dr[1].ToString());
+                    institionalizedApps.Add(Institution.GetByAbbreviation(dr[0].ToString()), dr[1].ToString());
                 }
             }
         }

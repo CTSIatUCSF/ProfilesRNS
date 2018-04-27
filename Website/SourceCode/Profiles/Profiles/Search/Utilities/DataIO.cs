@@ -862,11 +862,12 @@ namespace Profiles.Search.Utilities
 
             foreach (DataRow pRow in personTypes.Tables[0].Rows)
             {
-                // added by UCSF
-                if (pRow.IsNull("personFilterSort"))
+                // added by UCSF, cheap way to make a filter hidden and then logic to hide filters based on gadgets that don't match an institution in this brand scope
+                if (pRow.IsNull("personFilterSort") || (Brand.GetCurrentBrand() != null && !Brand.GetCurrentBrand().IsApplicableForFilter(Convert.ToString(pRow["personfilter"]))))
                 {
                     continue;
                 }
+
                 currentParentTag = Convert.ToString(pRow["PersonFilterCategory"]);
                 currentChildTag = Convert.ToString(pRow["personfilter"]);
                 getChild = false;

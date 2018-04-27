@@ -21,14 +21,14 @@ namespace Profiles.Framework.Utilities
         public Institution Institution { get; set; }
         public Brand Brand { get; set; }
 
-        public UCSFIDSet(int PersonId, Int64 NodeId, string PrettyURL, string UserName, Institution Institution, Brand Brand)
+        public UCSFIDSet(int PersonId, Int64 NodeId, string PrettyURL, string UserName, Institution Institution)
         {
             this.PersonId = PersonId;
             this.NodeId = NodeId;
             this.PrettyURL = PrettyURL.ToLower();
             this.UserName = UserName;
             this.Institution = Institution;
-            this.Brand = Brand;
+            this.Brand = Brand.GetByPrimaryInstituion(Institution);
 
             // check if everything is OK before adding it. If the import fails, these can be sour
             if (PrettyURL == null || UserName == null || Institution == null || Brand == null)

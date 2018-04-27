@@ -927,26 +927,40 @@ namespace Profiles.Framework.Utilities
             //new Brand(Brand.DefaultBrandName, Brand.GetSystemTheme(), null, GetRESTBasePath(), true);
 
             using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
-                "select Theme, BasePath, GATrackingID, InstitutionAbbreviation, PersonFilter from [UCSF.].[vwBrand]", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+                "select Theme, BasePath, GATrackingID, PersonFilter from [UCSF.].[Brand]", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    new Brand(reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), Institution.GetByAbbreviation(reader[3].ToString()), reader[4].ToString());
+                    new Brand(reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), LoadInstitutionsForTheme(reader[0].ToString()));
                 }
             }
+        }
+
+        private List<Institution> LoadInstitutionsForTheme(string theme)
+        {
+            List<Institution> institutions = new List<Institution>();
+            using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
+                "SELECT InstitutionAbbreviation FROM [UCSF.].[Theme2Institution] WHERE Theme = '" + theme + "'", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    institutions.Add(Institution.GetByAbbreviation(reader[0].ToString()));
+                }
+            }
+            return institutions;
         }
 
         // Load all the ID's for people so we don't have to hit the DB all the time
         public void LoadUCSFIdSet()
         {
-            string IDSetSQL = "select p.personid, p.nodeid, p.prettyurl, u.internalusername, p.InstitutionAbbreviation, p.Theme from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID";
+            string IDSetSQL = "select p.personid, p.nodeid, p.prettyurl, u.internalusername, p.InstitutionAbbreviation from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID";
 
             using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
                 IDSetSQL, CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    new UCSFIDSet(Convert.ToInt32(reader[0]), Convert.ToInt64(reader[1]), reader[2].ToString(), reader[3].ToString(), Institution.GetByAbbreviation(reader[4].ToString()), Brand.GetByTheme(reader[5].ToString()));
+                    new UCSFIDSet(Convert.ToInt32(reader[0]), Convert.ToInt64(reader[1]), reader[2].ToString(), reader[3].ToString(), Institution.GetByAbbreviation(reader[4].ToString()));
                 }
             }
         }

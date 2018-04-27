@@ -9,18 +9,11 @@ namespace Profiles.Framework.Utilities
     {
         private static Dictionary<string, Institution> ByAbbreviation = new Dictionary<string, Institution>();
         private static Dictionary<string, Institution> ByURI = new Dictionary<string, Institution>();
-        private static Dictionary<Int32, Institution> ById= new Dictionary<Int32, Institution>();
 
         public static Institution GetByAbbreviation(string Abbreviation) 
         {
             return String.IsNullOrEmpty(Abbreviation) ? null : ByAbbreviation[Abbreviation];
         }
-
-        public static Institution GetByID(Int32 Id)
-        {
-            return ById[Id];
-        }
-
         public static List<Institution> GetAll()
         {
             return ByAbbreviation.Values.ToList();
@@ -47,7 +40,6 @@ namespace Profiles.Framework.Utilities
             this.ShibbolethDisplayNameHeader = ShibbolethDisplayNameHeader;
             ByAbbreviation.Add(Abbreviation, this);
             ByURI.Add(URI, this);
-            ById.Add(Id, this);
         }
 
         public int GetId()

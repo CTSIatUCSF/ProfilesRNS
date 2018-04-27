@@ -8,13 +8,13 @@ DROP FUNCTION [UCSF.].[fn_UrlCleanName]
 DROP FUNCTION [UCSF.].[fn_ApplicationNameFromPrettyUrl]
 DROP FUNCTION [UCSF.].fn_LegacyInternalusername2EPPN
 DROP TABLE [UCSF.].[NameAdditions]
-DROP VIEW [UCSF.].[vwBrand]
+DROP TABLE [UCSF.].[Theme2Institution]
+DROP TABLE [UCSF.].[Brand]
 DROP TABLE [UCSF.].[InstitutionAdditions]
-DROP TABLE [UCSF.].[Theme]
 DROP SCHEMA [UCSF.]
 
-ALTER TABLE [ORNG.].[Apps] DROP CONSTRAINT [FK_orng_apps_institution]
-ALTER TABLE [ORNG.].[Apps] DROP COLUMN InstitutionID
+DROP TABLE [UCSF.ORNG].[InstitionalizedApps] 
+DROP SCHEMA [UCSF.ORNG]
 
 ALTER TABLE [Profile.Data].[Publication.PubMed.DisambiguationAffiliation]  DROP CONSTRAINT [FK_pubmed_disambiguation_affiliation_institution]
 ALTER TABLE [Profile.Data].[Publication.PubMed.DisambiguationAffiliation]  DROP COLUMN InstitutionID

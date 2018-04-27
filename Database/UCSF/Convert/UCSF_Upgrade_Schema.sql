@@ -44,7 +44,7 @@ CREATE UNIQUE INDEX prettyUrlUnique ON [UCSF.].[NameAdditions]([PrettyURL])
 WHERE [PrettyURL] IS NOT NULL
 GO
 
-/****** Object:  Table [UCSF.].[Theme]    Script Date: 12/16/2015 10:51:55 AM ******/
+/****** Object:  Table [UCSF.].[Brand]    Script Date: 12/16/2015 10:51:55 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -54,11 +54,11 @@ GO
 SET ANSI_PADDING ON
 GO
 
-CREATE TABLE [UCSF.].[Theme](
+CREATE TABLE [UCSF.].[Brand](
 	[Theme] [nvarchar](50) NOT NULL,
 	[BasePath] [nvarchar](50) NOT NULL,
 	[GATrackingId] [nvarchar](50) NULL,
-	[Shared] bit NOT NULL,
+	[PersonFilter] [nvarchar](50) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Theme] ASC
@@ -79,7 +79,6 @@ GO
 
 CREATE TABLE [UCSF.].[InstitutionAdditions](
 	[InstitutionAbbreviation] [nvarchar](50) NOT NULL,
-	[Theme] [nvarchar](50) NOT NULL,
 	[ShibbolethIdP] [nvarchar](255) NULL,
 	[ShibbolethUserNameHeader] [nvarchar](255) NULL,
 	[ShibbolethDisplayNameHeader] [nvarchar](255) NULL,
@@ -89,10 +88,36 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+/****** Object:  Table [UCSF.].[Theme2Institution]    Script Date: 12/16/2015 10:51:55 AM ******/
+SET ANSI_NULLS ON
 GO
-ALTER TABLE [UCSF.].[InstitutionAdditions]  WITH CHECK ADD  CONSTRAINT [FK_institution_theme] FOREIGN KEY([Theme])
-REFERENCES [UCSF.].[Theme] ([Theme])
+
+SET QUOTED_IDENTIFIER ON
 GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [UCSF.].[Theme2Institution](
+	[Theme] [nvarchar](50) NOT NULL,
+	[InstitutionAbbreviation] [nvarchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Theme], [InstitutionAbbreviation] 
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [UCSF.].[Theme2Institution]  WITH CHECK ADD  CONSTRAINT [FK_theme2institution_theme] FOREIGN KEY([Theme])
+REFERENCES [UCSF.].[Brand] ([Theme])
+GO
+
+ALTER TABLE [UCSF.].[Theme2Institution]  WITH CHECK ADD  CONSTRAINT [FK_theme2institution_inst] FOREIGN KEY([InstitutionAbbreviation])
+REFERENCES [UCSF.].[InstitutionAdditions] ([InstitutionAbbreviation])
+GO
+
+--DROP TABLE [UCSF.].[Theme2Institution]
 
 ---------------------------------------------------------------------------------------------------------------------
 --
@@ -141,11 +166,9 @@ SELECT p.[PersonID]
       ,p.[InternalUsername]
       ,p.[Visible]
 	  ,i.InstitutionAbbreviation
-	  ,t.Theme  
   FROM [Profile.Data].[Person] p 
 	JOIN [Profile.Data].[Person.Affiliation] a on p.PersonID = a.PersonID and a.IsPrimary = 1
 	JOIN [Profile.Data].[Organization.Institution] i on a.InstitutionID = i.InstitutionID
-	JOIN [UCSF.].[InstitutionAdditions] t on i.InstitutionAbbreviation = t.InstitutionAbbreviation --this is where and how we assign a theme to a profile.
 	JOIN [UCSF.].[NameAdditions] na on na.internalusername = p.internalusername
 	JOIN [RDF.Stage].internalnodemap n on n.internalid = p.personId AND n.[class] = 'http://xmlns.com/foaf/0.1/Person' 
 
@@ -165,24 +188,6 @@ ir.MPID = g.MPID WHERE ir.MPID IS NOT NULL;
 
 GO
 
-/****** Object:  View [UCSF.].[vwBrand]    Script Date: 10/13/2016 12:52:26 PM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-
-CREATE VIEW [UCSF.].[vwBrand] AS  
-SELECT DISTINCT t.Theme,
-	   t.BasePath,
-	   t.GATrackingID,
-	   CASE WHEN t.Shared = 1 THEN NULL ELSE a.InstitutionAbbreviation END AS InstitutionAbbreviation,
-	   CASE WHEN t.Theme = 'UC' THEN 'UC Health' ELSE NULL END AS PersonFilter -- note that this is hacked to do what we need it to do. For a view, that is sort of OK
-FROM [UCSF.].[Theme] t
-	LEFT OUTER JOIN [UCSF.].[InstitutionAdditions] a on a.Theme = t.Theme
-
-GO
 ---------------------------------------------------------------------------------------------------------------------
 --
 --	Create Functions
@@ -995,9 +1000,12 @@ GO
 
 ---------------------------------------------------------------------------------------------------------------------
 --
---	[ORNG.] sp's that are good for 
+--	[UCSF.ORNG] 
 --
 ---------------------------------------------------------------------------------------------------------------------
+CREATE SCHEMA [UCSF.ORNG]
+GO
+
 SET ANSI_NULLS ON
 GO
 
@@ -1007,25 +1015,25 @@ GO
 SET ANSI_PADDING ON
 GO
 
-CREATE TABLE [ORNG.].[InstitutionalizedApps] (
+CREATE TABLE [UCSF.ORNG].[InstitutionalizedApps] (
 	[AppID] int NOT NULL,
-	[InstitutionID] int NOT NULL,
+	[InstitutionAbbreviation] nvarchar(50) NOT NULL,
 	[Url] [nvarchar](255) NULL,
-	primary key ([AppID], [InstitutionID])
+	primary key ([AppID], [InstitutionAbbreviation])
 ) ON [PRIMARY]
 
-ALTER TABLE [ORNG.].[InstitutionalizedApps]  WITH CHECK ADD  CONSTRAINT [FK_orng_apps_apps] FOREIGN KEY([AppID])
+ALTER TABLE [UCSF.ORNG].[InstitutionalizedApps]  WITH CHECK ADD  CONSTRAINT [FK_orng_apps_apps] FOREIGN KEY([AppID])
 REFERENCES [ORNG.].[Apps] ([AppID])
 GO
 
-ALTER TABLE [ORNG.].[InstitutionalizedApps]  WITH CHECK ADD  CONSTRAINT [FK_orng_apps_institution] FOREIGN KEY([InstitutionID])
-REFERENCES [Profile.Data].[Organization.Institution] ([InstitutionID])
+ALTER TABLE [UCSF.ORNG].[InstitutionalizedApps]  WITH CHECK ADD  CONSTRAINT [FK_orng_apps_institution] FOREIGN KEY([InstitutionAbbreviation])
+REFERENCES [UCSF.].[InstitutionAdditions] ([InstitutionAbbreviation])
 GO
 
-ALTER TABLE [ORNG.].[InstitutionalizedApps] CHECK CONSTRAINT [FK_orng_apps_apps]
+ALTER TABLE [UCSF.ORNG].[InstitutionalizedApps] CHECK CONSTRAINT [FK_orng_apps_apps]
 GO
 
-ALTER TABLE [ORNG.].[InstitutionalizedApps] CHECK CONSTRAINT [FK_orng_apps_institution]
+ALTER TABLE [UCSF.ORNG].[InstitutionalizedApps] CHECK CONSTRAINT [FK_orng_apps_institution]
 GO
 
 -- DROP TABLE [ORNG.].[InstitutionalizedApps]

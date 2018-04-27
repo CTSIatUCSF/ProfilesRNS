@@ -46,6 +46,14 @@ INSERT INTO [ORNG.].[InstitutionalizedApps] SELECT a.AppID, i.InstitutionID, a.U
 INSERT INTO [ORNG.].[InstitutionalizedApps] SELECT a.AppID, i.InstitutionID, REPLACE(a.Url, 'apps_godzilla', 'apps_' + LOWER(i.InstitutionAbbreviation)) FROM [Profile.Data].[Organization.Institution] i JOIN [ORNG.].[Apps] a on a.Name = 'Faculty Mentoring' 
 	WHERE i.InstitutionAbbreviation in ('UCSF', 'UCSD', 'USC')
 
+-- now Add clinical trials for the UC sights
+INSERT INTO [ORNG.].[InstitutionalizedApps] SELECT a.AppID, i.InstitutionID, a.url FROM [Profile.Data].[Organization.Institution] i JOIN [ORNG.].[Apps] a on a.Name = 'Clinical Trials' 
+	WHERE i.InstitutionAbbreviation in ('UCSF', 'UCSD', 'UCI', 'UCLA', 'UC Davis')
+
+-- add clinical trails for USC
+INSERT INTO [ORNG.].[InstitutionalizedApps] SELECT a.AppID, i.InstitutionID, 'http://sc-ctsi.org/clinical_trials_gadget/ClinicalTrials.xml' FROM [Profile.Data].[Organization.Institution] i JOIN [ORNG.].[Apps] a on a.Name = 'Clinical Trials' 
+	WHERE i.InstitutionAbbreviation in ('USC')
+
 UPDATE [ORNG.].[Apps] SET Url = REPLACE(Url, 'apps_godzilla', '[INSTITUTION_SPECIFIC]') WHERE Name = 'Faculty Mentoring' 
 
 --ALTER TABLE [ORNG.].Apps DROP COLUMN InstitutionID

@@ -36,9 +36,30 @@ ul.highlights li {
 }
 .sautter { text-align: center; margin-top: 0; font-size: 15px; font-style: italic; } 
 .alumni { background-image: url(Images/ucsf_alumni_blue.jpg); }
-.panelActive.navbar { padding: 0 0 110px; background: transparent url(Images/hero.png) no-repeat scroll center 60px; }
-#page-container.hero .panelActive.navbar { background-image: url(Images/hero-photos.png); }
-#page-container.hero .profiles .profilesPage { }
+.navbar { padding: 0 0 110px; background: transparent url(Images/hero.png) no-repeat scroll center 60px; }
+.hero-photos0 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos0.png); }
+.hero-photos1 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos1.png); }
+.hero-photos2 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos2.png); }
+.hero-photos3 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos3.png); }
+.hero-photos4 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos4.png); }
+.hero-photos5 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos5.png); }
+.hero-photos6 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos6.png); }
+.hero-photos7 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos7.png); }
+.hero-photos8 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos8.png); }
+.hero-photos9 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos9.png); }
+.hero-photos10 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos10.png); }
+.hero-photos11 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos11.png); }
+.hero-photos12 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos12.png); }
+.hero-photos13 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos13.png); }
+.hero-photos14 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos14.png); }
+.hero-photos15 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos15.png); }
+.hero-photos16 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos16.png); }
+.hero-photos17 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos17.png); }
+.hero-photos18 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos18.png); }
+.hero-photos19 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos19.png); }
+.hero-photos20 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos20.png); }
+.hero-photos21 .navbar { padding: 0 0 160px; background-image: url(Images/hero-photos21.png); }
+
 
 
  

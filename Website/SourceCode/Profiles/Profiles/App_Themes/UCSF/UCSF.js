@@ -39,6 +39,11 @@
 		});
 		buildGadgetAds();
 	}
+	
+	if ($('.searchForm') && $('.searchForm').length) {
+        var hero = 'hero-photos' + Math.floor((Math.random() * 21));
+        $('#page-container').addClass(hero);
+	}
  
 });
 

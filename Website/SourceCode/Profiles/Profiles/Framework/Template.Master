@@ -490,7 +490,7 @@
 					<div id="footer-contact">
 						<ul>
 							<li><a href="<%=GetThemedDomain()%>/">Home</a></li>
-							<li><a href="mailto:profiles@ucsf.edu">Contact us</a></li>
+							<li><a href="mailto:profiles@ucdavis.edu">Contact us</a></li>
 						</ul>
 					</div>
 					<div id="footer-copyright">

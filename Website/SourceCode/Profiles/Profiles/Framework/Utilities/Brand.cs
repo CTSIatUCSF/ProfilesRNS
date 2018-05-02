@@ -146,7 +146,7 @@ namespace Profiles.Framework.Utilities
             {
                 foreach (GadgetSpec gadget in OpenSocialManager.GetAllDBGadgets(true).Values)
                 {
-                    if (gadget.GetLabel().Equals(filter))
+                    if (filter.Equals(gadget.GetPersonFilter()))
                     {
                         // see if this gadget is scoped to an included institution
                         foreach (Institution inst in RestrictedInstitutions)

@@ -16,17 +16,19 @@ namespace Profiles.ORNG.Utilities
         private int appId = 0;
         private string label;
         private string openSocialGadgetURL;
+        private string personFilter;
         private bool enabled;
         private bool unrecognized = false;
         private Dictionary<string, GadgetViewRequirements> viewRequirements = new Dictionary<string, GadgetViewRequirements>();
         private Dictionary<Institution, string> institionalizedApps = null; // keep NULL unless we have real entreis
 
         // these are loaded from the DB
-        public GadgetSpec(int appId, string label, string openSocialGadgetURL, bool enabled)
+        public GadgetSpec(int appId, string label, string openSocialGadgetURL, string personFilter, bool enabled)
         {
-            this.openSocialGadgetURL = openSocialGadgetURL;
-            this.label = label;
             this.appId = appId;
+            this.label = label;
+            this.openSocialGadgetURL = openSocialGadgetURL;
+            this.personFilter = personFilter;
             this.enabled = enabled;
             this.unrecognized = false;
 
@@ -108,6 +110,11 @@ namespace Profiles.ORNG.Utilities
         public String GetLabel()
         {
             return label;
+        }
+
+        public String GetPersonFilter()
+        {
+            return personFilter;
         }
 
         public String GetGadgetURL(Institution inst)

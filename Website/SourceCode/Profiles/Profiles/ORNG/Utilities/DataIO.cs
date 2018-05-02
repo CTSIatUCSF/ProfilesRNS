@@ -40,7 +40,7 @@ namespace Profiles.ORNG.Utilities
 
         public SqlDataReader GetGadgets()
         {
-            string sql = "select AppID, Name, Url, enabled from [ORNG.].[Apps]";
+            string sql = "select a.AppID, a.Name, a.Url, f.PersonFilter, a.enabled from [ORNG.].[Apps] a LEFT OUTER JOIN [Profile.Data].[Person.Filter] f on a.PersonFilterID = f.PersonFilterID";
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }

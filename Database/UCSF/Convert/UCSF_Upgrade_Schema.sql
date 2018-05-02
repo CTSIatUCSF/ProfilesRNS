@@ -402,15 +402,16 @@ BEGIN
 		FROM [UCSF.].[NameAdditions] WHERE PrettyURL is null)
 	BEGIN
 		SELECT TOP 1 @id=n.internalusername,
-					 @Domain=ISNULL(t.BasePath, @BaseDomain) + '/',
+					 @Domain=ISNULL(b.BasePath, @BaseDomain) + '/',
 					 @CleanFirst=n.CleanFirst, 
 					 @CleanMiddle=n.CleanMiddle,
 					 @CleanLast=n.CleanLast,
 					 @CleanSuffix=n.CleanSuffix,
  					 @CleanGivenName=n.CleanGivenName
 		FROM [UCSF.].[NameAdditions] n JOIN [Profile.Import].[PersonAffiliation] a on n.internalusername=a.internalusername and a.primaryaffiliation=1
-			LEFT OUTER JOIN [UCSF.].[InstitutionAdditions] it on it.InstitutionAbbreviation=a.institutionabbreviation -- associate theme to person by instutition 
-			LEFT OUTER JOIN [UCSF.].[Theme] t on t.Theme=it.Theme 
+			LEFT OUTER JOIN [UCSF.].[Theme2Institution] it on it.InstitutionAbbreviation=a.institutionabbreviation 
+			and it.Theme in (select t.theme from (select Theme, count(*) cnt from [UCSF.].Theme2Institution group by Theme having count(*) = 1) as t)
+			LEFT OUTER JOIN [UCSF.].[Brand] b on b.Theme=it.Theme 
 			WHERE n.PrettyURL is null ORDER BY len(n.CleanMiddle) + len(n.CleanSuffix)					 
 
 		-- try different strategies

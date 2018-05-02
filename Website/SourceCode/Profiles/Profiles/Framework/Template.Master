@@ -639,9 +639,7 @@
         </div>
     </form>
     <div id="backtotop">
-        <a href="#">
-            <asp:Image ID="BackToTop" SkinID="backtotop" runat="server" />
-        </a>
+        <a href="#">&#8593;</a>
     </div>
 
     <script type="text/javascript">

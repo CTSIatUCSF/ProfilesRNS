@@ -406,11 +406,10 @@ h2.badge-top  { padding: 12px 0 14px 4px; margin: -68px 0 0 60px; width: 70px; f
     text-decoration:none;  
     border:0 none;  
     display:block;  
-    width:25px;  
-    height:82px;  
+    font-size:50px;  
+	padding-right:10px;
+	color:#000;
 }  
-* html #backtotop a { display: none; }
-*+html #backtotop a { display: none; }
 #backtotop a:hover {  
     opacity:.8; /*mouse over fade effect*/  
 }  

@@ -18,7 +18,7 @@
 				$('#ctcFirst_rMaster_ctl00_divDetail .faculty1 :checkbox').attr("checked", false)[0].onclick(); 
 			}
 		});
-		$("#divOtherOptions label:contains('Scholarly Project Mentor')").parent().addClass('student1');
+		$("#divOtherOptions label:contains('Student Mentoring')").parent().addClass('student1');
 		$('.student2').click(function() { 
 			if ($('.student2').is(':checked')) {
 				$('#ctcFirst_rMaster_ctl00_divDetail .student1 :checkbox').attr("checked", true)[0].onclick();

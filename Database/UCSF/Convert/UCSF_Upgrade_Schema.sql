@@ -267,14 +267,14 @@ END
 
 GO
 
-/****** Object:  UserDefinedFunction [UCSF.].[fn_LegacyInternalusername2EPPN]    Script Date: 4/26/2017 3:12:58 PM ******/
+/****** Object:  UserDefinedFunction [UCSF.].[fn_ScopeInternalusername]    Script Date: 4/26/2017 3:12:58 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE FUNCTION [UCSF.].fn_LegacyInternalusername2EPPN
+CREATE FUNCTION [UCSF.].fn_ScopeInternalusername
 (
 	@legacyinternalusername nvarchar(50),
 	@institutionabbreviation nvarchar(50)	
@@ -295,32 +295,6 @@ BEGIN
 	ELSE IF (@institutionabbreviation = 'lbnl')
 		RETURN cast(@legacyinternalusername as varchar) + '@lbl.gov'
 	RETURN 'Unrecognized institution :' + @institutionabbreviation
-END
-
-
-GO
-
-/****** Object:  UserDefinedFunction [UCSF.].[fn_InternalUserName2UserName]    Script Date: 3/16/2018 3:12:58 PM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE FUNCTION [UCSF.].fn_InternalUserName2UserName
-(
-	@internalusername nvarchar(50)
-)
-RETURNS nvarchar(50)
-AS
-BEGIN
-	IF (@internalusername LIKE '%@usc.edu') 
-		RETURN REPLACE(@internalusername, '@usc.edu', '')
-	ELSE IF (@internalusername LIKE '%@ucsd.edu')
-		RETURN cast(cast(REPLACE(@internalusername, '@ucsd.edu', '') as Int) as varchar) + '@ucsd.edu'
-	ELSE IF (@internalusername LIKE '%@lbl.gov')
-		RETURN REPLACE(@internalusername, '@lbl.gov', '')
-	RETURN @internalusername
 END
 
 
@@ -368,7 +342,22 @@ GO
 CREATE PROCEDURE [UCSF.].[CreateNewLogins] 
 AS
 BEGIN
-	UPDATE [User.Account].[User] set UserName = [UCSF.].fn_InternalUserName2UserName(InternalUserName) where UserName is null and InternalUserName is not null
+	-- UCSD person
+	UPDATE u SET u.UserName = i.eppn FROM [User.Account].[User] u JOIN [import_ucsd].[dbo].vw_person i on u.InternalUserName = i.internalusername + '@ucsd.edu'
+		WHERE u.UserName is NULL and i.eppn is not null and u.UserName LIKE '%@ucsd.edu'
+
+	-- UCSD user
+	UPDATE u SET u.UserName = i.eppn FROM [User.Account].[User] u JOIN [import_ucsd].[dbo].vw_users i on u.InternalUserName = i.internalusername + '@ucsd.edu'
+		WHERE u.UserName is NULL and i.eppn is not null and u.UserName LIKE '%@ucsd.edu'
+
+	-- USC and LBL
+	UPDATE [User.Account].[User] SET UserName = REPLACE(REPLACE(InternalUserName, '@usc.edu', ''),'@lbl.gov', '')
+		WHERE UserName is null AND 
+			(InternalUserName LIKE '%@usc.edu' OR  InternalUserName LIKE '@lbl.gov')
+
+	-- the rest
+	UPDATE [User.Account].[User] SET UserName = InternalUserName
+		WHERE UserName is null  
 END
 
 GO
@@ -507,19 +496,21 @@ GO
 
 /*********** ReadActivityLog from new tables **************************************/
 -- Used by SecureAPI
-CREATE PROCEDURE [UCSF.].[ReadActivityLog] @methodName nvarchar(255), @afterDT datetime
+CREATE PROCEDURE [UCSF.].[ReadActivityLog] @methodName nvarchar(255),  @institutionAbbreviation nvarchar(50), @afterDT datetime
 AS   
 
 IF @methodName is not null
 	SELECT p.personid, p.displayname, p.prettyurl, p.emailaddr, l.createdDT, l.methodName, l.param1, l.param2
 	  FROM [Framework.].[Log.Activity] l  join [UCSF.].[vwPerson] p on l.personId = p.PersonID
-	  where l.methodName = @methodName and l.createdDT >= isnull(@afterDT, '01/01/1970') 
+	  where l.methodName = @methodName and ISNULL(@institutionAbbreviation, p.InstitutionAbbreviation) = p.InstitutionAbbreviation
+	   and l.createdDT >= isnull(@afterDT, '01/01/1970') 
 	   order by activityLogId desc;
 ELSE
 	SELECT p.personid, p.displayname, p.prettyurl, p.emailaddr, l.createdDT, l.methodName, l.param1, l.param2
 	  FROM [Framework.].[Log.Activity] l  join [UCSF.].[vwPerson] p on l.personId = p.PersonID
-	  where l.createdDT >= isnull(@afterDT, '01/01/1970') 
+	  where  ISNULL(@InstitutionAbbreviation, p.@institutionAbbreviation) = p.InstitutionAbbreviation and l.createdDT >= isnull(@afterDT, '01/01/1970') 
 	   order by activityLogId desc;
+
 GO
 
 /****** Object:  StoredProcedure [Profile.Data].[Publication.ClaimOnePublication]    Script Date: 2/1/2017 11:24:36 AM ******/
@@ -2490,6 +2481,7 @@ BEGIN
 
 	-- Update the session data
     IF EXISTS (SELECT * FROM [User.Session].[Session] WHERE SessionID = @SessionID)
+	BEGIN
 		UPDATE [User.Session].[Session]
 			SET	UserID = IsNull(@UserID,UserID),
 				UserNode = IsNull((SELECT NodeID FROM [User.Account].[User] WHERE UserID = @UserID AND @UserID IS NOT NULL),UserNode),
@@ -2498,7 +2490,9 @@ BEGIN
 				LastUsedDate = IsNull(@LastUsedDate,LastUsedDate),
 				LogoutDate = IsNull(@LogoutDate,LogoutDate)
 			WHERE SessionID = @SessionID
-
+		-- Make sure to get this to send back for multishib login
+		SELECT @DisplayName = DisplayName FROM [User.Session].[Session] WHERE SessionID = @SessionID
+	END
 	IF @UserID IS NOT NULL
 	BEGIN
 		SELECT @UserURI = p.Value + CAST(m.NodeID AS VARCHAR(50))

@@ -4,9 +4,10 @@ DROP VIEW [UCSF.].[vwPublication.MyPub.General]
 DROP PROCEDURE [UCSF.].[AddProxyByInternalUsername]
 DROP PROCEDURE [UCSF.].[CreatePrettyURLs]
 DROP PROCEDURE [UCSF.].[ReadActivityLog]
+DROP PROCEDURE [UCSF.].[CreateNewLogins]
 DROP FUNCTION [UCSF.].[fn_UrlCleanName]
 DROP FUNCTION [UCSF.].[fn_ApplicationNameFromPrettyUrl]
-DROP FUNCTION [UCSF.].fn_LegacyInternalusername2EPPN
+DROP FUNCTION [UCSF.].fn_ScopeInternalusername   --fn_LegacyInternalusername2EPPN
 DROP TABLE [UCSF.].[NameAdditions]
 DROP TABLE [UCSF.].[Theme2Institution]
 DROP TABLE [UCSF.].[Brand]

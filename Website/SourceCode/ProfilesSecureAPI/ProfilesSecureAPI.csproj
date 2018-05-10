@@ -24,6 +24,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -104,6 +106,12 @@
     <Content Include="App_Themes\UCSD\UCSD.skin" />
     <Content Include="App_Themes\UCSF\UCSF.skin" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Profiles\Profiles\Profiles.csproj">
+      <Project>{3558968D-7E06-4351-AEEE-74A6BC975A74}</Project>
+      <Name>Profiles</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

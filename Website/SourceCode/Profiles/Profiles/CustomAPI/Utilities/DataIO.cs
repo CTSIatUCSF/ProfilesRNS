@@ -59,6 +59,13 @@ namespace Profiles.CustomAPI.Utilities
             return null;
         }
 
+        public bool IsAllowedSecureAccess(HttpRequest request)
+        {
+            List<string> allowedIds = new List<String>(ConfigurationManager.AppSettings["SecureAPIClientIDs"].Split(','));
+            string ClientID = request["ClientID"];
+            return !String.IsNullOrEmpty(ClientID) && allowedIds.Contains(ClientID);                
+        }
+
         public string GetPublicationInclusionSource(int personId, string PMID)
         {
             if (PMID == null)

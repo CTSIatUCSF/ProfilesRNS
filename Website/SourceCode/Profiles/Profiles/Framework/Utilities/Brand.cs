@@ -139,6 +139,11 @@ namespace Profiles.Framework.Utilities
             return RestrictedInstitutions.Count == 1 ? RestrictedInstitutions[0] : null;
         }
 
+        public bool IsApplicableFor(Institution institution)
+        {
+            return RestrictedInstitutions.Count == 0 || RestrictedInstitutions.Contains(institution);
+        }
+
         //don't show gadget filters that don't make sense for this brand
         public bool IsApplicableForFilter(string filter)
         {

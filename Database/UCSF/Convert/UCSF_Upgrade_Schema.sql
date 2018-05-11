@@ -7,6 +7,8 @@
 CREATE SCHEMA [UCSF.]
 GO
 
+CREATE SCHEMA [UCSF.Migration]
+GO
 ---------------------------------------------------------------------------------------------------------------------
 --
 --	Create Tables and Indexes

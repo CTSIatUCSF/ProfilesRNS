@@ -665,14 +665,17 @@ namespace Profiles.Search.Utilities
         /// To return the list of all the Institutions
         /// </summary>
         /// <returns></returns>
-        public List<GenericListItem> GetInstitutions()
+        public List<GenericListItem> GetInstitutions(Brand brand)
         {
 
             // UCSF, we preload this so just use what we have
             List<GenericListItem> institutions = new List<GenericListItem>();
             foreach (Institution institution in Institution.GetAll())
             {
-                institutions.Add(new GenericListItem(institution.GetName(), institution.GetURI()));
+                if (brand.IsApplicableFor(institution))
+                {
+                    institutions.Add(new GenericListItem(institution.GetName(), institution.GetURI()));
+                }
             }
             return institutions;
         }
@@ -718,10 +721,15 @@ namespace Profiles.Search.Utilities
         /// To return the list of all the Departments or Divisions. Type MUST be Departments or Divisions
         /// </summary>
         /// <returns></returns>
-        public List<GenericListItem> GetInstitutionalItemsOfType(String types, Institution institution)
+        public List<GenericListItem> GetBrandedItemsOfType(String types, Brand brand)
         {
             List<GenericListItem> items = new List<GenericListItem>();
-            String cacheKey = "Get" + types + " for " + institution.GetAbbreviation();
+            if (brand.IsMultiInstitutional())
+            {
+                // for now we don't support this in the UI
+                return items;
+            }
+            String cacheKey = "Get" + types + " for " + brand.Theme;
             if (Framework.Utilities.Cache.FetchObject(cacheKey) == null)
             {
                 try
@@ -738,7 +746,7 @@ namespace Profiles.Search.Utilities
                         dbcommand.CommandText = "[Profile.Data].[Organization.Get" + types + "]";
                         dbcommand.CommandTimeout = base.GetCommandTimeout();
 
-                        dbcommand.Parameters.Add(new SqlParameter("@InstitutionAbbreviation", institution.GetAbbreviation()));
+                        dbcommand.Parameters.Add(new SqlParameter("@InstitutionAbbreviation", brand.GetInstitution().GetAbbreviation()));
                         dbcommand.Connection = dbconnection;
 
                         using (SqlDataReader dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection))

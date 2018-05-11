@@ -10,26 +10,26 @@ namespace Profiles.Search.Utilities
     public static class SearchDropDowns
     {
 
-        private static List<GenericListItem> GetList(string type, Institution institution)
+        private static List<GenericListItem> GetList(string type, Brand brand)
         {
             Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
 
             switch (type)
             {
                 case "institution":
-                    return data.GetInstitutions();
+                    return data.GetInstitutions(brand);
 
                 case "department":
-                    return data.GetInstitutionalItemsOfType("Departments", institution);
+                    return data.GetBrandedItemsOfType("Departments", brand);
                 case "division":
-                    return data.GetInstitutionalItemsOfType("Divisions", institution);
+                    return data.GetBrandedItemsOfType("Divisions", brand);
             }
             return null;
         }
 
-        public static string GetDefaultItemValue(string type, string defaultitem, Institution institution)
+        public static string GetDefaultItemValue(string type, string defaultitem, Brand brand)
         {
-            List<GenericListItem> list = GetList(type, institution);
+            List<GenericListItem> list = GetList(type, brand);
             foreach (GenericListItem item in list)
             {       // Eric Meeks adding check for item.Text as well
                 if (defaultitem == item.Value || defaultitem.Equals(item.Text))
@@ -38,11 +38,11 @@ namespace Profiles.Search.Utilities
             return null;
         }
 
-        public static string BuildDropdown(string type, string width, string defaultitem, Institution institution)
+        public static string BuildDropdown(string type, string width, string defaultitem, Brand brand)
         {
             string output = "<option value=\"\"></option>";
 
-            List<GenericListItem> list = GetList(type, institution);
+            List<GenericListItem> list = GetList(type, brand);
 
             foreach (GenericListItem item in list)
             {       // Eric Meeks adding check for item.Text as well

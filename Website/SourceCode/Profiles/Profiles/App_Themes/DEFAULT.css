@@ -296,7 +296,7 @@ box-shadow: 10px 10px 10px -10px rgba(153,153,153,1);
 #suckerfishmenu	 a:hover {
   border-bottom: 2px solid #CCC;
 }
-#suckerfishmenu	 ul.menu li ul { position: absolute; right: -999px; padding: 0; margin: -2px 0 0 0; }
+#suckerfishmenu	 ul.menu li ul { position: absolute; right: 9999px; padding: 0; margin: -2px 0 0 0; }
 #suckerfishmenu	 ul.menu li:hover ul { right: 0; }
 #suckerfishmenu	 ul.menu li ul li { display: block; float: none; border-bottom: 1px solid #DDD; background-color: #F8F8F9; 
    padding: 8px 15px 6px; width: 114px; text-transform: none; margin: 0; }
@@ -432,6 +432,8 @@ h2.badge-top  { padding: 12px 0 14px 4px; margin: -68px 0 0 60px; width: 70px; f
 
 /* Login */
 .login_container { border: 1px solid #CCC; display: table; width: 960px; }
-.login_container row { display: table-row; }
-.login_container div { display: table-cell; text-align: middle; }
-.login input[type="image"] { max-width: 200px; padding:20px; vertical-align: middle; }
+.login_container row { display: table; width: 100%; }
+.login_container div { display: table-cell; text-align: center; }
+.login input[type="image"] { width: 140px; padding: 20px; vertical-align: middle; }
+.login .plus-size input[type="image"] { width: 170px; }
+

@@ -376,10 +376,11 @@ namespace Profiles.Activity.Utilities
                             "join [RDF.].Node n on t.Predicate = n.NodeID and n.value in " +
                             "('http://profiles.catalyst.harvard.edu/ontology/prns#mainImage', 'http://vivoweb.org/ontology/core#awardOrHonor', " +
                             "'http://vivoweb.org/ontology/core#educationalTraining', 'http://vivoweb.org/ontology/core#freetextKeyword', 'http://vivoweb.org/ontology/core#overview')) t " +
-                            "on i.NodeID = t.Subject union " +
+                            "on " + (Brand.GetCurrentBrand().GetInstitution() == null ? "" : "i.InstitutionAbbreviation = '" + Brand.GetCurrentBrand().GetInstitution() + "' AND ") + 
+                            "i.NodeID = t.Subject union " +
                             "select distinct personid from [Profile.Data].[Publication.Person.Add] union " +
                             "select distinct personid from [Profile.Data].[Publication.Person.Exclude] as u) t " +
-                            "on t.PersonID = p.PersonID " + GetBrandedJoin() + GetBrandedWhere(" where p.isactive = 1");
+                            "on t.PersonID = p.PersonID " + GetBrandedJoin() + GetBrandedWhere(" and p.isactive = 1");
                 
             return GetCount(sql);
         }

@@ -4,7 +4,7 @@
 	<div class="PropertyItemHeader">
 		<a href="javascript:toggleBlock('propertyitem','conceptPub')"> 
 			<img id='plusImage' runat='server' style="border: none; text-decoration: none !important" border="0" alt="expand / collapse" /></a>
-			<%=this.Institution %> Publications
+			<%=this.BrandName %> Publications
 	</div>
 	<div class="PropertyGroupData">
 		<div id="conceptPub" class='publicationList'>

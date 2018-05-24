@@ -612,7 +612,7 @@ namespace Profiles.Profile.Utilities
             dbcommand.CommandTimeout = base.GetCommandTimeout();
             // Add parameters
             dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
-            if (brand != null && brand.PersonFilter != null)
+            if (brand != null && !String.IsNullOrEmpty(brand.PersonFilter))
                 dbcommand.Parameters.Add(new SqlParameter("@PersonFilter", brand.PersonFilter));
             if (brand != null && brand.GetInstitution() != null)
                 dbcommand.Parameters.Add(new SqlParameter("@InstitutionAbbreviation", brand.GetInstitution().GetAbbreviation()));
@@ -687,7 +687,7 @@ namespace Profiles.Profile.Utilities
             dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
             dbcommand.Parameters.Add(new SqlParameter("@ListType", "newest"));
             Brand brand = Brand.GetCurrentBrand();
-            if (brand != null && brand.PersonFilter != null)
+            if (brand != null && !String.IsNullOrEmpty(brand.PersonFilter))
                 dbcommand.Parameters.Add(new SqlParameter("@PersonFilter", brand.PersonFilter));
             if (brand != null && brand.GetInstitution() != null)
                 dbcommand.Parameters.Add(new SqlParameter("@InstitutionAbbreviation", brand.GetInstitution().GetAbbreviation()));

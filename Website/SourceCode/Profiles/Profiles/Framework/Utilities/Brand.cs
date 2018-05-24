@@ -175,7 +175,7 @@ namespace Profiles.Framework.Utilities
             this.Theme = Theme;
             this.BasePath = BasePath;
             this.GATrackingID = GATrackingID;
-            this.PersonFilter = PersonFilter;
+            this.PersonFilter = String.IsNullOrEmpty(PersonFilter) ? null : PersonFilter;
             this.RestrictedInstitutions = institutions;
 
             ByTheme[this.Theme] = this;

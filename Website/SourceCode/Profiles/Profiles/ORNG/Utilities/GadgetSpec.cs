@@ -20,7 +20,7 @@ namespace Profiles.ORNG.Utilities
         private bool enabled;
         private bool unrecognized = false;
         private Dictionary<string, GadgetViewRequirements> viewRequirements = new Dictionary<string, GadgetViewRequirements>();
-        private Dictionary<Institution, string> institionalizedApps = null; // keep NULL unless we have real entreis
+        private Dictionary<Institution, string> institionalizedApps = null; // keep NULL unless we have real entries
 
         // these are loaded from the DB
         public GadgetSpec(int appId, string label, string openSocialGadgetURL, string personFilter, bool enabled)
@@ -83,6 +83,9 @@ namespace Profiles.ORNG.Utilities
             if (this.GetFileName() == unrecognizedGadget.GetFileName() && !this.unrecognized && unrecognizedGadget.unrecognized)
             {
                 this.openSocialGadgetURL = unrecognizedGadget.openSocialGadgetURL;
+                // remove the institutional versions so that the unrecognizedGagdet is used at all times. 
+                // Note this this method is only called when folks are testing stuff with the gadget sandbox
+                this.institionalizedApps = null;
                 this.enabled = true;
             }
             else

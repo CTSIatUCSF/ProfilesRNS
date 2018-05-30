@@ -117,12 +117,14 @@ namespace Profiles.Framework.Utilities
             }
             // see if it is the Root.Domain and swap in the themed one. 
 
-            /** 6/26/2017 change to only brand person centric pages
+            /** 6/26/2017 change to only brand person centric pages 
+             * Change back on 5/24/2018
+             * **/
             if (uri.StartsWith(Root.Domain)) 
             {
-                return uri.Replace(Root.Domain, GetDomain());
+                return uri.Replace(Root.Domain, GetThemedDomain());
             }
-            **/
+            
             return uri;
         }
 

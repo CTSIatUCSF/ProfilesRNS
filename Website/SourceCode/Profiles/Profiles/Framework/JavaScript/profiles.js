@@ -31,6 +31,12 @@ function GoTo(location) {
 
     return null;
 }
+function GoToBranded(location, rootDomain, brandDomain) {
+
+    document.location = location.replace(rootDomain, brandDomain);
+
+    return null;
+}
 function toggleBlock(key, id) {
 
 

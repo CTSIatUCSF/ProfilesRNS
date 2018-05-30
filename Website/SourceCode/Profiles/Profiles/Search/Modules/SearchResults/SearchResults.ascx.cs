@@ -366,6 +366,7 @@ namespace Profiles.Search.Modules.SearchResults
                 perpage = 15;
             }
 
+            args.AddParam("defaultDomain", "", Root.Domain);
             args.AddParam("root", "", Brand.GetThemedDomain());
             args.AddParam("perpage", "", perpage);
             args.AddParam("offset", "", offset);

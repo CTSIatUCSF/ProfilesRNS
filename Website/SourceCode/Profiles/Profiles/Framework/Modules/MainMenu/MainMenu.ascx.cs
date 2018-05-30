@@ -247,7 +247,6 @@ namespace Profiles.Framework.Modules.MainMenu
             string institution = "";
             string otherFilters = "";
             string searchFor = Request.Form["mainMenuSearchFor"];
-            string theme = Brand.GetSystemTheme(); 
 
             Brand brand = Brand.GetByTheme(searchTypeDropDownValue);
             if (brand != null)
@@ -257,7 +256,6 @@ namespace Profiles.Framework.Modules.MainMenu
                 if (!brand.IsMultiInstitutional())
                 {
                     institution = brand.GetInstitution().GetURI();
-                    theme = brand.Theme;
                 }
                 else if (brand.PersonFilter != null)
                 {
@@ -278,7 +276,6 @@ namespace Profiles.Framework.Modules.MainMenu
                                 "&classgroupuri=" + HttpUtility.UrlEncode(classGroupURI) +
                                 "&institution=" + HttpUtility.UrlEncode(institution) +
                                 "&otherfilters=" + HttpUtility.UrlEncode(otherFilters) +
-                                "&Theme=" + theme + 
                                 "&exactphrase=false", false);
             HttpContext.Current.ApplicationInstance.CompleteRequest(); 
         }

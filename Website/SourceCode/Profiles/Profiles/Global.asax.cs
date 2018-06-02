@@ -156,8 +156,13 @@ namespace Profiles
         /// <param name="e"> .Net Event Arguments</param>
         void Application_BeginRequest(object sender, EventArgs e)
         {
+            /**************
+             * 
+             * UCSF. We comment this out because EVERYTHING gets logged when this is on, including request for static files, jakarta processing requests, etc. It's just too much
+             * 
             String path = Request.Url.ToString();
-            Framework.Utilities.DebugLogging.Log("*** {Application_BeginRequest} IIS IS Processing: " + path);           
+            Framework.Utilities.DebugLogging.Log("*** {Application_BeginRequest} IIS IS Processing: " + path + " , " + Request.HttpMethod);  
+             ********************************/
         }
 
         //***************************************************************************************************************************************
@@ -267,6 +272,7 @@ namespace Profiles
             {
                 HttpContext.Current.Items[urlParm.Key] = urlParm.Value;
             }
+            Framework.Utilities.DebugLogging.Log("*** {ProfilesRouteHandler.GetHttpHandler} IIS IS Processing: " + path + " , " + HttpContext.Current.Request.HttpMethod);           
 
             return BuildManager.CreateInstanceFromVirtualPath("~/REST.aspx", typeof(Page)) as IHttpHandler;
 

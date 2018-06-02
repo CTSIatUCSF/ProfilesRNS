@@ -45,19 +45,6 @@ namespace Profiles.ORNG.Utilities
             return sqldr;
         }
 
-        public Int64 GetNodeId(Int32 personid)
-        {
-            string sql = "select NodeID from [RDF.Stage].[InternalNodeMap] where Class = 'http://xmlns.com/foaf/0.1/Person' and InternalID = " + personid;
-            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
-            {
-                if (sqldr.Read())
-                {
-                    return sqldr.GetInt64(0);
-                }
-            }
-            return -1;
-        }
-
         public void AddPersonalGadget(long Subject, string propertyURI, int privacyCode)
         {
             GadgetSpec spec = OpenSocialManager.GetGadgetByPropertyURI(propertyURI);
@@ -110,7 +97,7 @@ namespace Profiles.ORNG.Utilities
 
             param[0] = new SqlParameter("@SubjectURI", uri);
             param[1] = new SqlParameter("@AppID", appId);
-            param[2] = new SqlParameter("@DeleteType", "1");
+            param[2] = new SqlParameter("@UserEdit", "1");
 
             using (SqlCommand comm = GetDBCommand("", "[ORNG.].[RemoveAppFromPerson]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
             {
@@ -124,7 +111,7 @@ namespace Profiles.ORNG.Utilities
 
             param[0] = new SqlParameter("@SubjectID", Subject);
             param[1] = new SqlParameter("@AppID", appId);
-            param[2] = new SqlParameter("@DeleteType", "1");
+            param[2] = new SqlParameter("@UserEdit", "1");
 
             using (SqlCommand comm = GetDBCommand("", "[ORNG.].[RemoveAppFromPerson]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
             {

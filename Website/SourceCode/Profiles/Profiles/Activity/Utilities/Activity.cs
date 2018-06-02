@@ -53,6 +53,8 @@ namespace Profiles.Activity.Utilities
         public string URL { get; set; }
 
         public string Thumbnail { get; set; }
+
+        public string InstitutionAbbreviation { get; set; }
     }
 
     public class ReverseComparer : IComparer<Int64>

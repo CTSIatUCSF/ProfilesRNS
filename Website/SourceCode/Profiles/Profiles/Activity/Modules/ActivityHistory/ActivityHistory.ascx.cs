@@ -95,7 +95,7 @@ namespace Profiles.Activity.Modules.ActivityHistory
                 linkThumbnail.NavigateUrl = activity.Profile.URL;
                 linkProfileURL.NavigateUrl = activity.Profile.URL;
                 linkProfileURL.Text = activity.Profile.Name;
-                linkProfileURL.Text += "<span class=\"authInst\">" + UCSFIDSet.ByNodeId[activity.Profile.NodeID].Institution.GetAbbreviation() + "</span>";
+                linkProfileURL.Text += "<span class=\"authInst\">" + activity.Profile.InstitutionAbbreviation + "</span>";
 
                 litDate.Text = activity.Date;
                 litMessage.Text = activity.Message;
@@ -117,7 +117,7 @@ namespace Profiles.Activity.Modules.ActivityHistory
         private void LoadAssets()
         {
             HtmlLink Searchcss = new HtmlLink();
-            Searchcss.Href = Brand.GetThemedDomain() + "/Activity/CSS/activity.css";
+            //Searchcss.Href = Brand.GetThemedDomain() + "/Activity/CSS/activity.css";
             Searchcss.Attributes["rel"] = "stylesheet";
             Searchcss.Attributes["type"] = "text/css";
             Searchcss.Attributes["media"] = "all";

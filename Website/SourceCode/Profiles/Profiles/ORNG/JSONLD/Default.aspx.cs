@@ -13,18 +13,12 @@
 
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Xml;
-using System.Web.UI.WebControls;
 using System.IO;
-using System.Web.UI.HtmlControls;
 
 using Profiles.ORNG.Utilities;
-using System.Configuration;
 using System.Net;
+
 
 namespace Profiles.ORNG.JSONLD
 {
@@ -48,7 +42,7 @@ namespace Profiles.ORNG.JSONLD
             }
             else if (person != null && person.Trim().Length > 0)
             {
-                nodeid = new DataIO().GetNodeId(Convert.ToInt32(person));
+                nodeid = Profiles.Framework.Utilities.UCSFIDSet.ByPersonId[Convert.ToInt32(person)].NodeId;
             }
             else
             {

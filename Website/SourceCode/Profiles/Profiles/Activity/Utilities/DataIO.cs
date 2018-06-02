@@ -335,7 +335,8 @@ namespace Profiles.Activity.Utilities
                                         PersonId = Convert.ToInt32(personid),
                                         NodeID = Convert.ToInt64(nodeid),
                                         URL = UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)].PrettyURL,
-                                        Thumbnail = Brand.GetForSubject(Convert.ToInt64(nodeid)).BasePath + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + nodeid + "&Thumbnail=True&Width=45"
+                                        Thumbnail = Brand.GetForSubject(Convert.ToInt64(nodeid)).BasePath + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + nodeid + "&Thumbnail=True&Width=45",
+                                        InstitutionAbbreviation = UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)].Institution.GetAbbreviation()
                                     }
                                 };
                                 activities.Add(act.Id, act);

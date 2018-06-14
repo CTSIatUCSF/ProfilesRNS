@@ -2211,12 +2211,9 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ActiveNetwork\Utilities\" />
-    <Folder Include="Activity\CSS\" />
     <Folder Include="App_Data\" />
-    <Folder Include="App_Themes\Default\PresentationXML\About\" />
-    <Folder Include="App_Themes\UC\PresentationXML\About\" />
-    <Folder Include="Login\Modules\App_LocalResources\" />
+    <Folder Include="App_Themes\Default\PresentationXML\" />
+    <Folder Include="App_Themes\UC\PresentationXML\" />
     <Folder Include="ORCID\XSLT\" />
   </ItemGroup>
   <ItemGroup>

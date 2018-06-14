@@ -31,7 +31,7 @@ changed display none to block for next div
                   <img src="{$root}/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?person={@PersonID}&amp;Thumbnail=True&amp;Width=15" width="15" height="30"/>
                 </div>
               </xsl:if>
-              <xsl:value-of select="@ItemURLText"/>
+              <xsl:value-of select="@ItemURLText"/><span class="authInst"><xsl:value-of select="@InstitutionAbbreviation"/></span>
             </a>
             <xsl:value-of select="."/>
           </li>

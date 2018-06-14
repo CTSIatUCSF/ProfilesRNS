@@ -15,7 +15,7 @@ using System.Data;
 
 namespace Profiles
 {
-    public partial class SiteMap : System.Web.UI.Page
+    public partial class SiteMap : BrandedPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,19 +25,19 @@ namespace Profiles
                                         "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"" + Environment.NewLine +
                                         "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" + Environment.NewLine +
                                         "xsi:schemaLocation=\"http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd\">" + Environment.NewLine +
-                                        "<url><loc>" + Root.Domain + "</loc></url>" + Environment.NewLine +
-                                        "<url><loc>" + Root.Domain + "/About</loc></url>" + Environment.NewLine +
-                                        "<url><loc>" + Root.Domain + "/About/AboutProfiles.aspx</loc></url>" + Environment.NewLine +
-                                        "<url><loc>" + Root.Domain + "/About/ForDevelopers.aspx</loc></url>" + Environment.NewLine +
-                                        "<url><loc>" + Root.Domain + "/About/GadgetLibrary.aspx</loc></url>" + Environment.NewLine +
-                                        "<url><loc>" + Root.Domain + "/About/Help.aspx</loc></url>" + Environment.NewLine +
-                                        "<url><loc>" + Root.Domain + "/About/HowProfilesWorks.aspx</loc></url>" + Environment.NewLine +
-                                        "<url><loc>" + Root.Domain + "/search</loc></url>" + Environment.NewLine +
-                                        "<url><loc>" + Root.Domain + "/search/people</loc></url>" + Environment.NewLine +
-                                        "<url><loc>" + Root.Domain + "/search/all</loc></url>" + Environment.NewLine);
-                foreach (string urlname in LoadPeople()) 
+                                        "<url><loc>" + Brand.GetThemedDomain() + "</loc></url>" + Environment.NewLine +
+                                        "<url><loc>" + Brand.GetThemedDomain() + "/About</loc></url>" + Environment.NewLine +
+                                        "<url><loc>" + Brand.GetThemedDomain() + "/About/AboutProfiles.aspx</loc></url>" + Environment.NewLine +
+                                        "<url><loc>" + Brand.GetThemedDomain() + "/About/ForDevelopers.aspx</loc></url>" + Environment.NewLine +
+                                        "<url><loc>" + Brand.GetThemedDomain() + "/About/GadgetLibrary.aspx</loc></url>" + Environment.NewLine +
+                                        "<url><loc>" + Brand.GetThemedDomain() + "/About/Help.aspx</loc></url>" + Environment.NewLine +
+                                        "<url><loc>" + Brand.GetThemedDomain() + "/About/HowProfilesWorks.aspx</loc></url>" + Environment.NewLine +
+                                        "<url><loc>" + Brand.GetThemedDomain() + "/search</loc></url>" + Environment.NewLine +
+                                        "<url><loc>" + Brand.GetThemedDomain() + "/search/people</loc></url>" + Environment.NewLine +
+                                        "<url><loc>" + Brand.GetThemedDomain() + "/search/all</loc></url>" + Environment.NewLine);
+                foreach (string prettyURL in LoadPeople(Brand.GetThemedDomain().ToLower())) 
                 {
-                        Response.Write("<url><loc>" + Root.Domain + "/" + urlname + "</loc></url>" + Environment.NewLine);
+                        Response.Write("<url><loc>" + prettyURL + "</loc></url>" + Environment.NewLine);
                 }
 
                 Response.Write("</urlset>");
@@ -47,36 +47,33 @@ namespace Profiles
             }
             else 
             {
-                Response.Write("<a href='" + Root.Domain + "'>" + Root.Domain + "</a>" + Environment.NewLine +
-                               "<a href='" + Root.Domain + "/About" + "'>" + Root.Domain + "/About" + "</a>" + Environment.NewLine +
-                               "<a href='" + Root.Domain + "/About/AboutProfiles.aspx" + "'>" + Root.Domain + "/About/AboutProfiles.aspx" + "</a>" + Environment.NewLine +
-                               "<a href='" + Root.Domain + "/About/ForDevelopers.aspx" + "'>" + Root.Domain + "/About/ForDevelopers.aspx" + "</a>" + Environment.NewLine +
-                               "<a href='" + Root.Domain + "/About/GadgetLibrary.aspx" + "'>" + Root.Domain + "/About/GadgetLibrary.aspx" + "</a>" + Environment.NewLine +
-                               "<a href='" + Root.Domain + "/About/Help.aspx" + "'>" + Root.Domain + "/About/Help.aspx" + "</a>" + Environment.NewLine +
-                               "<a href='" + Root.Domain + "/About/HowProfilesWorks.aspx" + "'>" + Root.Domain + "/About/HowProfilesWorks.aspx" + "</a>" + Environment.NewLine +
-                               "<a href='" + Root.Domain + "/search" + "'>" + Root.Domain + "/search" + "</a>" + Environment.NewLine +
-                               "<a href='" + Root.Domain + "/search/people" + "'>" + Root.Domain + "/search/people" + "</a>" + Environment.NewLine +
-                               "<a href='" + Root.Domain + "/search/all" + "'>" + Root.Domain + "/search/all" + "</a>" + Environment.NewLine);
-                foreach (string urlname in LoadPeople()) 
+                Response.Write("<a href='" + Brand.GetThemedDomain() + "'>" + Brand.GetThemedDomain() + "</a>" + Environment.NewLine +
+                               "<a href='" + Brand.GetThemedDomain() + "/About" + "'>" + Brand.GetThemedDomain() + "/About" + "</a>" + Environment.NewLine +
+                               "<a href='" + Brand.GetThemedDomain() + "/About/AboutProfiles.aspx" + "'>" + Brand.GetThemedDomain() + "/About/AboutProfiles.aspx" + "</a>" + Environment.NewLine +
+                               "<a href='" + Brand.GetThemedDomain() + "/About/ForDevelopers.aspx" + "'>" + Brand.GetThemedDomain() + "/About/ForDevelopers.aspx" + "</a>" + Environment.NewLine +
+                               "<a href='" + Brand.GetThemedDomain() + "/About/GadgetLibrary.aspx" + "'>" + Brand.GetThemedDomain() + "/About/GadgetLibrary.aspx" + "</a>" + Environment.NewLine +
+                               "<a href='" + Brand.GetThemedDomain() + "/About/Help.aspx" + "'>" + Brand.GetThemedDomain() + "/About/Help.aspx" + "</a>" + Environment.NewLine +
+                               "<a href='" + Brand.GetThemedDomain() + "/About/HowProfilesWorks.aspx" + "'>" + Brand.GetThemedDomain() + "/About/HowProfilesWorks.aspx" + "</a>" + Environment.NewLine +
+                               "<a href='" + Brand.GetThemedDomain() + "/search" + "'>" + Brand.GetThemedDomain() + "/search" + "</a>" + Environment.NewLine +
+                               "<a href='" + Brand.GetThemedDomain() + "/search/people" + "'>" + Brand.GetThemedDomain() + "/search/people" + "</a>" + Environment.NewLine +
+                               "<a href='" + Brand.GetThemedDomain() + "/search/all" + "'>" + Brand.GetThemedDomain() + "/search/all" + "</a>" + Environment.NewLine);
+                foreach (string prettyURL in LoadPeople(Brand.GetThemedDomain().ToLower())) 
                 {
-                        Response.Write("<a href='" + Root.Domain + "/" + urlname + "'>" + Root.Domain + "/" + urlname + "</a>" + Environment.NewLine);
+                    Response.Write("<a href='" + prettyURL + "'>" + prettyURL + "</a>" + Environment.NewLine);
                 }
                 Response.End();
             }
         }
 
         // can do this via Search API but this is much faster since we know exactly what we want
-        private List<string> LoadPeople()
+        private List<string> LoadPeople(string matchingDomain)
         {
             List<string> urlNames = new List<string>();
-            DataIO data = new DataIO();
-            using (SqlDataReader reader = data.GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
-                "select n.UrlName from [Profile.Data].Person p join [UCSF.].NameAdditions n on p.InternalUserName = n.InternalUserName where p.IsActive = 1"
-                , CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+            foreach (string prettyURL in UCSFIDSet.PrettyURLs)
             {
-                while (reader.Read())
+                if (prettyURL.ToLower().StartsWith(matchingDomain))
                 {
-                    urlNames.Add(reader[0].ToString());
+                    urlNames.Add(prettyURL);
                 }
             }
             return urlNames;

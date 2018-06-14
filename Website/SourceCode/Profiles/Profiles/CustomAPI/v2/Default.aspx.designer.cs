@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.CustomAPI {
+namespace Profiles.CustomAPI.v2 {
     
     
     public partial class Default {

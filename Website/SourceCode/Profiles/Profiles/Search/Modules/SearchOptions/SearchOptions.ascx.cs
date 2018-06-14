@@ -52,7 +52,7 @@ namespace Profiles.Search.Modules.SearchOptions
                 tab = "all";
             }
 
-            litModifySearch.Text = "<a href=\"javascript:modify('" + Root.Domain + "','" + tab + "','" + base.MasterPage.SearchRequest + "');\">" + "Modify Search" + "</a>";
+            litModifySearch.Text = "<a href=\"javascript:modify('" + Brand.GetThemedDomain() + "','" + tab + "','" + base.MasterPage.SearchRequest + "');\">" + "Modify Search" + "</a>";
 
             if (Request.QueryString["searchfor"].IsNullOrEmpty())
                 searchfor = Request.Form["txtSearchFor"];
@@ -71,7 +71,7 @@ namespace Profiles.Search.Modules.SearchOptions
                     searchfor = xmlsearchrequest.SelectSingleNode("SearchOptions/MatchOptions/SearchString").InnerText;
             }
 
-            litSearchOtherInstitutions.Text = "<a href='" + Root.Domain + "/direct/default.aspx?keyword=" + searchfor + "&searchrequest=" + base.MasterPage.SearchRequest + "&searchtype=" + Request.QueryString["searchtype"] + "'>" + "Search Other Institutions" + "</a>";
+            litSearchOtherInstitutions.Text = "<a href='" + Brand.GetThemedDomain() + "/direct/default.aspx?keyword=" + searchfor + "&searchrequest=" + base.MasterPage.SearchRequest + "&searchtype=" + Request.QueryString["searchtype"] + "'>" + "Search Other Institutions" + "</a>";
         }
 
         private XmlDocument SearchData { get; set; }

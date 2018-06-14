@@ -149,7 +149,7 @@ namespace Profiles.Search.Modules.SearchEverythingFacets
             args.AddParam("total", "", total);
             args.AddParam("searchfor", "", searchfor);
             args.AddParam("exactphrase", "", exactphrase);
-            args.AddParam("root", "", Root.Domain);
+            args.AddParam("root", "", Brand.GetThemedDomain());
             args.AddParam("classGrpURIpassedin", "", classgroupuri);
             args.AddParam("classURIpassedin", "", classuri);
 

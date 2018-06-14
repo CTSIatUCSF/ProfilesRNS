@@ -59,7 +59,7 @@ namespace Profiles.Framework.Modules.NetworkList
 
             XslCompiledTransform xslt = new XslCompiledTransform();
             XsltArgumentList args = new XsltArgumentList();
-            args.AddParam("root", "", Root.Domain);
+            args.AddParam("root", "", Brand.GetThemedDomain());
 
             litListView.Text = XslHelper.TransformInMemory(Server.MapPath("~/Profile/Modules/NetworkList/NetworkList.xslt"), args, document.OuterXml);
         }
@@ -183,7 +183,7 @@ namespace Profiles.Framework.Modules.NetworkList
                 var items = from XmlNode networknode in base.BaseData.SelectNodes(networklistnode, base.Namespaces)
                             select new
                             {
-                                itemurl = CustomParse.Parse(itemurl, networknode, base.Namespaces),
+                                itemurl = Brand.CleanURL(CustomParse.Parse(itemurl, networknode, base.Namespaces)),
                                 item = CustomParse.Parse(itemtext, networknode, base.Namespaces),
                                 weight = GetCloudRank(networknode.SelectSingleNode("./rdf:object/@rdf:resource", base.Namespaces).InnerText, weights),
                                 connectiondetails = networknode.SelectSingleNode("prns:hasConnectionDetails/@rdf:resource", base.Namespaces),
@@ -229,6 +229,12 @@ namespace Profiles.Framework.Modules.NetworkList
                                 documentdata.Append(i.sortorder.InnerText);
                                 documentdata.Append("\"");
                             }
+                        }
+
+                        if (UCSFIDSet.ByPrettyURL.ContainsKey(i.itemurl))
+                        {
+                            documentdata.Append(" InstitutionAbbreviation=\"" + UCSFIDSet.ByPrettyURL[i.itemurl].Institution.GetAbbreviation());
+                            documentdata.Append("\"");
                         }
 
                         string itemxpath = i.itemxpath;

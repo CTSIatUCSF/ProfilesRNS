@@ -62,12 +62,12 @@ namespace Profiles.Search.Modules
                 url = url.Replace("searchtype=whyeverything", "searchtype=everything");
             }
 
-            backlink.Text = "<a href='" + Root.Domain + "/search/default.aspx?" + url + "' class='dblarrow'>Back to Search Results</a>";
-            litSearchURL.Text = "<a href='" + Root.Domain + "/search/default.aspx?" + url + "'>Search Results</a>";
+            backlink.Text = "<a href='" + Brand.GetThemedDomain() + "/search/default.aspx?" + url + "' class='dblarrow'>Back to Search Results</a>";
+            litSearchURL.Text = "<a href='" + Brand.GetThemedDomain() + "/search/default.aspx?" + url + "'>Search Results</a>";
 
-            litPersonURI.Text = "<a href='" + nodeuri + "'>" + node.SelectSingleNode("rdfs:label", base.Namespaces).InnerText + "</a>";
+            litPersonURI.Text = "<a href='" + Brand.CleanURL(nodeuri) + "'>" + node.SelectSingleNode("rdfs:label", base.Namespaces).InnerText + "</a>";
 
-            litNodeURI.Text = "<a href='" + nodeuri + "'>" + node.SelectSingleNode("rdfs:label", base.Namespaces).InnerText + "</a>";
+            litNodeURI.Text = "<a href='" + Brand.CleanURL(nodeuri) + "'>" + node.SelectSingleNode("rdfs:label", base.Namespaces).InnerText + "</a>";
 
             if (node != null)
             {
@@ -199,7 +199,7 @@ namespace Profiles.Search.Modules
             {
                 this.Property = property;
                 this.Value = value;
-                this.URI = uri;
+                this.URI = Brand.CleanURL(uri);
 
             }
             public string Property { get; set; }
@@ -214,15 +214,15 @@ namespace Profiles.Search.Modules
             {
                 this.ItemType = itemtype;
                 this.Name = name;
-                this.URI = uri;
+                this.URI = Brand.CleanURL(uri);
             }
             public string ItemType { get; set; }
             public string Name { get; set; }
             public string URI { get; set; }
         }
-        public string GetURLDomain()
+        public string GetThemedDomain()
         {
-            return Root.Domain;
+            return Brand.GetThemedDomain();
         }
 
 

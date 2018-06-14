@@ -17,92 +17,94 @@
         <ParamList>
           <Param Name="HTML">
 
-<script type="text/javascript">
-$('#suckerfishmenu li#about a').addClass('active'); 
-</script>
+			<script type="text/javascript">
+				$('#suckerfishmenu li#about a').addClass('active'); 
+			</script>
+			<style type="text/css">
+				.profiles .profilesContentMain .pageTitle h2 { text-align: center; }
+			</style>
 
-<h3 style="text-align:center;font-size:20px;padding:10px 0 16px;color:#999;margin:0">
-  A Research Networking and Expertise Mining Tool</h3>
+			<h3 class="about-subheading">A Research Networking and Expertise Mining Tool</h3>
+            <div class="aboutProfiles">
+                <div class="shaded">
+					<h2>Search</h2>
+					<img src="images/search.png" alt="" />
+					<h3>Experts, Collaborators, Mentors</h3>
+					<ul class="square">
+					   <li>20,000+ publications</li>
+					   <li>3000+ LBL researchers</li>
+					</ul>
+				</div>
 
-<table cellspacing="0" id="about">
- <tr>
-  <td style="background-color:#dbe4ec;padding:0 8px">
-    <h2>Search</h2>
-    <img src="../App_Themes/UCSD/Images/search-icon.gif" alt="Magnifying Glass" class="sdn" style="margin:0 0 8px 25px" />
-    <h3 style="text-align:center;color:#333">Experts, Collaborators, Mentors</h3>
-    <ul class="square">
-       <li>20,000+ publications</li>
-       <li>3000+ LBNL researchers</li>
-    </ul>
-  </td>
+				<div>
+					<h2>Discover Networks</h2>
+					<img src="images/network.png" alt="" />
+					<h3>Peoples' Research Connections</h3>
+					<ul class="square">
+					   <li>Who co-authored together</li>
+					   <li>Who worked on similar research topics</li>
+					</ul>
+				</div>
 
-  <td style="padding:0 8px">
-    <h2>Discover Networks</h2>
-    <img src="../App_Themes/LBNL/Images/ProfilesLogo.gif" alt="Discover Networks" class="sdn" style="margin: 14px 0 20px 50px;" />
-    <h3 style="text-align:center;color:#333">Peoples' Research Connections</h3>
-    <ul class="square">
-       <li>Who co-authored together</li>
-       <li>Who worked on similar research topics</li>
-    </ul>
-  </td>
+                <div class="shaded">
+					<h2>Edit Your Profile</h2>
+					<img src="images/experts.png" alt="" />
+					<h3>Information About Your Research</h3>
+					<ul class="square">
+					   <li>Overview to describe your work</li>
+					   <li>Photo, website links, and awards</li>
+					   <li>Mentoring information</li>
+					   <li>Your presentations on SlideShare</li>
+					   <li>Edit your publications if necessary</li>
+					</ul>
+					<p class="develop-button">
+					   <a href="../login/default.aspx?method=login&amp;edit=true">Edit your profile now &#187;</a>
+					</p>
+				</div>
+			</div>
 
-  <td style="background-color:#dbe4ec;padding:0 8px">
-    <h2>Edit Your Profile</h2>
-    <img src="../App_Themes/UCSD/Images/develop-profile.gif" alt="Develop Your Profile" class="sdn" style="margin:0 0 8px 20px" />
-    <h3 style="text-align:center;color:#333">Information about Your Research</h3>
-    <ul class="square">
-       <li>Overview to describe your work</li>
-       <li>Photo, website links, and awards</li>
-       <li>Your presentations on SlideShare</li>
-       <li>Edit your publications if necessary</li>
-    </ul>
-     <p style="text-align:center;margin:15px 40px 6px;padding:5px 0;border-left: solid 1px #ccc;
-       border-top: solid 1px #ccc;background-color:#FFF;font-weight:bold;">
-       <a href="../login/default.aspx?method=login&amp;edit=true">Edit your profile now &#187;</a></p>
- </td>
- </tr>
- <tr>
-  <td colspan="3" align="center" style="padding:5px 0 20px;">
-    <h2>Watch this short introduction video!</h2>
-    <iframe width="560" height="325" src="//www.youtube.com/embed/YCOA2GWyplY" frameborder="0" allowfullscreen="true"></iframe>
-  </td>
- </tr>
- <tr>
-  <td style="padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #dbe4ec;
-    background: transparent url(../App_Themes/USC/Images/gear.gif) no-repeat 20px 14px;">
-    <h3 style="padding: 12px 0 8px 40px">Toolbox</h3> 
-    <ul class="square" style="margin-left: 0;">
-      <li><a href="ForDevelopers.aspx">Profiles data tools for your website</a></li>
-      <li><a href="http://www.orng.info/index.html">Profiles OpenSocial extensions</a></li>
-    </ul>
-  </td>
-  <td style="padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #dbe4ec;
-    background: transparent url(../App_Themes/USC/Images/help.gif) no-repeat 20px 12px;">
-    <h3 style="padding: 12px 0 8px 40px">Help</h3>
-    <ul class="square" style="margin-left: 0;">
-      <li><a href="Help.aspx#faq">Frequently Asked Questions</a></li>
-      <li><a href="mailto:profiles@ucsf.edu">Contact us</a></li>
-    </ul>
-  </td>
-  <td style="padding:8px 0 0 20px; font-size: 110%; border-bottom: 2px solid #dbe4ec;
-    background: transparent url(../App_Themes/USC/Images/comment.gif) no-repeat 20px 14px;">
-     <h3 style="padding: 12px 0 15px 40px">Feedback</h3> 
-     <p style="margin:0; font-size:12px"><a href="mailto:profiles@ucsf.edu">Contact us</a> to share your ideas and success stories.</p>
-  </td>
- </tr>
-</table>
+			<div class="center">
+				<h2>Watch this short introduction video!</h2>
+				<iframe width="560" height="325" src="//www.youtube.com/embed/YCOA2GWyplY" frameborder="0" allowfullscreen="true"></iframe>
+			</div>
 
-<h3 style="padding-top:20px">Acknowledgements</h3>
-<p>Berkeley Lab Profiles was developed from
-<a href="http://connects.catalyst.harvard.edu/Profiles/about/default.aspx" target="_blank">Profiles Research Networking Software</a>, which was created by Griffin M. Weber, MD, PhD, with support from
-<a href="http://catalyst.harvard.edu/" target="_new">Harvard Catalyst | The Harvard Clinical and Translational Science Center</a> (grant numbers 8UL1 TR000170-05 and 1UL1 TR001102-01).</p>
+			<div class="aboutProfiles">
+                <div>
+					<h3 class="toolbox">Toolbox</h3> 
+					<ul class="square">
+					  <li><a href="http://www.orng.info/index.html">Profiles OpenSocial extensions</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="questions">Help</h3>
+					<ul class="square">
+					  <li><a href="Help.aspx#faq">Frequently Asked Questions</a></li>
+					  <li><a href="mailto:profiles@lbl.gov">Contact us</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="share">Feedback</h3> 
+					<ul class="square">
+					  <li><a href="mailto:profiles@lbl.gov">Contact us</a> to share your ideas and success stories.</li>
+					</ul>
+				</div>
+			</div>
 
-<p>Berkeley Lab Profiles is hosted by the UCSF
-<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, part of the Clinical and Translational Science Award program funded by the National Center for Advancing Translational Sciences (grant number UL1 TR000004) at the National Institutes of Health (NIH).</p> 
+			<h2>Acknowledgements</h2>
+			<p>Berkeley Lab Profiles was developed from 
+			<a href="http://connects.catalyst.harvard.edu/Profiles/about/default.aspx" target="_blank">Profiles Research Networking Software</a>, 
+			which was created by Griffin M. Weber, MD, PhD, with support from 
+			<a href="http://catalyst.harvard.edu/" target="_new">Harvard Catalyst | The Harvard Clinical and Translational Science Center</a> 
+			(grant numbers 8UL1 TR000170-05 and 1UL1 TR001102-01).</p>
 
-<p>Profiles Research Networking Software is available as an
-<a href="http://connects.catalyst.harvard.edu/Profiles/about/default.aspx?tab=open" target="_blank">open source platform</a>
-for institutions seeking a web-based means of facilitating collaboration among their academic researchers. </p>
+			<p>Berkeley Lab Profiles is hosted by the UCSF 
+			<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
+			part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
+			Translational Sciences (grant number UL1 TR000004) at the National Institutes of Health (NIH).</p> 
+
+			<p>Profiles Research Networking Software is available as an 
+			<a href="http://connects.catalyst.harvard.edu/Profiles/about/default.aspx?tab=open" target="_blank">open source platform</a> 
+			for institutions seeking a web-based means of facilitating collaboration among their academic researchers. </p>
 
           </Param>
         </ParamList>

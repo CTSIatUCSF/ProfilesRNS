@@ -23,7 +23,19 @@ namespace Profiles.Profile.Modules
 		{
 			DrawProfilesModule();
 			ConceptName = this.BaseData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]", this.Namespaces).InnerText;
-		}
+            if (Brand.GetCurrentBrand().GetInstitution() != null)
+            {
+                BrandName = Brand.GetCurrentBrand().GetInstitution().GetAbbreviation();
+            }
+            else if (Brand.GetCurrentBrand() != Brand.getDefault())
+            {
+                BrandName = Brand.GetCurrentBrand().Theme;
+            }
+            else
+            {
+                BrandName = "";
+            }
+        }
 
 		public CustomViewConceptPublication() : base() { }
 		public CustomViewConceptPublication(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
@@ -36,9 +48,8 @@ namespace Profiles.Profile.Modules
 		public void DrawProfilesModule()
 		{
 			var dataIO = new Profiles.Profile.Utilities.DataIO();
-
-			// Get concept publication timeline
-			using (var reader = dataIO.GetGoogleTimeline(base.RDFTriple, "[Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]"))
+            // Get concept publication timeline
+            using (var reader = dataIO.GetGoogleTimeline(base.RDFTriple, "[Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]", Brand.GetCurrentBrand()))
 			{
 				while (reader.Read())
 				{
@@ -48,12 +59,12 @@ namespace Profiles.Profile.Modules
 				}
 				reader.Close();
 			}
-			/* Reader returns multiple result sets in the following order
+            /* Reader returns multiple result sets in the following order
 			 * 1) Cited publications
 			 * 2) Newest publication
 			 * 3) Oldest publications
 			 */
-			using (var reader = dataIO.GetConceptPublications(base.RDFTriple))
+            using (var reader = dataIO.GetConceptPublications(base.RDFTriple))
 			{
 				List<string> htmlList = new List<string>();
 				StringBuilder html = null;
@@ -112,5 +123,6 @@ namespace Profiles.Profile.Modules
 
 		public bool ShowOtherPub { get; set; }
 		public string ConceptName { get; set; }
-	}
+        public string BrandName { get; set; }
+    }
 }

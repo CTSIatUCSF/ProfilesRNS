@@ -34,7 +34,7 @@ namespace Profiles.Profile.Modules.NetworkRadialFlash
         protected void InitAssets()
         {
             System.Web.UI.HtmlControls.HtmlLink NetworkBrowsercss = new System.Web.UI.HtmlControls.HtmlLink();
-            NetworkBrowsercss.Href = Root.Domain + "/Profile/CSS/NetworkBrowser.css";
+            NetworkBrowsercss.Href = Brand.GetThemedDomain() + "/Profile/CSS/NetworkBrowser.css";
             NetworkBrowsercss.Attributes["rel"] = "stylesheet";
             NetworkBrowsercss.Attributes["type"] = "text/css";
             NetworkBrowsercss.Attributes["media"] = "all";
@@ -42,17 +42,17 @@ namespace Profiles.Profile.Modules.NetworkRadialFlash
 
             HtmlGenericControl jsscript1 = new HtmlGenericControl("script");
             jsscript1.Attributes.Add("type", "text/javascript");
-            jsscript1.Attributes.Add("src", Root.Domain + "/Profile/Modules/NetworkRadialFlash/scriptaculous/lib/prototype.js");
+            jsscript1.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/NetworkRadialFlash/scriptaculous/lib/prototype.js");
             Page.Header.Controls.Add(jsscript1);
 
             HtmlGenericControl jsscript2 = new HtmlGenericControl("script");
             jsscript2.Attributes.Add("type", "text/javascript");
-            jsscript2.Attributes.Add("src", Root.Domain + "/Profile/Modules/NetworkRadialFlash/scriptaculous/src/scriptaculous.js");
+            jsscript2.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/NetworkRadialFlash/scriptaculous/src/scriptaculous.js");
             Page.Header.Controls.Add(jsscript2);
 
             HtmlGenericControl jsscript3 = new HtmlGenericControl("script");
             jsscript3.Attributes.Add("type", "text/javascript");
-            jsscript3.Attributes.Add("src", Root.Domain + "/Profile/Modules/NetworkRadialFlash/JavaScript/networkBrowserClass.js");
+            jsscript3.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/NetworkRadialFlash/JavaScript/networkBrowserClass.js");
             Page.Header.Controls.Add(jsscript3);
 
             divSwfScript.InnerHtml = "<script language=\"JavaScript\" type=\"text/javascript\"> " +
@@ -60,8 +60,8 @@ namespace Profiles.Profile.Modules.NetworkRadialFlash
                "'codebase', '//download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0'," +
                "'width', '600'," +
                "'height', '600'," +
-               "'src', '" + Root.Domain + "/profile/Modules/NetworkRadialFlash/network_browser.swf'," +
-               "'movie', '" + Root.Domain + "/profile/Modules/NetworkRadialFlash/network_browser'," +
+               "'src', '" + Brand.GetThemedDomain() + "/profile/Modules/NetworkRadialFlash/network_browser.swf'," +
+               "'movie', '" + Brand.GetThemedDomain() + "/profile/Modules/NetworkRadialFlash/network_browser'," +
                "'quality', 'high'," +
                "'pluginspage', '//www.adobe.com/go/getflashplayer'," +
                "'align', 'middle'," +
@@ -85,7 +85,7 @@ namespace Profiles.Profile.Modules.NetworkRadialFlash
             script.Attributes.Add("type", "text/javascript");
             script.InnerHtml = "window.onload = function() {" +
 				" network_browser._cfg.profile_network_path = '/"+Request.QueryString["Predicate"].ToString()+"/radial'; " +
-                " network_browser.Init('" + Root.Domain + "/profile/modules/NetworkRadialFlash/NetworkRadialSvc.aspx?p='); " +
+                " network_browser.Init('" + Brand.GetThemedDomain() + "/profile/modules/NetworkRadialFlash/NetworkRadialSvc.aspx?p='); " +
                 " network_browser.loadNetwork('" + Request.QueryString["Subject"].ToString() + "'); " +
                 "}";
             Page.Header.Controls.Add(script);

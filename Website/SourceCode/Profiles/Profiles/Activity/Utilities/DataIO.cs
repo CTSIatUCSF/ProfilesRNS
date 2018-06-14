@@ -17,6 +17,7 @@ using System.Data.SqlClient;
 using System.Xml;
 using System.Configuration;
 using System.Web.Script.Serialization;
+using System.Threading;
 using Profiles.Framework.Utilities;
 
 namespace Profiles.Activity.Utilities
@@ -29,13 +30,14 @@ namespace Profiles.Activity.Utilities
         private static readonly int cacheExpirationSeconds = 36000; // 10 hours
         private static readonly int chechForNewActivitiesSeconds = 60; // once a minute
 
-        private readonly object syncLock = new object();
-        private Random random = new Random();
+        private static bool rebuildingCache = false;
+        private static readonly object syncLock = new object();
+        private static Random random = new Random();
 
         public List<Activity> GetActivity(Int64 lastActivityLogID, int count, bool declump)
         {
             List<Activity> activities = new List<Activity>();
-            SortedList<Int64, Activity> cache = GetFreshCache();
+            SortedList<Int64, Activity> cache = GetCache();
             // grab as many as you can from the cache
             if (lastActivityLogID == -1)
             {
@@ -122,6 +124,33 @@ namespace Profiles.Activity.Utilities
             return subset;        
         }
 
+        private static SortedList<Int64, Activity> GetCache()
+        {
+            SortedList<Int64, Activity> cache = (SortedList<Int64, Activity>)Framework.Utilities.Cache.FetchObject("ActivityHistory");
+            if (cache == null)
+            {
+                cache = new SortedList<Int64, Activity>();
+            }
+            // need to pull decision logic out of GetFreshCache someday but for now this is good enough
+            if (!rebuildingCache)
+            {
+                // not completely thread safe but will cause no harm
+                rebuildingCache = true;
+                Thread cacheThread = new Thread(DataIO.RefreshCache);
+                cacheThread.Start();
+            }
+
+            return cache;
+        }
+
+        private static void RefreshCache()
+        {
+            // just a temp thing to see if it helps
+            DataIO data = new DataIO();
+            data.GetFreshCache();
+            rebuildingCache = false;
+        }
+
         private SortedList<Int64, Activity> GetFreshCache()
         {
             SortedList<Int64, Activity> cache = (SortedList<Int64, Activity>)Framework.Utilities.Cache.FetchObject("ActivityHistory");
@@ -179,7 +208,7 @@ namespace Profiles.Activity.Utilities
                                 "where p.IsActive=1 and (np.ViewSecurityGroup = -1 or (i.privacyCode = -1 and np.ViewSecurityGroup is null) or (i.privacyCode is null and np.ViewSecurityGroup is null))" +
                                 (lastActivityLogID != -1 ? (" and i.activityLogID " + (older ? "<" : ">") + lastActivityLogID) : "") +
                                 " order by i.activityLogID desc";
-                using (SqlDataReader reader = GetQueryOutputReader(sql))
+                using (SqlDataReader reader = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
                 {
                     while (reader.Read())
                     {
@@ -305,8 +334,9 @@ namespace Profiles.Activity.Utilities
                                         Name = firstname + " " + lastname,
                                         PersonId = Convert.ToInt32(personid),
                                         NodeID = Convert.ToInt64(nodeid),
-                                        URL = Root.Domain + "/" + UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)].PrettyURL,
-                                        Thumbnail = Root.Domain + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + nodeid + "&Thumbnail=True&Width=45"
+                                        URL = UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)].PrettyURL,
+                                        Thumbnail = Brand.GetForSubject(Convert.ToInt64(nodeid)).BasePath + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + nodeid + "&Thumbnail=True&Width=45",
+                                        InstitutionAbbreviation = UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)].Institution.GetAbbreviation()
                                     }
                                 };
                                 activities.Add(act.Id, act);
@@ -320,7 +350,8 @@ namespace Profiles.Activity.Utilities
                         }
                         catch (Exception e)
                         {
-                            Framework.Utilities.DebugLogging.Log("Exception loading activities :" + e.Message);
+                            Framework.Utilities.DebugLogging.Log("Exception loading activities (have,lookingfor,found) = (" + activities.Count +"," +
+                                count + "," + foundCnt + ") :" + e.Message + e.StackTrace);
                         }
                     }
                 }
@@ -338,83 +369,102 @@ namespace Profiles.Activity.Utilities
             return activities;
         }
 		
-		        public int GetEditedCount()
+        public string GetEditedCount()
         {
-            string sql = "select count(*) from [Profile.Data].Person p " +
-                            "join (select InternalID as PersonID from [RDF.Stage].InternalNodeMap i " +
+            string sql = "select count(*) from [UCSF.].[vwPerson] p " +
+                            "join (select PersonID from [UCSF.].[vwPerson] i " +
                             "join (select distinct subject from [RDF.].Triple t " +
                             "join [RDF.].Node n on t.Predicate = n.NodeID and n.value in " +
                             "('http://profiles.catalyst.harvard.edu/ontology/prns#mainImage', 'http://vivoweb.org/ontology/core#awardOrHonor', " +
                             "'http://vivoweb.org/ontology/core#educationalTraining', 'http://vivoweb.org/ontology/core#freetextKeyword', 'http://vivoweb.org/ontology/core#overview')) t " +
-                            "on i.NodeID = t.Subject and i.Class = 'http://xmlns.com/foaf/0.1/Person' union " +
+                            "on " + (Brand.GetCurrentBrand().GetInstitution() == null ? "" : "i.InstitutionAbbreviation = '" + Brand.GetCurrentBrand().GetInstitution() + "' AND ") + 
+                            "i.NodeID = t.Subject union " +
                             "select distinct personid from [Profile.Data].[Publication.Person.Add] union " +
                             "select distinct personid from [Profile.Data].[Publication.Person.Exclude] as u) t " +
-                            "on t.PersonID = p.PersonID " +
-                            "and p.IsActive = 1";
+                            "on t.PersonID = p.PersonID " + GetBrandedJoin() + GetBrandedWhere(" and p.isactive = 1");
                 
             return GetCount(sql);
         }
 
-        public int GetProfilesCount()
+        public string GetProfilesCount()
         {
-            return GetCount("select count(*) from [Profile.Data].[Person] where isactive = 1;");
+            return GetCount("select count(*) from [UCSF.].[vwPerson] p" + GetBrandedJoin() + GetBrandedWhere(" where p.isactive = 1"));
         }
 
-        public int GetPublicationsCount()
+        public string GetPublicationsCount()
         {
-            string sql = "select (select count(distinct(PMID)) from [Profile.Data].[Publication.Person.Include] i join [Profile.Data].[Person] p on p.personid = i.personid where PMID is not null and isactive = 1) + " +
-                                "(select count(distinct(MPID)) from [Profile.Data].[Publication.Person.Include] i join [Profile.Data].[Person] p on p.personid = i.personid where MPID is not null and isactive = 1);";
+            string sql = "select (select count(distinct(PMID)) from [Profile.Data].[Publication.Person.Include] i join [UCSF.].[vwPerson] p on p.personid = i.personid " + 
+                                GetBrandedJoin() + GetBrandedWhere(" where i.PMID is not null and p.isactive = 1") + ") + " +
+                                "(select count(distinct(MPID)) from [Profile.Data].[Publication.Person.Include] i join [UCSF.].[vwPerson] p on p.personid = i.personid " + 
+                                GetBrandedJoin() + GetBrandedWhere(" where i.MPID is not null and p.isactive = 1") + ")";
             return GetCount(sql);
         }
 
-        private int GetCount(string sql)
+        private string GetBrandedJoin()
+        {
+            if (Brand.GetCurrentBrand() == null || String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
+            {
+                return "";
+            }
+            else
+            {
+                return " join [Profile.Data].[Person.FilterRelationship] r on p.personid = r.personid join [Profile.Data].[Person.Filter] f on r.personfilterid = f.personfilterid";
+            }
+        }
+
+        private string GetBrandedWhere(string currentWhere)
+        {
+            if (Brand.GetCurrentBrand() != null && Brand.GetCurrentBrand().GetInstitution() != null)
+            {
+                return currentWhere + " and p.institutionabbreviation = '" + Brand.GetCurrentBrand().GetInstitution().GetAbbreviation() + "'";
+            }
+            else if (Brand.GetCurrentBrand() == null || String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
+            {
+                return currentWhere;
+            }
+            else
+            {
+                return currentWhere + " and f.personfilter = '" + Brand.GetCurrentBrand().PersonFilter + "'";
+            }
+        }
+
+        private string GetCount(string sql)
         {
             string key = "Statistics: " + sql;
             // store this in the cache. Use the sql as part of the key
             string cnt = (string)Framework.Utilities.Cache.FetchObject(key);
 
-            if (String.IsNullOrEmpty(cnt))
+            try
             {
-                using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+                if (String.IsNullOrEmpty(cnt))
                 {
-                    if (sqldr.Read())
+                    using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
                     {
-                        cnt = sqldr[0].ToString();
-                        Framework.Utilities.Cache.Set(key, cnt);
+                        if (sqldr.Read())
+                        {
+                            cnt = sqldr[0].ToString();
+                            Framework.Utilities.Cache.Set(key, cnt);
+                        }
                     }
                 }
             }
-            return Convert.ToInt32(cnt);
-        }
-
-        private SqlDataReader GetQueryOutputReader(string sql)
-        {
-
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-            SqlConnection dbconnection = new SqlConnection(connstr);
-            SqlCommand dbcommand = new SqlCommand(sql, dbconnection);
-            SqlDataReader dbreader = null;
-            dbconnection.Open();
-            dbcommand.CommandTimeout = 5000;
-            try
-            {
-                dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
-            }
             catch (Exception ex)
-            { 
-                Framework.Utilities.DebugLogging.Log(ex.Message); 
+            {
+                Framework.Utilities.DebugLogging.Log("Exception in GetCount calling: " + sql);
+                Framework.Utilities.DebugLogging.Log("Exception in GetCount: " + ex.Message);
+                cnt = "...";
             }
-            return dbreader;
+            return cnt;
         }
 
         private string GetStringValue(string sql, string columnName)
         {
             string value = "";
-            using (SqlDataReader reader = GetQueryOutputReader(sql))
+            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
             {
-                if (reader.Read())
+                if (sqldr.Read())
                 {
-                    value = reader[columnName].ToString();
+                    value = sqldr[columnName].ToString();
                 }
             }
             return value;

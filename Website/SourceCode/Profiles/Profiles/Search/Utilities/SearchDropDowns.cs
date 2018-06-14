@@ -7,38 +7,46 @@ using Profiles.Framework.Utilities;
 
 namespace Profiles.Search.Utilities
 {
-    public static class SearcDropDowns
+    public static class SearchDropDowns
     {
 
-
-        public static string BuildDropdown(string type, string width, string defaultitem)
+        private static List<GenericListItem> GetList(string type, Brand brand)
         {
             Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
-            string output = string.Empty;
-            
-            List<GenericListItem> list = new List<GenericListItem>();
 
             switch (type)
             {
                 case "institution":
-                    list = data.GetInstitutions();            
-                    break;
+                    return data.GetInstitutions(brand);
 
                 case "department":
-                    list = data.GetDepartments();
-                    break;
+                    return data.GetBrandedItemsOfType("Departments", brand);
                 case "division":
-                    list = data.GetDivisions();
-                    break;
+                    return data.GetBrandedItemsOfType("Divisions", brand);
             }
+            return null;
+        }
 
-            //if (defaultitem.IsNullOrEmpty())
-                output += "<option value=\"\"></option>";
+        public static string GetDefaultItemValue(string type, string defaultitem, Brand brand)
+        {
+            List<GenericListItem> list = GetList(type, brand);
+            foreach (GenericListItem item in list)
+            {       // Eric Meeks adding check for item.Text as well
+                if (defaultitem == item.Value || defaultitem.Equals(item.Text))
+                    return item.Value;
+            }
+            return null;
+        }
 
+        public static string BuildDropdown(string type, string width, string defaultitem, Brand brand)
+        {
+            string output = "<option value=\"\"></option>";
+
+            List<GenericListItem> list = GetList(type, brand);
 
             foreach (GenericListItem item in list)
-            {
-                if (!defaultitem.IsNullOrEmpty() && defaultitem == item.Value)
+            {       // Eric Meeks adding check for item.Text as well
+                if (!defaultitem.IsNullOrEmpty() && (defaultitem == item.Value || defaultitem.Equals(item.Text)))
                     output += "<option selected=\"true\" value=\"" + item.Value + "\">" + item.Text + "</option>";
                 else
                     output += "<option value=\"" + item.Value + "\">" + item.Text + "</option>";

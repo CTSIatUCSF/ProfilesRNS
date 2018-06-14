@@ -13,22 +13,16 @@
 
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Xml;
-using System.Web.UI.WebControls;
 using System.IO;
-using System.Web.UI.HtmlControls;
 
 using Profiles.ORNG.Utilities;
-using System.Configuration;
 using System.Net;
+
 
 namespace Profiles.ORNG.JSONLD
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : Profiles.Framework.Utilities.BrandedPage
     {
 
         protected void Page_Load(object sender, EventArgs e)
@@ -48,18 +42,18 @@ namespace Profiles.ORNG.JSONLD
             }
             else if (person != null && person.Trim().Length > 0)
             {
-                nodeid = new DataIO().GetNodeId(Convert.ToInt32(person));
+                nodeid = Profiles.Framework.Utilities.UCSFIDSet.ByPersonId[Convert.ToInt32(person)].NodeId;
             }
             else
             {
-                Response.Redirect(Profiles.Framework.Utilities.Root.Domain + "/ORNG/JSONLD/Test.htm");
+                Response.Redirect(Profiles.Framework.Utilities.Brand.GetThemedDomain() + "/ORNG/JSONLD/Test.htm");
             }
 
             Response.Clear();
             Response.Charset = "charset=UTF-8";
             Response.StatusCode = Convert.ToInt16("200");
 
-            string URL = Profiles.Framework.Utilities.Root.Domain + "/Profile/Profile.aspx?Subject=" + nodeid;
+            string URL = Profiles.Framework.Utilities.Brand.GetThemedDomain() + "/Profile/Profile.aspx?Subject=" + nodeid;
             if (predicate != null) 
                 URL += "&Predicate=" + predicate;
             if (obj != null) 
@@ -69,6 +63,10 @@ namespace Profiles.ORNG.JSONLD
             if (showDetails != null) 
                 URL += "&ShowDetails=" + showDetails;
             URL = ORNGSettings.getSettings().ShindigURL + "/rest/jsonld?userId=" + HttpUtility.UrlEncode(URL);
+            if (URL.StartsWith("/"))
+            {
+                URL = Profiles.Framework.Utilities.Root.Domain + URL;
+            }
 
             HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create(URL);
             myReq.Accept = "application/json"; // "application/ld+json";

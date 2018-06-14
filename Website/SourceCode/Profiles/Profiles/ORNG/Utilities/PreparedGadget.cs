@@ -24,7 +24,7 @@ namespace Profiles.ORNG.Utilities
         {
             this.gadgetSpec = gadgetSpec;
             this.openSocialManager = openSocialManager;
-            this.securityToken = openSocialManager.GetSecurityToken(gadgetSpec.GetGadgetURL());
+            this.securityToken = openSocialManager.GetSecurityToken(GetGadgetURL());
 
             // look at the view requirements and what page we are on to set some things
             GadgetViewRequirements viewReqs = GetGadgetViewRequirements();
@@ -47,7 +47,7 @@ namespace Profiles.ORNG.Utilities
         {
             this.gadgetSpec = gadgetSpec;
             this.openSocialManager = openSocialManager;
-            this.securityToken = openSocialManager.GetSecurityToken(gadgetSpec.GetGadgetURL());
+            this.securityToken = openSocialManager.GetSecurityToken(GetGadgetURL());
             this.view = view;
             this.chromeId ="gadgets-ontology-" + GetAppId();
             this.optParams = optParams == null || optParams.Trim() == string.Empty ? "{}" : optParams;
@@ -98,7 +98,8 @@ namespace Profiles.ORNG.Utilities
 
         public string GetGadgetURL()
         {
-            return gadgetSpec.GetGadgetURL();
+            Brand brand = Brand.GetCurrentBrand();
+            return gadgetSpec.GetGadgetURL(brand != null ? brand.GetInstitution() : null);
         }
 
         public bool Unrecognized()

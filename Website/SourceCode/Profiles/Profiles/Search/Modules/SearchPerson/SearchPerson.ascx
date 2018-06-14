@@ -8,8 +8,7 @@
 
 <script type="text/javascript">
 
-
-    function runScript(e) {
+	function runScript(e) {
         if (e.keyCode == 13) {
             search();            
         }
@@ -120,7 +119,7 @@
 <asp:HiddenField ID="hdnSearch" runat="server" Value="hdnSearch"></asp:HiddenField>
 <div class="content_container">
     <div class="tabContainer">
-        <div class="searchForm nonavbar">
+        <div class="searchForm">
             <table onkeypress="JavaScript:runScript(event);" width="100%">
                 <tbody align="left">
                     <tr>
@@ -157,7 +156,7 @@
                                                     <%--Inline styles on this is no longer needed as the button is now all CSS--%>
                                                     <a href="JavaScript:search();" class="search-button">
                                                     <%--    No longer need a search button as an image--%>
-                                                        <%--<img src="<%=GetURLDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />--%>
+                                                        <%--<img src="<%=GetThemedDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />--%>
                                                         Search
 						    </a>
                                                 </div>
@@ -192,7 +191,7 @@
                                 </tr>
 								<tr>
                                     <th>
-                                        Find Mentors <span class="notice">New!</span>
+                                        Find Mentors
                                     </th>
                                     <td colspan="2">
                                         <input type="checkbox" class="student2" /> Student Mentors
@@ -219,7 +218,7 @@
 							<asp:Panel ID="SearchPersonFormHideUCSD" runat="server" SkinID="HideUCSD" Visible="true">
                                 <tr runat="server" id="trInstitution">
                                     <th>
-                                        School
+                                        Institution
                                     </th>
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litInstitution"></asp:Literal>
@@ -229,6 +228,19 @@
 -->
                                     </td>
                                 </tr>
+                                <tr runat="server" id="trDivision">
+                                    <th>
+                                        School
+                                    </th>
+                                    <td colspan="2">
+                                        <asp:Literal runat="server" ID="litDivision"></asp:Literal>
+                                        <asp:CheckBox runat="server" id="divisionallexcept" CssClass="unused" />
+<!--
+                                        All <b>except</b> the one selected
+-->
+                                    </td>
+                                </tr>
+
                                 <tr runat="server" id="trDepartment">
                                     <th>
                                         Department
@@ -241,18 +253,7 @@
 -->
                                     </td>
                                 </tr>
-<!--
-                                <tr runat="server" id="trDivision">
-                                    <th>
-                                        Division
-                                    </th>
-                                    <td colspan="2">
-                                        <asp:Literal runat="server" ID="litDivision"></asp:Literal>
-                                        <asp:CheckBox runat="server" id="divisionallexcept" />
-                                        All <b>except</b> the one selected
-                                    </td>
-                                </tr>
--->
+
                                 <tr runat="server" id="trFacultyType">
                                     <th>
                                         Researcher Type
@@ -297,10 +298,20 @@
                                     </td>
                                 </tr>
 							</asp:Panel>
+							<asp:Panel ID="ClinicalTrialsUC" runat="server" SkinID="UC" Visible="false">
+								<tr>
+                                    <th>
+                                        Clinical Trials
+                                    </th>
+                                    <td colspan="2">
+                                        <input type="checkbox" class="trials2" />
+                                    </td>
+                                </tr>
+							</asp:Panel>
 							<asp:Panel ID="ClinicalTrialsUCSF" runat="server" SkinID="UCSF" Visible="false">
 								<tr>
                                     <th>
-                                        Clinical Trials <span class="notice">New!</span>
+                                        Clinical Trials
                                     </th>
                                     <td colspan="2">
                                         <input type="checkbox" class="trials2" />
@@ -314,7 +325,7 @@
                                     <td colspan="2">
                                         <div class="search-button-container"><%--Inline styles on this is no longer needed as the button is now all CSS--%>
                                             <a href="JavaScript:search();" class="search-button">
-                                                <%--<img src="<%=GetURLDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />--%>
+                                                <%--<img src="<%=GetThemedDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />--%>
                                                 Search
                                             </a>
                                         </div>
@@ -330,10 +341,10 @@
             </table>
         </div>
 			<asp:Panel ID="DirectSearchUCSF" runat="server" SkinID="UCSF" Visible="false">
-				<p style="text-align:right;margin-right:20px;margin-bottom:160px;"><a href="<%=GetURLDomain()%>/direct" class="dblarrow">Search other institutions</a></p>
+				<p style="text-align:right;margin-right:20px;margin-bottom:160px;"><a href="<%=GetThemedDomain()%>/direct" class="dblarrow">Search other institutions</a></p>
 			</asp:Panel>
 			<asp:Panel ID="DirectSearchUSC" runat="server" SkinID="USC" Visible="false">
-				<p style="margin-bottom:160px;"><a href="<%=GetURLDomain()%>/direct" class="dblarrow">Find Collaborators at other Research Institutions</a></p>
+				<p style="margin-bottom:160px;"><a href="<%=GetThemedDomain()%>/direct" class="dblarrow">Find Collaborators at other Research Institutions</a></p>
 			</asp:Panel>
 			<asp:Panel ID="SearchPersonFormNoteUCSD" runat="server" SkinID="UCSD" Visible="false">
 				<p><span class="notice">Important Note: </span>

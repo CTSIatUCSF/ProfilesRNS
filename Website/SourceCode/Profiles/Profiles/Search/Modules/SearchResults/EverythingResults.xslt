@@ -3,6 +3,7 @@
   <xsl:output method="html"/>
   <xsl:param name="searchfor"/>
   <xsl:param name="exactphrase"/>
+  <xsl:param name="defaultDomain"/>
   <xsl:param name="root"/>
   <xsl:param name="perpage">15</xsl:param>
   <xsl:param name="page">1</xsl:param>
@@ -310,7 +311,7 @@
     </xsl:choose>
   </xsl:template>
   <xsl:template name="threeColumn">
-    <td onclick="javascript:GoTo('{rdf:object/@rdf:resource}')" class="alignLeft">
+    <td onclick="javascript:GoToBranded('{rdf:object/@rdf:resource}', '{$defaultDomain}', '{$root}')" class="alignLeft">
       <xsl:choose>
         <xsl:when test="rdfs:label != ''">
           <xsl:value-of select="rdfs:label"/>
@@ -322,7 +323,7 @@
         </xsl:otherwise>
       </xsl:choose>
     </td>
-    <td onclick="javascript:GoTo('{rdf:object/@rdf:resource}')">
+    <td onclick="javascript:GoToBranded('{rdf:object/@rdf:resource}', '{$defaultDomain}', '{$root}')">
       <xsl:value-of select="vivo:overview"/>
     </td>
     <td>

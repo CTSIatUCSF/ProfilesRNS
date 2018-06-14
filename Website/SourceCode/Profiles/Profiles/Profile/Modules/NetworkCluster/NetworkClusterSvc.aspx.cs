@@ -10,7 +10,7 @@ using Profiles.Framework.Utilities;
 
 namespace Profiles.Profile.Modules.NetworkCluster
 {
-    public partial class NetworkClusterSvc : System.Web.UI.Page
+    public partial class NetworkClusterSvc : BrandedPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {            

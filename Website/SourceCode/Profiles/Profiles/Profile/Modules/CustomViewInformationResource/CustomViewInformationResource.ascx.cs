@@ -33,14 +33,14 @@ namespace Profiles.Profile.Modules.CustomViewInformationResource
         {
 
             XsltArgumentList args = new XsltArgumentList();
-            args.AddParam("root", "", Root.Domain);
+            args.AddParam("root", "", Brand.GetThemedDomain());
 
             List<GenericListItem> subjectareas = new List<GenericListItem>();
             List<GenericListItem> authors = new List<GenericListItem>();
 
             foreach (XmlNode x in base.BaseData.SelectNodes("rdf:RDF/rdf:Description/vivo:hasSubjectArea/@rdf:resource", base.Namespaces))
             {
-                subjectareas.Add(new GenericListItem(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + x.Value + "']/rdfs:label", base.Namespaces).InnerText, x.Value));
+                subjectareas.Add(new GenericListItem(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + x.Value + "']/rdfs:label", base.Namespaces).InnerText, Brand.CleanURL(x.Value)));
             }
 
             subjectareas.Sort(delegate(GenericListItem p1, GenericListItem p2)
@@ -51,13 +51,13 @@ namespace Profiles.Profile.Modules.CustomViewInformationResource
 
             foreach (XmlNode x in base.BaseData.SelectNodes("rdf:RDF/rdf:Description/vivo:linkedAuthor/@rdf:resource", base.Namespaces))
             {
-                authors.Add(new GenericListItem(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + x.Value + "']/prns:fullName", base.Namespaces).InnerText, x.Value));
+                authors.Add(new GenericListItem(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + x.Value + "']/prns:fullName", base.Namespaces).InnerText, Brand.CleanURL(x.Value)));
             }
 
 
-            imgSubjectArea.Src = Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif";
+            imgSubjectArea.Src = Brand.GetThemedDomain() + "/Profile/Modules/PropertyList/images/minusSign.gif";
 
-            imgAuthor.Src = Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif";
+            imgAuthor.Src = Brand.GetThemedDomain() + "/Profile/Modules/PropertyList/images/minusSign.gif";
 
 
             if (subjectareas.Count > 0)

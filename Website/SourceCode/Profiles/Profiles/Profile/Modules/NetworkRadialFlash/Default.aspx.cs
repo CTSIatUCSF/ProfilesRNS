@@ -25,7 +25,7 @@ using Profiles.Framework.Utilities;
 
 namespace Profiles.Profile.Modules.NetworkRadialFlash
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : BrandedPage
     {
 
         public void Page_Load(object sender, EventArgs e)

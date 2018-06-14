@@ -44,11 +44,11 @@ namespace Profiles.Profile.Modules.SimilarConnection
             this.Subject.Name =
                 this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:firstName", this.Namespaces).InnerText + " " +
                 this.BaseData.SelectSingleNode("//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:subject/@rdf:resource]/foaf:lastName", this.Namespaces).InnerText;
-            this.Subject.Uri = this.BaseData.SelectSingleNode(base.GetModuleParamString("SubjectURI"), this.Namespaces).InnerText;
+            this.Subject.Uri = Brand.CleanURL(this.BaseData.SelectSingleNode(base.GetModuleParamString("SubjectURI"), this.Namespaces).InnerText);
             this.Object.Name =
                 this.BaseData.SelectSingleNode("//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/foaf:firstName", this.Namespaces).InnerText + " " +
                 this.BaseData.SelectSingleNode("//rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description[1]/rdf:object/@rdf:resource]/foaf:lastName", this.Namespaces).InnerText;
-            this.Object.Uri = this.BaseData.SelectSingleNode(base.GetModuleParamString("ObjectURI"), this.Namespaces).InnerText;
+            this.Object.Uri = Brand.CleanURL(this.BaseData.SelectSingleNode(base.GetModuleParamString("ObjectURI"), this.Namespaces).InnerText);
         }
 
         protected override void SetConnectionData()
@@ -75,9 +75,9 @@ namespace Profiles.Profile.Modules.SimilarConnection
                     };
 
                     sim.Subject.KeywordWeight = double.Parse(rdr["KeywordWeight1"].ToString());
-                    sim.Subject.ConceptConnectionURI = rdr["ConnectionURI1"].ToString();
+                    sim.Subject.ConceptConnectionURI = Brand.CleanURL(rdr["ConnectionURI1"].ToString());
                     sim.Object.KeywordWeight = double.Parse(rdr["KeywordWeight2"].ToString());
-                    sim.Object.ConceptConnectionURI = rdr["ConnectionURI2"].ToString();
+                    sim.Object.ConceptConnectionURI = Brand.CleanURL(rdr["ConnectionURI2"].ToString());
 
                     this.ConnectionDetails.Add(sim);
 

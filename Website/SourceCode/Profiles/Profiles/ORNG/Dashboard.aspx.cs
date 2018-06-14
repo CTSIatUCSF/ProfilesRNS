@@ -27,7 +27,7 @@ using Profiles.Search.Utilities;
 
 namespace Profiles.ORNG
 {
-    public partial class Dashboard : System.Web.UI.Page
+    public partial class Dashboard : BrandedPage
     {
         Profiles.Framework.Template masterpage;
 

@@ -23,7 +23,7 @@
                 pmid[0] + "'></span>")
             }
         });
-        $.getScript('http://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
+        $.getScript('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
       }
     }, 7000);
 
@@ -38,6 +38,11 @@
 			}
 		});
 		buildGadgetAds();
+	}
+	
+	if ($('.searchForm') && $('.searchForm').length) {
+        var hero = 'hero-photos' + Math.floor((Math.random() * 21));
+        $('#page-container').addClass(hero);
 	}
  
 });

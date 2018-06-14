@@ -40,7 +40,7 @@ namespace Profiles.Activity.Modules.ActivityHistory
         public ActivityHistory(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
             : base(pagedata, moduleparams, pagenamespaces)
         {
-            DrawProfilesModule(); 
+            DrawProfilesModule();
         }
 
         public void setModuleParams(List<ModuleParams> moduleparams)
@@ -66,7 +66,16 @@ namespace Profiles.Activity.Modules.ActivityHistory
 
             // grab a bunch of activities from the Database
             Profiles.Activity.Utilities.DataIO data = new Profiles.Activity.Utilities.DataIO();
-            List<Profiles.Activity.Utilities.Activity> activities = data.GetActivity(-1, count, true);
+            List<Profiles.Activity.Utilities.Activity> activities = new List<Profiles.Activity.Utilities.Activity>();
+            try
+            {
+                activities.AddRange(data.GetActivity(-1, count, true));
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log("Error in ActivityHistory data.GetActivity " + e.Message + "; " + e.StackTrace);
+            }
+
             rptActivityHistory.DataSource = activities;
             rptActivityHistory.DataBind();
         }
@@ -86,6 +95,7 @@ namespace Profiles.Activity.Modules.ActivityHistory
                 linkThumbnail.NavigateUrl = activity.Profile.URL;
                 linkProfileURL.NavigateUrl = activity.Profile.URL;
                 linkProfileURL.Text = activity.Profile.Name;
+                linkProfileURL.Text += "<span class=\"authInst\">" + activity.Profile.InstitutionAbbreviation + "</span>";
 
                 litDate.Text = activity.Date;
                 litMessage.Text = activity.Message;
@@ -99,15 +109,15 @@ namespace Profiles.Activity.Modules.ActivityHistory
             return "True".Equals(base.GetModuleParamString("Scrolling")) ? "" : "True";
         }
 
-        public string GetURLDomain()
+        public string GetThemedDomain()
         {
-            return Root.Domain;
+            return Brand.GetThemedDomain();
         }
 
         private void LoadAssets()
         {
             HtmlLink Searchcss = new HtmlLink();
-            Searchcss.Href = Root.Domain + "/Activity/CSS/activity.css";
+            //Searchcss.Href = Brand.GetThemedDomain() + "/Activity/CSS/activity.css";
             Searchcss.Attributes["rel"] = "stylesheet";
             Searchcss.Attributes["type"] = "text/css";
             Searchcss.Attributes["media"] = "all";
@@ -115,7 +125,7 @@ namespace Profiles.Activity.Modules.ActivityHistory
 
             // Inject script into HEADER
             Literal script = new Literal();
-            script.Text = "<script>var _path = \"" + Root.Domain + "\";</script>";
+            script.Text = "<script>var _path = \"" + Brand.GetThemedDomain() + "\";</script>";
             Page.Header.Controls.Add(script);
         }
     }

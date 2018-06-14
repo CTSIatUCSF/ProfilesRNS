@@ -12,20 +12,12 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Data.SqlClient;
-using System.Data.Common;
-using System.Globalization;
 using System.Text;
 using System.Xml;
-using System.Xml.Xsl;
 using System.Configuration;
 using Profiles.Framework.Utilities;
-using Profiles.Profile.Utilities;
-using Profiles.Edit.Utilities;
 using Profiles.ORNG.Utilities;
 
 namespace Profiles.Edit.Modules.EditPropertyList
@@ -41,7 +33,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
         public EditPropertyList(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
             : base(pagedata, moduleparams, pagenamespaces)
         {
-            imgLock.ImageUrl = Root.Domain + "/edit/images/icons_lock.gif";
+            imgLock.ImageUrl = Brand.GetThemedDomain() + "/edit/images/icons_lock.gif";
         }
 
         private void DrawProfilesModule()
@@ -63,10 +55,25 @@ namespace Profiles.Edit.Modules.EditPropertyList
 
             foreach (XmlNode group in this.PropertyList.SelectNodes("//PropertyList/PropertyGroup"))
             {
+                // Skip ORNG if gadgets are turned off
+                if ("http://orng.info/ontology/orng#PropertyGroupORNGApplications".Equals(group.SelectSingleNode("@URI").Value) && !ORNGSettings.getSettings().Enabled)
+                {
+                    continue;
+                }
                 singlesi = new List<SecurityItem>();
 
                 foreach (XmlNode node in group.SelectNodes("Property"))
                 {
+                    // for multi institutional implementations. If an ORNG gadget is scoped to an institution that this user does not belong to, remove it
+                    if (node.SelectSingleNode("@URI").Value.StartsWith(Profiles.ORNG.Utilities.OpenSocialManager.ORNG_ONTOLOGY_PREFIX)) 
+                    {
+                        GadgetSpec spec = OpenSocialManager.GetGadgetByPropertyURI(node.SelectSingleNode("@URI").Value);
+                        if (spec != null && !spec.IsVisibleFor(UCSFIDSet.ByNodeId[Subject].Institution))
+                        {
+                            continue;
+                        }
+                    }
+
                     if (node.SelectSingleNode("@EditExisting").Value == "false"
                         && node.SelectSingleNode("@EditAddExisting").Value == "false"
                         && node.SelectSingleNode("@EditAddNew").Value == "false"
@@ -90,7 +97,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                             break;
                     }
 
-                    string editlink = "<a class=listTableLink href=\"" + Root.Domain + "/edit/default.aspx?subject=" + this.Subject.ToString() + "&predicateuri=" + node.SelectSingleNode("@URI").Value.Replace("#", "!") + "&module=DisplayItemToEdit&ObjectType=" + objecttype + "\" >" + node.SelectSingleNode("@Label").Value + "</a>";
+                    string editlink = "<a class=listTableLink href=\"" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + this.Subject.ToString() + "&predicateuri=" + node.SelectSingleNode("@URI").Value.Replace("#", "!") + "&module=DisplayItemToEdit&ObjectType=" + objecttype + "\" >" + node.SelectSingleNode("@Label").Value + "</a>";
 
                     singlesi.Add(new SecurityItem(node.ParentNode.SelectSingleNode("@Label").Value, node.SelectSingleNode("@Label").Value,
                         node.SelectSingleNode("@URI").Value,
@@ -123,7 +130,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 hypEditHRDataLink.Visible = true;
                 hypEditHRDataLink.NavigateUrl = ConfigurationSettings.AppSettings["HR_NameServiceURL"] +
                     //http://ctripro.ucsd.edu/ProfilesCR/PersonalDataChangeRequest.php?id=" 
-                UCSFIDSet.ByNodeId[this.Subject].EmployeeID;
+                UCSFIDSet.ByNodeId[this.Subject].UserName;
             }
         }
 
@@ -189,7 +196,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                         break;
                 }
 
-                string editlink = "javascript:GoTo('" + Root.Domain + "/edit/default.aspx?subject=" + this.Subject.ToString() + "&predicateuri=" + hf.Value.Replace("#", "!") + "&module=DisplayItemToEdit&ObjectType=" + objecttype + "')";
+                string editlink = "javascript:GoTo('" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + this.Subject.ToString() + "&predicateuri=" + hf.Value.Replace("#", "!") + "&module=DisplayItemToEdit&ObjectType=" + objecttype + "')";
 
                 if (e.Row.RowState == DataControlRowState.Alternate)
                 {
@@ -201,7 +208,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                     e.Row.Attributes.Add("class", "evenRow");
                     e.Row.Attributes.Add("onclick", editlink);
                     e.Row.Attributes.Add("onkeypress", "if (event.keyCode == 13) " + editlink);
-                    blankimage.ImageUrl = Root.Domain + "/edit/images/icons_blankAlt.gif";
+                    blankimage.ImageUrl = Brand.GetThemedDomain() + "/edit/images/icons_blankAlt.gif";
                     blankimage.Attributes.Add("style", "opacity:0.0;filter:alpha(opacity=0);");
                 }
                 else
@@ -214,7 +221,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                     e.Row.Attributes.Add("class", "oddRow");
                     e.Row.Attributes.Add("onclick", editlink);
                     e.Row.Attributes.Add("onkeypress", "if (event.keyCode == 13) " + editlink);
-                    blankimage.ImageUrl = Root.Domain + "/edit/images/icons_blankAlt.gif";
+                    blankimage.ImageUrl = Brand.GetThemedDomain() + "/edit/images/icons_blankAlt.gif";
                     blankimage.Attributes.Add("style", "opacity:0.0;filter:alpha(opacity=0);");
                 }
 
@@ -278,7 +285,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 }
             }
 
-            Response.Redirect(Root.Domain + "/edit/" + this.Subject.ToString());
+            Response.Redirect(Brand.GetThemedDomain() + "/edit/" + this.Subject.ToString());
         }
         protected void updateSecurity(object sender, EventArgs e)
         {
@@ -287,7 +294,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
             HiddenField hf = (HiddenField)grow.FindControl("hfPropertyURI");
             this.PredicateURI = hf.Value;
             this.UpdateSecuritySetting(hdn.SelectedValue);
-            Response.Redirect(Root.Domain + "/edit/" + this.Subject.ToString());
+            Response.Redirect(Brand.GetThemedDomain() + "/edit/" + this.Subject.ToString());
         }
 
         private void UpdateSecuritySetting(string securitygroup)

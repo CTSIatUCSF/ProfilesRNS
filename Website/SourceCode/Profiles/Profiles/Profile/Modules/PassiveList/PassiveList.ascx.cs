@@ -72,9 +72,9 @@ namespace Profiles.Profile.Modules.PassiveList
 
             documentdata.Append(" MoreURL=\"");
             if (base.GetModuleParamString("MoreURL").Contains("&"))
-                documentdata.Append(Root.Domain + CustomParse.Parse(base.GetModuleParamString("MoreURL"), base.BaseData, base.Namespaces).Replace("&", "&amp;"));
+                documentdata.Append(Brand.GetThemedDomain() + CustomParse.Parse(base.GetModuleParamString("MoreURL"), base.BaseData, base.Namespaces).Replace("&", "&amp;"));
             else
-                documentdata.Append(CustomParse.Parse(base.GetModuleParamString("MoreURL"), base.BaseData, base.Namespaces));
+                documentdata.Append(Brand.CleanURL(CustomParse.Parse(base.GetModuleParamString("MoreURL"), base.BaseData, base.Namespaces)));
             documentdata.Append("\"");
 
             documentdata.Append(">");
@@ -86,7 +86,7 @@ namespace Profiles.Profile.Modules.PassiveList
                 var items = from XmlNode networknode in this.BaseData.SelectNodes(base.GetModuleParamString("ListNode") + "[position() < " + Math.BigMul((Convert.ToInt16(base.GetModuleParamString("MaxDisplay")) + 1), 1).ToString() + "]", this.Namespaces)                                                        
                             select new
                             {
-                                itemurl = CustomParse.Parse(base.GetModuleParamString("ItemURL"), networknode, this.Namespaces),
+                                itemurl = Brand.CleanURL(CustomParse.Parse(base.GetModuleParamString("ItemURL"), networknode, this.Namespaces)),
                                 itemurltext = CustomParse.Parse(base.GetModuleParamString("ItemURLText"), networknode, this.Namespaces),
                                 item = CustomParse.Parse(base.GetModuleParamString("ItemText"), networknode, this.Namespaces),
                                 personid = CustomParse.Parse("{{{rdf:Description/prns:personId}}}", networknode, this.Namespaces)
@@ -108,6 +108,8 @@ namespace Profiles.Profile.Modules.PassiveList
                         {
                             documentdata.Append(" PersonID=\"" + i.personid);
                             documentdata.Append("\"");
+                            documentdata.Append(" InstitutionAbbreviation=\"" + UCSFIDSet.ByPersonId[Int64.Parse(i.personid)].Institution.GetAbbreviation());
+                            documentdata.Append("\"");
                         }
                     }
                     documentdata.Append(">");
@@ -126,7 +128,7 @@ namespace Profiles.Profile.Modules.PassiveList
                 document.LoadXml(documentdata.ToString());
 
 
-                args.AddParam("root", "", Root.Domain);
+                args.AddParam("root", "", Brand.GetThemedDomain());
                 args.AddParam("ListNode", "", base.GetModuleParamString("ListNode"));
                 args.AddParam("InfoCaption", "", base.GetModuleParamString("InfoCaption"));
                 args.AddParam("Description", "", base.GetModuleParamString("Description"));

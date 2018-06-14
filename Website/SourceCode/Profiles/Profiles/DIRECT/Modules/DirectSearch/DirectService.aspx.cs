@@ -16,7 +16,7 @@ using Profiles.Framework.Utilities;
 
 namespace Profiles.DIRECT.Modules.DirectSearch
 {
-    public partial class DirectService : System.Web.UI.Page
+    public partial class DirectService : BrandedPage
     {
         DIRECT.Utilities.DataIO oDataIO;
 
@@ -38,8 +38,8 @@ namespace Profiles.DIRECT.Modules.DirectSearch
 
             Profiles.Search.Utilities.DataIO profileDataIO;
 
-            string DirectServiceURL = Root.Domain + "/DIRECT/Modules/DirectSearch/directservice.aspx";// Request.Url.AbsoluteUri.Replace("&", "&amp;");
-            string ProfilesURL = Root.Domain;
+            string DirectServiceURL = Brand.GetThemedDomain() + "/DIRECT/Modules/DirectSearch/directservice.aspx";// Request.Url.AbsoluteUri.Replace("&", "&amp;");
+            string ProfilesURL = Brand.GetThemedDomain();
             string PopulationTypeText = oDataIO.GetDirectConfig().PopulationType;
             int QueryTimeout = oDataIO.GetDirectConfig().Timeout;
             XmlDocument query = new XmlDocument();

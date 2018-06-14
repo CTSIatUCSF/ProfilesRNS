@@ -31,24 +31,18 @@ namespace Profiles.ORNG.Utilities
             return sqldr;
         }
 
-        public SqlDataReader GetGadgets()
+        public SqlDataReader GetInstitutionalizedApps(int appId)
         {
-            string sql = "select AppID, Name, Url, Enabled from [ORNG.].[Apps]";
+            string sql = "select InstitutionAbbreviation, Url FROM [UCSF.ORNG].[InstitutionalizedApps] where AppID = " + appId;
             SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }
 
-        public Int64 GetNodeId(Int32 personid)
+        public SqlDataReader GetGadgets()
         {
-            string sql = "select NodeID from [RDF.Stage].[InternalNodeMap] where Class = 'http://xmlns.com/foaf/0.1/Person' and InternalID = " + personid;
-            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
-            {
-                if (sqldr.Read())
-                {
-                    return sqldr.GetInt64(0);
-                }
-            }
-            return -1;
+            string sql = "select a.AppID, a.Name, a.Url, f.PersonFilter, a.enabled from [ORNG.].[Apps] a LEFT OUTER JOIN [Profile.Data].[Person.Filter] f on a.PersonFilterID = f.PersonFilterID";
+            SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
+            return sqldr;
         }
 
         public void AddPersonalGadget(long Subject, string propertyURI, int privacyCode)
@@ -57,7 +51,7 @@ namespace Profiles.ORNG.Utilities
             if (spec != null)
             {
                 AddPersonalGadget(Subject, spec.GetAppId());
-                EditActivityLog(Subject, propertyURI, "" + privacyCode, "ORNGApplication", spec.GetGadgetURL());
+                EditActivityLog(Subject, propertyURI, "" + privacyCode, "ORNGApplication", spec.GetGadgetURL(null));
             }
         }
 
@@ -93,7 +87,7 @@ namespace Profiles.ORNG.Utilities
             if (spec != null)
             {
                 RemovePersonalGadget(Subject, spec.GetAppId());
-                EditActivityLog(Subject, propertyURI, "" +privacyCode, "ORNGApplication", "" + spec.GetGadgetURL());
+                EditActivityLog(Subject, propertyURI, "" +privacyCode, "ORNGApplication", "" + spec.GetGadgetURL(null));
             }
         }
 
@@ -103,7 +97,7 @@ namespace Profiles.ORNG.Utilities
 
             param[0] = new SqlParameter("@SubjectURI", uri);
             param[1] = new SqlParameter("@AppID", appId);
-            param[2] = new SqlParameter("@DeleteType", "1");
+            param[2] = new SqlParameter("@UserEdit", "1");
 
             using (SqlCommand comm = GetDBCommand("", "[ORNG.].[RemoveAppFromPerson]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
             {
@@ -117,7 +111,7 @@ namespace Profiles.ORNG.Utilities
 
             param[0] = new SqlParameter("@SubjectID", Subject);
             param[1] = new SqlParameter("@AppID", appId);
-            param[2] = new SqlParameter("@DeleteType", "1");
+            param[2] = new SqlParameter("@UserEdit", "1");
 
             using (SqlCommand comm = GetDBCommand("", "[ORNG.].[RemoveAppFromPerson]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
             {

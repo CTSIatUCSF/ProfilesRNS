@@ -69,7 +69,7 @@ namespace Profiles.Edit.Modules.EditVisibilityOnly
             if (Request.QueryString["subject"] != null)
                 this.SubjectID = Convert.ToInt64(Request.QueryString["subject"]);
             else
-                Response.Redirect(Root.Domain + "/search");
+                Response.Redirect(Brand.GetThemedDomain() + "/search");
 
             securityOptions.Subject = this.SubjectID;
             securityOptions.PredicateURI = predicateuri;
@@ -84,7 +84,7 @@ namespace Profiles.Edit.Modules.EditVisibilityOnly
             this.EntityName = this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").InnerText;
             this.TagName = this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@TagName").Value;
      
-            litBackLink.Text = "<a href='" + Root.Domain + "/edit/" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + EntityName + "</b>";
+            litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + EntityName + "</b>";
 
      
         }

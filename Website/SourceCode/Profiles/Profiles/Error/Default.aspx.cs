@@ -23,7 +23,7 @@ using Profiles.Framework.Utilities;
 
 namespace Profiles.Error
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : BrandedPage
     {
         Profiles.Framework.Template masterpage;
 

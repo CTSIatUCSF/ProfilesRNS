@@ -566,7 +566,7 @@ namespace Connects.Profiles.Service.ServiceImplementation
             param[4].Direction = ParameterDirection.Output;
 
             // UCSF
-            param[5] = new SqlParameter("@ShortDisplayName", SqlDbType.VarChar, 400);
+            param[5] = new SqlParameter("@DisplayName", SqlDbType.VarChar, 400);
             param[5].Direction = ParameterDirection.Output;
 
             if (session.LogoutDate > DateTime.Now.AddDays(-5))
@@ -1736,14 +1736,11 @@ namespace Connects.Profiles.Service.ServiceImplementation
 
                     string sql = "EXEC [Profile.Data].[Organization.GetInstitutions]";
 
-                    SqlDataReader sqldr = this.GetSQLDataReader("", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
-
-                    while (sqldr.Read())
-                        institutions.Add(new Utility.GenericListItem(sqldr["InstitutionName"].ToString(), sqldr["URI"].ToString()));
-
-                    //Always close your readers
-                    if (!sqldr.IsClosed)
-                        sqldr.Close();
+                    using(SqlDataReader sqldr = this.GetSQLDataReader("", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+                    {
+                        while (sqldr.Read())
+                            institutions.Add(new Utility.GenericListItem(sqldr["InstitutionName"].ToString(), sqldr["URI"].ToString()));
+                    }
 
                     //Defaulted this to be one hour
                     Utility.CacheUtil.Set("GetInstitutions", institutions, 3600);

@@ -28,8 +28,8 @@
         activitySize = activitySize || $(".act-id").length;
         $.ajax({
             type: "POST",
-            url: "<%=GetURLDomain()%>/Activity/Modules/ActivityHistory/ActivityDetails.aspx/GetActivities",
-            data: '{"referenceActivityId": "' + referenceActivityId + '", "count": "' + activitySize + '", "newActivities": "' + newActivities + '"}',
+            url: "<%=GetThemedDomain()%>/Activity/Modules/ActivityHistory/ActivityDetails.aspx/GetActivities",
+            data: '{"referenceActivityId": "' + referenceActivityId + '", "count": "' + (activitySize || 100) + '", "newActivities": "' + newActivities + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: OnSuccess,
@@ -71,7 +71,7 @@
             }
             activityTemplate.find("a").attr("href", newActivity.Profile.URL);
             activityTemplate.find(".act-image").find("img").attr("src", newActivity.Profile.Thumbnail);
-            activityTemplate.find(".act-user").find("a").html(newActivity.Profile.Name);
+            activityTemplate.find(".act-user").find("a").html(newActivity.Profile.Name + '<span class="authInst">' + newActivity.Profile.InstitutionAbbreviation + '</span>');
             activityTemplate.find(".act-date").html(newActivity.Date);
             activityTemplate.find(".act-msg").html(newActivity.Message);
             activityTemplate.find(".act-id").text(newActivity.Id);
@@ -100,7 +100,7 @@
 }
 </script>
 <div class="activities">
-    <div class="act-heading"><strong>Live Updates</strong></div>
+    <div class="act-heading"><strong>Network Updates</strong></div>
     <asp:Panel runat="server" ID="pnlActivities" CssClass="clsScroll">
         <asp:Repeater runat="server" ID="rptActivityHistory" OnItemDataBound="rptActivityHistory_OnItemDataBound">
             <ItemTemplate>
@@ -135,6 +135,6 @@
 <div id="divStatus" style="display: none">
     <div class="loader">
         <span>
-            <img alt="Loading..." id="loader" src="<%=GetURLDomain()%>/Edit/Images/loader.gif" width="400" height="213" /></span>
+            <img alt="Loading..." id="loader" src="<%=GetThemedDomain()%>/Edit/Images/loader.gif" width="400" height="213" /></span>
     </div>
 </div>

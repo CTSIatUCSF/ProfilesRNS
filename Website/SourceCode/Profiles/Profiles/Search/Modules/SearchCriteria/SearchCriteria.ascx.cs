@@ -93,7 +93,7 @@ namespace Profiles.Search.Modules.SearchCriteria
                 if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://vivoweb.org/ontology/core#positionInOrganization']/@IsExclude", base.Namespaces).Value == "1")
                     Institution = "(Except)";
 
-                Institution += data.GetConvertedURIListItem(data.GetInstitutions(), base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://vivoweb.org/ontology/core#positionInOrganization']", base.Namespaces).InnerText);
+                Institution += data.GetConvertedURIListItem(data.GetInstitutions(Brand.GetCurrentBrand()), base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://vivoweb.org/ontology/core#positionInOrganization']", base.Namespaces).InnerText);
                 output += "<li>" + Institution + "</li>";
             }
 
@@ -102,13 +102,13 @@ namespace Profiles.Search.Modules.SearchCriteria
                 if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://profiles.catalyst.harvard.edu/ontology/prns#positionInDepartment']/@IsExclude", base.Namespaces).Value == "1")
                     Department = "(Except) ";
 
-                Department += data.GetConvertedURIListItem(data.GetDepartments(), base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://profiles.catalyst.harvard.edu/ontology/prns#positionInDepartment']", base.Namespaces).InnerText);
+                Department += data.GetConvertedURIListItem(data.GetBrandedItemsOfType("Departments", Brand.GetCurrentBrand()), base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://profiles.catalyst.harvard.edu/ontology/prns#positionInDepartment']", base.Namespaces).InnerText);
                 output += "<li>" + Department + "</li>";
             }
 
             if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://profiles.catalyst.harvard.edu/ontology/prns#positionInDivision']", base.Namespaces) != null)
             {
-                Division = data.GetConvertedURIListItem(data.GetDivisions(), base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://profiles.catalyst.harvard.edu/ontology/prns#positionInDivision']", base.Namespaces).InnerText);
+                Division = data.GetConvertedURIListItem(data.GetBrandedItemsOfType("Divisions", Brand.GetCurrentBrand()), base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://profiles.catalyst.harvard.edu/ontology/prns#positionInDivision']", base.Namespaces).InnerText);
                 output += "<li>" + Division + "</li>";
             }
 

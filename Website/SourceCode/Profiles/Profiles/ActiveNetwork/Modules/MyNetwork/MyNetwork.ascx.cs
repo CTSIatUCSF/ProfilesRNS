@@ -34,7 +34,7 @@ namespace Profiles.ActiveNetwork.Modules.MyNetwork
             sm = new SessionManagement();
 
             if (sm.Session().UserID == 0)
-                Response.Redirect(Root.Domain + "/search");
+                Response.Redirect(Brand.GetThemedDomain() + "/search");
 
             
             DrawProfilesModule();

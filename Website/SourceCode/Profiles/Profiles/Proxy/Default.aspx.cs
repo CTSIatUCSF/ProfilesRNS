@@ -27,7 +27,7 @@ using Profiles.Search.Utilities;
 
 namespace Profiles.Proxy
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : BrandedPage
     {
         Profiles.Framework.Template masterpage;
         protected void Page_Load(object sender, EventArgs e)

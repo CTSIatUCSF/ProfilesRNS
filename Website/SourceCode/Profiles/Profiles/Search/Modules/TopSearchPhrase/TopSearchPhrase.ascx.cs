@@ -71,9 +71,27 @@ namespace Profiles.Search.Modules.TopSearchPhrase
 
         }
 
-        public string GetURLDomain()
+        public string GetThemedDomain()
         {
-            return Root.Domain;
+            return Brand.GetThemedDomain();
+        }
+
+        public string GetBrandingQueryArgs()
+        {
+            string queryArgs = "";
+            Brand brand = Brand.GetCurrentBrand();
+            if (brand != null)
+            {
+                if (!String.IsNullOrEmpty(brand.PersonFilter))
+                {
+                    queryArgs += "&otherfilters=" + brand.PersonFilter;
+                }
+                if (!brand.IsMultiInstitutional())
+                {
+                    queryArgs += "&institution=" + brand.GetInstitution().GetURI();
+                }
+            }
+            return queryArgs;
         }
     }
 }

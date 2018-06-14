@@ -16,21 +16,24 @@ namespace Profiles.ORNG.Utilities
         private int appId = 0;
         private string label;
         private string openSocialGadgetURL;
+        private string personFilter;
         private bool enabled;
         private bool unrecognized = false;
         private Dictionary<string, GadgetViewRequirements> viewRequirements = new Dictionary<string, GadgetViewRequirements>();
+        private Dictionary<Institution, string> institionalizedApps = null; // keep NULL unless we have real entries
 
         // these are loaded from the DB
-        public GadgetSpec(int appId, string label, string openSocialGadgetURL, bool enabled)
+        public GadgetSpec(int appId, string label, string openSocialGadgetURL, string personFilter, bool enabled)
         {
-            this.openSocialGadgetURL = openSocialGadgetURL;
-            this.label = label;
             this.appId = appId;
+            this.label = label;
+            this.openSocialGadgetURL = openSocialGadgetURL;
+            this.personFilter = personFilter;
             this.enabled = enabled;
             this.unrecognized = false;
 
-            // load view requirements
             Profiles.ORNG.Utilities.DataIO data = new Profiles.ORNG.Utilities.DataIO();
+            // load view requirements
             using (SqlDataReader dr = data.GetGadgetViewRequirements(appId))
             {
                 while (dr.Read())
@@ -38,6 +41,19 @@ namespace Profiles.ORNG.Utilities
                     viewRequirements.Add(dr[0].ToString().ToLower(), new GadgetViewRequirements(dr[0].ToString().ToLower(),
                             dr[1].ToString(), dr[2].ToString(), dr[3].ToString(),
                             dr.IsDBNull(4) ? Int32.MaxValue : dr.GetInt32(4), dr[5].ToString()));
+                }
+            }
+
+            // load institutional data if 
+            using (SqlDataReader dr = data.GetInstitutionalizedApps(appId))
+            {
+                if (dr.HasRows)
+                {
+                    institionalizedApps = new Dictionary<Institution, string>();
+                }
+                while (dr.Read())
+                {
+                    institionalizedApps.Add(Institution.GetByAbbreviation(dr[0].ToString()), dr[1].ToString());
                 }
             }
         }
@@ -56,12 +72,20 @@ namespace Profiles.ORNG.Utilities
             this.unrecognized = true;
         }
 
+        public bool IsVisibleFor(Institution inst)
+        {
+            return institionalizedApps == null || (inst != null && institionalizedApps.ContainsKey(inst));
+        }
+
         internal void MergeWithUnrecognizedGadget(GadgetSpec unrecognizedGadget)
         {
             // basically just grab it's URL, but check some things first!
             if (this.GetFileName() == unrecognizedGadget.GetFileName() && !this.unrecognized && unrecognizedGadget.unrecognized)
             {
                 this.openSocialGadgetURL = unrecognizedGadget.openSocialGadgetURL;
+                // remove the institutional versions so that the unrecognizedGagdet is used at all times. 
+                // Note this this method is only called when folks are testing stuff with the gadget sandbox
+                this.institionalizedApps = null;
                 this.enabled = true;
             }
             else
@@ -77,7 +101,7 @@ namespace Profiles.ORNG.Utilities
 
         public string GetFileName()
         {
-            return GetGadgetFileNameFromURL(GetGadgetURL());
+            return GetGadgetFileNameFromURL(GetGadgetURL(null));
         }
 
         public static string GetGadgetFileNameFromURL(string url)
@@ -91,9 +115,14 @@ namespace Profiles.ORNG.Utilities
             return label;
         }
 
-        public String GetGadgetURL()
+        public String GetPersonFilter()
         {
-            return openSocialGadgetURL;
+            return personFilter;
+        }
+
+        public String GetGadgetURL(Institution inst)
+        {
+            return institionalizedApps != null && inst != null && institionalizedApps.ContainsKey(inst) ? institionalizedApps[inst] : openSocialGadgetURL;
         }
 
         public GadgetViewRequirements GetGadgetViewRequirements(String page)

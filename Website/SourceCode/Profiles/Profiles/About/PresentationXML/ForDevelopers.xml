@@ -1,7 +1,7 @@
 ﻿<Presentation PresentationClass="profile">
   <PageOptions Columns="2"/>
   <WindowName>About</WindowName>  
-  <PageTitle>Use UCSF Profiles Data to Enhance Your Website</PageTitle>
+  <PageTitle>Use Profiles Data to Enhance Your Website</PageTitle>
   <PageBackLinkName></PageBackLinkName>
   <PageBackLinkURL></PageBackLinkURL>
   <PageSubTitle></PageSubTitle>
@@ -18,22 +18,11 @@
           <Param Name="HTML">
 		  
 <script type="text/javascript">
-$('#suckerfishmenu li#data a').addClass('active'); 
+$('#suckerfishmenu li#about a').addClass('active'); 
 </script>
 
-<p>Over two dozen UCSF websites and apps use data from UCSF Profiles. Users include the UCSF School of Medicine, UCSF Department of Surgery, and UCSF Directory.</p>
+<p>Content under development--</p>
 
-<h3>Profiles data:</h3>
-<ul>
-  <li>Is free of cost</li>
-  <li>Covers over 6,000 members of the UCSF campus research community</li>
-  <li>Includes publications, photos, biographies, websites, etc.</li>
-  <li>Can be integrated into almost any kind of website</li>
-</ul>
-
-<div class="button-link"><a href="http://opendata.profiles.ucsf.edu" target="_blank">Learn more and get started</a></div>
-<p><a href="https://ucsf.my.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F9A00000004Szj" title="Visit UCSF Chatter">
-  <img src="images/cloud.png" alt="cloud" /> Join the UCSF Chatter Profiles Data Consumers group</a></p>
  
           </Param>
         </ParamList>

@@ -53,9 +53,11 @@ namespace Profiles
      
     */
     /// </summary>
-    public partial class REST : System.Web.UI.Page
+    public partial class REST : BrandedPage
     {
-        private static string[] knownAcceptTypes =new string[] {"text/html", "application/rdf+xml"};
+        private static string TEXT_HTML = "text/html";
+        private static string RDF_XML = "application/rdf+xml";
+        private static string[] knownAcceptTypes = new string[] { TEXT_HTML, RDF_XML };
 
         //***************************************************************************************************************************************
         protected void Page_Load(object sender, EventArgs e)
@@ -158,6 +160,7 @@ namespace Profiles
                 param9 = HttpContext.Current.Items["Param9"].ToString();
             }
             else { }
+            //Framework.Utilities.DebugLogging.Log("{UCSF REST.aspx.cs} ProcessRequest() params " + param0 + "/" + param1 + "/" + param2 + "/" + param3 + "/" + param4 + "/" + param5 + "/" + param6 + "/" + param7 + "/" + param8 + "/" + param9);
 
             DataIO data = new DataIO();
 
@@ -167,7 +170,27 @@ namespace Profiles
             SessionManagement sessionmanagement = new SessionManagement();
             Session session = sessionmanagement.Session();
 
-            URLResolve resolve = data.GetResolvedURL(param0,
+            //UCSF for UC Wide Profiles
+            string bestAcceptType = getBestAcceptType(HttpContext.Current.Request.AcceptTypes);
+            Int64 nodeId = -1;
+            URLResolve resolve = null;
+            if (TEXT_HTML.Equals(bestAcceptType) && "profile".Equals(param0.ToLower()) && String.IsNullOrEmpty(param2) && Int64.TryParse(param1, out nodeId) && UCSFIDSet.ByNodeId.ContainsKey(nodeId))
+            {
+                // redirect to the pretty URL
+                resolve = new URLResolve(true, "", UCSFIDSet.ByNodeId[nodeId].PrettyURL + 
+                                            (String.IsNullOrEmpty(param2) ? "" : "/" + param2) +
+                                            (String.IsNullOrEmpty(param3) ? "" : "/" + param3) +
+                                            (String.IsNullOrEmpty(param4) ? "" : "/" + param4) +
+                                            (String.IsNullOrEmpty(param5) ? "" : "/" + param5) +
+                                            (String.IsNullOrEmpty(param6) ? "" : "/" + param6) +
+                                            (String.IsNullOrEmpty(param7) ? "" : "/" + param7) +
+                                            (String.IsNullOrEmpty(param8) ? "" : "/" + param8) +
+                                            (String.IsNullOrEmpty(param9) ? "" : "/" + param9),
+                                            TEXT_HTML, "200", true, false);
+            }
+            else
+            {
+                resolve = data.GetResolvedURL(param0,
                                    param1,
                                    param2,
                                    param3,
@@ -178,18 +201,12 @@ namespace Profiles
                                    param8,
                                    param9,
                                    session.SessionID,
-                                   Root.Domain + Root.AbsolutePath,
+                                   Brand.GetThemedDomain() + Root.AbsolutePath,
                                    session.UserAgent,
                                    getBestAcceptType(HttpContext.Current.Request.AcceptTypes));
 
-
-            Framework.Utilities.DebugLogging.Log("{REST.aspx.cs} ProcessRequest() redirect=" + resolve.Redirect.ToString() + " to=>" + resolve.ResponseURL);
-
-            // experimental
-            if (!String.IsNullOrEmpty(Request.QueryString["theme"]))
-            {
-                resolve.ResponseURL += (resolve.ResponseURL.Contains("?") ? "&" : "?") + "theme=" + Request.QueryString["theme"].ToUpper();
             }
+            Framework.Utilities.DebugLogging.Log("{REST.aspx.cs} ProcessRequest() redirect=" + resolve.Redirect.ToString() + " to=>" + resolve.ResponseURL);
 
             if (resolve.Resolved && !resolve.Redirect)
             {
@@ -198,11 +215,11 @@ namespace Profiles
             }
             else if (resolve.Resolved && resolve.Redirect)
             {
-                Response.Redirect(resolve.ResponseURL, true);
+                Response.Redirect(resolve.ResponseURL.Replace(Root.Domain, Brand.GetThemedDomain()), true);
             }
             else
-            {
-                Response.Redirect(Root.Domain + "/search", true);
+            {   // if we are not on a branded version, we need to be, so we redirect to the default
+                Response.Redirect(Brand.GetThemedDomain() + "/search", true);
 
 
                 //Response.Write("<b>Debug 404-- Your URL does not match a known Profiles RESTful pattern ---</b><br/><br/> ");
@@ -238,7 +255,7 @@ namespace Profiles
                 //Response.Write(param9);
 
                 //Response.Write("<br/><br/>Domain: ");
-                //Response.Write(Root.Domain);
+                //Response.Write(Brand.GetDomain());
 
                 //throw new Exception("custom 404 needed here");
             }

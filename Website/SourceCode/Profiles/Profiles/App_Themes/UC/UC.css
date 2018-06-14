@@ -1,23 +1,19 @@
 ﻿/* highlight color */
-.dblarrow:before, #about h2, h2.about, .content-block h2, .searchForm td div.header, .highlight,
+.dblarrow:before, .about .profiles h2, .content-block h2, .searchForm td div.header, .highlight,
 .passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
+.profiles a .authInst, .profiles a .authInst:hover, 
 .profiles .profilesContentMain .pageTitle h2 { color: #f2a900; }
-.profiles a.search-button, .more span, .less span { background-color: #f2a900; }
-.profiles a.search-button:hover { background-color: #FFB815; box-shadow: none; }
+.profiles a.search-button, #navbarsearch input[type=submit], .more span, .less span { background-color: #f2a900; }
+.profiles a.search-button:hover, #navbarsearch input[type=submit]:hover { background-color: #FFB815; box-shadow: none; }
+#navbarsearch input[type=submit]  { border: 4px solid #f2a900; }
+#navbarsearch input[type=submit]:hover  { border: 4px solid #FFB815; }
 
 /* banner */
-.institutionHeader { padding: 0; background: #FFFCED url("Images/ucbg.jpg") no-repeat scroll top right; width: 980px; }
-#uc{ float:left; width: 230px; height: 95px; }
-#uc img { padding: 15px 0 0 20px; }
-#site-logo h1 {
-    font-size: 34px;
-    margin: 6px 0 0;
-    padding: 15px 0 12px 30px;
-	height: 86px;
-}
- #tagline { color: #666; font-weight: bold; padding-top: 8px; }
- #powered-by-block { padding: 50px 0 0;  }
+.institutionHeader { background: #eef9ff url("Images/ucbg.jpg") no-repeat scroll 20% top; }
+#uc { float:left; width: 230px; height: 95px; }
+#uc img { padding: 15px 0 0 10px; }
+#site-logo h1 { margin: 35px 0 0 10px; }
 
 /* LINK Color */
 .profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000; }
@@ -26,10 +22,9 @@
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child, 
 #profile-components table td#namedegree, .listTable .listTableLink, .linky, 
 .institutionHeader a, .institutionHeader a:hover,
+.profilesfooter a, .profilesfooter a:visited, 
 .profiles a, .profiles a:visited { color: #1295d8; }
 
 /* navbar & footer colors */
-.profiles .profilesFooter,
-#suckerfishmenu, #suckerfishmenu a { background-color: #1295d8; }
-.search #suckerfishmenu .item-home a,
-#suckerfishmenu	 a.active, #suckerfishmenu a:hover { background-color: #42B5E7; }
+#suckerfishmenu li#contact { display: none; }
+#header-ucsf, .profilesFooter { background-color: #1295d8; }

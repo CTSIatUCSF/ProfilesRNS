@@ -124,11 +124,11 @@ namespace Profiles.Framework.Utilities
             return modulelist;
         }
 
-        public string RenderView(UserControl control)
+        public string RenderView(UserControl control, string theme)
         {
             Page pageHolder = new Page();
             // needed for Themes to work!
-            pageHolder.Theme = Root.GetDefaultTheme();
+            pageHolder.Theme = theme;
 
             pageHolder.Controls.Add(new HtmlHead());
             pageHolder.Controls.Add(control);

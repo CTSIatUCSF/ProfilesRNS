@@ -51,7 +51,7 @@ namespace Profiles.Framework.Modules.MainMenu
             rptHistory.DataBind();
 
             if (rptHistory.DataSource != null)
-                litSeeAll.Text = "<a href='" + Root.Domain + "/history'><font style='font-size:10px'>See All (" + uh.GetItems().Count.ToString() + ") pages</font></a>";
+                litSeeAll.Text = "<a href='" + Brand.GetThemedDomain() + "/history'><font style='font-size:10px'>See All (" + uh.GetItems().Count.ToString() + ") pages</font></a>";
 
 
         }

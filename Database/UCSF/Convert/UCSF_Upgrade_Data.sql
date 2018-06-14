@@ -1,5 +1,5 @@
 -- Updates to PresentationXML
-Begin tran 
+Begin tran
 UPDATE [Ontology.Presentation].[XML] SET [PresentationXML]=CONVERT(xml,N'<Presentation PresentationClass="profile">
   <PageOptions Columns="3" />
   <WindowName>{{{rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]}}}</WindowName>
@@ -641,6 +641,44 @@ UPDATE [Ontology.Presentation].[XML] SET [PresentationXML]=CONVERT(xml,N'<Presen
 
 commit
 
+--- UCWide Branding work
+-- truncate table [UCSF.].[Brand]
+INSERT INTO [UCSF.].[Brand] (Theme, BasePath, PersonFilter) VALUES ('Default', 'http://stage-profiles.ucsf.edu/godzilla', NULL);
+INSERT INTO [UCSF.].[Brand] (Theme, BasePath, PersonFilter) VALUES ('UC', 'http://stage-profiles.ucsf.edu/profiles_uc', 'UC Health');
+INSERT INTO [UCSF.].[Brand] (Theme, BasePath, PersonFilter) VALUES ('UCSF', 'http://stage-profiles.ucsf.edu/ucsf', NULL);
+INSERT INTO [UCSF.].[Brand] (Theme, BasePath, PersonFilter) VALUES ('UCSD', 'http://stage-profiles.ucsf.edu/ucsd', NULL);
+INSERT INTO [UCSF.].[Brand] (Theme, BasePath, PersonFilter) VALUES ('USC', 'http://stage-profiles.ucsf.edu/usc', NULL);
+INSERT INTO [UCSF.].[Brand] (Theme, BasePath, PersonFilter) VALUES ('UCI', 'http://stage-profiles.ucsf.edu/uci',  NULL);
+INSERT INTO [UCSF.].[Brand] (Theme, BasePath, PersonFilter) VALUES ('LBNL', 'http://stage-profiles.ucsf.edu/lbl', NULL);
+INSERT INTO [UCSF.].[Brand] (Theme, BasePath, PersonFilter) VALUES ('UCLA', 'http://stage-profiles.ucsf.edu/ucla', NULL);
+INSERT INTO [UCSF.].[Brand] (Theme, BasePath, PersonFilter) VALUES ('UCD', 'http://stage-profiles.ucsf.edu/ucd', NULL);
+-- select * from [UCSF.].[Brand]
+
+--truncate table [UCSF.].[InstitutionAdditions]
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, ShibbolethIdP, ShibbolethUserNameHeader, ShibbolethDisplayNameHeader) VALUES ('UCI', 'urn:mace:incommon:uci.edu', NULL, NULL);
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, ShibbolethIdP, ShibbolethUserNameHeader, ShibbolethDisplayNameHeader) VALUES ('UC Davis', 'urn:mace:incommon:ucdavis.edu', NULL, NULL);
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, ShibbolethIdP, ShibbolethUserNameHeader, ShibbolethDisplayNameHeader) VALUES ('UCSF', 'urn:mace:incommon:ucsf.edu', 'eppn', 'ShibdisplayName');
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, ShibbolethIdP, ShibbolethUserNameHeader, ShibbolethDisplayNameHeader) VALUES ('UCSD', 'urn:mace:incommon:ucsd.edu', 'scopedCampusEmployeeID', NULL);
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, ShibbolethIdP, ShibbolethUserNameHeader, ShibbolethDisplayNameHeader) VALUES ('UCLA', 'urn:mace:incommon:ucla.edu', NULL, NULL);
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, ShibbolethIdP, ShibbolethUserNameHeader, ShibbolethDisplayNameHeader) VALUES ('LBNL', 'https://login.lbl.gov/idp/shibboleth', 'ShibuscUSCID', NULL);
+INSERT INTO [UCSF.].[InstitutionAdditions] (InstitutionAbbreviation, ShibbolethIdP, ShibbolethUserNameHeader, ShibbolethDisplayNameHeader) VALUES ('USC', 'https://shibboleth.usc.edu/shibboleth-idp', 'employeeNumber', NULL);
+--select * from [UCSF.].[InstitutionAdditions] 
+
+--truncate table [UCSF.].[Theme2Institution]
+INSERT INTO [UCSF.].[Theme2Institution] (Theme, InstitutionAbbreviation) VALUES ('UC', 'UCSF');
+INSERT INTO [UCSF.].[Theme2Institution] (Theme, InstitutionAbbreviation) VALUES ('UC', 'UCSD');
+INSERT INTO [UCSF.].[Theme2Institution] (Theme, InstitutionAbbreviation) VALUES ('UC', 'UCI');
+INSERT INTO [UCSF.].[Theme2Institution] (Theme, InstitutionAbbreviation) VALUES ('UC', 'UCLA');
+INSERT INTO [UCSF.].[Theme2Institution] (Theme, InstitutionAbbreviation) VALUES ('UC', 'UC Davis');
+INSERT INTO [UCSF.].[Theme2Institution] (Theme, InstitutionAbbreviation) VALUES ('UCSF', 'UCSF');
+INSERT INTO [UCSF.].[Theme2Institution] (Theme, InstitutionAbbreviation) VALUES ('UCSD', 'UCSD');
+INSERT INTO [UCSF.].[Theme2Institution] (Theme, InstitutionAbbreviation) VALUES ('UCI', 'UCI');
+INSERT INTO [UCSF.].[Theme2Institution] (Theme, InstitutionAbbreviation) VALUES ('UCLA', 'UCLA');
+INSERT INTO [UCSF.].[Theme2Institution] (Theme, InstitutionAbbreviation) VALUES ('UCD', 'UC Davis');
+INSERT INTO [UCSF.].[Theme2Institution] (Theme, InstitutionAbbreviation) VALUES ('USC', 'USC');
+INSERT INTO [UCSF.].[Theme2Institution] (Theme, InstitutionAbbreviation) VALUES ('LBNL', 'LBNL');
+--select * from [UCSF.].[Theme2Institution]
+
 --rollback
 --commit
 ---EXEC [Framework.].[LoadXMLFile] @FilePath = '$(ProfilesRNSRootPath)\Data\PRNS_1.2.owl', @TableDestination = '[Ontology.Import].owl', @DestinationColumn = 'DATA', @NameValue = 'PRNS_1.2'
@@ -720,9 +758,9 @@ INSERT INTO [Ontology.].[DataMap] (DataMapID, DataMapGroup, IsAutoFeed, Graph,
 		oObjectType, Weight, OrderBy, ViewSecurityGroup, EditSecurityGroup)
 	VALUES (1000, 1, 1, 1,
 		'http://xmlns.com/foaf/0.1/Person', NULL, 'http://xmlns.com/foaf/0.1/workplaceHomepage',
-		'(SELECT p.PersonID, f.Value + ''/'' + p.UrlName workplaceHomepage FROM [UCSF.].[vwPerson] p LEFT JOIN [Framework.].[Parameter] f ON f.ParameterID = ''basePath'' AND p.UrlName IS NOT NULL) t',
+		'[UCSF.].[vwPerson]',
 		'Person', 'PersonID',
-		'workplaceHomepage',
+		'PrettyURL',
 		1, 1, NULL, -1, -40)
 
 -- HMS Pub Category

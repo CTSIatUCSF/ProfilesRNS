@@ -76,15 +76,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         protected global::System.Web.UI.WebControls.PlaceHolder phAddGrant;
         
         /// <summary>
-        /// btnImgAddGrant control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnImgAddGrant;
-        
-        /// <summary>
         /// btnAddNewGrant control.
         /// </summary>
         /// <remarks>
@@ -103,15 +94,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         protected global::System.Web.UI.WebControls.PlaceHolder phAddCustom;
         
         /// <summary>
-        /// btnImgAddCustom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnImgAddCustom;
-        
-        /// <summary>
         /// btnAddCustom control.
         /// </summary>
         /// <remarks>
@@ -128,15 +110,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder phDeleteGrant;
-        
-        /// <summary>
-        /// btnImgDeleteGrant control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnImgDeleteGrant;
         
         /// <summary>
         /// btnDeleteGrant control.
@@ -427,15 +400,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         protected global::System.Web.UI.WebControls.TextBox txtProjectTitle;
         
         /// <summary>
-        /// txtRoleDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRoleDescription;
-        
-        /// <summary>
         /// txtRole control.
         /// </summary>
         /// <remarks>
@@ -443,6 +407,15 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRole;
+        
+        /// <summary>
+        /// txtRoleDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRoleDescription;
         
         /// <summary>
         /// txtAbstract control.

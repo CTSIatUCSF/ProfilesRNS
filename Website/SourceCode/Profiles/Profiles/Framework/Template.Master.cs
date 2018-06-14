@@ -91,7 +91,7 @@ namespace Profiles.Framework
                     divProfilesPage.Style.Remove("background-image");
                     //These two lines are adding inline styles to get the rounded border at bottom of left column. This has been replicated in CSS.
                     //divProfilesPageColumnRightBottom.Style.Remove("background-image");
-                    //divProfilesPageColumnRightBottom.Style.Add("background-image", Root.Domain + "/Framework/images/passive_bottom_alt.gif");
+                    //divProfilesPageColumnRightBottom.Style.Add("background-image", Brand.GetDomain() + "/Framework/images/passive_bottom_alt.gif");
                     divProfilesMainColumnLeft.Style.Remove("width");
                     divProfilesMainColumnLeft.Style.Add("width", "777px");
                     divProfilesContentMain.Style.Remove("width");
@@ -100,8 +100,6 @@ namespace Profiles.Framework
 
 
                 this.DrawTabs();
-
-
             }
             catch (Exception ex)
             {
@@ -109,7 +107,7 @@ namespace Profiles.Framework
                 Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
 
                 HttpContext.Current.Session["GLOBAL_ERROR"] = ex.Message + " ++ " + ex.StackTrace;
-                Response.Redirect(Root.Domain + "/error/default.aspx");
+                Response.Redirect(Brand.GetThemedDomain() + "/error/default.aspx");
             }
 
 
@@ -126,7 +124,7 @@ namespace Profiles.Framework
             //What application is currently being viewed then set the correct asset link.
 
             HtmlLink Profilescss = new HtmlLink();
-            Profilescss.Href = Root.Domain + "/Framework/CSS/profiles.css";
+            Profilescss.Href = Brand.GetThemedDomain() + "/Framework/CSS/profiles.css";
             Profilescss.Attributes["rel"] = "stylesheet";
             Profilescss.Attributes["type"] = "text/css";
             Profilescss.Attributes["media"] = "all";
@@ -134,7 +132,7 @@ namespace Profiles.Framework
             head.Controls.Add(Profilescss);
 
             HtmlLink DEFAULTcss = new HtmlLink();
-            DEFAULTcss.Href = Root.Domain + "/App_Themes/DEFAULT.css";
+            DEFAULTcss.Href = Brand.GetThemedDomain() + "/App_Themes/DEFAULT.css";
             DEFAULTcss.Attributes["rel"] = "stylesheet";
             DEFAULTcss.Attributes["type"] = "text/css";
             DEFAULTcss.Attributes["media"] = "all";
@@ -143,45 +141,44 @@ namespace Profiles.Framework
             
             HtmlGenericControl jsscript = new HtmlGenericControl("script");
             jsscript.Attributes.Add("type", "text/javascript");
-            jsscript.Attributes.Add("src", Root.Domain + "/Framework/JavaScript/profiles.js");
+            jsscript.Attributes.Add("src", Brand.GetThemedDomain() + "/Framework/JavaScript/profiles.js");
             Page.Header.Controls.Add(jsscript);
 
             HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
             UCSFjs.Attributes.Add("type", "text/javascript");
-            UCSFjs.Attributes.Add("src", Root.Domain + "/Framework/JavaScript/UCSF.js");
+            UCSFjs.Attributes.Add("src", Brand.GetThemedDomain() + "/Framework/JavaScript/UCSF.js");
             Page.Header.Controls.Add(UCSFjs);
 
             // add one specific to the theme
             HtmlGenericControl ThemeJs = new HtmlGenericControl("script");
             ThemeJs.Attributes.Add("type", "text/javascript");
-            ThemeJs.Attributes.Add("src", Root.Domain + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".js");
+            ThemeJs.Attributes.Add("src", Brand.GetThemedDomain() + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".js");
             Page.Header.Controls.Add(ThemeJs);
 
             // UCSF. This is handy to have in JavaScript form and is required for ORNG
             HtmlGenericControl rootDomainjs = new HtmlGenericControl("script");
             rootDomainjs.Attributes.Add("type", "text/javascript");
-            rootDomainjs.InnerHtml = Environment.NewLine + "var _rootDomain = \"" + Root.Domain + "\";" + Environment.NewLine;
+            rootDomainjs.InnerHtml = Environment.NewLine + "var _rootDomain = \"" + Brand.GetThemedDomain() + "\";" + Environment.NewLine;
             Page.Header.Controls.Add(rootDomainjs);
 
             //The below statement was adding inline styles to the left side navigation. Not needed anymore.
             //if (this.GetStringFromPresentationXML("Presentation/PageOptions/@Columns") == "3")
             //{
-            //    divPageColumnRightCenter.Style["background-image"] = Root.Domain + "/Framework/Images/passive_back.gif";
+            //    divPageColumnRightCenter.Style["background-image"] = Brand.GetDomain() + "/Framework/Images/passive_back.gif";
             //    divPageColumnRightCenter.Style["background-repeat"] = "repeat";
             //}
 
 
-            if (ConfigurationManager.AppSettings["GoogleAnalytics.TrackingID"] != null && !ConfigurationManager.AppSettings["GoogleAnalytics.TrackingID"].ToString().Trim().IsNullOrEmpty())
+            if (Brand.GetGATrackingID() != null)
             {
                 HtmlGenericControl gaTrackingjs = new HtmlGenericControl("script");
-
+                // UCSF Maybe it is OK to have this other stuff be site wide in Godzilla? NULL is certainly OK
                 string domain = ConfigurationManager.AppSettings["GoogleAnalytics.Domain"] != null ? ConfigurationManager.AppSettings["GoogleAnalytics.Domain"].ToString().Trim() : null;
                 string trackingID2 = ConfigurationManager.AppSettings["GoogleAnalytics.TrackingID2"] != null ? ConfigurationManager.AppSettings["GoogleAnalytics.TrackingID2"].ToString().Trim() : null;
                 string domain2 = ConfigurationManager.AppSettings["GoogleAnalytics.Domain2"] != null ? ConfigurationManager.AppSettings["GoogleAnalytics.Domain2"].ToString().Trim() : null;
 
                 gaTrackingjs.Attributes.Add("type", "text/javascript");
-                gaTrackingjs.InnerHtml = GetUniversalAnalyticsJavascipt(
-                        ConfigurationManager.AppSettings["GoogleAnalytics.TrackingID"].ToString().Trim(), domain, trackingID2, domain2);
+                gaTrackingjs.InnerHtml = GetUniversalAnalyticsJavascipt(Brand.GetGATrackingID(), domain, trackingID2, domain2);
 
                 Page.Header.Controls.Add(gaTrackingjs);
             }
@@ -194,7 +191,7 @@ namespace Profiles.Framework
 					<link rel='stylesheet' type='text/css' href='{0}/Framework/CSS/profiles-ie.css' />
 				<![endif]-->
 			",
-            Root.Domain);
+            Brand.GetThemedDomain());
             Page.Header.Controls.Add(ieCss);
 
 
@@ -261,11 +258,11 @@ namespace Profiles.Framework
 
                             if (this.Tab != string.Empty)
                             {
-                                t.URL = Root.Domain + t.URL + "/" + newtab;
+                                t.URL = Brand.GetThemedDomain() + t.URL + "/" + newtab;
                             }
                             else
                             {
-                                t.URL = Root.Domain + t.URL;
+                                t.URL = Brand.GetThemedDomain() + t.URL;
                             }
 
 
@@ -283,20 +280,20 @@ namespace Profiles.Framework
                                 if (url.Length == 2)
                                 {
 
-                                    t.URL = Root.Domain + Root.AbsolutePath + "/" + t.URL;
+                                    t.URL = Brand.GetThemedDomain() + Root.AbsolutePath + "/" + t.URL;
                                 }
                                 else
                                 {
                                     for (int i = 0; i < url.Length - 1; i++)
                                         buffer = buffer + url[i] + "/";
 
-                                    t.URL = Root.Domain + buffer + t.URL;
+                                    t.URL = Brand.GetThemedDomain() + buffer + t.URL;
                                 }
 
                             }
                             else
                             {
-                                t.URL = Root.Domain + Root.AbsolutePath + "/" + t.URL;
+                                t.URL = Brand.GetThemedDomain() + Root.AbsolutePath + "/" + t.URL;
                             }
 
                             tabs.Append(Framework.Utilities.Tabs.DrawDisabledTab(t.Name, t.URL));
@@ -414,7 +411,7 @@ namespace Profiles.Framework
                 {
                     buffer = "<span itemprop=\"name\">" + buffer + "</span>";
                 }
-                litPageTitle.Text = "<h2><a><img class=\"pageIcon\" src=\"" + Root.Domain + "/Framework/Images/icon_" + PresentationClass + ".gif\"/></a>" + buffer + "</h2>";
+                litPageTitle.Text = "<h2><a><img class=\"pageIcon\" src=\"" + Brand.GetThemedDomain() + "/Framework/Images/icon_" + PresentationClass + ".gif\"/></a>" + buffer + "</h2>";
             }
 
             // PageSubTitle
@@ -439,11 +436,11 @@ namespace Profiles.Framework
                 string url = string.Empty;
 
                 if (PageBackLinkURL.Contains("~/"))
-                    url = Root.Domain + "/" + PageBackLinkURL.Replace("~/", "");
+                    url = Brand.GetThemedDomain() + "/" + PageBackLinkURL.Replace("~/", "");
                 else if (PageBackLinkURL.Contains("~"))
-                    url = Root.Domain + PageBackLinkURL.Replace("~", "");
+                    url = Brand.GetThemedDomain() + PageBackLinkURL.Replace("~", "");
                 else
-                    url = PageBackLinkURL;
+                    url = Brand.CleanURL(PageBackLinkURL);
 
                 litBackLink.Text = "<a href=\"" + url + "\" class=\"dblarrow\">" + PageBackLinkName + "</a>";
 
@@ -594,9 +591,9 @@ namespace Profiles.Framework
         }
 
 
-        public string GetURLDomain()
+        public string GetThemedDomain()
         {
-            return Root.Domain;
+            return Brand.GetThemedDomain();
         }
 
         public string GetVersion()
@@ -614,7 +611,7 @@ namespace Profiles.Framework
 
         public string GetThemedFavicon()
         {
-            return Root.GetThemedFile(Page, "Images/favicon.ico");
+            return Brand.GetThemedFile(Page, "Images/favicon.ico");
         }
 
 

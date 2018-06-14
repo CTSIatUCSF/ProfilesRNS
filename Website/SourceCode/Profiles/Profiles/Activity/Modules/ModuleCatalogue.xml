@@ -13,5 +13,5 @@ For details, see: LICENSE.txt
 <ModuleList>
   <Module ModulePath="Modules" NameSpace="Statistics" FileName="Statistics.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="ActivityHistory" FileName="ActivityHistory.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="LatestUpdates" FileName="LatestUpdates.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="LatestUpdates" FileName="LatestUpdates.ascx" Enabled="false"/>
 </ModuleList>

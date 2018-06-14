@@ -4,7 +4,7 @@
 <script type="text/javascript">
 
     function searchThisPhrase(keyword,classuri,searchtype) {        
-        document.location.href = '<%=GetURLDomain()%>/search/default.aspx?searchtype=' + searchtype + '&searchfor=' + keyword + '&exactphrase=false&classuri=' + classuri;
+        document.location.href = '<%=GetThemedDomain()%>/search/default.aspx?searchtype=' + searchtype + '&searchfor=' + keyword + '&exactphrase=false&classuri=' + classuri + '<%=GetBrandingQueryArgs()%>';
     }    
     
 </script>
@@ -19,7 +19,7 @@
 </div>
 
 <asp:Panel ID="TwitterUSC" runat="server" SkinID="USC" Visible="false">
-<div class="tour"><a href="<%=GetURLDomain()%>/about/AboutProfiles.aspx" class="dblarrow">Tour Profiles </a></div>
+<div class="tour"><a href="<%=GetThemedDomain()%>/about/AboutProfiles.aspx" class="dblarrow">Tour Profiles </a></div>
 
 <p style="margin: 0; padding: 20px 0 6px"><strong>USC Profiles Updates</strong></p>
 <div style="margin: 0 20px 0 -6px;">

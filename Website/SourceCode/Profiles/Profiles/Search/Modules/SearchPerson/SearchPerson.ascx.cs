@@ -12,9 +12,6 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using System.Configuration;
@@ -30,7 +27,7 @@ namespace Profiles.Search.Modules.SearchPerson
         protected void Page_Load(object sender, EventArgs e)
         {
             // hate to hard code this, but not sure how else to do it now
-            if (!Request.Form[this.hdnSearch.UniqueID].IsNullOrEmpty())
+            if (!Request.Form[this.hdnSearch.UniqueID].IsNullOrEmpty() && "true".Equals(Request.Form[this.hdnSearch.UniqueID]))
             {
                 this.Search();
             }
@@ -56,31 +53,28 @@ namespace Profiles.Search.Modules.SearchPerson
                 //Profiles.Search.Utilities.DataIO dropdowns = new Profiles.Search.Utilities.DataIO();
                 if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowInstitutions"]) == true)
                 {
-                    litInstitution.Text = SearcDropDowns.BuildDropdown("institution", "249", "");
+                    litInstitution.Text = SearchDropDowns.BuildDropdown("institution", "249", Brand.GetCurrentBrand().IsMultiInstitutional() ? "" : Brand.GetCurrentBrand().GetInstitution().GetName(), Brand.GetCurrentBrand());
                 }
-                else
-                {
-                    trInstitution.Visible = false;
-                }
+                trInstitution.Visible = Brand.GetCurrentBrand().IsMultiInstitutional();
 
-                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowDepartments"]) == true)
+                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowDepartments"]) == true && !Brand.GetCurrentBrand().IsMultiInstitutional())
                 {
-                    litDepartment.Text = SearcDropDowns.BuildDropdown("department", "249", "");
+                    litDepartment.Text = SearchDropDowns.BuildDropdown("department", "249", "", Brand.GetCurrentBrand());
                 }
                 else
                 {
                     trDepartment.Visible = false;
                 }
 
-                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowDivisions"]) == true)
+                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowDivisions"]) == true && !Brand.GetCurrentBrand().IsMultiInstitutional())
                 {
-                    litDivision.Text = SearcDropDowns.BuildDropdown("division", "249", "");
+                    litDivision.Text = SearchDropDowns.BuildDropdown("division", "249", "", Brand.GetCurrentBrand());
                 }
                 else
                 {
                     trDivision.Visible = false;
                 }
-                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowOtherOptions"]) == false)
+                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowOtherOptions"]) == false)// || !String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
                 {
                     trOtherOptions.Visible = false;
                 }
@@ -148,7 +142,7 @@ namespace Profiles.Search.Modules.SearchPerson
                     {
 
 
-                        litInstitution.Text = SearcDropDowns.BuildDropdown("institution", "249", x.InnerText);
+                        litInstitution.Text = SearchDropDowns.BuildDropdown("institution", "249", x.InnerText, Brand.GetCurrentBrand());
                         institutiondropdown = true;
 
                         if (x.SelectSingleNode("@IsExclude").Value == "1")
@@ -159,7 +153,7 @@ namespace Profiles.Search.Modules.SearchPerson
 
                     if (x.SelectSingleNode("@Property").Value == "http://vivoweb.org/ontology/core#personInPosition" && x.SelectSingleNode("@Property2").Value == "http://profiles.catalyst.harvard.edu/ontology/prns#positionInDepartment")
                     {
-                        litDepartment.Text = SearcDropDowns.BuildDropdown("department", "249", x.InnerText);
+                        litDepartment.Text = SearchDropDowns.BuildDropdown("department", "249", x.InnerText, Brand.GetCurrentBrand());
                         departmentdropdown = true;
 
                         if (x.SelectSingleNode("@IsExclude").Value == "1")
@@ -171,7 +165,7 @@ namespace Profiles.Search.Modules.SearchPerson
 
                     if (x.SelectSingleNode("@Property").Value == "http://vivoweb.org/ontology/core#personInPosition" && x.SelectSingleNode("@Property2").Value == "http://profiles.catalyst.harvard.edu/ontology/prns#positionInDivision")
                     {
-                        litDivision.Text = SearcDropDowns.BuildDropdown("division", "249", x.InnerText);
+                        litDivision.Text = SearchDropDowns.BuildDropdown("division", "249", x.InnerText, Brand.GetCurrentBrand());
                         divisiondropdown = true;
 
                         if (x.SelectSingleNode("@IsExclude").Value == "1")
@@ -202,23 +196,26 @@ namespace Profiles.Search.Modules.SearchPerson
             }
 
             if (!institutiondropdown)
-                litInstitution.Text = SearcDropDowns.BuildDropdown("institution", "249", "");
+                litInstitution.Text = SearchDropDowns.BuildDropdown("institution", "249", "", Brand.GetCurrentBrand());
 
-            if (!departmentdropdown)
-                litDepartment.Text = SearcDropDowns.BuildDropdown("department", "249", "");
+            if (!Brand.GetCurrentBrand().IsMultiInstitutional())
+            {
+                if (!departmentdropdown)
+                    litDepartment.Text = SearchDropDowns.BuildDropdown("department", "249", "", Brand.GetCurrentBrand());
 
-            if (!divisiondropdown)
-                litDivision.Text = SearcDropDowns.BuildDropdown("division", "249", "");
-
-
-
-
-
+                if (!divisiondropdown)
+                    litDivision.Text = SearchDropDowns.BuildDropdown("division", "249", "", Brand.GetCurrentBrand());
+            }
+            else
+            {
+                trDepartment.Visible = false;
+                trDivision.Visible = false;
+            }
         }
 
-        public string GetURLDomain()
+        public string GetThemedDomain()
         {
-            return Root.Domain;
+            return Brand.GetThemedDomain();
         }
 
 
@@ -331,7 +328,11 @@ namespace Profiles.Search.Modules.SearchPerson
             string divisionallexcept = "";
 
 
-            if (Request.Form["institution"] != null)
+            if (!Brand.GetCurrentBrand().IsMultiInstitutional())
+            {
+                institution = SearchDropDowns.GetDefaultItemValue("institution", Brand.GetCurrentBrand().GetInstitution().GetName(), Brand.GetCurrentBrand());
+            }
+            else if (Request.Form["institution"] != null)
             {
                 institution = Request.Form["institution"];
                 institutionallexcept = Request.Form[this.institutionallexcept.UniqueID];//Request.Form["institutionallexcept"];
@@ -344,6 +345,10 @@ namespace Profiles.Search.Modules.SearchPerson
             }
 
             string otherfilters = Request.Form["hdnSelectedText"];
+            if (!String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
+            {
+                otherfilters += "," + Brand.GetCurrentBrand().PersonFilter;
+            }
 
             string classuri = "http://xmlns.com/foaf/0.1/Person";
 
@@ -356,7 +361,7 @@ namespace Profiles.Search.Modules.SearchPerson
             data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept,
                 department, departmentallexcept, division, divisionallexcept, classuri, "15", "0", "", "", otherfilters, facrank, ref searchrequest);
 
-            Response.Redirect(Root.Domain + "/search/default.aspx?showcolumns=10&searchtype=people&otherfilters=" + otherfilters + "&searchrequest=" + searchrequest, true);
+            Response.Redirect(Brand.GetThemedDomain() + "/search/default.aspx?showcolumns=" + (Brand.GetCurrentBrand().IsMultiInstitutional() ? "9" : "10") +  "&searchtype=people&otherfilters=" + otherfilters + "&searchrequest=" + searchrequest, true);
 
 
 

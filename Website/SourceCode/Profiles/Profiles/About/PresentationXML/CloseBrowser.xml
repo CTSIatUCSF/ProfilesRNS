@@ -17,13 +17,10 @@
         <ParamList>
           <Param Name="HTML">
 
-<style type="text/css">
-#suckerfishmenu li#about a { background-color: #6A7D7D !important; }
-</style>
 
-<div style="border: 1px solid #CCC; padding:5px 15px; width: 590px">
-<h2 style="font-size: 16px; line-height: 22px">For added security, it's best to completely <em>close the web browser</em> (e.g., Internet Explorer, Firefox, Safari, Chrome, etc.) that you used to login to UCSF Profiles. </h2>
-<h3>Closing the browser will help to ensure that no one else can access your MyAccess-enabled accounts from this computer. </h3>
+<div style="border: 1px solid #CCC; padding: 0 15px; width: 590px">
+<h2 style="font-size: 16px; line-height: 22px; padding-top: 0;">For added security, it's best to completely <em>close the web browser</em> (e.g., Chrome, Internet Explorer, Firefox, Safari) that you used to login to Profiles. </h2>
+<h3>Closing the browser will help to ensure that no one else can access your single sign-on accounts from this computer. </h3>
 </div>
         
           </Param>

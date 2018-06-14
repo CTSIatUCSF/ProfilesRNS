@@ -43,7 +43,7 @@ namespace Profiles.History.Modules.HistoryList
             List<HistoryItem> hi = uh.GetItems();
 
             if (hi==null)
-                Response.Redirect(Root.Domain + "/search", true);
+                Response.Redirect(Brand.GetThemedDomain() + "/search", true);
                         
             rptHistory.DataSource = hi;
             rptHistory.DataBind();

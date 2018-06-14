@@ -59,7 +59,7 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
             else
                 Response.Redirect("~/search");
 
-            litBackLink.Text = "<a href='" + Root.Domain + "/edit/" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+            litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
 
             //btnEditProperty.Text = "Add " + PropertyLabel;
             //imbAddArror.Visible = true;
@@ -74,7 +74,7 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
             securityOptions.SecurityGroups = new XmlDataDocument();
             securityOptions.SecurityGroups.LoadXml(base.PresentationXML.DocumentElement.LastChild.OuterXml);
 
-            txtLabel.Attributes.Add("data-autocomplete-url", Root.Domain + "/edit/Modules/CustomEditFreetextKeyword/keywordAutocomplete.aspx?keys=");
+            txtLabel.Attributes.Add("data-autocomplete-url", Brand.GetThemedDomain() + "/edit/Modules/CustomEditFreetextKeyword/keywordAutocomplete.aspx?keys=");
         }
 
         #region Property
@@ -186,7 +186,7 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
             {
                 txtLabelGrid = (TextBox)e.Row.Cells[0].FindControl("txtLabelGrid");
                 txtLabelGrid.Text = "" + literalstate.Literal.Trim();
-                txtLabelGrid.Attributes.Add("data-autocomplete-url", Root.Domain + "/edit/Modules/CustomEditFreetextKeyword/keywordAutocomplete.aspx?keys=");
+                txtLabelGrid.Attributes.Add("data-autocomplete-url", Brand.GetThemedDomain() + "/edit/Modules/CustomEditFreetextKeyword/keywordAutocomplete.aspx?keys=");
             }
         }
 

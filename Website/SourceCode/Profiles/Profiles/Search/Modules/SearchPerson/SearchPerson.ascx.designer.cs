@@ -40,6 +40,15 @@ namespace Profiles.Search.Modules.SearchPerson {
         protected global::System.Web.UI.WebControls.CheckBox chkExactphrase;
         
         /// <summary>
+        /// ClinicalTrialsUSC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ClinicalTrialsUSC;
+        
+        /// <summary>
         /// txtLname control.
         /// </summary>
         /// <remarks>
@@ -94,33 +103,6 @@ namespace Profiles.Search.Modules.SearchPerson {
         protected global::System.Web.UI.WebControls.CheckBox institutionallexcept;
         
         /// <summary>
-        /// trDepartment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableRow trDepartment;
-        
-        /// <summary>
-        /// litDepartment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litDepartment;
-        
-        /// <summary>
-        /// departmentallexcept control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox departmentallexcept;
-        
-        /// <summary>
         /// trDivision control.
         /// </summary>
         /// <remarks>
@@ -146,6 +128,33 @@ namespace Profiles.Search.Modules.SearchPerson {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox divisionallexcept;
+        
+        /// <summary>
+        /// trDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trDepartment;
+        
+        /// <summary>
+        /// litDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litDepartment;
+        
+        /// <summary>
+        /// departmentallexcept control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox departmentallexcept;
         
         /// <summary>
         /// trFacultyType control.
@@ -220,6 +229,15 @@ namespace Profiles.Search.Modules.SearchPerson {
         protected global::Profiles.Search.Modules.SearchPerson.ComboTreeCheck ctcFirst;
         
         /// <summary>
+        /// ClinicalTrialsUCSF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ClinicalTrialsUCSF;
+        
+        /// <summary>
         /// litFacRankScript control.
         /// </summary>
         /// <remarks>
@@ -227,6 +245,24 @@ namespace Profiles.Search.Modules.SearchPerson {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litFacRankScript;
+        
+        /// <summary>
+        /// DirectSearchUCSF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel DirectSearchUCSF;
+        
+        /// <summary>
+        /// DirectSearchUSC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel DirectSearchUSC;
         
         /// <summary>
         /// SearchPersonFormNoteUCSD control.

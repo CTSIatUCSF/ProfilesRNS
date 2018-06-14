@@ -1,0 +1,149 @@
+﻿<Presentation PresentationClass="profile">
+  <PageOptions Columns="2"/>
+  <WindowName>About</WindowName>  
+  <PageTitle>Need Help?</PageTitle>
+  <PageBackLinkName></PageBackLinkName>
+  <PageBackLinkURL></PageBackLinkURL>
+  <PageSubTitle></PageSubTitle>
+  <PageDescription></PageDescription>  
+  <PanelList>
+    <Panel type="header"  />
+    <Panel type="page" />
+    <Panel Type="active">
+      <Module ID="MainMenu"/>
+    </Panel>
+    <Panel Type="main">
+      <Module ID="HTMLBlock">
+        <ParamList>
+          <Param Name="HTML">
+
+<script type="text/javascript">
+$('#suckerfishmenu li#contact a').addClass('active'); 
+$('.profiles .profilesContentMain .pageTitle h2').hide();
+</script>
+
+	<div class="content-block-container">
+	  <div class="content-block">
+		<h2 style="font-size:30px">Need Help?</h2>
+		<p><strong>Publications</strong>: To add, remove, or fix a publication, 
+		   <strong><a href="../login/default.aspx?method=login&amp;edit=true">sign in to edit</a></strong> your profile page.
+		</p>
+		<p><strong>Photo</strong>: To add or remove a photo, 
+		   <strong><a href="../login/default.aspx?method=login&amp;edit=true">sign in to edit</a></strong> your profile page.
+		</p>
+		<p><strong>Name/Degree/Contact Information</strong>: We get this data from the UC Davis HR system(s). Ask your HR 
+		   representative to make those changes or ask your UC Davis campus department how to make changes to your HR record. 
+		</p>
+		<p><a href="#faq" class="dblarrow">Frequently Asked Questions</a></p>
+	  </div>
+	 
+	  <div class="content-block">
+		<h2 style="font-size:30px">Contact Us</h2>
+		<p>Please <a href="mailto:profiles@ucdavis.edu">share your feedback</a> about how to improve
+		   UC Davis Profiles, and let us know if UC Davis Profiles has enabled your research in any way.
+		   Your success stories are important to enable the continued support and expansion of this
+		   important tool.
+		</p>
+		<p><strong>Email us at <a href="mailto:profiles@ucdavis.edu">profiles@ucdavis.edu</a></strong></p>
+	  </div>
+	</div>
+
+<h2 style="clear:left; padding-top:20px;">Researcher Information</h2>
+<p>An individual's profile page shows data drawn from external sources, and may also display 
+custom content added by the researcher.</p> 
+
+<table width="940">
+<tr>
+<td valign="top" style="font-size:12px;line-height:16px;padding-top:23px;">
+Name, degrees and contact information are imported from campus systems. <br /><br />
+Profile owners may add:
+<ul class="square" style="font-size:12px;line-height:16px;margin:0;">
+<li>Photo</li>
+<li>Education and Training</li>
+<li>Awards and Honors</li>
+<li>Research Overview</li>
+<li>Interests</li>
+<li>Featured Publications</li>
+<li>Faculty Mentoring</li>
+<li>Student Projects</li>
+<li>Twitter and other feeds</li>
+<li>Videos</li>
+<li>Websites</li>
+<li>News Links</li>
+</ul>
+<br />
+Research Activities and Funding come from NIH ExPORTER. Other grants <br />may be added.
+<br /><br /><br />Published articles available <br />
+in PubMed are listed automatically. Other <span style="white-space:nowrap">publications may be added.</span>
+</td>
+<td valign="top"><img src="images/profilesnapshot.png" width="600" alt="" /></td>
+<td valign="top" style="font-size:12px;line-height:16px;padding-top:23px;">
+Networks are generated from research available in PubMed.
+<br /><br /><br />
+Research concepts/topics <span style="white-space:nowrap">based on PubMed MeSH terms</span><br /><br /><br /><br />
+Co-authors from the same institution<br /><br /><br /><br /><br /><br />
+Co-authors from external institutions<br /><br /><br /><br /><br /><br />
+Researchers working on the same topics
+</td>
+</tr>
+</table>
+<p>Many researchers also have Clinical Trials information based on trials listed in clinicaltrials.gov.</p>
+
+<h2 class="about" id="faq">Frequently Asked Questions</h2>
+<ul> 
+  <li><a href="#who">Who is listed in UC Davis Profiles?</a></li>
+  <li><a href="#view">Who can view UC Davis Profiles?</a></li>
+  <li><a href="#login">How do I sign in to UC Davis Profiles?</a></li>
+  <li><a href="#pubs">Why are there missing or incorrect publications in my profile? How can I correct this?</a></li>
+  <li><a href="#manage">Who manages UC Davis Profiles?</a></li>
+</ul>
+
+<h3 id="who">Who is listed in UC Davis Profiles?</h3>
+
+<ul>
+  <li>UC Davis Profiles was created for research networking so we initially focused on adding UC Davis faculty members, 
+  researchers with academic leadership appointments, and non-faculty academic researchers. </li>
+  <li>We are happy to include research staff and other individuals in the UC Davis community, on request and if possible. 
+  Send requests, with full name and employee ID, to <a href="mailto:profiles@ucdavis.edu">profiles@ucdavis.edu</a></li>
+</ul>
+
+<h3 id="view">Who can view UC Davis Profiles?</h3>
+<ul>
+  <li>UC Davis Profiles is searchable on the web and can be viewed by the general public as well as the UC Davis community.</li>
+</ul>
+
+<h3 id="login">How do I sign in to UC Davis Profiles?</h3>
+<ul>
+  <li>Click the <strong><a href="../login/default.aspx?method=login&amp;edit=true">Sign in</a></strong> link on any UC Davis Profiles page.
+  Then enter your single sign on (SSO) username and password.</li>
+  <li>If you have never used SSO, or for password support, go to 
+  <a href="http://iaminfo.ucdavis.edu/faq.cfm" target="_blank">UC Davis Identity and Access Management</a> 
+  or contact your Home Departmental Administrator.</li> 
+</ul>
+
+<h3 id="pubs">Why are there missing or incorrect publications in my profile? How can I correct this?</h3> 
+<ul>
+  <li>UC Davis Profiles uses a complex mix of names, institution, and publication information to find your  publications in PubMed's repository. 
+  Unfortunately, there is no easy way to  match all articles in PubMed to Profiles authors with complete precision and accuracy. </li>
+  <li>People who have common names, who published under multiple names or whose articles were written while at other 
+  institutions are most likely to have incomplete publication lists. </li>
+  <li>You can make corrections by searching PubMed from within Profiles to add, edit or delete publications. By curating publications 
+  manually, you are helping UC Davis Profiles to identify which concepts and co-authors are correctly associated with your profile, 
+  thereby increasing the likelihood of finding the right publications on subsequent attempts. </li>
+</ul>
+
+<h3 id="manage">Who manages UC Davis Profiles?</h3>
+<ul>
+  <li>UC Davis Profiles is managed by the Research Technology program of UCSF's Clinical and Translational Science Institute (CTSI) 
+  on behalf of the UC Davis <a href="http://www.ucdmc.ucdavis.edu/ctsc/index.html" target="_blank">Clinical and Translational Science Center</a>. </li>
+</ul>
+
+          </Param>
+        </ParamList>
+      </Module>
+      <Panel Type="passive"/>
+      <Panel type="footer" />
+    </Panel> 
+  </PanelList>
+</Presentation>
+

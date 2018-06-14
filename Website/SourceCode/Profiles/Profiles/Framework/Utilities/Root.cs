@@ -12,8 +12,7 @@
 */
 using System;
 using System.Web;
-using System.Configuration;
-using System.Web.Configuration;
+
 
 namespace Profiles.Framework.Utilities
 {   /// <summary>
@@ -62,7 +61,7 @@ namespace Profiles.Framework.Utilities
         {
             get
             {
-                String url = HttpContext.Current.Request.Url.ToString().ToLower().Replace(Root.Domain.ToLower(), "").Replace("/default.aspx", "");
+                String url = HttpContext.Current.Request.Url.ToString().ToLower().Replace(Brand.GetThemedDomain().ToLower(), "").Replace("/default.aspx", "");
 
                 if (url.Contains("?"))
                 {                    
@@ -76,17 +75,6 @@ namespace Profiles.Framework.Utilities
             }
         }
 
-        static public string GetThemedFile(System.Web.UI.Page page, string file)
-        {
-            return Root.Domain + "/App_Themes/" + page.Theme + "/" + file;
-        }
-
-        // this one gets it from Web.config, and is not meant for page level use
-        static public string GetDefaultTheme()
-        {
-            PagesSection pages = (PagesSection)ConfigurationManager.GetSection("system.web/pages");
-            return pages.Theme;
-        }
 
     }
 }   

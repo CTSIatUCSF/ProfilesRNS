@@ -25,7 +25,7 @@ using Profiles.Framework.Utilities;
 
 namespace Profiles.About
 {
-    public partial class ForDevelopers : System.Web.UI.Page
+    public partial class ForDevelopers : BrandedPage
     {
         Profiles.Framework.Template masterpage;
 
@@ -48,7 +48,7 @@ namespace Profiles.About
             body.Attributes.Add("class", "about");
 
             HtmlLink Aboutcss = new HtmlLink();
-            Aboutcss.Href = Root.Domain + "/About/CSS/about.css";
+            Aboutcss.Href = Brand.GetThemedDomain() + "/About/CSS/about.css";
             Aboutcss.Attributes["rel"] = "stylesheet";
             Aboutcss.Attributes["type"] = "text/css";
             Aboutcss.Attributes["media"] = "all";

@@ -174,7 +174,7 @@
 					<xsl:choose>
 						<xsl:when test="@ItemURL!=''">
 							<a href="{@ItemURL}">
-								<xsl:value-of select="@ItemURLText"/>
+								<xsl:value-of select="@ItemURLText"/><span class="authInst"><xsl:value-of select="@InstitutionAbbreviation"/></span>
 							</a>
 							<xsl:value-of select="."/>
 						</xsl:when>
@@ -189,7 +189,7 @@
 					<xsl:choose>
 						<xsl:when test="@ItemURL!=''">
 							<a href="{@ItemURL}">
-								<xsl:value-of select="@ItemURLText"/>
+								<xsl:value-of select="@ItemURLText"/><span class="authInst"><xsl:value-of select="@InstitutionAbbreviation"/></span>
 							</a>
 							<xsl:value-of select="."/>
 						</xsl:when>
@@ -204,7 +204,7 @@
 					<xsl:choose>
 						<xsl:when test="@ItemURL!=''">
 							<a href="{@ItemURL}">
-								<xsl:value-of select="@ItemURLText"/>
+								<xsl:value-of select="@ItemURLText"/><span class="authInst"><xsl:value-of select="@InstitutionAbbreviation"/></span>
 							</a>
 							<xsl:value-of select="."/>
 						</xsl:when>
@@ -219,7 +219,7 @@
 			<xsl:choose>
 				<xsl:when test="@ItemURL!=''">
 					<a href="{@ItemURL}">
-						<xsl:value-of select="@ItemURLText"/>
+						<xsl:value-of select="@ItemURLText"/><span class="authInst"><xsl:value-of select="@InstitutionAbbreviation"/></span>
 					</a>
           <xsl:value-of select="."/>
           <xsl:choose>

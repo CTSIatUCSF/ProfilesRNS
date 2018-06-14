@@ -80,7 +80,7 @@ namespace Profiles.ORCID.Modules.CustomEditORCID
 
             base.GetNetworkProfile(this.SubjectID, this.PredicateID);
 
-            litBackLink.Text = "<a href='" + Root.Domain + "/edit/" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+            litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
 
 
             securityOptions.Subject = this.SubjectID;
@@ -97,8 +97,8 @@ namespace Profiles.ORCID.Modules.CustomEditORCID
                 orcidHelpLink = "&nbsp;<a style='border: none;' href='" + orcidInfoSite + "' target='_blank'>click here.</a>";
                 litOrcidInfolink.Text = "For more info about ORCID" + orcidHelpLink;
             }
-            //litCreateProvideORCID.Text = "<img src='" + Root.Domain + "/framework/images/icon_squareArrow.gif' border='0'/>&nbsp;<a href='" + Root.Domain + "/ORCID/CreateMyORCID.aspx'>Create My ORCID</a>" + orcidHelpLink + "<br><img src='" + Root.Domain + "/framework/images/icon_squareArrow.gif' border='0'/>&nbsp;<a href='" + Root.Domain + "/ORCID/ProvideORCID.aspx'>Provide My ORCID</a>" + orcidHelpLink;
-            //litUploatInfoToORCID.Text = "<img src='" + Root.Domain + "/framework/images/icon_squareArrow.gif' border='0'/>&nbsp;<a href='" + Root.Domain + "/ORCID/UploadInfoToORCID.aspx'>Upload Info To ORCID</a>";
+            //litCreateProvideORCID.Text = "<img src='" + Brand.GetDomain() + "/framework/images/icon_squareArrow.gif' border='0'/>&nbsp;<a href='" + Brand.GetDomain() + "/ORCID/CreateMyORCID.aspx'>Create My ORCID</a>" + orcidHelpLink + "<br><img src='" + Brand.GetDomain() + "/framework/images/icon_squareArrow.gif' border='0'/>&nbsp;<a href='" + Brand.GetDomain() + "/ORCID/ProvideORCID.aspx'>Provide My ORCID</a>" + orcidHelpLink;
+            //litUploatInfoToORCID.Text = "<img src='" + Brand.GetDomain() + "/framework/images/icon_squareArrow.gif' border='0'/>&nbsp;<a href='" + Brand.GetDomain() + "/ORCID/UploadInfoToORCID.aspx'>Upload Info To ORCID</a>";
             string loggedInInternalUsername = new Profiles.ORCID.Utilities.DataIO().GetInternalUserID();
             //Profiles.ORCID.Utilities.ProfilesRNSDLL.BO.ORCID.Person person = new Profiles.ORCID.Utilities.ProfilesRNSDLL.BLL.ORCID.Person().GetByInternalUsername(loggedInInternalUsername);
 
@@ -134,7 +134,7 @@ namespace Profiles.ORCID.Modules.CustomEditORCID
             if (data.GetSessionSecurityGroup() == -50)
             {
                 pnlORCIDAdmin.Visible = true;
-                litORCIDAdmin.Text = "<img src='" + Root.Domain + "/framework/images/icon_squareArrow.gif' border='0'/>&nbsp;<a href='" + Root.Domain + "/ORCID/CreateBatch.aspx'>Batch Upload</a><br><img src='" + Root.Domain + "/framework/images/icon_squareArrow.gif' border='0'/>&nbsp;<a href='" + Root.Domain + "/ORCID/UpdateSecurityGroupDefaultDecisions.aspx'>ORCID Privacy Mapping</a></li>";
+                litORCIDAdmin.Text = "<img src='" + Brand.GetThemedDomain() + "/framework/images/icon_squareArrow.gif' border='0'/>&nbsp;<a href='" + Brand.GetThemedDomain() + "/ORCID/CreateBatch.aspx'>Batch Upload</a><br><img src='" + Brand.GetThemedDomain() + "/framework/images/icon_squareArrow.gif' border='0'/>&nbsp;<a href='" + Brand.GetThemedDomain() + "/ORCID/UpdateSecurityGroupDefaultDecisions.aspx'>ORCID Privacy Mapping</a></li>";
             }
 
         }

@@ -52,7 +52,7 @@ namespace Profiles.Profile.Modules
             }
 
             // Get timeline bar chart			
-            using (SqlDataReader reader = data.GetGoogleTimeline(base.RDFTriple, "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]"))
+            using (SqlDataReader reader = data.GetGoogleTimeline(base.RDFTriple, "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]", null))
             {
                 while (reader.Read())
                 {
@@ -70,7 +70,7 @@ namespace Profiles.Profile.Modules
 
 
             // Login link
-            loginLiteral.Text = String.Format("<a href='{0}'>login</a>", Root.Domain + "/login/default.aspx?pin=send&method=login&edit=true");
+            loginLiteral.Text = String.Format("<a href='{0}'>login</a>", Brand.GetThemedDomain() + "/login/default.aspx?pin=send&method=login&edit=true");
 
             Framework.Utilities.DebugLogging.Log("PUBLICATION MODULE end Milliseconds:" + (DateTime.Now - d).TotalSeconds);
 

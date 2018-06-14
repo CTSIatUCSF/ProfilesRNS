@@ -134,6 +134,13 @@ my.init = function () {
     // draw these things out now
     OrngContainer.preloadGadgets(gadgetURLs, function (result) {
         for (var i = 0; i < my.gadgets.length; i++) {
+            // for Godzilla, iframes might be for the wrong host so just make them relative
+            var iframeUrl = result[my.gadgets[i].url].iframeUrls[my.gadgets[i].view];
+            if (iframeUrl.indexOf('//') == 0) {
+                var hostname = iframeUrl.substring(iframeUrl.indexOf('//') + 2).split('/')[0];
+                var localUrl = iframeUrl.substring(iframeUrl.indexOf('//') + 2 + hostname.length)
+                result[my.gadgets[i].url].iframeUrls[my.gadgets[i].view] = localUrl;
+            }
             window.buildGadget(result, my.gadgets[i]);
         }
     });

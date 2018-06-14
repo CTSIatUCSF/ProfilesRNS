@@ -16,11 +16,11 @@
 						<td><div class="connectionSubDescription">Connection Strength</div></td>
 					</tr>
 					<tr>
-					<td style="height:6px"><img src="<%= this.GetRootDomain() %>/Framework/Images/connection.gif"></td>
+					<td style="height:6px"><img src="<%= Profiles.Framework.Utilities.Brand.GetDomain() %>/Framework/Images/connection.gif"></td>
 <!--
-					<td class="connectionLine"><img src="<%= this.GetRootDomain() %>/Framework/Images/connection_left.gif"></td>
+					<td class="connectionLine"><img src="<%= Profiles.Framework.Utilities.Brand.GetDomain() %>/Framework/Images/connection_left.gif"></td>
 					<td class="connectionLine"><div>&nbsp;</div></td>
-					<td class="connectionLine"><img src="<%= this.GetRootDomain() %>/Framework/Images/connection_right.gif"></td>
+					<td class="connectionLine"><img src="<%= Profiles.Framework.Utilities.Brand.GetDomain() %>/Framework/Images/connection_right.gif"></td>
 -->
 					</tr>
 					<tr>

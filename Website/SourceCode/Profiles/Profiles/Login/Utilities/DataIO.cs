@@ -93,7 +93,6 @@ namespace Profiles.Login.Utilities
 
         }
 
-
         public bool UserLoginExternal(ref User user)
         {
             bool loginsuccess = false;

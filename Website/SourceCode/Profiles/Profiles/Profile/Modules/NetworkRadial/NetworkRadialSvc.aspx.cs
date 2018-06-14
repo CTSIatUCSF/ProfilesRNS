@@ -10,7 +10,7 @@ using Profiles.Framework.Utilities;
 
 namespace Profiles.Profile.Modules.NetworkRadial
 {
-    public partial class NetworkRadialSvc : System.Web.UI.Page
+    public partial class NetworkRadialSvc : BrandedPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {            

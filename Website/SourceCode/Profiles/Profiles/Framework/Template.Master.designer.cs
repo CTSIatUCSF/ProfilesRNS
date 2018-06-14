@@ -67,6 +67,15 @@ namespace Profiles.Framework {
         protected global::AjaxControlToolkit.ToolkitScriptManager toolkitScriptMaster;
         
         /// <summary>
+        /// MasterPageHeaderUC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageHeaderUC;
+        
+        /// <summary>
         /// MasterPageHeaderUCSF control.
         /// </summary>
         /// <remarks>
@@ -85,13 +94,49 @@ namespace Profiles.Framework {
         protected global::System.Web.UI.WebControls.Panel MasterPageHeaderUCSD;
         
         /// <summary>
-        /// MasterPageHeaderUC control.
+        /// MasterPageHeaderDefault control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel MasterPageHeaderUC;
+        protected global::System.Web.UI.WebControls.Panel MasterPageHeaderDefault;
+        
+        /// <summary>
+        /// MasterPageHeaderUCI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageHeaderUCI;
+        
+        /// <summary>
+        /// MasterPageHeaderUCD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageHeaderUCD;
+        
+        /// <summary>
+        /// MasterPageHeaderUCLA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageHeaderUCLA;
+        
+        /// <summary>
+        /// MasterPageHeaderUCR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageHeaderUCR;
         
         /// <summary>
         /// MasterPageHeaderUSC control.
@@ -364,6 +409,42 @@ namespace Profiles.Framework {
         protected global::System.Web.UI.WebControls.Panel MasterPageFooterUCSD;
         
         /// <summary>
+        /// MasterPageFooterUCD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageFooterUCD;
+        
+        /// <summary>
+        /// MasterPageFooterUCI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageFooterUCI;
+        
+        /// <summary>
+        /// MasterPageFooterUCLA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageFooterUCLA;
+        
+        /// <summary>
+        /// MasterPageFooterDefault control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel MasterPageFooterDefault;
+        
+        /// <summary>
         /// MasterPageFooterUC control.
         /// </summary>
         /// <remarks>
@@ -425,14 +506,5 @@ namespace Profiles.Framework {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel MasterPageQeryzUCSF;
-        
-        /// <summary>
-        /// pnlNavBarSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlNavBarSearch;
     }
 }

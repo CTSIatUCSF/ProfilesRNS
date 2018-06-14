@@ -55,6 +55,7 @@ namespace Profiles.Framework.Utilities
             {
                 if (this.RDFTriple == null)
                 {
+                    // only worry about the URI domain, aka Root.domain, for RDF retrival
                     if (this.BaseData.SelectSingleNode(this.GetModuleParamString("DataURI"), this.Namespaces).InnerText.Contains(Root.Domain))
                     {
                         string[] vars = this.BaseData.SelectSingleNode(this.GetModuleParamString("DataURI"), this.Namespaces).InnerText.Split('/');
@@ -175,11 +176,6 @@ namespace Profiles.Framework.Utilities
         public RDFTriple RDFTriple { get; set; }
 
         // Helpers
-        public string GetRootDomain()
-        {
-            return Root.Domain;
-        }
-
         //The data
         public XmlDocument BaseData { get; set; }
         public Profiles.Framework.Template MasterPage { get; set; }
@@ -295,7 +291,7 @@ namespace Profiles.Framework.Utilities
 
                 foreach (Module m in this.Modules)
                 {
-                    html.Append(mp.RenderView(mp.LoadControl(m.Path, this.MasterPage, node, m.ParamList, this.Namespaces)));
+                    html.Append(mp.RenderView(mp.LoadControl(m.Path, this.MasterPage, node, m.ParamList, this.Namespaces), Page.Theme));
 
                 }
                 this.Modules = null;

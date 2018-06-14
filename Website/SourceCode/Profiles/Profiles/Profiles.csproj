@@ -31,6 +31,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
     <Use64BitIISExpress />
     <UseGlobalApplicationHostFile />
   </PropertyGroup>
@@ -56,6 +57,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=3.5.51116.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL" />
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.2.16.3.0\lib\net35\CsvHelper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
@@ -102,6 +106,7 @@
     <Content Include="About\Images\conceptsearch.jpg" />
     <Content Include="About\Images\detailstab.jpg" />
     <Content Include="About\Images\develop-profile.gif" />
+    <Content Include="About\Images\experts.png" />
     <Content Include="About\Images\extCoAuth.png" />
     <Content Include="About\Images\featuredPubs.png" />
     <Content Include="About\Images\featuredVideos.png" />
@@ -115,6 +120,7 @@
     <Content Include="About\Images\mentorGadget.png" />
     <Content Include="About\Images\minisearch.jpg" />
     <Content Include="About\Images\minisearch.png" />
+    <Content Include="About\Images\network.png" />
     <Content Include="About\Images\newfeatures.gif" />
     <Content Include="About\Images\opensocial-slideset.jpeg" />
     <Content Include="About\Images\orange-tick.gif" />
@@ -126,6 +132,7 @@
     <Content Include="About\Images\pubsgraph.jpg" />
     <Content Include="About\Images\quote-begin.png" />
     <Content Include="About\Images\search-icon.gif" />
+    <Content Include="About\Images\search.png" />
     <Content Include="About\Images\timeline.jpg" />
     <Content Include="About\Images\toc.jpg" />
     <Content Include="About\Images\tryit.gif" />
@@ -143,19 +150,101 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="About\PresentationXML\Optin.xml" />
-    <Content Include="Activity\CSS\activity.css" />
     <Content Include="Activity\Modules\ActivityHistory\ActivityDetails.aspx" />
     <Content Include="Activity\Modules\ActivityHistory\ActivityHistory.ascx" />
     <Content Include="Activity\Modules\LatestUpdates\LatestUpdates.ascx" />
     <Content Include="Activity\Modules\ModuleCatalogue.xml" />
     <Content Include="Activity\Modules\Statistics\Statistics.ascx" />
-    <Content Include="Activity\PresentationXML\ActivityDetails.xml" />
+    <Content Include="Activity\PresentationXML\ActivityDetails.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Themes\LBNL\Images\lbl-logo.png" />
     <Content Include="App_Themes\LBNL\Images\lbl-new-social-iconsB.png" />
     <Content Include="App_Themes\LBNL\Images\ProfilesLogo.gif" />
     <Content Include="App_Themes\LBNL\Images\profilesnapshot.png" />
     <Content Include="App_Themes\LBNL\Images\seal-department-of-energy.png" />
     <Content Include="App_Themes\LBNL\Images\seal-university-of-california.png" />
+    <Content Include="App_Themes\Default\Images\backtotop.gif" />
+    <Content Include="App_Themes\Default\Images\comment.gif" />
+    <Content Include="App_Themes\Default\Images\favicon.ico" />
+    <Content Include="App_Themes\Default\Images\gear.gif" />
+    <Content Include="App_Themes\Default\Images\help.gif" />
+    <Content Include="App_Themes\Default\Images\ucbg.jpg" />
+    <Content Include="App_Themes\Default\Images\uclogo137.png" />
+    <Content Include="App_Themes\Default\Default.css" />
+    <Content Include="App_Themes\Default\Default.js" />
+    <Content Include="App_Themes\UCD\Images\davis-logo-white.svg" />
+    <Content Include="App_Themes\UCD\Images\global-header-bg.svg" />
+    <Content Include="App_Themes\UCD\Images\ucdavis-logo.png" />
+    <Content Include="App_Themes\UCI\Images\uciLogo.png" />
+    <Content Include="App_Themes\UCLA\Images\ucla-logo.png" />
+    <Content Include="App_Themes\UCR\Images\backtotop.gif" />
+    <Content Include="App_Themes\UCR\Images\comment.gif" />
+    <Content Include="App_Themes\UCR\Images\favicon.ico" />
+    <Content Include="App_Themes\UCR\Images\gear.gif" />
+    <Content Include="App_Themes\UCR\Images\help.gif" />
+    <Content Include="App_Themes\UCR\Images\ucbg.jpg" />
+    <Content Include="App_Themes\UCR\Images\uclogo137.png" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\AboutProfiles.xml" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\CloseBrowser.xml" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\FAQ.xml" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\ForDevelopers.xml" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\GadgetLibrary.xml" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\HowProfilesWorks.xml" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\NewFeatures.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Themes\UCR\PresentationXML\About\Optin.xml" />
+    <Content Include="App_Themes\UCR\UCR.css" />
+    <Content Include="App_Themes\UCR\UCR.js" />
+    <Content Include="App_Themes\UCLA\Images\backtotop.gif" />
+    <Content Include="App_Themes\UCLA\Images\comment.gif" />
+    <Content Include="App_Themes\UCLA\Images\favicon.ico" />
+    <Content Include="App_Themes\UCLA\Images\gear.gif" />
+    <Content Include="App_Themes\UCLA\Images\help.gif" />
+    <Content Include="App_Themes\UCLA\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCLA\UCLA.css" />
+    <Content Include="App_Themes\UCLA\UCLA.js" />
+    <Content Include="App_Themes\UCD\Images\backtotop.gif" />
+    <Content Include="App_Themes\UCD\Images\comment.gif" />
+    <Content Include="App_Themes\UCD\Images\favicon.ico" />
+    <Content Include="App_Themes\UCD\Images\gear.gif" />
+    <Content Include="App_Themes\UCD\Images\help.gif" />
+    <Content Include="App_Themes\UCD\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCD\UCD.css" />
+    <Content Include="App_Themes\UCD\UCD.js" />
+    <Content Include="App_Themes\UCI\Images\backtotop.gif" />
+    <Content Include="App_Themes\UCI\Images\comment.gif" />
+    <Content Include="App_Themes\UCI\Images\favicon.ico" />
+    <Content Include="App_Themes\UCI\Images\gear.gif" />
+    <Content Include="App_Themes\UCI\Images\help.gif" />
+    <Content Include="App_Themes\UCI\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCI\UCI.css" />
+    <Content Include="App_Themes\UCI\UCI.js" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos0.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos1.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos10.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos11.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos12.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos13.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos14.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos15.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos16.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos17.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos18.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos19.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos2.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos20.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos21.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos3.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos4.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos5.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos6.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos7.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos8.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos9.png" />
+    <Content Include="App_Themes\UCSF\Images\hero.png" />
     <Content Include="App_Themes\UC\Images\backtotop.gif" />
     <Content Include="App_Themes\UC\Images\comment.gif" />
     <Content Include="App_Themes\UC\Images\favicon.ico" />
@@ -165,33 +254,13 @@
     <Content Include="App_Themes\UC\Images\uclogo137.png" />
     <Content Include="App_Themes\UC\UC.css" />
     <Content Include="App_Themes\UC\UC.js" />
-    <Content Include="App_Themes\UC\PresentationXML\About\AboutProfiles.xml" />
-    <Content Include="App_Themes\UC\PresentationXML\About\CloseBrowser.xml" />
-    <Content Include="App_Themes\UC\PresentationXML\About\FAQ.xml" />
-    <Content Include="App_Themes\UC\PresentationXML\About\ForDevelopers.xml" />
-    <Content Include="App_Themes\UC\PresentationXML\About\GadgetLibrary.xml" />
-    <Content Include="App_Themes\UC\PresentationXML\About\Help.xml" />
-    <Content Include="App_Themes\UC\PresentationXML\About\HowProfilesWorks.xml" />
-    <Content Include="App_Themes\UC\PresentationXML\About\NewFeatures.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Themes\UC\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\LBNL\Images\backtotop.gif" />
     <Content Include="App_Themes\LBNL\Images\comment.gif" />
     <Content Include="App_Themes\LBNL\Images\favicon.ico" />
     <Content Include="App_Themes\LBNL\Images\gear.gif" />
     <Content Include="App_Themes\LBNL\Images\help.gif" />
     <Content Include="App_Themes\LBNL\PresentationXML\About\AboutProfiles.xml" />
-    <Content Include="App_Themes\LBNL\PresentationXML\About\CloseBrowser.xml" />
-    <Content Include="App_Themes\LBNL\PresentationXML\About\FAQ.xml" />
-    <Content Include="App_Themes\LBNL\PresentationXML\About\ForDevelopers.xml" />
-    <Content Include="App_Themes\LBNL\PresentationXML\About\GadgetLibrary.xml" />
     <Content Include="App_Themes\LBNL\PresentationXML\About\Help.xml" />
-    <Content Include="App_Themes\LBNL\PresentationXML\About\HowProfilesWorks.xml" />
-    <Content Include="App_Themes\LBNL\PresentationXML\About\NewFeatures.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Themes\LBNL\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\LBNL\LBNL.css" />
     <Content Include="App_Themes\LBNL\LBNL.js" />
     <Content Include="App_Themes\USC\Images\actri-logo.png" />
@@ -206,21 +275,15 @@
     <Content Include="App_Themes\USC\Images\icon_squareArrow.gif" />
     <Content Include="App_Themes\USC\Images\network.png" />
     <Content Include="App_Themes\USC\Images\powered_by_scctsi.jpg" />
+    <Content Include="App_Themes\USC\Images\powered_by_scctsi.png" />
     <Content Include="App_Themes\USC\Images\profiles.jpg" />
     <Content Include="App_Themes\USC\Images\profilesnapshot.png" />
     <Content Include="App_Themes\USC\Images\search-icon.gif" />
     <Content Include="App_Themes\USC\Images\usc-ctsi.jpg" />
     <Content Include="App_Themes\USC\PresentationXML\About\AboutProfiles.xml" />
-    <Content Include="App_Themes\USC\PresentationXML\About\CloseBrowser.xml" />
     <Content Include="App_Themes\USC\PresentationXML\About\FAQ.xml" />
     <Content Include="App_Themes\USC\PresentationXML\About\ForDevelopers.xml" />
-    <Content Include="App_Themes\USC\PresentationXML\About\GadgetLibrary.xml" />
     <Content Include="App_Themes\USC\PresentationXML\About\Help.xml" />
-    <Content Include="App_Themes\USC\PresentationXML\About\HowProfilesWorks.xml" />
-    <Content Include="App_Themes\USC\PresentationXML\About\NewFeatures.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Themes\USC\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\USC\USC.css" />
     <Content Include="App_Themes\USC\USC.js" />
     <Content Include="App_Themes\UCSD\Images\actri-logo.png" />
@@ -234,27 +297,15 @@
     <Content Include="App_Themes\UCSD\Images\search-icon.gif" />
     <Content Include="App_Themes\UCSD\Images\ucsdlogo.png" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\AboutProfiles.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\About\CloseBrowser.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\About\ForDevelopers.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\About\GadgetLibrary.xml" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\Help.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\About\HowProfilesWorks.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\UCSF\Images\favicon.ico" />
     <Content Include="App_Themes\UCSF\Images\funding.png" />
     <Content Include="App_Themes\UCSF\PresentationXML\About\AboutProfiles.xml" />
-    <Content Include="App_Themes\UCSF\PresentationXML\About\CloseBrowser.xml" />
     <Content Include="App_Themes\UCSF\PresentationXML\About\ForDevelopers.xml" />
-    <Content Include="App_Themes\UCSF\PresentationXML\About\GadgetLibrary.xml" />
     <Content Include="App_Themes\UCSF\PresentationXML\About\Help.xml" />
-    <Content Include="App_Themes\UCSF\PresentationXML\About\HowProfilesWorks.xml" />
-    <Content Include="App_Themes\UCSD\PresentationXML\About\NewFeatures.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="App_Themes\UCSF\PresentationXML\About\NewFeatures.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Themes\UCSF\PresentationXML\About\Optin.xml" />
     <Content Include="App_Themes\UCSD\Images\backtotop.gif" />
     <Content Include="App_Themes\UCSD\Images\icon_squareArrow.gif" />
     <Content Include="App_Themes\UCSD\Images\ucsd.png" />
@@ -278,8 +329,11 @@
     <Content Include="App_Themes\UCSF\Images\toc.jpg" />
     <Content Include="App_Themes\UCSF\Images\ucsfProfilesLogo.png" />
     <Content Include="App_Themes\UCSF\UCSF.js" />
+    <Content Include="CustomAPI\Secure\ActivityLog.aspx" />
+    <Content Include="CustomAPI\Secure\Default.aspx" />
     <Content Include="CustomAPI\v1\EasyJSONPlus.aspx" />
     <Content Include="CustomAPI\v1\RejectedPMIDs.aspx" />
+    <Content Include="CustomAPI\v2\Disambiguate.aspx" />
     <Content Include="Edit\Images\img_arrow.png" />
     <Content Include="Error\PresentationXML\HttpRequestValidationExceptionPresentation.xml" />
     <Content Include="favicon.ico" />
@@ -290,7 +344,24 @@
     <Content Include="Framework\JavaScript\UCSF.js" />
     <Content Include="App_Themes\UCSF\Images\ucsf_alumni_blue.jpg" />
     <Content Include="HttpBL.csproj" />
+    <Content Include="Login\Images\berkeley.edu.png" />
+    <Content Include="Login\Images\lbnl.gov.png" />
     <Content Include="Login\Images\padlock.jpg" />
+    <Content Include="Login\Images\ucdavis.edu.png" />
+    <Content Include="Login\Images\uci.edu.gif" />
+    <Content Include="Login\Images\ucla.edu.gif" />
+    <Content Include="Login\Images\ucmerced.edu.jpg" />
+    <Content Include="Login\Images\ucop.edu.gif" />
+    <Content Include="Login\Images\ucr.edu.jpg" />
+    <Content Include="Login\Images\ucsb.edu.png" />
+    <Content Include="Login\Images\ucsc.edu.jpg" />
+    <Content Include="Login\Images\ucsd.edu.png" />
+    <Content Include="Login\Images\ucsf.edu.png" />
+    <Content Include="Login\Images\usc.edu.png" />
+    <Content Include="Login\Modules\MultiShibLogin\MultiShibLogin.ascx" />
+    <Content Include="Login\PresentationXML\MultiShibbolethLoginPresentation.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Login\SigninDisabled.html" />
     <Content Include="Profile\JavaScript\UCSF.js" />
     <Content Include="App_Themes\UCSF\UCSF.css" />
@@ -585,6 +656,20 @@
     <Compile Include="Activity\Modules\Statistics\Statistics.ascx.designer.cs">
       <DependentUpon>Statistics.ascx</DependentUpon>
     </Compile>
+    <Compile Include="CustomAPI\Secure\ActivityLog.aspx.cs">
+      <DependentUpon>ActivityLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\Secure\ActivityLog.aspx.designer.cs">
+      <DependentUpon>ActivityLog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomAPI\Secure\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\Secure\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CustomAPI\Utilities\DataIO.cs" />
     <Compile Include="CustomAPI\v1\EasyJSONPlus.aspx.cs">
       <DependentUpon>EasyJSONPlus.aspx</DependentUpon>
@@ -629,6 +714,13 @@
     </Compile>
     <Compile Include="Activity\Utilities\Activity.cs" />
     <Compile Include="Activity\Utilities\DataIO.cs" />
+    <Compile Include="CustomAPI\v2\Disambiguate.aspx.cs">
+      <DependentUpon>Disambiguate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v2\Disambiguate.aspx.designer.cs">
+      <DependentUpon>Disambiguate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -695,6 +787,11 @@
     <Compile Include="Framework\Modules\MainMenu\History.ascx.designer.cs">
       <DependentUpon>History.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Framework\Utilities\Brand.cs" />
+    <Compile Include="Framework\Utilities\BrandedPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Framework\Utilities\Institution.cs" />
     <Compile Include="Framework\Utilities\UCSFIDSet.cs" />
     <Compile Include="Framework\Utilities\UserHistory.cs" />
     <Compile Include="History\Default.aspx.cs">
@@ -717,6 +814,13 @@
     </Compile>
     <Compile Include="History\Modules\HistoryList\HistoryList.ascx.designer.cs">
       <DependentUpon>HistoryList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Login\Modules\MultiShibLogin\MultiShibLogin.ascx.cs">
+      <DependentUpon>MultiShibLogin.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login\Modules\MultiShibLogin\MultiShibLogin.ascx.designer.cs">
+      <DependentUpon>MultiShibLogin.ascx</DependentUpon>
     </Compile>
     <Compile Include="Login\Modules\ADLogin\ADLogin.ascx.cs">
       <DependentUpon>ADLogin.ascx</DependentUpon>
@@ -1994,7 +2098,9 @@
     <Content Include="Search\Modules\SearchCriteria\SearchCriteria.ascx" />
     <Content Include="Search\Modules\SearchEverything\SearchEverything.ascx" />
     <Content Include="Search\Modules\SearchOptions\SearchOptions.ascx" />
-    <Content Include="Search\PresentationXML\SearchResultsConnectionPresentation.xml" />
+    <Content Include="Search\PresentationXML\SearchResultsConnectionPresentation.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Search\PresentationXML\SearchResultsPersonPresentation.xml" />
     <Content Include="Search\PresentationXML\SearchFormPresentation.xml">
       <SubType>Designer</SubType>
@@ -2070,8 +2176,14 @@
     <Content Include="App_Themes\USC\USC.skin" />
     <Content Include="App_Themes\LBNL\LBNL.skin" />
     <Content Include="App_Themes\UC\UC.skin" />
+    <Content Include="App_Themes\Default\Default.skin" />
+    <Content Include="App_Themes\UCI\UCI.skin" />
+    <Content Include="App_Themes\UCD\UCD.skin" />
+    <Content Include="App_Themes\UCLA\UCLA.skin" />
+    <Content Include="App_Themes\UCR\UCR.skin" />
     <None Include="ORCID\ORCIDPrivacySettingsandProfiles.pdf" />
     <Content Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master" />
+    <None Include="packages.config" />
     <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\CHANGELOG" />
     <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\MIT-LICENSE" />
     <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\README.rdoc" />
@@ -2086,7 +2198,8 @@
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\MIT-LICENSE" />
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\README.rdoc" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\PhotoHandler.ashx" />
-    <None Include="Properties\PublishProfiles\Profile1.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\UCSF Stage.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2099,7 +2212,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ActiveNetwork\Utilities\" />
+    <Folder Include="Activity\CSS\" />
     <Folder Include="App_Data\" />
+    <Folder Include="App_Themes\Default\PresentationXML\About\" />
+    <Folder Include="App_Themes\UC\PresentationXML\About\" />
     <Folder Include="Login\Modules\App_LocalResources\" />
     <Folder Include="ORCID\XSLT\" />
   </ItemGroup>

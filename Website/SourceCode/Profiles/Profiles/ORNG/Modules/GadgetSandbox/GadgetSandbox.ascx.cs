@@ -41,14 +41,14 @@ namespace Profiles.ORNG.Modules.GadgetSandbox
                 // don't let them in if the configuration is not set up!  You want it this way in production
                 if (sandboxPassword == null || sandboxPassword.Length == 0)
                 {
-                    Response.Redirect(Root.Domain);
+                    Response.Redirect(Brand.GetThemedDomain());
                 }
                 else
                 {
                     string gadgetURLs = "";
                     foreach (GadgetSpec gadget in OpenSocialManager.GetAllDBGadgets(false).Values)
                     {
-                        gadgetURLs += gadget.GetGadgetURL() + Environment.NewLine;
+                        gadgetURLs += gadget.GetGadgetURL(null) + Environment.NewLine;
                     }
                     txtGadgetURLS.Text = gadgetURLs;
                 }
@@ -127,7 +127,7 @@ namespace Profiles.ORNG.Modules.GadgetSandbox
                 Session[OpenSocialManager.ORNG_GADGETS] = txtGadgetURLS.Text;
                 Session[OpenSocialManager.ORNG_DEBUG] = chkDebug.Checked;
                 Session[OpenSocialManager.ORNG_NOCACHE] = !chkUseCache.Checked;
-                Response.Redirect(Root.Domain);
+                Response.Redirect(Brand.GetThemedDomain());
             }
             else if (sandboxPassword.Equals(txtPassword.Text.Trim()) && data.UserLoginExternal(ref user))
             {
@@ -136,7 +136,7 @@ namespace Profiles.ORNG.Modules.GadgetSandbox
                 Session[OpenSocialManager.ORNG_GADGETS] = txtGadgetURLS.Text;
                 Session[OpenSocialManager.ORNG_DEBUG] = chkDebug.Checked;
                 Session[OpenSocialManager.ORNG_NOCACHE] = !chkUseCache.Checked; 
-                Response.Redirect(Root.Domain);
+                Response.Redirect(Brand.GetThemedDomain());
             }
             else
             {
@@ -150,13 +150,13 @@ namespace Profiles.ORNG.Modules.GadgetSandbox
         private void LoadAssets()
         {
             HtmlLink Searchcss = new HtmlLink();
-            Searchcss.Href = Root.Domain + "/Search/CSS/search.css";
+            Searchcss.Href = Brand.GetThemedDomain() + "/Search/CSS/search.css";
             Searchcss.Attributes["rel"] = "stylesheet";
             Searchcss.Attributes["type"] = "text/css";
             Searchcss.Attributes["media"] = "all";
             Page.Header.Controls.Add(Searchcss);
 
-            Response.Write("<script>var _path = \"" + Root.Domain + "\";</script>");
+            Response.Write("<script>var _path = \"" + Brand.GetThemedDomain() + "\";</script>");
 
 
         }

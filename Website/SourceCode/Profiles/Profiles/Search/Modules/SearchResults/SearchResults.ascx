@@ -6,7 +6,7 @@
 <style type="text/css">
 .backLink { display: none; }
 .profilesPage .profilesPageColumnLeft { display: none; }
-.search .profiles .profilesContentMain { width: 680px; margin: 10px 60px 0 20px; } 
-.search .profiles .profilesContentPassive { width: 190px; padding: 4px 20px 0 0; }
-#tblSearchResults { width: 680px; margin-top: 10px\9; }
+.search .profiles .profilesContentMain { width: 720px; margin: 10px 42px 0 8px; } 
+.search .profiles .profilesContentPassive { width: 190px; padding: 4px 10px 0 0; }
+#tblSearchResults { width: 720px; margin-top: 10px\9; }
 </style>

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Profiles.Framework.Utilities;
 
 namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
 {
-    public partial class keywordAutocomplete : System.Web.UI.Page
+    public partial class keywordAutocomplete : BrandedPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

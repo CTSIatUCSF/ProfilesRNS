@@ -325,6 +325,7 @@ namespace Profiles.Profile.Utilities
             dbcommand.CommandType = CommandType.StoredProcedure;
             dbcommand.CommandTimeout = base.GetCommandTimeout();
             dbcommand.Parameters.Add(new SqlParameter("@nodeid", request.Subject));
+            dbcommand.Parameters.Add(new SqlParameter("@baseURI", Brand.GetThemedDomain() + "/profile/"));
             dbcommand.Parameters.Add(new SqlParameter("@sessionid", request.Session.SessionID));
 
             dbcommand.Connection = dbconnection;
@@ -487,7 +488,8 @@ namespace Profiles.Profile.Utilities
             dbconnection.Open();
             dbcommand.CommandType = CommandType.StoredProcedure;
             dbcommand.CommandTimeout = base.GetCommandTimeout();
-            dbcommand.Parameters.Add(new SqlParameter("@nodeid", request.Subject));      
+            dbcommand.Parameters.Add(new SqlParameter("@nodeid", request.Subject));
+            dbcommand.Parameters.Add(new SqlParameter("@baseURI", Brand.GetThemedDomain() + "/profile/"));
 
             dbcommand.Connection = dbconnection;
 
@@ -517,6 +519,7 @@ namespace Profiles.Profile.Utilities
             dbcommand.CommandType = CommandType.StoredProcedure;
             dbcommand.CommandTimeout = base.GetCommandTimeout();
             dbcommand.Parameters.Add(new SqlParameter("@nodeid", request.Subject));
+            dbcommand.Parameters.Add(new SqlParameter("@baseURI", Brand.GetThemedDomain() + "/profile/"));
 
             dbcommand.Connection = dbconnection;
 
@@ -585,7 +588,7 @@ namespace Profiles.Profile.Utilities
             DataView dataView = null;
 
             var db = new SqlConnection(connstr);
-            dataAdapter = new SqlDataAdapter(storedproc + " " + request.Subject, db);
+            dataAdapter = new SqlDataAdapter(storedproc + " " + request.Subject + ", '" + Brand.GetThemedDomain() + "/profile/'", db);
             dataSet = new DataSet();
             dataAdapter.Fill(dataSet);
             dataView = new DataView(dataSet.Tables[0]);
@@ -596,7 +599,7 @@ namespace Profiles.Profile.Utilities
 
         }
 
-        public SqlDataReader GetGoogleTimeline(RDFTriple request, string storedproc)
+        public SqlDataReader GetGoogleTimeline(RDFTriple request, string storedproc, Brand brand)
         {
             SessionManagement sm = new SessionManagement();
             string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
@@ -609,6 +612,10 @@ namespace Profiles.Profile.Utilities
             dbcommand.CommandTimeout = base.GetCommandTimeout();
             // Add parameters
             dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
+            if (brand != null && !String.IsNullOrEmpty(brand.PersonFilter))
+                dbcommand.Parameters.Add(new SqlParameter("@PersonFilter", brand.PersonFilter));
+            if (brand != null && brand.GetInstitution() != null)
+                dbcommand.Parameters.Add(new SqlParameter("@InstitutionAbbreviation", brand.GetInstitution().GetAbbreviation()));
             // Return reader
             return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
         }
@@ -679,6 +686,11 @@ namespace Profiles.Profile.Utilities
             // Add parameters
             dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
             dbcommand.Parameters.Add(new SqlParameter("@ListType", "newest"));
+            Brand brand = Brand.GetCurrentBrand();
+            if (brand != null && !String.IsNullOrEmpty(brand.PersonFilter))
+                dbcommand.Parameters.Add(new SqlParameter("@PersonFilter", brand.PersonFilter));
+            if (brand != null && brand.GetInstitution() != null)
+                dbcommand.Parameters.Add(new SqlParameter("@InstitutionAbbreviation", brand.GetInstitution().GetAbbreviation()));
             // Return reader
             return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
         }
@@ -844,7 +856,7 @@ namespace Profiles.Profile.Utilities
             {
                 String Filepath = HttpContext.Current.Server.MapPath("~/Profile/Modules/NetworkMap/config.xml");
                 vals.Load(Filepath);
-                //vals.Load(Root.Domain + "/Profile/Modules/NetworkMap/config.xml");
+                //vals.Load(Brand.GetDomain() + "/Profile/Modules/NetworkMap/config.xml");
             }
             catch (Exception e)
             {

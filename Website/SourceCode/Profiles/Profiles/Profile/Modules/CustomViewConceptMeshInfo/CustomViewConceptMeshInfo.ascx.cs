@@ -23,7 +23,7 @@ namespace Profiles.Profile.Modules
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			ConceptName = this.BaseData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]", this.Namespaces).InnerText;
-			plusImage.Src = Root.Domain + "/Profile/Modules/PropertyList/images/minusSign.gif";
+			plusImage.Src = Brand.GetThemedDomain() + "/Profile/Modules/PropertyList/images/minusSign.gif";
             plusImage.Width = 9;
             plusImage.Height = 9;
 			DrawProfilesModule();
@@ -108,7 +108,7 @@ namespace Profiles.Profile.Modules
 					litGeneralConcepts.Text += String.Format(
 						"<li style='margin-left:{0}px;'><span><a href='{1}'>{2}</a> [{3}]</span></li>",
 						paddingLeft.ToString(), // set indentation
-						(nodeURI != null) ? nodeURI.Value : "",
+						(nodeURI != null) ? Brand.CleanURL(nodeURI.Value) : "",
 						(conceptName.Value == this.ConceptName) ? "<b>"+conceptName.Value+"</b>" : conceptName.Value, // bold text if node concept is same as concept profile name												
 						(treeNumber != null) ? treeNumber.Value : ""
 					);
@@ -127,7 +127,7 @@ namespace Profiles.Profile.Modules
 				litRelatedConcepts.Text += String.Format(
 					"<li style='margin-left:{0}px;'><span><a href='{1}'>{2}</a></span></li>",
 					paddingLeft.ToString(), // set indentation
-					(conceptUri != null) ? conceptUri.Value : "",
+					(conceptUri != null) ? Brand.CleanURL(conceptUri.Value) : "",
 					(conceptName.Value == this.ConceptName) ? "<b>" + conceptName.Value + "</b>" : conceptName.Value // bold text if node concept is same as concept profile name																		
 				);				
 			}
@@ -154,7 +154,7 @@ namespace Profiles.Profile.Modules
 					litSpecificConcepts.Text += String.Format(
 						"<li style='margin-left:{0}px;'><span><a href='{1}'>{2}</a></span></li>",
 						paddingLeft.ToString(), // set indentation
-						(nodeURI != null) ? nodeURI.Value : "",
+						(nodeURI != null) ? Brand.CleanURL(nodeURI.Value) : "",
 						(conceptName.Value == this.ConceptName) ? "<b>" + conceptName.Value + "</b>" : conceptName.Value // bold text if node concept is same as concept profile name											
 						
 					);

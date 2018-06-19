@@ -14,9 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Xml;
 using System.Configuration;
-using System.Web.Script.Serialization;
 using System.Threading;
 using Profiles.Framework.Utilities;
 
@@ -242,7 +240,6 @@ namespace Profiles.Activity.Utilities
                             }
                             if (property == "http://vivoweb.org/ontology/core#ResearcherRole")
                             {
-
                                 queryTitle = "select AgreementLabel from [Profile.Data].[Funding.Role] r " +
                                                 "join [Profile.Data].[Funding.Agreement] a " +
                                                 "on r.FundingAgreementID = a.FundingAgreementID " +
@@ -257,24 +254,33 @@ namespace Profiles.Activity.Utilities
                             else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.AddCustomPublication") == 0)
                             {
                                 title = "added a custom publication";
+                        if (param2.Length > 100) param2 = param2.Substring(0, 100) + "...";
                                 body = "added \"" + param1 + "\" into " + propertyLabel +
                                     " section : " + param2;
                             }
                             else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.UpdateSecuritySetting") == 0)
                             {
                                 title = "made a section visible";
-                                body = "made \"" + propertyLabel + "\"public";
+                        body = "made \"" + propertyLabel + "\" public";
                             }
-                            else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.AddUpdateFunding") == 0)
+                    else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.AddUpdateFunding") == 0)
                             {
                                 title = "added a research activity or funding";
                                 body = "added a research activity or funding: " + journalTitle;
                             }
-                            else if (methodName.CompareTo("[Profile.Data].[Funding.LoadDisambiguationResults]") == 0)
+                    else if (methodName.CompareTo("[Profile.Data].[Funding.LoadDisambiguationResults]") == 0)
                             {
                                 title = "has a new research activity or funding";
                                 body = "has a new research activity or funding: " + journalTitle;
                             }
+                    else if (property == "http://vivoweb.org/ontology/core#hasMemberRole")
+                    {
+
+                        queryTitle = "select GroupName from [Profile.Data].[vwGroup.General] where GroupNodeID = " + param1;
+                        string groupName = GetStringValue(queryTitle, "GroupName");
+                        title = "joined group: " + groupName;
+                        body = "joined group: " + groupName;
+                    }
                             else if (methodName.IndexOf("Profiles.Edit.Utilities.DataIO.Add") == 0)
                             {
                                 title = "added an item";
@@ -320,7 +326,8 @@ namespace Profiles.Activity.Utilities
                             // best to skip them for now
                             if (!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(nodeid) && UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)] != null)
                             {
-
+                        try
+                        {
                                 Activity act = new Activity
                                 {
                                     Id = Convert.ToInt64(activityLogId),

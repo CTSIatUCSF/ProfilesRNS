@@ -24,7 +24,7 @@ BEGIN
 			WHERE UserID = @UserID
 
 	-- Get the NodeID and URI of the PersonID
-	IF @PersonID IS NOT NULL
+	IF EXISTS (SELECT 1 FROM [Profile.Data].Person WHERE PersonID = @PersonID AND IsActive = 1)
 	BEGIN
 		SELECT @SessionPersonNodeID = m.NodeID, @SessionPersonURI = p.Value + CAST(m.NodeID AS VARCHAR(50))
 			FROM [RDF.Stage].InternalNodeMap m, [Framework.].[Parameter] p
@@ -88,11 +88,18 @@ BEGIN
 		-- Create the Node
 		DECLARE @NodeID BIGINT
 		DECLARE @NodeIDTable TABLE (nodeId BIGINT)
+		DECLARE @TempValue varchar(50)
+		SELECT @TempValue = '#NODE'+cast(NewID() as varchar(50))
 		INSERT INTO [RDF.].[Node] (ViewSecurityGroup, EditSecurityGroup, Value, ObjectType, ValueHash)
 			  OUTPUT Inserted.NodeID INTO @NodeIDTable
-			  SELECT IDENT_CURRENT('[RDF.].[Node]'), -50, @baseURI+CAST(IDENT_CURRENT('[RDF.].[Node]') as varchar(50)), 0,
-					[RDF.].fnValueHash(null,null,@baseURI+CAST(IDENT_CURRENT('[RDF.].[Node]') as nvarchar(50)))
+			  select 0, -50, @TempValue, 0,
+					[RDF.].[fnValueHash](NULL,NULL,@TempValue)
 		SELECT @NodeID = nodeId from @NodeIDTable
+		UPDATE [RDF.].[Node]
+			SET ViewSecurityGroup = @NodeID,
+				Value = @baseURI+cast(@NodeID as nvarchar(50)),
+				ValueHash = [RDF.].fnValueHash(null,null,@baseURI+cast(@NodeID as nvarchar(50)))
+			WHERE NodeID = @NodeID
 
 		-- Add properties to the node
 		DECLARE @Error INT

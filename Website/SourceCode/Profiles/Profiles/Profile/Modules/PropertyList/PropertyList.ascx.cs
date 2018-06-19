@@ -12,14 +12,8 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Xml;
-using System.Xml.Xsl;
 using Profiles.Framework.Utilities;
-using Profiles.Profile.Utilities;
 
 
 namespace Profiles.Profile.Modules.PropertyList
@@ -97,20 +91,20 @@ namespace Profiles.Profile.Modules.PropertyList
 
                                     foreach (XmlNode connection in propertyitem.SelectNodes("Network/Connection"))
                                     {
-                                        
+                                        if (hasitems) itembuffer.Append("<br>");
                                         if (connection.SelectSingleNode("@ResourceURI") != null)
                                         {
                                             itembuffer.Append("<a href='");
                                             itembuffer.Append(connection.SelectSingleNode("@ResourceURI").Value);
                                             itembuffer.Append("'>");
-                                            itembuffer.Append(connection.InnerText.Replace("\n", "<br/>") + "<br><br>");
-                                            itembuffer.Append("</a>");
+                                            itembuffer.Append(connection.InnerText.Replace("\n", "<br/>"));
+                                            itembuffer.Append("</a><br>");
                                             hasitems = true;
 
                                         }
                                         else
                                         {
-                                            itembuffer.Append(connection.InnerText.Replace("\n","<br/>") + "<br><br>");
+                                            itembuffer.Append(connection.InnerText.Replace("\n","<br/>") + "<br>");
                                             hasitems = true;
 
                                         }

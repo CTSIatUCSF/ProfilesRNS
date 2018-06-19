@@ -18,9 +18,6 @@ using System.Linq;
 using System.Xml;
 using System.Configuration;
 using System.Web;
-using System.Web.Caching;
-
-using Profiles.Profile.Utilities;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -976,5 +973,49 @@ namespace Profiles.Framework.Utilities
                 }
             }
         }
+        
+
+        #region "Groups"
+        public bool IsGroupAdmin(int UserID)
+        {
+            SessionManagement sm = new SessionManagement();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            SqlDataReader reader = null;
+            int property = 0;
+
+            try
+            {
+
+                dbconnection.Open();
+
+
+                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                reader = GetDBCommand(dbconnection, "select Count(*) from [Profile.Data].[Group.Admin] where UserID = " + UserID, CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
+                while (reader.Read())
+                {
+                    property = reader.GetInt32(0);
+                }
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                if (reader != null && !reader.IsClosed)
+                    reader.Close();
+
+                if (dbconnection.State != ConnectionState.Closed)
+                    dbconnection.Close();
+            }
+            return property > 0;
+        }
+
+
+        #endregion
+        
     }
 }

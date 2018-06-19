@@ -1,19 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data;
 using System.Data.SqlClient;
-using System.Data.Common;
-using System.Globalization;
 using System.Text;
 using System.Xml;
-using System.Web.UI.HtmlControls;
 
 
 using Profiles.Framework.Utilities;
-using Profiles.Profile.Utilities;
 using System.Text.RegularExpressions;
 
 namespace Profiles.Profile.Modules.NetworkMap
@@ -68,7 +60,12 @@ namespace Profiles.Profile.Modules.NetworkMap
                 reader2 = data.GetGMapUserSimilarPeople(base.RDFTriple.Subject, true, session.Session().SessionID);
             }
 
-
+            if (base.GetModuleParamString("MapType") == "Group")
+            {
+                litCoauthorGroup.Text = "group members";
+                reader = data.GetGMapUserGroup(base.RDFTriple.Subject, 0, session.Session().SessionID);
+                reader2 = data.GetGMapUserGroup(base.RDFTriple.Subject, 1, session.Session().SessionID);
+            }
 
             string googleCode, tableText;
             gmh.MapPlotPeople(base.RDFTriple.Subject, reader, reader2, out googleCode, out tableText);

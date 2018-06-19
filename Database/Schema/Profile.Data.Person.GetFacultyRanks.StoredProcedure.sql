@@ -14,7 +14,7 @@ BEGIN
 	SELECT x.FacultyRankID, x.FacultyRank,  n.NodeID, n.Value URI
 		FROM (
 				SELECT CAST(MAX(FacultyRankID) AS VARCHAR(50)) FacultyRankID,
-						LTRIM(RTRIM(FacultyRank)) FacultyRank					
+						LTRIM(RTRIM(FacultyRank)) FacultyRank, 	FacultyRankSort							
 				FROM [Profile.Data].[Person.FacultyRank] WITH (NOLOCK) where facultyrank <> ''				
 				group by FacultyRank ,FacultyRankSort
 			) x 
@@ -25,11 +25,8 @@ BEGIN
 			LEFT OUTER JOIN [RDF.].Node n WITH (NOLOCK)
 				ON m.NodeID = n.NodeID
 					AND n.ViewSecurityGroup = -1
-		
+		ORDER BY FacultyRankSort
  
- 
-
-
 
 END
 GO

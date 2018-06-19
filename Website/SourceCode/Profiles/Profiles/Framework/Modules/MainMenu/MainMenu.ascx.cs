@@ -12,15 +12,9 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Xml;
-using System.Xml.Xsl;
 using System.Configuration;
-
-using Profiles.Profile.Utilities;
 using Profiles.Framework.Utilities;
 
 namespace Profiles.Framework.Modules.MainMenu
@@ -74,7 +68,7 @@ namespace Profiles.Framework.Modules.MainMenu
             {
                 menulist.Append("<li>" + sm.Session().DisplayName + "</li>");
             }
-            
+
             if (sm.Session().NodeID > 0)
             {
                 menulist.Append("<li id='editmy'><a href='" + userBrand.BasePath + "/login/default.aspx?method=login&edit=true'>Edit Your Profile</a></li>");

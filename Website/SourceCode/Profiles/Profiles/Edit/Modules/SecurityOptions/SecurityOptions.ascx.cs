@@ -12,20 +12,8 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Data.SqlClient;
-using System.Data.Common;
-using System.Globalization;
-using System.Text;
 using System.Xml;
-using System.Xml.Xsl;
-
-using Profiles.Framework.Utilities;
-using Profiles.Profile.Utilities;
-using Profiles.Edit.Utilities;
 
 namespace Profiles.Edit.Modules.SecurityOptions
 {
@@ -131,7 +119,15 @@ namespace Profiles.Edit.Modules.SecurityOptions
         private void UpdateSecuritySetting(string securitygroup)
         {
             Edit.Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
-            data.UpdateSecuritySetting(this.Subject, data.GetStoreNode(this.PredicateURI), Convert.ToInt32(securitygroup));
+            if(this.PredicateURI.Equals("http://profiles.catalyst.harvard.edu/ontology/prns#hasGroupSettings"))
+            {
+                data.UpdateGroupSecurity(this.Subject, Convert.ToInt32(securitygroup));
+            }
+            else 
+            { 
+                
+                data.UpdateSecuritySetting(this.Subject, data.GetStoreNode(this.PredicateURI), Convert.ToInt32(securitygroup)); 
+            }
         }
 
         public XmlDataDocument SecurityGroups { get; set; }

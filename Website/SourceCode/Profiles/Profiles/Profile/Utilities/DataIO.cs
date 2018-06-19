@@ -16,10 +16,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Xml;
 using System.Configuration;
-using System.IO;
-using System.Web.UI.WebControls;
-using System.Web.UI;
-using System.Data.Common;
 using System.Web;
 
 using Profiles.Framework.Utilities;
@@ -134,49 +130,61 @@ namespace Profiles.Profile.Utilities
         public XmlDocument GetPresentationData(RDFTriple request)
         {
             string xmlstr = string.Empty;
-            XmlDocument xmlrtn = new XmlDocument();           
+            XmlDocument xmlrtn = new XmlDocument();
 
             try
             {
-                xmlrtn = new XmlDocument();
+                string sessionKey = string.Empty;
+                if (request.Session.ViewSecurityGroup > -20 && request.Session.ViewSecurityGroup < 0)
+                    sessionKey = "SecurityGroup:" + request.Session.ViewSecurityGroup.ToString();
+                else
+                    sessionKey = request.Session.SessionID.ToString();
+                string key = "s" + request.Subject + "p" + request.Predicate + "o" + request.Object + "e" + (request.Edit ? 1 : 0) + sessionKey;
+                xmlrtn = Framework.Utilities.Cache.Fetch(key + "|GetPresentationData");
+                if (xmlrtn == null)
+                {
+                    xmlrtn = new XmlDocument();
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-                SqlConnection dbconnection = new SqlConnection(connstr);
-                SqlCommand dbcommand = new SqlCommand("[rdf.].[GetPresentationXML]");
+                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                    SqlConnection dbconnection = new SqlConnection(connstr);
+                    SqlCommand dbcommand = new SqlCommand("[rdf.].[GetPresentationXML]");
 
-                SqlDataReader dbreader;
-                dbconnection.Open();
-                dbcommand.CommandType = CommandType.StoredProcedure;
-                dbcommand.CommandTimeout = base.GetCommandTimeout();
-                dbcommand.Parameters.Add(new SqlParameter("@subject", request.Subject));
-                if (request.Predicate > 0)
-                    dbcommand.Parameters.Add(new SqlParameter("@predicate", request.Predicate));
+                    SqlDataReader dbreader;
+                    dbconnection.Open();
+                    dbcommand.CommandType = CommandType.StoredProcedure;
+                    dbcommand.CommandTimeout = base.GetCommandTimeout();
+                    dbcommand.Parameters.Add(new SqlParameter("@subject", request.Subject));
+                    if (request.Predicate > 0)
+                        dbcommand.Parameters.Add(new SqlParameter("@predicate", request.Predicate));
 
-                if (request.Object > 0)
-                    dbcommand.Parameters.Add(new SqlParameter("@object", request.Object));
+                    if (request.Object > 0)
+                        dbcommand.Parameters.Add(new SqlParameter("@object", request.Object));
 
-                dbcommand.Parameters.Add(new SqlParameter("@EditMode", request.Edit ? 1 : 0));
+                    dbcommand.Parameters.Add(new SqlParameter("@EditMode", request.Edit ? 1 : 0));
 
-                dbcommand.Parameters.Add(new SqlParameter("@sessionid", request.Session.SessionID));
+                    dbcommand.Parameters.Add(new SqlParameter("@sessionid", request.Session.SessionID));
 
-                dbcommand.Connection = dbconnection;
+                    dbcommand.Connection = dbconnection;
 
-                dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+                    dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
 
-                while (dbreader.Read())
-                    xmlstr += dbreader[0].ToString();
+                    while (dbreader.Read())
+                        xmlstr += dbreader[0].ToString();
 
-                xmlrtn.LoadXml(xmlstr);
-
-
-                xmlstr = string.Empty;
+                    xmlrtn.LoadXml(xmlstr);
 
 
-                if (!dbreader.IsClosed)
-                    dbreader.Close();
+                    xmlstr = string.Empty;
+
+
+                    if (!dbreader.IsClosed)
+                        dbreader.Close();
+
+                    Framework.Utilities.Cache.Set(key + "|GetPresentationData", xmlrtn);
+                }
 
             }
-            catch (Exception ex) { }            
+            catch (Exception ex) { }
 
             return xmlrtn;
         }
@@ -306,6 +314,7 @@ namespace Profiles.Profile.Utilities
                 return (byte[])dbcommand.ExecuteScalar();
             }
         }
+
 
         #endregion
 
@@ -534,18 +543,19 @@ namespace Profiles.Profile.Utilities
             return xml;
         }
 
+        public enum ClassType { Person, Grant, Unknown }
 
 
-
-
-        public SqlDataReader GetPublications(RDFTriple request)
+        public SqlDataReader GetPublications(RDFTriple request, ClassType type)
         {
 
             SessionManagement sm = new SessionManagement();
 
             string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
             SqlConnection dbconnection = new SqlConnection(connstr);
-            SqlCommand dbcommand = new SqlCommand("[Profile.Module].[CustomViewAuthorInAuthorship.GetList]");
+            SqlCommand dbcommand;
+            if (type == ClassType.Grant) dbcommand = new SqlCommand("[Profile.Module].[CustomViewAuthorInAuthorship.GetGroupList]");
+            else dbcommand = new SqlCommand("[Profile.Module].[CustomViewAuthorInAuthorship.GetList]");
 
             SqlDataReader dbreader;
             dbconnection.Open();
@@ -772,6 +782,51 @@ namespace Profiles.Profile.Utilities
             return str;
         }
 
+        public string GetGroupNetworkForBrowser(RDFTriple request)
+        {
+            string str = string.Empty;
+
+
+            if (Framework.Utilities.Cache.FetchObject(request.Key + "GetGroupNetworkForBrowser") == null)
+            {
+                try
+                {
+                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                    SqlConnection dbconnection = new SqlConnection(connstr);
+                    SqlCommand dbcommand = new SqlCommand("[Profile.Module].[NetworkRadial.Group.GetCoAuthors]");
+
+                    SqlDataReader dbreader;
+                    dbconnection.Open();
+                    dbcommand.CommandType = CommandType.StoredProcedure;
+                    dbcommand.CommandTimeout = base.GetCommandTimeout();
+                    dbcommand.Parameters.Add(new SqlParameter("@nodeid", request.Subject));
+                    dbcommand.Parameters.Add(new SqlParameter("@sessionid", request.Session.SessionID));
+
+                    dbcommand.Connection = dbconnection;
+                    dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                    while (dbreader.Read())
+                        str += dbreader[0].ToString();
+
+                    Framework.Utilities.DebugLogging.Log(str);
+
+                    if (!dbreader.IsClosed)
+                        dbreader.Close();
+
+                    Framework.Utilities.Cache.Set(request.Key + "GetProfileNetworkForBrowser", str);
+                }
+                catch (Exception ex)
+                {
+                    Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
+                }
+            }
+            else
+            {
+                str = (string)Framework.Utilities.Cache.FetchObject(request.Key + "GetGroupNetworkForBrowser");
+            }
+
+            return str;
+        }
 
         public XmlDocument GetProfileNetworkForBrowserXML(RDFTriple request)
         {
@@ -815,7 +870,7 @@ namespace Profiles.Profile.Utilities
 
                     xmlrtn.LoadXml(xmlstr);
 
-                    Framework.Utilities.Cache.Set(request.Key + "GetProfileNetworkForBrowserXML", xmlrtn);
+                    Framework.Utilities.Cache.Set(request.Key + "GetGroupNetworkForBrowserXML", xmlrtn);
 
                 }
                 catch (Exception ex)
@@ -832,6 +887,65 @@ namespace Profiles.Profile.Utilities
             return xmlrtn;
         }
 
+
+        public XmlDocument GetGroupNetworkForBrowserXML(RDFTriple request)
+        {
+            string xmlstr = string.Empty;
+            XmlDocument xmlrtn = new XmlDocument();
+
+            if (Framework.Utilities.Cache.Fetch(request.Key + "GetGroupNetworkForBrowserXML") == null)
+            {
+                try
+                {
+                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                    SqlConnection dbconnection = new SqlConnection(connstr);
+                    SqlCommand dbcommand = new SqlCommand("[Profile.Module].[NetworkRadial.Group.GetCoAuthors]");
+
+                    SqlDataReader dbreader;
+                    dbconnection.Open();
+                    dbcommand.CommandType = CommandType.StoredProcedure;
+                    dbcommand.CommandTimeout = base.GetCommandTimeout();
+                    dbcommand.Parameters.Add(new SqlParameter("@nodeid", request.Subject));
+                    dbcommand.Parameters.Add(new SqlParameter("@sessionid", request.Session.SessionID));
+                    dbcommand.Parameters.Add(new SqlParameter("@OutputFormat", "XML"));
+                    dbcommand.Connection = dbconnection;
+                    dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                    while (dbreader.Read())
+                        xmlstr += dbreader[0].ToString();
+
+                    Framework.Utilities.DebugLogging.Log(xmlstr);
+
+                    if (!dbreader.IsClosed)
+                        dbreader.Close();
+
+                    xmlstr = xmlstr.Replace(" id=", " lid=");
+                    xmlstr = xmlstr.Replace(" nodeid=", " id=");
+
+                    xmlstr = xmlstr.Replace(" id1=", " lid1=");
+                    xmlstr = xmlstr.Replace(" id2=", " lid2=");
+                    xmlstr = xmlstr.Replace(" nodeid1=", " id1=");
+                    xmlstr = xmlstr.Replace(" nodeid2=", " id2=");
+
+
+                    xmlrtn.LoadXml(xmlstr);
+
+                    Framework.Utilities.Cache.Set(request.Key + "GetGroupNetworkForBrowserXML", xmlrtn);
+
+                }
+                catch (Exception ex)
+                {
+
+                    Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
+                }
+            }
+            else
+            {
+                xmlrtn = Framework.Utilities.Cache.Fetch(request.Key + "GetGroupNetworkForBrowserXML");
+            }
+
+            return xmlrtn;
+        }
 
         #endregion
 
@@ -915,6 +1029,38 @@ namespace Profiles.Profile.Utilities
             return dbreader;
         }
 
+        public SqlDataReader GetGMapUserGroup(Int64 nodeid, int which, string sessionid)
+        {
+            SqlDataReader dbreader = null;
+
+            try
+            {
+
+                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                SqlConnection dbconnection = new SqlConnection(connstr);
+
+                dbconnection.Open();
+
+                SqlCommand dbcommand = new SqlCommand();
+                dbcommand.CommandType = CommandType.StoredProcedure;
+                dbcommand.CommandText = "[Profile.Module].[NetworkMap.GetGroup]";
+                dbcommand.CommandTimeout = base.GetCommandTimeout();
+
+                dbcommand.Parameters.Add(new SqlParameter("@NodeID", nodeid));
+                dbcommand.Parameters.Add(new SqlParameter("@which", which));
+                dbcommand.Parameters.Add(new SqlParameter("@SessionID", sessionid));
+                dbcommand.Connection = dbconnection;
+                dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+
+            return dbreader;
+        }
+
         public SqlDataReader GetGMapUserSimilarPeople(Int64 nodeid, bool showConnections, string sessionid)
         {
             SqlDataReader dbreader = null;
@@ -963,6 +1109,19 @@ namespace Profiles.Profile.Utilities
                 }
             }
             return -1;
+        }
+
+        public string GetNodeType(Int64 nodeid)
+        {
+            string sql = "select InternalType from [RDF.Stage].[InternalNodeMap] where nodeID = " + nodeid;
+            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+            {
+                if (sqldr.Read())
+                {
+                    return sqldr.GetString(0);
+                }
+            }
+            return "";
         }
     }
 

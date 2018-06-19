@@ -11,7 +11,6 @@
   
 */
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Xml;
@@ -131,8 +130,119 @@ namespace Profiles.DIRECT.Utilities
             return sqldr;
         }
 
+        public void AddLogIncoming(int details, string requestIP, string queryString)
+        {
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            SqlParameter[] param = new SqlParameter[3];
+            try
+            {
 
+                dbconnection.Open();
 
+                param[0] = new SqlParameter("@Details", details);
+                param[1] = new SqlParameter("@RequestIP", requestIP);
+                param[2] = new SqlParameter("@QueryString", queryString);
 
+                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[Direct.].[AddLogIncoming]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+
+                dbconnection.Close();
+                SqlConnection.ClearPool(dbconnection);
+
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+
+        }
+
+        public void AddLogOutgoing(string fsid, int siteID, int details)
+        {
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            SqlParameter[] param = new SqlParameter[3];
+            try
+            {
+
+                dbconnection.Open();
+
+                param[0] = new SqlParameter("@FSID", fsid);
+                param[1] = new SqlParameter("@SiteID", siteID);
+                param[2] = new SqlParameter("@Details", details);
+                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[Direct.].[AddLogOutgoing]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+
+                dbconnection.Close();
+                SqlConnection.ClearPool(dbconnection);
+
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+
+        }
+
+        public void UpdateLogOutgoing(string fsid, int responseState, int responseStatus, string resultText, string resultCount, string resultDetailsURL)
+        {
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            SqlParameter[] param = new SqlParameter[6];
+            try
+            {
+
+                dbconnection.Open();
+
+                param[0] = new SqlParameter("@FSID", fsid);
+                param[1] = new SqlParameter("@ResponseState", responseState);
+                param[2] = new SqlParameter("@ResponseStatus", responseStatus);
+                param[3] = new SqlParameter("@ResultText", resultText);
+                param[4] = new SqlParameter("@ResultCount", resultCount);
+                param[5] = new SqlParameter("@ResultDetailsURL", resultDetailsURL);
+                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[Direct.].[UpdateLogOutgoing]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+
+                dbconnection.Close();
+                SqlConnection.ClearPool(dbconnection);
+
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+
+        }
+
+        public void UpdateLogOutgoing(string fsid, int responseState)
+        {
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            SqlConnection dbconnection = new SqlConnection(connstr);
+            SqlParameter[] param = new SqlParameter[6];
+            try
+            {
+
+                dbconnection.Open();
+
+                param[0] = new SqlParameter("@FSID", fsid.Replace("'", ""));
+                param[1] = new SqlParameter("@ResponseState", responseState);
+                //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[Direct.].[UpdateLogOutgoing]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+
+                dbconnection.Close();
+                SqlConnection.ClearPool(dbconnection);
+
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+
+        }
     }
 }

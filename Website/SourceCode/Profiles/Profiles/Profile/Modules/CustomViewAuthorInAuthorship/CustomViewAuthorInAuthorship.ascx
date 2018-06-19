@@ -2,7 +2,7 @@
 
 
 <div class='publicationList'>	
-	<div style="font-weight:bold;color:#888;margin-bottom: 12px;margin-top:6px">
+	<div style="font-weight:bold;color:#888;padding:5px 0px;" id="divPubHeaderText" visible="true" runat="server">
 		Publications listed below are automatically derived from MEDLINE/PubMed and other sources, which might result in incorrect or missing publications. 
 		Researchers can <asp:Literal runat='server' ID='loginLiteral'></asp:Literal> to make corrections and additions, or <asp:Hyperlink ID="Contact" SkinID="contact" runat="server" />.  
 	</div>

@@ -53,8 +53,6 @@ GRANT EXECUTE ON [Utility.Application].[fnDecryptBase64RC4] TO App_Profiles10
 GO
 GRANT EXECUTE ON [Utility.Application].[fnEncryptBase64RC4] TO App_Profiles10
 GO
-GRANT INSERT, UPDATE ON [Direct.].LogIncoming TO App_Profiles10
-GO
-GRANT INSERT, UPDATE ON [Direct.].LogOutgoing TO App_Profiles10
+GRANT EXECUTE ON [RDF.].[fnValueHash] TO App_Profiles10
 GO
 

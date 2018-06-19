@@ -12,9 +12,6 @@
 */
 
 using System;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Web;
 using System.Xml;
@@ -41,9 +38,9 @@ namespace Profiles.Profile.Modules.ProfileImage
             Utilities.DataIO data = new Profiles.Profile.Utilities.DataIO();
             // Set up the response settings
             context.Response.ContentType = "image/jpeg";
-            context.Response.Cache.SetCacheability(HttpCacheability.Public);
+            context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
             context.Response.BufferOutput = false;
-            
+
             Int64 nodeid = -1;
             try
             {
@@ -90,7 +87,9 @@ namespace Profiles.Profile.Modules.ProfileImage
 
                     request.Expand = true;
                     request.ShowDetails = true;
-                    request.ExpandRDFList = "<ExpandRDF Class=\"http://xmlns.com/foaf/0.1/Person\" Property=\"http://vivoweb.org/ontology/core#authorInAuthorship\" Limit=\"1\" />";
+                    string type = data.GetNodeType(nodeid);
+                    if (type.Equals("Person")) request.ExpandRDFList = "<ExpandRDFOptions ExpandPredicates=\"false\" ClassPropertyCustomTypeID=\"1\" />";
+                    else if (type.Equals("Group")) request.ExpandRDFList = "<ExpandRDFOptions ExpandPredicates=\"false\" ClassPropertyCustomTypeID=\"5\" />";
                     Framework.Utilities.Namespace xmlnamespace = new Profiles.Framework.Utilities.Namespace();
                     XmlDocument person;
 
@@ -157,6 +156,6 @@ namespace Profiles.Profile.Modules.ProfileImage
                 return false;
             }
         }
-       
+
     }
 }

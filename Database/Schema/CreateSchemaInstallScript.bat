@@ -101,6 +101,7 @@ type Profile.Cache.Concept.Mesh.PersonPublication.Table.sql
 type Profile.Cache.Concept.Mesh.Person.Table.sql
 type Ontology..ClassTreeDepth.Table.sql
 type Ontology..ClassProperty.Table.sql
+type Ontology..ClassPropertyCustom.Table.sql
 type Ontology..ClassGroupClass.Table.sql
 type Ontology..ClassGroup.Table.sql
 type Profile.Data.Concept.Mesh.File.Table.sql
@@ -225,6 +226,14 @@ type Profile.Data.Funding.Delete.Table.sql
 type Profile.Data.Funding.DisambiguationOrganizationMapping.Table.sql
 type Profile.Data.Funding.DisambiguationResults.Table.sql
 type Profile.Data.Funding.DisambiguationAudit.Table.sql
+type Profile.Data.Group.Admin.Table.sql
+type Profile.Data.Group.General.Table.sql
+type Profile.Data.Group.Manager.Table.sql
+type Profile.Data.Group.Member.Table.sql
+type Profile.Data.Group.Photo.Table.sql
+type Profile.Data.Publication.Group.Include.Table.sql
+type Profile.Data.Publication.Group.MyPub.General.Table.sql
+type Profile.Data.Publication.Group.Option.Table.sql
 
 
 type RDF..fnTripleHash.UserDefinedFunction.sql
@@ -297,8 +306,14 @@ type Ontology..vwMissingClassProperty.View.sql
 type ORNG..vwAppPersonData.View.sql
 type ORNG..vwPerson.View.sql
 type RDF..vwLiteral.View.sql
+type Profile.Data.vwGroup.GeneralWithDeleted.View.sql
+type Profile.Data.vwGroup.General.View.sql
+type Profile.Data.vwGroup.Manager.View.sql
+type Profile.Data.vwGroup.Member.View.sql
+type Profile.Data.vwGroup.Photo.View.sql
+type Profile.Data.vwGroup.Publication.Entity.AssociatedInformationResource.View.sql
 
-type PresentationXML.SqlAssembly.sql
+rem type PresentationXML.SqlAssembly.sql
 
 type Framework..LoadXMLFile.StoredProcedure.sql
 type Framework..LICENCE.StoredProcedure.sql
@@ -583,3 +598,33 @@ type Profile.Data.Funding.LoadDisambiguationResults.StoredProcedure.sql
 type Profile.Data.Funding.AddDisambiguationLog.StoredProcedure.sql
 type Profile.Data.Funding.ParseDisambiguationXML.StoredProcedure.sql
 type Edit.Module.CustomEditEducationalTraining.StoreItem.StoredProcedure.sql
+type Edit.Module.CustomEditAssociatedInformationResource.GetList.StoredProcedure.sql
+type Profile.Data.Group.AddPhoto.StoredProcedure.sql
+type Profile.Data.Group.UpdateSecurityMembership.StoredProcedure.sql
+type Profile.Data.Group.AddUpdateGroup.StoredProcedure.sql
+type Profile.Data.Group.DeleteRestoreGroup.StoredProcedure.sql
+type Profile.Data.Group.GetGroup.StoredProcedure.sql
+type Profile.Data.Group.GetGroups.StoredProcedure.sql
+type Profile.Data.Group.Manager.AddManager.StoredProcedure.sql
+type Profile.Data.Group.Manager.DeleteManager.StoredProcedure.sql
+type Profile.Data.Group.Manager.GetManagers.StoredProcedure.sql
+type Profile.Data.Group.Member.AddUpdateMember.StoredProcedure.sql
+type Profile.Data.Group.Member.DeleteMember.StoredProcedure.sql
+type Profile.Data.Group.Member.GetMembers.StoredProcedure.sql
+type Profile.Data.Group.Member.Search.StoredProcedure.sql
+type Profile.Data.Publication.GetGroupMemberPublications.StoredProcedure.sql
+type Profile.Data.Publication.Group.Pubmed.AddPublication.StoredProcedure.sql
+type Profile.Module.CustomViewAuthorInAuthorship.GetGroupList.StoredProcedure.sql
+type Profile.Module.NetworkAuthorshipTimeline.Group.GetData.StoredProcedure.sql
+type Profile.Module.NetworkRadial.Group.GetCoauthors.StoredProcedure.sql
+type Profile.Module.NetworkMap.GetGroup.StoredProcedure.sql
+type Profile.Data.Publication.Entity.UpdateEntityOneGroup.StoredProcedure.sql
+type Profile.Data.Publication.Group.DeleteAllPublications.StoredProcedure.sql
+type Profile.Data.Publication.Group.DeleteOnePublication.StoredProcedure.sql
+type Profile.Data.Publication.Group.MyPub.AddPublication.StoredProcedure.sql
+type Profile.Data.Publication.Group.MyPub.CopyExistingPublication.StoredProcedure.sql
+type Direct..UpdateLogOutgoing.StoredProcedure.sql
+type Direct..AddLogOutgoing.StoredProcedure.sql
+type Direct..AddLogIncoming.StoredProcedure.sql
+type Profile.Data.Publication.GetGroupOption.StoredProcedure.sql
+type Profile.Data.Publication.SetGroupOption.StoredProcedure.sql

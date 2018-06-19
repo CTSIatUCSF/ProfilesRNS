@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
 using System.Data.SqlClient;
-using System.Data.Common;
-using System.Globalization;
-using System.Text;
 using System.Xml;
-using System.Xml.Xsl;
 
 using Profiles.Framework.Utilities;
-using Profiles.Profile.Utilities;
 
 
 namespace Profiles.Profile.Modules
@@ -40,7 +32,15 @@ namespace Profiles.Profile.Modules
             Profiles.Profile.Utilities.DataIO data = new Profiles.Profile.Utilities.DataIO();
             List<Publication> publication = new List<Publication>();
 
-            using (SqlDataReader reader = data.GetPublications(base.RDFTriple))
+            Utilities.DataIO.ClassType type = Utilities.DataIO.ClassType.Unknown;
+            Framework.Utilities.Namespace xmlnamespace = new Profiles.Framework.Utilities.Namespace();
+            XmlNamespaceManager namespaces = xmlnamespace.LoadNamespaces(BaseData);
+            if (BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/rdf:type[@rdf:resource='http://xmlns.com/foaf/0.1/Person']", namespaces) != null)
+                type = Utilities.DataIO.ClassType.Person;
+            if (BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/rdf:type[@rdf:resource='http://xmlns.com/foaf/0.1/Group']", namespaces) != null)
+                type = Utilities.DataIO.ClassType.Grant;
+
+            using (SqlDataReader reader = data.GetPublications(base.RDFTriple, type))
             {
                 while (reader.Read())
                 {
@@ -51,8 +51,10 @@ namespace Profiles.Profile.Modules
                 rpPublication.DataBind();
             }
 
-            // Get timeline bar chart			
-            using (SqlDataReader reader = data.GetGoogleTimeline(base.RDFTriple, "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]", null))
+            // Get timeline bar chart
+            string storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]";
+            if (type == Utilities.DataIO.ClassType.Grant) storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Group.GetData]";
+            using (SqlDataReader reader = data.GetGoogleTimeline(base.RDFTriple, storedproc))
             {
                 while (reader.Read())
                 {
@@ -71,6 +73,8 @@ namespace Profiles.Profile.Modules
 
             // Login link
             loginLiteral.Text = String.Format("<a href='{0}'>login</a>", Brand.GetThemedDomain() + "/login/default.aspx?pin=send&method=login&edit=true");
+
+            if (type == Utilities.DataIO.ClassType.Grant) divPubHeaderText.Visible = false;
 
             Framework.Utilities.DebugLogging.Log("PUBLICATION MODULE end Milliseconds:" + (DateTime.Now - d).TotalSeconds);
 

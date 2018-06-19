@@ -11,7 +11,9 @@
   
 */
 using System;
+using System.Web.UI.HtmlControls;
 using System.Xml;
+using Profiles.Framework.Utilities;
 
 namespace Profiles.History
 {

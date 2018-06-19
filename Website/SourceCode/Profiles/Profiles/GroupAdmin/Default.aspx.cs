@@ -20,7 +20,7 @@ using Profiles.Framework.Utilities;
 
 namespace Profiles.GroupAdmin
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : BrandedPage
     {
         Profiles.Framework.Template masterpage;
 

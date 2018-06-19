@@ -17,7 +17,7 @@ using System.Xml;
 using System.Xml.Xsl;
 
 using Profiles.Framework.Utilities;
-
+using Profiles.Search.Utilities;
 
 namespace Profiles.Search.Modules.SearchEverythingFacets
 {

@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data;
-using System.Data.Common;
-using Connects.Profiles.Common;
-using Connects.Profiles.Service.DataContracts;
+
 
 public partial class PubXML : Profiles.Framework.Utilities.BrandedPage
 {

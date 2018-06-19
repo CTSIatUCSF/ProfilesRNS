@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using Profiles.Framework.Utilities;
 
 namespace Profiles.ORNG.Utilities
 {

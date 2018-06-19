@@ -990,7 +990,7 @@ namespace Profiles.Edit.Utilities
             SessionManagement sm = new SessionManagement();
 
             System.Drawing.Image original = System.Drawing.Image.FromStream(new System.IO.MemoryStream(image));
-            if(original.Height > 500 || original.Width > 500) image = this.ResizeImageFile(image, 500);
+            if(original.Height > 500 || original.Width > 500) image = this.ResizeImageFile(image, 500, 500);
 
 
             SqlCommand comm = new SqlCommand();

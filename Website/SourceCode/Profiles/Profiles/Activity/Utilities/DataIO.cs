@@ -326,8 +326,6 @@ namespace Profiles.Activity.Utilities
                             // best to skip them for now
                             if (!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(nodeid) && UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)] != null)
                             {
-                        try
-                        {
                                 Activity act = new Activity
                                 {
                                     Id = Convert.ToInt64(activityLogId),

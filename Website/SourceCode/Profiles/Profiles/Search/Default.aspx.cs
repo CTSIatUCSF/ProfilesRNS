@@ -20,6 +20,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
 using Profiles.Framework.Utilities;
+using Profiles.Search.Utilities;
 
 namespace Profiles.Search
 {

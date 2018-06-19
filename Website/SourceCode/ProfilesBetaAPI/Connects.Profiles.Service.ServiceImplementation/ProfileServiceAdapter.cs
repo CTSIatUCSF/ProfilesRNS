@@ -22,9 +22,9 @@ namespace Connects.Profiles.Service.ServiceImplementation
     [ServiceBehavior(IncludeExceptionDetailInFaults = true), AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class ProfileServiceAdapter
     {
-        public Connects.Profiles.Service.DataContracts.PersonList ProfileSearch(Connects.Profiles.Service.DataContracts.Profiles qd, bool isSecure)
+        public DataContracts.PersonList ProfileSearch(DataContracts.Profiles qd, bool isSecure)
         {
-            Connects.Profiles.Service.DataContracts.PersonList pl = null;
+            DataContracts.PersonList pl = null;
             string req = string.Empty;
             string responseXML = string.Empty;
 
@@ -33,15 +33,15 @@ namespace Connects.Profiles.Service.ServiceImplementation
                 DataIO ps = new DataIO();
                 XmlDocument searchrequest = new XmlDocument();
                 Utility.Namespace namespacemgr = new Connects.Profiles.Utility.Namespace();
-                
 
-                Connects.Profiles.Service.DataContracts.Profiles p = new Connects.Profiles.Service.DataContracts.Profiles();
+
+                DataContracts.Profiles p = new DataContracts.Profiles();
 
                 req = Connects.Profiles.Utility.XmlUtilities.SerializeToString(qd);
 
                 DebugLogging.Log("+++++++++ REQUEST=" + req);
 
-                Type type = typeof(Connects.Profiles.Service.DataContracts.PersonList);
+                Type type = typeof(DataContracts.PersonList);
 
                 searchrequest.LoadXml(this.ConvertToRDFRequest(req, qd.Version.ToString()));
 
@@ -93,7 +93,7 @@ namespace Connects.Profiles.Service.ServiceImplementation
                 }
 
                 DebugLogging.Log("+++++++++ DONE WITH Convert V2 to Beta Search");
-                pl = Connects.Profiles.Utility.XmlUtilities.DeserializeObject(responseXML, type) as Connects.Profiles.Service.DataContracts.PersonList;
+                pl = Connects.Profiles.Utility.XmlUtilities.DeserializeObject(responseXML, type) as DataContracts.PersonList;
                 DebugLogging.Log("+++++++++ Returned + a total count of = " + pl.TotalCount);
 
             }
@@ -217,24 +217,24 @@ namespace Connects.Profiles.Service.ServiceImplementation
         }
 
 
-        public Connects.Profiles.Service.DataContracts.PersonList GetPersonFromPersonId(int personId)
+        public DataContracts.PersonList GetPersonFromPersonId(int personId)
         {
-            Connects.Profiles.Service.DataContracts.QueryDefinition qd = new Connects.Profiles.Service.DataContracts.QueryDefinition();
-            Connects.Profiles.Service.DataContracts.Profiles profiles = new Connects.Profiles.Service.DataContracts.Profiles();
+            DataContracts.QueryDefinition qd = new DataContracts.QueryDefinition();
+            DataContracts.Profiles profiles = new DataContracts.Profiles();
             profiles.Version = 2;
             profiles.QueryDefinition = qd;
             profiles.QueryDefinition.PersonID = personId.ToString();
 
-            Connects.Profiles.Service.DataContracts.OutputOptions oo = new Connects.Profiles.Service.DataContracts.OutputOptions();
+            DataContracts.OutputOptions oo = new DataContracts.OutputOptions();
             oo.SortType = Connects.Profiles.Service.DataContracts.OutputOptionsSortType.QueryRelevance;
             oo.StartRecord = "0";
 
-            Connects.Profiles.Service.DataContracts.OutputFilterList ofl = new Connects.Profiles.Service.DataContracts.OutputFilterList();
-            Connects.Profiles.Service.DataContracts.OutputFilter of = new Connects.Profiles.Service.DataContracts.OutputFilter();
+            DataContracts.OutputFilterList ofl = new DataContracts.OutputFilterList();
+            DataContracts.OutputFilter of = new DataContracts.OutputFilter();
             of.Summary = false;
             of.Text = "CoAuthorList";
 
-            ofl.OutputFilter = new List<Connects.Profiles.Service.DataContracts.OutputFilter>();
+            ofl.OutputFilter = new List<DataContracts.OutputFilter>();
             ofl.OutputFilter.Add(of);
 
             oo.OutputFilterList = ofl;
@@ -246,16 +246,16 @@ namespace Connects.Profiles.Service.ServiceImplementation
             return ProfileSearch(profiles, isSecure);
         }
 
-        public Connects.Profiles.Service.DataContracts.PersonList GetDepartmentPeopleFromPersonId(int personId, int count)
+        public DataContracts.PersonList GetDepartmentPeopleFromPersonId(int personId, int count)
         {
             //thisPerson is the current profile being viewed by a user or process.
-            Connects.Profiles.Service.DataContracts.PersonList thisPerson;
-            Connects.Profiles.Service.DataContracts.PersonList returnPeople;
+            DataContracts.PersonList thisPerson;
+            DataContracts.PersonList returnPeople;
 
             thisPerson = GetPersonFromPersonId(personId);
 
-            Connects.Profiles.Service.DataContracts.QueryDefinition qd = new Connects.Profiles.Service.DataContracts.QueryDefinition();
-            Connects.Profiles.Service.DataContracts.Profiles profiles = new Connects.Profiles.Service.DataContracts.Profiles();
+            DataContracts.QueryDefinition qd = new DataContracts.QueryDefinition();
+            DataContracts.Profiles profiles = new DataContracts.Profiles();
 
             if (Convert.ToInt32(thisPerson.TotalCount) > 0)
             {
@@ -263,12 +263,12 @@ namespace Connects.Profiles.Service.ServiceImplementation
                 {
                     if (thisPerson.Person[0].AffiliationList.Affiliation.Count > 0)
                     {
-                        Connects.Profiles.Service.DataContracts.Affiliation Affiliation = new Connects.Profiles.Service.DataContracts.Affiliation();
-                        Connects.Profiles.Service.DataContracts.AffiliationList affList = new Connects.Profiles.Service.DataContracts.AffiliationList();
-                        Affiliation.DepartmentName = new Connects.Profiles.Service.DataContracts.AffiliationDepartmentName();
-                        Affiliation.InstitutionName = new Connects.Profiles.Service.DataContracts.AffiliationInstitutionName();
+                        DataContracts.Affiliation Affiliation = new DataContracts.Affiliation();
+                        DataContracts.AffiliationList affList = new DataContracts.AffiliationList();
+                        Affiliation.DepartmentName = new DataContracts.AffiliationDepartmentName();
+                        Affiliation.InstitutionName = new DataContracts.AffiliationInstitutionName();
 
-                        foreach (Connects.Profiles.Service.DataContracts.AffiliationPerson aff in thisPerson.Person[0].AffiliationList.Affiliation)
+                        foreach (DataContracts.AffiliationPerson aff in thisPerson.Person[0].AffiliationList.Affiliation)
                         {
                             if (aff.Primary)
                             {
@@ -277,14 +277,14 @@ namespace Connects.Profiles.Service.ServiceImplementation
 
                             }
                         }
-                        affList.Affiliation = new List<Connects.Profiles.Service.DataContracts.Affiliation>();
+                        affList.Affiliation = new List<DataContracts.Affiliation>();
                         affList.Affiliation.Add(Affiliation);
 
                         qd.AffiliationList = affList;
 
                         profiles.QueryDefinition = qd;
 
-                        Connects.Profiles.Service.DataContracts.OutputOptions oo = new Connects.Profiles.Service.DataContracts.OutputOptions();
+                        DataContracts.OutputOptions oo = new DataContracts.OutputOptions();
                         oo.SortType = Connects.Profiles.Service.DataContracts.OutputOptionsSortType.QueryRelevance;
                         oo.StartRecord = "0";
                         oo.MaxRecords = count.ToString();
@@ -313,13 +313,13 @@ namespace Connects.Profiles.Service.ServiceImplementation
 
         public int GetPersonIdFromInternalId(string internalTag, string internalValue)
         {
-            Connects.Profiles.Service.DataContracts.QueryDefinition qd = new Connects.Profiles.Service.DataContracts.QueryDefinition();
-            Connects.Profiles.Service.DataContracts.Profiles profiles = new Connects.Profiles.Service.DataContracts.Profiles();
+            DataContracts.QueryDefinition qd = new DataContracts.QueryDefinition();
+            DataContracts.Profiles profiles = new DataContracts.Profiles();
             int personId = 0;
 
-            Connects.Profiles.Service.DataContracts.InternalIDList internalIdList = new Connects.Profiles.Service.DataContracts.InternalIDList();
-            List<Connects.Profiles.Service.DataContracts.InternalID> intIdList = new List<Connects.Profiles.Service.DataContracts.InternalID>();
-            Connects.Profiles.Service.DataContracts.InternalID intId = new Connects.Profiles.Service.DataContracts.InternalID();
+            DataContracts.InternalIDList internalIdList = new DataContracts.InternalIDList();
+            List<DataContracts.InternalID> intIdList = new List<DataContracts.InternalID>();
+            DataContracts.InternalID intId = new DataContracts.InternalID();
 
             intId.Name = internalTag;
             intId.Text = internalValue;
@@ -331,14 +331,14 @@ namespace Connects.Profiles.Service.ServiceImplementation
             profiles.QueryDefinition = qd;
             profiles.QueryDefinition.InternalIDList = internalIdList;
 
-            Connects.Profiles.Service.DataContracts.OutputOptions oo = new Connects.Profiles.Service.DataContracts.OutputOptions();
+            DataContracts.OutputOptions oo = new DataContracts.OutputOptions();
             oo.SortType = Connects.Profiles.Service.DataContracts.OutputOptionsSortType.QueryRelevance;
             oo.StartRecord = "0";
 
             profiles.OutputOptions = oo;
             bool isSecure = System.Convert.ToBoolean(Connects.Profiles.Utility.ConfigUtil.GetConfigItem("IsSecure"));
             profiles.Version = 2;
-            Connects.Profiles.Service.DataContracts.PersonList resp = ProfileSearch(profiles, isSecure);
+            DataContracts.PersonList resp = ProfileSearch(profiles, isSecure);
 
             personId = Convert.ToInt32(resp.Person[0].PersonID);
 
@@ -348,24 +348,24 @@ namespace Connects.Profiles.Service.ServiceImplementation
 
 
 
-        public Connects.Profiles.Service.DataContracts.PublicationMatchDetailList GetProfilePublicationMatchSummary(Connects.Profiles.Service.DataContracts.Profiles qd, bool isSecure)
+        public DataContracts.PublicationMatchDetailList GetProfilePublicationMatchSummary(DataContracts.Profiles qd, bool isSecure)
         {
             qd.Version = 2;
 
-            Connects.Profiles.Service.DataContracts.PersonList pl = ProfileSearch(qd, isSecure);
-            Connects.Profiles.Service.DataContracts.PublicationMatchDetailList pubMatch = new Connects.Profiles.Service.DataContracts.PublicationMatchDetailList();
+            DataContracts.PersonList pl = ProfileSearch(qd, isSecure);
+            DataContracts.PublicationMatchDetailList pubMatch = new DataContracts.PublicationMatchDetailList();
             HashSet<string> searchPhraseDistinct = new HashSet<string>();
             HashSet<string> publicationPhraseDistinct = new HashSet<string>();
 
             if (pl != null)
             {
 
-                foreach (Connects.Profiles.Service.DataContracts.Publication pub in pl.Person[0].PublicationList)
+                foreach (DataContracts.Publication pub in pl.Person[0].PublicationList)
                 {
 
-                    foreach (Connects.Profiles.Service.DataContracts.PublicationMatchDetail pubMatchDetail in pub.PublicationMatchDetailList)
+                    foreach (DataContracts.PublicationMatchDetail pubMatchDetail in pub.PublicationMatchDetailList)
                     {
-                        Connects.Profiles.Service.DataContracts.PublicationMatchDetail pubMatchDetailStripped = new Connects.Profiles.Service.DataContracts.PublicationMatchDetail();
+                        DataContracts.PublicationMatchDetail pubMatchDetailStripped = new DataContracts.PublicationMatchDetail();
                         pubMatchDetailStripped.SearchPhrase = pubMatchDetail.SearchPhrase;
 
                         if (!searchPhraseDistinct.Contains(pubMatchDetail.SearchPhrase))
@@ -375,7 +375,7 @@ namespace Connects.Profiles.Service.ServiceImplementation
                             searchPhraseDistinct.Add(pubMatchDetail.SearchPhrase);
                         }
 
-                        foreach (Connects.Profiles.Service.DataContracts.PublicationPhraseDetail pubPhraseDetail in pubMatchDetail.PublicationPhraseDetailList)
+                        foreach (DataContracts.PublicationPhraseDetail pubPhraseDetail in pubMatchDetail.PublicationPhraseDetailList)
                         {
 
                             //PublicationPhraseDetail pubPhraseDetailStripped = new PublicationPhraseDetail();
@@ -401,10 +401,10 @@ namespace Connects.Profiles.Service.ServiceImplementation
                             //if (ppd.PublicationList == null)
                             //    ppd.PublicationList = new PublicationList();
                             //ppd.PublicationList.Add(pub);
-                            Connects.Profiles.Service.DataContracts.PublicationMatchDetail pmd = pubMatch.Find(delegate(Connects.Profiles.Service.DataContracts.PublicationMatchDetail t) { return t.SearchPhrase == pubMatchDetail.SearchPhrase; });
+                            DataContracts.PublicationMatchDetail pmd = pubMatch.Find(delegate(DataContracts.PublicationMatchDetail t) { return t.SearchPhrase == pubMatchDetail.SearchPhrase; });
 
                             if (pmd.PublicationPhraseDetailList == null)
-                                pmd.PublicationPhraseDetailList = new Connects.Profiles.Service.DataContracts.PublicationPhraseDetailList();
+                                pmd.PublicationPhraseDetailList = new DataContracts.PublicationPhraseDetailList();
 
                             pubPhraseDetail.Publication = pub;
                             pmd.PublicationPhraseDetailList.Add(pubPhraseDetail);

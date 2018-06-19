@@ -16,6 +16,8 @@ using System.Web.UI;
 using System.Xml;
 using System.Configuration;
 using Profiles.Framework.Utilities;
+using System.Web.UI.WebControls;
+using System.Web;
 
 namespace Profiles.Framework.Modules.MainMenu
 {

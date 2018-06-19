@@ -54,7 +54,7 @@ namespace Profiles.Profile.Modules
             // Get timeline bar chart
             string storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]";
             if (type == Utilities.DataIO.ClassType.Grant) storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Group.GetData]";
-            using (SqlDataReader reader = data.GetGoogleTimeline(base.RDFTriple, storedproc))
+            using (SqlDataReader reader = data.GetGoogleTimeline(base.RDFTriple, storedproc, null))
             {
                 while (reader.Read())
                 {

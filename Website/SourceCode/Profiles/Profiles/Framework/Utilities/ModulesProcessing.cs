@@ -4,7 +4,7 @@ using System.Web;
 using System.Reflection;
 using System.Web.UI;
 using System.Xml;
-
+using System.Web.UI.HtmlControls;
 
 namespace Profiles.Framework.Utilities
 {

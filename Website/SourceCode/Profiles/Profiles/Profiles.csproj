@@ -33,6 +33,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,6 +59,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=3.5.51116.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL" />
+    <Reference Include="CsvHelper, Version=7.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.7.1.1\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -90,6 +95,188 @@
     <Content Include="Activity\Modules\ModuleCatalogue.xml" />
     <Content Include="Activity\Modules\Statistics\Statistics.ascx" />
     <Content Include="Activity\PresentationXML\ActivityDetails.xml" />
+    <Content Include="App_Themes\DEFAULT.css" />
+    <Content Include="App_Themes\Default\Default.css" />
+    <Content Include="App_Themes\Default\Default.js" />
+    <Content Include="App_Themes\Default\Images\backtotop.gif" />
+    <Content Include="App_Themes\Default\Images\comment.gif" />
+    <Content Include="App_Themes\Default\Images\favicon.ico" />
+    <Content Include="App_Themes\Default\Images\gear.gif" />
+    <Content Include="App_Themes\Default\Images\help.gif" />
+    <Content Include="App_Themes\Default\Images\ucbg.jpg" />
+    <Content Include="App_Themes\Default\Images\uclogo137.png" />
+    <Content Include="App_Themes\LBNL\Images\backtotop.gif" />
+    <Content Include="App_Themes\LBNL\Images\comment.gif" />
+    <Content Include="App_Themes\LBNL\Images\favicon.ico" />
+    <Content Include="App_Themes\LBNL\Images\gear.gif" />
+    <Content Include="App_Themes\LBNL\Images\help.gif" />
+    <Content Include="App_Themes\LBNL\Images\lbl-logo.png" />
+    <Content Include="App_Themes\LBNL\Images\lbl-new-social-iconsB.png" />
+    <Content Include="App_Themes\LBNL\Images\ProfilesLogo.gif" />
+    <Content Include="App_Themes\LBNL\Images\profilesnapshot.png" />
+    <Content Include="App_Themes\LBNL\Images\seal-department-of-energy.png" />
+    <Content Include="App_Themes\LBNL\Images\seal-university-of-california.png" />
+    <Content Include="App_Themes\LBNL\LBNL.css" />
+    <Content Include="App_Themes\LBNL\LBNL.js" />
+    <Content Include="App_Themes\LBNL\PresentationXML\About\AboutProfiles.xml" />
+    <Content Include="App_Themes\LBNL\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCD\Images\backtotop.gif" />
+    <Content Include="App_Themes\UCD\Images\comment.gif" />
+    <Content Include="App_Themes\UCD\Images\davis-logo-white.svg" />
+    <Content Include="App_Themes\UCD\Images\favicon.ico" />
+    <Content Include="App_Themes\UCD\Images\gear.gif" />
+    <Content Include="App_Themes\UCD\Images\global-header-bg.svg" />
+    <Content Include="App_Themes\UCD\Images\help.gif" />
+    <Content Include="App_Themes\UCD\Images\ucdavis-logo.png" />
+    <Content Include="App_Themes\UCD\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCD\UCD.css" />
+    <Content Include="App_Themes\UCD\UCD.js" />
+    <Content Include="App_Themes\UCI\Images\backtotop.gif" />
+    <Content Include="App_Themes\UCI\Images\comment.gif" />
+    <Content Include="App_Themes\UCI\Images\favicon.ico" />
+    <Content Include="App_Themes\UCI\Images\gear.gif" />
+    <Content Include="App_Themes\UCI\Images\help.gif" />
+    <Content Include="App_Themes\UCI\Images\uciLogo.png" />
+    <Content Include="App_Themes\UCI\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCI\UCI.css" />
+    <Content Include="App_Themes\UCI\UCI.js" />
+    <Content Include="App_Themes\UCLA\Images\backtotop.gif" />
+    <Content Include="App_Themes\UCLA\Images\comment.gif" />
+    <Content Include="App_Themes\UCLA\Images\favicon.ico" />
+    <Content Include="App_Themes\UCLA\Images\gear.gif" />
+    <Content Include="App_Themes\UCLA\Images\help.gif" />
+    <Content Include="App_Themes\UCLA\Images\ucla-logo.png" />
+    <Content Include="App_Themes\UCLA\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCLA\UCLA.css" />
+    <Content Include="App_Themes\UCLA\UCLA.js" />
+    <Content Include="App_Themes\UCR\Images\backtotop.gif" />
+    <Content Include="App_Themes\UCR\Images\comment.gif" />
+    <Content Include="App_Themes\UCR\Images\favicon.ico" />
+    <Content Include="App_Themes\UCR\Images\gear.gif" />
+    <Content Include="App_Themes\UCR\Images\help.gif" />
+    <Content Include="App_Themes\UCR\Images\ucbg.jpg" />
+    <Content Include="App_Themes\UCR\Images\uclogo137.png" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\AboutProfiles.xml" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\CloseBrowser.xml" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\FAQ.xml" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\ForDevelopers.xml" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\GadgetLibrary.xml" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\HowProfilesWorks.xml" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\NewFeatures.xml" />
+    <Content Include="App_Themes\UCR\PresentationXML\About\Optin.xml" />
+    <Content Include="App_Themes\UCR\UCR.css" />
+    <Content Include="App_Themes\UCR\UCR.js" />
+    <Content Include="App_Themes\UCSD\Images\actri-logo.png" />
+    <Content Include="App_Themes\UCSD\Images\backtotop.gif" />
+    <Content Include="App_Themes\UCSD\Images\college-alumni.png" />
+    <Content Include="App_Themes\UCSD\Images\comment.gif" />
+    <Content Include="App_Themes\UCSD\Images\develop-profile.gif" />
+    <Content Include="App_Themes\UCSD\Images\favicon.ico" />
+    <Content Include="App_Themes\UCSD\Images\gear.gif" />
+    <Content Include="App_Themes\UCSD\Images\help.gif" />
+    <Content Include="App_Themes\UCSD\Images\icon_squareArrow.gif" />
+    <Content Include="App_Themes\UCSD\Images\network.png" />
+    <Content Include="App_Themes\UCSD\Images\profilesnapshot.png" />
+    <Content Include="App_Themes\UCSD\Images\search-icon.gif" />
+    <Content Include="App_Themes\UCSD\Images\ucsd.png" />
+    <Content Include="App_Themes\UCSD\Images\ucsdhs.png" />
+    <Content Include="App_Themes\UCSD\Images\ucsdlogo.png" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\AboutProfiles.xml" />
+    <Content Include="App_Themes\UCSD\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCSD\UCSD.css" />
+    <Content Include="App_Themes\UCSD\UCSD.js" />
+    <Content Include="App_Themes\UCSF\Images\backtotop.gif" />
+    <Content Include="App_Themes\UCSF\Images\clinicaltrials.png" />
+    <Content Include="App_Themes\UCSF\Images\conceptsearch.jpg" />
+    <Content Include="App_Themes\UCSF\Images\dashboard.png" />
+    <Content Include="App_Themes\UCSF\Images\detailstab.jpg" />
+    <Content Include="App_Themes\UCSF\Images\extCoAuth.png" />
+    <Content Include="App_Themes\UCSF\Images\favicon.ico" />
+    <Content Include="App_Themes\UCSF\Images\featuredPubs.png" />
+    <Content Include="App_Themes\UCSF\Images\featuredVideos.png" />
+    <Content Include="App_Themes\UCSF\Images\funding.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos0.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos1.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos10.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos11.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos12.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos13.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos14.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos15.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos16.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos17.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos18.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos19.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos2.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos20.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos21.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos3.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos4.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos5.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos6.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos7.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos8.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos9.png" />
+    <Content Include="App_Themes\UCSF\Images\hero.png" />
+    <Content Include="App_Themes\UCSF\Images\icon_squareArrow.gif" />
+    <Content Include="App_Themes\UCSF\Images\listMaker.png" />
+    <Content Include="App_Themes\UCSF\Images\orangeArrow.gif" />
+    <Content Include="App_Themes\UCSF\Images\pubsgraph.jpg" />
+    <Content Include="App_Themes\UCSF\Images\timeline.jpg" />
+    <Content Include="App_Themes\UCSF\Images\toc.jpg" />
+    <Content Include="App_Themes\UCSF\Images\ucsfProfilesLogo.png" />
+    <Content Include="App_Themes\UCSF\Images\ucsf_alumni_blue.jpg" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\AboutProfiles.xml" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\ForDevelopers.xml" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\NewFeatures.xml" />
+    <Content Include="App_Themes\UCSF\UCSF.css" />
+    <Content Include="App_Themes\UCSF\UCSF.js" />
+    <Content Include="App_Themes\UC\Images\backtotop.gif" />
+    <Content Include="App_Themes\UC\Images\comment.gif" />
+    <Content Include="App_Themes\UC\Images\favicon.ico" />
+    <Content Include="App_Themes\UC\Images\gear.gif" />
+    <Content Include="App_Themes\UC\Images\help.gif" />
+    <Content Include="App_Themes\UC\Images\ucbg.jpg" />
+    <Content Include="App_Themes\UC\Images\uclogo137.png" />
+    <Content Include="App_Themes\UC\UC.css" />
+    <Content Include="App_Themes\UC\UC.js" />
+    <Content Include="App_Themes\USC\Images\actri-logo.png" />
+    <Content Include="App_Themes\USC\Images\backtotop.gif" />
+    <Content Include="App_Themes\USC\Images\college-alumni.png" />
+    <Content Include="App_Themes\USC\Images\comment.gif" />
+    <Content Include="App_Themes\USC\Images\develop-profile.gif" />
+    <Content Include="App_Themes\USC\Images\editProfile.gif" />
+    <Content Include="App_Themes\USC\Images\favicon.ico" />
+    <Content Include="App_Themes\USC\Images\gear.gif" />
+    <Content Include="App_Themes\USC\Images\help.gif" />
+    <Content Include="App_Themes\USC\Images\icon_squareArrow.gif" />
+    <Content Include="App_Themes\USC\Images\network.png" />
+    <Content Include="App_Themes\USC\Images\powered_by_scctsi.jpg" />
+    <Content Include="App_Themes\USC\Images\powered_by_scctsi.png" />
+    <Content Include="App_Themes\USC\Images\profiles.jpg" />
+    <Content Include="App_Themes\USC\Images\profilesnapshot.png" />
+    <Content Include="App_Themes\USC\Images\search-icon.gif" />
+    <Content Include="App_Themes\USC\Images\usc-ctsi.jpg" />
+    <Content Include="App_Themes\USC\PresentationXML\About\AboutProfiles.xml" />
+    <Content Include="App_Themes\USC\PresentationXML\About\FAQ.xml" />
+    <Content Include="App_Themes\USC\PresentationXML\About\ForDevelopers.xml" />
+    <Content Include="App_Themes\USC\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\USC\USC.css" />
+    <Content Include="App_Themes\USC\USC.js" />
+    <Content Include="CustomAPI\Secure\ActivityLog.aspx" />
+    <Content Include="CustomAPI\Secure\Default.aspx" />
+    <Content Include="CustomAPI\v1\EasyJSONPlus.aspx" />
+    <Content Include="CustomAPI\v1\EditedCount.aspx" />
+    <Content Include="CustomAPI\v1\JSONProfile.aspx" />
+    <Content Include="CustomAPI\v1\PubDate.aspx" />
+    <Content Include="CustomAPI\v1\PubXML.aspx" />
+    <Content Include="CustomAPI\v1\RejectedPMIDs.aspx" />
+    <Content Include="CustomAPI\v1\XMLProfile.aspx" />
+    <Content Include="CustomAPI\v2\Default.aspx" />
+    <Content Include="CustomAPI\v2\Disambiguate.aspx" />
+    <Content Include="denied.txt" />
     <Content Include="DirectService.aspx" />
     <Content Include="Edit\Images\img_arrow.png" />
     <Content Include="Edit\Modules\CustomEditAssociatedInformationResource\CustomEditAssociatedInformationResource.ascx" />
@@ -102,11 +289,14 @@
     <Content Include="Edit\Modules\CustomEditGroupSettings\CustomEditGroupSettings.ascx" />
     <Content Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx" />
     <Content Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx" />
+    <Content Include="favicon.ico" />
     <Content Include="Framework\Images\listen.jpg" />
     <Content Include="Framework\Images\orcid_16x16%281%29.gif" />
     <Content Include="Framework\Images\Orcid_Logo_rgb.png" />
     <Content Include="Framework\Images\Orcid_symbol_rgb.png" />
+    <Content Include="GitVersion.txt" />
     <Content Include="Global.asax" />
+    <Content Include="google6b93ad5a56d431a7.html" />
     <Content Include="GroupAdmin\CSS\GroupAdmin.css" />
     <Content Include="GroupAdmin\Default.aspx" />
     <Content Include="GroupAdmin\Modules\GroupAdmin\GroupAdmin.ascx" />
@@ -250,6 +440,7 @@
     <Content Include="Profile\XSLT\NetworkTableGroup.xslt" />
     <Content Include="RobotsTxt.aspx" />
     <Content Include="SiteMap.aspx" />
+    <Content Include="trace.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -313,6 +504,69 @@
     </Compile>
     <Compile Include="Activity\Utilities\Activity.cs" />
     <Compile Include="Activity\Utilities\DataIO.cs" />
+    <Compile Include="CustomAPI\Secure\ActivityLog.aspx.cs">
+      <DependentUpon>ActivityLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\Secure\ActivityLog.aspx.designer.cs">
+      <DependentUpon>ActivityLog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomAPI\Secure\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\Secure\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomAPI\Utilities\DataIO.cs" />
+    <Compile Include="CustomAPI\v1\EasyJSONPlus.aspx.cs">
+      <DependentUpon>EasyJSONPlus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v1\EasyJSONPlus.aspx.designer.cs">
+      <DependentUpon>EasyJSONPlus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomAPI\v1\EditedCount.aspx.cs">
+      <DependentUpon>EditedCount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v1\JSONProfile.aspx.cs">
+      <DependentUpon>JSONProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v1\PubDate.aspx.cs">
+      <DependentUpon>PubDate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v1\PubXML.aspx.cs">
+      <DependentUpon>PubXML.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v1\RejectedPMIDs.aspx.cs">
+      <DependentUpon>RejectedPMIDs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v1\RejectedPMIDs.aspx.designer.cs">
+      <DependentUpon>RejectedPMIDs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomAPI\v1\XMLProfile.aspx.cs">
+      <DependentUpon>XMLProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v2\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v2\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomAPI\v2\Disambiguate.aspx.cs">
+      <DependentUpon>Disambiguate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\v2\Disambiguate.aspx.designer.cs">
+      <DependentUpon>Disambiguate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -408,6 +662,12 @@
     <Compile Include="Framework\Modules\MainMenu\History.ascx.designer.cs">
       <DependentUpon>History.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Framework\Utilities\Brand.cs" />
+    <Compile Include="Framework\Utilities\BrandedPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Framework\Utilities\Institution.cs" />
+    <Compile Include="Framework\Utilities\UCSFIDSet.cs" />
     <Compile Include="Framework\Utilities\UserHistory.cs" />
     <Compile Include="GroupAdmin\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -1792,9 +2052,21 @@
     <Content Include="Framework\Modules\ApplyXSLT\ApplyXSLT.ascx" />
     <Content Include="Framework\Template.Master" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\EmailHandler.ashx" />
+    <Content Include="App_Themes\Default\Default.skin" />
+    <Content Include="App_Themes\LBNL\LBNL.skin" />
+    <Content Include="App_Themes\UCD\UCD.skin" />
+    <Content Include="App_Themes\UCI\UCI.skin" />
+    <Content Include="App_Themes\UCLA\UCLA.skin" />
+    <Content Include="App_Themes\UCR\UCR.skin" />
+    <Content Include="App_Themes\UCSD\MentoringUCSD.pdf" />
+    <Content Include="App_Themes\UCSD\UCSD.skin" />
+    <Content Include="App_Themes\UCSF\UCSF.skin" />
+    <Content Include="App_Themes\UC\UC.skin" />
+    <Content Include="App_Themes\USC\USC.skin" />
     <None Include="ORCID\ORCIDPrivacySettingsandProfiles.pdf" />
     <Content Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master" />
     <Content Include="Profile\Modules\CustomViewGroupGeneralInfo\GroupCompositePhotoHandler.ashx" />
+    <None Include="packages.config" />
     <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\CHANGELOG" />
     <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\MIT-LICENSE" />
     <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\README.rdoc" />
@@ -1823,11 +2095,27 @@
   <ItemGroup>
     <Folder Include="ActiveNetwork\Utilities\" />
     <Folder Include="App_Data\" />
+    <Folder Include="App_Themes\Default\PresentationXML\" />
+    <Folder Include="App_Themes\UC\PresentationXML\" />
     <Folder Include="Login\Modules\App_LocalResources\" />
     <Folder Include="ORCID\XSLT\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ProfilesBetaAPI\Connects.Profiles.Service.DataContracts\Connects.Profiles.Service.DataContracts.csproj">
+      <Project>{4E11DE8F-C111-44E4-8AF8-B66EDEC9152D}</Project>
+      <Name>Connects.Profiles.Service.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProfilesBetaAPI\Connects.Profiles.Service.ServiceImplementation\Connects.Profiles.Service.ServiceImplementation.csproj">
+      <Project>{24E3696C-B69C-49C8-8276-C4003297C45D}</Project>
+      <Name>Connects.Profiles.Service.ServiceImplementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ProfilesBetaAPI\Connects.Profiles.Utility\Connects.Profiles.Utility.csproj">
+      <Project>{27F9D353-FCCC-430E-A6A6-6864773CBCDC}</Project>
+      <Name>Connects.Profiles.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

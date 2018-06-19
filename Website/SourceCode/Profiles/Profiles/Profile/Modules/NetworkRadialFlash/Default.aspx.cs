@@ -12,6 +12,7 @@
 */
 
 using System;
+using Profiles.Framework.Utilities;
 
 namespace Profiles.Profile.Modules.NetworkRadialFlash
 {

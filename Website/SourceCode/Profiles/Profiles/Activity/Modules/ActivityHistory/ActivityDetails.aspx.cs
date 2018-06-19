@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 using System.Web.Script.Serialization;
+using Profiles.Framework.Utilities;
 
 namespace Profiles.Activity
 {

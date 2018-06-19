@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data;
-using System.Data.Common;
-using Connects.Profiles.Common;
 using Connects.Profiles.Service.DataContracts;
-using Connects.Profiles.Utility;
 using System.Web.Script.Serialization;
 using Profiles.Framework.Utilities;
+using Connects.Profiles.Service.ServiceImplementation;
 
 public partial class JSONProfile : Profiles.Framework.Utilities.BrandedPage
 {
@@ -76,7 +69,7 @@ public partial class JSONProfile : Profiles.Framework.Utilities.BrandedPage
         // get person data
         try
         {
-            PersonList personProfileList = new Connects.Profiles.Service.ServiceImplementation.ProfileServiceAdapter().GetPersonFromPersonId(personId);
+            PersonList personProfileList = new ProfileServiceAdapter().GetPersonFromPersonId(personId);
             if (personProfileList.Person.Count == 1)
             {
                 Person person = personProfileList.Person[0];

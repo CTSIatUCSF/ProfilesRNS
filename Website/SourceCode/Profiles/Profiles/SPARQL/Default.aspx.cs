@@ -12,6 +12,7 @@
 */
 using System;
 using System.Xml;
+using Profiles.Framework.Utilities;
 
 namespace Profiles.SPARQL
 {

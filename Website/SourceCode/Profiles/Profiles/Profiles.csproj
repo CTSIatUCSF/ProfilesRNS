@@ -382,6 +382,7 @@
     <Content Include="Login\Modules\MultiShibLogin\MultiShibLogin.ascx" />
     <Content Include="Login\Modules\ShibLogin\ShibLogin.ascx" />
     <Content Include="Login\PresentationXML\ADLoginFormPresentation.xml" />
+    <Content Include="Login\PresentationXML\MultiShibbolethLoginPresentation.xml" />
     <Content Include="Login\PresentationXML\ShibbolethLoginPresentation.xml" />
     <Content Include="ORCID\CreateBatch.aspx" />
     <Content Include="ORCID\CreateMyORCID.aspx" />

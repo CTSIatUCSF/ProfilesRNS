@@ -378,6 +378,20 @@
     <Content Include="GroupAdmin\Modules\ModuleCatalogue.xml" />
     <Content Include="GroupAdmin\PresentationXML\GroupAdminAuthFailedPresentation.xml" />
     <Content Include="GroupAdmin\PresentationXML\GroupAdminPresentation.xml" />
+    <Content Include="Login\Images\berkeley.edu.png" />
+    <Content Include="Login\Images\lbnl.gov.png" />
+    <Content Include="Login\Images\padlock.jpg" />
+    <Content Include="Login\Images\ucdavis.edu.png" />
+    <Content Include="Login\Images\uci.edu.gif" />
+    <Content Include="Login\Images\ucla.edu.gif" />
+    <Content Include="Login\Images\ucmerced.edu.jpg" />
+    <Content Include="Login\Images\ucop.edu.gif" />
+    <Content Include="Login\Images\ucr.edu.jpg" />
+    <Content Include="Login\Images\ucsb.edu.png" />
+    <Content Include="Login\Images\ucsc.edu.jpg" />
+    <Content Include="Login\Images\ucsd.edu.png" />
+    <Content Include="Login\Images\ucsf.edu.png" />
+    <Content Include="Login\Images\usc.edu.png" />
     <Content Include="Login\Modules\ADLogin\ADLogin.ascx" />
     <Content Include="Login\Modules\MultiShibLogin\MultiShibLogin.ascx" />
     <Content Include="Login\Modules\ShibLogin\ShibLogin.ascx" />
@@ -2327,4 +2341,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>call "$(SolutionDir)AddGitVersionToBuild.bat" $(ProjectDir)</PreBuildEvent>
+  </PropertyGroup>
 </Project>

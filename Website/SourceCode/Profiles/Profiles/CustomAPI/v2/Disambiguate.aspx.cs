@@ -54,7 +54,7 @@ namespace Profiles.CustomAPI.v2
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            Institution inst = Institution.GetByAbbreviation(Request["institution"].ToUpper());
+            Institution inst = Institution.GetByAbbreviation(Request["institution"]);
             string name = Request["name"];
 
             string uri = find(inst, name);

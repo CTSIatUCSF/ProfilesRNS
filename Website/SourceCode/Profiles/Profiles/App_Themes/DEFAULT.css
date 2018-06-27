@@ -418,6 +418,7 @@ h2.badge-top  { padding: 12px 0 14px 4px; margin: -68px 0 0 60px; width: 70px; f
 .panelActive.navbar { padding: 0 0 70px; } 
 .metrics { margin: 0 0 20px; padding: 0 0 12px; border-bottom: 1px solid #ccc; }
 .metrics .act-heading, .activities .act-heading { padding-bottom: 12px; white-space: nowrap; }
+.activities .act-heading span { display: block; font-size: 90%; padding: 4px 0; color: #444; }
 .metricsDetails span { display: inline-block; width: 4em; text-align: right; font-family: "Courier New", Courier, monospace; }
 .activities { max-width: 600px; padding-bottom: 0; margin-bottom: 0; }
 .act { margin-bottom: 10px; padding: 0 0 8px; clear: left; border-bottom: 1px solid #ccc; min-height: 48px; }

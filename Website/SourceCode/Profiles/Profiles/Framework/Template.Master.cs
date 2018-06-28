@@ -155,6 +155,16 @@ namespace Profiles.Framework
             ThemeJs.Attributes.Add("src", Brand.GetThemedDomain() + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".js");
             Page.Header.Controls.Add(ThemeJs);
 
+            // UCSF. To support lazy login
+            String lazyShibLogin = Profiles.Login.ShibbolethSession.GetJavascriptSrc(Request);
+            if (!String.IsNullOrEmpty(lazyShibLogin))
+            {
+                HtmlGenericControl multiShibLogin = new HtmlGenericControl("script");
+                multiShibLogin.Attributes.Add("type", "text/javascript");
+                ThemeJs.Attributes.Add("src", lazyShibLogin);
+                Page.Header.Controls.Add(multiShibLogin);
+            }
+
             // UCSF. This is handy to have in JavaScript form and is required for ORNG
             HtmlGenericControl rootDomainjs = new HtmlGenericControl("script");
             rootDomainjs.Attributes.Add("type", "text/javascript");

@@ -113,7 +113,7 @@ namespace Profiles.Profile
                 HttpContext.Current.Request.Url.ToString().ToLower().Equals(UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL))
             {
                 HtmlLink AmpLink = new HtmlLink();
-                AmpLink.Href = UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL.Replace(Brand.GetThemedDomain(),  "//amp.profiles.ucsf.edu");
+                AmpLink.Href = UCSFIDSet.ByNodeId[base.RDFTriple.Subject].PrettyURL.Replace(Brand.GetThemedDomain(),  "https://amp.profiles.ucsf.edu");
                 AmpLink.Attributes["rel"] = "amphtml";
                 Page.Header.Controls.Add(AmpLink);
             }

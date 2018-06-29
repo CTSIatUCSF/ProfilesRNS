@@ -100,7 +100,7 @@
 }
 </script>
 <div class="activities">
-    <div class="act-heading"><strong>Network Updates</strong></div>
+    <div class="act-heading"><strong>Network Updates</strong> <span>from all participating institutions</span></div>
     <asp:Panel runat="server" ID="pnlActivities" CssClass="clsScroll">
         <asp:Repeater runat="server" ID="rptActivityHistory" OnItemDataBound="rptActivityHistory_OnItemDataBound">
             <ItemTemplate>

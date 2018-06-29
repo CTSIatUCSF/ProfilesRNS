@@ -1,4 +1,12 @@
-﻿$(document).ready(function () {
+﻿// used for lazy multishiblogin
+function redirectForLogin(data) {
+    if (window.location.href.indexOf("/login") == -1 && data.redirect) {
+        window.location.href = decodeURIComponent(data.redirect);
+    }
+}
+
+
+$(document).ready(function () {
     // logged in/out subnav
   if ($('#defaultmenu') && $('#defaultmenu').length) {
     $(".mainmenu li:contains('RDF')").addClass('rdf').appendTo('.profilesMainColumnRight').hide();

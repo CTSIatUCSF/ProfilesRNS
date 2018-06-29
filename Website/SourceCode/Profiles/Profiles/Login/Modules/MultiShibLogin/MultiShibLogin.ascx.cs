@@ -12,15 +12,11 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
-using System.Web.UI.HtmlControls;
 using System.Configuration;
 
-using Profiles.Login.Utilities;
 using Profiles.Framework.Utilities;
 
 namespace Profiles.Login.Modules.MultiShibLogin
@@ -33,7 +29,7 @@ namespace Profiles.Login.Modules.MultiShibLogin
             {
                 string redirectto = "true".Equals(Request["edit"]) ? "edit" : Request["redirectto"];
 
-                Framework.Utilities.SessionManagement sm = new SessionManagement();
+                SessionManagement sm = new SessionManagement();
                 
                 if ("login".Equals(Request["method"]) && sm.Session().IsLoggedIn())
                 {
@@ -110,32 +106,48 @@ namespace Profiles.Login.Modules.MultiShibLogin
         {
         }
 
-        protected void cmdSubmit_Click(object sender, EventArgs e)
+        public static List<String> GetListOfDomainsShibbolizedFirst()
         {
-            string remainingDomains = Root.Domain + ",";
-            // go through all the different Domains
-            foreach (Brand brand in Brand.GetAll())
+            List<String> domains = new List<String>();
+            domains.Add(Root.Domain);
+
+            bool ROUND_ROBIN = false;
+            if (!ROUND_ROBIN)
             {
-                if (!brand.BasePath.Equals(Root.Domain))
+                domains.Add(Brand.GetCurrentBrand().BasePath);
+            }
+            else
+            {
+                // go through all the different Domains
+                foreach (Brand brand in Brand.GetAll())
                 {
-                    remainingDomains += brand.BasePath + ",";
+                    if (!brand.BasePath.Equals(Root.Domain))
+                    {
+                        domains.Add(brand.BasePath);
+                    }
                 }
             }
+
             // Make sure that the first domain matches that of the Shibboleth.LoginURL. 
             // If it does not then add it and assume the person who set up Profiles on this server knew what they were doing!
             Uri shibbolethLogin = new Uri(ConfigurationManager.AppSettings["Shibboleth.LoginURL"]);
-            if (!remainingDomains.Split(',')[0].Contains(shibbolethLogin.Host))
+            if (!domains[0].Contains(shibbolethLogin.Host))
             {
-                remainingDomains = shibbolethLogin.Scheme + "://" + shibbolethLogin.Host + "," + remainingDomains;
+                domains.Insert(0, shibbolethLogin.Scheme + "://" + shibbolethLogin.Host);
             }
 
+            return domains;
+        }
+
+        protected void cmdSubmit_Click(object sender, EventArgs e)
+        {
             // Have login to just one Shibboleth instance and then just pass SessionID to everyone
             Institution institution = Institution.GetByAbbreviation(((ImageButton)sender).Attributes["InstitutionAbbreviation"]);
             string userNameHeader = institution.GetShibbolethUserNameHeader();  //ConfigurationManager.AppSettings["Shibboleth.UserNameHeader"];
             string displayNameHeader = institution.GetShibbolethDisplayNameHeader(); //ConfigurationManager.AppSettings["Shibboleth.DisplayNameHeader"];
 
             // this is the only time we pass through Shibboleth. We currently assume Root.domain is the one that is set up.
-            string target = GetRedirect(true, remainingDomains, "", userNameHeader, String.IsNullOrEmpty(displayNameHeader) ? userNameHeader : displayNameHeader, Request["redirectto"]);
+            string target = GetRedirect(true, String.Join(",", GetListOfDomainsShibbolizedFirst().ToArray()), "", userNameHeader, String.IsNullOrEmpty(displayNameHeader) ? userNameHeader : displayNameHeader, Request["redirectto"]);
        
             string url = ConfigurationManager.AppSettings["Shibboleth.LoginURL"] + "?entityID=" + HttpUtility.UrlEncode(institution.GetShibbolethIdP()) +
                     "&target=" + HttpUtility.UrlEncode(target);
@@ -143,15 +155,17 @@ namespace Profiles.Login.Modules.MultiShibLogin
             Response.Redirect(url);
         }
 
-        private string GetRedirect(bool login, string remainingDomains, string sessionId, string userNameHeader, string displayNameHeader, string redirectto)
+        public static string GetRedirect(bool login, string remainingDomainsStr, string sessionId, string userNameHeader, string displayNameHeader, string redirectto)
         {
             string url = null;
             // if we have many domains, redirect to the first one
-            if (!String.IsNullOrEmpty(remainingDomains))
+            if (!String.IsNullOrEmpty(remainingDomainsStr))
             {
-                string nextDomain = remainingDomains.Split(',')[0];
+                List<string> remainingDomains = new List<string>(remainingDomainsStr.Split(','));
+                string nextDomain = remainingDomains[0];
+                remainingDomains.RemoveAt(0);
                 url = nextDomain + "/login/default.aspx?method=" + (login ? "shibboleth" : "logout") +
-                    "&remainingDomains=" + HttpUtility.UrlEncode(remainingDomains.Replace(nextDomain + ",", "")) +
+                    "&remainingDomains=" + HttpUtility.UrlEncode(String.Join(",", remainingDomains.ToArray())) +
                     "&sessionId=" + sessionId + "&userNameHeader=" + HttpUtility.UrlEncode(userNameHeader) + 
                     "&displayNameHeader=" + HttpUtility.UrlEncode(displayNameHeader) + "&redirectto=" + HttpUtility.UrlEncode(redirectto);
             }

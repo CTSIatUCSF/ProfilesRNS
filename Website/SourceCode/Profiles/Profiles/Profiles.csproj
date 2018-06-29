@@ -378,6 +378,7 @@
     <Content Include="GroupAdmin\Modules\ModuleCatalogue.xml" />
     <Content Include="GroupAdmin\PresentationXML\GroupAdminAuthFailedPresentation.xml" />
     <Content Include="GroupAdmin\PresentationXML\GroupAdminPresentation.xml" />
+    <Content Include="Login\ShibbolethSession.aspx" />
     <Content Include="Login\Images\berkeley.edu.png" />
     <Content Include="Login\Images\lbnl.gov.png" />
     <Content Include="Login\Images\padlock.jpg" />
@@ -398,6 +399,7 @@
     <Content Include="Login\PresentationXML\ADLoginFormPresentation.xml" />
     <Content Include="Login\PresentationXML\MultiShibbolethLoginPresentation.xml" />
     <Content Include="Login\PresentationXML\ShibbolethLoginPresentation.xml" />
+    <Content Include="Login\SigninDisabled.html" />
     <Content Include="ORCID\CreateBatch.aspx" />
     <Content Include="ORCID\CreateMyORCID.aspx" />
     <Content Include="ORCID\CreationConfirmation.aspx" />
@@ -862,6 +864,13 @@
     </Compile>
     <Compile Include="History\Modules\HistoryList\HistoryList.ascx.designer.cs">
       <DependentUpon>HistoryList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Login\ShibbolethSession.aspx.cs">
+      <DependentUpon>ShibbolethSession.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login\ShibbolethSession.aspx.designer.cs">
+      <DependentUpon>ShibbolethSession.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login\Modules\ADLogin\ADLogin.ascx.cs">
       <DependentUpon>ADLogin.ascx</DependentUpon>

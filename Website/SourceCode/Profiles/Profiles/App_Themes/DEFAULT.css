@@ -435,6 +435,6 @@ h2.badge-top  { padding: 12px 0 14px 4px; margin: -68px 0 0 60px; width: 70px; f
 .login_container { border: 1px solid #CCC; display: table; width: 960px; }
 .login_container row { display: table; width: 100%; }
 .login_container div { display: table-cell; text-align: center; }
-.login input[type="image"] { width: 140px; padding: 20px; vertical-align: middle; }
-.login .plus-size input[type="image"] { width: 170px; }
+.login input[type="image"] { width: 160px; padding: 20px; vertical-align: middle; }
+.login .plus-size input[type="image"] { width: 200px; }
 

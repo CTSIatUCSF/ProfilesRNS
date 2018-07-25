@@ -32,7 +32,6 @@
 						<asp:ListItem Value="UCLA" Text="&nbsp;&nbsp;&nbsp;UCLA People" />
 						<asp:ListItem Value="UCSD" Text="&nbsp;&nbsp;&nbsp;UCSD People" />
 						<asp:ListItem Value="UCSF" Text="&nbsp;&nbsp;&nbsp;UCSF People" />
-						<asp:ListItem Value="LBNL" Text="&nbsp;&nbsp;&nbsp;LBL People" />
 						<asp:ListItem Value="USC" Text="&nbsp;&nbsp;&nbsp;USC People" />
 					</asp:DropDownList>
 				</div>
@@ -60,7 +59,6 @@
 						<li><a href="<%=GetDomainFor("UCSD")%>/search/">UCSD</a></li>
 						<li><a href="<%=GetDomainFor("UCSF")%>/search/">UCSF</a></li>
 						<li><a href="<%=GetDomainFor("UC")%>/search/">All UC Health</a></li>
-						<li><a href="<%=GetDomainFor("LBNL")%>/search/">Berkeley Lab</a></li>
 						<li><a href="<%=GetDomainFor("USC")%>/search/">USC</a></li>
 						<li><a href="<%=GetDomainFor("Default")%>/search/">All</a></li>
 					</ul>

@@ -24,10 +24,6 @@
 			<asp:ImageButton ImageUrl="~/login/images/ucsf.edu.png" runat="server" ID="LoginUCSF"
 					InstitutionAbbreviation="UCSF" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login to UCSF"/>
 		</div>
-		<div>
-			<asp:ImageButton ImageUrl="~/login/images/lbnl.gov.png" runat="server" ID="LoginLBNL"
-					InstitutionAbbreviation="LBNL" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login to LBNL"/>
-		</div>
 		<div class="plus-size">
 			<asp:ImageButton ImageUrl="~/login/images/usc.edu.png" runat="server" ID="LoginUSC"
 					InstitutionAbbreviation="USC" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login to USC"/>
@@ -35,6 +31,10 @@
 	</row>
 <!--
 	<row>
+		<div>
+			<asp:ImageButton ImageUrl="~/login/images/lbnl.gov.png" runat="server" ID="LoginLBNL"
+					InstitutionAbbreviation="LBNL" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login to LBNL"/>
+		</div>
 		<div>
 			<asp:ImageButton ImageUrl="~/login/images/ucdavis.edu.png" runat="server" ID="LoginUCD"
                 InstitutionAbbreviation="UCD" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login to UC Davis"/>

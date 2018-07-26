@@ -142,6 +142,11 @@ namespace Profiles.Framework.Modules.MainMenu
             }
             else
             {
+                if (sm.Session().UserID > 0)
+                {
+                    if (data.IsGroupAdmin(sm.Session().UserID))
+                        menulist.Append("<li><a href='" + userBrand.BasePath + "/groupAdmin/default.aspx'>Manage Groups</a></li>");
+                }
                 menulist.Append("<li><a href='" + Brand.GetThemedDomain() + "/login/default.aspx?method=logout&redirectto=" + Brand.GetThemedDomain() + "/About/CloseBrowser.aspx" + "'>SIGN OUT</a></li>");
             }
 

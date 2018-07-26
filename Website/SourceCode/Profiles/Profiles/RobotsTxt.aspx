@@ -4,5 +4,6 @@
 <%Response.Write("Disallow: /sparql/" + Environment.NewLine);%>
 <%Response.Write("Disallow: /profile/" + Environment.NewLine);%>
 <%Response.Write("Disallow: /display/" + Environment.NewLine);%>
+<%Response.Write("Disallow: /search/default.aspx" + Environment.NewLine);%>
 <%Response.Write("Sitemap: " + Request.Url.Scheme + "://" + Request.Url.Host + "/sitemap.xml" + Environment.NewLine);%>
 <%Response.Write("Crawl-Delay: 10" + Environment.NewLine);%>

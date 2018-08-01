@@ -157,7 +157,7 @@ namespace Profiles.Framework
 
             // UCSF. To support lazy login
             String lazyShibLogin = Profiles.Login.ShibbolethSession.GetJavascriptSrc(Request);
-            if (!String.IsNullOrEmpty(lazyShibLogin))
+            if (!String.IsNullOrEmpty(lazyShibLogin) && Brand.GetCurrentBrand() != null)
             {
                 HtmlGenericControl multiShibLogin = new HtmlGenericControl("script");
                 multiShibLogin.Attributes.Add("type", "text/javascript");

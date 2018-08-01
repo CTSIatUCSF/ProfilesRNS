@@ -124,7 +124,12 @@ namespace Profiles.Framework.Utilities
                 this.Namespaces = rdfnamespaces.LoadNamespaces(this.BaseData);
 
             }
-            catch (Exception ex) { Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace); }
+            catch (Exception ex) {
+                Framework.Utilities.DebugLogging.Log("DataURI:" + this.GetModuleParamString("DataURI"));
+                Framework.Utilities.DebugLogging.Log("Root.Domain:" + Root.Domain);
+                Framework.Utilities.DebugLogging.Log("In " + this.GetType().Name);
+                Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
+            }
 
         }
 

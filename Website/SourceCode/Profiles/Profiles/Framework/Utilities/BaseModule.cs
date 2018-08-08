@@ -56,7 +56,8 @@ namespace Profiles.Framework.Utilities
                 if (this.RDFTriple == null)
                 {
                     // only worry about the URI domain, aka Root.domain, for RDF retrival
-                    if (this.BaseData.SelectSingleNode(this.GetModuleParamString("DataURI"), this.Namespaces).InnerText.Contains(Root.Domain))
+                    // UCSF added check for String.Empty
+                    if (this.GetModuleParamString("DataURI") != String.Empty && this.BaseData.SelectSingleNode(this.GetModuleParamString("DataURI"), this.Namespaces).InnerText.Contains(Root.Domain))
                     {
                         string[] vars = this.BaseData.SelectSingleNode(this.GetModuleParamString("DataURI"), this.Namespaces).InnerText.Split('/');
 
@@ -126,7 +127,11 @@ namespace Profiles.Framework.Utilities
             }
             catch (Exception ex) {
                 Framework.Utilities.DebugLogging.Log("DataURI:" + this.GetModuleParamString("DataURI"));
-                Framework.Utilities.DebugLogging.Log("Root.Domain:" + Root.Domain);
+                foreach (ModuleParams mp in this.ModuleParams)
+                {
+                    Framework.Utilities.DebugLogging.Log("ModuleParams[#]:" + mp.Node.OuterXml);
+                }
+
                 Framework.Utilities.DebugLogging.Log("In " + this.GetType().Name);
                 Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
             }

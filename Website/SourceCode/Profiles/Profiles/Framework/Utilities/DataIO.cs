@@ -260,7 +260,7 @@ namespace Profiles.Framework.Utilities
         public Int64 GetSessionSecurityGroup()
         {
 
-            string connstr = GetConnectionString();
+            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
             SessionManagement sm = new SessionManagement();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
@@ -332,6 +332,7 @@ namespace Profiles.Framework.Utilities
                 connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
             }
 
+            Framework.Utilities.DebugLogging.Log(connstr + " CONNECTION USED" + "\r\n");
 
             return connstr;
         }
@@ -613,9 +614,10 @@ namespace Profiles.Framework.Utilities
         /// <param name="session">ref of Framework.Session object that stores the state of a Profiles user session</param>
         public void SessionCreate(ref Session session)
         {
-            SqlParameter[] param = new SqlParameter[2];
+            SqlParameter[] param = new SqlParameter[3];
             param[0] = new SqlParameter("@RequestIP", session.RequestIP);
-            param[1] = new SqlParameter("@UserAgent", session.UserAgent);
+            param[1] = new SqlParameter("@HostName", session.HostName);
+            param[2] = new SqlParameter("@UserAgent", session.UserAgent);
 
 
             using (SqlDataReader dbreader = GetSQLDataReader(GetDBCommand("","[User.Session].[CreateSession]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param)))

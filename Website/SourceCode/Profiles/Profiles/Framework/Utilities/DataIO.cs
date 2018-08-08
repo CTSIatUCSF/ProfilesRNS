@@ -48,7 +48,7 @@ namespace Profiles.Framework.Utilities
                 try
                 {
                     Framework.Utilities.DebugLogging.Log("{CLOUD} DATA BASE start GetPropertyRangeList(propertyuri)");
-                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                    string connstr = GetConnectionString();
 
                     SqlConnection dbconnection = new SqlConnection(connstr);
                     SqlCommand dbcommand = new SqlCommand();
@@ -260,7 +260,7 @@ namespace Profiles.Framework.Utilities
         public Int64 GetSessionSecurityGroup()
         {
 
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = GetConnectionString();
             SessionManagement sm = new SessionManagement();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
@@ -312,10 +312,30 @@ namespace Profiles.Framework.Utilities
             //Need to test for IsBot in session
             string connstr = string.Empty;
 
+            try
+            {
+                if (this.Session != null)
+                {
+                    if (this.Session.IsBot)
+                        connstr = ConfigurationManager.ConnectionStrings["ProfilesBOTDB"].ConnectionString;
+                    else
+                        connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+                }
+                else
                     connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+
+            }
+            catch (Exception ex)
+            {//An error will kick in if this is an Application level request for the rest path data because a session does not exist. If no session exists
+                Framework.Utilities.DebugLogging.Log(connstr + " CONNECTION USED" + "\r\n");
+                connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            }
+
 
             return connstr;
         }
+
         public List<string> GetEagleI(Int64 subject)
         {
 
@@ -881,7 +901,7 @@ namespace Profiles.Framework.Utilities
         public string GetProperty(Int64 predicateId)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlDataReader reader = null;

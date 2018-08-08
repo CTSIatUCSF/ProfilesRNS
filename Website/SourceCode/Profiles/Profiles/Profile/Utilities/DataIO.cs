@@ -50,8 +50,7 @@ namespace Profiles.Profile.Utilities
 
                     if (request.Type != string.Empty)
                     {
-
-                        string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                        string connstr = GetConnectionString();
 
                         SqlConnection dbconnection = new SqlConnection(connstr);
                         SqlCommand dbcommand = new SqlCommand();
@@ -140,7 +139,7 @@ namespace Profiles.Profile.Utilities
             {
                 xmlrtn = new XmlDocument();
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                    string connstr = GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
                 SqlCommand dbcommand = new SqlCommand("[rdf.].[GetPresentationXML]");
 
@@ -206,7 +205,7 @@ namespace Profiles.Profile.Utilities
                 {
                     xmlrtn = new XmlDocument();
                     UsedCache = true;
-                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                    string connstr = GetConnectionString();
 
                     SqlConnection dbconnection = new SqlConnection(connstr);
                     SqlCommand dbcommand = new SqlCommand();
@@ -294,7 +293,7 @@ namespace Profiles.Profile.Utilities
 
         public byte[] GetUserPhotoList(Int64 NodeID)
         {
-            using (SqlConnection dbconnection = new SqlConnection(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString))
+            using (SqlConnection dbconnection = new SqlConnection(GetConnectionString()))
             {
                 dbconnection.Open();
 
@@ -316,7 +315,7 @@ namespace Profiles.Profile.Utilities
             string xmlstr = string.Empty;
             XmlDocument xmlrtn = new XmlDocument();
 
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = GetConnectionString();
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlCommand dbcommand = new SqlCommand("[Profile.Module].[CustomViewPersonSameDepartment.GetList]");
 
@@ -356,7 +355,7 @@ namespace Profiles.Profile.Utilities
             {
                 try
                 {
-                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                    string connstr = GetConnectionString();
                     SqlConnection dbconnection = new SqlConnection(connstr);
 
                     System.Text.StringBuilder sql = new System.Text.StringBuilder();
@@ -480,7 +479,7 @@ namespace Profiles.Profile.Utilities
             SessionManagement sm = new SessionManagement();
             string xml = string.Empty;
 
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = GetConnectionString();
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlCommand dbcommand = new SqlCommand("[Profile.Module].[NetworkCloud.Person.HasResearchArea.GetXML]");
 
@@ -510,7 +509,7 @@ namespace Profiles.Profile.Utilities
             SessionManagement sm = new SessionManagement();
             string xml = string.Empty;
 
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = GetConnectionString();
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlCommand dbcommand = new SqlCommand("[Profile.Module].[NetworkCategory.Person.HasResearchArea.GetXML]");
 
@@ -543,7 +542,7 @@ namespace Profiles.Profile.Utilities
 
             SessionManagement sm = new SessionManagement();
 
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = GetConnectionString();
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlCommand dbcommand = new SqlCommand("[Profile.Module].[CustomViewAuthorInAuthorship.GetList]");
 
@@ -564,7 +563,7 @@ namespace Profiles.Profile.Utilities
         public SqlDataReader GetProfileConnection(RDFTriple request, string storedproc)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = GetConnectionString();
             var db = new SqlConnection(connstr);
 
             db.Open();
@@ -582,7 +581,7 @@ namespace Profiles.Profile.Utilities
         public DataView GetNetworkTimeline(RDFTriple request, string storedproc)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = GetConnectionString();
             SqlDataAdapter dataAdapter = null;
             DataSet dataSet = null;
             DataView dataView = null;
@@ -602,7 +601,7 @@ namespace Profiles.Profile.Utilities
         public SqlDataReader GetGoogleTimeline(RDFTriple request, string storedproc, Brand brand)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = GetConnectionString();
             var db = new SqlConnection(connstr);
 
             db.Open();
@@ -623,7 +622,7 @@ namespace Profiles.Profile.Utilities
         public SqlDataReader GetPublicationSupportHtml(RDFTriple request, bool editMode)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = GetConnectionString();
             var db = new SqlConnection(connstr);
 
             db.Open();
@@ -641,7 +640,7 @@ namespace Profiles.Profile.Utilities
         public SqlDataReader GetConceptSimilarMesh(RDFTriple request)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = GetConnectionString();
             var db = new SqlConnection(connstr);
 
             db.Open();
@@ -658,7 +657,7 @@ namespace Profiles.Profile.Utilities
         public SqlDataReader GetConceptTopJournal(RDFTriple request)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = GetConnectionString();
             var db = new SqlConnection(connstr);
 
             db.Open();
@@ -675,7 +674,7 @@ namespace Profiles.Profile.Utilities
         public SqlDataReader GetConceptPublications(RDFTriple request)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = GetConnectionString();
 
             var db = new SqlConnection(connstr);
             db.Open();
@@ -698,7 +697,7 @@ namespace Profiles.Profile.Utilities
         public System.Xml.Linq.XDocument GetConceptMeshInfo(RDFTriple request)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = GetConnectionString();
 
             using (var db = new SqlConnection(connstr))
             {
@@ -735,7 +734,7 @@ namespace Profiles.Profile.Utilities
             {
                 try
                 {
-                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                    string connstr = GetConnectionString();
                     SqlConnection dbconnection = new SqlConnection(connstr);
                     SqlCommand dbcommand = new SqlCommand("[Profile.Module].[NetworkRadial.GetCoauthors]");
 
@@ -782,7 +781,7 @@ namespace Profiles.Profile.Utilities
             {
                 try
                 {
-                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                    string connstr = GetConnectionString();
                     SqlConnection dbconnection = new SqlConnection(connstr);
                     SqlCommand dbcommand = new SqlCommand("[Profile.Module].[NetworkRadial.GetCoauthors]");
 
@@ -890,7 +889,7 @@ namespace Profiles.Profile.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -922,7 +921,7 @@ namespace Profiles.Profile.Utilities
             {
 
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();

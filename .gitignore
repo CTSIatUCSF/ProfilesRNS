@@ -10,6 +10,7 @@
 *.vspscc
 *.orig
 *.dll.config
+.vs/
 /Website/SourceCode/Profiles/Profiles/GitVersion.txt
 /Website/SourceCode/Profiles/Profiles/Profiles.Publish.xml
 /Website/SourceCode/Profiles/Profiles/ProfilesDebuggingLog.txt

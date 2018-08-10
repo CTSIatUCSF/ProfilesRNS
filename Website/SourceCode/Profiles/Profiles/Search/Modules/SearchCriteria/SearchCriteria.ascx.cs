@@ -92,8 +92,8 @@ namespace Profiles.Search.Modules.SearchCriteria
             {
                 if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://vivoweb.org/ontology/core#positionInOrganization']/@IsExclude", base.Namespaces).Value == "1")
                     Institution = "(Except)";
-
-                Institution += data.GetConvertedURIListItem(data.GetInstitutions(Brand.GetCurrentBrand()), base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://vivoweb.org/ontology/core#positionInOrganization']", base.Namespaces).InnerText);
+                // need to open this one up to any institution becaause it could be for the mini search during a cross branded search
+                Institution += data.GetConvertedURIListItem(data.GetInstitutions(Brand.getDefault()), base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:overview/SearchOptions/MatchOptions/SearchFiltersList/SearchFilter[@Property2='http://vivoweb.org/ontology/core#positionInOrganization']", base.Namespaces).InnerText);
                 output += "<li>" + Institution + "</li>";
             }
 

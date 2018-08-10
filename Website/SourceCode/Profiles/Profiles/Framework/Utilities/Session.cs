@@ -41,6 +41,7 @@ namespace Profiles.Framework.Utilities
         public DateTime LoginDate { get; set; }
         public DateTime LogoutDate { get; set; }
         public string RequestIP { get; set; }
+        public string HostName { get; set; }
         public int UserID { get; set; }
         public int PersonID { get; set; }
         public Int64 NodeID { get; set; }
@@ -152,6 +153,23 @@ namespace Profiles.Framework.Utilities
             HttpContext.Current.Session["PROFILES_SESSION"] = null;
             HttpContext.Current.Session.Abandon();
         }
+        // UCSF, from https://stackoverflow.com/questions/735350/how-to-get-a-users-client-ip-address-in-asp-net
+        protected string GetIPAddress()
+        {
+            System.Web.HttpContext context = System.Web.HttpContext.Current;
+            string ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+
+            if (!string.IsNullOrEmpty(ipAddress))
+            {
+                string[] addresses = ipAddress.Split(',');
+                if (addresses.Length != 0)
+                {
+                    return addresses[0];
+                }
+            }
+
+            return context.Request.ServerVariables["REMOTE_ADDR"];
+        }
 
         /// <summary>
         ///     Public method used to create an instance of the custom Profiles session object.
@@ -172,20 +190,10 @@ namespace Profiles.Framework.Utilities
 
             DataIO dataio = new DataIO();
             Session session = new Session();
-            string hostname = System.Net.Dns.GetHostName();
 
-            string ipaddress = string.Empty;
-            try
-            {
-                ipaddress = System.Net.Dns.GetHostAddresses(hostname).GetValue(1).ToString();
-            }
-            catch (Exception ex)
-            {
-                Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
-                ipaddress = "";
-            }
+            session.RequestIP = GetIPAddress();
+            session.HostName = System.Net.Dns.GetHostName();
 
-            session.RequestIP = ipaddress;
             session.UserAgent = HttpContext.Current.Request.UserAgent;
             session.IsBot = IsBot(session.UserAgent);
 

@@ -55,7 +55,7 @@ namespace Profiles.Login
 
         public static string GetJavascriptSrc(HttpRequest request)
         {        
-            if (String.IsNullOrEmpty(ConfigurationManager.AppSettings["Shibboleth.LoginURL"]) || Brand.GetCurrentBrand() == null)
+            if (String.IsNullOrEmpty(ConfigurationManager.AppSettings["Shibboleth.LoginURL"]) || Brand.GetCurrentBrand() == null || request.Path.Contains("/Error"))
             {
                 return null;
             }

@@ -161,7 +161,7 @@ namespace Profiles.Framework
             {
                 HtmlGenericControl multiShibLogin = new HtmlGenericControl("script");
                 multiShibLogin.Attributes.Add("type", "text/javascript");
-                ThemeJs.Attributes.Add("src", lazyShibLogin);
+                multiShibLogin.Attributes.Add("src", lazyShibLogin);
                 Page.Header.Controls.Add(multiShibLogin);
             }
 

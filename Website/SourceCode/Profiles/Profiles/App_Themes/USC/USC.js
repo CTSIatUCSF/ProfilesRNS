@@ -38,7 +38,7 @@
 				$(this).parent().append("<a href='https://plu.mx/usc/a/?pmid=" + pmid[0] + "' class='plumx-plum-print-popup' data-popup='bottom' data-hide-when-empty='true' data-site='usc' data-badge='true'></a>");
 			}
 		});
-		$.getScript('http://d39af2mgp1pqhg.cloudfront.net/widget-popup.js');
+		$.getScript('https://d39af2mgp1pqhg.cloudfront.net/widget-popup.js');
 	  }
 	}, 7000);
 

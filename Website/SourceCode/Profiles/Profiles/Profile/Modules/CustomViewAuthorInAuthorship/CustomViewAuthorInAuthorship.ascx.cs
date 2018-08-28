@@ -179,7 +179,7 @@ namespace Profiles.Profile.Modules
                             // this is the only match with first initial
                             (author.IndexOf(lastNamePlus + firstInitial) == 0 && authors.IndexOf(lastNamePlus + firstInitial, authors.IndexOf(author) + author.Length) == -1))
                         {
-                            return authors.Replace(author, "<b>" + lastNamePlus + firstInitial + "</b>");
+                            return authors.Replace(author, "<b>" + author + "</b>");
                         }
                     }
                 }

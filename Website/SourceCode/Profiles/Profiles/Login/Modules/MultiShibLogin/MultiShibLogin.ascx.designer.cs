@@ -13,15 +13,6 @@ namespace Profiles.Login.Modules.MultiShibLogin {
     public partial class MultiShibLogin {
         
         /// <summary>
-        /// LoginUCB control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton LoginUCB;
-        
-        /// <summary>
         /// LoginUCD control.
         /// </summary>
         /// <remarks>
@@ -40,15 +31,6 @@ namespace Profiles.Login.Modules.MultiShibLogin {
         protected global::System.Web.UI.WebControls.ImageButton LoginUCI;
         
         /// <summary>
-        /// LoginUCLA control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton LoginUCLA;
-        
-        /// <summary>
         /// LoginUCSD control.
         /// </summary>
         /// <remarks>
@@ -65,5 +47,32 @@ namespace Profiles.Login.Modules.MultiShibLogin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton LoginUCSF;
+        
+        /// <summary>
+        /// LoginUSC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton LoginUSC;
+        
+        /// <summary>
+        /// LoginLBNL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton LoginLBNL;
+        
+        /// <summary>
+        /// LoginUCLA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton LoginUCLA;
     }
 }

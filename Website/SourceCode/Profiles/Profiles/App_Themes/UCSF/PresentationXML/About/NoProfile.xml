@@ -1,0 +1,39 @@
+﻿<Presentation PresentationClass="profile">
+  <PageOptions Columns="2"/>
+  <WindowName>About</WindowName>  
+  <PageTitle>How to Request a Profile</PageTitle>
+  <PageBackLinkName></PageBackLinkName>
+  <PageBackLinkURL></PageBackLinkURL>
+  <PageSubTitle></PageSubTitle>
+  <PageDescription></PageDescription>  
+  <PanelList>
+    <Panel type="header"  />
+    <Panel type="page" />
+    <Panel Type="active">
+      <Module ID="MainMenu"/>
+    </Panel>
+    <Panel Type="main">
+      <Module ID="HTMLBlock">
+        <ParamList>
+          <Param Name="HTML">
+
+<script type="text/javascript">
+$('#suckerfishmenu li#about a').addClass('active'); 
+</script>
+
+<p>It looks like you don't have a profile page yet, so you can't edit it. If you would like to have a profile page, 
+please go to the <a href="https://directory.ucsf.edu/" target="_blank">UCSF Directory</a>, click Edit My Record and 
+make sure your record visibility setting is "Public". 
+Unless you allow your data on public websites, UCSF Profiles can not make a page for you. Then send your full name 
+and employee ID (starts with 02 and has nine digits) to <a href="mailto:profiles@ucsf.edu">profiles@ucsf.edu</a> to 
+request a page. We will create your page and notify you when it is live, typically in 5-6 business days.</p>
+
+          </Param>
+        </ParamList>
+      </Module>
+      <Panel Type="passive"/>
+      <Panel type="footer" />
+    </Panel> 
+  </PanelList>
+</Presentation>
+

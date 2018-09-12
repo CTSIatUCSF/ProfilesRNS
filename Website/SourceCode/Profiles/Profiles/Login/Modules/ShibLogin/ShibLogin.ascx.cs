@@ -116,17 +116,17 @@ namespace Profiles.Login.Modules.ShibLogin
             {
                 return Brand.GetThemedDomain();
             }
-            else if ("mypage".Equals(redirectto.ToLower()) && sm.Session().NodeID > 0)
+            else if ("mypage".Equals(redirectto.ToLower()) )
             {
-                return Brand.GetForSubject(sm.Session().NodeID).BasePath + "/profile/" + sm.Session().NodeID;
+                return Brand.GetForSubject(sm.Session().NodeID).BasePath + (sm.Session().NodeID > 0 ? "/profile/" + sm.Session().NodeID : "/About/NoProfile.aspx");
             }
-            else if ("myproxies".Equals(redirectto.ToLower()) && sm.Session().NodeID > 0)
+            else if ("myproxies".Equals(redirectto.ToLower()))
             {
-                return Brand.GetForSubject(sm.Session().NodeID).BasePath + "/proxy/default.aspx?subject=" + sm.Session().NodeID;
+                return Brand.GetForSubject(sm.Session().NodeID).BasePath + (sm.Session().NodeID > 0 ? "/proxy/default.aspx?subject=" + sm.Session().NodeID : "/About/NoProfile.aspx");
             }
-            else if ("edit".Equals(redirectto.ToLower()) && sm.Session().NodeID > 0)
+            else if ("edit".Equals(redirectto.ToLower()))
             {
-                return Brand.GetForSubject(sm.Session().NodeID).BasePath + "/edit/" + sm.Session().NodeID;
+                return Brand.GetForSubject(sm.Session().NodeID).BasePath + (sm.Session().NodeID > 0 ? "/edit/" + sm.Session().NodeID : "/About/NoProfile.aspx");
             }
             else if (redirectto.ToLower().StartsWith("http")) // make sure it at least looks legit
             {

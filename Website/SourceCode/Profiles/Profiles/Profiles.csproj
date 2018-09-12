@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="503.html" />
+    <Content Include="About\NoProfile.aspx" />
     <Content Include="About\AboutProfiles.aspx" />
     <Content Include="About\FAQ.aspx" />
     <Content Include="About\CloseBrowser.aspx" />
@@ -138,7 +139,6 @@
     <Content Include="About\Images\tryit.gif" />
     <Content Include="About\Images\video.JPG" />
     <Content Include="About\NewFeatures.aspx" />
-    <Content Include="About\NoProfile.aspx" />
     <Content Include="About\Optin.aspx" />
     <Content Include="About\PresentationXML\AboutProfiles.xml" />
     <Content Include="About\PresentationXML\CloseBrowser.xml" />
@@ -541,6 +541,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About\NoProfile.aspx.cs">
+      <DependentUpon>NoProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About\NoProfile.aspx.designer.cs">
+      <DependentUpon>NoProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="About\AboutProfiles.aspx.cs">
       <DependentUpon>AboutProfiles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

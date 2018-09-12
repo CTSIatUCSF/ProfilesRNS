@@ -128,12 +128,16 @@ namespace Profiles.Login.Modules.ShibLogin
             {
                 return Brand.GetForSubject(sm.Session().NodeID).BasePath + "/edit/" + sm.Session().NodeID;
             }
-            else 
+            else if (redirectto.ToLower().StartsWith("http")) // make sure it at least looks legit
             {
                 // use full part of query after the redirectto parameter because it might have 
                 // LOG THIS!
                 return redirectto;
                 //Response.Redirect(Request.Url.Query.Substring(Request.Url.Query.IndexOf("redirectto=") + "redirectto=".Length));
+            }
+            else
+            {
+                return Brand.GetThemedDomain();
             }
         }
 

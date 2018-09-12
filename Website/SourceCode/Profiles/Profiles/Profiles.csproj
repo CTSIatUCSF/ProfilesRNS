@@ -135,6 +135,7 @@
     <Content Include="About\Images\tryit.gif" />
     <Content Include="About\Images\video.JPG" />
     <Content Include="About\NewFeatures.aspx" />
+    <Content Include="About\NoProfile.aspx" />
     <Content Include="About\Optin.aspx" />
     <Content Include="About\PresentationXML\AboutProfiles.xml" />
     <Content Include="About\PresentationXML\CloseBrowser.xml" />
@@ -144,6 +145,7 @@
     <Content Include="About\PresentationXML\Help.xml" />
     <Content Include="About\PresentationXML\HowProfilesWorks.xml" />
     <Content Include="About\PresentationXML\NewFeatures.xml" />
+    <Content Include="About\PresentationXML\NoProfile.xml" />
     <Content Include="About\PresentationXML\Optin.xml" />
     <Content Include="Activity\Modules\ActivityHistory\ActivityDetails.aspx" />
     <Content Include="Activity\Modules\ActivityHistory\ActivityHistory.ascx" />
@@ -287,6 +289,7 @@
     <Content Include="App_Themes\UCSF\PresentationXML\About\ForDevelopers.xml" />
     <Content Include="App_Themes\UCSF\PresentationXML\About\Help.xml" />
     <Content Include="App_Themes\UCSF\PresentationXML\About\NewFeatures.xml" />
+    <Content Include="App_Themes\UCSF\PresentationXML\About\NoProfile.xml" />
     <Content Include="App_Themes\UCSF\UCSF.css" />
     <Content Include="App_Themes\UCSF\UCSF.js" />
     <Content Include="App_Themes\UC\Images\backtotop.gif" />

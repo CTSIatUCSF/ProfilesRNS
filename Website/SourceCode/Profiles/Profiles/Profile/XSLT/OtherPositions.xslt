@@ -37,7 +37,6 @@
         </td>
       </xsl:if>
     </tr>
-    <!-- UCSF, we do not support having many of these at the moment
     <tr>
       <xsl:variable name="uriOrganization" select="vivo:positionInOrganization/@rdf:resource"/>
       <xsl:apply-templates select="//rdf:Description[@rdf:about = $uriOrganization]" mode="organization"/>
@@ -50,7 +49,6 @@
       <xsl:variable name="uriDivision" select="prns:positionInDivision/@rdf:resource"/>
       <xsl:apply-templates select="//rdf:Description[@rdf:about = $uriDivision]" mode="division"/>
     </tr>
-    -->
     <!--<xsl:if test="position()!= last()">-->
     <tr>
       <th>

@@ -33,7 +33,7 @@ namespace Profiles.Login.Modules.MultiShibLogin
                 
                 if ("login".Equals(Request["method"]) && sm.Session().IsLoggedIn())
                 {
-                    Response.Redirect(Profiles.Login.Modules.ShibLogin.ShibLogin.GetRedirectForAuthenticatedUser(redirectto));
+                    Response.Redirect(ShibLogin.ShibLogin.GetRedirectForAuthenticatedUser(redirectto));
                 }
                 else if ("logout".Equals(Request["method"]))
                 {
@@ -64,34 +64,34 @@ namespace Profiles.Login.Modules.MultiShibLogin
 
                     if (String.IsNullOrEmpty(Request["sessionId"]))
                     {
-                        Profiles.Login.Utilities.DataIO data = new Profiles.Login.Utilities.DataIO();
+                        Utilities.DataIO data = new Utilities.DataIO();
                         // they just logged in
                         bool inProfiles = false;
 
                         string userNameHeader = Request["userNameHeader"];
                         string displayNameHeader = Request["displayNameHeader"];
 
-                        string userName = Request.Headers.Get(userNameHeader); //"025693078";
-                        Framework.Utilities.DebugLogging.Log("Logging in " + userName);
+                        string userName = ShibLogin.ShibLogin.GetShibbolethAttribute(Request, userNameHeader); //"025693078";
+                        DebugLogging.Log("Logging in " + userName);
                         if (userName != null && userName.Trim().Length > 0)
                         {
-                            Profiles.Login.Utilities.User user = new Profiles.Login.Utilities.User();
+                            Utilities.User user = new Profiles.Login.Utilities.User();
 
                             user.UserName = userName;
                             inProfiles = data.UserLoginExternal(ref user);
                         }
                         if (!inProfiles)
                         {
-                            session.DisplayName = String.IsNullOrEmpty(Request.Headers.Get(displayNameHeader)) ? Request.Headers.Get(userNameHeader) : Request.Headers.Get(displayNameHeader);
+                            session.DisplayName = String.IsNullOrEmpty(ShibLogin.ShibLogin.GetShibbolethAttribute(Request, displayNameHeader)) ? ShibLogin.ShibLogin.GetShibbolethAttribute(Request, userNameHeader) : ShibLogin.ShibLogin.GetShibbolethAttribute(Request, displayNameHeader);
                             // update the session to capture DisplayName
                             data.SessionUpdate(ref session);
                         }
-                        Framework.Utilities.DebugLogging.Log("Logged in " + userName + " with session " + session.SessionID + " inProfiles " + inProfiles);
+                        DebugLogging.Log("Logged in " + userName + " with session " + session.SessionID + " inProfiles " + inProfiles);
                     }
                     else 
                     {
                         // now we need to wire this into the session!
-                        Profiles.Framework.Utilities.DataIO data = new Profiles.Framework.Utilities.DataIO();
+                        DataIO data = new DataIO();
                         session.SessionID = Request["sessionId"];
                         data.SessionUpdate(ref session);
                     }
@@ -151,7 +151,7 @@ namespace Profiles.Login.Modules.MultiShibLogin
        
             string url = ConfigurationManager.AppSettings["Shibboleth.LoginURL"] + "?entityID=" + HttpUtility.UrlEncode(institution.GetShibbolethIdP()) +
                     "&target=" + HttpUtility.UrlEncode(target);
-            Framework.Utilities.DebugLogging.Log("MultiShib redirecting to :" + url);
+            DebugLogging.Log("MultiShib redirecting to :" + url);
             Response.Redirect(url);
         }
 
@@ -172,7 +172,7 @@ namespace Profiles.Login.Modules.MultiShibLogin
             else if (login)
             {
                 // final part of login
-                url = Profiles.Login.Modules.ShibLogin.ShibLogin.GetRedirectForAuthenticatedUser(redirectto);
+                url = ShibLogin.ShibLogin.GetRedirectForAuthenticatedUser(redirectto);
             }
             else
             {
@@ -180,7 +180,7 @@ namespace Profiles.Login.Modules.MultiShibLogin
                 url = ConfigurationManager.AppSettings["Shibboleth.LogoutURL"] + "?return=" + HttpUtility.UrlEncode(redirectto);
             }
 
-            Framework.Utilities.DebugLogging.Log("MultiShib building redirect to :" + url);
+            DebugLogging.Log("MultiShib building redirect to :" + url);
             return url;
         }
 

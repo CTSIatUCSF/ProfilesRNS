@@ -44,7 +44,7 @@ namespace Profiles.Login.Modules.ShibLogin
                     // If they specify an Idp, then check that they logged in from the configured IDP
                     bool authenticated = false;
 
-                    String userName = Request.Headers.Get(userNameHeader); //"025693078";
+                    String userName = GetShibbolethAttribute(Request, userNameHeader); //"025693078";
                     if (userName != null && userName.Trim().Length > 0)
                     {
                         Profiles.Login.Utilities.DataIO data = new Profiles.Login.Utilities.DataIO();
@@ -60,7 +60,7 @@ namespace Profiles.Login.Modules.ShibLogin
                     if (!authenticated)
                     {
                         // try and just put their name in the session.
-                        sm.Session().DisplayName = String.IsNullOrEmpty(Request.Headers.Get(displayNameHeader)) ? Request.Headers.Get(userNameHeader) : Request.Headers.Get(displayNameHeader);
+                        sm.Session().DisplayName = String.IsNullOrEmpty(GetShibbolethAttribute(Request, displayNameHeader)) ? GetShibbolethAttribute(Request, userNameHeader) : GetShibbolethAttribute(Request, displayNameHeader);
                         RedirectAuthenticatedUser();
                     }
                 }
@@ -87,6 +87,12 @@ namespace Profiles.Login.Modules.ShibLogin
             }
 
 
+        }
+
+        public static string GetShibbolethAttribute(HttpRequest request, string attribute)
+        {
+            // new school vs oldschool
+            return String.IsNullOrEmpty(request[attribute]) ? request.Headers[attribute] : request[attribute];
         }
 
         private void RedirectAuthenticatedUser()

@@ -14,7 +14,7 @@
 	<row>
 		<div>
 			<asp:ImageButton ImageUrl="~/login/images/ucdavis.edu.png" runat="server" ID="LoginUCD"
-                InstitutionAbbreviation="UCD" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login to UC Davis"/>
+                InstitutionAbbreviation="UC Davis" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login to UC Davis"/>
 		</div>
 		<div>
 			<asp:ImageButton ImageUrl="~/login/images/uci.edu.gif" runat="server" ID="LoginUCI"

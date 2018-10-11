@@ -88,7 +88,7 @@
 								<img src="<%=GetThemedDomain()%>/App_Themes/UC/Images/uclogo137.png" alt="University of California" /></a>
 						</div>
 						<div id="site-logo">
-							<h1><a href="<%=GetThemedDomain()%>/">UC Profiles</a></h1>
+							<h1><a href="<%=GetThemedDomain()%>/">UC Health Profiles</a></h1>
 						</div>
 					</div>
                 </div>
@@ -147,10 +147,10 @@
                     <div id="ucsfnav">
                         <ul>
                             <li>
-                                <a href="https://www.ucdavis.edu/" target="_blank">UC Davis</a>								</a>
+                                <a href="https://www.ucdavis.edu/" target="_blank">UC Davis</a>
                             </li>
                             <li>
-                                <a title="University of California, Irvine" href="https://uci.edu" target="_blank">UCI</a>								</a>
+                                <a title="University of California, Irvine" href="https://uci.edu" target="_blank">UCI</a>
                             </li>
                             <li>
                                 <a href="http://www.ucla.edu/" target="_blank">UCLA</a>
@@ -161,9 +161,6 @@
                             <li>
                                 <a title="University of California, San Francisco" href="http://www.ucsf.edu/" target="_blank">UCSF</a>
                             </li>
-							<li>
-								<a title="Lawrence Berkeley Laboratories" href="http://www.lbl.gov/" target="_blank">LBL</a>
-							</li>
 							<li>
 								<a title="University of Southern California" href="http://www.usc.edu/" target="_blank">USC</a>
 							</li>
@@ -183,7 +180,7 @@
                     <div id="ucsfnav">
                         <ul>
                             <li class="first">
-                                <a href="https://uci.edu" target="_blank">University of California, Irvine</a>								</a>
+                                <a href="https://uci.edu" target="_blank">University of California, Irvine</a>
                             </li>
 						</ul>
 					</div>

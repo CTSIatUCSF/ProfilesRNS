@@ -95,6 +95,7 @@ Researchers working on the same topics
   <li><a href="#view">Who can view UCI Profiles?</a></li>
   <li><a href="#login">How do I sign in to UCI Profiles?</a></li>
   <li><a href="#pubs">Why are there missing or incorrect publications in my profile? How can I correct this?</a></li>
+  <li><a href="#proxy">Can someone manage my profile page for me?</a></li>
   <li><a href="#manage">Who manages UCI Profiles?</a></li>
 </ul>
 
@@ -130,6 +131,14 @@ Researchers working on the same topics
   <li>You can make corrections by searching PubMed from within Profiles to add, edit or delete publications. By curating publications 
   manually, you are helping UCI Profiles to identify which concepts and co-authors are correctly associated with your profile, 
   thereby increasing the likelihood of finding the right publications on subsequent attempts. </li>
+</ul>
+
+<h3 id="proxy">Can someone manage my profile page for me?</h3>
+<ul>
+  <li>Yes. Proxies are people within Profiles who can edit other people's profiles on their behalf. For example, faculty can designate 
+  their assistants as proxies to edit their profiles. If you have a profile, then one or more proxies might be assigned to you automatically 
+  by your department or institution. You also have the option of designating your own proxies by signing in and going to Manage Proxies in 
+  the edit menu. Proxies do not need to have profile pages themselves.</li>
 </ul>
 
 <h3 id="manage">Who manages UCI Profiles?</h3>

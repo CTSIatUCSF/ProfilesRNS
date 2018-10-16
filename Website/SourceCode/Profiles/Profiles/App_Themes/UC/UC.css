@@ -11,7 +11,7 @@
 
 /* banner */
 .institutionHeader { background: #eef9ff url("Images/ucbg.jpg") no-repeat scroll 20% top; }
-#uc { float:left; width: 230px; height: 95px; }
+#uc { float:left; width: 200px; height: 95px; }
 #uc img { padding: 15px 0 0 10px; }
 #site-logo h1 { margin: 35px 0 0 10px; }
 

@@ -62,6 +62,7 @@ namespace Profiles.Login.Modules.MultiShibLogin
                     Session session = sm.Session();
                     string remainingDomains = String.IsNullOrEmpty(Request["remainingDomains"]) ? String.Empty : Request["remainingDomains"];
 
+                    // also need to take into account situations where they are logged into shibboleth but NOT profiles
                     if (String.IsNullOrEmpty(Request["sessionId"]))
                     {
                         Utilities.DataIO data = new Utilities.DataIO();

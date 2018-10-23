@@ -136,8 +136,7 @@ namespace Profiles.Framework.Modules.MainMenu
             {
                 if (!Root.AbsolutePath.Contains("login"))
                 {
-                    menulist.Append("<li id='signin'><a href='" + Brand.GetThemedDomain() + "/login/default.aspx?pin=send&method=login&redirectto=" + Brand.GetThemedDomain() + Root.AbsolutePath 
-						+ "'>SIGN IN TO EDIT</a></li>");
+                    menulist.Append("<li id='signin'><a href='" + Brand.GetThemedDomain() + "/login/default.aspx?method=login&redirectto=edit'>SIGN IN TO EDIT</a></li>");
                 }
             }
             else

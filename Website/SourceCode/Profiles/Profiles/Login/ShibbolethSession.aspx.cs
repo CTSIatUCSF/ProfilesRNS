@@ -17,6 +17,7 @@ using System.Configuration;
 
 using Profiles.Framework.Utilities;
 using Profiles.Login.Modules.MultiShibLogin;
+using Profiles.Login.Modules.ShibLogin;
 using System.Web;
 
 namespace Profiles.Login
@@ -33,7 +34,7 @@ namespace Profiles.Login
             Session session = sm.Session();
 
             // not logged into this domain but logged in via shibboleth
-            if ("False".Equals(Request["loggedIn"]) && !String.IsNullOrEmpty(Request.Headers.Get("ShibSessionID")))
+            if ("False".Equals(Request["loggedIn"]) && HasShibbolethSession(Request))
             {
                 // user is logged into shibboleth but not here
                 jsonresult.Add("redirect", HttpUtility.UrlEncode(MultiShibLogin.GetRedirect(true, 
@@ -41,7 +42,7 @@ namespace Profiles.Login
                     session.SessionID, "", "", 
                     Request["redirectto"])));
             }
-            else if ("True".Equals(Request["loggedIn"]) && String.IsNullOrEmpty(Request.Headers.Get("ShibSessionID")))
+            else if ("True".Equals(Request["loggedIn"]) && !HasShibbolethSession(Request))
             {
                 sm.SessionLogout();
                 sm.SessionDestroy();
@@ -52,6 +53,13 @@ namespace Profiles.Login
             Response.ContentType = "application/javascript";
             Response.Write(Request["callback"] + "(" + serializer.Serialize(jsonresult) + ");"); 
         }
+
+        public static bool HasShibbolethSession(HttpRequest request)
+        {
+            // new school vs oldschool
+            return !String.IsNullOrEmpty(ShibLogin.GetShibbolethAttribute(request, "ShibSessionID")) || !String.IsNullOrEmpty(ShibLogin.GetShibbolethAttribute(request, "Shib-Session-ID"));
+        }
+
 
         public static string GetJavascriptSrc(HttpRequest request)
         {        

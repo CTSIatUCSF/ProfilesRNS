@@ -463,7 +463,7 @@ namespace Profiles.Framework
             {
                 buffer = buffer + " | ";
             }
-            Page.Header.Title = buffer + Page.Theme + " Profiles";
+            Page.Header.Title = buffer + Brand.GetNiceTitle(Page.Theme) + " Profiles";
         }
 
         #region "Panel Methods"

@@ -59,9 +59,15 @@ namespace Profiles.Framework.Utilities
         {
             return ByTheme.ContainsKey(Theme) ? ByTheme[Theme] : null;
         }
+
         public static Brand GetByPrimaryInstituion(Institution institution)
         {
             return ByPrimaryInstitution[institution];
+        }
+
+        public static String GetNiceTitle(string theme)
+        {
+            return Brand.GetByTheme(theme).IsMultiInstitutional() ? theme : Brand.GetByTheme(theme).GetInstitution().GetAbbreviation();
         }
 
         static public Brand GetByURL(string URL)

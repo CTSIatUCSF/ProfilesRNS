@@ -44,7 +44,7 @@ namespace Profiles.Login.Modules.ShibLogin
                     // If they specify an Idp, then check that they logged in from the configured IDP
                     bool authenticated = false;
 
-                    String userName = Request.Headers.Get(userNameHeader); //"025693078";
+                    String userName = GetShibbolethAttribute(Request, userNameHeader); //"025693078";
                     if (userName != null && userName.Trim().Length > 0)
                     {
                         Profiles.Login.Utilities.DataIO data = new Profiles.Login.Utilities.DataIO();
@@ -60,7 +60,7 @@ namespace Profiles.Login.Modules.ShibLogin
                     if (!authenticated)
                     {
                         // try and just put their name in the session.
-                        sm.Session().DisplayName = String.IsNullOrEmpty(Request.Headers.Get(displayNameHeader)) ? Request.Headers.Get(userNameHeader) : Request.Headers.Get(displayNameHeader);
+                        sm.Session().DisplayName = String.IsNullOrEmpty(GetShibbolethAttribute(Request, displayNameHeader)) ? GetShibbolethAttribute(Request, userNameHeader) : GetShibbolethAttribute(Request, displayNameHeader);
                         RedirectAuthenticatedUser();
                     }
                 }
@@ -89,6 +89,12 @@ namespace Profiles.Login.Modules.ShibLogin
 
         }
 
+        public static string GetShibbolethAttribute(HttpRequest request, string attribute)
+        {
+            // new school vs oldschool
+            return String.IsNullOrEmpty(request[attribute]) ? request.Headers[attribute] : request[attribute];
+        }
+
         private void RedirectAuthenticatedUser()
         {
             Framework.Utilities.DebugLogging.Log("ShibLogin redirect authenticated user query = " + Request.Url.Query);
@@ -112,22 +118,26 @@ namespace Profiles.Login.Modules.ShibLogin
             }
             else if ("mypage".Equals(redirectto.ToLower()) )
             {
-                return Brand.GetForSubject(sm.Session().NodeID).BasePath + (sm.Session().NodeID > 0 ? "/profile/" + sm.Session().NodeID : "/About/NoProfile.aspx");
+                return sm.Session().NodeID > 0 ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/profile/" + sm.Session().NodeID : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.aspx";
             }
             else if ("myproxies".Equals(redirectto.ToLower()))
             {
-                return Brand.GetForSubject(sm.Session().NodeID).BasePath + (sm.Session().NodeID > 0 ? "/proxy/default.aspx?subject=" + sm.Session().NodeID : "/About/NoProfile.aspx");
+                return sm.Session().NodeID > 0 ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/proxy/default.aspx?subject=" + sm.Session().NodeID : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.aspx";
             }
             else if ("edit".Equals(redirectto.ToLower()))
             {
-                return Brand.GetForSubject(sm.Session().NodeID).BasePath + (sm.Session().NodeID > 0 ? "/edit/" + sm.Session().NodeID : "/About/NoProfile.aspx");
+                return sm.Session().NodeID > 0 ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/edit/" + sm.Session().NodeID : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.aspx";
             }
-            else 
+            else if (redirectto.ToLower().StartsWith("http")) // make sure it at least looks legit
             {
                 // use full part of query after the redirectto parameter because it might have 
                 // LOG THIS!
                 return redirectto;
                 //Response.Redirect(Request.Url.Query.Substring(Request.Url.Query.IndexOf("redirectto=") + "redirectto=".Length));
+            }
+            else
+            {
+                return Brand.GetThemedDomain();
             }
         }
 

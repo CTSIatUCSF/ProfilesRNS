@@ -33,7 +33,7 @@
                                             <b>Username</b>
                                         </td>
                                         <td>
-                                            <asp:TextBox runat="server" ID="txtUserName" value="" MaxLength="25" Width="250"></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txtUserName" value="" MaxLength="250" Width="250"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
@@ -41,7 +41,7 @@
                                             <b>Sandbox Password</b>
                                         </td>
                                         <td>
-                                            <asp:TextBox runat="server" ID="txtPassword" value="" TextMode="Password" MaxLength="25"
+                                            <asp:TextBox runat="server" ID="txtPassword" value="" TextMode="Password" MaxLength="250"
                                                 Width="250"></asp:TextBox>
                                         </td>
                                     </tr>

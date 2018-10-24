@@ -22,7 +22,7 @@ $('#suckerfishmenu li#about a').addClass('active');
 </script>
 
 <p>It looks like you don't have a profile page yet, so you can't edit it. If you would like to have a profile page, 
-please contact the support team as described on the <a href="../Help.aspx">Help page</a> for your campus.</p>
+please contact the support team as described on the <a href="Help.aspx">Help page</a> for your campus.</p>
 
           </Param>
         </ParamList>

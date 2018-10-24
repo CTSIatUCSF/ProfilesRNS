@@ -54,7 +54,7 @@ namespace Profiles.Framework.Utilities
                 {
                     // only worry about the URI domain, aka Root.domain, for RDF retrival
                     // UCSF added check for String.Empty
-                    if (this.GetModuleParamString("DataURI") != String.Empty && this.BaseData.SelectSingleNode(this.GetModuleParamString("DataURI"), this.Namespaces).InnerText.Contains(Root.Domain))
+                    if (this.BaseData.SelectSingleNode(this.GetModuleParamString("DataURI"), this.Namespaces).InnerText.Contains(Root.Domain))
                     {
                         string[] vars = this.BaseData.SelectSingleNode(this.GetModuleParamString("DataURI"), this.Namespaces).InnerText.Split('/');
 

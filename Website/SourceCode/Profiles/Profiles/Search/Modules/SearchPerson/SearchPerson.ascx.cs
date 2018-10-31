@@ -344,6 +344,12 @@ namespace Profiles.Search.Modules.SearchPerson
                 departmentallexcept = Request.Form[this.departmentallexcept.UniqueID];
             }
 
+            if (!Request.Form["division"].IsNullOrEmpty())
+            {
+                division = Request.Form["division"];
+                divisionallexcept = Request.Form[this.divisionallexcept.UniqueID];
+            }
+
             string otherfilters = Request.Form["hdnSelectedText"];
             if (!String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
             {

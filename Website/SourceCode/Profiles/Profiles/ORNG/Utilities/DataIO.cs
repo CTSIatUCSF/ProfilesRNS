@@ -57,7 +57,7 @@ namespace Profiles.ORNG.Utilities
             param[0] = new SqlParameter("@SubjectURI", uri);
             param[1] = new SqlParameter("@AppID", appId);
 
-            using (SqlCommand comm = GetDBCommand("", "[ORNG.].[AddAppToPerson]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
+            using (SqlCommand comm = GetDBCommand("", "[ORNG.].[AddAppToAgent]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
             {
                 ExecuteSQLDataCommand(comm);
             }
@@ -70,7 +70,7 @@ namespace Profiles.ORNG.Utilities
             param[0] = new SqlParameter("@SubjectID", Subject);
             param[1] = new SqlParameter("@AppID", appId);
 
-            using (SqlCommand comm = GetDBCommand("", "[ORNG.].[AddAppToPerson]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
+            using (SqlCommand comm = GetDBCommand("", "[ORNG.].[AddAppToAgent]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
             {
                 ExecuteSQLDataCommand(comm);
             }
@@ -94,7 +94,7 @@ namespace Profiles.ORNG.Utilities
             param[1] = new SqlParameter("@AppID", appId);
             param[2] = new SqlParameter("@UserEdit", "1");
 
-            using (SqlCommand comm = GetDBCommand("", "[ORNG.].[RemoveAppFromPerson]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
+            using (SqlCommand comm = GetDBCommand("", "[ORNG.].[RemoveAppFromAgent]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
             {
                 ExecuteSQLDataCommand(comm);
             }
@@ -108,7 +108,7 @@ namespace Profiles.ORNG.Utilities
             param[1] = new SqlParameter("@AppID", appId);
             param[2] = new SqlParameter("@UserEdit", "1");
 
-            using (SqlCommand comm = GetDBCommand("", "[ORNG.].[RemoveAppFromPerson]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
+            using (SqlCommand comm = GetDBCommand("", "[ORNG.].[RemoveAppFromAgent]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
             {
                 ExecuteSQLDataCommand(comm);
             }

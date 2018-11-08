@@ -68,7 +68,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                     if (node.SelectSingleNode("@URI").Value.StartsWith(Profiles.ORNG.Utilities.OpenSocialManager.ORNG_ONTOLOGY_PREFIX)) 
                     {
                         GadgetSpec spec = OpenSocialManager.GetGadgetByPropertyURI(node.SelectSingleNode("@URI").Value);
-                        if (spec != null && !spec.IsVisibleFor(UCSFIDSet.ByNodeId[Subject].Institution))
+                        if (spec != null && !spec.IsVisibleFor(UCSFIDSet.ByNodeId.ContainsKey(Subject) ? UCSFIDSet.ByNodeId[Subject].Institution : null))
                         {
                             continue;
                         }

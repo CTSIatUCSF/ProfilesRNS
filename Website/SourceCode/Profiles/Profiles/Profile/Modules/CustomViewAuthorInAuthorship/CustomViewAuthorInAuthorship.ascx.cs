@@ -92,8 +92,13 @@ namespace Profiles.Profile.Modules
 
                 // use the XML if it is not null so that we can display links, otherwise the regular list
                 string lblPubTxt = !String.IsNullOrEmpty(pub.authorXML) ? getAuthorList(pub.authorXML) : pub.authors;
+
+
                 // ugly logic but it works. If we did not match current author on URI, then do a name match
-                if (!lblPubTxt.Contains("<b>"))
+                // Also added code to skip this for groups
+                Framework.Utilities.Namespace xmlnamespace = new Profiles.Framework.Utilities.Namespace();
+                XmlNamespaceManager namespaces = xmlnamespace.LoadNamespaces(BaseData);
+                if (!lblPubTxt.Contains("<b>") && BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/rdf:type[@rdf:resource='http://xmlns.com/foaf/0.1/Person']", namespaces) != null)
                 {
                     lblPubTxt = findAndDecorateThisAuthor(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:firstName", this.Namespaces).InnerText.Substring(0, 1),
                                                           base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:lastName", this.Namespaces).InnerText + " ",

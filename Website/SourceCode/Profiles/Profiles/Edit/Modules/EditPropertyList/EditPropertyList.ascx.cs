@@ -19,6 +19,7 @@ using System.Xml;
 using System.Configuration;
 using Profiles.Framework.Utilities;
 using Profiles.ORNG.Utilities;
+using System.Data.SqlClient;
 
 namespace Profiles.Edit.Modules.EditPropertyList
 {
@@ -176,7 +177,23 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 ddl.DataBind();
                 ddl.SelectedValue = si.PrivacyCode.ToString();
                 ddl.Visible = false;
-                litSetting.Text = si.ItemCount > 0 ? si.PrivacyLevel : "Not Added";
+
+                // this is a double hack by UCSF 
+                if (si.ItemURI.Equals("http://profiles.catalyst.harvard.edu/ontology/prns#hasGroupSettings"))
+                {
+                    SqlDataReader reader = new Profiles.Edit.Utilities.DataIO().GetGroup(Subject);
+                    reader.Read();
+                    litSetting.Text = reader["ViewSecurityGroupName"].ToString() + " " + String.Format("{0:M/d/yyyy}", Convert.ToDateTime(reader["EndDate"]));
+                    reader.Close();
+                }
+                else if (si.ItemURI.Equals("http://profiles.catalyst.harvard.edu/ontology/prns#hasGroupManager"))
+                {
+                    litSetting.Text = "";
+                }
+                else
+                {
+                    litSetting.Text = si.ItemCount > 0 ? si.PrivacyLevel : "Not Added";
+                }
 
                 //ddl.Attributes.Add("onchange", "JavaScript:showstatus()");
                 hf.Value = si.ItemURI;

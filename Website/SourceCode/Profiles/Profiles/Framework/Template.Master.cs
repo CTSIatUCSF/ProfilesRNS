@@ -462,7 +462,15 @@ namespace Profiles.Framework
                 else
                     url = Brand.CleanURL(PageBackLinkURL);
 
-                litBackLink.Text = "<a href=\"" + url + "\" class=\"dblarrow\">" + PageBackLinkName + "</a>";
+                // UCSF hack for groups
+                if (!String.IsNullOrEmpty(this.RDFData.InnerText) && this.RDFData.SelectSingleNode("rdf:RDF/rdf:Description[1]/rdf:type[@rdf:resource='http://xmlns.com/foaf/0.1/Group']", this.RDFNamespaces) != null)
+                {
+                    litBackLink.Text = "<a href=\"" + url + "\" class=\"dblarrow\">" + PageBackLinkName.Replace("Profile", "Group") + "</a>";
+                }
+                else
+                {
+                    litBackLink.Text = "<a href=\"" + url + "\" class=\"dblarrow\">" + PageBackLinkName + "</a>";
+                }
 
             }
 

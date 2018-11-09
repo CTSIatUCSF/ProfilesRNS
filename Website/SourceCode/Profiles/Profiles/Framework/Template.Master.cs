@@ -165,11 +165,21 @@ namespace Profiles.Framework
                 Page.Header.Controls.Add(multiShibLogin);
             }
 
-            // UCSF. This is handy to have in JavaScript form and is required for ORNG
-            HtmlGenericControl rootDomainjs = new HtmlGenericControl("script");
-            rootDomainjs.Attributes.Add("type", "text/javascript");
-            rootDomainjs.InnerHtml = Environment.NewLine + "var _rootDomain = \"" + Brand.GetThemedDomain() + "\";" + Environment.NewLine;
-            Page.Header.Controls.Add(rootDomainjs);
+            // UCSF. These are handy to have in JavaScript form and are required for ORNG
+            HtmlGenericControl inlineJs = new HtmlGenericControl("script");
+            inlineJs.Attributes.Add("type", "text/javascript");
+            inlineJs.InnerHtml = Environment.NewLine + "var _rootDomain = \"" + Brand.GetThemedDomain() + "\";" + Environment.NewLine;
+            try
+            {
+                inlineJs.InnerHtml += "var _isGroup = " +
+                    (!String.IsNullOrEmpty(this.RDFData.InnerText) && this.RDFData.SelectSingleNode("rdf:RDF/rdf:Description[1]/rdf:type[@rdf:resource='http://xmlns.com/foaf/0.1/Group']", this.RDFNamespaces) != null).ToString().ToLower()
+                    + ";" + Environment.NewLine;
+            }
+            catch (Exception ex)
+            {
+                inlineJs.InnerHtml = Environment.NewLine + "var _isGroup = \"false\";" + Environment.NewLine;
+            }
+            Page.Header.Controls.Add(inlineJs);
 
             //The below statement was adding inline styles to the left side navigation. Not needed anymore.
             //if (this.GetStringFromPresentationXML("Presentation/PageOptions/@Columns") == "3")

@@ -70,7 +70,7 @@ Components:</h3>
               <table width="100%">
                 <tr>
                     <td>
-                        <h2>Visibility Settings</h2>
+                        <h2>Visibility Definitions</h2>
                     </td>
                     <td align="right">
                         <%-- <b>Set All</b>&nbsp;

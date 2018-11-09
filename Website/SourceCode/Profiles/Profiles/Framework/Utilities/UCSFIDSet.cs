@@ -21,6 +21,11 @@ namespace Profiles.Framework.Utilities
         public Institution Institution { get; set; }
         public Brand Brand { get; set; }
 
+        public static bool IsPerson(Int64 NodeId)
+        {
+            return ByNodeId.ContainsKey(NodeId);
+        }
+
         public UCSFIDSet(int PersonId, Int64 NodeId, string PrettyURL, string UserName, Institution Institution)
         {
             this.PersonId = PersonId;

@@ -79,7 +79,7 @@ namespace Profiles.Framework.Modules.MainMenu
 
             if (base.MasterPage.CanEdit)
             {
-                menulist.Append("<li><a href='" + Brand.GetForSubject(subject).BasePath + "/edit/" + subject.ToString() + "'>Edit This Profile</a></li>");
+                menulist.Append("<li><a href='" + Brand.GetForSubject(subject).BasePath + "/edit/" + subject.ToString() + "'>Edit This " + (UCSFIDSet.IsPerson(subject) ? "Profile" : "Group") + "</a></li>");
             }
 
 

@@ -97,11 +97,19 @@ namespace Profiles.Profile.Modules.PassiveList
 
                     if (base.GetModuleParamString("ItemURL") != string.Empty)
                     {
-                        documentdata.Append(" ItemURL=\"" + itemurl);
+                        string prettyUrl = Brand.CleanURL(itemurl);
+                        documentdata.Append(" ItemURL=\"" + prettyUrl);
                         documentdata.Append("\"");
                         if (!itemurltext.Equals("")) documentdata.Append(" ItemURLText=\"" + itemurltext);
                         else documentdata.Append(" ItemURLText=\"" + CustomParse.Parse("{{{//rdf:Description[@rdf:about='" + itemurl + "']/rdfs:label}}}", this.BaseData, this.Namespaces));
                         documentdata.Append("\"");
+                        if (UCSFIDSet.ByPrettyURL.ContainsKey(prettyUrl))
+                        {
+                            documentdata.Append(" PersonID=\"" + UCSFIDSet.ByPrettyURL[prettyUrl].PersonId);
+                            documentdata.Append("\"");
+                            documentdata.Append(" InstitutionAbbreviation=\"" + UCSFIDSet.ByPrettyURL[prettyUrl].Institution.GetAbbreviation());
+                            documentdata.Append("\"");
+                        }
                     }
                     documentdata.Append(">");
                     documentdata.Append(item);

@@ -110,7 +110,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
             }
 
             // add one for "Not Added"
-            gli.Add(new GenericListItem("Not Added", "This item has not been added to your Profile page."));
+            gli.Add(new GenericListItem("Not Added", "This item has not been added to your " + (UCSFIDSet.IsPerson(this.Subject) ? "Profile" : "Group") + " page."));
             foreach (XmlNode securityitem in this.SecurityGroups.SelectNodes("SecurityGroupList/SecurityGroup"))
             {
                 this.Dropdown.Add(new GenericListItem(securityitem.SelectSingleNode("@Label").Value,

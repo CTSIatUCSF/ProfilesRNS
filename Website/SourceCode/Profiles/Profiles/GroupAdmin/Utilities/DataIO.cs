@@ -22,7 +22,7 @@ namespace Profiles.GroupAdmin.Utilities
     public class DataIO : Profiles.Framework.Utilities.DataIO
     {
 
-        public void AddGroup(string groupName, string endDate)
+        public void AddGroup(string groupName, int visibility, string theme, string endDate)
         {
             SessionManagement sm = new SessionManagement();
 
@@ -42,7 +42,8 @@ namespace Profiles.GroupAdmin.Utilities
 
                 dbcommand.Parameters.Add(new SqlParameter("@GroupName", groupName));
                 if (endDate.Trim().Length > 0) dbcommand.Parameters.Add(new SqlParameter("@EndDate", endDate));
-                //if (visibility != -50) dbcommand.Parameters.Add(new SqlParameter("@ViewSecurityGroup", visibility));
+                if (visibility != -50) dbcommand.Parameters.Add(new SqlParameter("@ViewSecurityGroup", visibility));
+                dbcommand.Parameters.Add(new SqlParameter("@Theme", theme));
 
                 SqlParameter error = new SqlParameter("@error", null);
                 error.DbType = DbType.Boolean;
@@ -66,7 +67,7 @@ namespace Profiles.GroupAdmin.Utilities
 
         }
 
-        public void UpdateGroup(int groupID, long groupNodeID, string groupName, string endDate)
+        public void UpdateGroup(int groupID, long groupNodeID, string groupName, Int64 visibility, string theme, string endDate)
         {
             SessionManagement sm = new SessionManagement();
             Cache.AlterDependency(groupNodeID.ToString());
@@ -86,9 +87,10 @@ namespace Profiles.GroupAdmin.Utilities
                 dbcommand.CommandTimeout = base.GetCommandTimeout();
 
                 dbcommand.Parameters.Add(new SqlParameter("@ExistingGroupID", groupID));
+                dbcommand.Parameters.Add(new SqlParameter("@Theme", theme));
                 dbcommand.Parameters.Add(new SqlParameter("@GroupName", groupName));
                 dbcommand.Parameters.Add(new SqlParameter("@EndDate", endDate));
-                //dbcommand.Parameters.Add(new SqlParameter("@ViewSecurityGroup", visibility));
+                dbcommand.Parameters.Add(new SqlParameter("@ViewSecurityGroup", visibility));
 
                 SqlParameter error = new SqlParameter("@error", null);
                 error.DbType = DbType.Boolean;

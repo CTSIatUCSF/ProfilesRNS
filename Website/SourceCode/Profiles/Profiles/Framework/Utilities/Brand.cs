@@ -55,6 +55,11 @@ namespace Profiles.Framework.Utilities
             return ByTheme.Values.ToList();
         }
 
+        public static List<string> GetAllThemes()
+        {
+            return ByTheme.Keys.ToList();
+        }
+
         public static Brand GetByTheme(string Theme)
         {
             return ByTheme.ContainsKey(Theme) ? ByTheme[Theme] : null;

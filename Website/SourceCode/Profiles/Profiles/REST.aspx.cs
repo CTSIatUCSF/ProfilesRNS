@@ -205,7 +205,16 @@ namespace Profiles
             }
             else if (resolve.Resolved && resolve.Redirect)
             {
-                Response.Redirect(resolve.ResponseURL.Replace(Root.Domain, Brand.GetThemedDomain()), true);
+                // ugly hack to fix group branding
+                if (TEXT_HTML.Equals(bestAcceptType) && "profile".Equals(param0.ToLower()) && String.IsNullOrEmpty(param2) && Int64.TryParse(param1, out nodeId) && UCSFIDSet.GetThemeFor(nodeId) != null)
+                {
+                    Brand brand = Brand.GetByTheme(UCSFIDSet.GetThemeFor(nodeId));
+                    Response.Redirect(resolve.ResponseURL.Replace(Root.Domain, brand.BasePath), true);
+                }
+                else
+                {
+                    Response.Redirect(resolve.ResponseURL.Replace(Root.Domain, Brand.GetThemedDomain()), true);
+                }
             }
             else
             {   // if we are not on a branded version, we need to be, so we redirect to the default

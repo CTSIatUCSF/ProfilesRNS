@@ -24,7 +24,7 @@
             <tr>
                 <td colspan="3">
                     <div style="padding-top: 5px;">
-                        Enter the Name, Visibility and End Date of the group
+                        Enter the Name, Visibility, Theme and End Date of the group
                     </div>
                 </td>
             </tr>
@@ -34,7 +34,7 @@
                     <asp:TextBox ID="txtGroupName" runat="server" MaxLength="250" Width="220px" title="Group Name"></asp:TextBox>
 
                 </td>
- <!--               <td>
+                <td>
                     <b>Visibility</b><br />
                     <asp:DropDownList id="ddVisibility" runat="server"
                          AutoPostBack="False">
@@ -52,7 +52,11 @@
                           Private
                        </asp:ListItem>
                      </asp:DropDownList>
-                </td>-->
+                </td>
+                <td>
+                    <b>Theme</b><br />
+                    <asp:DropDownList ID="drpTheme" runat="server" Width="255px" AutoPostBack="false" />
+                </td>
                 <td>
                     <asp:Label ID="txtEndDateLabel" runat="server" Text="<b>End Date</b> (MM/DD/YYYY)" AssociatedControlID="txtEndDate"></asp:Label><br />
                         <asp:TextBox ID="txtEndDate" runat="server" MaxLength="10" CssClass="textBoxDate"></asp:TextBox>
@@ -105,6 +109,11 @@
                         <asp:Label ID="lblVisibility" runat="server" Text='<%# Bind("ViewSecurityGroupName") %>'></asp:Label>
                     </ItemTemplate>
                   </asp:TemplateField>
+                  <asp:TemplateField HeaderText="Theme">
+                    <ItemTemplate>
+                        <asp:Label ID="lblTheme" runat="server" Text='<%# Bind("Theme") %>'></asp:Label>
+                    </ItemTemplate>
+                  </asp:TemplateField>
                   <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="End Date">
                     <ItemTemplate>
                         <asp:Label ID="lblEndDate" runat="server" Text='<%# Bind("EndDate") %>'></asp:Label>
@@ -145,7 +154,7 @@
                   </asp:TemplateField>
                   <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Visibility">
                     <EditItemTemplate>
-                     <!--<asp:DropDownList id="ddEditVisibility" runat="server"
+                     <asp:DropDownList id="ddEditVisibility" runat="server"
                          AutoPostBack="False" SelectedValue='<%# Eval("ViewSecurityGroupName") %>' >
 
                        <asp:ListItem value="Public">
@@ -160,11 +169,21 @@
                        <asp:ListItem value="Private">
                           Private
                        </asp:ListItem>
-                     </asp:DropDownList>-->
+                     </asp:DropDownList>
                        <asp:Label ID="lblVisibility" runat="server" Text='<%# Bind("ViewSecurityGroupName") %>'></asp:Label>
                     </EditItemTemplate>
                     <ItemTemplate>
                         <asp:Label ID="lblVisibility" runat="server" Text='<%# Bind("ViewSecurityGroupName") %>'></asp:Label>
+                    </ItemTemplate>
+                  </asp:TemplateField>
+                  <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Theme">
+                    <EditItemTemplate>
+                     <!--asp:DropDownList ID="drpThemeEdit" runat="server" AutoPostBack="False" SelectedValue='<%# Eval("Theme") %>' /-->
+                     <asp:DropDownList ID="drpThemeEdit" runat="server" AutoPostBack="False" />
+                       <asp:Label ID="lblTheme" runat="server" Text='<%# Bind("Theme") %>'></asp:Label>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                       <asp:Label ID="lblTheme" runat="server" Text='<%# Bind("Theme") %>'></asp:Label>
                     </ItemTemplate>
                   </asp:TemplateField>
                   <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="End Date">

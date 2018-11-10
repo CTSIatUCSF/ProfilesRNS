@@ -39,13 +39,13 @@ namespace Profiles.Login
                 // user is logged into shibboleth but not here
 
                 // if user is logged into shibboleth in this domain but apparently NOT logged into profiles, do nothing otherwise we have an endless loop
-                if (!Request.Url.ToString().StartsWith(MultiShibLogin.GetListOfDomainsShibbolizedFirst()[0]))
-                {
+                //if (!Request.Url.ToString().StartsWith(MultiShibLogin.GetListOfDomainsShibbolizedFirst()[0]))
+                //{
                     jsonresult.Add("redirect", HttpUtility.UrlEncode(MultiShibLogin.GetRedirect(true,
                         Brand.GetByTheme(Request["theme"]).BasePath,
                         session.SessionID, "", "",
                         Request["redirectto"])));
-                }
+                //}
             }
             else if ("True".Equals(Request["loggedIn"]) && !HasShibbolethSession(Request))
             {

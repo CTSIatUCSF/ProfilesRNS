@@ -206,10 +206,9 @@ namespace Profiles
             else if (resolve.Resolved && resolve.Redirect)
             {
                 // ugly hack to fix group branding
-                if (TEXT_HTML.Equals(bestAcceptType) && "profile".Equals(param0.ToLower()) && String.IsNullOrEmpty(param2) && Int64.TryParse(param1, out nodeId) && UCSFIDSet.GetThemeFor(nodeId) != null)
+                if (TEXT_HTML.Equals(bestAcceptType) && "profile".Equals(param0.ToLower()) && String.IsNullOrEmpty(param2) && Int64.TryParse(param1, out nodeId))
                 {
-                    Brand brand = Brand.GetByTheme(UCSFIDSet.GetThemeFor(nodeId));
-                    Response.Redirect(resolve.ResponseURL.Replace(Root.Domain, brand.BasePath), true);
+                    Response.Redirect(resolve.ResponseURL.Replace(Root.Domain, Brand.GetForSubject(nodeId).BasePath), true);
                 }
                 else
                 {

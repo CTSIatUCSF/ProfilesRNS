@@ -1,6 +1,6 @@
 ﻿// used for lazy multishiblogin
 function redirectForLogin(data) {
-    if (window.location.href.indexOf("/login") == -1 && data.redirect) {
+    if (window.location.href.indexOf("/login") === -1 && data.redirect) {
         window.location.href = decodeURIComponent(data.redirect);
     }
 }
@@ -31,7 +31,7 @@ $(document).ready(function () {
 
     // Back to top http://typicalwhiner.com/116/effortless-jquery-floating-back-to-top-script-v2/
 	// Not used on network pages
-  if(window.location.href.indexOf("coauthors") == -1) {
+  if(window.location.href.indexOf("coauthors") === -1) {
     $("table").removeAttr("border").removeAttr("rules");
 
     var pxShow = 300; //height on which the button will show  

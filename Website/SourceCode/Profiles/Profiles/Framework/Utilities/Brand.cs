@@ -6,11 +6,14 @@ using System.Web.UI;
 using System.Configuration;
 using System.Web.Configuration;
 using Profiles.ORNG.Utilities;
+using System.Data.SqlClient;
 
 namespace Profiles.Framework.Utilities
 {
     public class Brand
     {
+        public static String GROUPS_CACHE_KEY = "GroupsCache";
+
         private static Dictionary<string, Brand> ByTheme = new Dictionary<string, Brand>();
         private static Dictionary<Institution, Brand> ByPrimaryInstitution = new Dictionary<Institution, Brand>();
 
@@ -92,7 +95,25 @@ namespace Profiles.Framework.Utilities
         static public Brand GetForSubject(long subjectId)
         {
             UCSFIDSet person = UCSFIDSet.ByNodeId.ContainsKey(subjectId) ? UCSFIDSet.ByNodeId[subjectId] : null;
-            return person != null && person.Brand != null ? person.Brand : getDefault();
+            if (person != null)
+            {
+                return person.Brand;
+            }
+
+            // see if it is a group
+            Dictionary<Int64, string> GroupToTheme = (Dictionary<long, string>)Framework.Utilities.Cache.FetchObject(GROUPS_CACHE_KEY);
+            if (GroupToTheme == null)
+            {
+                GroupToTheme = new Dictionary<long, string>();
+                SqlDataReader reader = new GroupAdmin.Utilities.DataIO().GetActiveGroups();
+                while (reader.Read())
+                {
+                    GroupToTheme.Add(reader.GetInt64(reader.GetOrdinal("GroupNodeID")), reader["Theme"].ToString());
+                }
+                reader.Close();
+                Framework.Utilities.Cache.Set(GROUPS_CACHE_KEY, GroupToTheme);
+            }
+            return GroupToTheme.ContainsKey(subjectId) ? GetByTheme(GroupToTheme[subjectId]) : getDefault();
         }
 
         static public string GetThemedFile(Page page, string file)

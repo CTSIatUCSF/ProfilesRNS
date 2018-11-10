@@ -31,7 +31,7 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
        
             DrawProfilesModule();
             // Good time to do this
-            Framework.Utilities.Cache.Remove(UCSFIDSet.GROUPS_CACHE_KEY);
+            Framework.Utilities.Cache.Remove(Brand.GROUPS_CACHE_KEY);
         }
 
         public GroupAdmin() : base() { }

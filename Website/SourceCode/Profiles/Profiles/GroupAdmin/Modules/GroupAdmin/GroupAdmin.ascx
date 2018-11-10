@@ -156,7 +156,6 @@
                     <EditItemTemplate>
                      <asp:DropDownList id="ddEditVisibility" runat="server"
                          AutoPostBack="False" SelectedValue='<%# Eval("ViewSecurityGroupName") %>' >
-
                        <asp:ListItem value="Public">
                           Public
                        </asp:ListItem>
@@ -178,8 +177,32 @@
                   </asp:TemplateField>
                   <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Theme">
                     <EditItemTemplate>
-                     <!--asp:DropDownList ID="drpThemeEdit" runat="server" AutoPostBack="False" SelectedValue='<%# Eval("Theme") %>' /-->
-                     <asp:DropDownList ID="drpThemeEdit" runat="server" AutoPostBack="False" />
+                     <asp:DropDownList ID="drpThemeEdit" runat="server" AutoPostBack="False" SelectedValue='<%# Eval("Theme") %>'>
+                       <asp:ListItem value="Default">
+                          Default
+                       </asp:ListItem>
+                       <asp:ListItem value="UC">
+                          UC
+                       </asp:ListItem>
+                       <asp:ListItem value="UCD">
+                          UCD
+                       </asp:ListItem>
+                       <asp:ListItem value="UCI">
+                          UCI
+                       </asp:ListItem>
+                       <asp:ListItem value="UCLA">
+                          UCLA
+                       </asp:ListItem>
+                       <asp:ListItem value="UCSD">
+                          UCSD
+                       </asp:ListItem>
+                       <asp:ListItem value="UCSF">
+                          UCSF
+                       </asp:ListItem>
+                       <asp:ListItem value="USC">
+                          USC
+                       </asp:ListItem>
+                     </asp:DropDownList>
                        <asp:Label ID="lblTheme" runat="server" Text='<%# Bind("Theme") %>'></asp:Label>
                     </EditItemTemplate>
                     <ItemTemplate>

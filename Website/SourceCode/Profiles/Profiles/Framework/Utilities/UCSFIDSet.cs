@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace Profiles.Framework.Utilities
 {
     public class UCSFIDSet
     {
-        public static String GROUPS_CACHE_KEY = "GroupsCache";
-
         public static Dictionary<Int64, UCSFIDSet> ByPersonId = new Dictionary<Int64, UCSFIDSet>();
         public static Dictionary<Int64, UCSFIDSet> ByNodeId = new Dictionary<Int64, UCSFIDSet>();
         public static Dictionary<string, UCSFIDSet> ByPrettyURL = new Dictionary<string, UCSFIDSet>();
@@ -27,30 +22,6 @@ namespace Profiles.Framework.Utilities
         public static bool IsPerson(Int64 NodeId)
         {
             return ByNodeId.ContainsKey(NodeId);
-        }
-
-        // this probably doesn't belong here
-        public static string GetThemeFor(Int64 NodeID)
-        {
-            if (IsPerson(NodeID))
-            {
-                return Brand.GetByPrimaryInstituion(ByNodeId[NodeID].Institution).Theme;
-            }
-
-            // see if it is a group
-            Dictionary<Int64, string> GroupToTheme = (Dictionary<long, string>)Framework.Utilities.Cache.FetchObject(GROUPS_CACHE_KEY);
-            if (GroupToTheme == null)
-            {
-                GroupToTheme = new Dictionary<long, string>();
-                SqlDataReader reader = new GroupAdmin.Utilities.DataIO().GetActiveGroups();
-                while (reader.Read())
-                {
-                    GroupToTheme.Add(reader.GetInt64(reader.GetOrdinal("GroupNodeID")), reader["Theme"].ToString());
-                }
-                reader.Close();
-                Framework.Utilities.Cache.Set(GROUPS_CACHE_KEY, GroupToTheme);
-            }
-            return GroupToTheme.ContainsKey(NodeID) ? GroupToTheme[NodeID] : null;
         }
 
         public UCSFIDSet(int PersonId, Int64 NodeId, string PrettyURL, string UserName, Institution Institution)

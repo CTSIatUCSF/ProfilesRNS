@@ -122,13 +122,14 @@ namespace Profiles.Framework.Utilities
                 this.Namespaces = rdfnamespaces.LoadNamespaces(this.BaseData);
 
             }
-            catch (Exception ex) { Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace); }
+            catch (Exception ex)
+            {
+                Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
                 foreach (ModuleParams mp in this.ModuleParams)
                 {
                     Framework.Utilities.DebugLogging.Log("ModuleParams[#]:" + mp.Node.OuterXml);
                 }
-
-
+            }
         }
 
         public void GetNetworkProfile(Int64 subject, Int64 predicate)

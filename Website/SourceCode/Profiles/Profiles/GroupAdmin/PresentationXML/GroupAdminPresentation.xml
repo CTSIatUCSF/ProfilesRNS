@@ -1,7 +1,7 @@
 ﻿<Presentation PresentationClass="profile">
   <PageOptions Columns="2"/>
-  <WindowName>Group Administration</WindowName>  
-  <PageTitle>Group Administration</PageTitle>
+  <WindowName>Manage Groups</WindowName>  
+  <PageTitle>Manage Groups</PageTitle>
   <PageBackLinkName></PageBackLinkName>
   <PageBackLinkURL></PageBackLinkURL>
   <PageSubTitle></PageSubTitle>

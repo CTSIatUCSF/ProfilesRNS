@@ -25,6 +25,8 @@ namespace Profiles.Login
     public partial class ShibbolethSession : BrandedPage
     {
 
+        private static Random random = new Random();
+
         // add smart caching of all of these ID lookups!
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,6 +48,8 @@ namespace Profiles.Login
                         session.SessionID, "", "",
                         Request["redirectto"])));
                 //}
+                Framework.Utilities.DebugLogging.Log("ShibbolethSession redirect:" + jsonresult["redirect"]);
+
             }
             else if ("True".Equals(Request["loggedIn"]) && !HasShibbolethSession(Request))
             {
@@ -68,7 +72,8 @@ namespace Profiles.Login
 
         public static string GetJavascriptSrc(HttpRequest request)
         {        
-            if (String.IsNullOrEmpty(ConfigurationManager.AppSettings["Shibboleth.LoginURL"]) || Brand.GetCurrentBrand() == null || request.Path.Contains("/Error"))
+            if (String.IsNullOrEmpty(ConfigurationManager.AppSettings["Shibboleth.LoginURL"]) || Brand.GetCurrentBrand() == null 
+                || request.Path.Contains("/Error") || request.Path.ToLower().Contains("/login/") || request.Url.ToString().StartsWith(MultiShibLogin.GetListOfDomainsShibbolizedFirst()[0]))
             {
                 return null;
             }
@@ -77,7 +82,8 @@ namespace Profiles.Login
                 SessionManagement sm = new SessionManagement();
                 Session session = sm.Session();
                 return MultiShibLogin.GetListOfDomainsShibbolizedFirst()[0] + "/Login/ShibbolethSession.aspx?callback=redirectForLogin&theme=" +
-                    Brand.GetCurrentBrand().Theme + "&loggedIn=" + session.IsLoggedIn() + "&redirectto=" + HttpUtility.UrlEncode(request.Url.ToString());
+                    Brand.GetCurrentBrand().Theme + "&loggedIn=" + session.IsLoggedIn() + "&redirectto=" + HttpUtility.UrlEncode(request.Url.ToString()) +
+                    "&rnd=" + random.Next(); // to prevent caching
             }
         }
 

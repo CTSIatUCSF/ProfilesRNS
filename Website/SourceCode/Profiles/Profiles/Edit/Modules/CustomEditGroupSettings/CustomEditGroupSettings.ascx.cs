@@ -51,7 +51,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings
             litBackLink.Text = "<a href='" + Root.Domain + "/edit/" + this.SubjectID + "'>Edit Menu</a> &gt; <b>Group Settings</b>";
 
             //btnEditProperty.Text = "Add " + PropertyLabel;
-            imbAddArror.Visible = true;
+            //imbAddArror.Visible = true;
 
             SqlDataReader reader = data.GetGroup(SubjectID);
             reader.Read();
@@ -81,7 +81,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings
                 phEditProperty.Visible = true;
                 //phDelAll.Visible = true;
                 //btnInsertCancel_OnClick(sender, e);
-                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
+                //imbAddArror.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
                 Session["pnlInsertProperty.Visible"] = null;
             }
             else
@@ -90,7 +90,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings
                 phEditProperty.Visible = true;
                 //phDelAll.Visible = false;
                 pnlInsertProperty.Visible = true;
-                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
+                //imbAddArror.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                 Session["pnlInsertProperty.Visible"] = true;
 
                 SqlDataReader reader = data.GetGroup(SubjectID);

@@ -172,37 +172,37 @@
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phSyncMemberPubs" runat="server">
                             <div style="padding-bottom: 10px;">
-                                <asp:LinkButton ID="btnSyncMemberPubs" runat="server" OnClick="menuBtn_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgSyncMemberPubs" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;Automatically Add Member Publications</asp:LinkButton>
+                                <asp:LinkButton ID="btnSyncMemberPubs" runat="server" OnClick="menuBtn_OnClick" CssClass="profileHypLinks">Automatically Add Member Publications</asp:LinkButton>
                                 &nbsp;<asp:Literal ID="litSyncMemberPubs" runat="server">(On / Off)</asp:Literal>
                             </div>
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phAddMemberPubs" runat="server">
                             <div style="padding-bottom: 10px;">
-                                <asp:LinkButton ID="btnAddMemberPub" runat="server" OnClick="menuBtn_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgAddMemberPub" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;Manually Add Member Publications</asp:LinkButton>
+                                <asp:LinkButton ID="btnAddMemberPub" runat="server" OnClick="menuBtn_OnClick" CssClass="profileHypLinks">Manually Add Member Publications</asp:LinkButton>
                                 &nbsp;(Manually add one or more articles authored by members of this group.)
                             </div>
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phAddPubMed" runat="server">
                             <div style="padding-bottom: 10px;">
-                                <asp:LinkButton ID="btnAddPubMed" runat="server" OnClick="menuBtn_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgAddPubMed" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;Manually Add PubMed Articles</asp:LinkButton>
+                                <asp:LinkButton ID="btnAddPubMed" runat="server" OnClick="menuBtn_OnClick" CssClass="profileHypLinks">Manually Add PubMed Articles</asp:LinkButton>
                                 &nbsp;(Search PubMed and add multiple articles.)
                             </div>
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phAddPub" runat="server">
                             <div style="padding-bottom: 10px;">
-                                <asp:LinkButton ID="btnAddPub" runat="server" OnClick="menuBtn_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgAddPub" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;Manually Add Publications by ID</asp:LinkButton>
+                                <asp:LinkButton ID="btnAddPub" runat="server" OnClick="menuBtn_OnClick" CssClass="profileHypLinks">Manually Add Publications by ID</asp:LinkButton>
                                 &nbsp;(Add one or more articles using codes, e.g., PubMed ID.)
                             </div>
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phAddCustom" runat="server">
                             <div style="padding-bottom: 10px;">
-                                <asp:LinkButton ID="btnAddCustom" runat="server" OnClick="menuBtn_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgAddCustom" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;Manually Add Custom Publications</asp:LinkButton>
+                                <asp:LinkButton ID="btnAddCustom" runat="server" OnClick="menuBtn_OnClick" CssClass="profileHypLinks">Manually Add Custom Publications</asp:LinkButton>
                                 &nbsp;(Enter publication details using an online form.)
                             </div>
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phDeletePub" runat="server">
                             <div style="padding-bottom: 10px;">
-                                <asp:LinkButton ID="btnDeletePub" runat="server" OnClick="menuBtn_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgDeletePub" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;Delete</asp:LinkButton>
+                                <asp:LinkButton ID="btnDeletePub" runat="server" OnClick="menuBtn_OnClick" CssClass="profileHypLinks">Delete</asp:LinkButton>
                                 &nbsp;(Remove manually added publications from this profile.)
                             </div>
                         </asp:PlaceHolder>

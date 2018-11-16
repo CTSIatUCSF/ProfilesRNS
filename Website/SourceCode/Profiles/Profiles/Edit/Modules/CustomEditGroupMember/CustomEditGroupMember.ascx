@@ -66,7 +66,7 @@
 <br />
 <asp:PlaceHolder ID="phAddPubMed" runat="server">
     <div style="padding-bottom: 10px;">
-        <asp:LinkButton ID="btnAddGroupMembers" runat="server" OnClick="btnAddGroupMembers_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgAddGroupMembers" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;<asp:Literal runat="server" ID="btnLitAddGroupMembers"/></asp:LinkButton>
+        <asp:LinkButton ID="btnAddGroupMembers" runat="server" OnClick="btnAddGroupMembers_OnClick" CssClass="profileHypLinks">&nbsp;<asp:Literal runat="server" ID="btnLitAddGroupMembers"/></asp:LinkButton>
     </div>
 </asp:PlaceHolder>
     <asp:Panel ID="pnlProxySearch" runat="server" Visible="false" >

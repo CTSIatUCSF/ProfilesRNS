@@ -4,7 +4,7 @@
 <br /><br />
 <asp:PlaceHolder ID="phAddGroups" runat="server">
     <div style="padding-bottom: 10px;">
-        <asp:LinkButton ID="btnAddGroups" runat="server" OnClick="btnAddGroups_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgAddGroups" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;Create a New Group</asp:LinkButton>
+        <asp:LinkButton ID="btnAddGroups" runat="server" OnClick="btnAddGroups_OnClick" CssClass="profileHypLinks">Create a New Group</asp:LinkButton>
     </div>
 </asp:PlaceHolder>
     <asp:Panel ID="pnlAddGroup" Style="background-color: #F0F4F6; margin-bottom: 5px;
@@ -85,7 +85,7 @@
 </asp:Panel>
 <asp:PlaceHolder ID="phDeletedGroups" runat="server">
     <div style="padding-bottom: 10px;">
-        <asp:LinkButton ID="btnDeletedGroups" runat="server" OnClick="btnDeletedGroups_OnClick" CssClass="profileHypLinks"><asp:Image runat="server" ID="btnImgDeletedGroups" AlternateText=" " ImageUrl="~/Framework/Images/icon_squareArrow.gif"/>&nbsp;Deleted Groups</asp:LinkButton>
+        <asp:LinkButton ID="btnDeletedGroups" runat="server" OnClick="btnDeletedGroups_OnClick" CssClass="profileHypLinks">Deleted Groups</asp:LinkButton>
     </div>
 </asp:PlaceHolder>
     <asp:Panel ID="pnlDeletedGroups" Style="background-color: #F0F4F6; margin-bottom: 5px;

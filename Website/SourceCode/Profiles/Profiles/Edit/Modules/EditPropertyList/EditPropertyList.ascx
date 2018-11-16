@@ -19,15 +19,17 @@ this website.
 	</span>
 Components:</h3>
 <div id="profile-components">
-  <table style="width:100%;margin-bottom:0;">
-    <tr id="namedegreerow">
-       <td class="padding" id="namedegree">Name and Degrees</td>
-       <td colspan="2">
-         <span id="public"><img src="Images/icons_lock.gif" />&nbsp;Always Public</span>
-         <span id="cls">This info is drawn from an automatic data feed. <a href="../About/Help.aspx" target="_blank">Learn more</a></span>
-       </td>
-    </tr>
-  </table>
+  <asp:Panel runat="server" ID="pnlShowNameAndDegrees">
+      <table style="width:100%;margin-bottom:0;">
+        <tr id="namedegreerow">
+           <td class="padding" id="namedegree">Name and Degrees</td>
+           <td colspan="2">
+             <span id="public"><img src="Images/icons_lock.gif" />&nbsp;Always Public</span>
+             <span id="cls">This info is drawn from an automatic data feed. <a href="../About/Help.aspx" target="_blank">Learn more</a></span>
+           </td>
+        </tr>
+      </table>
+  </asp:Panel>
 <asp:Repeater runat="server" ID="repPropertyGroups" OnItemDataBound="repPropertyGroups_OnItemDataBound">
     <ItemTemplate>
         <asp:GridView runat="server" ID="grdSecurityGroups" AutoGenerateColumns="false" OnRowDataBound="grdSecurityGroups_OnDataBound"

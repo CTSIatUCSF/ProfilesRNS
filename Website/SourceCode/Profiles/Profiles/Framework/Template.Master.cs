@@ -159,6 +159,7 @@ namespace Profiles.Framework
             String lazyShibLogin = Profiles.Login.ShibbolethSession.GetJavascriptSrc(Request);
             if (!String.IsNullOrEmpty(lazyShibLogin))
             {
+                Framework.Utilities.DebugLogging.Log("lazyShibLogin :" + lazyShibLogin);
                 HtmlGenericControl multiShibLogin = new HtmlGenericControl("script");
                 multiShibLogin.Attributes.Add("type", "text/javascript");
                 multiShibLogin.Attributes.Add("src", lazyShibLogin);

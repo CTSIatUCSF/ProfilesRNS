@@ -284,7 +284,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupMember
                 this.Offset = 0;
 
                 this.ExecuteSearch(true);
-                if (Session["pnlAddGroupMembers.Visible"] != null) btnImgAddGroupMembers.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+                //if (Session["pnlAddGroupMembers.Visible"] != null) btnImgAddGroupMembers.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
             }
             catch (Exception ex)
             {
@@ -395,7 +395,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupMember
             gridSearchResults.DataBind();
             pnlProxySearchResults.Visible = false;
             pnlProxySearch.Visible = true;
-            if (Session["pnlAddGroupMembers.Visible"] != null) btnImgAddGroupMembers.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+            //if (Session["pnlAddGroupMembers.Visible"] != null) btnImgAddGroupMembers.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
         }
 
         protected void btnSearchCancel_Click(object sender, EventArgs e)
@@ -514,7 +514,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupMember
         {
             if (Session["pnlAddGroupMembers.Visible"] == null)
             {
-                btnImgAddGroupMembers.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+                //btnImgAddGroupMembers.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 searchReset();
                 Session["pnlAddGroupMembers.Visible"] = true;
             }

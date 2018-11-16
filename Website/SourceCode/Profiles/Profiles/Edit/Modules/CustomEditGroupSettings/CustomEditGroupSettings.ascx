@@ -34,7 +34,7 @@
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phEditProperty" runat="server">
                             <asp:LinkButton ID="btnEditProperty" runat="server" OnClick="btnUpdateDateCancel_OnClick" 
-                                CssClass="profileHypLinks"><asp:Image runat="server" ID="imbAddArror" AlternateText=" " ImageUrl="../../../Framework/Images/icon_squareArrow.gif"/>&nbsp;Edit End Date</asp:LinkButton>
+                                CssClass="profileHypLinks">Edit End Date</asp:LinkButton>
                             <br />
                         </asp:PlaceHolder>
                     </div>

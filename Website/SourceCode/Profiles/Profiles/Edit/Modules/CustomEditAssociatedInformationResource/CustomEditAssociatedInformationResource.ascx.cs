@@ -100,7 +100,7 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource
                 pnlAddPubById.Visible = true;
                 phAddPub.Visible = true;
                 Session["pnl.Visible"] = true;
-                btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+                //btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
             }
             else {
                 pnlAddPubById.Visible = false;
@@ -112,7 +112,7 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource
                 pnlAddCustomPubMed.Visible = true;
                 phAddCustom.Visible = true;
                 Session["pnl.Visible"] = true;
-                btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+                //btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
             }
             else {
                 pnlAddCustomPubMed.Visible = false;
@@ -124,7 +124,7 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource
                 pnlDeletePubMed.Visible = true;
                 phDeletePub.Visible = true;
                 Session["pnl.Visible"] = true;
-                btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+                //btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
             }
             else {
                 pnlDeletePubMed.Visible = false;
@@ -138,7 +138,7 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource
                 pnlAddPubMed.Visible = true;
                 pnlGroupMemberFilters.Visible = false;
                 Session["pnl.Visible"] = true;
-                btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+                //btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
             }
             else if (buttonID.Equals("btnAddMemberPub") || buttonID.Equals("btnGroupMemberFiltersReset") || buttonID.Equals("btnGroupMemberFiltersApply")) {
                 if (buttonID.Equals("btnGroupMemberFiltersApply"))
@@ -198,7 +198,7 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource
                 pnlGroupMemberFilters.Visible = true;
                 Session["pnl.Visible"] = true;
                 
-                btnImgAddMemberPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+                //btnImgAddMemberPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
             }
             else {
                 pnlAddPubMedResults.Visible = false;
@@ -211,14 +211,14 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource
                 pnlSyncMemberPubs.Visible = true;
                 phSyncMemberPubs.Visible = true;
                 Session["pnl.Visible"] = true;
-                btnImgSyncMemberPubs.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+                //btnImgSyncMemberPubs.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
             }
             else if (buttonID.Equals("btnSyncMemberPubs") && syncUserPubs)
             {
                 //pnlUnsyncMemberPubs.Visible = true;
                 phSyncMemberPubs.Visible = true;
                 Session["pnl.Visible"] = true;
-                btnImgSyncMemberPubs.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+                //btnImgSyncMemberPubs.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
             }
             else {
                 pnlSyncMemberPubs.Visible = false;
@@ -261,13 +261,13 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource
 
             Session["pnl.Visible"] = null;
 
-            btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-            btnImgSyncMemberPubs.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-            btnImgAddMemberPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-            btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-            btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-            btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+            //btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+            //btnImgSyncMemberPubs.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+            //btnImgAddMemberPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+            //btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+            //btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+            //btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+            //btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
 
             Edit.Utilities.DataIO data = new Edit.Utilities.DataIO();
             if (data.GetGroupPublicationOption(_personId)) litSyncMemberPubs.Text = "(<b>On</b> / Off)";
@@ -672,7 +672,7 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource
                     txtPubId.Text = "";
                     pnlAddPubById.Visible = false;
                     grdEditPublications.DataBind();
-                    btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+                    //btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
                     upnlEditSection.Update();
                 }
                 catch (Exception ex)
@@ -984,8 +984,8 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource
             phDeletePub.Visible = true;
             phAddMemberPubs.Visible = true;
             phSecuritySettings.Visible = true;
-            btnImgAddMemberPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
-            btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+            //btnImgAddMemberPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+            //btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
             Session["pnl.Visible"] = null;
             PubMedResults = null;
             upnlEditSection.Update();
@@ -1262,7 +1262,7 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource
                 phSecuritySettings.Visible = true;
                 phMain.Visible = false;
                 pnlAddCustomPubMed.Visible = false;
-                btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+                //btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
             }
             Session["pnl.Visible"] = null;
             upnlEditSection.Update();
@@ -1291,7 +1291,7 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource
             phAddCustom.Visible = true;
             pnlDeletePubMed.Visible = false;
             phSecuritySettings.Visible = true;
-            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+            //btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
 
             grdEditPublications.DataBind();
             upnlEditSection.Update();
@@ -1310,7 +1310,7 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource
             phAddCustom.Visible = true;
             pnlDeletePubMed.Visible = false;
             phSecuritySettings.Visible = true;
-            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+            //btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
 
             grdEditPublications.DataBind();
             upnlEditSection.Update();
@@ -1329,7 +1329,7 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource
             phAddCustom.Visible = true;
             phSecuritySettings.Visible = true;
             pnlDeletePubMed.Visible = false;
-            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+            //btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
 
             grdEditPublications.DataBind();
             upnlEditSection.Update();

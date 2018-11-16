@@ -424,10 +424,10 @@ namespace Profiles.Framework.Utilities
                 Framework.Utilities.DebugLogging.Log("COMMAND TEXT " + CmdText);
                 Framework.Utilities.DebugLogging.Log("COMMAND TYPE " + CmdType.ToString());
                 if (sqlParam != null)
+                {
                     Framework.Utilities.DebugLogging.Log("NUMBER OF PARAMS " + sqlParam.Length);
-
-                AddSQLParameters(sqlcmd, sqlParam);
-
+                    AddSQLParameters(sqlcmd, sqlParam);
+                }
             }
             catch (Exception ex)
             {

@@ -142,7 +142,7 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
         {
             if (Session["pnlAddGroupMembers.Visible"] == null)
             {
-                btnImgAddGroups.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+                //btnImgAddGroups.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 addGroupsReset();
                 Session["pnlAddGroupMembers.Visible"] = true;
             }
@@ -164,7 +164,7 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
         {
             if (Session["pnlDeletedGroups.Visible"] == null)
             {
-                btnImgDeletedGroups.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+                //btnImgDeletedGroups.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 pnlDeletedGroups.Visible = true;
                 //addGroupsReset();
                 Session["pnlDeletedGroups.Visible"] = true;

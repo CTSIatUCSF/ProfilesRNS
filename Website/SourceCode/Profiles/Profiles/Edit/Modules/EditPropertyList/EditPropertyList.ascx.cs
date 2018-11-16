@@ -110,8 +110,11 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 si.Add(singlesi);
             }
 
+            // only show Name and Degress if it is a person
+            pnlShowNameAndDegrees.Visible = UCSFIDSet.IsPerson(this.Subject);
+
             // add one for "Not Added"
-            gli.Add(new GenericListItem("Not Added", "This item has not been added to your " + (UCSFIDSet.IsPerson(this.Subject) ? "Profile" : "Group") + " page."));
+            gli.Add(new GenericListItem("Not Added", "This item has not been added to your " + (UCSFIDSet.IsPerson(this.Subject) ? "Profile" : "group") + " page."));
             foreach (XmlNode securityitem in this.SecurityGroups.SelectNodes("SecurityGroupList/SecurityGroup"))
             {
                 this.Dropdown.Add(new GenericListItem(securityitem.SelectSingleNode("@Label").Value,
@@ -186,7 +189,8 @@ namespace Profiles.Edit.Modules.EditPropertyList
                     litSetting.Text = reader["ViewSecurityGroupName"].ToString() + " " + String.Format("{0:M/d/yyyy}", Convert.ToDateTime(reader["EndDate"]));
                     reader.Close();
                 }
-                else if (si.ItemURI.Equals("http://profiles.catalyst.harvard.edu/ontology/prns#hasGroupManager"))
+                else if (si.ItemURI.Equals("http://profiles.catalyst.harvard.edu/ontology/prns#hasGroupManager") ||
+                         si.ItemURI.Equals("http://vivoweb.org/ontology/core#contributingRole"))
                 {
                     litSetting.Text = "";
                 }

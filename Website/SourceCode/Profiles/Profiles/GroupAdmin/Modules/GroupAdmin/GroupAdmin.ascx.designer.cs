@@ -40,15 +40,6 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin {
         protected global::System.Web.UI.WebControls.LinkButton btnAddGroups;
         
         /// <summary>
-        /// btnImgAddGroups control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image btnImgAddGroups;
-        
-        /// <summary>
         /// pnlAddGroup control.
         /// </summary>
         /// <remarks>
@@ -182,15 +173,6 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnDeletedGroups;
-        
-        /// <summary>
-        /// btnImgDeletedGroups control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image btnImgDeletedGroups;
         
         /// <summary>
         /// pnlDeletedGroups control.

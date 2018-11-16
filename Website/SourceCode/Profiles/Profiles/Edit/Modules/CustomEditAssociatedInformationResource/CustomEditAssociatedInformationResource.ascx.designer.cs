@@ -85,15 +85,6 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource {
         protected global::System.Web.UI.WebControls.LinkButton btnSyncMemberPubs;
         
         /// <summary>
-        /// btnImgSyncMemberPubs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image btnImgSyncMemberPubs;
-        
-        /// <summary>
         /// litSyncMemberPubs control.
         /// </summary>
         /// <remarks>
@@ -121,15 +112,6 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource {
         protected global::System.Web.UI.WebControls.LinkButton btnAddMemberPub;
         
         /// <summary>
-        /// btnImgAddMemberPub control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image btnImgAddMemberPub;
-        
-        /// <summary>
         /// phAddPubMed control.
         /// </summary>
         /// <remarks>
@@ -146,15 +128,6 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnAddPubMed;
-        
-        /// <summary>
-        /// btnImgAddPubMed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image btnImgAddPubMed;
         
         /// <summary>
         /// phAddPub control.
@@ -175,15 +148,6 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource {
         protected global::System.Web.UI.WebControls.LinkButton btnAddPub;
         
         /// <summary>
-        /// btnImgAddPub control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image btnImgAddPub;
-        
-        /// <summary>
         /// phAddCustom control.
         /// </summary>
         /// <remarks>
@@ -202,15 +166,6 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource {
         protected global::System.Web.UI.WebControls.LinkButton btnAddCustom;
         
         /// <summary>
-        /// btnImgAddCustom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image btnImgAddCustom;
-        
-        /// <summary>
         /// phDeletePub control.
         /// </summary>
         /// <remarks>
@@ -227,15 +182,6 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnDeletePub;
-        
-        /// <summary>
-        /// btnImgDeletePub control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image btnImgDeletePub;
         
         /// <summary>
         /// pnlSyncMemberPubs control.
@@ -490,15 +436,6 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource {
         protected global::System.Web.UI.WebControls.TextBox txtGroupMemberFiltersStartDate;
         
         /// <summary>
-        /// FilteredTextBoxExtender1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender1;
-        
-        /// <summary>
         /// btnGroupMemberFiltersStartCalendar control.
         /// </summary>
         /// <remarks>
@@ -524,15 +461,6 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtGroupMemberFiltersEndDate;
-        
-        /// <summary>
-        /// FilteredTextBoxExtender2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender2;
         
         /// <summary>
         /// btnGroupMemberFiltersEndCalendar control.

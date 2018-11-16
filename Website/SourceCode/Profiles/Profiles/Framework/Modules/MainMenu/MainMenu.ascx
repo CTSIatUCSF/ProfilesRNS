@@ -48,7 +48,6 @@
     <div id="suckerfishmenu">
 		<div class="activeContainer" id="defaultmenu">
 			<ul class="menu">
-				<span runat="server" id="panelMenu" visible="true"></span>
 				<li id="about"><a href="<%=GetThemedDomain()%>/about/AboutProfiles.aspx">ABOUT</a></li>
 				<li id="contact"><a href="<%=GetThemedDomain()%>/about/Help.aspx">HELP</a></li>
 				<li class="item-home"><a href="<%=GetThemedDomain()%>">SEARCH OPTIONS</a>
@@ -64,10 +63,12 @@
 					</ul>
 				</li>
 			</ul>
-<!--			<HistoryItem:History runat="server" ID="ProfileHistory" Visible="false" />  -->
+			<span runat="server" id="panelMenu" visible="true"></span>
+<!--		<HistoryItem:History runat="server" ID="ProfileHistory" Visible="false" />  -->
 		</div>
 	</div>
 </div>
+
 
 
 

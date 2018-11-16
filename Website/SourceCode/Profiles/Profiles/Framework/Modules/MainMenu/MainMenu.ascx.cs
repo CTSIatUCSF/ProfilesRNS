@@ -91,7 +91,7 @@ namespace Profiles.Framework.Modules.MainMenu
 
             if (sm.Session().NodeID > 0)
             {
-                menulist.Append("<li><a href='" + userBrand.BasePath + "/proxy/default.aspx?subject=" + sm.Session().NodeID.ToString() + "'>Manage Proxies</a></li>");
+                menulist.Append("<li><a href='" + userBrand.BasePath + "/proxy/default.aspx?subject=" + sm.Session().NodeID.ToString() + "'>Proxies</a></li>");
             }
 
             if (base.BaseData.SelectSingleNode(".").OuterXml != string.Empty && !Root.AbsolutePath.ToLower().Contains("/search"))
@@ -146,7 +146,7 @@ namespace Profiles.Framework.Modules.MainMenu
                     if (data.IsGroupAdmin(sm.Session().UserID))
                         menulist.Append("<li><a href='" + Root.Domain + "/groupAdmin/default.aspx'>Manage Groups</a></li>");
                 }
-                menulist.Append("<li><a href='" + Brand.GetThemedDomain() + "/login/default.aspx?method=logout&redirectto=" + Brand.GetThemedDomain() + "/About/CloseBrowser.aspx" + "'>SIGN OUT</a></li>");
+                menulist.Append("<li><a href='" + Brand.GetThemedDomain() + "/login/default.aspx?method=logout&redirectto=" + Brand.GetThemedDomain() + "/About/CloseBrowser.aspx" + "'>Sign Out</a></li>");
             }
 
             menulist.Append("</ul>");

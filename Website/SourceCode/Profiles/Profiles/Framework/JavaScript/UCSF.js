@@ -9,11 +9,7 @@ function redirectForLogin(data) {
 $(document).ready(function () {
     // logged in/out subnav
   if ($('#defaultmenu') && $('#defaultmenu').length) {
-	var menuCount = $(".menu span ul li").length;
-	if ( menuCount > 1 ) { $(".menu").addClass('auth'); }		
-	if ( menuCount > 5 ) { $(".menu").addClass('proxy'); }
-	if ( menuCount > 6 ) { $(".menu").addClass('groups'); }
-    $(".mainmenu li:contains('RDF')").addClass('rdf').appendTo('.profilesMainColumnRight').hide();
+    $("#defaultmenu ul:contains('SIGN IN')").addClass('anon');
   }
  
     // copyright year

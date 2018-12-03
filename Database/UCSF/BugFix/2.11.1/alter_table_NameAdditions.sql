@@ -1,0 +1,1 @@
+ALTER TABLE [UCSF.].[NameAdditions] ADD [PublishingLast] [nvarchar](50) NULL ;

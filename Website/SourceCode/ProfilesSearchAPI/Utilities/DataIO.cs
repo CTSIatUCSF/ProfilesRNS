@@ -119,9 +119,10 @@ namespace ProfilesSearchAPI.Utilities
         public void SessionCreate(ref Session session)
         {
             SqlDataReader dbreader;
-            SqlParameter[] param = new SqlParameter[2];
+            SqlParameter[] param = new SqlParameter[3];
             param[0] = new SqlParameter("@RequestIP", session.RequestIP);
-            param[1] = new SqlParameter("@UserAgent", session.UserAgent);
+            param[1] = new SqlParameter("@HostName", session.HostName);
+            param[2] = new SqlParameter("@UserAgent", session.UserAgent);
 
             dbreader = GetSQLDataReader(GetDBCommand("", "[User.Session].[CreateSession]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
             if (dbreader != null)

@@ -11,7 +11,8 @@
   
 */
 using System;
-using System.Web;
+using ProfilesSearchAPI.Utilities;
+
 
 namespace Profiles.Utilities
 {
@@ -34,6 +35,7 @@ namespace Profiles.Utilities
         public DateTime LoginDate { get; set; }
         public DateTime LogoutDate { get; set; }
         public string RequestIP { get; set; }
+        public string HostName { get; set; }
         public int UserID { get; set; }
         public int PersonID { get; set; }
         public Int64 NodeID { get; set; }
@@ -82,6 +84,30 @@ namespace Profiles.Utilities
             
         }
 
+        // UCSF, from https://stackoverflow.com/questions/735350/how-to-get-a-users-client-ip-address-in-asp-net
+        protected string GetIPAddress()
+        {
+            try
+            {
+                System.Web.HttpContext context = System.Web.HttpContext.Current;
+                string ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+
+                if (!string.IsNullOrEmpty(ipAddress))
+                {
+                    string[] addresses = ipAddress.Split(',');
+                    if (addresses.Length != 0)
+                    {
+                        return addresses[0];
+                    }
+                }
+                return context.Request.ServerVariables["REMOTE_ADDR"];
+            }
+            catch (Exception e)
+            {
+                DebugLogging.Log(e.Message + " " + e.StackTrace);
+            }
+            return "unknown";
+        }
         /// <summary>
         ///     Public method used to create an instance of the custom Profiles session object.
         /// </summary>
@@ -91,20 +117,9 @@ namespace Profiles.Utilities
             ProfilesSearchAPI.Utilities.DataIO dataio = new ProfilesSearchAPI.Utilities.DataIO();
 
             Session session = new Session();
-            string hostname = System.Net.Dns.GetHostName();
 
-            string ipaddress = string.Empty;
-            try
-            {
-                ipaddress = System.Net.Dns.GetHostAddresses(hostname).GetValue(1).ToString();
-            }
-            catch (Exception ex)
-            {
-                ProfilesSearchAPI.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
-                ipaddress = "";
-            }
-
-            session.RequestIP = ipaddress;
+            session.RequestIP = GetIPAddress();
+            session.HostName = System.Net.Dns.GetHostName();
             session.UserAgent = "Search API";
             
             dataio.SessionCreate(ref session);

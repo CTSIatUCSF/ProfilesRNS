@@ -1,3 +1,7 @@
+NOTE. THIS IS OUT OF DATE!!!!
+This might work to convert a 2.9 or 2.10, but after that you need to instead run the scripts in 
+../UCSF/Upgrade/VersionUpgrade_2.10.x_2.11.1 AFTER you run the Harvard equivalent.
+
 Use these files to convert a standard ProfilesRNS Installation from Harvard to one from UCSF.
 
 Do NOT use these to upgrade an existing UCSF version!

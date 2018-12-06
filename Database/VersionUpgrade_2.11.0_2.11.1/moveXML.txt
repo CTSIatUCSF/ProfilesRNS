@@ -1,0 +1,17 @@
+-- 1 Create this table in target DB
+CREATE TABLE [dbo].[tmpConceptMeshFile211](
+	[Name] [varchar](100) NOT NULL,
+	[DataStr2] [nvarchar](max) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+-- 2 Login to SFPRF-PSIS02 and move data over
+INSERT INTO [SFPRF-PDB01-AG2].[profilesRNS].[dbo].[tmpConceptMeshFile211]
+           ([Name]
+           ,[DataStr2])
+SELECT [Name]
+      ,[DataStr2] 
+  FROM [SFPRF-QDB01-AG2].[import_profiles].[dbo].[tmpConceptMeshFile211]
+
+-- 3 After truncating the table as per the first part of Upgrade_Data, run the following instead of doing the file import
+insert [Profile.Data].[Concept.Mesh.File] ([Name], [Data]) SELECT * from [dbo].[tmpConceptMeshFile211]1]

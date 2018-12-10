@@ -1127,8 +1127,13 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
         public string HttpGet(string myUri, string myXml, string contentType)
         {
             WebClient client = new WebClient();
-            client.Encoding = System.Text.Encoding.UTF8;
-            return client.DownloadString(myUri);
+            var rawData = client.DownloadData(myUri);
+            string ret= System.Text.Encoding.UTF8.GetString(rawData);
+            /* 
+             * client.Encoding = System.Text.Encoding.UTF8; this is not working
+                return client.DownloadString(myUri);
+            */
+            return ret;
         }
 
 

@@ -223,7 +223,7 @@ GO
 
 
 CREATE PROCEDURE [ORNG.].[RemoveAppFromAgent]
-@SubjectID BIGINT=NULL, @SubjectURI NVARCHAR(255)=NULL, @AppID INT, @DeleteType tinyint = 1, @SessionID UNIQUEIDENTIFIER=NULL, @Error BIT=NULL OUTPUT
+@SubjectID BIGINT=NULL, @SubjectURI NVARCHAR(255)=NULL, @AppID INT, @UserEdit tinyint = 0, @SessionID UNIQUEIDENTIFIER=NULL, @Error BIT=NULL OUTPUT
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -275,13 +275,12 @@ BEGIN
 								 @SessionID = @SessionID, 
 								 @Error = @Error
 
-		IF (@DeleteType = 0) -- true delete, remove the now orphaned application instance
-		BEGIN
-			EXEC [RDF.].DeleteNode @NodeID = @ApplicationInstanceNodeID, 
-							   @DeleteType = @DeleteType,
-							   @SessionID = @SessionID, 
-							   @Error = @Error OUTPUT
-		END							   
+		-- If @UserEdit = 1, we just want to flip the security type to hide the node, that way the user can add it back
+		-- If @UserEdit = 0, then use true delete because IF THE GADGET IS CODED CORRECTLY, it means that this user truly no longer has this data
+		EXEC [RDF.].DeleteNode @NodeID = @ApplicationInstanceNodeID, 
+							@DeleteType = @UserEdit,
+							@SessionID = @SessionID, 
+							@Error = @Error OUTPUT		
 
 		-- remove any filters
 		SELECT @PERSON_FILTER_ID = (SELECT PersonFilterID FROM Apps WHERE AppID = @AppID)

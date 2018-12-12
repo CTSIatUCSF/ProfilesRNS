@@ -27,7 +27,7 @@ namespace Profiles.Login.Modules.MultiShibLogin
         {
             if (!IsPostBack)
             {
-                string redirectto = "true".Equals(Request["edit"]) ? "edit" : Request["redirectto"];
+                string redirectto = Request["redirectto"];
 
                 SessionManagement sm = new SessionManagement();
                 

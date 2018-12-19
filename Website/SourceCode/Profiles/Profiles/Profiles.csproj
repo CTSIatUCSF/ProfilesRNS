@@ -448,6 +448,7 @@
     <Content Include="ORNG\Modules\ModuleCatalogue.xml" />
     <Content Include="ORNG\Modules\SearchGadgets\SearchGadgets.ascx" />
     <Content Include="ORNG\Modules\ViewPersonalGadget\ViewPersonalGadget.ascx" />
+    <Content Include="ORNG\PresentationXML\DashboardPresentation.xml" />
     <Content Include="ORNG\PresentationXML\GadgetDetailsPresentation.xml" />
     <Content Include="ORNG\PresentationXML\SandboxFormPresentation.xml" />
     <Content Include="Profile\CSS\viz.css" />
@@ -2071,7 +2072,9 @@
     <Content Include="Error\Default.aspx" />
     <Content Include="Error\Modules\ErrorMessage\ErrorMessage.ascx" />
     <Content Include="Error\Modules\ModuleCatalogue.xml" />
-    <Content Include="Error\PresentationXML\ErrorPresentation.xml" />
+    <Content Include="Error\PresentationXML\ErrorPresentation.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Framework\CSS\jquery-ui-1.8.13.custom.css" />
     <Content Include="Framework\CSS\ui.dropdownchecklist.themeroller.css" />
     <Content Include="Framework\Images\banner.jpg" />

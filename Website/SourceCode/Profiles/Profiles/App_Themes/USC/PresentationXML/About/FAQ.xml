@@ -114,6 +114,8 @@ $('#suckerfishmenu li#contact a').addClass('active');
   <li>People with common names or whose articles were written at other institutions are most likely to have incomplete publication lists.</li>
   <li>You can make corrections by manually searching PubMed from within Profiles to add, edit or delete publications. By curating publications manually, you are helping USC Health Sciences Profiles to identify which concepts are associated with your profile and increasing the likelihood of finding the right publications on subsequent attempts.</li>
   <li>We encourage you to login to the site and add any missing publications or remove incorrect ones.</li>
+  <li><strong>NOTE</strong>: If you would like to add publications, grants, clinical trials or other examples of your scholarly activity that are not in 
+  MEDLINE/PubMed, NIH Reporter, or clinicaltrials.gov, you can add them manually in the appropriate section, or in your Overview.</li>
 </ul>
 
 <h3 id="trials">Why are there missing or incorrect clinical studies in my profile? How can I correct this?</h3>

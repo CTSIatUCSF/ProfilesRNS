@@ -74,7 +74,7 @@ namespace Profiles.Framework.Modules.MainMenu
 
             if (session.NodeID > 0)
             {
-                menulist.Append("<li id='editmy'><a href='" + userBrand.BasePath + "/login/default.aspx?method=login&edit=true'>Edit Your Profile</a></li>");
+                menulist.Append("<li id='editmy'><a href='" + userBrand.BasePath + "/edit/" + session.NodeID.ToString() + "'>Edit Your Profile</a></li>");
             }
 
 

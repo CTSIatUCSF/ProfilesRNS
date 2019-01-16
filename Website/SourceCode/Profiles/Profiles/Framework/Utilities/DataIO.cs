@@ -914,7 +914,7 @@ namespace Profiles.Framework.Utilities
 
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                reader = GetDBCommand(dbconnection, "select Property FROM [Ontology.].[ClassProperty] where Class = 'http://xmlns.com/foaf/0.1/Person' and _PropertyNode = " + predicateId.ToString(), CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
+                reader = GetDBCommand(dbconnection, "select Property FROM [Ontology.].[ClassProperty] where (Class = 'http://xmlns.com/foaf/0.1/Person' or Class = 'http://xmlns.com/foaf/0.1/Agent') and _PropertyNode = " + predicateId.ToString(), CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
                 while (reader.Read())
                 {
                     property = reader[0].ToString();

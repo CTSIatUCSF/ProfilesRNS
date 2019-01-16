@@ -118,15 +118,15 @@ namespace Profiles.Login.Modules.ShibLogin
             }
             else if ("mypage".Equals(redirectto.ToLower()) )
             {
-                return sm.Session().NodeID > 0 ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/profile/" + sm.Session().NodeID : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.aspx";
+                return UCSFIDSet.IsPerson(sm.Session().NodeID) ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/profile/" + sm.Session().NodeID : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.aspx";
             }
             else if ("myproxies".Equals(redirectto.ToLower()))
             {
-                return sm.Session().NodeID > 0 ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/proxy/default.aspx?subject=" + sm.Session().NodeID : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.aspx";
+                return UCSFIDSet.IsPerson(sm.Session().NodeID) ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/proxy/default.aspx?subject=" + sm.Session().NodeID : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.aspx";
             }
             else if ("edit".Equals(redirectto.ToLower()))
             {
-                return sm.Session().NodeID > 0 ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/edit/" + sm.Session().NodeID : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.aspx";
+                return UCSFIDSet.IsPerson(sm.Session().NodeID) ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/edit/" + sm.Session().NodeID : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.aspx";
             }
             else if (redirectto.ToLower().StartsWith("http")) // make sure it at least looks legit
             {

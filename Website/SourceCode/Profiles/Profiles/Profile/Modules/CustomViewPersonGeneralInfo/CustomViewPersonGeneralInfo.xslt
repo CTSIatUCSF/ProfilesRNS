@@ -34,33 +34,28 @@
 
   <!--=============Template for displaying Name table============-->
   <xsl:template name="Name">
-    <xsl:if test="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/prns:isPrimaryPosition !=''">
+    <xsl:variable name="uriDepartment" select="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/prns:positionInDepartment/@rdf:resource"/>
+    <!-- Title and Department -->
+    <xsl:if test="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/prns:isPrimaryPosition !='' and rdf:RDF/rdf:Description[@rdf:about=$uriDepartment]/rdfs:label !=''">
       <tr>
-        <th>Title</th>
+        <th>Title(s)</th>
+        <td>
+          <span itemprop="jobTitle">
+            <xsl:value-of select="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/vivo:hrJobTitle "/>
+            <xsl:text>, </xsl:text>
+            <xsl:value-of select="rdf:RDF/rdf:Description[@rdf:about=$uriDepartment]/rdfs:label "/>
+          </span>
+        </td>
+      </tr>
+    </xsl:if>
+    <!-- Title and NO Department -->
+    <xsl:if test="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/prns:isPrimaryPosition !='' and rdf:RDF/rdf:Description[@rdf:about=$uriDepartment]/rdfs:label =''">
+      <tr>
+        <th>Title(s)</th>
         <td>
           <span itemprop="jobTitle">
             <xsl:value-of select="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/vivo:hrJobTitle "/>
           </span>
-        </td>
-      </tr>
-    </xsl:if>
-    <xsl:variable name="uriOrganization" select="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/vivo:positionInOrganization/@rdf:resource"/>
-    <xsl:if test="rdf:RDF/rdf:Description[@rdf:about=$uriOrganization]/rdfs:label !=''">
-      <tr>
-        <th>Institution</th>
-        <td>
-          <span itemprop="affiliation">
-            <xsl:value-of select="rdf:RDF/rdf:Description[@rdf:about= $uriOrganization]/rdfs:label"/>
-          </span>
-        </td>
-      </tr>
-    </xsl:if>
-    <xsl:variable name="uriDepartment" select="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/prns:positionInDepartment/@rdf:resource"/>
-    <xsl:if test="rdf:RDF/rdf:Description[@rdf:about=$uriDepartment]/rdfs:label !=''">
-      <tr>
-        <th>Department</th>
-        <td>
-          <xsl:value-of select="rdf:RDF/rdf:Description[@rdf:about=$uriDepartment]/rdfs:label "/>
         </td>
       </tr>
     </xsl:if>
@@ -105,7 +100,7 @@
         </td>
       </tr>
     </xsl:if>
-<!--
+    <!--
     <xsl:choose>
       <xsl:when test="rdf:RDF[1]/rdf:Description[1]/vivo:faxNumber !=''">
         <tr>
@@ -123,7 +118,9 @@
           <th>Email</th>
           <td>
             <!--img id="{$imgguid}" src="{$email}&amp;rnd={$imgguid}"></img-->
-            <a href="mailto:{$email}" itemprop="email"><xsl:value-of select="$email"/></a>
+            <a href="mailto:{$email}" itemprop="email">
+              <xsl:value-of select="$email"/>
+            </a>
             <!--<a href="{$emailAudio}&amp;rnd={$imgguid}">
               <img src="{$emailAudioImg}" alt="Listen to email address" />
             </a>-->
@@ -156,7 +153,8 @@
             <a href="{$orcidurl}" target="_blank">
               <xsl:value-of select="$orcid "/>
             </a>
-            <xsl:text disable-output-escaping="yes">&#160;</xsl:text><a style="border: none;" href="{$orcidinfosite}" target='_blank'>
+            <xsl:text disable-output-escaping="yes">&#160;</xsl:text>
+            <a style="border: none;" href="{$orcidinfosite}" target='_blank'>
               <img style='border-style: none' src="{$root}/Framework/Images/info.png"  border='0' alt='Additional info'/>
             </a>
           </td>

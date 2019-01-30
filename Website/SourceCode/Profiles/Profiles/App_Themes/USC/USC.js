@@ -34,7 +34,7 @@
       if ($('#publicationListAll') && $('#publicationListAll').length) {
 		$("#publicationListAll li a:contains('PubMed')").each(function () { 
 			var pmid = $(this).attr('href').match(/(\d+)$/); 
-			if (pmid && pmid[0]) { 
+            if (pmid && pmid[0] && $(this).attr('href').includes('pubmed')) { // Eric. Added check to only include pubmed links, and thus weed out PMCID ones
 				$(this).parent().append("<a href='https://plu.mx/usc/a/?pmid=" + pmid[0] + "' class='plumx-plum-print-popup' data-popup='bottom' data-hide-when-empty='true' data-site='usc' data-badge='true'></a>");
 			}
 		});

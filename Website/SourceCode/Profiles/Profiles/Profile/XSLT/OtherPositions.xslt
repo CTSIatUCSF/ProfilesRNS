@@ -32,11 +32,14 @@
     <tr>
       <th>Title(s)</th>
       <td>
+        <xsl:variable name="uriOrganization" select="vivo:positionInOrganization/@rdf:resource"/>
         <xsl:if test="vivo:hrJobTitle !='' ">
           <xsl:value-of select="vivo:hrJobTitle "/>
         </xsl:if>
-        <xsl:variable name="uriDepartment" select="prns:positionInDepartment/@rdf:resource"/>
-        <xsl:apply-templates select="//rdf:Description[@rdf:about = $uriDepartment]" mode="department"/>
+        <xsl:if test="//rdf:Description[@rdf:about = $uriOrganization][rdfs:label] !='University of Southern California' ">
+          <xsl:variable name="uriDepartment" select="prns:positionInDepartment/@rdf:resource"/>
+          <xsl:apply-templates select="//rdf:Description[@rdf:about = $uriDepartment]" mode="department"/>
+        </xsl:if>
       </td>
     </tr>
     <!-- UCSF, we only show Primary Division, labled as School

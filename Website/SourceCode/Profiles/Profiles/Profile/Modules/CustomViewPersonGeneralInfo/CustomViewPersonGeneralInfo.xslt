@@ -35,8 +35,11 @@
   <!--=============Template for displaying Name table============-->
   <xsl:template name="Name">
     <xsl:variable name="uriDepartment" select="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/prns:positionInDepartment/@rdf:resource"/>
-    <!-- Title and Department -->
-    <xsl:if test="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/prns:isPrimaryPosition !='' and rdf:RDF/rdf:Description[@rdf:about=$uriDepartment]/rdfs:label !=''">
+    <xsl:variable name="uriOrganization" select="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/vivo:positionInOrganization/@rdf:resource"/>
+    <!-- Title and Department and NOT USC -->
+    <xsl:if test="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/prns:isPrimaryPosition !='' and 
+					rdf:RDF/rdf:Description[@rdf:about=$uriDepartment]/rdfs:label !='' and 
+					rdf:RDF/rdf:Description[@rdf:about= $uriOrganization]/rdfs:label != 'University of Southern California'">
       <tr>
         <th>Title(s)</th>
         <td>
@@ -48,8 +51,10 @@
         </td>
       </tr>
     </xsl:if>
-    <!-- Title and NO Department -->
-    <xsl:if test="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/prns:isPrimaryPosition !='' and rdf:RDF/rdf:Description[@rdf:about=$uriDepartment]/rdfs:label =''">
+    <!-- Title and (NO Department OR USC) -->
+    <xsl:if test="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/prns:isPrimaryPosition !='' and 
+					(rdf:RDF/rdf:Description[@rdf:about=$uriDepartment]/rdfs:label ='' or 
+					 rdf:RDF/rdf:Description[@rdf:about= $uriOrganization]/rdfs:label = 'University of Southern California')">
       <tr>
         <th>Title(s)</th>
         <td>

@@ -37,6 +37,7 @@ ul.highlights li {
 .sautter { text-align: center; margin-top: 0; font-size: 15px; font-style: italic; } 
 .alumni { background-image: url(Images/ucsf_alumni_blue.jpg); }
 .panelActive.navbar { padding: 0 0 110px; background: transparent url(Images/hero.png) no-repeat scroll center 60px; }
+.hero-women .panelActive.navbar { padding: 0 0 160px; background-image: url(Images/hero-women.png); }
 .hero-photos0 .panelActive.navbar { padding: 0 0 160px; background-image: url(Images/hero-photos0.png); }
 .hero-photos1 .panelActive.navbar { padding: 0 0 160px; background-image: url(Images/hero-photos1.png); }
 .hero-photos2 .panelActive.navbar { padding: 0 0 160px; background-image: url(Images/hero-photos2.png); }
@@ -59,6 +60,7 @@ ul.highlights li {
 .hero-photos19 .panelActive.navbar { padding: 0 0 160px; background-image: url(Images/hero-photos19.png); }
 .hero-photos20 .panelActive.navbar { padding: 0 0 160px; background-image: url(Images/hero-photos20.png); }
 .hero-photos21 .panelActive.navbar { padding: 0 0 160px; background-image: url(Images/hero-photos21.png); }
+
 
 
 

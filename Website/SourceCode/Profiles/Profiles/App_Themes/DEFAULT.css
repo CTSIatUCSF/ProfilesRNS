@@ -266,7 +266,7 @@ box-shadow: 10px 10px 10px -10px rgba(153,153,153,1);
 /* MENU */
 #suckerfishmenu { position: relative; }
 #suckerfishmenu	 ul { 
-  padding: 0; margin: 5px 0 0; 
+  padding: 0; margin: 5px 10px 0 0; 
   list-style: none;
   z-index: 100;
   font-size: 14px;

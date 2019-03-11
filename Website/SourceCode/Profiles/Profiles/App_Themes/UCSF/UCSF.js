@@ -41,8 +41,11 @@
 	}
 	
 	if ($('.searchForm') && $('.searchForm').length) {
-        var hero = 'hero-photos' + Math.floor((Math.random() * 21));
-        $('#page-container').addClass(hero);
+//        var hero = 'hero-photos' + Math.floor((Math.random() * 21));
+//        $('#page-container').addClass(hero);
+        $('#page-container').addClass("hero-women");
+        var herolink = "<p style='position:absolute;top:170px;margin-left:24px;line-height:34px;background-color:#fafbfb;'><a href='../women-in-science/'><span style='font-size:32px'>Women in</span><br /><span style='font-size:38px'>Science</span><br /><span style='color:#F26D04;line-height:20px;' class='dblarrow'>Learn more</span></a></p>";
+        $('.hero-women .profiles').prepend(herolink);
 	}
  
 });

@@ -721,6 +721,16 @@ namespace Profiles.Framework.Utilities
                 }
                 session.UserURI = param[5].Value.ToString();
                 session.DisplayName = param[6].Value.ToString();
+
+                // set the view security group if the user is logged in. Hack by UCSF to match a harvard hack!
+                if (session.IsLoggedIn())
+                {
+                    session.LoginDate = DateTime.Now;
+                }
+                if (session.UserID > 0)
+                {
+                    session.ViewSecurityGroup = -20;
+                }
             }
             catch (Exception ex)
             {

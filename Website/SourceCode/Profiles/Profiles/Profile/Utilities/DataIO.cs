@@ -134,8 +134,7 @@ namespace Profiles.Profile.Utilities
             try
             {
                 string sessionKey = string.Empty;
-                // UCSF.  The safest thing is to make sure that logged in users get their own cache regardless of their security group, which seems like a Harvard feature in development
-                if (!request.Session.IsLoggedIn() && request.Session.ViewSecurityGroup > -20 && request.Session.ViewSecurityGroup < 0)
+                if (request.Session.ViewSecurityGroup > -20 && request.Session.ViewSecurityGroup < 0)
                     sessionKey = "SecurityGroup:" + request.Session.ViewSecurityGroup.ToString();
                 else
                     sessionKey = request.Session.SessionID.ToString();

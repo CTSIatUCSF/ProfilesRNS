@@ -27,14 +27,14 @@
       }
     }, 7000);
 
-  //Search Form: clone clinical trials checkbox for promotion; call buildGadgetAds
-    if ($('#trOtherOptions') && $('#trOtherOptions').length) {
-		$("#divOtherOptions label[for='ctcFirst_rMaster_ctl00_rDetail_ctl00_checkDetailText']").parent().addClass('trials1');
+  //Search Form: clone clinical trials checkbox for promotion; call buildGadgetAds 
+    if ($('#selOtherOptions') && $('#selOtherOptions').length) {
+		$("#divMaster_CTC1 label:contains('Clinical Trials')").parent().addClass('trials1');
 		$('.trials2').click(function() { 
 			if ($('.trials2').is(':checked')) {
-				$('#ctcFirst_rMaster_ctl00_divDetail .trials1 :checkbox').attr("checked", true)[0].onclick();
+				$('.trials1 input:checkbox').attr("checked", true)[0].onclick();
 			} else {
-				$('#ctcFirst_rMaster_ctl00_divDetail .trials1 :checkbox').attr("checked", false)[0].onclick(); 
+				$('.trials1 input:checkbox').attr("checked", false)[0].onclick(); 
 			}
 		});
 		buildGadgetAds();

@@ -721,6 +721,16 @@ namespace Profiles.Framework.Utilities
                 }
                 session.UserURI = param[5].Value.ToString();
                 session.DisplayName = param[6].Value.ToString();
+
+                // set the view security group if the user is logged in. Hack by UCSF to match a harvard hack!
+                if (session.IsLoggedIn())
+                {
+                    session.LoginDate = DateTime.Now;
+                }
+                if (session.UserID > 0)
+                {
+                    session.ViewSecurityGroup = -20;
+                }
             }
             catch (Exception ex)
             {
@@ -914,7 +924,7 @@ namespace Profiles.Framework.Utilities
 
 
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                reader = GetDBCommand(dbconnection, "select Property FROM [Ontology.].[ClassProperty] where Class = 'http://xmlns.com/foaf/0.1/Person' and _PropertyNode = " + predicateId.ToString(), CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
+                reader = GetDBCommand(dbconnection, "select Property FROM [Ontology.].[ClassProperty] where (Class = 'http://xmlns.com/foaf/0.1/Person' or Class = 'http://xmlns.com/foaf/0.1/Agent') and _PropertyNode = " + predicateId.ToString(), CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader();
                 while (reader.Read())
                 {
                     property = reader[0].ToString();

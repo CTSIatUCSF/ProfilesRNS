@@ -24,12 +24,12 @@ namespace Profiles.CustomAPI.Secure
             using (SqlConnection conn = new SqlConnection(profilesdb)) 
             {
                 conn.Open();
-                using (SqlDataReader dbreader = new SqlCommand("SELECT internalusername, nodeid from [UCSF.].vwPerson" +
+                using (SqlDataReader dbreader = new SqlCommand("SELECT internalusername, nodeid, PrettyURL from [UCSF.].vwPerson" +
                     (institution != null ? " WHERE InstitutionAbbreviation = '" + institution.GetAbbreviation() + "'" : ""), conn).ExecuteReader(CommandBehavior.CloseConnection))
                 {
                     while (dbreader.Read())
                     {
-                        Response.Write(dbreader[0].ToString() + ", " + dbreader[1].ToString() + Environment.NewLine);
+                        Response.Write(dbreader[0].ToString() + ", " + dbreader[1].ToString() + ", " + dbreader[2].ToString() + Environment.NewLine);
                     }
                 }
             }

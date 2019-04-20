@@ -59,7 +59,7 @@ namespace Profiles.Framework.Modules.MainMenu
             Brand userBrand = Brand.GetCurrentBrand();
             Session session = sm.Session();
             // logged in Person
-            if (session.NodeID > 0)
+            if (UCSFIDSet.IsPerson(session.NodeID))
             {
                 userBrand = Brand.GetForSubject(session.NodeID);
                 menulist.Append("<li id='myprofile'><a href='" + UCSFIDSet.ByNodeId[session.NodeID].PrettyURL
@@ -72,9 +72,9 @@ namespace Profiles.Framework.Modules.MainMenu
                 menulist.Append("<li>" + session.DisplayName + "</li>");
             }
 
-            if (session.NodeID > 0)
+            if (UCSFIDSet.IsPerson(session.NodeID))
             {
-                menulist.Append("<li id='editmy'><a href='" + userBrand.BasePath + "/login/default.aspx?method=login&edit=true'>Edit Your Profile</a></li>");
+                menulist.Append("<li id='editmy'><a href='" + userBrand.BasePath + "/edit/" + session.NodeID.ToString() + "'>Edit Your Profile</a></li>");
             }
 
 
@@ -86,12 +86,12 @@ namespace Profiles.Framework.Modules.MainMenu
 
             // ORNG Dashboard (only show for UCSF adn UCSD for now)
             string[] dashboardInstitutions = {"UCSF", "UCSD"};
-            if (session.NodeID > 0 && userBrand.GetInstitution() != null && dashboardInstitutions.Contains(userBrand.GetInstitution().GetAbbreviation()))
+            if (UCSFIDSet.IsPerson(session.NodeID) && userBrand.GetInstitution() != null && dashboardInstitutions.Contains(userBrand.GetInstitution().GetAbbreviation()))
             {
                 menulist.Append("<li id='dashboard'><a href='" + userBrand.BasePath + "/ORNG/Dashboard.aspx?owner=" + session.PersonURI + "'>Dashboard</a></li>");
             }
 
-            if (session.NodeID > 0)
+            if (UCSFIDSet.IsPerson(session.NodeID))
             {
                 menulist.Append("<li><a href='" + userBrand.BasePath + "/proxy/default.aspx?subject=" + session.NodeID.ToString() + "'>Proxies</a></li>");
             }

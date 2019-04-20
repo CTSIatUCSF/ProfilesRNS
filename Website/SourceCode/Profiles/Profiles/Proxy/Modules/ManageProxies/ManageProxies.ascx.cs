@@ -92,7 +92,7 @@ namespace Profiles.Proxy.Modules.ManageProxies
             gvYouCanEdit.CellPadding = 2;
             reader.Close();
 
-            if (sm.Session().NodeID > 0)
+            if (UCSFIDSet.IsPerson(sm.Session().NodeID))
             {
                 pnlAddProxy.Visible = true;
                 string url = Brand.GetThemedDomain() + "/proxy/default.aspx?method=search&subject=" + HttpContext.Current.Request.QueryString["subject"];

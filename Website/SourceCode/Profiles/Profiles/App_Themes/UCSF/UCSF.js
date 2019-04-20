@@ -27,22 +27,25 @@
       }
     }, 7000);
 
-  //Search Form: clone clinical trials checkbox for promotion; call buildGadgetAds
-    if ($('#trOtherOptions') && $('#trOtherOptions').length) {
-		$("#divOtherOptions label[for='ctcFirst_rMaster_ctl00_rDetail_ctl00_checkDetailText']").parent().addClass('trials1');
+  //Search Form: clone clinical trials checkbox for promotion; call buildGadgetAds 
+    if ($('#selOtherOptions') && $('#selOtherOptions').length) {
+		$("#divMaster_CTC1 label:contains('Clinical Trials')").parent().addClass('trials1');
 		$('.trials2').click(function() { 
 			if ($('.trials2').is(':checked')) {
-				$('#ctcFirst_rMaster_ctl00_divDetail .trials1 :checkbox').attr("checked", true)[0].onclick();
+				$('.trials1 input:checkbox').attr("checked", true)[0].onclick();
 			} else {
-				$('#ctcFirst_rMaster_ctl00_divDetail .trials1 :checkbox').attr("checked", false)[0].onclick(); 
+				$('.trials1 input:checkbox').attr("checked", false)[0].onclick(); 
 			}
 		});
 		buildGadgetAds();
 	}
 	
 	if ($('.searchForm') && $('.searchForm').length) {
-        var hero = 'hero-photos' + Math.floor((Math.random() * 21));
-        $('#page-container').addClass(hero);
+//        var hero = 'hero-photos' + Math.floor((Math.random() * 21));
+//        $('#page-container').addClass(hero);
+        $('#page-container').addClass("hero-women");
+        var herolink = "<p style='position:absolute;top:170px;margin-left:24px;line-height:34px;background-color:#fafbfb;'><a href='../women-in-science/'><span style='font-size:32px'>Women in</span><br /><span style='font-size:38px'>Science</span><br /><span style='color:#F26D04;line-height:20px;' class='dblarrow'>Learn more</span></a></p>";
+        $('.hero-women .profiles').prepend(herolink);
 	}
  
 });

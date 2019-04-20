@@ -261,6 +261,7 @@
     <Content Include="App_Themes\UCSF\Images\hero-photos7.png" />
     <Content Include="App_Themes\UCSF\Images\hero-photos8.png" />
     <Content Include="App_Themes\UCSF\Images\hero-photos9.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-women.png" />
     <Content Include="App_Themes\UCSF\Images\hero.png" />
     <Content Include="App_Themes\UCSF\Images\icon_squareArrow.gif" />
     <Content Include="App_Themes\UCSF\Images\listMaker.png" />
@@ -527,6 +528,8 @@
     <Content Include="Search\JavaScript\UCSF.js" />
     <Content Include="SiteMap.aspx" />
     <Content Include="trace.aspx" />
+    <Content Include="women-in-science\Default.aspx" />
+    <Content Include="women-in-science\PresentationXML\WomenInScience.xml" />
     <None Include="Web.config">
       <SubType>Designer</SubType>
     </None>
@@ -1981,6 +1984,13 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Search\Utilities\DataIO.cs" />
+    <Compile Include="women-in-science\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="women-in-science\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="About\CSS\about.css" />
@@ -2136,11 +2146,15 @@
     <Content Include="Profile\Modules\CustomViewPersonSameDepartment\CustomViewPersonSameDepartment.ascx" />
     <Content Include="Profile\Profile.aspx" />
     <Content Include="Profile\XSLT\Awards.xslt" />
-    <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\CustomViewPersonGeneralInfo.xslt" />
+    <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\CustomViewPersonGeneralInfo.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Profile\XSLT\CoAuthorDetail.xslt" />
     <Content Include="Profile\XSLT\ConceptDetail.xslt" />
     <Content Include="Profile\XSLT\Narrative.xslt" />
-    <Content Include="Profile\XSLT\OtherPositions.xslt" />
+    <Content Include="Profile\XSLT\OtherPositions.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Profile\XSLT\Publications.xslt" />
     <Content Include="Proxy\Default.aspx" />
     <Content Include="Proxy\Modules\ManageProxies\ManageProxies.ascx">

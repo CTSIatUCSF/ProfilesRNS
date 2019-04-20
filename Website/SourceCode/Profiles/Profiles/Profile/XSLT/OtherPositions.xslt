@@ -30,25 +30,24 @@
   </xsl:template>
   <xsl:template match="rdf:Description">
     <tr>
-      <xsl:if test="vivo:hrJobTitle !='' ">
-        <th>Title</th>
-        <td>
+      <th>Title(s)</th>
+      <td>
+        <xsl:variable name="uriOrganization" select="vivo:positionInOrganization/@rdf:resource"/>
+        <xsl:if test="vivo:hrJobTitle !='' ">
           <xsl:value-of select="vivo:hrJobTitle "/>
-        </td>
-      </xsl:if>
+        </xsl:if>
+        <xsl:if test="//rdf:Description[@rdf:about = $uriOrganization][rdfs:label] !='University of Southern California' ">
+          <xsl:variable name="uriDepartment" select="prns:positionInDepartment/@rdf:resource"/>
+          <xsl:apply-templates select="//rdf:Description[@rdf:about = $uriDepartment]" mode="department"/>
+        </xsl:if>
+      </td>
     </tr>
-    <tr>
-      <xsl:variable name="uriOrganization" select="vivo:positionInOrganization/@rdf:resource"/>
-      <xsl:apply-templates select="//rdf:Description[@rdf:about = $uriOrganization]" mode="organization"/>
-    </tr>
-    <tr>
-      <xsl:variable name="uriDepartment" select="prns:positionInDepartment/@rdf:resource"/>
-      <xsl:apply-templates select="//rdf:Description[@rdf:about = $uriDepartment]" mode="department"/>
-    </tr>
+    <!-- UCSF, we only show Primary Division, labled as School
     <tr>
       <xsl:variable name="uriDivision" select="prns:positionInDivision/@rdf:resource"/>
       <xsl:apply-templates select="//rdf:Description[@rdf:about = $uriDivision]" mode="division"/>
     </tr>
+	-->
     <!--<xsl:if test="position()!= last()">-->
     <tr>
       <th>
@@ -57,20 +56,10 @@
     </tr>
     <!--</xsl:if>-->
   </xsl:template>
-  <xsl:template match="rdf:Description" mode="organization">
-    <xsl:if test="rdfs:label !='' ">
-      <th>Institution</th>
-      <td>
-        <xsl:value-of select="rdfs:label"/>
-      </td>
-    </xsl:if>
-  </xsl:template>
   <xsl:template match="rdf:Description" mode="department">
     <xsl:if test="rdfs:label !='' ">
-      <th>Department</th>
-      <td>
-        <xsl:value-of select="rdfs:label"/>
-      </td>
+      <xsl:text>, </xsl:text>
+      <xsl:value-of select="rdfs:label"/>
     </xsl:if>
   </xsl:template>
   <xsl:template match="rdf:Description" mode="division">

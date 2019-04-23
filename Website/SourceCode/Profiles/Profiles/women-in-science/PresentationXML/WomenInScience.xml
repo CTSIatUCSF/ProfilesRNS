@@ -120,6 +120,19 @@
         <div class='card my-3 person'>
           <div class='card-body'>
             <h2 class='card-title h4'>
+              <a class='stretched-link title' href='https://profiles.ucsf.edu/elaine.allen'>Isabel Elaine Allen</a>
+              <br />
+              <small class='text-muted'>Professor, Epidemiology &amp; Biostatistics</small>
+            </h2>
+            <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=196342' />
+            <div class='card-text'>
+              <p>Isabel Elaine Allen, PhD&#39;s research interests include Analytics &amp; Data Visualization, Meta-analysis &amp; synthesis research, Clinical Research Design &amp; Analysis, Biometrics, Biostatistics</p>
+            </div>
+          </div>
+        </div>
+        <div class='card my-3 person'>
+          <div class='card-body'>
+            <h2 class='card-title h4'>
               <a class='stretched-link title' href='https://profiles.ucsf.edu/tamara.alliston'>Tamara Alliston</a>
               <br />
               <small class='text-muted'>Professor, Orthopaedic Surgery</small>
@@ -646,7 +659,7 @@
             </h2>
             <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=197026' />
             <div class='card-text'>
-              <p>Jennifer Chen, MD&#39;s grants include &quot;Role of Ceramide in Hepatic Stellate Cell Activation and Liver Fibrosis&quot;, &quot;Tricyclic Antidepressants Induce Hepatic Stellate Cell Quiescence: Identification of Mechanisms to Halt Hepatic Fibrosis&quot;</p>
+              <p>Jennifer Chen, MD&#39;s research has touched on Chronic Hepatitis C, Infectious Pregnancy Complications, Stillbirth, Tricyclic Antidepressive Agents, Hepatic Stellate Cells</p>
             </div>
           </div>
         </div>
@@ -674,6 +687,15 @@
             <div class='card-text'>
               <p>Margaret A. Chesney is a Professor of Medicine at the UCSF Osher Center for Integrative Medicine. From 2010 to 2015, she served as the director of the UCSF Osher Center, with its three core programs in integrative medicine research, education and patient care.</p>
             </div>
+          </div>
+        </div>
+        <div class='card my-3 person'>
+          <div class='card-body'>
+            <h2 class='card-title h4' style="padding-bottom:15px">
+              <a class='stretched-link title' href='https://profiles.ucsf.edu/seemay.chou'>Seemay Chou</a>
+              <br />
+              <small class='text-muted'>Assistant Professor, Biochemistry and Biophysics</small>
+            </h2>
           </div>
         </div>
         <div class='card my-3 person'>
@@ -997,7 +1019,7 @@
             </h2>
             <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=172699' />
             <div class='card-text'>
-              <p>Maria Ekstrand, PhD&#39;s research has touched on Unsafe Sex, Social Stigma, HIV Infections, Stereotyping, India</p>
+              <p>Maria Ekstrand, PhD&#39;s research has touched on Social Stigma, Dental Caries, India, HIV Infections, Soccer</p>
             </div>
           </div>
         </div>
@@ -1153,7 +1175,7 @@
             </h2>
             <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=187949' />
             <div class='card-text'>
-              <p>Sandy Feng, MD, PhD&#39;s research has touched on Waiting Lists, Graft Survival, Liver Transplantation, End Stage Liver Disease, Tissue Donors</p>
+              <p>Sandy Feng, MD, PhD&#39;s research has touched on Graft Rejection, Graft Survival, Liver Transplantation, End Stage Liver Disease, Tissue Donors</p>
             </div>
           </div>
         </div>
@@ -1530,7 +1552,7 @@
             </h2>
             <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=181963' />
             <div class='card-text'>
-              <p>Maria Glymour, ScD, MS&#39;s research has touched on Dementia, Stroke, Body Mass Index, Educational Status, Memory Disorders</p>
+              <p>Maria Glymour, ScD, MS&#39;s research has touched on Bias, Dementia, Stroke, Educational Status, Memory Disorders</p>
             </div>
           </div>
         </div>
@@ -1561,7 +1583,7 @@
           </div>
         </div>
 	</div>
-	<div style="width:330px; float: left;">
+    <div style="width:330px; float: left;">
         <div class='card my-3 person'>
           <div class='card-body'>
             <h2 class='card-title h4'>
@@ -1614,7 +1636,7 @@
             </div>
           </div>
         </div>
-        <div class='card my-3 person'>
+		<div class='card my-3 person'>
           <div class='card-body'>
             <h2 class='card-title h4'>
               <a class='stretched-link title' href='https://profiles.ucsf.edu/ruth.greenblatt'>Ruth Greenblatt</a>
@@ -1753,7 +1775,7 @@
             </h2>
             <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=192836' />
             <div class='card-text'>
-              <p>Julie Harris-Wai, PhD, MPH&#39;s research has touched on Genetic Testing, Family Relations, Melanoma, Public Health, Communication</p>
+              <p>Julie Harris-Wai, PhD, MPH&#39;s research has touched on Family, Genetic Testing, Family Relations, Melanoma, Communication</p>
             </div>
           </div>
         </div>
@@ -2104,7 +2126,7 @@
             </h2>
             <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=185242' />
             <div class='card-text'>
-              <p>Aimee Kao, MD, PhD&#39;s research has touched on Neurodegenerative Diseases, Intercellular Signaling Peptides and Proteins, Tuberous Sclerosis, TDP-43 Proteinopathies, Osmotic Pressure</p>
+              <p>Aimee Kao, MD, PhD&#39;s research has touched on Neurodegenerative Diseases, Intercellular Signaling Peptides and Proteins, Tuberous Sclerosis, Monosaccharide Transport Proteins, TDP-43 Proteinopathies</p>
             </div>
           </div>
         </div>
@@ -2923,7 +2945,7 @@
             </h2>
             <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=174505' />
             <div class='card-text'>
-              <p>Christine Miaskowski, RN, PhD, FAAN&#39;s research has touched on Pain Management, Sleep Wake Disorders, Pain, Neoplasms, Fatigue</p>
+              <p>Christine Miaskowski, RN, PhD, FAAN&#39;s research has touched on Breast Neoplasms, Sleep Wake Disorders, Pain, Neoplasms, Fatigue</p>
             </div>
           </div>
         </div>
@@ -2950,6 +2972,19 @@
             <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=188835' />
             <div class='card-text'>
               <p>I conduct translational neuroscience research that rests at the intersection of psychology, pharmacology, and genetics.</p>
+            </div>
+          </div>
+        </div>
+        <div class='card my-3 person'>
+          <div class='card-body'>
+            <h2 class='card-title h4'>
+              <a class='stretched-link title' href='https://profiles.ucsf.edu/annette.molinaro'>Annette Molinaro</a>
+              <br />
+              <small class='text-muted'>Professor, Neurological Surgery</small>
+            </h2>
+            <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=189159' />
+            <div class='card-text'>
+              <p>Annette Molinaro, PhD&#39;s research has touched on Glioblastoma, Glioma, Tumor Biomarkers, Basal Cell Carcinoma, Brain Neoplasms</p>
             </div>
           </div>
         </div>
@@ -3001,7 +3036,7 @@
             </h2>
             <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=196313' />
             <div class='card-text'>
-              <p>Pamela Munster, MD&#39;s research has touched on Histone Deacetylase Inhibitors, Breast Neoplasms, Amenorrhea, Hormonal Antineoplastic Agents, Antineoplastic Combined Chemotherapy Protocols</p>
+              <p>Pamela Munster, MD&#39;s research has touched on Histone Deacetylase Inhibitors, Breast Neoplasms, Neoplasms, Hormonal Antineoplastic Agents, Antineoplastic Combined Chemotherapy Protocols</p>
             </div>
           </div>
         </div>
@@ -3092,7 +3127,19 @@
             </h2>
             <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=25931220' />
             <div class='card-text'>
-              <p>Oanh Nguyen, MD, MAS&#39;s research has touched on Safety-net Providers, Patient Readmission, Electronic Health Records, Patient Discharge, Organ Dysfunction Scores</p>
+              <p>Oanh Nguyen, MD, MAS&#39;s research has touched on Safety-net Providers, Patient Readmission, Electronic Health Records, Patient Discharge, Patient-Centered Care</p>
+            </div>
+          </div>
+        </div>
+        <div class='card my-3 person'>
+          <div class='card-body'>
+            <h2 class='card-title h4'>
+              <a class='stretched-link title' href='https://profiles.ucsf.edu/suzanne.noble'>Suzanne Noble</a>
+              <br />
+              <small class='text-muted'>Associate Professor, Microbiology and Immunology</small>
+            </h2>
+            <div class='card-text'>
+              <p>Suzanne Noble, MD, PhD&#39;s research has touched on Candida albicans, Hyphae, Fungal Proteins, Fungal Gene Expression Regulation, Cell Plasticity</p>
             </div>
           </div>
         </div>
@@ -3109,8 +3156,6 @@
             </div>
           </div>
         </div>
-	</div>
-	<div style="width:330px; float: left;">   
         <div class='card my-3 person'>
           <div class='card-body'>
             <h2 class='card-title h4'>
@@ -3124,6 +3169,8 @@
             </div>
           </div>
         </div>
+ 	</div>
+    <div style="width:330px; float: left;">
         <div class='card my-3 person'>
           <div class='card-body'>
             <h2 class='card-title h4'>
@@ -3163,7 +3210,7 @@
             </div>
           </div>
         </div>
-        <div class='card my-3 person'>
+		<div class='card my-3 person'>
           <div class='card-body'>
             <h2 class='card-title h4'>
               <a class='stretched-link title' href='https://profiles.ucsf.edu/yvonne.ou'>Yvonne Ou</a>
@@ -3355,6 +3402,19 @@
             <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=185959' />
             <div class='card-text'>
               <p>Dr. Peralta is a clinician investigator. She is Associate Professor of Medicine in Residence and Co-Founder and Executive Director of the Kidney Health Research Collaborative (KHRC).</p>
+            </div>
+          </div>
+        </div>
+        <div class='card my-3 person'>
+          <div class='card-body'>
+            <h2 class='card-title h4'>
+              <a class='stretched-link title' href='https://profiles.ucsf.edu/rushika.perera'>Rushika Perera</a>
+              <br />
+              <small class='text-muted'>Assistant Professor, Anatomy</small>
+            </h2>
+            <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=196807' />
+            <div class='card-text'>
+              <p>Rushika Perera, PhD&#39;s research has touched on Pancreatic Neoplasms, Pancreatic Ductal Carcinoma, Clathrin-Coated Vesicles, Lysosomes, Oncogenes</p>
             </div>
           </div>
         </div>
@@ -3861,7 +3921,19 @@
             </h2>
             <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=189269' />
             <div class='card-text'>
-              <p>Dolores Shoback, MD&#39;s research has touched on Hypoparathyroidism, Hypocalcemia, Hypercalcemia, Parathyroid Hormone, Calcium-Sensing Receptors</p>
+              <p>Dolores Shoback, MD&#39;s research has touched on Hypoparathyroidism, Primary Hyperparathyroidism, Hypercalcemia, Parathyroid Hormone, Calcium-Sensing Receptors</p>
+            </div>
+          </div>
+        </div>
+        <div class='card my-3 person'>
+          <div class='card-body'>
+            <h2 class='card-title h4'>
+              <a class='stretched-link title' href='https://profiles.ucsf.edu/anita.sil'>Anita Sil</a>
+              <br />
+              <small class='text-muted'>Professor, Microbiology and Immunology</small>
+            </h2>
+            <div class='card-text'>
+              <p>Anita Sil, MD, PhD&#39;s research has touched on Fungal Genes, Fungal Proteins, Histoplasma, Histoplasmosis, Fungal Gene Expression Regulation</p>
             </div>
           </div>
         </div>
@@ -3979,6 +4051,19 @@
             <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=196560' />
             <div class='card-text'>
               <p>Una Srejic, MD&#39;s grants include &quot;Regional Anesthesia for Trans-Sphenoidal Hypophysectomy&quot;</p>
+            </div>
+          </div>
+        </div>
+        <div class='card my-3 person'>
+          <div class='card-body'>
+            <h2 class='card-title h4'>
+              <a class='stretched-link title' href='https://profiles.ucsf.edu/caroline.stephens'>Caroline Stephens</a>
+              <br />
+              <small class='text-muted'>Associate Professor, Community Health Systems</small>
+            </h2>
+            <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=173132' />
+            <div class='card-text'>
+              <p>My program of research focuses on vulnerable populations at high risk for poor care transitions, particularly in the long term care setting.</p>
             </div>
           </div>
         </div>
@@ -4147,7 +4232,7 @@
             </h2>
             <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=196707' />
             <div class='card-text'>
-              <p>Kimberly Topp, PhD, PT&#39;s research has touched on Tibial Nerve, Physical Therapy Specialty, Sciatic Nerve, Movement, Rehabilitation</p>
+              <p>Kimberly Topp, PhD, PT&#39;s research has touched on Tibial Nerve, Peripheral Nerves, Sciatic Nerve, Movement, Rehabilitation</p>
             </div>
           </div>
         </div>
@@ -4447,6 +4532,19 @@
             <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=196181' />
             <div class='card-text'>
               <p>Helen Weng, PhD is an Assistant Professor of Psychiatry at UCSF and a core member of the Osher Center for Integrative Medicine. She is also an affiliate faculty member of the Neuroscape Center at the Sandler Neurosciences Center.</p>
+            </div>
+          </div>
+        </div>
+        <div class='card my-3 person'>
+          <div class='card-body'>
+            <h2 class='card-title h4'>
+              <a class='stretched-link title' href='https://profiles.ucsf.edu/zena.werb'>Zena Werb</a>
+              <br />
+              <small class='text-muted'>Professor, Anatomy</small>
+            </h2>
+            <img class='float-right mb-3 ml-3 rounded' alt='' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=190291' />
+            <div class='card-text'>
+              <p>Zena Werb, PhD&#39;s research has touched on Metalloendopeptidases, Matrix Metalloproteinase 9, Matrix Metalloproteinases, Extracellular Matrix, Animal Mammary Glands</p>
             </div>
           </div>
         </div>

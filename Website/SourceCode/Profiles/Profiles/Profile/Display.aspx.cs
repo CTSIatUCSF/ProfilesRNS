@@ -58,7 +58,7 @@ namespace Profiles.Profile
             Framework.Utilities.DebugLogging.Log("Page_Load Profile 2: " + DateTime.Now.ToLongTimeString());
 
             // UCSF added schema.org info
-            // Only do this for a person only version of this page !
+            // Only do this for a person version of this page !
             XmlNode presentationClass = PresentationXML.SelectSingleNode("//Presentation/@PresentationClass", base.RDFNamespaces);
             if (presentationClass != null && "profile".Equals(presentationClass.InnerText.ToLower()) &&
                 this.RDFData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/foaf:firstName", base.RDFNamespaces) != null &&
@@ -73,6 +73,46 @@ namespace Profiles.Profile
                      this.RDFData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/foaf:lastName", base.RDFNamespaces).InnerText;
                 Description.Content = name + "'s profile, publications, research topics, and co-authors";
                 Page.Header.Controls.Add(Description);
+
+                // Unfuddle 191. Add twitter metadata
+                HtmlMeta twitterCard = new HtmlMeta();
+                twitterCard.Name = "twitter:card";
+                twitterCard.Content = "summary";
+                Page.Header.Controls.Add(twitterCard);
+
+                if (UCSFIDSet.IsPerson(base.RDFTriple.Subject) && !String.IsNullOrEmpty(UCSFIDSet.ByNodeId[base.RDFTriple.Subject].Institution.GetTwitterHandle()))
+                {
+                    HtmlMeta twitterSite = new HtmlMeta();
+                    twitterSite.Name = "twitter:site";
+                    twitterSite.Content = UCSFIDSet.ByNodeId[base.RDFTriple.Subject].Institution.GetTwitterHandle();
+                    Page.Header.Controls.Add(twitterSite);
+
+                    HtmlMeta twitterCreator = new HtmlMeta();
+                    twitterCreator.Name = "twitter:creator";
+                    twitterCreator.Content = UCSFIDSet.ByNodeId[base.RDFTriple.Subject].Institution.GetTwitterHandle();
+                    Page.Header.Controls.Add(twitterCreator);
+                }
+
+                HtmlMeta twitterTitle = new HtmlMeta();
+                twitterTitle.Name = "twitter:title";
+                twitterTitle.Content = name + " * " + Brand.GetNiceTitle(Page.Theme) + " Profiles";
+                Page.Header.Controls.Add(twitterTitle);
+
+                HtmlMeta twitterDescription = new HtmlMeta();
+                twitterDescription.Name = "twitter:description";
+                twitterDescription.Content = Description.Content;
+                Page.Header.Controls.Add(twitterDescription);
+
+                HtmlMeta twitterImage = new HtmlMeta();
+                twitterImage.Name = "twitter:image";
+                twitterImage.Content = "https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + base.RDFTriple.Subject;
+                Page.Header.Controls.Add(twitterImage);
+
+                HtmlMeta twitterImageAlt = new HtmlMeta();
+                twitterImageAlt.Name = "twitter:image:alt";
+                twitterImageAlt.Content = "Photo of " + name;
+                Page.Header.Controls.Add(twitterImageAlt);
+                // end Unfulddle 191
 
                 HtmlLink Canonical = new HtmlLink();
                 Canonical.Href = Request.Url.AbsoluteUri.IndexOf('?') == -1 ? Request.Url.AbsoluteUri.ToLower() : Request.Url.AbsoluteUri.ToLower().Substring(0, Request.Url.AbsoluteUri.IndexOf('?'));

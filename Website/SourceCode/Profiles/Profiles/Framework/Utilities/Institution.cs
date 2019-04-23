@@ -72,6 +72,27 @@ namespace Profiles.Framework.Utilities
             return ShibbolethIdP;
         }
 
+        // OK to just hard code this 
+        public string GetTwitterHandle()
+        {
+            switch (Abbreviation)
+            {
+                case "UCSF":
+                    return "@UCSF";
+                case "UC Davis":
+                    return "@UCDavis";
+                case "UCI":
+                    return "@UCIrvine";
+                case "UCLA":
+                    return "@UCLA";
+                case "UCSD":
+                    return "@UCSanDiego";
+                case "USC":
+                    return "@@USC";
+            }
+            return "";
+        }
+
         public string GetShibbolethUserNameHeader()
         {
             return ShibbolethUserNameHeader;

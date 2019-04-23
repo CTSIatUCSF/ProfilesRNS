@@ -1,29 +1,29 @@
 ﻿$(document).ready(function () {
 	
 	//Search Form: featured options
-    if ($('#trOtherOptions') && $('#trOtherOptions').length) {
-		$("#divOtherOptions label:contains('Clinical Trials')").parent().addClass('trials1');
+    if ($('#selOtherOptions') && $('#selOtherOptions').length) {
+		$("#divMaster_CTC1 label:contains('Clinical Trials')").parent().addClass('trials1');
 		$('.trials2').click(function() { 
 			if ($('.trials2').is(':checked')) {
-				$('#ctcFirst_rMaster_ctl00_divDetail .trials1 :checkbox').attr("checked", true)[0].onclick();
+				$('.trials1 input:checkbox').attr("checked", true)[0].onclick();
 			} else {
-				$('#ctcFirst_rMaster_ctl00_divDetail .trials1 :checkbox').attr("checked", false)[0].onclick(); 
+				$('.trials1 input:checkbox').attr("checked", false)[0].onclick(); 
 			}
 		});
-		$("#divOtherOptions label:contains('Faculty Mentoring')").parent().addClass('faculty1');
+		$("#divMaster_CTC1 label:contains('Faculty Mentoring')").parent().addClass('faculty1');
 		$('.faculty2').click(function() { 
 			if ($('.faculty2').is(':checked')) {
-				$('#ctcFirst_rMaster_ctl00_divDetail .faculty1 :checkbox').attr("checked", true)[0].onclick();
+				$('.faculty1 input:checkbox').attr("checked", true)[0].onclick();
 			} else {
-				$('#ctcFirst_rMaster_ctl00_divDetail .faculty1 :checkbox').attr("checked", false)[0].onclick(); 
+				$('.faculty1 input:checkbox').attr("checked", false)[0].onclick(); 
 			}
 		});
-		$("#divOtherOptions label:contains('Student Mentoring')").parent().addClass('student1');
+		$("#divMaster_CTC1 label:contains('Student Mentoring')").parent().addClass('student1');
 		$('.student2').click(function() { 
 			if ($('.student2').is(':checked')) {
-				$('#ctcFirst_rMaster_ctl00_divDetail .student1 :checkbox').attr("checked", true)[0].onclick();
+				$('.student1 input:checkbox').attr("checked", true)[0].onclick();
 			} else {
-				$('#ctcFirst_rMaster_ctl00_divDetail .student1 :checkbox').attr("checked", false)[0].onclick(); 
+				$('.student1 input:checkbox').attr("checked", false)[0].onclick(); 
 			}
 		});
 	}

@@ -164,6 +164,11 @@ img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; padding-botto
 .thumbnail img { position: absolute; left: 2px; height: auto !important; }
 .viewIn a { display: inline-block; }
 .altmetric-embed img { vertical-align: -2px; padding-left: 15px; }
+.__dimensions_badge_embed__ {
+    display: inline-block !important;
+    margin-left: 20px !important;
+	margin-top: -5px !important;
+}
 #publicationTimelineGraph { width: auto;  }
 #publicationTimelineGraph img { padding: 10px 0 20px; }
 .profiles .profilesContentMain  .awardsList td.awardStartDate { white-space: nowrap; }

@@ -43,6 +43,7 @@
 		buildGadgetAds();
 	}
 	
+  //Photo display - comment out 1st & 2nd OR 3rd & 4th lines within condition, to display regular or women in science photos
 	if ($('.searchForm') && $('.searchForm').length) {
 //        var hero = 'hero-photos' + Math.floor((Math.random() * 21));
 //        $('#page-container').addClass(hero);

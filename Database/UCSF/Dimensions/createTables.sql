@@ -2,28 +2,27 @@
 
 if exists (
 		select * from INFORMATION_SCHEMA.TABLES 
-			where table_schema='External.Publication'
-				and table_name='AutorIDs'
+			where table_schema='UCSF.'
+				and table_name='ExternalID'
 )
 		begin
-			drop table [External.Publication].[AutorIDs]
+			drop table  [UCSF.].[ExternalID]
 		END
 else 
 		begin
-			CREATE TABLE [External.Publication].[AutorIDs](
+			CREATE TABLE [UCSF.].[ExternalID](
 				[PublicationSource] [varchar](50) NULL,
-				[SourceAuthorID] [varchar](100) not NULL,
-				[FirstName] [varchar](100) not NULL,
-				[LastName] [varchar](100) not NULL,
-				[PersonID] [int] not NULL
-				) ON [PRIMARY]
+				[SourceAuthorID] [varchar](100) NOT NULL,
+				[FirstName] [varchar](100) NOT NULL,
+				[LastName] [varchar](100) NOT NULL,
+				[PersonID] [int] NOT NULL
+			CONSTRAINT [PK__personid__72C60C4A] PRIMARY KEY CLUSTERED 
+			(
+				[PersonID] ASC
+			)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, 
+				ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+			) ON [PRIMARY] 
 		end
-
-insert into [External.Publication].[AutorIDs]
-values
-('Dimensions','ur.01235535644.47','Matthew','Springer',210),
-('Dimensions','ur.0777075312.11','Gary','Abrams',5)
-
 
 if exists (
 		select * from INFORMATION_SCHEMA.TABLES 

@@ -1,7 +1,5 @@
 ﻿Function NewPersonObject(){
-    $checkListPMID=@{
-    "pmids"=@();
-    }    
+    $checkListPMID=@{"publs"=@();}
     $personData = New-Object -TypeName PSObject -Property $checkListPMID
     Add-Member -InputObject $personData -MemberType NoteProperty `
         -Name DimensionsID -Value $curID
@@ -30,19 +28,23 @@ Function GetPersons {
     $DBpersons=@()
 
     $sqlCommand.CommandText =
-        " SELECT top 300 SourceAuthorID,p.personid,p.FirstName,p.LastName,cast(inc.pmid  as varchar(10)) as pmid "+
-	    " FROM [Profile.Data].[Publication.Person.Include] inc "+
-	    " join [Profile.Data].[Person] p on inc.personid =p.personid "+
-        " join [External.Publication].[AutorIDs] ExtID "+
-		"   on ExtID.personID=p.personID "+
-	    " left outer join [Profile.Data].[Publication.Person.Exclude] exc "+
-		"	on	cast(inc.personid as varchar)+cast(inc.pmid  as varchar(10)) = "+
-		"	cast(exc.personid as varchar)+cast(exc.pmid  as varchar(10)) "+
-		" where exc.pmid is NULL "+ 
-		#"	--and inc.personid=7688 "+
-		"	and inc.pmid is not NULL and inc.pmid>0"+
-        "   and p.personid > @lastIUN "+
-		" order by p.personid,inc.pmid "
+        " SELECT SourceAuthorID,p.personid,p.FirstName,p.LastName "+
+        "     , ActualID as publ "+
+	    " FROM [UCSF.].[ExternalID] ExtID "+  
+	    " join [Profile.Data].[Person] p on ExtID.personid =p.personid "+
+		" left outer join [Profile.Data].[Publication.Person.Include] inc "+ 
+		"   on inc.personid=ExtID.personid and inc.pmid<0 "+
+		" left join [Profile.Data].[Publication.Import.PubData] neg "+
+		"   on neg.ImportPubID=inc.pmid "+
+		" left outer join [Profile.Data].[Publication.Person.Exclude] exc "+ 
+		"   on	cast(inc.personid as varchar)+cast(inc.pmid  as varchar(10)) = "+ 
+		"	cast(exc.personid as varchar)+cast(exc.pmid  as varchar(10))  "+
+		"  where exc.pmid is NULL   "+
+		"    and PublicationSource='Dimensions' "+
+        "    and  p.personid in ("+ 
+ 		"    select top 1 personid from [UCSF.].[ExternalID] "+ 
+		"		where personid >  @lastIUN "+
+        "    ) "
 
     $sqlcommand.CommandTimeout=120
     $sqlCommand.Parameters.Add((New-Object Data.SqlClient.SqlParameter("@lastIUN",[Data.SQLDBType]::VarChar, 50))) | Out-Null
@@ -54,15 +56,15 @@ Function GetPersons {
             $dimid=$reader[“SourceAuthorID”]
             $fistname=$reader["FirstName"]
             $lastname=$reader["LastName"]
-            $readpmid=$reader["pmid"]
+            $readpubl=$reader["publ"]
             $IUN=$reader["personid"]
 
             if ($DEBUG -eq 1){write-host "curent id="$curID "newID="$dimid "newpmid="$readpmid "new personid="$IUN}
             if ($DEBUG -eq 1){write-host "DBpersons="$DBpersons}
             #if ($DEBUG -eq 1){write-host "personData="$personData}
             if ($dimid -eq $curID ){
-                $personData.pmids += $readpmid
-                continue
+                $personData.publs += $readpubl
+                    continue
             } else {
                 if ($curID.Length -gt 0)  {  $DBpersons += $personData }
                 $personData=NewPersonObject
@@ -70,14 +72,14 @@ Function GetPersons {
                 $curID=$dimid
                 $personData.DimFistName =$fistname
                 $personData.DimLastName =$lastname
-                $personData.pmids +=$readpmid
+                $personData.publs +=$readpubl
                 $personData.Dimpersonid=$IUN
 
             }
         }
-        #$DBpersons += $personData
+        $DBpersons += $personData
         $readLimit.lastIUN=$IUN
-        $readLimit.lastPMID=$readpmid
+        $readLimit.lastPUBL=$readpubl
         $reader.Close()
     } catch {
       $ErrorMessage = $_.Exception.Message
@@ -85,67 +87,41 @@ Function GetPersons {
       if ($DEBUG -eq 1){write-host `n$hh   $ErrorMessage}
     }
     if ([string]::IsNullOrEmpty($readLimit.lastIUN)) {exit}    
-# reading all pmids forlastIUN
+    return $DBpersons
+}    
+Function GetProcessed ( [System.Data.SqlClient.SqlConnection] $sqlConnection,$inSet,$hashPubs) {
+    if ($sqlConnection.State -eq [Data.ConnectionState]::Close) {
+        $sqlConnection.Open()
+    }
     $sqlCommand = New-Object System.Data.SqlClient.SqlCommand
     $sqlCommand.Connection = $sqlConnection
+
+    $foundPubs=@{}
+    $foundPubs=$hashPubs
+
     $sqlCommand.CommandText =
-        " SELECT SourceAuthorID,p.personid,p.FirstName,p.LastName,cast(inc.pmid  as varchar(10)) as pmid "+
-	    " FROM [Profile.Data].[Publication.Person.Include] inc "+
-	    " join [Profile.Data].[Person] p on inc.personid =p.personid "+
-        " join [External.Publication].[AutorIDs] ExtID "+
-		"   on ExtID.personID=p.personID "+
-	    " left outer join [Profile.Data].[Publication.Person.Exclude] exc "+
-		"	on	cast(inc.personid as varchar)+cast(inc.pmid  as varchar(10)) = "+
-		"	cast(exc.personid as varchar)+cast(exc.pmid  as varchar(10)) "+
-		" where exc.pmid is NULL "+ 
-		"	and PublicationSource='Dimensions' "+
-		"	and inc.pmid is not NULL and inc.pmid>0"+
-        "   and p.personid = @lastIUN "+
-		" order by p.personid,inc.pmid "
+        " select actualID,importPubID from [Profile.Data].[Publication.Import.PubData] "+
+        "    where actualID in ("+$inSet+") "
+
     $sqlcommand.CommandTimeout=120
-    $sqlCommand.Parameters.Add((New-Object Data.SqlClient.SqlParameter("@lastIUN",[Data.SQLDBType]::VarChar, 50))) | Out-Null
-    $sqlCommand.Parameters[0].Value = $readLimit.lastIUN
-    $personData.pmids=@()
-    $curID=$personData.DimensionsID
-    $newreader = $sqlCommand.ExecuteReader()
+    #$sqlCommand.Parameters.Add((New-Object Data.SqlClient.SqlParameter("@inSet",[Data.SQLDBType]::VarChar, -1))) | Out-Null
+    #$sqlCommand.Parameters[0].Value = $inSet
+    $reader = $sqlCommand.ExecuteReader()
     try {
-        while ($newreader.Read())
+        while ($reader.Read())
         {
-            $dimid=$newreader[“SourceAuthorID”]
-            $fistname=$newreader["FirstName"]
-            $lastname=$newreader["LastName"]
-            $pmid=$newreader["pmid"]
-            $IUN=$newreader["personid"]
-
-            if ($DEBUG -eq 1){write-host "added curent id="$curID "newID="$dimid}
-            if ($DEBUG -eq 1){write-host "addedDBpersons="$DBpersons}
-            #if ($DEBUG -eq 1){write-host "personData="$personData}
-            if ($dimid -eq $curID ){
-                $personData.pmids += $pmid
-                continue
-            } else {
-                if ($curID.Length -gt 0)  {  $DBpersons += $personData }
-                $personData=NewPersonObject
-                $personData.DimensionsID=$dimid
-                $curID=$dimid
-                $personData.DimFistName =$fistname
-                $personData.DimLastName =$lastname
-                $personData.pmids +=$pmid
-                $personData.Dimpersonid=$IUN
-
-            }
+            $pubInDB=$reader[“actualID”]
+            $pmidInDB=$reader[“importPubID”]
+            $foundPubs[$pubInDB]=$pmidInDB
         }
-        $DBpersons += $personData
-        $readLimit.lastIUN=$IUN
-        $readLimit.lastPMID=$pmid
-        $newreader.Close()
+        $reader.Close()
+        return $foundPubs
     } catch {
       $ErrorMessage = $_.Exception.Message
       $hh=get-date -f MM/dd/yyyy_HH:mm:ss
-      write-host `n$hh   $ErrorMessage
+      if ($DEBUG -eq 1){write-host `n$hh   $ErrorMessage}
     }
-    return $DBpersons
-}    
+}
 
 Function GetAuthors ($jsonPub) {
   $wklist=@()
@@ -248,34 +224,34 @@ function SaveGeneral ([Data.SqlClient.SqlConnection]$sqlConnection,$insertedPubI
     if ($sqlConnection.State -eq [Data.ConnectionState]::Close) {
         $sqlConnection.Open()
     }
-write-host "insertedPubID=<"$insertedPubID">"
-write-host "pubid=<"$pubid">"
-write-host "pubType=<"$pubType">"
-write-host "pubSourceType=<"$pubSourceType">"
-write-host "pubTitle<"$pubTitle">"
-write-host "pubSourceTitle<"$pubSourceTitle">"
-write-host "pubVolume<"$pubVolume">"
-write-host "pubIssue<"$pubIssue">"
-write-host "pubPagination<"$pubPagination">"
-write-host "pubDate<"$pubDate">"
-write-host "pubIssn<"$pubIssn">"
-write-host "pubDoi<"$pubDoi">"
-write-host "pubUrl<"$pubUrl">"
-write-host "pubAuthors<"$pubAuthors">"
-write-host "insertedPubID type="$insertedPubID.GetType()
-write-host "pubid type="$pubid.GetType()
-write-host "pubType type="$pubType.GetType()
-write-host "pubSourceType type="$pubSourceType.GetType()
-write-host "pubTitle type="$pubTitle.GetType()
-write-host "pubSourceTitle type="$pubSourceTitle.GetType()
-write-host "pubVolume type="$pubVolume.GetType()
-write-host "pubIssue type="$pubIssue.GetType()
-write-host "pubPagination type="$pubPagination.GetType()
-write-host "pubDate type="$pubDate.GetType()
-write-host "pubIssn type="$pubIssn.GetType()
-write-host "pubdoi type="$pubDoi.GetType()
-write-host "pubUrl type="$pubUrl.GetType()
-write-host "pubAuthors type="$pubAuthors.GetType()
+    if ($DEBUG -eq 1){write-host "insertedPubID=<"$insertedPubID">"}
+    if ($DEBUG -eq 1){write-host "pubid=<"$pubid">"}
+    if ($DEBUG -eq 1){write-host "pubType=<"$pubType">"}
+    if ($DEBUG -eq 1){write-host "pubSourceType=<"$pubSourceType">"}
+    if ($DEBUG -eq 1){write-host "pubTitle<"$pubTitle">"}
+    if ($DEBUG -eq 1){write-host "pubSourceTitle<"$pubSourceTitle">"}
+    if ($DEBUG -eq 1){write-host "pubVolume<"$pubVolume">"}
+    if ($DEBUG -eq 1){write-host "pubIssue<"$pubIssue">"}
+    if ($DEBUG -eq 1){write-host "pubPagination<"$pubPagination">"}
+    if ($DEBUG -eq 1){write-host "pubDate<"$pubDate">"}
+    if ($DEBUG -eq 1){write-host "pubIssn<"$pubIssn">"}
+    if ($DEBUG -eq 1){write-host "pubDoi<"$pubDoi">"}
+    if ($DEBUG -eq 1){write-host "pubUrl<"$pubUrl">"}
+    if ($DEBUG -eq 1){write-host "pubAuthors<"$pubAuthors">"}
+    if ($DEBUG -eq 1){write-host "insertedPubID type="$insertedPubID.GetType()}
+    if ($DEBUG -eq 1){write-host "pubid type="$pubid.GetType()}
+    if ($DEBUG -eq 1){write-host "pubType type="$pubType.GetType()}
+    if ($DEBUG -eq 1){write-host "pubSourceType type="$pubSourceType.GetType()}
+    if ($DEBUG -eq 1){write-host "pubTitle type="$pubTitle.GetType()}
+    if ($DEBUG -eq 1){write-host "pubSourceTitle type="$pubSourceTitle.GetType()}
+    if ($DEBUG -eq 1){write-host "pubVolume type="$pubVolume.GetType()}
+    if ($DEBUG -eq 1){write-host "pubIssue type="$pubIssue.GetType()}
+    if ($DEBUG -eq 1){write-host "pubPagination type="$pubPagination.GetType()}
+    if ($DEBUG -eq 1){write-host "pubDate type="$pubDate.GetType()}
+    if ($DEBUG -eq 1){write-host "pubIssn type="$pubIssn.GetType()}
+    if ($DEBUG -eq 1){write-host "pubdoi type="$pubDoi.GetType()}
+    if ($DEBUG -eq 1){write-host "pubUrl type="$pubUrl.GetType()}
+    if ($DEBUG -eq 1){write-host "pubAuthors type="$pubAuthors.GetType()}
 
 
 
@@ -434,12 +410,14 @@ $readLimit = New-Object -TypeName PSObject
 Add-Member -InputObject $readLimit -MemberType NoteProperty `
         -Name lastIUN -Value "0"
 Add-Member -InputObject $readLimit -MemberType NoteProperty `
-        -Name lastPMID -Value 0
+        -Name lastPUBL -Value 0
 
 $needNextPerson=1
 while ($needNextPerson -eq 1){
     $newPersons=$null
+    get-date -f MM/dd/yyyy_HH:mm:ss
     $newPersons=GetPersons $sqlConnection $readLimit
+    get-date -f MM/dd/yyyy_HH:mm:ss
     if ($newPersons.Equals($null)) {
         $needNextPerson=0
         continue
@@ -449,123 +427,102 @@ while ($needNextPerson -eq 1){
         if ($dimsIDs.Length -eq 0) {$dimsIDs='"'+$person.DimensionsID+'"'} 
         else {$dimsIDs=$dimsIDs+","+'"'+$person.DimensionsID+'"'}
     }
-   
-    $searchRequest='search publications  where researchers.id in [ '+$dimsIDs +' ]'+' return publications[all] limit 500' 
-    $searchRequest
-    $DATA_URI=$apiurl+"/dsl.json"
-    $jsonResult=Invoke-RestMethod -Uri $DATA_URI -Method Post -H @{Authorization = "JWT $DSL_TOKEN"} -Body $searchRequest
-    $pubAuthors=
-    foreach($pub in $jsonResult.publications){
-        $pubJson=$pub|ConvertTo-Json -depth 100 -compress        
-        $insertedPubID=0
-        if ($DEBUG -eq 1){write-host "pmid="$pub.pmid}
-        if ([string]::IsNullOrEmpty($pub.pmid)) {
-            $gg=InsertPubData $sqlConnection $pub.id $pubJson
-            $insertedPubID=$gg[1]
+    $skip=0
+    $setlen=-1
+    #$DEBUG=1
+    while  ( -not $setlen -eq 0){
+        $searchRequest='search publications  where researchers.id in [ '+$dimsIDs +' ] and pmid is empty'+' return publications[all] limit 1000 skip '+ $skip
+        $searchRequest
+        $DATA_URI=$apiurl+"/dsl.json"
+        $jsonResult=Invoke-RestMethod -Uri $DATA_URI -Method Post -H @{Authorization = "JWT $DSL_TOKEN"} -Body $searchRequest
+        $pubAuthors=""
+        $setlen=$jsonResult.publications.Length
+        write-host "setlen=" $setlen "_stat="$jsonResult._stats
+        if ($setlen -eq 0){break}
+        $pubsInDB=""
+        $hash=$null
+        $hash=@{}
+        foreach($pub in $jsonResult.publications){
+            $skip++
+            if ($pubsInDB -eq "") {$pubsInDB=$pubsInDB+"'"+$pub.id+"'"}
+            else {$pubsInDB=$pubsInDB+",'"+$pub.id+"'"}
+            $hash.add($pub.id,0)
         }
-        $authorsList=GetAuthors $pub
-        $order=0
-        $authors=""
-        foreach ($authorid in $authorsList.ids){
-            $order++
-            $personID=0
-            if ($DEBUG -eq 1){write-host "checking id="$authorid}
-            $lname=$authorsList.lnames[$order-1]
-            $fname=$authorsList.fnames[$order-1]
-            if ($DEBUG -eq 1){write-host $insertedPubID "," $order "," $authorid "," $fname "," $lname}
-            if ($DEBUG -eq 1){write-host "pmid="$pub.pmid}
-            if ([string]::IsNullOrEmpty($pub.pmid)) {
-                SaveAuthor $sqlConnection $insertedPubID $order $authorid $fname $lname
-                if ($order -ge 2) {
-                    $authors=$authors+","
-                } 
-                $authors=$authors+$fname+" "+$lname
-            }
-            foreach ($personLine in $newPersons){
-                if ($DEBUG -eq 1){write-host "find "$authorid "comparing with " $personLine.DimensionsID}
-                if ($DEBUG -eq 1){write-host $pub.id $authors}
-                if ($personLine.DimensionsID -eq $authorid){
-                    $personID=$personLine.DimpersonID
-                    if ($DEBUG -eq 1){write-host "found Author with personID="$personID}
-                    if ($DEBUG -eq 1){write-host "pmid="$pub.pmid}
-                    if  ($personid -gt 0 -and $insertedPubID -lt 0 ) { 
-                        SavePub2Person $sqlConnection $pub.id $personid $order $insertedPubID
-                    }
-                    if (-not [string]::IsNullOrEmpty($pub.pmid) -and -not $personLine.pmids.Contains($pub.pmid)){
-                        write-host "PMID=" $pub.pmid " Lost in " $personLine.DimFistName $personLine.DimLastName "Profile"
-                    } 
+        $processedPubs=GetProcessed $sqlConnection $pubsInDB $hash
+ 
+        foreach($pub in $jsonResult.publications){
+            $authorsList=GetAuthors $pub
+            for($rank=0;$rank-le $authorsList.ids.length-1;$rank++){
+                if ($person.DimensionsID -eq $authorsList.ids[$rank]) {
+                    $rank++
                     break
                 }
             }
+            if ( $processedPubs[$pub.id] -eq 0) {
+                $pubJson=$pub|ConvertTo-Json -depth 100 -compress        
+                $insertedPubID=0
+                $gg=InsertPubData $sqlConnection $pub.id $pubJson
+                $insertedPubID=$gg[1]
+                $authorsList=GetAuthors $pub
+                $order=0
+                $authors=""
+                foreach ($authorid in $authorsList.ids){
+                    $order++
+                    $personID=0
+                    if ($DEBUG -eq 1){write-host "checking id="$authorid}
+                    $lname=$authorsList.lnames[$order-1]
+                    $fname=$authorsList.fnames[$order-1]
+                    if ($DEBUG -eq 1){write-host $insertedPubID "," $order "," $authorid "," $fname "," $lname}
+                    SaveAuthor $sqlConnection $insertedPubID $order $authorid $fname $lname
+                    if ($order -ge 2) {
+                        $authors=$authors+","
+                    } 
+                    $authors=$authors+$fname+" "+$lname
+                }
+                if ($DEBUG -eq 1){write-host $pub.id " Title=" $pub.title "Inserted at " $pub.date_inserted}
+                if ($DEBUG -eq 1){write-host $pub.doi}
+                if ($DEBUG -eq 1){write-host $pub.journal.title "(date " $pub.date "vol " $pub.volume "issue " $pub.issue "pages " $pub.pages ")"}
+                $pubid=""
+                $pubType=""
+                $pubSourceType=""
+                $pubTitle=""
+                $pubSourceTitle=""
+                $pubVolume=""
+                $pubIssue=""
+                $pubPagination=""
+                $pubDate="1900"
+                $pubIssn=""
+                $pubDoi=""
+                $pubUrl=""
+                $pubAuthors=""
+                if ( -not [string]::IsNullOrEmpty($pub.type)){
+                    $pubType=$pub.type
+                }
+                if ( $pub.type -eq "processing") {
+                    write-host "after type="$pubType
+                }
+                if (  -not [string]::IsNullOrEmpty($pub.journal)){$pubSourceType="Journal"}
+                $pubTitle=$pub.title
+                if ( -not  [string]::IsNullOrEmpty($pub.journal)){$pubSourceTitle=$pub.journal.title}
+                if ( -not  [string]::IsNullOrEmpty($pub.volume)){$pubVolume=$pub.volume}
+                if ( -not  [string]::IsNullOrEmpty($pub.issue)){$pubIssue=$pub.issue}
+                if ( -not [string]::IsNullOrEmpty($pub.pages)){$pubPagination=$pub.pages}
+                if ( -not  [string]::IsNullOrEmpty($pub.date)){$pubDate=$pub.date}
+                if ( -not  [string]::IsNullOrEmpty($pub.issn)){
+                    $pubIssn=$pub.issn[0]
+                }
+                if ( -not  [string]::IsNullOrEmpty($pub.doi)){
+                    $pubDoi=$pub.doi 
+                    $pubUrl="http://dx.doi.org/"+$pubDoi
+                }
+                $pubAuthors=$authors
+                SaveGeneral $sqlConnection $insertedPubID $pub.id $pubType $pubSourceType $pubTitle $pubSourceTitle $pubVolume $pubIssue $pubPagination $pubDate $pubIssn $pubDoi $pubUrl $pubAuthors
+            } else {$insertedPubID=$processedPubs[$pub.id]}
+            if  ($person.Dimpersonid -gt 0 -and $insertedPubID -lt 0 -and -not $person.publs.Contains($pub.id)) { 
+                SavePub2Person $sqlConnection $pub.id $person.Dimpersonid $rank $insertedPubID
+            }
+            continue
         }
-        if ($DEBUG -eq 1){write-host "pmid="$pub.pmid}       
-        if ([string]::IsNullOrEmpty($pub.pmid)) {
-            if ($DEBUG -eq 1){write-host $pub.id " Title=" $pub.title "Inserted at " $pub.date_inserted}
-            if ($DEBUG -eq 1){write-host $pub.doi}
-            if ($DEBUG -eq 1){write-host $pub.journal.title "(date " $pub.date "vol " $pub.volume "issue " $pub.issue "pages " $pub.pages ")"}
-
-#$insertedPubID=0
-$pubid="unknown"
-$pubType="unknown"
-$pubSourceType="unknown"
-$pubTitle="unknown"
-$pubSourceTitle="unknown"
-$pubVolume="unknown"
-$pubIssue="unknown"
-$pubPagination="unknown"
-$pubDate="1900"
-$pubIssn="unknown"
-$pubDoi="unknown"
-$pubUrl="unknown"
-$pubAuthors="unknown"
-            
-
-            if ( $pub.type -eq "proceeding") {
-                write-host "before type="$pubType
-            }
-            if ( -not [string]::IsNullOrEmpty($pub.type)){
-                $pubType=$pub.type
-            }
-            if ( $pub.type -eq "processing") {
-                write-host "after type="$pubType
-            }
-            
-            if (  -not [string]::IsNullOrEmpty($pub.journal)){$pubSourceType="Journal"}
-            $pubTitle=$pub.title
-            if ( -not  [string]::IsNullOrEmpty($pub.journal)){$pubSourceTitle=$pub.journal.title}
-            if ( -not  [string]::IsNullOrEmpty($pub.volume)){$pubVolume=$pub.volume}
-            if ( -not  [string]::IsNullOrEmpty($pub.issue)){$pubIssue=$pub.issue}
-            if ( -not [string]::IsNullOrEmpty($pub.pages)){$pubPagination=$pub.pages}
-            if ( -not  [string]::IsNullOrEmpty($pub.date)){$pubDate=$pub.date}
-            if ( -not  [string]::IsNullOrEmpty($pub.issn)){
-                $pubIssn=$pub.issn[0]
-            }
-            if ( -not  [string]::IsNullOrEmpty($pub.doi)){
-                $pubDoi=$pub.doi 
-                $pubUrl="http://dx.doi.org/"+$pubDoi
-            }
-            $pubAuthors=$authors
-            SaveGeneral $sqlConnection $insertedPubID $pub.id $pubType $pubSourceType $pubTitle $pubSourceTitle $pubVolume $pubIssue $pubPagination $pubDate $pubIssn $pubDoi $pubUrl $pubAuthors
-        }
-  
-        continue
-
-        #$pub.pmid
-        #if ( -not [string]::IsNullOrEmpty($pub.pmid)) {
-            #continue
-        #}
-         
-        #$pubJson.Length
-        # $authorsList.names
     }
-    # save to DB as $pub|ConvertTo-Json -depth 100
-
-   #[xml]$pub|ConvertTo-Json -Depth 100|ConvertTo-XML -depth 100
-   #[xml] $pubXML=$wk.OuterXml
-   #$wk1=$pubXML.Objects.Object.InnerText
-   #$restPub=$wk1|ConvertFrom-Json
-   #if ($DEBUG -eq 1){write-host $restPub.id " Title=" $restPub.title}
-   #if ($DEBUG -eq 1){write-host $restPub.doi}
-   #if ($DEBUG -eq 1){write-host $restPub.journal.title "( year " $restPub.year "vol " $restPub.volume "issue " $restPub.issue "pages " $restPub.pages ")"}
-
 }
+ 

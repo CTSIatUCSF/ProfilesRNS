@@ -233,6 +233,7 @@
     <Content Include="App_Themes\UCSF\Images\clinicaltrials.png" />
     <Content Include="App_Themes\UCSF\Images\conceptsearch.jpg" />
     <Content Include="App_Themes\UCSF\Images\dashboard.png" />
+    <Content Include="App_Themes\UCSF\Images\dei-champion_badge.jpg" />
     <Content Include="App_Themes\UCSF\Images\detailstab.jpg" />
     <Content Include="App_Themes\UCSF\Images\extCoAuth.png" />
     <Content Include="App_Themes\UCSF\Images\favicon.ico" />

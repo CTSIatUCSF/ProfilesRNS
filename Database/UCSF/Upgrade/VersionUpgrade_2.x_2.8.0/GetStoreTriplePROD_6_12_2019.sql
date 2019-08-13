@@ -1,10 +1,13 @@
+USE [profilesRNS]
+GO
 
-/****** Object:  StoredProcedure [RDF.].[GetStoreTriple]    Script Date: 04/07/2014 20:45:08 ******/
+/****** Object:  StoredProcedure [RDF.].[GetStoreTriple]    Script Date: 6/12/2019 3:49:32 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 ALTER procedure [RDF.].[GetStoreTriple]
 	-- Define the triple
@@ -242,6 +245,6 @@ BEGIN
 
 END
 
-GO
 
+GO
 

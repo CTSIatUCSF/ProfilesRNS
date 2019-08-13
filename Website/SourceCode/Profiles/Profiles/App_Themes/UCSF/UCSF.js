@@ -1,16 +1,37 @@
 ﻿$(document).ready(function () {
-	
-     // alumni badge
-	 if ($('.education') && $('.education').length) {
-		$(".education:contains('University of California, San Francisco')").addClass('alum');
-		$(".education:contains('University of California San Francisco')").addClass('alum');
-		$(".education:contains('University of California at San Francisco')").addClass('alum');
-		$(".education:contains('University of California in San Francisco')").addClass('alum');
-		$(".education:contains('UC, San Francisco')").addClass('alum');
-		$(".education:contains('UC San Francisco')").addClass('alum');
-		$(".education:contains('UCSF')").addClass('alum');
-		if ($('.alum') && $('.alum').length) $('.profilesContentMain').addClass('alumni');
-	 }
+
+    // alumni badge
+    if ($('.education') && $('.education').length) {
+        var ucsfSpellings = ["University of California, San Francisco",
+            "University of California San Francisco'",
+            "University of California at San Francisco",
+            "University of California in San Francisco",
+            "UC, San Francisco",
+            "UC San Francisco",
+            "UCSF"];
+        var i;
+        for (i = 0; i < ucsfSpellings.length; ++i) {
+            var ndx = $('.education').html().indexOf(ucsfSpellings[i]);
+            if (ndx > -1) {
+                // they have a UCSF listed entry, make sure it contains a degree
+                var degreeStartNdx = $('.education').html().indexOf('<td>', ndx + ucsfSpellings[i].length) + 4;
+                var degree = $('.education').html().substring(degreeStartNdx, $('.education').html().indexOf('</td>', degreeStartNdx));
+                if (degree.trim().length > 0) {
+                    $('.profilesContentMain').prepend('<img style="float: right; valign: top;" src="/App_Themes/UCSF/Images/ucsf_alumni_blue.jpg" />');
+                    break;
+                }
+            }
+        }
+    }	
+
+    // dei-champion badge
+    if ($('.education') && $('.education').length) {
+        $(".education:contains('Diversity, Equity, and Inclusion Champion Training')").addClass('dei-champ');
+        $(".education:contains('Diversity, Equity & Inclusion Training')").addClass('dei-champ');
+        $(".education:contains('Diversity, Equity and Inclusion Training')").addClass('dei-champ');
+        $(".education:contains('Diversity, Equity, and Inclusion Training')").addClass('dei-champ');
+        if ($('.dei-champ') && $('.dei-champ').length) $('.profilesContentMain').prepend('<a href="https://differencesmatter.ucsf.edu/diversity-equity-and-inclusion-champion-training" style="float: right; valign: top;" target="_blank"><img src="/App_Themes/UCSF/Images/dei-champion_badge.jpg" /></a>');
+    }	 
 	
     // altmetrics, don't attempt to load till after 7 seconds, which is 7000 milliseconds
     setTimeout(function () {
@@ -43,7 +64,7 @@
 		buildGadgetAds();
 	}
 	
-  //Photo display - comment out 1st & 2nd OR 3rd & 4th lines within condition, to display regular or women in science photos
+  //Photo display - comment out 1st & 2nd OR 3rd through 5th lines within condition, to display regular or women in science photos
 	if ($('.searchForm') && $('.searchForm').length) {
 //        var hero = 'hero-photos' + Math.floor((Math.random() * 21));
 //        $('#page-container').addClass(hero);

@@ -65,10 +65,23 @@ namespace Profiles.Login
 
         public static bool HasShibbolethSession(HttpRequest request)
         {
-            // new school vs oldschool
-            return !String.IsNullOrEmpty(ShibLogin.GetShibbolethAttribute(request, "ShibSessionID")) || !String.IsNullOrEmpty(ShibLogin.GetShibbolethAttribute(request, "Shib-Session-ID"));
+            string sessionId = GetShibSessionID(request);
+            return String.IsNullOrEmpty(sessionId) ? false : Profiles.Framework.Utilities.Cache.FetchObject(sessionId) != null;
         }
 
+        public static void RememberLoginShibSessionID(HttpRequest request)
+        {
+            string sessionId = GetShibSessionID(request);
+            if (!String.IsNullOrEmpty(sessionId))
+            {
+                Profiles.Framework.Utilities.Cache.Set(sessionId, sessionId);
+            }
+        }
+
+        public static string GetShibSessionID(HttpRequest request)
+        {
+            return !String.IsNullOrEmpty(ShibLogin.GetShibbolethAttribute(request, "ShibSessionID")) ? ShibLogin.GetShibbolethAttribute(request, "ShibSessionID") : ShibLogin.GetShibbolethAttribute(request, "Shib-Session-ID");
+        }
 
         public static string GetJavascriptSrc(HttpRequest request)
         {        

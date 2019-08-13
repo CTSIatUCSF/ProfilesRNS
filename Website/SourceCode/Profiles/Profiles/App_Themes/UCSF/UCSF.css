@@ -35,7 +35,6 @@ ul.highlights li {
   font-size: 14px;
 }
 .sautter { text-align: center; margin-top: 0; font-size: 15px; font-style: italic; } 
-.alumni { background-image: url(Images/ucsf_alumni_blue.jpg); }
 .panelActive.navbar { padding: 0 0 110px; background: transparent url(Images/hero.png) no-repeat scroll center 60px; }
 .hero-women .panelActive.navbar { padding: 0 0 160px; background-image: url(Images/hero-women.png); }
 .hero-photos0 .panelActive.navbar { padding: 0 0 160px; background-image: url(Images/hero-photos0.png); }

@@ -9,7 +9,7 @@
 		$(".education:contains('UC, San Diego')").addClass('alum');
 		$(".education:contains('UC San Diego')").addClass('alum');
 		$(".education:contains('UCSD')").addClass('alum');
-		if ($('.alum') && $('.alum').length) $('.profilesContentMain').addClass('alumni');
+        if ($('.alum') && $('.alum').length) $('.profilesContentMain').prepend('<img style="float: right; valign: top;" src="/App_Themes/UCSD/Images/college-alumni.jpg" />');
 	 }
 	
     // altmetrics, don't attempt to load till after 7 seconds, which is 7000 milliseconds

@@ -23,6 +23,8 @@ namespace Profiles.Login.Modules.MultiShibLogin
 {
     public partial class MultiShibLogin : System.Web.UI.UserControl
     {
+        private static Random random = new Random();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -33,6 +35,7 @@ namespace Profiles.Login.Modules.MultiShibLogin
                 
                 if ("login".Equals(Request["method"]) && sm.Session().IsLoggedIn())
                 {
+                    ShibbolethSession.RememberLoginShibSessionID(Request);
                     Response.Redirect(ShibLogin.ShibLogin.GetRedirectForAuthenticatedUser(redirectto));
                 }
                 else if ("logout".Equals(Request["method"]))
@@ -168,11 +171,13 @@ namespace Profiles.Login.Modules.MultiShibLogin
                 url = nextDomain + "/login/default.aspx?method=" + (login ? "shibboleth" : "logout") +
                     "&remainingDomains=" + HttpUtility.UrlEncode(String.Join(",", remainingDomains.ToArray())) +
                     "&sessionId=" + sessionId + "&userNameHeader=" + HttpUtility.UrlEncode(userNameHeader) + 
-                    "&displayNameHeader=" + HttpUtility.UrlEncode(displayNameHeader) + "&redirectto=" + HttpUtility.UrlEncode(redirectto);
+                    "&displayNameHeader=" + HttpUtility.UrlEncode(displayNameHeader) + "&redirectto=" + HttpUtility.UrlEncode(redirectto) +
+                    "&rnd=" + random.Next();
             }
             else if (login)
             {
                 // final part of login
+                // Maybe at this point we should add the ShibSessionID to the cache as a recognized login, and use that in ShibbolethSession.HasShibbolethSession
                 url = ShibLogin.ShibLogin.GetRedirectForAuthenticatedUser(redirectto);
             }
             else

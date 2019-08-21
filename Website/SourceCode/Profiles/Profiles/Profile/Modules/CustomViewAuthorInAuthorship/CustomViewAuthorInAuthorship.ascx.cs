@@ -44,7 +44,7 @@ namespace Profiles.Profile.Modules
             {
                 while (reader.Read())
                 {
-                    publication.Add(new Publication(reader["bibo_pmid"].ToString(), reader["vivo_pmcid"].ToString(), reader["authors"].ToString(), reader["prns_informationResourceReference"].ToString(), reader["vivo_webpage"].ToString(), reader["authorXML"].ToString()));
+                    publication.Add(new Publication(reader["bibo_pmid"].ToString(), reader["vivo_pmcid"].ToString(), reader["authors"].ToString(), reader["prns_informationResourceReference"].ToString(), reader["vivo_webpage"].ToString(), reader["authorXML"].ToString(), reader["Source"].ToString()));
                 }
 
                 rpPublication.DataSource = publication;
@@ -107,9 +107,11 @@ namespace Profiles.Profile.Modules
                 lblPubTxt += (!String.IsNullOrEmpty(lblPubTxt) && !lblPubTxt.TrimEnd().EndsWith(".") ? ". " : "") + pub.prns_informationResourceReference;
                 if (pub.bibo_pmid != string.Empty && pub.bibo_pmid != null)
                 {
-                    lblPubTxt = lblPubTxt + " PMID: " + pub.bibo_pmid;
+                    if (pub.bibo_pmid.IndexOf("-") < 0) { lblPubTxt = lblPubTxt + " PMID: " + pub.bibo_pmid; }
                     liPublication.Attributes["data-pmid"] = pub.bibo_pmid;
-                    litViewIn.Text = "View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/" + pub.bibo_pmid + "' target='_blank'>PubMed</a>";
+                    if (pub.vivo_webpage.IndexOf("doi.org") > -1 ){ pub.prns_pubsource = "International DOI Foundation (IDF)"; }
+                    // litViewIn.Text = "View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/" + pub.bibo_pmid + "' target='_blank'>PubMed</a>";
+                    litViewIn.Text = "View in: <a href="+pub.vivo_webpage+" target='_blank'>"+ pub.prns_pubsource+"</a>";
                     if (pub.vivo_pmcid != null)
                     {
                         if (pub.vivo_pmcid.Contains("PMC"))
@@ -198,7 +200,7 @@ namespace Profiles.Profile.Modules
 
         public class Publication
         {
-            public Publication(string _bibo_pmid, string _vivo_pmcid, string _authors, string prns_informationresourcereference, string _vivo_webpage, string _authorXML)
+            public Publication(string _bibo_pmid, string _vivo_pmcid, string _authors, string prns_informationresourcereference, string _vivo_webpage, string _authorXML, string _pubsource)
             {
                 this.bibo_pmid = _bibo_pmid;
                 this.vivo_pmcid = _vivo_pmcid;
@@ -206,12 +208,14 @@ namespace Profiles.Profile.Modules
                 this.prns_informationResourceReference = prns_informationresourcereference;
                 this.vivo_webpage = _vivo_webpage;
                 this.authorXML = _authorXML;
+                this.prns_pubsource = _pubsource;
             }
 
             public string bibo_pmid { get; set; }
             public string vivo_pmcid { get; set; }
             public string authors { get; set; } 
             public string prns_informationResourceReference { get; set; }
+            public string prns_pubsource { get; set; }
             public string vivo_webpage { get; set; }
             public string authorXML { get; set; }
         }

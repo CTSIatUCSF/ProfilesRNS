@@ -107,10 +107,11 @@ namespace Profiles.Profile.Modules
                 lblPubTxt += (!String.IsNullOrEmpty(lblPubTxt) && !lblPubTxt.TrimEnd().EndsWith(".") ? ". " : "") + pub.prns_informationResourceReference;
                 if (pub.bibo_pmid != string.Empty && pub.bibo_pmid != null)
                 {
-                    lblPubTxt = lblPubTxt + " PMID: " + pub.bibo_pmid;
+                    if (pub.bibo_pmid.IndexOf("-") < 0) { lblPubTxt = lblPubTxt + " PMID: " + pub.bibo_pmid; }
                     liPublication.Attributes["data-pmid"] = pub.bibo_pmid;
+                    if (pub.vivo_webpage.IndexOf("doi.org") > -1 ){ pub.prns_pubsource = "International DOI Foundation (IDF)"; }
                     // litViewIn.Text = "View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/" + pub.bibo_pmid + "' target='_blank'>PubMed</a>";
-                    litViewIn.Text = "View in: <a href="+pub.vivo_webpage+"' target='_blank'>"+ pub.prns_pubsource+"</a>";
+                    litViewIn.Text = "View in: <a href="+pub.vivo_webpage+" target='_blank'>"+ pub.prns_pubsource+"</a>";
                     if (pub.vivo_pmcid != null)
                     {
                         if (pub.vivo_pmcid.Contains("PMC"))

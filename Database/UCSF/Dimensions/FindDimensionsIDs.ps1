@@ -28,12 +28,24 @@ Function GetPersons {
     
     $curID=""
     $DBpersons=@()
+    $recordsRead=1000
+    $recordsNum=0
+    $readSize= "Select top $recordsRead "
+    $readType=" > @lastIUN "
 
-    $sqlCommand.CommandText =
-        " SELECT top 1000 p.personid personid,p.FirstName,p.LastName,"+
-	    "    cast(inc.pmid  as varchar(10)) as pmid "+
+    $SQLquery=$readSize+ "p.personid personid,"+
+        "   case "+
+		"	    when na.PublishingFirst is not NULL then na.PublishingFirst "+
+		"	else p.FirstName "+
+		"   end Firstname, "+
+		"   case "+
+		"	    when na.PublishingLast is not NULL then na.PublishingLast "+
+		"	else p.LastName "+
+		"   end LastName, "+
+	    "   cast(inc.pmid  as varchar(10)) as pmid "+
         " FROM [Profile.Data].[Publication.Person.Include] inc "+
         " join [Profile.Data].[Person] p on inc.personid =p.personid "+
+        " join [UCSF.].[NameAdditions] na on p.internalusername=na.internalusername "+
         " left join [UCSF.].[ExternalID] ExtID "+
 	    "    on ExtID.personID=p.personID "+
         " left outer join [Profile.Data].[Publication.Person.Exclude] exc "+
@@ -42,17 +54,23 @@ Function GetPersons {
         " where exc.pmid is NULL  "+
 	    "   and inc.pmid is not NULL and inc.pmid>0 "+
 	    "   and ExtID.personID is NULL "+
-        "   and p.personid > @lastIUN "+
+        "   and p.personid "+$readType +
         " order by p.personid,inc.pmid"
 
 #        "   and p.lastname='McMullen'and p.firstname='Ashley' "+
+#"   and (p.personid=7997 or p.personid=12065) "+
+#"   and p.personid=14911 "+
+#" join [Profile.Data].[Publication.Person.Add] conf on conf.personid=p.personid and conf.pmid=inc.pmid "+
+
+    $sqlCommand.CommandText =$SQLquery
     $sqlcommand.CommandTimeout=120
     $sqlCommand.Parameters.Add((New-Object Data.SqlClient.SqlParameter("@lastIUN",[Data.SQLDBType]::VarChar, 50))) | Out-Null
-    $sqlCommand.Parameters[0].Value = $readLimit.lastIUN
+    $sqlCommand.Parameters[0].Value =$readLimit.lastIUN
     $reader = $sqlCommand.ExecuteReader()
     try {
         while ($reader.Read())
         {
+            $recordsNum++
             $fistname=$reader["FirstName"]
             $lastname=$reader["LastName"]
             $readpmid=$reader["pmid"]
@@ -85,65 +103,56 @@ Function GetPersons {
       $hh=get-date -f MM/dd/yyyy_HH:mm:ss
       if ($DEBUG -eq 1){write-host `n$hh   $ErrorMessage}
     }
-    if ([string]::IsNullOrEmpty($readLimit.lastIUN)) {exit}    
-# reading all pmids forlastIUN
-    $sqlCommand = New-Object System.Data.SqlClient.SqlCommand
-    $sqlCommand.Connection = $sqlConnection
-    $sqlCommand.CommandText =
-        " SELECT p.personid,p.FirstName,p.LastName,"+
-	    "    cast(inc.pmid  as varchar(10)) as pmid "+
-        " FROM [Profile.Data].[Publication.Person.Include] inc "+
-        " join [Profile.Data].[Person] p on inc.personid = p.personid "+
-        " left join [UCSF.].[ExternalID] ExtID "+
-	    "    on ExtID.personID = p.personID "+
-        " left outer join [Profile.Data].[Publication.Person.Exclude] exc "+
-	    "    on	cast(inc.personid as varchar)+cast(inc.pmid  as varchar(10)) = "+
-		"    cast(exc.personid as varchar)+cast(exc.pmid  as varchar(10)) "+
-        " where exc.pmid is NULL  "+
-	    "   and inc.pmid is not NULL and inc.pmid>0 "+
-	    "   and ExtID.personID is NULL "+
-        "   and p.personid = @lastIUN "+
-        " order by p.personid,inc.pmid"
-    $sqlcommand.CommandTimeout=120
-    $sqlCommand.Parameters.Add((New-Object Data.SqlClient.SqlParameter("@lastIUN",[Data.SQLDBType]::VarChar, 50))) | Out-Null
-    $sqlCommand.Parameters[0].Value = $readLimit.lastIUN
-    $personData.pmids=@()
-    $curID=$personData.DimensionsID
-    $newreader = $sqlCommand.ExecuteReader()
-    try {
-        while ($newreader.Read())
-        {
-            $fistname=$newreader["FirstName"]
-            $lastname=$newreader["LastName"]
-            $pmid=$newreader["pmid"]
-            $IUN=$newreader["personid"]
+    if ([string]::IsNullOrEmpty($readLimit.lastIUN)) {exit}
+    $newSQLquery=$SQLquery -replace  $readSize, "Select "
+    $newSQLquery=$newSQLquery -replace $readType, " = @lastIUN "
 
-            if ($DEBUG -eq 1){write-host "added curent id="$curID "newID="$dimid}
-            if ($DEBUG -eq 1){write-host "addedDBpersons="$DBpersons}
-            #if ($DEBUG -eq 1){write-host "personData="$personData}
-            if ($IUN -eq $curID ){
-                $personData.pmids += $pmid
-                continue
-            } else {
-                if ($curID.Length -gt 0)  {  $DBpersons += $personData }
-                $personData=NewPersonObject
-                $personData.DimensionsID=$null
-                $curID=$IUN
-                $personData.DimFirstName =$fistname
-                $personData.DimLastName =$lastname
-                $personData.pmids +=$pmid
-                $personData.Dimpersonid=$IUN
-
+    if ($recordsNum -eq $recordsRead) {   
+        # reading all pmids forlastIUN
+        $sqlCommand = New-Object System.Data.SqlClient.SqlCommand
+        $sqlCommand.Connection = $sqlConnection
+        $sqlCommand.CommandText =$newSQLquery
+        $sqlcommand.CommandTimeout=120
+        $sqlCommand.Parameters.Add((New-Object Data.SqlClient.SqlParameter("@lastIUN",[Data.SQLDBType]::VarChar, 50))) | Out-Null
+        $sqlCommand.Parameters[0].Value = $readLimit.lastIUN
+        $personData.pmids=@()
+        $curID=$personData.DimensionsID
+        $newreader = $sqlCommand.ExecuteReader()
+        try {
+            while ($newreader.Read())
+            {
+                $fistname=$newreader["FirstName"]
+                $lastname=$newreader["LastName"]
+                $pmid=$newreader["pmid"]
+                $IUN=$newreader["personid"]
+                if ($DEBUG -eq 1){write-host "added curent id="$curID "newID="$dimid}
+                if ($DEBUG -eq 1){write-host "addedDBpersons="$DBpersons}
+                #if ($DEBUG -eq 1){write-host "personData="$personData}
+                if ($IUN -eq $curID ){
+                    $personData.pmids += $pmid
+                    continue
+                } else {
+                    if ($curID.Length -gt 0)  {  $DBpersons += $personData }
+                    $personData=NewPersonObject
+                    $personData.DimensionsID=$null
+                    $curID=$IUN
+                    $personData.DimFirstName =$fistname
+                    $personData.DimLastName =$lastname
+                    $personData.pmids +=$pmid
+                    $personData.Dimpersonid=$IUN
+                }
             }
+            $DBpersons += $personData
+            $readLimit.lastIUN=$IUN
+            $readLimit.lastPMID=$pmid
+            $newreader.Close()
+        } catch {
+            $ErrorMessage = $_.Exception.Message
+            $hh=get-date -f MM/dd/yyyy_HH:mm:ss
+            write-host `n$hh   $ErrorMessage
         }
+    } else {
         $DBpersons += $personData
-        $readLimit.lastIUN=$IUN
-        $readLimit.lastPMID=$pmid
-        $newreader.Close()
-    } catch {
-      $ErrorMessage = $_.Exception.Message
-      $hh=get-date -f MM/dd/yyyy_HH:mm:ss
-      write-host `n$hh   $ErrorMessage
     }
     return $DBpersons
 }    
@@ -237,6 +246,7 @@ $apiurl=$ConfigFile.Settings.WebService.URL
 $body=(@{'username' = $wusername; 'password' = $wpassword} | ConvertTo-JSON)
 $TOKEN_URI=$apiurl+"/auth.json"
 $DSL_TOKEN = (Invoke-RestMethod -Uri $TOKEN_URI -Method Post -Body $body).token
+$DEBUG=0
 
 #$sqlConnection = New-Object System.Data.SqlClient.SqlConnection
 $sqlConnection = new-object System.Data.SqlClient.SQLConnection("Data Source=$DBserver;Initial Catalog=$DBName;User ID=$dbuser;Password=$dbpassword");
@@ -252,6 +262,7 @@ while ($needNextPerson -eq 1){
     $newPersons=$null
     get-date -f MM/dd/yyyy_HH:mm:ss
     $newPersons=GetPersons $sqlConnection $readLimit
+    $newPersons.Length
     get-date -f MM/dd/yyyy_HH:mm:ss
     if ($newPersons.Equals($null)) {
         $needNextPerson=0
@@ -267,8 +278,9 @@ while ($needNextPerson -eq 1){
         $check_researcher= $person.DimFirstName+" "+$person.DimLastName
         $DimensionsID=$null
         $skip=0
-        $len=-1
-        while (-not $len -eq 0){
+        $setlen=-1
+        $totalcount=-1
+        while (( -not $setlen -eq 0) -and ($totalcount-$skip -ne 0)){
 #$DEBUG=1
             $numcall++
             if ($numcall -ge 10){
@@ -276,12 +288,13 @@ while ($needNextPerson -eq 1){
                  Start-sleep -Seconds 3
                  $numcall=0
             } 
-            $searchRequest='search publications in researchers for "\"'+$check_researcher+'\"" where pmid is not empty return publications [id+pmid+researchers] limit 1000 skip '+ $skip
-            #$searchRequest
-            $jsonResult=Invoke-RestMethod -Uri https://app.dimensions.ai/api/dsl.json -Method Post -H @{Authorization = "JWT $DSL_TOKEN"} -Body $searchRequest
-            $len=$jsonResult.publications.Length
-            if ($DEBUG -eq 1){write-host "len=" $len "_stat="$jsonResult._stats}
-            $skip=$skip+$len
+            $searchRequest='search publications in authors for "\"'+$check_researcher+'\"" where pmid is not empty return publications [all] limit 1000 skip '+ $skip
+            $searchRequest
+            $jsonResult=Invoke-RestMethod -Uri https://app.dimensions.ai/api/dsl.json -Method Post -ContentType "text/plain; charset=utf-8"-H @{Authorization = "JWT $DSL_TOKEN"} -Body $searchRequest
+            $setlen=$jsonResult.publications.Length
+            $totalcount=$jsonResult._stats.total_count
+            if ($DEBUG -eq 1){write-host "setlen=" $setlen "_stat="$jsonResult._stats}
+            $skip=$skip+$setlen
             foreach ($pub in $jsonResult.publications){
                 if ($DEBUG -eq 1){write-host "publication="$pub.id",pmid="$pub.pmid}
                 #if ($DEBUG -eq 1){$pub.researchers}
@@ -300,8 +313,6 @@ while ($needNextPerson -eq 1){
                         if ($DEBUG -eq 1){write-host "First Name <<"$researcher.first_name">>Last Name <<"$researcher.last_name">>pmid="$pub.pmid}
                         if ($DEBUG -eq 1){write-host "Looking for <<"$person.Dimfirstname" "$person.Dimlastname">>"}
                         $adjustedLastname=$researcher.last_name
-                        $adjustedLastname=$adjustedLastname.replace('ó','o')
-                        $adjustedLastname=$adjustedLastname.replace('ö','o')
                         if ($person.Dimlastname -eq $adjustedLastname) {
                                 if ($researcher.first_name.substring(0,1) -eq $person.DimFirstName.Substring(0,1)) {
                                     $DimensionsID=$researcher.id

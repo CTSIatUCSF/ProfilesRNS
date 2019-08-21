@@ -41,6 +41,7 @@ Function GetPersons {
 		"	cast(exc.personid as varchar)+cast(exc.pmid  as varchar(10))  "+
 		"  where exc.pmid is NULL   "+
 		"    and PublicationSource='Dimensions' "+
+        "    and p.internalusername  like '%@ucsf.edu' "+
         "    and  p.personid in ("+ 
  		"    select top 1 personid from [UCSF.].[ExternalID] "+ 
 		"		where personid >  @lastIUN "+
@@ -380,6 +381,28 @@ if ($args.count -eq 0) {
     if ($DEBUG -eq 1){write-host "Need file with names/passwords"}
     exit
 }
+$titleRegex=@()
+$titleRegex+='.{10,}\w\w.{10.}\w-+letters?'
+$titleRegex+='^(the )?authors? reply'
+$titleRegex+='^an open letter to'
+$titleRegex+='^correction( to)?:'
+$titleRegex+='^letter (by.*)*regarding'
+$titleRegex+='^letter in response to'
+$titleRegex+='^letter( \d+)?:'
+$titleRegex+='^reply to the letters?'
+$titleRegex+='^response by.*to'
+$titleRegex+='^response letter to'
+$titleRegex+='^response to [A-Z].{1,20}($|:)'
+$titleRegex+='^response to comment(ary)?'
+$titleRegex+='^response to the letter'
+$titleRegex+='^response to.*(re(garding)?|paper|correspondence|doi|et al|dr.? [[:alpha:]]{2,})'
+$titleRegex+='^response to\s*[[:punct:]]'
+$titleRegex+='^retracted'
+$titleRegex+='^retraction'
+$titleRegex+='^withdrawn'
+$titleRegex+='letters? to (the )?editor'
+$titleRegex+='the authors? reply[!"\#$%&''()*+,\-./:;<=>?@\[\\\]^_`{|}~]*$'
+
 $params=$args[0..($args.count-1)]
 if ($DEBUG -eq 1){write-host "params="$params}
 
@@ -429,14 +452,23 @@ while ($needNextPerson -eq 1){
     }
     $skip=0
     $setlen=-1
+    $totalcount=-1
+    $numcall=0
     #$DEBUG=1
-    while  ( -not $setlen -eq 0){
+    while  (( -not $setlen -eq 0) -and ($totalcount-$skip -ne 0)) {
+        $numcall++
+        if ($numcall -ge 10){
+            write-host "Sleeping 3 sec" $numcall
+            Start-sleep -Seconds 3
+            $numcall=0
+        }
         $searchRequest='search publications  where researchers.id in [ '+$dimsIDs +' ] and pmid is empty'+' return publications[all] limit 1000 skip '+ $skip
         $searchRequest
         $DATA_URI=$apiurl+"/dsl.json"
         $jsonResult=Invoke-RestMethod -Uri $DATA_URI -Method Post -H @{Authorization = "JWT $DSL_TOKEN"} -Body $searchRequest
         $pubAuthors=""
         $setlen=$jsonResult.publications.Length
+        $totalcount=$jsonResult._stats.total_count
         write-host "setlen=" $setlen "_stat="$jsonResult._stats
         if ($setlen -eq 0){break}
         $pubsInDB=""
@@ -444,6 +476,17 @@ while ($needNextPerson -eq 1){
         $hash=@{}
         foreach($pub in $jsonResult.publications){
             $skip++
+            # filter out not actual publications
+            foreach ($regex in $titleRegex){
+                $badTitle=$pub.title -match $regex
+                if ($badTitle) {
+                    write-host "Publication "$pub.id "<"$pub.title">"
+                    write-host "validating->"$regex"->returning " $badTitle
+                    break
+                }
+            }
+            if ($badTitle) {continue}
+
             if ($pubsInDB -eq "") {$pubsInDB=$pubsInDB+"'"+$pub.id+"'"}
             else {$pubsInDB=$pubsInDB+",'"+$pub.id+"'"}
             $hash.add($pub.id,0)
@@ -515,7 +558,9 @@ while ($needNextPerson -eq 1){
                     $pubDoi=$pub.doi 
                     $pubUrl="http://dx.doi.org/"+$pubDoi
                 }
-                $pubAuthors=$authors
+                if ($authors.Length -ge 4000){
+                    $pubAuthors=$authors.Substring(1,3900)+"..."
+                }else {$pubAuthors=$authors}
                 SaveGeneral $sqlConnection $insertedPubID $pub.id $pubType $pubSourceType $pubTitle $pubSourceTitle $pubVolume $pubIssue $pubPagination $pubDate $pubIssn $pubDoi $pubUrl $pubAuthors
             } else {$insertedPubID=$processedPubs[$pub.id]}
             if  ($person.Dimpersonid -gt 0 -and $insertedPubID -lt 0 -and -not $person.publs.Contains($pub.id)) { 

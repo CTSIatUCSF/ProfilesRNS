@@ -2,6 +2,7 @@
 -- Make sure the logic for finding filters in [UCSF.ORNG].[AlignCollaborationInterestsFilters]  will match for this value  and no others!!
 -- ALSO MODIFY THE NIGHTLY IMPORT SO THAT Collaboration Filters are not destroyed!  SEE BOTTOM OF THIS
 
+-- If category changes, you need to update the match logic a few places below to make sure it is compatible!
 DECLARE @Category VARCHAR(50) = 'Find people interested in:';
 
 DELETE FROM [Profile.Data].[Person.Filter] WHERE PersonFilterCategory = @Category;
@@ -70,7 +71,7 @@ BEGIN
 	-- now go through all the filters and see what they have
 	DECLARE @Filters TABLE (PersonFilterID INT NOT NULL, PersonFilter VARCHAR(200) NOT NULL)
 	INSERT INTO @Filters 
-		SELECT PersonFilterID, PersonFilter FROM [Profile.Data].[Person.Filter] WHERE PersonFilterCategory like '%collaborat%';
+		SELECT PersonFilterID, PersonFilter FROM [Profile.Data].[Person.Filter] WHERE PersonFilterCategory like '%interested%';
 
 	DECLARE @PersonFilterID INT
 	DECLARE @PersonFilter varchar(50)
@@ -432,7 +433,7 @@ BEGIN
 		delete from [' + @DestinationDB + '].[Profile.Import].[PersonAffiliation]
 		-- do not remove ORNG based filters unless person is gone
 		-- also allow for Collaboration Interests hack!
-		delete from [' + @DestinationDB + '].[Profile.Import].[PersonFilterFlag] where PersonFilter NOT IN (select Name from [' + @DestinationDB + '].[ORNG.].Apps UNION select PersonFilter from [' + @DestinationDB + '].[Profile.Data].[Person.Filter] WHERE PersonFilterCategory like ''%collaborat%'')
+		delete from [' + @DestinationDB + '].[Profile.Import].[PersonFilterFlag] where PersonFilter NOT IN (select Name from [' + @DestinationDB + '].[ORNG.].Apps UNION select PersonFilter from [' + @DestinationDB + '].[Profile.Data].[Person.Filter] WHERE PersonFilterCategory like ''%interested%'')
 		delete from [' + @DestinationDB + '].[Profile.Import].[PersonFilterFlag] where internalusername not in (select internalusername from [UCSF.Export].vwPerson)
 
 		delete from [' + @DestinationDB + '].[Profile.Import].[User]

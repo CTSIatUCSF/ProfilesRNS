@@ -11,14 +11,19 @@
             "UCSF"];
         var i;
         for (i = 0; i < ucsfSpellings.length; ++i) {
-            var ndx = $('.education').html().indexOf(ucsfSpellings[i]);
-            if (ndx > -1) {
-                // they have a UCSF listed entry, make sure it contains a degree
-                var degreeStartNdx = $('.education').html().indexOf('<td>', ndx + ucsfSpellings[i].length) + 4;
-                var degree = $('.education').html().substring(degreeStartNdx, $('.education').html().indexOf('</td>', degreeStartNdx));
-                if (degree.trim().length > 0) {
-                    $('.profilesContentMain').prepend('<img style="float: right; valign: top;" src="/App_Themes/UCSF/Images/ucsf_alumni_blue.jpg" />');
-                    break;
+            var ndx = 0;
+            while (ndx > -1) {
+                var ndx = $('.education').html().indexOf(ucsfSpellings[i], ndx);
+                if (ndx > -1) {
+                    // they have a UCSF listed entry, make sure it contains a degree
+                    var degreeStartNdx = $('.education').html().indexOf('<td>', ndx + ucsfSpellings[i].length) + 4;
+                    var degree = $('.education').html().substring(degreeStartNdx, $('.education').html().indexOf('</td>', degreeStartNdx));
+                    if (degree.trim().length > 0) {
+                        $('.profilesContentMain').prepend('<img style="float: right; valign: top;" src="/App_Themes/UCSF/Images/UCSF_alumni_badge_500x500.png" width="50"/>');
+                        i = ucsfSpellings.length;
+                        break;
+                    }
+                    ndx += ucsfSpellings[i].length;
                 }
             }
         }
@@ -30,7 +35,7 @@
         $(".education:contains('Diversity, Equity & Inclusion Training')").addClass('dei-champ');
         $(".education:contains('Diversity, Equity and Inclusion Training')").addClass('dei-champ');
         $(".education:contains('Diversity, Equity, and Inclusion Training')").addClass('dei-champ');
-        if ($('.dei-champ') && $('.dei-champ').length) $('.profilesContentMain').prepend('<a href="https://differencesmatter.ucsf.edu/diversity-equity-and-inclusion-champion-training" style="float: right; valign: top;" target="_blank"><img src="/App_Themes/UCSF/Images/dei-champion_badge.jpg" /></a>');
+        if ($('.dei-champ') && $('.dei-champ').length) $('.profilesContentMain').prepend('<a href="https://differencesmatter.ucsf.edu/diversity-equity-and-inclusion-champion-training" style="float: right; valign: top;" target="_blank"><img src="/App_Themes/UCSF/Images/dei-champ_large.png" width="50"/></a>');
     }	 
 	
     // altmetrics, don't attempt to load till after 7 seconds, which is 7000 milliseconds
@@ -135,7 +140,7 @@ function buildGadgetAds() {
         setInterval(nexttip, 30000);
 
         // for search form pages
-        if ($('.nonavbar').length && !$('#FSSiteDescription').length && $('.mainmenu li').last().text() != 'Sign out') {
+        if ($('.nonavbar').length && !$('#FSSiteDescription').length && $('.mainmenu li').last().text() !== 'Sign out') {
             var badge = "<ul id='badge'>" + ads.join('') + "</ul>";
             $(badge).insertAfter('.profilesContentPassive');
             $("#badge li").hide();

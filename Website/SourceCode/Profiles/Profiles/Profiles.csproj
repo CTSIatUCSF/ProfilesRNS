@@ -233,7 +233,7 @@
     <Content Include="App_Themes\UCSF\Images\clinicaltrials.png" />
     <Content Include="App_Themes\UCSF\Images\conceptsearch.jpg" />
     <Content Include="App_Themes\UCSF\Images\dashboard.png" />
-    <Content Include="App_Themes\UCSF\Images\dei-champion_badge.jpg" />
+    <Content Include="App_Themes\UCSF\Images\dei-champ_large.png" />
     <Content Include="App_Themes\UCSF\Images\detailstab.jpg" />
     <Content Include="App_Themes\UCSF\Images\extCoAuth.png" />
     <Content Include="App_Themes\UCSF\Images\favicon.ico" />
@@ -271,7 +271,7 @@
     <Content Include="App_Themes\UCSF\Images\timeline.jpg" />
     <Content Include="App_Themes\UCSF\Images\toc.jpg" />
     <Content Include="App_Themes\UCSF\Images\ucsfProfilesLogo.png" />
-    <Content Include="App_Themes\UCSF\Images\ucsf_alumni_blue.jpg" />
+    <Content Include="App_Themes\UCSF\Images\UCSF_alumni_badge_500x500.png" />
     <Content Include="App_Themes\UCSF\PresentationXML\About\AboutProfiles.xml" />
     <Content Include="App_Themes\UCSF\PresentationXML\About\ForDevelopers.xml" />
     <Content Include="App_Themes\UCSF\PresentationXML\About\Help.xml" />

@@ -37,6 +37,8 @@ namespace Profiles.Profile.Modules.ProfileImage
         {
             try
             {
+                bool DEBUG = "true".Equals(context.Request.QueryString["DEBUG"].ToLower());
+
                 Utilities.DataIO data = new Profiles.Profile.Utilities.DataIO();
                 // Set up the response settings
                 context.Response.ContentType = "image/jpeg";
@@ -56,6 +58,7 @@ namespace Profiles.Profile.Modules.ProfileImage
                         // UCSF.  Allow old id to work
                         nodeid = Framework.Utilities.UCSFIDSet.ByPersonId[Convert.ToInt64(context.Request.QueryString["person"])].NodeId;
                     }
+                    Framework.Utilities.DebugLogging.Log("Node ID = " + nodeid);
                 }
                 catch (Exception e)
                 {
@@ -80,7 +83,7 @@ namespace Profiles.Profile.Modules.ProfileImage
                         height = Convert.ToInt32(context.Request.QueryString["Height"]);
                     }
 
-                    byte[] image = (byte[])Framework.Utilities.Cache.FetchObject(GetCacheKey(nodeid, width, height));
+                    byte[] image = DEBUG ? null : (byte[])Framework.Utilities.Cache.FetchObject(GetCacheKey(nodeid, width, height));
                     // UCSF items
                     if (image == null)
                     {
@@ -96,12 +99,14 @@ namespace Profiles.Profile.Modules.ProfileImage
                         XmlDocument person;
 
                         person = data.GetRDFData(request);
+                        Framework.Utilities.DebugLogging.Log("Person = " + person.InnerXml);
                         XmlNamespaceManager namespaces = xmlnamespace.LoadNamespaces(person);
 
                         byte[] rawimage = null;
                         if (person.SelectSingleNode("rdf:RDF/rdf:Description[1]/prns:mainImage/@rdf:resource", namespaces) != null)
                         {
                             rawimage = data.GetUserPhotoList(nodeid);
+                            Framework.Utilities.DebugLogging.Log("RawImage size  = " + rawimage.Length);
                         }
                         else if (thumbnail)
                         {

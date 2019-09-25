@@ -137,6 +137,7 @@
     <Content Include="About\Images\video.JPG" />
     <Content Include="About\NewFeatures.aspx" />
     <Content Include="About\Optin.aspx" />
+    <Content Include="About\ORCID.aspx" />
     <Content Include="About\PresentationXML\AboutProfiles.xml" />
     <Content Include="About\PresentationXML\CloseBrowser.xml" />
     <Content Include="About\PresentationXML\FAQ.xml" />
@@ -147,6 +148,7 @@
     <Content Include="About\PresentationXML\NewFeatures.xml" />
     <Content Include="About\PresentationXML\NoProfile.xml" />
     <Content Include="About\PresentationXML\Optin.xml" />
+    <Content Include="About\PresentationXML\ORCID.xml" />
     <Content Include="Activity\Modules\ActivityHistory\ActivityDetails.aspx" />
     <Content Include="Activity\Modules\ActivityHistory\ActivityHistory.ascx" />
     <Content Include="Activity\Modules\LatestUpdates\LatestUpdates.ascx" />
@@ -619,6 +621,13 @@
     </Compile>
     <Compile Include="About\Optin.aspx.designer.cs">
       <DependentUpon>Optin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="About\ORCID.aspx.cs">
+      <DependentUpon>ORCID.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About\ORCID.aspx.designer.cs">
+      <DependentUpon>ORCID.aspx</DependentUpon>
     </Compile>
     <Compile Include="ActiveNetwork\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

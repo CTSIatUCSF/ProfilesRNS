@@ -44,7 +44,7 @@ namespace Profiles.Profile.Modules
             {
                 while (reader.Read())
                 {
-                    publication.Add(new Publication(reader["bibo_pmid"].ToString(), reader["vivo_pmcid"].ToString(), reader["authors"].ToString(), reader["prns_informationResourceReference"].ToString(), reader["vivo_webpage"].ToString(), reader["authorXML"].ToString(), reader["Source"].ToString()));
+                    publication.Add(new Publication(reader["bibo_pmid"].ToString(), reader["vivo_pmcid"].ToString(), reader["authors"].ToString(), reader["prns_informationResourceReference"].ToString(), reader["vivo_webpage"].ToString(), reader["authorXML"].ToString()));
                 }
 
                 rpPublication.DataSource = publication;
@@ -100,22 +100,24 @@ namespace Profiles.Profile.Modules
                 XmlNamespaceManager namespaces = xmlnamespace.LoadNamespaces(BaseData);
                 if (!lblPubTxt.Contains("<b>") && BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/rdf:type[@rdf:resource='http://xmlns.com/foaf/0.1/Person']", namespaces) != null)
                 {
-                    lblPubTxt = findAndDecorateThisAuthor(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:firstName", this.Namespaces).InnerText.Substring(0, 1),
-                                                          base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:lastName", this.Namespaces).InnerText + " ",
-                                                          lblPubTxt);
+                    try
+                    {
+                        lblPubTxt = findAndDecorateThisAuthor(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:firstName", this.Namespaces).InnerText.Substring(0, 1),
+                                                              base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:lastName", this.Namespaces).InnerText + " ",
+                                                              lblPubTxt);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Framework.Utilities.DebugLogging.Log("Decorate Author Exception : " + ex.Message);
+                    }
                 }
                 lblPubTxt += (!String.IsNullOrEmpty(lblPubTxt) && !lblPubTxt.TrimEnd().EndsWith(".") ? ". " : "") + pub.prns_informationResourceReference;
                 if (pub.bibo_pmid != string.Empty && pub.bibo_pmid != null)
                 {
-                    if (pub.bibo_pmid.IndexOf("-") < 0) {
-                        lblPubTxt = lblPubTxt + " PMID: " + pub.bibo_pmid;
-                    }
+                    lblPubTxt = lblPubTxt + " PMID: " + pub.bibo_pmid;
                     liPublication.Attributes["data-pmid"] = pub.bibo_pmid;
-                    if (pub.vivo_webpage.IndexOf("doi.org") > -1 ){
-                        pub.prns_pubsource = "International DOI Foundation (IDF)";
-                    }
-                    // litViewIn.Text = "View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/" + pub.bibo_pmid + "' target='_blank'>PubMed</a>";
-                    litViewIn.Text = "View in: <a href="+pub.vivo_webpage+" target='_blank'>"+ pub.prns_pubsource+"</a>";
+                    litViewIn.Text = "View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/" + pub.bibo_pmid + "' target='_blank'>PubMed</a>";
                     if (pub.vivo_pmcid != null)
                     {
                         if (pub.vivo_pmcid.Contains("PMC"))
@@ -146,7 +148,7 @@ namespace Profiles.Profile.Modules
             string authorList = "";
             // parse out XML document to get known coauthor URI's
             XmlDocument doc = new XmlDocument();
-            doc.LoadXml(authorXml); 
+            doc.LoadXml(authorXml);
             XmlNodeList xnList = doc.SelectNodes("/authors/author");
             foreach (XmlNode xn in xnList)
             {
@@ -204,7 +206,7 @@ namespace Profiles.Profile.Modules
 
         public class Publication
         {
-            public Publication(string _bibo_pmid, string _vivo_pmcid, string _authors, string prns_informationresourcereference, string _vivo_webpage, string _authorXML, string _pubsource)
+            public Publication(string _bibo_pmid, string _vivo_pmcid, string _authors, string prns_informationresourcereference, string _vivo_webpage, string _authorXML)
             {
                 this.bibo_pmid = _bibo_pmid;
                 this.vivo_pmcid = _vivo_pmcid;
@@ -212,14 +214,12 @@ namespace Profiles.Profile.Modules
                 this.prns_informationResourceReference = prns_informationresourcereference;
                 this.vivo_webpage = _vivo_webpage;
                 this.authorXML = _authorXML;
-                this.prns_pubsource = _pubsource;
             }
 
             public string bibo_pmid { get; set; }
             public string vivo_pmcid { get; set; }
-            public string authors { get; set; } 
+            public string authors { get; set; }
             public string prns_informationResourceReference { get; set; }
-            public string prns_pubsource { get; set; }
             public string vivo_webpage { get; set; }
             public string authorXML { get; set; }
         }

@@ -37,7 +37,7 @@ namespace Profiles.Profile.Modules.ProfileImage
         {
             try
             {
-                bool DEBUG = "true".Equals(context.Request.QueryString["DEBUG"].ToLower());
+                bool DEBUG = "true".Equals(context.Request.QueryString["DEBUG"]);
 
                 Utilities.DataIO data = new Profiles.Profile.Utilities.DataIO();
                 // Set up the response settings

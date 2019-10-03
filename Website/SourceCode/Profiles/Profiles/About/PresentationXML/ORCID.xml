@@ -1,0 +1,52 @@
+<Presentation PresentationClass="profile">
+	<PageOptions Columns="2"/>
+	<WindowName>ORCID</WindowName>  
+	<PageTitle>What&#39;s an ORCID, and why would you want one?</PageTitle>
+	<PageBackLinkName/>
+	<PageBackLinkURL/>
+	<PageSubTitle/>
+	<PageDescription/>  
+	<PanelList>
+		<Panel type="header"  />
+		<Panel type="page" />
+		<Panel Type="active">
+			<Module ID="MainMenu"/>
+		</Panel>
+		<Panel Type="main">
+			<Module ID="HTMLBlock">
+				<ParamList>
+					<Param Name="HTML">
+
+						<script type="text/javascript">
+$('#suckerfishmenu li#about a').addClass('active');
+var url = window.location.href;
+var arr = url.split("/");
+var result = arr[0] + "//" + arr[2]; 
+						</script>
+<p>Have you ever been confused with someone with a similar name? ORCID might fix that, forever.</p>
+<p>	<a target="_blank" href="https://orcid.org" title="ORCID" >ORCID </a> is a new system that gives every researcher a permanent unique ID to make it easy to give them credit for their scholarly work—even if their name changes, or they change institutions. 
+
+	It takes just a few minutes to get an ORCID ID issued. Many journals and granting agencies have already started asking researchers to include their ORCID ID as part of their application process.
+
+	About 1,000 UCSF researchers have already gotten their ORCID IDs. You can see them on the profile pages of people like <a target="_blank" href="../kirsten.bibbins-domingo" title="Kirsten Bibbins-Domingo" >Kirsten Bibbins-Doming </a>
+	and 
+	<a target="_blank" href="../tung.nguyen" title="Tung Nguyen"> Tung Nguyen</a>.
+</p>
+
+<h1 style="width:800px;font-size:20px;padding:10px 0 12px;color:#999;margin:0;line-height:26px;">Get an ORCID, then show it off!</h1>
+	<ul>
+		<li>Curious? <a target="_blank" href="https://orcid.org" title="Learn more about how ORCID works" >Learn more about how ORCID works</a></li>
+        <li>Already have an ORCID? <a target="_blank" href="../login/default.aspx?method=login&amp;redirectto=edit" 
+		title="Add Orcid">
+		Sign in and add it to your in ORCID section</a></li>
+		<li>Need an ORCID? <a target="_blank" href="https://orcid.org/register" title="Here&#39;s how to get yours, in a couple of minutes" > Here’s how to get yours, in a couple of minutes</a></li>
+    </ul>
+			</Param>
+		</ParamList>
+	</Module>
+	<Panel Type="passive"/>
+	<Panel type="footer" />
+</Panel> 
+</PanelList>
+</Presentation>
+

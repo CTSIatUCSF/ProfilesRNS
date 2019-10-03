@@ -19,15 +19,9 @@ namespace Profiles
                                         "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" + Environment.NewLine +
                                         "xsi:schemaLocation=\"http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd\">" + Environment.NewLine +
                                         "<url><loc>" + Brand.GetThemedDomain() + "</loc></url>" + Environment.NewLine +
-                                        "<url><loc>" + Brand.GetThemedDomain() + "/About</loc></url>" + Environment.NewLine +
                                         "<url><loc>" + Brand.GetThemedDomain() + "/About/AboutProfiles.aspx</loc></url>" + Environment.NewLine +
-                                        "<url><loc>" + Brand.GetThemedDomain() + "/About/ForDevelopers.aspx</loc></url>" + Environment.NewLine +
-                                        "<url><loc>" + Brand.GetThemedDomain() + "/About/GadgetLibrary.aspx</loc></url>" + Environment.NewLine +
                                         "<url><loc>" + Brand.GetThemedDomain() + "/About/Help.aspx</loc></url>" + Environment.NewLine +
-                                        "<url><loc>" + Brand.GetThemedDomain() + "/About/HowProfilesWorks.aspx</loc></url>" + Environment.NewLine +
-                                        "<url><loc>" + Brand.GetThemedDomain() + "/search</loc></url>" + Environment.NewLine +
-                                        "<url><loc>" + Brand.GetThemedDomain() + "/search/people</loc></url>" + Environment.NewLine +
-                                        "<url><loc>" + Brand.GetThemedDomain() + "/search/all</loc></url>" + Environment.NewLine);
+                                        "<url><loc>" + Brand.GetThemedDomain() + "/search</loc></url>" + Environment.NewLine);
                 foreach (string prettyURL in LoadPeople(Brand.GetThemedDomain().ToLower())) 
                 {
                         Response.Write("<url><loc>" + prettyURL + "</loc></url>" + Environment.NewLine);

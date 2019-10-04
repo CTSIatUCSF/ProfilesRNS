@@ -32,11 +32,11 @@ var result = arr[0] + "//" + arr[2];
   and <a target="_blank" href="https://profiles.ucsf.edu/manasi.mayekar" title="Manasi Mayekar">Manasi Mayekar</a>.
 </p>
 
-<h1 style="width:800px;font-size:20px;padding:10px 0 12px;color:#999;margin:0;line-height:26px;">Get an ORCID ID, then show it off!</h1>
+<h2>Get an ORCID ID, then show it off!</h2>
 	<ul>
 		<li>Curious? <a target="_blank" href="https://orcid.org" title="Learn more about how ORCID works" >Learn more about how ORCID works.</a></li>
         <li>Already have an ORCID ID? <a target="_blank" href="../login/default.aspx?method=login&amp;redirectto=edit" 
-		title="Add ORCID to yoru UCSF Profiles page">
+		title="Add ORCID to your UCSF Profiles page">
 		Add it to your UCSF Profiles page.</a></li>
 		<li>Need an ORCID ID? <a target="_blank" href="https://orcid.org/register" title="Register to get yours, in a couple of minutes" >Register to get yours, in a couple of minutes.</a></li>
     </ul>

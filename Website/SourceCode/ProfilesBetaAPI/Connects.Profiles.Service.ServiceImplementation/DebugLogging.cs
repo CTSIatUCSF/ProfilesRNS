@@ -13,7 +13,7 @@ namespace Connects.Profiles.Service.ServiceImplementation
             //Each error that occurs will trigger this event.
             try
             {
-                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["DEBUG"]) == true)
+                if ("true".Equals(ConfigurationSettings.AppSettings["DEBUG"].ToLower()))
                 {
                     using (StreamWriter w = File.AppendText(AppDomain.CurrentDomain.BaseDirectory + "/ProfilesDebuggingLog.txt"))
                     {

@@ -485,7 +485,7 @@ namespace Profiles.ORNG.Utilities
 
         internal string GetSecurityToken(String gadgetURL)
         {
-            if (Convert.ToBoolean(ConfigurationManager.AppSettings["DEBUG"]) == true)
+            if ("true".Equals(ConfigurationManager.AppSettings["DEBUG"].ToLower()))
             {
                 Stopwatch sw = new Stopwatch();
                 sw.Start();

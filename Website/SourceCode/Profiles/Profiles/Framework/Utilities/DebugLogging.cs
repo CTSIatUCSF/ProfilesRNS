@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Configuration;
 using System.IO;
+using System.Web;
 
 namespace Profiles.Framework.Utilities
 {
     public static class DebugLogging
     {
 
-
+        private static bool LoggingIsEnabled()
+        {
+            return ("request".Equals(ConfigurationSettings.AppSettings["DEBUG"]) && HttpContext.Current != null && HttpContext.Current.Request != null &&
+                "true".Equals(HttpContext.Current.Request.QueryString["DEBUG"])) || Convert.ToBoolean(ConfigurationSettings.AppSettings["DEBUG"]);
+        }
 
         public static void Log(string msg)
         {
@@ -17,7 +22,7 @@ namespace Profiles.Framework.Utilities
                 string path = string.Empty;
 
 
-                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["DEBUG"]) == true)
+                if (LoggingIsEnabled())
                 {
                     if (ConfigurationSettings.AppSettings["DEBUG_PATH"] != null)
                     {
@@ -46,7 +51,7 @@ namespace Profiles.Framework.Utilities
             {
                 string path = string.Empty;
 
-                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["DEBUG"]) == true)
+                if (LoggingIsEnabled())
                 {
                     if (ConfigurationSettings.AppSettings["DEBUG_PATH"] != null)
                     {

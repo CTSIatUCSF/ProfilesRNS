@@ -12,7 +12,7 @@ namespace ProfilesSearchAPI.Utilities
             //Each error that occurs will trigger this event.
             try
             {
-                if (Convert.ToBoolean(ConfigurationSettings.AppSettings["DEBUG"]) == true)
+                if ("true".Equals(ConfigurationSettings.AppSettings["DEBUG"].ToLower()))
                 {
                     using (StreamWriter w = File.AppendText(ConfigurationSettings.AppSettings["DEBUG_PATH"]))
                     {

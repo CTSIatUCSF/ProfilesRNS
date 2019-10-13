@@ -39,42 +39,38 @@
     }	 
 	
     // altmetrics, don't attempt to load till after 7 seconds, which is 7000 milliseconds
-/*	setTimeout(function ()
+	setTimeout(function ()
 	{
 		if ($('#publicationListAll') && $('#publicationListAll').length) {
-			var ID = null;
-			var TYPE = null;
-			var idarr = null;
-			var astr = $("#publicationListAll .viewIn")[1].innerHTML;
-			var urle = astr.indexOf('"' + " target");
-			var urls = astr.indexOf("http");
-			var url = astr.substring(urls, urle);
-			if (url.indexOf("dx.doi.org") > 0) {
-				idarr = url.split("dx.doi.org\/");
-				ID = idarr[1];
-				TYPE = "doi";
-			}
-			if (url.indexOf("ncbi.nlm.nih.gov/pubmed") > 0) {
-				idarr = url.split("ncbi.nlm.nih.gov\/pubmed\/");
-				ID = idarr[1];
-				TYPE = "pmid";
-			}
-		}
-		if (ID) {
-			var span = " <span class='altmetric-embed' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-" + TYPE + "=" + '"' +
-				ID + '"' + "></span>" +  // also add dimensions
-				"<span class='__dimensions_badge_embed__' data-hide-zero-citations='true' data-style='small_rectangle' data-" + TYPE + "=" + '"' +
-				ID + '"' + "></span>";
+			$("#publicationListAll li a:contains('PubMed'),a:contains('Publisher Site')").each(function () {
+				var url = $(this).attr('href');
+				var ID = null;
+				var TYPE = null;
+				var idarr = null;
+				if (url.indexOf("dx.doi.org") > 0) {
+					idarr = url.split("dx.doi.org\/");
+					ID = idarr[1];
+					TYPE = "doi";
+				}
+				if (url.indexOf("ncbi.nlm.nih.gov/pubmed") > 0) {
+					idarr = url.split("ncbi.nlm.nih.gov\/pubmed\/");
+					ID = idarr[1];
+					TYPE = "pmid";
+				}
+				if (ID) {
+					var span = " <span class='altmetric-embed' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-" + TYPE + "=" + '"' +
+						ID + '"' + "></span>" +  // also add dimensions
+						"<span class='__dimensions_badge_embed__' data-hide-zero-citations='true' data-style='small_rectangle' data-" + TYPE + "=" + '"' +
+						ID + '"' + "></span>";
+				}
 				$(this).parent().append(span);
+			});
+			$.getScript('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
+			$.getScript('https://badge.dimensions.ai/badge.js');
 		}
-	}
-	);
-	$.getScript('https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
-	$.getScript('https://badge.dimensions.ai/badge.js');
-}
-    }, 7000);
-*/
-    setTimeout(function () {
+	}, 7000);
+
+/*    setTimeout(function () {
         if ($('#publicationListAll') && $('#publicationListAll').length) {
             $("#publicationListAll li a:contains('PubMed')").each(function () {
                 var pmid = $(this).attr('href').match(/pubmed\/(\d+)$/);
@@ -105,7 +101,7 @@
             $.getScript('https://badge.dimensions.ai/badge.js');
         }
     }, 7000);
-
+*/
   //Search Form: clone clinical trials checkbox for promotion; call buildGadgetAds 
     if ($('#selOtherOptions') && $('#selOtherOptions').length) {
 		$("#divMaster_CTC1 label:contains('Clinical Trials')").parent().addClass('trials1');

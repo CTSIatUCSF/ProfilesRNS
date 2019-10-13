@@ -112,7 +112,7 @@ namespace Profiles.Profile.Modules
                     }
                     liPublication.Attributes["data-pmid"] = pub.bibo_pmid;
                     if (pub.vivo_webpage.IndexOf("doi.org") > -1 ){
-                        pub.prns_pubsource = "International DOI Foundation (IDF)";
+                        pub.prns_pubsource = "Publisher Site";
                     }
                     // litViewIn.Text = "View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/" + pub.bibo_pmid + "' target='_blank'>PubMed</a>";
                     litViewIn.Text = "View in: <a href="+pub.vivo_webpage+" target='_blank'>"+ pub.prns_pubsource+"</a>";

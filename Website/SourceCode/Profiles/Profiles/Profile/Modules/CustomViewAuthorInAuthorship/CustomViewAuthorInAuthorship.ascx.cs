@@ -44,7 +44,7 @@ namespace Profiles.Profile.Modules
             {
                 while (reader.Read())
                 {
-                    publication.Add(new Publication(reader["bibo_pmid"].ToString(), reader["vivo_pmcid"].ToString(), reader["authors"].ToString(), reader["prns_informationResourceReference"].ToString(), reader["vivo_webpage"].ToString(), reader["authorXML"].ToString()));
+                    publication.Add(new Publication(reader["bibo_pmid"].ToString(), reader["vivo_pmcid"].ToString(), reader["authors"].ToString(), reader["prns_informationResourceReference"].ToString(), reader["vivo_webpage"].ToString(), reader["authorXML"].ToString(), reader["Source"].ToString()));
                 }
 
                 rpPublication.DataSource = publication;
@@ -91,7 +91,9 @@ namespace Profiles.Profile.Modules
                 System.Web.UI.HtmlControls.HtmlGenericControl liPublication = ((System.Web.UI.HtmlControls.HtmlGenericControl)(e.Item.FindControl("liPublication")));
 
                 // use the XML if it is not null so that we can display links, otherwise the regular list
-                string lblPubTxt = !String.IsNullOrEmpty(pub.authorXML) ? getAuthorList(pub.authorXML) : pub.authors;
+                // clean up pub.authors so that me,you becomes me, you
+
+                string lblPubTxt = !String.IsNullOrEmpty(pub.authorXML) ? getAuthorList(pub.authorXML) : pub.authors.Replace(",", ", ").Replace("  ", " ");
 
 
                 // ugly logic but it works. If we did not match current author on URI, then do a name match
@@ -100,24 +102,27 @@ namespace Profiles.Profile.Modules
                 XmlNamespaceManager namespaces = xmlnamespace.LoadNamespaces(BaseData);
                 if (!lblPubTxt.Contains("<b>") && BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/rdf:type[@rdf:resource='http://xmlns.com/foaf/0.1/Person']", namespaces) != null)
                 {
-                    try
-                    {
-                        lblPubTxt = findAndDecorateThisAuthor(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:firstName", this.Namespaces).InnerText.Substring(0, 1),
-                                                              base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:lastName", this.Namespaces).InnerText + " ",
-                                                              lblPubTxt);
-
-                    }
-                    catch (Exception ex)
-                    {
-                        Framework.Utilities.DebugLogging.Log("Decorate Author Exception : " + ex.Message);
-                    }
+                    lblPubTxt = findAndDecorateThisAuthor(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:firstName", this.Namespaces).InnerText.Substring(0, 1),
+                                                          base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:lastName", this.Namespaces).InnerText,
+                                                          lblPubTxt);
                 }
+                //some cleanup to help with the dimensions stuff
                 lblPubTxt += (!String.IsNullOrEmpty(lblPubTxt) && !lblPubTxt.TrimEnd().EndsWith(".") ? ". " : "") + pub.prns_informationResourceReference;
+                lblPubTxt = lblPubTxt.Replace(". .", ".");
+
                 if (pub.bibo_pmid != string.Empty && pub.bibo_pmid != null)
                 {
-                    lblPubTxt = lblPubTxt + " PMID: " + pub.bibo_pmid;
+                    if (pub.bibo_pmid.IndexOf("-") < 0)
+                    {
+                        lblPubTxt = lblPubTxt + " PMID: " + pub.bibo_pmid;
+                    }
                     liPublication.Attributes["data-pmid"] = pub.bibo_pmid;
-                    litViewIn.Text = "View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/" + pub.bibo_pmid + "' target='_blank'>PubMed</a>";
+                    if (pub.vivo_webpage.IndexOf("doi.org") > -1)
+                    {
+                        pub.prns_pubsource = "Publisher Site";
+                    }
+                    // litViewIn.Text = "View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/" + pub.bibo_pmid + "' target='_blank'>PubMed</a>";
+                    litViewIn.Text = "View in: <a href=" + pub.vivo_webpage + " target='_blank'>" + pub.prns_pubsource + "</a>";
                     if (pub.vivo_pmcid != null)
                     {
                         if (pub.vivo_pmcid.Contains("PMC"))
@@ -133,7 +138,7 @@ namespace Profiles.Profile.Modules
                             lblPubTxt = lblPubTxt + "; NIHMSID: " + pub.vivo_pmcid;
                         }
                     }
-                    lblPubTxt = lblPubTxt + ".";
+                    lblPubTxt += lblPubTxt.EndsWith(".") ? "" : ".";
                 }
                 else if (pub.vivo_webpage != string.Empty && pub.vivo_webpage != null)
                 {
@@ -177,7 +182,7 @@ namespace Profiles.Profile.Modules
         }
 
         // find a way to put the current author in bold to match what happens above in getAuthorList
-        private String findAndDecorateThisAuthor(string firstInitial, string lastNamePlus, string authors)
+        private String findAndDecorateThisAuthor(string firstInitial, string lastName, string authors)
         {
             try
             {
@@ -185,12 +190,22 @@ namespace Profiles.Profile.Modules
                 {
                     string author = authorChunk.Trim();
                     // if this is a match, either as stand alone text or in an href
-                    if (author.IndexOf(lastNamePlus) == 0 || author.IndexOf(">" + lastNamePlus) != -1)
+                    string[] lastNameOptions = { lastName + " ", " " + lastName }; // PubMed style, Dimensions style
+                    foreach (string lastNamePlus in lastNameOptions)
                     {
-                        // if this is the only match
-                        if (authors.IndexOf(lastNamePlus, authors.IndexOf(author) + author.Length) == -1 ||
-                            // this is the only match with first initial
-                            (author.IndexOf(lastNamePlus + firstInitial) == 0 && authors.IndexOf(lastNamePlus + firstInitial, authors.IndexOf(author) + author.Length) == -1))
+                        // pubmed match
+                        if (author.IndexOf(lastNamePlus) == 0 || author.IndexOf(">" + lastNamePlus) != -1)
+                        {
+                            // if this is the only match
+                            if (authors.IndexOf(lastNamePlus, authors.IndexOf(author) + author.Length) == -1 ||
+                                // this is the only match with first initial
+                                (author.IndexOf(lastNamePlus + firstInitial) == 0 && authors.IndexOf(lastNamePlus + firstInitial, authors.IndexOf(author) + author.Length) == -1))
+                            {
+                                return authors.Replace(author, "<b>" + author + "</b>");
+                            }
+                        }
+                        // Dimensions match
+                        else if (author.IndexOf(lastNamePlus) > 0 && (authors.IndexOf(lastNamePlus, authors.IndexOf(author) + author.Length) == -1))
                         {
                             return authors.Replace(author, "<b>" + author + "</b>");
                         }
@@ -206,7 +221,7 @@ namespace Profiles.Profile.Modules
 
         public class Publication
         {
-            public Publication(string _bibo_pmid, string _vivo_pmcid, string _authors, string prns_informationresourcereference, string _vivo_webpage, string _authorXML)
+            public Publication(string _bibo_pmid, string _vivo_pmcid, string _authors, string prns_informationresourcereference, string _vivo_webpage, string _authorXML, string _pubsource)
             {
                 this.bibo_pmid = _bibo_pmid;
                 this.vivo_pmcid = _vivo_pmcid;
@@ -214,12 +229,14 @@ namespace Profiles.Profile.Modules
                 this.prns_informationResourceReference = prns_informationresourcereference;
                 this.vivo_webpage = _vivo_webpage;
                 this.authorXML = _authorXML;
+                this.prns_pubsource = _pubsource;
             }
 
             public string bibo_pmid { get; set; }
             public string vivo_pmcid { get; set; }
             public string authors { get; set; }
             public string prns_informationResourceReference { get; set; }
+            public string prns_pubsource { get; set; }
             public string vivo_webpage { get; set; }
             public string authorXML { get; set; }
         }

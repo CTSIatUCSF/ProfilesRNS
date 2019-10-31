@@ -563,7 +563,7 @@ while ($needNextPerson -eq 1){
                 }else {$pubAuthors=$authors}
                 SaveGeneral $sqlConnection $insertedPubID $pub.id $pubType $pubSourceType $pubTitle $pubSourceTitle $pubVolume $pubIssue $pubPagination $pubDate $pubIssn $pubDoi $pubUrl $pubAuthors
             } else {$insertedPubID=$processedPubs[$pub.id]}
-            if  ($person.Dimpersonid -gt 0 -and $insertedPubID -lt 0 -and -not $person.publs.Contains($pub.id)) { 
+            if  ($person.Dimpersonid -gt 0 -and $insertedPubID -ne $null -and $insertedPubID -lt 0 -and -not $person.publs.Contains($pub.id)) { 
                 SavePub2Person $sqlConnection $pub.id $person.Dimpersonid $rank $insertedPubID
             }
             continue

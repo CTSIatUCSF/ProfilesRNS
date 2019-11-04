@@ -54,6 +54,7 @@ Function GetPersons {
         " where exc.pmid is NULL  "+
 	    "   and inc.pmid is not NULL and inc.pmid>0 "+
 	    "   and ExtID.personID is NULL "+
+        "   and p.internalusername like '%ucsf.edu' "+
         "   and p.personid "+$readType +
         " order by p.personid,inc.pmid"
 

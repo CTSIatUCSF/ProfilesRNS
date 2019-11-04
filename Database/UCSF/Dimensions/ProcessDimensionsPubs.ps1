@@ -491,9 +491,12 @@ while ($needNextPerson -eq 1){
             else {$pubsInDB=$pubsInDB+",'"+$pub.id+"'"}
             $hash.add($pub.id,0)
         }
-        $processedPubs=GetProcessed $sqlConnection $pubsInDB $hash
- 
+        if(-not [string]::IsNullOrEmpty($pubsInDB)){
+            $processedPubs=GetProcessed $sqlConnection $pubsInDB $hash
+        } 
+
         foreach($pub in $jsonResult.publications){
+            if ($hash.count -eq 0 -or -not $hash.ContainsKey($pub.id)) {continue}
             $authorsList=GetAuthors $pub
             for($rank=0;$rank-le $authorsList.ids.length-1;$rank++){
                 if ($person.DimensionsID -eq $authorsList.ids[$rank]) {
@@ -563,7 +566,7 @@ while ($needNextPerson -eq 1){
                 }else {$pubAuthors=$authors}
                 SaveGeneral $sqlConnection $insertedPubID $pub.id $pubType $pubSourceType $pubTitle $pubSourceTitle $pubVolume $pubIssue $pubPagination $pubDate $pubIssn $pubDoi $pubUrl $pubAuthors
             } else {$insertedPubID=$processedPubs[$pub.id]}
-            if  ($person.Dimpersonid -gt 0 -and $insertedPubID -lt 0 -and -not $person.publs.Contains($pub.id)) { 
+            if  ($person.Dimpersonid -gt 0 -and $insertedPubID -ne $null -and $insertedPubID -lt 0 -and -not $person.publs.Contains($pub.id)) { 
                 SavePub2Person $sqlConnection $pub.id $person.Dimpersonid $rank $insertedPubID
             }
             continue

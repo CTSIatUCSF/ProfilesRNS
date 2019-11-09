@@ -498,7 +498,7 @@ while ($needNextPerson -eq 1){
         } 
 
         foreach($pub in $jsonResult.publications){
-            if ($hash.count -eq 0 -or ($hash.count -gt 0 -and $hash.ContainsKey($pub.id))) {continue}
+            if ($hash.count -eq 0 -or ($hash.count -gt 0 -and $hash.ContainsKey($pub.id) -and $hash[$pub.id] -le -1) -or ($hash.count -gt 0 -and -not $hash.ContainsKey($pub.id))) {continue}
             #if ($hash.count -eq 0 -or -not $hash.ContainsKey($pub.id)) {continue}
             $authorsList=GetAuthors $pub
             for($rank=0;$rank-le $authorsList.ids.length-1;$rank++){

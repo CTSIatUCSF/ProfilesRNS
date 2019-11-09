@@ -32,6 +32,7 @@ Function GetPersons {
         "     , ActualID as publ "+
 	    " FROM [UCSF.].[ExternalID] ExtID "+  
 	    " join [Profile.Data].[Person] p on ExtID.personid =p.personid "+
+        " join DimensionsStage1 limList on LimList.personid =ExtID.personid "+
 		" left outer join [Profile.Data].[Publication.Person.Include] inc "+ 
 		"   on inc.personid=ExtID.personid and inc.pmid<0 "+
 		" left join [Profile.Data].[Publication.Import.PubData] neg "+
@@ -43,8 +44,9 @@ Function GetPersons {
 		"    and PublicationSource='Dimensions' "+
         "    and p.internalusername  like '%@ucsf.edu' "+
         "    and  p.personid in ("+ 
- 		"    select top 1 personid from [UCSF.].[ExternalID] "+ 
-		"		where personid >  @lastIUN "+
+ 		"    select top 1 IDs.personid from [UCSF.].[ExternalID] IDs "+
+        "    join DimensionsStage1 limitedSet on LimitedSet.personid =IDs.personid "+ 
+		"		where IDs.personid >  @lastIUN "+
         "    ) "
 
     $sqlcommand.CommandTimeout=120
@@ -491,9 +493,13 @@ while ($needNextPerson -eq 1){
             else {$pubsInDB=$pubsInDB+",'"+$pub.id+"'"}
             $hash.add($pub.id,0)
         }
-        $processedPubs=GetProcessed $sqlConnection $pubsInDB $hash
- 
+        if(-not [string]::IsNullOrEmpty($pubsInDB)){
+            $processedPubs=GetProcessed $sqlConnection $pubsInDB $hash
+        } 
+
         foreach($pub in $jsonResult.publications){
+            if ($hash.count -eq 0 -or ($hash.count -gt 0 -and $hash.ContainsKey($pub.id))) {continue}
+            #if ($hash.count -eq 0 -or -not $hash.ContainsKey($pub.id)) {continue}
             $authorsList=GetAuthors $pub
             for($rank=0;$rank-le $authorsList.ids.length-1;$rank++){
                 if ($person.DimensionsID -eq $authorsList.ids[$rank]) {

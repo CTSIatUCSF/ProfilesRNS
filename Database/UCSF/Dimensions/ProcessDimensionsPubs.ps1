@@ -430,7 +430,8 @@ $DSL_TOKEN = (Invoke-RestMethod -Uri $TOKEN_URI -Method Post -Body $body).token
 
 #$sqlConnection = New-Object System.Data.SqlClient.SqlConnection
 $sqlConnection = new-object System.Data.SqlClient.SQLConnection("Data Source=$DBserver;Initial Catalog=$DBName;User ID=$dbuser;Password=$dbpassword");
-$sqlConnection.Open() 
+$sqlConnection.Open()
+$numcall=0 
 $readLimit = New-Object -TypeName PSObject 
 Add-Member -InputObject $readLimit -MemberType NoteProperty `
         -Name lastIUN -Value "0"
@@ -441,7 +442,17 @@ $needNextPerson=1
 while ($needNextPerson -eq 1){
     $newPersons=$null
     get-date -f MM/dd/yyyy_HH:mm:ss
-    $newPersons=GetPersons $sqlConnection $readLimit
+    $numcall++
+    if ($numcall -ge 10){
+       write-host "Sleeping 3 sec" $numcall
+       Start-sleep -Seconds 3
+       $numcall=0
+    } 
+   $newPersons=GetPersons $sqlConnection $readLimit
+
+    if ($Dimpersonid -eq 41377){
+        write-host $DimFirstName $DimLastName
+    }
     get-date -f MM/dd/yyyy_HH:mm:ss
     if ($newPersons.Equals($null)) {
         $needNextPerson=0
@@ -455,15 +466,9 @@ while ($needNextPerson -eq 1){
     $skip=0
     $setlen=-1
     $totalcount=-1
-    $numcall=0
+    #$numcall=0
     #$DEBUG=1
     while  (( -not $setlen -eq 0) -and ($totalcount-$skip -ne 0)) {
-        $numcall++
-        if ($numcall -ge 10){
-            write-host "Sleeping 3 sec" $numcall
-            Start-sleep -Seconds 3
-            $numcall=0
-        }
         $searchRequest='search publications  where researchers.id in [ '+$dimsIDs +' ] and pmid is empty'+' return publications[all] limit 1000 skip '+ $skip
         $searchRequest
         $DATA_URI=$apiurl+"/dsl.json"

@@ -89,7 +89,10 @@ Function GetPersons {
       $hh=get-date -f MM/dd/yyyy_HH:mm:ss
       if ($DEBUG -eq 1){write-host `n$hh   $ErrorMessage}
     }
-    if ([string]::IsNullOrEmpty($readLimit.lastIUN)) {exit}    
+    if ([string]::IsNullOrEmpty($readLimit.lastIUN)) {
+        write-host "Processed Dimensions publications for "$numcall " profiles" 
+        exit
+    }
     return $DBpersons
 }    
 Function GetProcessed ( [System.Data.SqlClient.SqlConnection] $sqlConnection,$inSet,$hashPubs) {
@@ -152,6 +155,7 @@ Function GetAuthors ($jsonPub) {
 
 
 function SaveAuthor ([Data.SqlClient.SqlConnection]$sqlConnection,$sourcePubID,$order,$sourceid,$sourceForeName,$sourceLastName) {
+    write-host "in SaveAuthor processing name="$SourceLastName "ID="$sourcePubID
     if ($sqlConnection.State -eq [Data.ConnectionState]::Close) {
         $sqlConnection.Open()
     }
@@ -187,6 +191,7 @@ function SaveAuthor ([Data.SqlClient.SqlConnection]$sqlConnection,$sourcePubID,$
 }
 
 function SavePub2Person ($sqlConnection,$pubid,$personid,$order,$insertedPubID){
+    write-host "in SavePub2Person processing pub idkey="$pubid" person="$personid
     if ($sqlConnection.State -eq [Data.ConnectionState]::Close) {
         $sqlConnection.Open()
     }
@@ -324,6 +329,7 @@ function SaveGeneral ([Data.SqlClient.SqlConnection]$sqlConnection,$insertedPubI
 }
 
 function InsertPubData ([Data.SqlClient.SqlConnection] $sqlConnection,$key,$value) {
+    write-host "in InsertPubData processing key="$key" value="$value
     $ActualDataType="Dimensions"
     if ($sqlConnection.State -eq [Data.ConnectionState]::Close) {
         $sqlConnection.Open()
@@ -334,8 +340,8 @@ function InsertPubData ([Data.SqlClient.SqlConnection] $sqlConnection,$key,$valu
     $sqlCommand.CommandText = "IF NOT EXISTS "+
         "(SELECT * FROM  [Profile.Data].[Publication.Import.PubData] WHERE ActualIDType=@IDtype and ActualID=@pubID ) "+ 
         " BEGIN "+
-        " INSERT INTO [Profile.Data].[Publication.Import.PubData] (ActualIDType,ActualID,[Data])"+
-        " VALUES (@IDtype,@pubID,@pubData) "+
+        " INSERT INTO [Profile.Data].[Publication.Import.PubData] (ActualIDType,ActualID,[Data],ParseDT)"+
+        " VALUES (@IDtype,@pubID,@pubData,GETDATE()) "+
         " END ;"
     $sqlcommand.CommandTimeout=120
     $sqlCommand.Parameters.Add((New-Object Data.SqlClient.SqlParameter("@IDtype",[Data.SQLDBType]::VarChar, 30))) | Out-Null
@@ -365,7 +371,8 @@ function InsertPubData ([Data.SqlClient.SqlConnection] $sqlConnection,$key,$valu
             $ErrorMessage = $_.Exception.Message
             $hh=get-date -f MM/dd/yyyy_HH:mm:ss
             write-host `n$hh   $ErrorMessage
-        }    
+        }
+        write-host "in InsertPubData returning ID=" $ImportPubID
         return $ImportPubID
     } catch {
         write-host $_.Exception.Message " processing pubid="$key 
@@ -423,15 +430,27 @@ $dbpassword=$ConfigFile.Settings.Database.DBPassword
 $wusername=$ConfigFile.Settings.WebService.WSUser
 $wpassword=$ConfigFile.Settings.WebService.WSPassword 
 $apiurl=$ConfigFile.Settings.WebService.URL
+try {
+    $body=(@{'username' = $wusername; 'password' = $wpassword} | ConvertTo-JSON)
+    $TOKEN_URI=$apiurl+"/auth.json"
+    $DSL_TOKEN = (Invoke-RestMethod -Uri $TOKEN_URI -Method Post -Body $body).token
+}catch{
+    write-host "StatusCode:" $_.Exception.Response.StatusCode.value__ 
+    write-host "StatusDescription:" $_.Exception.Response.StatusDescription
+    write-host "Exiting due to problem with Dimensions API connection"
+    exit
+}
 
-$body=(@{'username' = $wusername; 'password' = $wpassword} | ConvertTo-JSON)
-$TOKEN_URI=$apiurl+"/auth.json"
-$DSL_TOKEN = (Invoke-RestMethod -Uri $TOKEN_URI -Method Post -Body $body).token
-
-#$sqlConnection = New-Object System.Data.SqlClient.SqlConnection
-$sqlConnection = new-object System.Data.SqlClient.SQLConnection("Data Source=$DBserver;Initial Catalog=$DBName;User ID=$dbuser;Password=$dbpassword");
-$sqlConnection.Open()
+try {
+    $sqlConnection = new-object System.Data.SqlClient.SQLConnection("Data Source=$DBserver;Initial Catalog=$DBName;User ID=$dbuser;Password=$dbpassword");
+    $sqlConnection.Open()
+}catch{
+    write-host "Exception:" $_.Exception
+    write-host "Exiting due to problem with RNS Database connection"
+    exit
+}
 $numcall=0 
+$errornum=0
 $readLimit = New-Object -TypeName PSObject 
 Add-Member -InputObject $readLimit -MemberType NoteProperty `
         -Name lastIUN -Value "0"
@@ -443,16 +462,13 @@ while ($needNextPerson -eq 1){
     $newPersons=$null
     get-date -f MM/dd/yyyy_HH:mm:ss
     $numcall++
-    if ($numcall -ge 10){
-       write-host "Sleeping 3 sec" $numcall
-       Start-sleep -Seconds 3
-       $numcall=0
-    } 
+   #if ($numcall -ge 10){
+   #   write-host "Sleeping 3 sec" $numcall
+   #   Start-sleep -Seconds 3
+   #   $numcall=0
+   #} 
    $newPersons=GetPersons $sqlConnection $readLimit
 
-    if ($Dimpersonid -eq 41377){
-        write-host $DimFirstName $DimLastName
-    }
     get-date -f MM/dd/yyyy_HH:mm:ss
     if ($newPersons.Equals($null)) {
         $needNextPerson=0
@@ -469,11 +485,47 @@ while ($needNextPerson -eq 1){
     #$numcall=0
     #$DEBUG=1
     while  (( -not $setlen -eq 0) -and ($totalcount-$skip -ne 0)) {
+        $attempt=0
+        $StatusCode=0
         $searchRequest='search publications  where researchers.id in [ '+$dimsIDs +' ] and pmid is empty'+' return publications[all] limit 1000 skip '+ $skip
         $searchRequest
         $DATA_URI=$apiurl+"/dsl.json"
-        $jsonResult=Invoke-RestMethod -Uri $DATA_URI -Method Post -H @{Authorization = "JWT $DSL_TOKEN"} -Body $searchRequest
-        $pubAuthors=""
+        while ($attempt -le 2) {
+            try {
+                $jsonResult=Invoke-RestMethod -Uri $DATA_URI -Method Post -H @{Authorization = "JWT $DSL_TOKEN"} -Body $searchRequest
+                $pubAuthors=""
+                $attempt=3
+                $errornum=0
+                write-host "attempts=" $attempt "errornum " $errornum
+            }catch{
+                $StatusCode=$_.Exception.Response.StatusCode.value__
+                $StatusDescription= $_.Exception.Response.StatusDescription
+                Write-Host "StatusCode:" $StatusCode 
+                Write-Host "StatusDescription:" $StatusDescription
+                write-host "before attempts=" $attempt
+                if ($attempt -lt 2) {write-host "Skipping due after "$attempt " failed atttempts executing query:"
+                    $searchRequest 
+                    #exit
+                } 
+                $attempt++
+                Start-sleep -Seconds 1
+            } 
+        }
+        if ($StatusCode -gt 0){
+            write-host "errornum= "$errornum
+            $errornum++
+            if ( $errornum -lt 3) {
+                $StatusCode=0
+                $StatusDescription=""
+                $setlen=0
+                $totalcount=0
+                continue
+            }  
+            else {
+                write-host "Exiting after skipping 3 queries"
+                exit
+            }
+        } 
         $setlen=$jsonResult.publications.Length
         $totalcount=$jsonResult._stats.total_count
         write-host "setlen=" $setlen "_stat="$jsonResult._stats
@@ -501,10 +553,22 @@ while ($needNextPerson -eq 1){
         if(-not [string]::IsNullOrEmpty($pubsInDB)){
             $processedPubs=GetProcessed $sqlConnection $pubsInDB $hash
         } 
-
+        $pubnum=0
         foreach($pub in $jsonResult.publications){
-            if ($hash.count -eq 0 -or ($hash.count -gt 0 -and $hash.ContainsKey($pub.id) -and $hash[$pub.id] -le -1) -or ($hash.count -gt 0 -and -not $hash.ContainsKey($pub.id))) {continue}
-            #if ($hash.count -eq 0 -or -not $hash.ContainsKey($pub.id)) {continue}
+            $pubnum++
+            if ($hash.count -eq 0 ) {
+                write-host "("$pubnum","$skip")<->" $pub.id " Hash for this pub is empty " 
+                continue
+            }
+            if ($hash.count -gt 0 -and $hash.ContainsKey($pub.id) -and $hash[$pub.id] -le -1) {
+                write-host "("$pubnum","$skip")<->" $pub.id " this pub been previously processed" 
+                continue
+            }
+            if ($hash.count -gt 0 -and -not $hash.ContainsKey($pub.id)) {
+                write-host "("$pubnum","$skip")<->" $pub.id " this pub has not allowed title"
+                continue
+            }
+            write-host $skip"<->" $pub.id "Continue to process"
             $authorsList=GetAuthors $pub
             for($rank=0;$rank-le $authorsList.ids.length-1;$rank++){
                 if ($person.DimensionsID -eq $authorsList.ids[$rank]) {

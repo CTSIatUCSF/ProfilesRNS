@@ -155,7 +155,7 @@ Function GetAuthors ($jsonPub) {
 
 
 function SaveAuthor ([Data.SqlClient.SqlConnection]$sqlConnection,$sourcePubID,$order,$sourceid,$sourceForeName,$sourceLastName) {
-    write-host "in SaveAuthor processing name="$SourceLastName "ID="$sourcePubID
+    write-host "in SaveAuthor processing name="$SourceLastName "pub ID="$sourcePubID
     if ($sqlConnection.State -eq [Data.ConnectionState]::Close) {
         $sqlConnection.Open()
     }
@@ -329,7 +329,7 @@ function SaveGeneral ([Data.SqlClient.SqlConnection]$sqlConnection,$insertedPubI
 }
 
 function InsertPubData ([Data.SqlClient.SqlConnection] $sqlConnection,$key,$value) {
-    write-host "in InsertPubData processing key="$key" value="$value
+    write-host "in InsertPubData processing key="$key
     $ActualDataType="Dimensions"
     if ($sqlConnection.State -eq [Data.ConnectionState]::Close) {
         $sqlConnection.Open()
@@ -560,15 +560,15 @@ while ($needNextPerson -eq 1){
                 write-host "("$pubnum","$skip")<->" $pub.id " Hash for this pub is empty " 
                 continue
             }
-            if ($hash.count -gt 0 -and $hash.ContainsKey($pub.id) -and $hash[$pub.id] -le -1) {
-                write-host "("$pubnum","$skip")<->" $pub.id " this pub been previously processed" 
-                continue
-            }
+            #if ($hash.count -gt 0 -and $hash.ContainsKey($pub.id) -and $hash[$pub.id] -le -1) {
+            #    write-host "("$pubnum","$skip")<->" $pub.id " this pub been previously processed" 
+            #    continue
+            #}
             if ($hash.count -gt 0 -and -not $hash.ContainsKey($pub.id)) {
                 write-host "("$pubnum","$skip")<->" $pub.id " this pub has not allowed title"
                 continue
             }
-            write-host $skip"<->" $pub.id "Continue to process"
+            write-host "("$pubnum","$skip")<->" $pub.id "Continue to process"
             $authorsList=GetAuthors $pub
             for($rank=0;$rank-le $authorsList.ids.length-1;$rank++){
                 if ($person.DimensionsID -eq $authorsList.ids[$rank]) {

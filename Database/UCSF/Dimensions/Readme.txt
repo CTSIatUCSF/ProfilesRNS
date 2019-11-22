@@ -1,6 +1,9 @@
 In order to add publications from Dimensions DB, you have to:
 - obtain access to Dimensions API from Dimensions
 - created Dimensions import tables using  script createTablesForDimensionsImport.sql
+- add DOI to Ontology executing script AddDOIToRDF.sql
+- modify existing ProfilesRNS view from files:
+ 1)view_[Profile.Data].[vwPublication.Entity.InformationResource].sql
 - modify existing ProfilesRNS procedures from files:
  1)proc_[Profile.Data].[Publication.Pubmed.LoadDisambiguationResults].sql
  2)proc_[Profile.Data].[Publication.Entity.UpdateEntity].sql

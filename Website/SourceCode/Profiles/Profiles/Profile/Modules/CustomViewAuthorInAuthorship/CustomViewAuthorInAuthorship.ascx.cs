@@ -6,7 +6,6 @@ using System.Xml;
 
 using Profiles.Framework.Utilities;
 
-
 namespace Profiles.Profile.Modules
 {
     public partial class CustomViewAuthorInAuthorship : BaseModule
@@ -95,16 +94,23 @@ namespace Profiles.Profile.Modules
 
                 string lblPubTxt = !String.IsNullOrEmpty(pub.authorXML) ? getAuthorList(pub.authorXML) : pub.authors.Replace(",", ", ").Replace("  ", " ");
 
-
-                // ugly logic but it works. If we did not match current author on URI, then do a name match
-                // Also added code to skip this for groups
-                Framework.Utilities.Namespace xmlnamespace = new Profiles.Framework.Utilities.Namespace();
-                XmlNamespaceManager namespaces = xmlnamespace.LoadNamespaces(BaseData);
-                if (!lblPubTxt.Contains("<b>") && BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/rdf:type[@rdf:resource='http://xmlns.com/foaf/0.1/Person']", namespaces) != null)
+                // from the DrawProfilesModule it seems that divPubHeaderText is made not visible when this is shown for a group
+                if (!lblPubTxt.Contains("<b>") && divPubHeaderText.Visible)
                 {
-                    lblPubTxt = findAndDecorateThisAuthor(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:firstName", this.Namespaces).InnerText.Substring(0, 1),
-                                                          base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:lastName", this.Namespaces).InnerText,
-                                                          lblPubTxt);
+                    // ugly logic but it works. If we did not match current author on URI, then do a name match
+                    // Also added code to skip this for groups
+                    Framework.Utilities.Namespace xmlnamespace = new Profiles.Framework.Utilities.Namespace();
+                    XmlNamespaceManager namespaces = xmlnamespace.LoadNamespaces(BaseData);
+                    try
+                    {
+                        lblPubTxt = findAndDecorateThisAuthor(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:firstName", this.Namespaces).InnerText.Substring(0, 1),
+                                                              base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:lastName", this.Namespaces).InnerText,
+                                                              lblPubTxt);
+                    }
+                    catch (Exception ex)
+                    {
+                        Framework.Utilities.DebugLogging.Log(ex.Message + ex.StackTrace);
+                    }
                 }
                 //some cleanup to help with the dimensions stuff
                 lblPubTxt += (!String.IsNullOrEmpty(lblPubTxt) && !lblPubTxt.TrimEnd().EndsWith(".") ? ". " : "") + pub.prns_informationResourceReference;
@@ -122,7 +128,10 @@ namespace Profiles.Profile.Modules
                         pub.prns_pubsource = "Publisher Site";
                     }
                     // litViewIn.Text = "View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/" + pub.bibo_pmid + "' target='_blank'>PubMed</a>";
-                    litViewIn.Text = "View in: <a href=" + pub.vivo_webpage + " target='_blank'>" + pub.prns_pubsource + "</a>";
+                    if (pub.vivo_webpage != string.Empty && pub.vivo_webpage != null)
+                    {
+                        litViewIn.Text = "View in: <a href=" + pub.vivo_webpage + " target='_blank'>" + pub.prns_pubsource + "</a>";
+                    }
                     if (pub.vivo_pmcid != null)
                     {
                         if (pub.vivo_pmcid.Contains("PMC"))
@@ -240,6 +249,5 @@ namespace Profiles.Profile.Modules
             public string vivo_webpage { get; set; }
             public string authorXML { get; set; }
         }
-
     }
 }

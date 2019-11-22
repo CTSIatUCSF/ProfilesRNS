@@ -452,3 +452,10 @@ GRANT EXECUTE ON [UCSF.Export].[ExportHRData] TO profilesjobrunner
 
 
 GO
+
+-- 11-5-2019 UPDATE
+UPDATE [Profile.Data].[Person.Filter] Set PersonFilter = 'Multicenter Clinical Research' WHERE PersonFilter = 'Clinical Research' 
+UPDATE [Profile.Import].[PersonFilterFlag] Set personfilter = 'Multicenter Clinical Research' WHERE personfilter = 'Clinical Research' 
+DECLARE @AppID INT
+SELECT @AppID = AppID FROM [ORNG.].[Apps] WHERE [Name] = 'Collaboration Interests'
+UPDATE [ORNG.].[AppData] SET Keyname = 'MulticenterClinicalResearch' WHERE Keyname = 'ClinicalResearch' AND AppID = @AppID

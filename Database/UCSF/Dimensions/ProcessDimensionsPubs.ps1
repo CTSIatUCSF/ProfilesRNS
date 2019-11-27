@@ -593,7 +593,7 @@ while ($needNextPerson -eq 1){
                     if ($DEBUG -eq 1){write-host $insertedPubID "," $order "," $authorid "," $fname "," $lname}
                     SaveAuthor $sqlConnection $insertedPubID $order $authorid $fname $lname
                     if ($order -ge 2) {
-                        $authors=$authors+","
+                        $authors=$authors+", "
                     } 
                     $authors=$authors+$fname+" "+$lname
                 }

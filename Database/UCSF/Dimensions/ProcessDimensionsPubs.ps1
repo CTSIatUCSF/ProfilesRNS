@@ -593,7 +593,7 @@ while ($needNextPerson -eq 1){
                     if ($DEBUG -eq 1){write-host $insertedPubID "," $order "," $authorid "," $fname "," $lname}
                     SaveAuthor $sqlConnection $insertedPubID $order $authorid $fname $lname
                     if ($order -ge 2) {
-                        $authors=$authors+","
+                        $authors=$authors+", "
                     } 
                     $authors=$authors+$fname+" "+$lname
                 }
@@ -622,6 +622,8 @@ while ($needNextPerson -eq 1){
                 if (  -not [string]::IsNullOrEmpty($pub.journal)){$pubSourceType="Journal"}
                 $pubTitle=$pub.title
                 if ( -not  [string]::IsNullOrEmpty($pub.journal)){$pubSourceTitle=$pub.journal.title}
+                if ($pubSourceTitle -eq "" -and [string]::IsNullOrEmpty($pub.book_title)){$pubSourceTitle=$pub.book_title}
+                if ($pubSourceTitle -eq "" -and [string]::IsNullOrEmpty($pub.proceedings_title)){$pubSourceTitle=$pub.proceedings_title}
                 if ( -not  [string]::IsNullOrEmpty($pub.volume)){$pubVolume=$pub.volume}
                 if ( -not  [string]::IsNullOrEmpty($pub.issue)){$pubIssue=$pub.issue}
                 if ( -not [string]::IsNullOrEmpty($pub.pages)){$pubPagination=$pub.pages}
@@ -636,6 +638,7 @@ while ($needNextPerson -eq 1){
                 if ($authors.Length -ge 4000){
                     $pubAuthors=$authors.Substring(1,3900)+"..."
                 }else {$pubAuthors=$authors}
+                
                 SaveGeneral $sqlConnection $insertedPubID $pub.id $pubType $pubSourceType $pubTitle $pubSourceTitle $pubVolume $pubIssue $pubPagination $pubDate $pubIssn $pubDoi $pubUrl $pubAuthors
             } else {$insertedPubID=$processedPubs[$pub.id]}
             if  ($person.Dimpersonid -gt 0 -and $insertedPubID -ne $null -and $insertedPubID -lt 0 -and -not $person.publs.Contains($pub.id)) { 

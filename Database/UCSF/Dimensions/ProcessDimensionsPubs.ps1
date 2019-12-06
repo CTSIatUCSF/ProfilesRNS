@@ -33,15 +33,15 @@ Function GetPersons {
 	    " FROM [UCSF.].[ExternalID] ExtID "+  
 	    " join [Profile.Data].[Person] p on ExtID.personid =p.personid "+
         " join DimensionsStage1 limList on LimList.personid =ExtID.personid "+
-		" left outer join [Profile.Data].[Publication.Person.Include] inc "+ 
-		"   on inc.personid=ExtID.personid and inc.pmid<0 "+
-		" left join [Profile.Data].[Publication.Import.PubData] neg "+
-		"   on neg.ImportPubID=inc.pmid "+
-		" left outer join [Profile.Data].[Publication.Person.Exclude] exc "+ 
-		"   on	cast(inc.personid as varchar)+cast(inc.pmid  as varchar(10)) = "+ 
-		"	cast(exc.personid as varchar)+cast(exc.pmid  as varchar(10))  "+
-		"  where exc.pmid is NULL   "+
-		"    and PublicationSource='Dimensions' "+
+		" left outer join ( "+
+		"  select * from [Profile.Data].[Publication.Person.Include] "+ 
+		"	union "+
+		"  select * from [Profile.Data].[Publication.Person.Exclude] "+
+		" ) pubs "+
+		"  on pubs.personid=ExtID.personid and pubs.pmid<0 "+
+		" left join [Profile.Data].[Publication.Import.PubData] neg "+ 
+		"   on neg.ImportPubID=pubs.pmid "+
+		"  where PublicationSource='Dimensions' "+
         "    and p.internalusername  like '%@ucsf.edu' "+
         "    and  p.personid in ("+ 
  		"    select top 1 IDs.personid from [UCSF.].[ExternalID] IDs "+
@@ -390,6 +390,10 @@ if ($args.count -eq 0) {
     if ($DEBUG -eq 1){write-host "Need file with names/passwords"}
     exit
 }
+$allowedTypes=@("article"
+#,"chapter"
+#,"monograph"
+)
 $titleRegex=@()
 $titleRegex+='.{10,}\w\w.{10.}\w-+letters?'
 $titleRegex+='^(the )?authors? reply'
@@ -535,13 +539,18 @@ while ($needNextPerson -eq 1){
         $hash=@{}
         foreach($pub in $jsonResult.publications){
             $skip++
-            # filter out not actual publications
-            foreach ($regex in $titleRegex){
-                $badTitle=$pub.title -match $regex
-                if ($badTitle) {
-                    write-host "Publication "$pub.id "<"$pub.title">"
-                    write-host "validating->"$regex"->returning " $badTitle
-                    break
+            # filter out unneeded publication types
+            if ( -not $allowedTypes.Contains($pub.type)) {
+                $badTitle=1
+            } else {
+                # filter out  not actual publications
+                foreach ($regex in $titleRegex){
+                    $badTitle=$pub.title -match $regex
+                    if ($badTitle) {
+                        write-host "Publication "$pub.id "<"$pub.title">"
+                        write-host "validating->"$regex"->returning " $badTitle
+                        break
+                    }
                 }
             }
             if ($badTitle) {continue}

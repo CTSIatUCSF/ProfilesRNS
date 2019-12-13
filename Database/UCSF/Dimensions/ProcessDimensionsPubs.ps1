@@ -391,7 +391,7 @@ if ($args.count -eq 0) {
     exit
 }
 $allowedTypes=@("article"
-#,"chapter"
+,"chapter"
 #,"monograph"
 )
 $titleRegex=@()
@@ -574,7 +574,7 @@ while ($needNextPerson -eq 1){
             #    continue
             #}
             if ($hash.count -gt 0 -and -not $hash.ContainsKey($pub.id)) {
-                write-host "("$pubnum","$skip")<->" $pub.id " this pub has not allowed title"
+                write-host "("$pubnum","$skip")<->" $pub.id " this pub has not allowed title or type"
                 continue
             }
             write-host "("$pubnum","$skip")<->" $pub.id "Continue to process"

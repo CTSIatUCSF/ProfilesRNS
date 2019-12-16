@@ -639,24 +639,24 @@ namespace Profiles.Search.Utilities
         {
             GenericListItem rtnlistitem = null;
             rtnlistitem = listitems.Find(delegate(GenericListItem module) { return module.Text == itemtoconvert; });
-
-            return rtnlistitem.Value;
+            return (rtnlistitem == null) ? "" : rtnlistitem.Value;
+            //      return rtnlistitem.Value;
         }
 
         public string GetConvertedURIListItem(List<GenericListItem> listitems, string itemtoconvert)
         {
             GenericListItem rtnlistitem = null;
             rtnlistitem = listitems.Find(delegate(GenericListItem module) { return module.Value == itemtoconvert; });
-
-            return rtnlistitem.Text;
+            return (rtnlistitem == null)? "": rtnlistitem.Text;
+            //return rtnlistitem.Text;
         }
 
         public string GetTextFromListItem(List<GenericListItem> listitems, string itemtoconvert)
         {
             GenericListItem rtnlistitem = null;
             rtnlistitem = listitems.Find(delegate(GenericListItem module) { return module.Text == itemtoconvert; });
-
-            return rtnlistitem.Text;
+            return (rtnlistitem == null) ? "" : rtnlistitem.Text;
+            //         return rtnlistitem.Text;
         }
 
         /// <summary>

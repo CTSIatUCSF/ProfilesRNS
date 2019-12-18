@@ -333,7 +333,7 @@ namespace Profiles.Profile.Utilities
             dbcommand.CommandType = CommandType.StoredProcedure;
             dbcommand.CommandTimeout = base.GetCommandTimeout();
             dbcommand.Parameters.Add(new SqlParameter("@nodeid", request.Subject));
-            dbcommand.Parameters.Add(new SqlParameter("@baseURI", Brand.GetThemedDomain() + "/profile/"));
+            dbcommand.Parameters.Add(new SqlParameter("@baseURI", Root.Domain + "/profile/"));  //is was Brand.GetThemedDomain() instead of Root.Domain
             dbcommand.Parameters.Add(new SqlParameter("@sessionid", request.Session.SessionID));
 
             dbcommand.Connection = dbconnection;

@@ -472,7 +472,7 @@ while ($needNextPerson -eq 1){
    #   $numcall=0
    #} 
    $newPersons=GetPersons $sqlConnection $readLimit
-
+   $newPersons
     get-date -f MM/dd/yyyy_HH:mm:ss
     if ($newPersons.Equals($null)) {
         $needNextPerson=0
@@ -490,6 +490,7 @@ while ($needNextPerson -eq 1){
     #$DEBUG=1
     while  (( -not $setlen -eq 0) -and ($totalcount-$skip -ne 0)) {
         $attempt=0
+        $errornum=0
         $StatusCode=0
         $searchRequest='search publications  where researchers.id in [ '+$dimsIDs +' ] and pmid is empty'+' return publications[all] limit 1000 skip '+ $skip
         $searchRequest
@@ -498,22 +499,31 @@ while ($needNextPerson -eq 1){
             try {
                 $jsonResult=Invoke-RestMethod -Uri $DATA_URI -Method Post -H @{Authorization = "JWT $DSL_TOKEN"} -Body $searchRequest
                 $pubAuthors=""
-                $attempt=3
-                $errornum=0
+                #$attempt=3
+                #$errornum=0
                 write-host "attempts=" $attempt "errornum " $errornum
+                $StatusCode=$_.Exception.Response.StatusCode.value__
             }catch{
                 $StatusCode=$_.Exception.Response.StatusCode.value__
                 $StatusDescription= $_.Exception.Response.StatusDescription
                 Write-Host "StatusCode:" $StatusCode 
                 Write-Host "StatusDescription:" $StatusDescription
                 write-host "before attempts=" $attempt
-                if ($attempt -lt 2) {write-host "Skipping due after "$attempt " failed atttempts executing query:"
+                if ($attempt -lt 2) {
+                    write-host "Skipping due after "$attempt " failed atttempts executing query:"
                     $searchRequest 
                     #exit
                 } 
                 $attempt++
+                $errornum++
+                if ($attempt -gt 3) {break}
                 Start-sleep -Seconds 1
-            } 
+                continue
+            }
+            If ([string]::IsNullOrEmpty($StatusCode)) {
+                $StatusCode=0
+                break
+            }
         }
         if ($StatusCode -gt 0){
             write-host "errornum= "$errornum
@@ -527,7 +537,7 @@ while ($needNextPerson -eq 1){
             }  
             else {
                 write-host "Exiting after skipping 3 queries"
-                exit
+                break
             }
         } 
         $setlen=$jsonResult.publications.Length
@@ -632,7 +642,7 @@ while ($needNextPerson -eq 1){
                 $pubTitle=$pub.title
                 if ( -not  [string]::IsNullOrEmpty($pub.journal)){$pubSourceTitle=$pub.journal.title}
                 if ($pubSourceTitle -eq "" -and [string]::IsNullOrEmpty($pub.book_title)){$pubSourceTitle=$pub.book_title}
-                if ($pubSourceTitle -eq "" -and [string]::IsNullOrEmpty($pub.proceedings_title)){$pubSourceTitle=$pub.proceedings_title}
+                if ([string]::IsNullOrEmpty($pubSourceTitle)) {$pubSourceTitle=""}
                 if ( -not  [string]::IsNullOrEmpty($pub.volume)){$pubVolume=$pub.volume}
                 if ( -not  [string]::IsNullOrEmpty($pub.issue)){$pubIssue=$pub.issue}
                 if ( -not [string]::IsNullOrEmpty($pub.pages)){$pubPagination=$pub.pages}

@@ -654,7 +654,6 @@ namespace Profiles.Search.Utilities
         public string GetTextFromListItem(List<GenericListItem> listitems, string itemtoconvert)
         {
             GenericListItem rtnlistitem = null;
-            if (itemtoconvert.IndexOf(Root.Domain) == -1)
             rtnlistitem = listitems.Find(delegate(GenericListItem module) { return module.Text == itemtoconvert; });
             //return (rtnlistitem == null) ? "" : rtnlistitem.Text;
                      return rtnlistitem.Text;

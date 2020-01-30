@@ -95,7 +95,7 @@ namespace Profiles.Profile
 
                 HtmlMeta twitterTitle = new HtmlMeta();
                 twitterTitle.Name = "twitter:title";
-                twitterTitle.Content = name + " * " + Brand.GetNiceTitle(Page.Theme) + " Profiles";
+                twitterTitle.Content = name + " • " + Brand.GetNiceTitle(Page.Theme) + " Profiles";
                 Page.Header.Controls.Add(twitterTitle);
 
                 HtmlMeta twitterDescription = new HtmlMeta();

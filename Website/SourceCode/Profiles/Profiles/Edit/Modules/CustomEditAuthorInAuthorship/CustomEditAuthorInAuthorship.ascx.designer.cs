@@ -85,6 +85,15 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.LinkButton btnAddPubMed;
         
         /// <summary>
+        /// phAddPub control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel phAddPub;
+        
+        /// <summary>
         /// btnImgAddPub control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,15 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.LinkButton btnAddPub;
         
         /// <summary>
+        /// phAddCustom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel phAddCustom;
+        
+        /// <summary>
         /// btnImgAddCustom control.
         /// </summary>
         /// <remarks>
@@ -119,6 +137,15 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnAddCustom;
+        
+        /// <summary>
+        /// phDeletePub control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel phDeletePub;
         
         /// <summary>
         /// btnImgDeletePub2 control.
@@ -146,6 +173,15 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnDeletePub;
+        
+        /// <summary>
+        /// btnDeleteGray control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal btnDeleteGray;
         
         /// <summary>
         /// pnlAddPubById control.

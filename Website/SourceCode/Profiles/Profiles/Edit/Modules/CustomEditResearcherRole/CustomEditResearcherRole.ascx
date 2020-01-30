@@ -3,8 +3,6 @@
     EnableViewState="true" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register TagName="Options" TagPrefix="security" Src="~/Edit/Modules/SecurityOptions/SecurityOptions.ascx" %>
-        $(this).attr("src", "<%=GetThemedDomain()%>/framework/images/collapse.gif");
-        $(this).attr("src", "<%=GetThemedDomain()%>/framework/images/expand.gif");
 <asp:UpdatePanel ID="upnlEditSection" runat="server" UpdateMode="Conditional" RenderMode="Inline">
     <ContentTemplate>
         <asp:UpdateProgress ID="updateProgress" runat="server" DynamicLayout="true" DisplayAfter="1000">
@@ -12,7 +10,6 @@
                 <div class="modalupdate">
                     <div class="modalcenter">
                         <img alt="Updating..." src="<%=Profiles.Framework.Utilities.Root.Domain%>/edit/images/loader.gif" /><br/>
-                        <img alt="Loading..." src="<%=GetThemedDomain()%>/edit/images/loader.gif" /><br />
                             <i>This operation might take several minutes to complete. Please do not close your browser.</i>
                     </div>
                 </div>
@@ -23,22 +20,26 @@
         </div>
         <asp:Panel ID="phSecuritySettings" runat="server">
             <security:Options runat="server" ID="securityOptions"></security:Options>
-                            <div style="padding-bottom: 10px;" class="dblarrow">
+        </asp:Panel>
+        <asp:Panel ID="phAddGrant" runat="server">
+            <div class="EditMenuItem">
                 <asp:ImageButton ID="btnImgAddGrant" CssClass="EditMenuLinkImg" runat="server" ImageUrl="~/Edit/Images/icon_squareArrow.gif" OnClick="btnAddNewGrant_OnClick" AlternateText="Add Grant" />
                 <asp:LinkButton ID="btnAddNewGrant" runat="server" OnClick="btnAddNewGrant_OnClick">Add NIH Grant</asp:LinkButton>&nbsp;(Search NIH grants.)                                
             </div>
         </asp:Panel>
         <asp:Panel ID="phAddCustom" runat="server">
-                            <div style="padding-bottom: 10px;" class="dblarrow">
-                                <asp:LinkButton ID="btnAddCustom" runat="server" OnClick="btnAddCustom_OnClick" CssClass="profileHypLinks">Add Custom</asp:LinkButton>
-                                &nbsp;(Enter your own activity/funding information using an online form.)
+            <div class="EditMenuItem">
+                <asp:ImageButton ID="btnEditGrant" runat="server" OnClick="btnAddCustom_OnClick" CssClass="EditMenuLinkImg" ImageUrl="~/Edit/Images/icon_squareArrow.gif" />
+                <asp:LinkButton ID="btnEditGrant2" runat="server" OnClick="btnAddCustom_OnClick">Add Custom Funding</asp:LinkButton>&nbsp;(Enter your own funding information using an online form.) 
             </div>
         </asp:Panel>
         <asp:Panel ID="phDeleteGrant" runat="server">
-                            <div style="padding-bottom: 10px;" class="dblarrow">
+            <div class="EditMenuItem">
+                <asp:Image runat="server" CssClass="EditMenuLinkImg" ID="btnImgDeleteGrant2" AlternateText=" " ImageUrl="~/Edit/Images/Icon_square_ArrowGray.png" Visible="false" />
+                <asp:ImageButton ID="btnImgDeleteGrant" runat="server" ImageUrl="~/Edit/Images/icon_squareArrow.gif"
                     OnClick="btnDeleteGrant_OnClick" AlternateText="Delete" CssClass="EditMenuLinkImg" />
-                                    CssClass="profileHypLinks">Delete Items</asp:LinkButton>
-                                &nbsp;(Remove multiple activities/funding from your profile.)
+                <asp:LinkButton ID="btnDeleteGrant" runat="server" OnClick="btnDeleteGrant_OnClick">Delete All Funding</asp:LinkButton>
+                <asp:Literal ID="btnDeleteGrantGray" Visible="false" runat="server" Text="Delete All Funding" />&nbsp;(Remove multiple funding sources from your profile.)                               
             </div>
         </asp:Panel>
         <%--Start Add By Search--%>
@@ -101,7 +102,7 @@
                 <Columns>
                     <asp:TemplateField ItemStyle-BorderStyle="None" ItemStyle-Width="20px">
                         <ItemTemplate>
-                                                <img alt="" style="cursor: pointer" src="<%=GetThemedDomain()%>/framework/images/expand.gif" />
+                            <img alt="" style="cursor: pointer; padding-bottom: 7px; padding-left: 13px;" src="<%=Profiles.Framework.Utilities.Root.Domain%>/framework/images/expand.gif" />
                             <div class="grant-sub-row" style="display: none;">
                                 <asp:GridView EnableViewState="true" ShowHeader="false" ID="grdSubGrantSearchResults"
                                     runat="server" GridLines="None" DataKeyNames="FullFundingID"
@@ -195,22 +196,18 @@
                 <asp:TextBox ID="txtProjectTitle" runat="server" Width="748px" TabIndex="6" Title="Project Title" />
             </div>
             <div class="custom-grant-row">
+                <b>Brief Description</b> (e.g. The goal of this study is...)<br />
+                <asp:TextBox ID="txtRoleDescription" runat="server" Columns="30" Width="748px" TextMode="MultiLine"
+                    TabIndex="7" Title="Role Description" />
+            </div>
+            <div class="custom-grant-row">
                 <b>Your Role on Project</b> (e.g. Co-Investigator)<br />
                 <asp:TextBox ID="txtRole" runat="server" TabIndex="8" Width="748px" Title="Role" />
             </div>
             <div class="custom-grant-row">
-                                        <td valign="top" colspan='3' style="padding: 10px 0px 0px 0px;">
-                                            <b>Role Description</b> (optional)<br />
-                                            <asp:TextBox ID="txtRoleDescription" runat="server" Columns="30" Width="748px" TextMode="MultiLine"
-                                                TabIndex="7" Title="Role Description"></asp:TextBox>
-                                        </td>
-                                    </tr>
-									<!--
-                                    <tr>
                 <b>Abstract</b> (e.g. Specific aims of this study are...)<br />
                 <asp:TextBox Rows='5' Columns="20" Style="resize: none;" ID="txtAbstract" runat="server"
                     TabIndex="9" TextMode="MultiLine" Title="Abstract" Width="748px" />
-                                    </tr>  -->
             </div>
             <div class="actionbuttons">
                 <asp:LinkButton ID="btnInsertResearcherRole2" runat="server" CausesValidation="False"
@@ -227,17 +224,15 @@
         <asp:Panel ID="pnlDeleteGrant" runat="server" CssClass="EditPanel" Visible="false">
             To delete a single grant, click the delete icon to the right of the funding information.  To delete multiple grants, select one of the options below.  Note that you cannot undo this.
             <div class="actionbuttons">
-                                    To delete a single item, click the delete icon to the right of the item's information.
-                                    To delete multiple items, select one of the options below. <strong>Note that you cannot undo this!</strong>
                 <asp:LinkButton ID="btnDeleteNIHOnly" runat="server" CausesValidation="False" OnClick="btnDeleteNIHOnly_OnClick"
                     Text="Delete only NIH grants" OnClientClick="Javascript:return confirm('Are you sure you want to delete the NIH funding sources?');" />
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnDeleteCustomOnly" runat="server" CausesValidation="False"
-                                        OnClick="btnDeleteCustomOnly_OnClick" Text="Delete only custom items"
-                                        OnClientClick="Javascript:return confirm('Are you sure you want to delete the custom items?');"></asp:LinkButton>
+                                        OnClick="btnDeleteCustomOnly_OnClick" Text="Delete Only Custom Funding Sources"
+                                        OnClientClick="Javascript:return confirm('Are you sure you want to delete the custom funding sources?');" />
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnDeleteAll" runat="server" CausesValidation="False" OnClick="btnDeleteAll_OnClick"
-                                        Text="Delete all items" OnClientClick="Javascript:return confirm('Are you sure you want to delete all items?');"></asp:LinkButton>
+                                        Text="Delete All Funding" OnClientClick="Javascript:return confirm('Are you sure you want to delete all grants?');" />
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnDeleteGrantClose" runat="server" CausesValidation="False"
                                         OnClick="btnDeleteGrantClose_OnClick" Text="Cancel" />
@@ -260,7 +255,7 @@
                                 CausesValidation="False" CommandName="Select" Text="Edit" Visible="true" AlternateText="Edit"></asp:ImageButton>
                             <asp:ImageButton ID="lnkDelete" runat="server" ImageUrl="~/Edit/Images/icon_delete.gif"
                                 CausesValidation="False" OnClick="deleteOne_Onclick" CommandName="Delete_Grant"
-                                                Text="X" OnClientClick="Javascript:return confirm('Are you sure you want to delete this item?');"
+                                OnClientClick="Javascript:return confirm('Are you sure you want to delete this funding record?');"
                                 AlternateText="Delete"></asp:ImageButton>
                         </ItemTemplate>
                     </asp:TemplateField>
@@ -268,7 +263,7 @@
             </asp:GridView>
         </div>
         <div style="text-align: left; padding-top: 22px;">
-            <asp:Label runat="server" ID="lblNoResearcherRole" Text="No items have been added."
+            <asp:Label runat="server" ID="lblNoResearcherRole" Text="No funding records have been added." Visible="false"></asp:Label>
         </div>
     </ContentTemplate>
 </asp:UpdatePanel>

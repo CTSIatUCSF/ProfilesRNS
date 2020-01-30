@@ -11,7 +11,7 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
 {
     public partial class CustomViewAuthorInAuthorship : BaseModule
     {
-        protected string svcURL { get { return Root.Domain + "/profile/modules/CustomViewAuthorInAuthorship/BibliometricsSvc.aspx?p="; } }
+        protected string svcURL { get { return Brand.GetThemedDomain() + "/profile/modules/CustomViewAuthorInAuthorship/BibliometricsSvc.aspx?p="; } }
 
         protected long nodeID { get { return base.RDFTriple.Subject; } }
         protected void Page_Load(object sender, EventArgs e)
@@ -45,8 +45,8 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
             {
                 while (reader.Read())
                 {
-                    publication.Add(new Publication(reader["bibo_pmid"].ToString(), reader["vivo_pmcid"].ToString(), reader["authors"].ToString(), reader["prns_informationResourceReference"].ToString(), reader["vivo_webpage"].ToString(), reader["authorXML"].ToString(), reader["Source"].ToString()));
-                        reader["prns_informationResourceReference"].ToString(), reader["vivo_webpage"].ToString(), Convert.ToInt32(reader["PMCCitations"]),
+                    publication.Add(new Publication(reader["bibo_pmid"].ToString(), reader["vivo_pmcid"].ToString(), reader["authors"].ToString(), reader["prns_informationResourceReference"].ToString(),
+                        reader["vivo_webpage"].ToString(), reader["authorXML"].ToString(), reader["Source"].ToString(), Convert.ToInt32(reader["PMCCitations"]),
                         reader["Fields"].ToString(), Convert.ToInt32(reader["TranslationHumans"]), Convert.ToInt32(reader["TranslationAnimals"]),
                         Convert.ToInt32(reader["TranslationCells"]), Convert.ToInt32(reader["TranslationPublicHealth"]), Convert.ToInt32(reader["TranslationClinicalTrial"])));
                 }
@@ -202,7 +202,7 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                     }
 
                 }
-                lblPublication.Text = pub.prns_informaitonResourceReference;
+                lblPublication.Text = pub.prns_informationResourceReference;
                 lblPublicationIDs.Text = lblPubTxt;
             }
         }
@@ -280,7 +280,7 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
 
         public class Publication
         {
-            public Publication(string _bibo_pmid, string _vivo_pmcid,  string _authors, string prns_informationresourcereference, string _vivo_webpage,  string _authors, int PMCCitations,
+            public Publication(string _bibo_pmid, string _vivo_pmcid,  string _authors, string prns_informationresourcereference, string _vivo_webpage, string _authorXML, string _pubsource, int PMCCitations,
                 string Fields, int TranslationHumans, int TranslationAnimals, int TranslationCells, int TranslationPublicHealth, int TranslationClinicalTrial)
             {
                 this.bibo_pmid = _bibo_pmid;

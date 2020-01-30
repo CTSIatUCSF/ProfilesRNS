@@ -23,6 +23,7 @@
 
 <asp:PlaceHolder ID="phAddGroups" runat="server">
     <div class="EditMenuItem">
+        <asp:ImageButton CssClass="EditMenuLinkImg" OnClick="btnAddGroups_OnClick" runat="server" ID="btnImgAddGroup" AlternateText=" " ImageUrl="~/Edit/Images/icon_squareArrow.gif" />
         <asp:LinkButton ID="btnAddGroups" runat="server" OnClick="btnAddGroups_OnClick" CssClass="profileHypLinks">Create a New Group</asp:LinkButton>
     </div>
 </asp:PlaceHolder>
@@ -39,15 +40,13 @@
             <ProgressTemplate>
                 <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; opacity: 0.7;">
                     <span style="border-width: 0px; position: fixed; padding: 50px; background-color: #FFFFFF; font-size: 36px; left: 40%; top: 40%;">
-                        <img alt="Loading.." src="<%=GetURLDomain()%>/Edit/Images/loader.gif" /></span>
+                        <img alt="Loading.." src="../Edit/Images/loader.gif" /></span>
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>
-                        Enter the Name, Visibility, Theme and End Date of the group
 
         <div style="margin-bottom:8px;">
-                </td>
-                <td>
+            Enter the Name, Theme and End Date of the group.  The group will initially private, which you can change in later.
         </div>
         <div style="display:flex">
             <div style="padding-top: 3px;">
@@ -56,14 +55,12 @@
             <div style="margin-bottom: 10px;margin-left:5px;">
                 <asp:TextBox ID="txtGroupName" runat="server" MaxLength="250" Width="320px" title="Group Name"></asp:TextBox>
             </div>
-
-            <div style="font-weight: bold;margin-left:8px;padding-top: 3px;">End Date (MM/DD/YYYY)  </div>
-            <div style="margin-left:5px;">
-                </td>
-                <td>
+            <div>
                     <b>Theme</b><br />
                     <asp:DropDownList ID="drpTheme" runat="server" Width="255px" AutoPostBack="false" />
-                </td>
+            </div>
+            <div style="font-weight: bold;margin-left:8px;padding-top: 3px;">End Date (MM/DD/YYYY)  </div>
+            <div style="margin-left:5px;">
                 <asp:TextBox ID="txtEndDate" runat="server" MaxLength="10" CssClass="textBoxDate"></asp:TextBox>
                 <asp:ImageButton ID="btnCalendar" runat="server" Width="15px" ImageUrl="~/Edit/Images/cal.png" AlternateText="Calendar picker" />
                 <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtEndDate" PopupButtonID="btnCalendar">
@@ -88,7 +85,7 @@
 </asp:Panel>
 
 <asp:Panel ID="pnlDeletedGroups" CssClass="editPage" runat="server" Visible="false">
-        <asp:LinkButton ID="btnDeletedGroups" runat="server" OnClick="btnDeletedGroups_OnClick" CssClass="profileHypLinks">Deleted Groups</asp:LinkButton>
+    <asp:GridView ID="gvDeletedGroups" AutoGenerateColumns="false"
         DataKeyNames="GroupID, GroupNodeID"
         runat="server"
         OnRowEditing="gvDeletedGroups_RowEditing">
@@ -104,11 +101,7 @@
                     <asp:Label ID="lblVisibility" runat="server" Text='<%# Bind("ViewSecurityGroupName") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-                  <asp:TemplateField HeaderText="Theme">
-                    <ItemTemplate>
-                        <asp:Label ID="lblTheme" runat="server" Text='<%# Bind("Theme") %>'></asp:Label>
-                    </ItemTemplate>
-                  </asp:TemplateField>
+            <asp:TemplateField HeaderStyle-CssClass="alignCenterAction" ItemStyle-CssClass="alignCenterAction" HeaderText="End Date">
                 <ItemTemplate>
                     <asp:Label ID="lblEndDate" runat="server" Text='<%# Bind("EndDate") %>'></asp:Label>
                 </ItemTemplate>
@@ -147,46 +140,10 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderStyle-CssClass="alignCenterAction" ItemStyle-CssClass="alignCenterAction" HeaderText="Visibility">
                 <EditItemTemplate>
-                     <asp:DropDownList id="ddEditVisibility" runat="server"
-                     </asp:DropDownList>
                     <asp:Label ID="lblVisibility" runat="server" Text='<%# Bind("ViewSecurityGroupName") %>'></asp:Label>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Label ID="lblVisibility" runat="server" Text='<%# Bind("ViewSecurityGroupName") %>'></asp:Label>
-                    </ItemTemplate>
-                  </asp:TemplateField>
-                  <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Theme">
-                    <EditItemTemplate>
-                     <asp:DropDownList ID="drpThemeEdit" runat="server" AutoPostBack="False" SelectedValue='<%# Eval("Theme") %>'>
-                       <asp:ListItem value="Default">
-                          Default
-                       </asp:ListItem>
-                       <asp:ListItem value="UC">
-                          UC
-                       </asp:ListItem>
-                       <asp:ListItem value="UCD">
-                          UCD
-                       </asp:ListItem>
-                       <asp:ListItem value="UCI">
-                          UCI
-                       </asp:ListItem>
-                       <asp:ListItem value="UCLA">
-                          UCLA
-                       </asp:ListItem>
-                       <asp:ListItem value="UCSD">
-                          UCSD
-                       </asp:ListItem>
-                       <asp:ListItem value="UCSF">
-                          UCSF
-                       </asp:ListItem>
-                       <asp:ListItem value="USC">
-                          USC
-                       </asp:ListItem>
-                     </asp:DropDownList>
-                       <asp:Label ID="lblTheme" runat="server" Text='<%# Bind("Theme") %>'></asp:Label>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                       <asp:Label ID="lblTheme" runat="server" Text='<%# Bind("Theme") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderStyle-CssClass="alignCenterAction" ItemStyle-CssClass="alignCenterAction" HeaderText="End Date">

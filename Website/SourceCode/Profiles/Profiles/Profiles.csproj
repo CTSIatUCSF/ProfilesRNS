@@ -151,6 +151,7 @@
     <Content Include="About\PresentationXML\ORCID.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Activity\CSS\activity.css" />
     <Content Include="Activity\Modules\ActivityHistory\ActivityDetails.aspx" />
     <Content Include="Activity\Modules\ActivityHistory\ActivityHistory.ascx" />
     <Content Include="Activity\Modules\LatestUpdates\LatestUpdates.ascx" />
@@ -554,11 +555,13 @@
     <Content Include="Profile\XSLT\NetworkTableGroup.xslt" />
     <Content Include="Profile\XSLT\Website.xslt" />
     <Content Include="RobotsTxt.aspx" />
+    <Content Include="Search\CSS\bootstrap-multiselect.css" />
     <Content Include="Search\JavaScript\UCSF.js" />
     <Content Include="SiteMap.aspx" />
     <Content Include="trace.aspx" />
     <Content Include="women-in-science\Default.aspx" />
     <Content Include="women-in-science\PresentationXML\WomenInScience.xml" />
+    <Content Include="Activity\CSS\activity.css.orig" />
     <None Include="Web.config">
       <SubType>Designer</SubType>
     </None>

@@ -40,10 +40,8 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
         protected void Page_Load(object sender, EventArgs e)
         {
             sm = new SessionManagement();
-       
+
             DrawProfilesModule();
-            // Good time to do this
-            Framework.Utilities.Cache.Remove(Brand.GROUPS_CACHE_KEY);
         }
 
         public GroupAdmin() : base() { }
@@ -61,12 +59,11 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
 
             data = new Profiles.GroupAdmin.Utilities.DataIO();
 
-
-
-            foreach (String theme in Brand.GetAllThemes()) 
+            foreach (String theme in Brand.GetAllThemes())
             {
                 drpTheme.Items.Add(new ListItem(theme, theme));
             }
+
 
             List<Group> groups = new List<Group>();
 
@@ -75,8 +72,8 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
                 while (reader.Read())
                 {
                     //public Group(string GroupName, int ViewSecurityGroup, string ViewSecurityGroupName, string EndDate, string GroupID, string GroupNodeID)
-                groups.Add(new Group(reader["GroupName"].ToString(), reader.GetInt64(reader.GetOrdinal("ViewSecurityGroup")), reader["ViewSecurityGroupName"].ToString(),
-                    reader["Theme"].ToString(), reader["EndDate"].ToString(), reader.GetInt32(reader.GetOrdinal("GroupID")), reader.GetInt64(reader.GetOrdinal("GroupNodeID"))));
+                    groups.Add(new Group(reader["GroupName"].ToString(), reader.GetInt64(reader.GetOrdinal("ViewSecurityGroup")), reader["ViewSecurityGroupName"].ToString(),
+                        reader["Theme"].ToString(), reader["EndDate"].ToString(), reader.GetInt32(reader.GetOrdinal("GroupID")), reader.GetInt64(reader.GetOrdinal("GroupNodeID"))));
                 }
                 if (!reader.IsClosed) reader.Close();
 
@@ -94,7 +91,7 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
                 {
                     //public Group(string GroupName, int ViewSecurityGroup, string ViewSecurityGroupName, string EndDate, string GroupID, string GroupNodeID)
                     deletedGroups.Add(new Group(deletedReader["GroupName"].ToString(), deletedReader.GetInt64(deletedReader.GetOrdinal("ViewSecurityGroup")), deletedReader["ViewSecurityGroupName"].ToString(),
-                    deletedReader["Theme"].ToString(), deletedReader["EndDate"].ToString(), deletedReader.GetInt32(deletedReader.GetOrdinal("GroupID")), deletedReader.GetInt64(deletedReader.GetOrdinal("GroupNodeID"))));
+                        deletedReader["Theme"].ToString(), deletedReader["EndDate"].ToString(), deletedReader.GetInt32(deletedReader.GetOrdinal("GroupID")), deletedReader.GetInt64(deletedReader.GetOrdinal("GroupNodeID"))));
                 }
                 if (!deletedReader.IsClosed) deletedReader.Close();
 
@@ -114,7 +111,7 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
                 {
                     //public Group(string GroupName, int ViewSecurityGroup, string ViewSecurityGroupName, string EndDate, string GroupID, string GroupNodeID)
                     groups.Add(new Group(reader["GroupName"].ToString(), reader.GetInt64(reader.GetOrdinal("ViewSecurityGroup")), reader["ViewSecurityGroupName"].ToString(),
-                    reader["Theme"].ToString(), reader["EndDate"].ToString(), reader.GetInt32(reader.GetOrdinal("GroupID")), reader.GetInt64(reader.GetOrdinal("GroupNodeID"))));
+                        reader["Theme"].ToString(), reader["EndDate"].ToString(), reader.GetInt32(reader.GetOrdinal("GroupID")), reader.GetInt64(reader.GetOrdinal("GroupNodeID"))));
                 }
 
                 if (!reader.IsClosed) reader.Close();
@@ -131,7 +128,7 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
                 {
                     //public Group(string GroupName, int ViewSecurityGroup, string ViewSecurityGroupName, string EndDate, string GroupID, string GroupNodeID)
                     deletedGroups.Add(new Group(deletedReader["GroupName"].ToString(), deletedReader.GetInt64(deletedReader.GetOrdinal("ViewSecurityGroup")), deletedReader["ViewSecurityGroupName"].ToString(),
-                    deletedReader["Theme"].ToString(), deletedReader["EndDate"].ToString(), deletedReader.GetInt32(deletedReader.GetOrdinal("GroupID")), deletedReader.GetInt64(deletedReader.GetOrdinal("GroupNodeID"))));
+                        deletedReader["Theme"].ToString(), deletedReader["EndDate"].ToString(), deletedReader.GetInt32(deletedReader.GetOrdinal("GroupID")), deletedReader.GetInt64(deletedReader.GetOrdinal("GroupNodeID"))));
 
 
                 }
@@ -147,7 +144,6 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
         {
             txtGroupName.Text = "";
             txtEndDate.Text = "";
-  
             pnlAddGroup.Visible = true;
         }
 
@@ -155,7 +151,7 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
         {
             if (Session["pnlAddGroupMembers.Visible"] == null)
             {
-                //btnImgAddGroups.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+                btnImgAddGroup.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 addGroupsReset();
                 phDeletedGroups.Visible = false;
                 Session["pnlAddGroupMembers.Visible"] = true;
@@ -179,7 +175,7 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
         {
             if (Session["pnlDeletedGroups.Visible"] == null)
             {
-                //btnImgDeletedGroups.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+                btnImgDeletedGroups.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 pnlDeletedGroups.Visible = true;
                 phAddGroups.Visible = false;
                 gvGroups.Visible = false;
@@ -207,12 +203,12 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
         protected void btnInsert_OnClick(object sender, EventArgs e)
         {
             string groupName = txtGroupName.Text;
-            int visibility = Convert.ToInt32(ddVisibility.SelectedValue);
+            //int visibility = Convert.ToInt32(ddVisibility.SelectedValue);
             string theme = drpTheme.SelectedValue;
             string endDate = txtEndDate.Text;
             Utilities.DataIO data = new Utilities.DataIO();
             addGroupsReset();
-            data.AddGroup(groupName, visibility, theme, endDate);
+            data.AddGroup(groupName, theme, endDate);
             fillGroupsGrid();
         }
 
@@ -242,13 +238,7 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 Group proxy = (Group)e.Row.DataItem;
-                /*************** UCSF FIX THIS!
-                DropDownList drpThemeEdit = (DropDownList)e.Row.FindControl("drpThemeEdit");
-                foreach (String theme in Brand.GetAllThemes())
-                {
-                    drpThemeEdit.Items.Add(new ListItem(theme, theme));
-                }
-                ******/
+
                 ImageButton lnkDelete = (ImageButton)e.Row.FindControl("lnkDelete");
             }
 
@@ -294,18 +284,12 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
             TextBox txtEndDate = (TextBox)gvGroups.Rows[e.RowIndex].FindControl("txtEndDate");
             int groupID = Convert.ToInt32(gvGroups.DataKeys[e.RowIndex].Values[0].ToString());
             long groupNodeID = Convert.ToInt32(gvGroups.DataKeys[e.RowIndex].Values[1].ToString());
-            Int64 vis; 
-            string visString = ddEditVisibility.SelectedValue;
-            if ("Public".Equals(visString)) vis = -1;
-            else if ("Users".Equals(visString)) vis = -20;
-            else if ("No Search".Equals(visString)) vis = -10;
-            else vis = Convert.ToInt64(gvGroups.DataKeys[e.RowIndex].Values[1].ToString());
 
             string endDate = null;
             if (!txtEndDate.Text.Equals("")) endDate = txtEndDate.Text;
 
 
-            data.UpdateGroup(groupID, groupNodeID, txtGroupName.Text, vis, drpThemeEdit.SelectedValue, endDate);
+            data.UpdateGroup(groupID, groupNodeID, txtGroupName.Text, drpThemeEdit.SelectedValue, endDate);
 
             Session["pnlInsertAward.Visible"] = null;
             gvGroups.EditIndex = -1;

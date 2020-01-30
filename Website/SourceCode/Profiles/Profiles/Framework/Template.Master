@@ -1,25 +1,32 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Template.master.cs" Inherits="Profiles.Framework.Template" EnableViewState='true' 
-   %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Template.master.cs" Inherits="Profiles.Framework.Template"
+    EnableViewState='true' %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<%--
+    Copyright (c) 2008-2012 by the President and Fellows of Harvard College. All rights reserved.  
+    Profiles Research Networking Software was developed under the supervision of Griffin M Weber, MD, PhD.,
+    and Harvard Catalyst: The Harvard Clinical and Translational Science Center, with support from the 
+    National Center for Research Resources and Harvard University.
+
+
+    Code licensed under a BSD License. 
+    For details, see: LICENSE.txt 
 --%>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head id="Head1" runat="server">
     <title>Profiles</title>
     <asp:PlaceHolder runat="server">
       <link rel="shortcut icon" href="<%= GetThemedFavicon() %>" />
     </asp:PlaceHolder>
 
-    <!-- Latest compiled and minified CSS -->
+    <%--Force ie out of quirks mode (Catalyst)--%>
     <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' />
 	<meta name="msvalidate.01" content="4E5209CC6688B86BBDD2FE074176C029" />
 	<meta name="msvalidate.01" content="0535E3191ABF67DFC9F7E03516F4B881" />
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
-    <!-- Latest compiled and minified JavaScript -->
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>      
 
     <asp:ContentPlaceHolder ID="head" runat="server">
+
+        <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.2.min.js" type="text/javascript"></script>
 
     </asp:ContentPlaceHolder>
 
@@ -43,14 +50,7 @@
     <%--Catalyst styles--%>
 </head>
 <body id="bodyMaster" runat="server">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PXSD37"
-            height="0" width="0" style="display: none; visibility: hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <form runat="server" id="form1" enctype="multipart/form-data" method="post">
-        <asp:ToolkitScriptManager AsyncPostBackTimeout="3600" EnablePartialRendering="true" CombineScripts="false" EnableViewState="true" ID="toolkitScriptMaster" runat="server" />
 
         <div id="divStatus">
             <div class="loader">
@@ -62,16 +62,23 @@
         <asp:ToolkitScriptManager AsyncPostBackTimeout="36000" CombineScripts="false" ID="toolkitScriptMaster"
             runat="server">
         </asp:ToolkitScriptManager>
+
         <script type="text/javascript" language="javascript">
+
             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+
             function EndRequestHandler(sender, args) {
                 if (args.get_error() != undefined) {
                     args.set_errorHandled(true);
                 }
             }
+
             function ShowStatus() {
                 document.getElementById("divStatus").style.display = "block";
             }
+
+
+
         </script>
 
         <div id='page-container'>
@@ -337,8 +344,6 @@
                                                                     </ItemTemplate>
                                                                 </asp:Repeater>
                                                             </asp:ContentPlaceHolder>
-                <div id="ProfilesNotification" visible="false" runat="server" style="margin-top: 8px; font-weight: bold;">
-                    <asp:Literal runat="server" ID="litSystemNotice"></asp:Literal>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -377,24 +382,13 @@
                                                                                 <asp:PlaceHolder ID="phPage" runat="server"></asp:PlaceHolder>
                                                                             </ItemTemplate>
                                                                         </asp:Repeater>
-                            </asp:ContentPlaceHolder>
-                        </div>
-                        <div id="divProfilesContentMain" class="profilesContentMain profilesMaxWidth" runat="server">
-                            <div id="divTopMainRow" style="width: 100%" runat="server">
-                                <asp:Literal runat="server" ID="litPageTitle"></asp:Literal>
-                            </div>
-                            <asp:Literal runat="server" ID="litPageSubTitle"></asp:Literal>
-                            <div class="backLink">
-                                <asp:Literal runat="server" ID="litBackLink"></asp:Literal>
                                                                     </div>
                                                                     <div class="pageDescription">
                                                                         <asp:Literal runat="server" ID="litPageDescription"></asp:Literal>
                                                                     </div>
                                                                     <div class="pageTabs">
-                                <div class="content-main">
                                                                         <asp:Literal runat="server" ID="litTabs"></asp:Literal>
                                                                     </div>
-                            </div>
                                                                     <div class="panelMain">
                                                                         <asp:ContentPlaceHolder ID="ContentMain" runat="server">
                                                                             <asp:Repeater runat="server" ID="rptMain" OnItemDataBound="DrawModule">
@@ -426,7 +420,12 @@
                                         </td>
                                     </tr>
                                     <%-- This row only exists to add a border to the bottom of the main app. No longer needed.--%>
-                </div>
+                                    <%--  <tr>
+										<td colspan="2">
+											<div class="profilesPageColumnRightBottom" runat="server" id="divProfilesPageColumnRightBottom">
+											</div>
+										</td>
+									</tr>--%>
                                 </table>
                             </td>
                         </tr>
@@ -641,10 +640,6 @@
     <div id="backtotop">
         <a href="#">&#8593;</a>
     </div>
-            $(".title-container").css("cursor", "pointer");
-            $('.title-container').hover(function () {
-                $(".title-container").css("opacity", ".5");
-            });
 
     <script type="text/javascript">
         setTimeout(function () {
@@ -669,40 +664,5 @@
 		})();
 	  </script>
 	</asp:Panel>
-        });
-
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function () { scrollFunction() };
-
-        function scrollFunction() {
-            if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
-                document.getElementById("rtnBtn").style.display = "block";
-            } else {
-                document.getElementById("rtnBtn").style.display = "none";
-            }
-            return true;
-        }
-
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            $('body,html').animate({ scrollTop: 0 }, 500);
-            return true;
-        }
-
-        $(document).ready(function () {
-            $(".lnk-edit-arrow").on("click", function () {
-                var img = $(this).find("img");
-                var current = img.attr("src");
-                var newsrc = img.attr("data-swap");
-                $("#" + $(this).attr("data-item")).toggle();
-                img.attr("src", newsrc).attr("data-swap", current);
-            });
-        });
-
-
-    </script>
-    <%="<script type=\"text/javascript\">"%>
-    <asp:Literal runat="server" ID="litJS"></asp:Literal>
-    <%="</script>"%>
 </body>
 </html>

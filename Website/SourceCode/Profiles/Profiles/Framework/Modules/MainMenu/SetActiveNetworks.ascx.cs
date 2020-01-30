@@ -52,8 +52,6 @@ namespace Profiles.Framework.Modules.MainMenu
                         rptRelationshipTypes.DataBind();
                         this.Count = count;
                     }
-                litActiveNetworkDetails.Text = "<a class='activeSectionDetails' href='" + Brand.GetThemedDomain() + "/activenetwork/default.aspx'><font style='font-size:10px'>View Details</font></a>";
-                ibRemove.ImageUrl = Brand.GetThemedDomain() + "/Framework/Images/delete.png";
                 }
             }
         }

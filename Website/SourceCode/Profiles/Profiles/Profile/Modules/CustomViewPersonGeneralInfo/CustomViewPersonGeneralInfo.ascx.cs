@@ -63,9 +63,9 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
                 args.AddParam("orcidurl", "", Profiles.ORCID.Utilities.config.ORCID_URL + "/" + base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/vivo:orcidId", base.Namespaces).InnerText);
                 string infosite;
                 if (Profiles.ORCID.Utilities.config.InfoSite == null) infosite = Root.Domain + "/about/default.aspx?tab=orcid";
-                args.AddParam("orcidimage", "", Brand.GetThemedDomain() + "/Framework/Images/orcid_16x16(1).gif");
                 else if (Profiles.ORCID.Utilities.config.InfoSite.Equals("")) infosite = Root.Domain + "/about/default.aspx?tab=orcid";
                 else infosite = Profiles.ORCID.Utilities.config.InfoSite;
+                args.AddParam("orcidimage", "", Brand.GetThemedDomain() + "/Framework/Images/orcid_16x16(1).gif");
                 args.AddParam("orcidinfosite", "", infosite);
                 args.AddParam("orcidimageguid", "", Guid.NewGuid().ToString());
             }

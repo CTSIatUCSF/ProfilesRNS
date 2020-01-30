@@ -5,7 +5,6 @@
     <div style="font-weight: bold; color: #888; padding: 5px 0px;" id="divPubHeaderText" visible="true" runat="server">
         Publications listed below are automatically derived from MEDLINE/PubMed and other sources, which might result in incorrect or missing publications. 
 		Researchers can <asp:Literal runat='server' ID='loginLiteral'></asp:Literal> to make corrections and additions, or <asp:Hyperlink ID="Contact" SkinID="contact" runat="server" />.  
-        <asp:Literal runat='server' ID='loginLiteral'></asp:Literal>
         to make corrections and additions.
     </div>
     <div class="anchor-tab" id="divDisplayType">
@@ -236,7 +235,7 @@
         }
     });
 
-        
+    setTimeout(function () {        
         $.getScript('//d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
     }, 1000);
 /*
@@ -353,6 +352,7 @@
         $("#divPubList").hide();
         $("#divFiltered").show();
         $("#divPubListDetails").show();
+        $.getScript('//d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
     }
 
 

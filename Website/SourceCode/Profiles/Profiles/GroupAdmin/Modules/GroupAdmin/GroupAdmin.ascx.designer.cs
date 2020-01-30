@@ -40,6 +40,15 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin {
         protected global::System.Web.UI.WebControls.LinkButton btnAddGroups;
         
         /// <summary>
+        /// phDeletedGroups control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phDeletedGroups;
+        
+        /// <summary>
         /// btnImgDeletedGroups control.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin {
         protected global::System.Web.UI.UpdateProgress updateProgress;
         
         /// <summary>
+        /// txtGroupName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtGroupName;
+        
+        /// <summary>
         /// drpTheme control.
         /// </summary>
         /// <remarks>
@@ -92,14 +110,6 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList drpTheme;
-        
-        /// <summary>
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGroupName;
         
         /// <summary>
         /// txtEndDate control.

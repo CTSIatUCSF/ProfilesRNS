@@ -38,8 +38,6 @@ namespace Profiles.Profile.Modules.PassiveList
             pl = new global::passiveList();
             pl.InfoCaption = base.GetModuleParamString("InfoCaption");
             pl.TotalCount = CustomParse.Parse(base.GetModuleParamString("TotalCount"), base.BaseData, base.Namespaces);
-                documentdata.Append(Brand.GetThemedDomain() + CustomParse.Parse(base.GetModuleParamString("MoreURL"), base.BaseData, base.Namespaces).Replace("&", "&amp;"));
-                documentdata.Append(Brand.CleanURL(CustomParse.Parse(base.GetModuleParamString("MoreURL"), base.BaseData, base.Namespaces)));
 
             pl.Description = base.GetModuleParamString("Description");
             pl.ID = Guid.NewGuid().ToString();
@@ -67,17 +65,10 @@ namespace Profiles.Profile.Modules.PassiveList
 
                     if (base.GetModuleParamString("ItemURL") != string.Empty)
                     {
-                        string prettyUrl = Brand.CleanURL(itemurl);
-                        documentdata.Append(" ItemURL=\"" + prettyUrl);
+                        if (itemurltext.Equals("")) itemurltext = CustomParse.Parse("{{{//rdf:Description[@rdf:about='" + itemurl + "']/rdfs:label}}}", this.BaseData, this.Namespaces);
+
                         networkexists = true;
                         pl.ItemList.Add(new itemList { ItemURL = itemurl, ItemURLText = itemurltext, Item = item, ID = pl.ID });
-                        if (UCSFIDSet.ByPrettyURL.ContainsKey(prettyUrl))
-                        {
-                            documentdata.Append(" PersonID=\"" + UCSFIDSet.ByPrettyURL[prettyUrl].PersonId);
-                            documentdata.Append("\"");
-                            documentdata.Append(" InstitutionAbbreviation=\"" + UCSFIDSet.ByPrettyURL[prettyUrl].Institution.GetAbbreviation());
-                            documentdata.Append("\"");
-                        }
                     }
                 }
             }
@@ -93,9 +84,6 @@ namespace Profiles.Profile.Modules.PassiveList
 
         protected void passiveList_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-                                itemurl = Brand.CleanURL(CustomParse.Parse(base.GetModuleParamString("ItemURL"), networknode, this.Namespaces)),
-                                item = CustomParse.Parse(base.GetModuleParamString("ItemText"), networknode, this.Namespaces),
-                                personid = CustomParse.Parse("{{{rdf:Description/prns:personId}}}", networknode, this.Namespaces)
 
 
             switch (e.Item.ItemType)
@@ -118,13 +106,6 @@ namespace Profiles.Profile.Modules.PassiveList
                     if (pl.TotalCount != string.Empty)
                     {
                         TotalCount.Text = "(" + pl.TotalCount + ")";
-                        if (i.personid != string.Empty)
-                        {
-                            documentdata.Append(" PersonID=\"" + i.personid);
-                            documentdata.Append("\"");
-                            documentdata.Append(" InstitutionAbbreviation=\"" + UCSFIDSet.ByPersonId[Int64.Parse(i.personid)].Institution.GetAbbreviation());
-                            documentdata.Append("\"");
-                        }
                     }
                     infocaption.Text = pl.InfoCaption;
                     break;
@@ -145,7 +126,7 @@ namespace Profiles.Profile.Modules.PassiveList
                     itemurl.NavigateUrl = il.ItemURL;
                     itemurl.Text = il.ItemURLText;
 
-                args.AddParam("root", "", Brand.GetThemedDomain());
+                    break;
 
             }
         }

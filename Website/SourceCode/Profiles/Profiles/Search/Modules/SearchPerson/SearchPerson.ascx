@@ -128,13 +128,12 @@
                             <div class='header'>
                                 Find People by Research Topic or Name
 							</div>
-                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="3"  style="padding: 0 2px">
                             <div class="searchSection" id="divSearchSection">
-                                <table class='searchForm'>
+                                <table width="100%" class='searchForm'>
                                     <tr>
                                         <th style="width: 140px">
                                             Research Topics
@@ -150,7 +149,9 @@
                                             Search for exact phrase
                                     </tr>
                                     <tr>
-                                        <th></th>
+                                        </tr>
+                                        <th>
+                                        </th>
                                         <td colspan="2">
                                             <div class="search-button-container">
                                                 <%--Inline styles on this is no longer needed as the button is now all CSS--%>
@@ -162,6 +163,7 @@
                                             </div>
                                         </td>
                                         </tr>     (cp end comment out)-->
+                                    </tr>
                                 </table>
                             </div>
                         </td>
@@ -179,7 +181,8 @@
                     <td colspan='3' style="padding: 0 2px">
                         <div class="searchSection" id="div1">
 							<span id="andor">and/or</span>
-							<asp:Panel ID="ClinicalTrialsUSC" runat="server" SkinID="USC" Visible="false">
+                            <table width="100%" class='searchForm'>
+                                <asp:Panel ID="ClinicalTrialsUSC" runat="server" SkinID="USC" Visible="false">
 								<tr>
                                     <th>
                                         Clinical Trials
@@ -224,7 +227,7 @@
                                     </td>
                                 </tr>
                                 <tr runat="server" id="trDivision">
-                                    <th>Department
+                                    <th>
                                         School
                                     </th>
                                     <td colspan="2">
@@ -252,27 +255,33 @@
 								</asp:Panel>
 
 								<tr runat="server" id="trFacultyType">
-                                    <th>Faculty Type
+                                    <th>
                                         Researcher Type
                                     </th>
-                                    <td colspan="2">
-                                        <div>
-                                            <asp:PlaceHolder ID="phDDLCHK" runat="server"></asp:PlaceHolder>
-                                        </div>
-                                        <div>
-                                            <asp:PlaceHolder ID="phDDLList" runat="server"></asp:PlaceHolder>
-                                        </div>
+                                    <td class="pan" colspan="2">
+                                        <table cellpadding="0">
+                                            <tr>
+                                                <td>
+                                                    <asp:PlaceHolder ID="phDDLCHK" runat="server"></asp:PlaceHolder>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <asp:PlaceHolder ID="phDDLList" runat="server"></asp:PlaceHolder>
+                                                </td>
+                                            </tr>
+                                        </table>
                                         <asp:Label ID="lblSelectedItem" runat="server"></asp:Label>
                                         <asp:HiddenField ID="hidList" runat="server" />
                                         <asp:HiddenField ID="hidURIs" runat="server" />
                                     </td>
                                 </tr>
                                 <tr runat="server" id="trOtherOptions">
-                                    <th style="vertical-align:top">Other Options
+                                    <th>
                                         More Options
                                     </th>
                                     <td colspan='2'>
-                                        <select onmousedown="(function(e){ e.preventDefault(); })(event, this)" id="selOtherOptions" style="width: 249px; height: 20px" title="other options">
+                                        <input type="hidden" id="hiddenToggle" value="off" />
                                         <select id="selOtherOptions" style="width: 249px; height: 20px">
                                             <option value="" style="font-size: 1px"></option>
                                         </select>
@@ -295,6 +304,7 @@
                                     </th>
                                     <td colspan="2">
                                         <input type="checkbox" class="trials2" />
+                                    </td>
                                 </tr>
 							</asp:Panel>
 							<asp:Panel ID="ClinicalTrialsUCSF" runat="server" SkinID="UCSF" Visible="false">

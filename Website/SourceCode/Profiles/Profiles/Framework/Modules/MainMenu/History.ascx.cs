@@ -31,7 +31,7 @@ namespace Profiles.Framework.Modules.MainMenu
         {
             
             int count = 0;
-                litSeeAll.Text = "<a href='" + Brand.GetThemedDomain() + "/history'><font style='font-size:10px'>See All (" + uh.GetItems().Count.ToString() + ") pages</font></a>";
+
             int total = uh.GetItems().Count;
             lblHistoryItems.Text = "<li class='main-nav'><a href='" + Root.Domain + "/history'>History (" + total.ToString() + ")</a><ul class='drop'>";
             foreach (HistoryItem h in uh.GetItems(5))

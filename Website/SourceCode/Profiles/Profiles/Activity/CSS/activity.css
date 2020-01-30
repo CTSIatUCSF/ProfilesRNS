@@ -1,5 +1,6 @@
 
 /* Metrics & Activity Stream */
+/* UCSF Commented out
 .panelActive { padding: 0 0 0 12px; }
 .metrics { margin-bottom: 12px; padding: 0 0 12px; border-bottom: 1px solid #ccc; font-size: 12px;}
 .metrics span { display: inline-block; width: 4em; text-align: right; font-family: courier, serif;}
@@ -15,3 +16,4 @@
 .panelMain .act-userdate { float: left; width: 160px; padding-right: 10px; }
 .panelMain .act-msg { clear: none; float: left; width: 360px; padding: 0; margin-top: -2px; }
 .act-heading-live-updates { font-weight: bold; margin-bottom: 10px; }
+ */

@@ -1,60 +1,46 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CoAuthorConnection.ascx.cs" Inherits="Profiles.Profile.Modules.CoAuthorConnection.CoAuthorConnection" %>
-
-
-	<div class="content_container">				
-					
-		<div class="connectionContainer">
-			<table class="connectionContainerTable">
-			<tbody><tr>
-			<td class="connectionContainerItem">
-				<div><a href="<%= this.Subject.Uri%>"><%= this.Subject.Name %></a></div>
-				<%--<div class="connectionItemSubText">25 Total Publications</div>--%>
-			</td>
-			<td class="connectionContainerArrow">
+<div class="connectionTable">
+    <div class="connectionTableRow">
+        <div class="connectionContainerItem">
+            <a href="<%= this.Subject.Uri%>"><%= this.Subject.Name %></a>
+        </div>
+        <div class="connectionContainerLeftArrow">
+            <img style="vertical-align: unset;" src="<%=GetRootDomain()%>/Framework/Images/connection_left.gif" alt="" />
+        </div>
+        <div>
+            <div class="connectionSubDescription">Connection Strength</div>
+            <div class="connectionLineToArrow">
+                <hr />
 				<table class="connectionArrowTable" style="width:150px;">
-				<tbody><tr>
-					<td><div class="connectionSubDescription">Connection Strength</div></td>
-				</tr>
-				<tr>
+            <div class="connectionSubDescription" style="position: relative;"><%= String.Format("{0:0.000}", this.ConnectionStrength) %></div>
+        <div class="connectionContainerRightArrow">
+        </div>
+        <div class="connectionContainerItem">
 					<td style="height:6px"><img src="<%= Profiles.Framework.Utilities.Brand.GetDomain() %>/Framework/Images/connection.gif"></td>
 <!--
 					<td class="connectionLine"><img src="<%= Profiles.Framework.Utilities.Brand.GetDomain() %>/Framework/Images/connection_left.gif"></td>
-					<td class="connectionLine"><div>&nbsp;</div></td>
 					<td class="connectionLine"><img src="<%= Profiles.Framework.Utilities.Brand.GetDomain() %>/Framework/Images/connection_right.gif" alt=""></td>
 -->
-				</tr>
-				<tr>
-					<td><div class="connectionSubDescription"><%= String.Format("{0:0.000}", this.ConnectionStrength) %></div></td>
-				</tr>
-				</tbody></table>
-			</td>
-			<td class="connectionContainerItem">
-				<div><a href="<%= this.Object.Uri %>"><%= this.Object.Name %></a></div>
-				<%--<div class="connectionItemSubText">229 Total Publications</div>--%>
-			</td>
-			</tr>
-			</tbody></table>
-		</div>
-	</div>	
-	
-	<div class="publications">
-		<ol>
-		<%
-			int first = 0;
-			this.ConnectionDetails.ForEach(pub => {		
-				first ++;
-		%>
-			<li <%= (first==1) ? "class='first'" : "" %> >
-				<%= pub.Description %>	
-				<div class='viewIn'>
-					<span class="viewInLabel">View in</span>: <a href="//www.ncbi.nlm.nih.gov/pubmed/<%= pub.PMID %>" target="_blank">PubMed</a>			
-				</div>
-				<div class='viewIn'>
-					<span class="viewInLabel">Score</span>: <%= String.Format("{0:0.000}", pub.Score)%>
-				</div>
-			</li>
-		<%
-			});
-		%>
-		</ol>
-	</div>
+    </div>
+</div>
+
+<div class="publications">
+    <ol>
+        <%  int first = 0;
+            this.ConnectionDetails.ForEach(pub =>
+            {
+            first++;
+        %>
+        <li <%= (first==1) ? "class='first'" : "" %>>
+            <%= pub.Description %>
+            <div class='viewIn'>
+                <span class="viewInLabel">View in</span>: <a href="//www.ncbi.nlm.nih.gov/pubmed/<%= pub.PMID %>" target="_blank">PubMed</a>
+            </div>
+            <div class='viewIn'>
+                <span class="viewInLabel">Score</span>: <%= String.Format("{0:0.000}", pub.Score)%>
+            </div>
+        </li>
+        <%  });
+        %>
+    </ol>
+</div>

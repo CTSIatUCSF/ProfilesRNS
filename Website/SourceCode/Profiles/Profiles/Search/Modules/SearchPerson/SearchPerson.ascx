@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SearchPerson.ascx.cs"
-    Inherits="Profiles.Search.Modules.SearchPerson.SearchPerson" EnableViewState="true"  %>
+    Inherits="Profiles.Search.Modules.SearchPerson.SearchPerson" EnableViewState="true" %>
 <%@ Register Src="ComboTreeCheck.ascx" TagName="ComboTreeCheck" TagPrefix="uc1" %>
 
 <style type="text/css">
@@ -10,7 +10,7 @@
 
 	function runScript(e) {
         if (e.keyCode == 13) {
-            search();            
+            search();
         }
         return false;
     }
@@ -32,7 +32,7 @@
     function showdivonClick() {
         var objDLL = $('[id$=divChkList]').attr('id');// document.getElementById("divChkList");
 
-        if (document.getElementById(objDLL).style.display  == "block")
+        if (document.getElementById(objDLL).style.display == "block")
             document.getElementById(objDLL).style.display = "none";
         else
             document.getElementById(objDLL).style.display = "block";
@@ -42,7 +42,7 @@
 
 
         var noItemChecked = 0;
-        var ddlChkList =  document.getElementById($('[id$=ddlChkList]').attr('id'));
+        var ddlChkList = document.getElementById($('[id$=ddlChkList]').attr('id'));
         var selectedItems = "";
         var selectedValues = "";
         var arr = document.getElementById($('[id$=chkLstItem]').attr('id')).getElementsByTagName('input');
@@ -62,7 +62,7 @@
                 }
             }
 
-            if (checkbox.checked) {                
+            if (checkbox.checked) {
 
                 var buffer;
                 if (arrlbl[i].innerText == undefined)
@@ -88,7 +88,7 @@
         else
             ddlChkList.options[ddlChkList.selectedIndex].text = "";
 
-		var hidList =  document.getElementById($('[id$=hidList]').attr('id'));
+        var hidList = document.getElementById($('[id$=hidList]').attr('id'));
         hidList.value = ddlChkList.options[ddlChkList.selectedIndex].text;
 
 
@@ -120,6 +120,7 @@
 <div class="content_container">
     <div class="tabContainer">
         <div class="searchForm">
+
             <table onkeypress="JavaScript:runScript(event);" width="100%">
                 <tbody align="left">
                     <tr>
@@ -127,12 +128,13 @@
                             <div class='header'>
                                 Find People by Research Topic or Name
 							</div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="3"  style="padding: 0 2px">
                             <div class="searchSection" id="divSearchSection">
-                                <table width="100%" class='searchForm'>
+                                <table class='searchForm'>
                                     <tr>
                                         <th style="width: 140px">
                                             Research Topics
@@ -148,21 +150,18 @@
                                             Search for exact phrase
                                     </tr>
                                     <tr>
-                                        <tr>
-                                            <th>
-                                            </th>
-                                            <td colspan="2">
-                                                <div class="search-button-container">
-                                                    <%--Inline styles on this is no longer needed as the button is now all CSS--%>
-                                                    <a href="JavaScript:search();" class="search-button">
+                                        <th></th>
+                                        <td colspan="2">
+                                            <div class="search-button-container">
+                                                <%--Inline styles on this is no longer needed as the button is now all CSS--%>
+                                                <a href="JavaScript:search();" class="search-button">
                                                     <%--    No longer need a search button as an image--%>
                                                         <%--<img src="<%=GetThemedDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />--%>
                                                         Search
 						    </a>
-                                                </div>
-                                            </td>
+                                            </div>
+                                        </td>
                                         </tr>     (cp end comment out)-->
-                                    </tr>
                                 </table>
                             </div>
                         </td>
@@ -171,7 +170,8 @@
                 <tr>
                     <td colspan='3'>
                         <div class="headings">
-                            Find people by name/organization</div>
+                            Find people by name/organization
+                        </div>
                     </td>
                 </tr>
 -->
@@ -179,7 +179,6 @@
                     <td colspan='3' style="padding: 0 2px">
                         <div class="searchSection" id="div1">
 							<span id="andor">and/or</span>
-                            <table width="100%" class='searchForm'>
 							<asp:Panel ID="ClinicalTrialsUSC" runat="server" SkinID="USC" Visible="false">
 								<tr>
                                     <th>
@@ -200,24 +199,21 @@
                                 </tr>
 							</asp:Panel>
                                 <tr>
-                                    <th>
-                                        Last Name
+                                    <th>Last Name
                                     </th>
                                     <td colspan="2">
                                         <asp:TextBox runat="server" ID="txtLname" CssClass="inputText"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>
-                                        First Name
+                                    <th>First Name
                                     </th>
                                     <td colspan="2">
                                         <asp:TextBox runat="server" ID="txtFname" CssClass="inputText"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr runat="server" id="trInstitution">
-                                    <th>
-                                        Institution
+                                    <th>Institution
                                     </th>
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litInstitution"></asp:Literal>
@@ -228,7 +224,7 @@
                                     </td>
                                 </tr>
                                 <tr runat="server" id="trDivision">
-                                    <th>
+                                    <th>Department
                                         School
                                     </th>
                                     <td colspan="2">
@@ -256,33 +252,27 @@
 								</asp:Panel>
 
 								<tr runat="server" id="trFacultyType">
-                                    <th>
+                                    <th>Faculty Type
                                         Researcher Type
                                     </th>
-                                    <td class="pan" colspan="2">
-                                        <table cellpadding="0">
-                                            <tr>
-                                                <td>
-                                                    <asp:PlaceHolder ID="phDDLCHK" runat="server"></asp:PlaceHolder>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <asp:PlaceHolder ID="phDDLList" runat="server"></asp:PlaceHolder>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                    <td colspan="2">
+                                        <div>
+                                            <asp:PlaceHolder ID="phDDLCHK" runat="server"></asp:PlaceHolder>
+                                        </div>
+                                        <div>
+                                            <asp:PlaceHolder ID="phDDLList" runat="server"></asp:PlaceHolder>
+                                        </div>
                                         <asp:Label ID="lblSelectedItem" runat="server"></asp:Label>
                                         <asp:HiddenField ID="hidList" runat="server" />
                                         <asp:HiddenField ID="hidURIs" runat="server" />
                                     </td>
                                 </tr>
-                                <tr  runat="server" id="trOtherOptions">
-                                    <th>
+                                <tr runat="server" id="trOtherOptions">
+                                    <th style="vertical-align:top">Other Options
                                         More Options
                                     </th>
                                     <td colspan='2'>
-                                        <input type="hidden" id="hiddenToggle" value="off" />
+                                        <select onmousedown="(function(e){ e.preventDefault(); })(event, this)" id="selOtherOptions" style="width: 249px; height: 20px" title="other options">
                                         <select id="selOtherOptions" style="width: 249px; height: 20px">
                                             <option value="" style="font-size: 1px"></option>
                                         </select>
@@ -305,7 +295,6 @@
                                     </th>
                                     <td colspan="2">
                                         <input type="checkbox" class="trials2" />
-                                    </td>
                                 </tr>
 							</asp:Panel>
 							<asp:Panel ID="ClinicalTrialsUCSF" runat="server" SkinID="UCSF" Visible="false">
@@ -323,7 +312,8 @@
                                     <th>
                                     </th>
                                     <td colspan="2">
-                                        <div class="search-button-container"><%--Inline styles on this is no longer needed as the button is now all CSS--%>
+                                        <div class="search-button-container">
+                                            <%--Inline styles on this is no longer needed as the button is now all CSS--%>
                                             <a href="JavaScript:search();" class="search-button">
                                                 <%--<img src="<%=GetThemedDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />--%>
                                                 Search
@@ -334,7 +324,7 @@
 -->
                             </table>
                             <asp:Literal runat="server" ID="litFacRankScript"></asp:Literal>
-                            
+
                         </div>
                     </td>
                 </tr>
@@ -349,3 +339,8 @@
 
     </div>
 </div>
+<script>$(document).ready(function () {
+    $("[id*=ddlChkList]").css("width", "249px");
+    $("select").css("height", "25px");
+    
+});</script>

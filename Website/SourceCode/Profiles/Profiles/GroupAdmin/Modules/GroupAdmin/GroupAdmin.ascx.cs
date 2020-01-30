@@ -10,6 +10,18 @@
     For details, see: LICENSE.txt 
   
 */
+/*  
+ 
+    Copyright (c) 2008-2012 by the President and Fellows of Harvard College. All rights reserved.  
+    Profiles Research Networking Software was developed under the supervision of Griffin M Weber, MD, PhD.,
+    and Harvard Catalyst: The Harvard Clinical and Translational Science Center, with support from the 
+    National Center for Research Resources and Harvard University.
+
+
+    Code licensed under a BSD License. 
+    For details, see: LICENSE.txt 
+  
+*/
 using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
@@ -49,92 +61,93 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
 
             data = new Profiles.GroupAdmin.Utilities.DataIO();
 
-            imgAdd.ImageUrl = Root.Domain + "/framework/images/icon_roundArrow.gif";
 
-
-            litBackLink.Text = "<b>Manage Groups</b>";
 
             foreach (String theme in Brand.GetAllThemes()) 
             {
                 drpTheme.Items.Add(new ListItem(theme, theme));
             }
 
-            SqlDataReader reader;
             List<Group> groups = new List<Group>();
 
-            reader = data.GetActiveGroups();
-            while (reader.Read())
+            using (SqlDataReader reader = data.GetActiveGroups())
             {
-                //public Group(string GroupName, int ViewSecurityGroup, string ViewSecurityGroupName, string EndDate, string GroupID, string GroupNodeID)
+                while (reader.Read())
+                {
+                    //public Group(string GroupName, int ViewSecurityGroup, string ViewSecurityGroupName, string EndDate, string GroupID, string GroupNodeID)
                 groups.Add(new Group(reader["GroupName"].ToString(), reader.GetInt64(reader.GetOrdinal("ViewSecurityGroup")), reader["ViewSecurityGroupName"].ToString(),
                     reader["Theme"].ToString(), reader["EndDate"].ToString(), reader.GetInt32(reader.GetOrdinal("GroupID")), reader.GetInt64(reader.GetOrdinal("GroupNodeID"))));
+                }
+                if (!reader.IsClosed) reader.Close();
+
+                gvGroups.DataSource = groups;
+                gvGroups.DataBind();
             }
-            reader.Close();
-
-            gvGroups.DataSource = groups;
-            gvGroups.DataBind();
-            gvGroups.CellPadding = 2;
 
 
-            SqlDataReader deletedReader;
+
             List<Group> deletedGroups = new List<Group>();
 
-            deletedReader = data.GetDeletedGroups();
-            while (deletedReader.Read())
+            using (SqlDataReader deletedReader = data.GetDeletedGroups())
             {
-                //public Group(string GroupName, int ViewSecurityGroup, string ViewSecurityGroupName, string EndDate, string GroupID, string GroupNodeID)
-                deletedGroups.Add(new Group(deletedReader["GroupName"].ToString(), deletedReader.GetInt64(deletedReader.GetOrdinal("ViewSecurityGroup")), deletedReader["ViewSecurityGroupName"].ToString(),
+                while (deletedReader.Read())
+                {
+                    //public Group(string GroupName, int ViewSecurityGroup, string ViewSecurityGroupName, string EndDate, string GroupID, string GroupNodeID)
+                    deletedGroups.Add(new Group(deletedReader["GroupName"].ToString(), deletedReader.GetInt64(deletedReader.GetOrdinal("ViewSecurityGroup")), deletedReader["ViewSecurityGroupName"].ToString(),
                     deletedReader["Theme"].ToString(), deletedReader["EndDate"].ToString(), deletedReader.GetInt32(deletedReader.GetOrdinal("GroupID")), deletedReader.GetInt64(deletedReader.GetOrdinal("GroupNodeID"))));
-            }
-            deletedReader.Close();
+                }
+                if (!deletedReader.IsClosed) deletedReader.Close();
 
-            gvDeletedGroups.DataSource = deletedGroups;
-            gvDeletedGroups.DataBind();
-            gvDeletedGroups.CellPadding = 2;
+                gvDeletedGroups.DataSource = deletedGroups;
+                gvDeletedGroups.DataBind();
+            }
         }
 
         protected void fillGroupsGrid()
         {
-            SqlDataReader reader;
+
             List<Group> groups = new List<Group>();
 
-            reader = data.GetActiveGroups();
-            while (reader.Read())
+            using (SqlDataReader reader = data.GetActiveGroups())
             {
-                //public Group(string GroupName, int ViewSecurityGroup, string ViewSecurityGroupName, string EndDate, string GroupID, string GroupNodeID)
-                groups.Add(new Group(reader["GroupName"].ToString(), reader.GetInt64(reader.GetOrdinal("ViewSecurityGroup")), reader["ViewSecurityGroupName"].ToString(),
+                while (reader.Read())
+                {
+                    //public Group(string GroupName, int ViewSecurityGroup, string ViewSecurityGroupName, string EndDate, string GroupID, string GroupNodeID)
+                    groups.Add(new Group(reader["GroupName"].ToString(), reader.GetInt64(reader.GetOrdinal("ViewSecurityGroup")), reader["ViewSecurityGroupName"].ToString(),
                     reader["Theme"].ToString(), reader["EndDate"].ToString(), reader.GetInt32(reader.GetOrdinal("GroupID")), reader.GetInt64(reader.GetOrdinal("GroupNodeID"))));
+                }
+
+                if (!reader.IsClosed) reader.Close();
+
+                gvGroups.DataSource = groups;
+                gvGroups.DataBind();
+
             }
-            reader.Close();
 
-            gvGroups.DataSource = groups;
-            gvGroups.DataBind();
-            gvGroups.CellPadding = 2;
-
-            SqlDataReader deletedReader;
-            List<Group> deletedGroups = new List<Group>();
-
-            deletedReader = data.GetDeletedGroups();
-            while (deletedReader.Read())
+            using (SqlDataReader deletedReader = data.GetDeletedGroups())
             {
-                //public Group(string GroupName, int ViewSecurityGroup, string ViewSecurityGroupName, string EndDate, string GroupID, string GroupNodeID)
-                deletedGroups.Add(new Group(deletedReader["GroupName"].ToString(), deletedReader.GetInt64(deletedReader.GetOrdinal("ViewSecurityGroup")), deletedReader["ViewSecurityGroupName"].ToString(),
+                List<Group> deletedGroups = new List<Group>();
+                while (deletedReader.Read())
+                {
+                    //public Group(string GroupName, int ViewSecurityGroup, string ViewSecurityGroupName, string EndDate, string GroupID, string GroupNodeID)
+                    deletedGroups.Add(new Group(deletedReader["GroupName"].ToString(), deletedReader.GetInt64(deletedReader.GetOrdinal("ViewSecurityGroup")), deletedReader["ViewSecurityGroupName"].ToString(),
                     deletedReader["Theme"].ToString(), deletedReader["EndDate"].ToString(), deletedReader.GetInt32(deletedReader.GetOrdinal("GroupID")), deletedReader.GetInt64(deletedReader.GetOrdinal("GroupNodeID"))));
+
+
+                }
+
+                gvDeletedGroups.DataSource = deletedGroups;
+                gvDeletedGroups.DataBind();
+
+                if (!deletedReader.IsClosed) deletedReader.Close();
             }
-            deletedReader.Close();
-
-            gvDeletedGroups.DataSource = deletedGroups;
-            gvDeletedGroups.DataBind();
-            gvDeletedGroups.CellPadding = 2;
         }
-
 
         private void addGroupsReset()
         {
             txtGroupName.Text = "";
             txtEndDate.Text = "";
   
-            ddVisibility.SelectedIndex = -1;
             pnlAddGroup.Visible = true;
         }
 
@@ -144,12 +157,14 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
             {
                 //btnImgAddGroups.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 addGroupsReset();
+                phDeletedGroups.Visible = false;
                 Session["pnlAddGroupMembers.Visible"] = true;
             }
             else
             {
                 Session["pnlAddGroupMembers.Visible"] = null;
                 addGroupsReset();
+                phDeletedGroups.Visible = true;
                 pnlAddGroup.Visible = false;
             }
 
@@ -166,13 +181,18 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
             {
                 //btnImgDeletedGroups.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 pnlDeletedGroups.Visible = true;
+                phAddGroups.Visible = false;
+                gvGroups.Visible = false;
                 //addGroupsReset();
                 Session["pnlDeletedGroups.Visible"] = true;
+                lblNoGroups.Visible = (gvDeletedGroups.Rows.Count == 0 ? true : false);
             }
             else
             {
                 Session["pnlDeletedGroups.Visible"] = null;
                 //addGroupsReset();
+                phAddGroups.Visible = true;
+                gvGroups.Visible = true;
                 pnlDeletedGroups.Visible = false;
             }
 
@@ -231,6 +251,8 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
                 ******/
                 ImageButton lnkDelete = (ImageButton)e.Row.FindControl("lnkDelete");
             }
+
+            e.Row.Cells[3].Attributes.Add("style", "width:50px");
         }
 
         protected void gvGroups_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -238,14 +260,14 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
             gvGroups.EditIndex = -1;
 
             fillGroupsGrid();
-            upnlEditSection.Update();
+
         }
 
         protected void gvGroups_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvGroups.EditIndex = e.NewEditIndex;
             fillGroupsGrid();
-            upnlEditSection.Update();
+
         }
 
         protected void gvGroups_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -254,14 +276,14 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
             long groupNodeID = Convert.ToInt64(gvGroups.DataKeys[e.RowIndex].Values[1].ToString());
             data.DeleteGroup(groupID, groupNodeID);
             fillGroupsGrid();
-            upnlEditSection.Update();
+
         }
 
 
         protected void gvGroups_RowUpdated(object sender, GridViewUpdatedEventArgs e)
         {
             fillGroupsGrid();
-            upnlEditSection.Update();
+
         }
 
         protected void gvGroups_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -282,12 +304,13 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
             string endDate = null;
             if (!txtEndDate.Text.Equals("")) endDate = txtEndDate.Text;
 
-            //data.UpdateAward(hdURI.Value, txtAwardName.Text, txtAwardInst.Text, txtYr1.Text, txtYr2.Text, this.PropertyListXML);
+
             data.UpdateGroup(groupID, groupNodeID, txtGroupName.Text, vis, drpThemeEdit.SelectedValue, endDate);
-            gvGroups.EditIndex = -1;
+
             Session["pnlInsertAward.Visible"] = null;
+            gvGroups.EditIndex = -1;
             fillGroupsGrid();
-            upnlEditSection.Update();
+
         }
 
         protected void gvDeletedGroups_RowEditing(object sender, GridViewEditEventArgs e)
@@ -296,17 +319,7 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
             data.RestoreGroup(groupID);
             Session["pnlDeletedGroups.Visible"] = null;
             fillGroupsGrid();
-            upnlEditSection.Update();
-        }
 
-        protected void gvDeletedGroups_OnRowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                Group group = (Group)e.Row.DataItem;
-
-                ImageButton lnkDelete = (ImageButton)e.Row.FindControl("lnkDelete");
-            }
         }
 
         public string GetURLDomain()

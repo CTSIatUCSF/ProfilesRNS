@@ -40,12 +40,75 @@ namespace Profiles.Framework.Modules.MainMenu {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl panelMenu;
         
         /// <summary>
-        /// ProfileHistory control.
+        /// litLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Profiles.Framework.Modules.MainMenu.History ProfileHistory;
+        protected global::System.Web.UI.WebControls.Literal litLogin;
+        
+        /// <summary>
+        /// litViewMyProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litViewMyProfile;
+        
+        /// <summary>
+        /// litEditThisProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litEditThisProfile;
+        
+        /// <summary>
+        /// litProxy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litProxy;
+        
+        /// <summary>
+        /// litGroups control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litGroups;
+        
+        /// <summary>
+        /// groupListDivider control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl groupListDivider;
+        
+        /// <summary>
+        /// litLogOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litLogOut;
+        
+        /// <summary>
+        /// litJs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litJs;
     }
 }

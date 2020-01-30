@@ -29,13 +29,12 @@
                 <td colspan="3">
                     <div class="editPage">
 <!--
-                        <table width="100%">
-                            <tr class="topRow editTable">
+                            <tr class="topRow">
                                 <td>
                                     Mailing Address
                                 </td>
                             </tr>
-                            <tr class="editTable">
+                            <tr>
                                 <td style="padding: 5px 10px">
                                     <asp:Literal runat="server" ID="litMailingAddress"></asp:Literal>
                                 </td>

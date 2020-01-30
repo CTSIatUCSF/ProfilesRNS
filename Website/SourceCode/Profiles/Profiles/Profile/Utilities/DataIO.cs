@@ -542,7 +542,7 @@ namespace Profiles.Profile.Utilities
             return xml;
         }
 
-        public enum ClassType { Person, Grant, Unknown }
+        public enum ClassType { Person, Group, Unknown }
 
 
         public SqlDataReader GetPublications(RDFTriple request, ClassType type)
@@ -553,7 +553,7 @@ namespace Profiles.Profile.Utilities
             string connstr = GetConnectionString();
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlCommand dbcommand;
-            if (type == ClassType.Grant) dbcommand = new SqlCommand("[Profile.Module].[CustomViewAuthorInAuthorship.GetGroupList]");
+            if (type == ClassType.Group) dbcommand = new SqlCommand("[Profile.Module].[CustomViewAuthorInAuthorship.GetGroupList]");
             else dbcommand = new SqlCommand("[Profile.Module].[CustomViewAuthorInAuthorship.GetList]");
 
             SqlDataReader dbreader;

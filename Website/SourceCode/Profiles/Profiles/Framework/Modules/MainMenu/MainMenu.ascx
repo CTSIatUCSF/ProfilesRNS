@@ -1,16 +1,26 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MainMenu.ascx.cs"
-    Inherits="Profiles.Framework.Modules.MainMenu.MainMenu" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MainMenu.ascx.cs" Inherits="Profiles.Framework.Modules.MainMenu.MainMenu" %>
 <%@ Register TagName="History" TagPrefix="HistoryItem" Src="~/Framework/Modules/MainMenu/History.ascx" %>
-<%--
-    Copyright (c) 2008-2012 by the President and Fellows of Harvard College. All rights reserved.  
-    Profiles Research Networking Software was developed under the supervision of Griffin M Weber, MD, PhD.,
-    and Harvard Catalyst: The Harvard Clinical and Translational Science Center, with support from the 
-    National Center for Research Resources and Harvard University.
-
-
-    Code licensed under a BSD License. 
-    For details, see: LICENSE.txt 
+<%@ Register TagName="Lists" TagPrefix="MyLists" Src="~/Framework/Modules/MainMenu/MyLists.ascx" %>
+<div id="prns-nav">
+    <!-- MAIN NAVIGATION MENU -->
+    <nav>
+        <ul class="prns-main">
+            <li class="main-nav">
+                <a href="<%=ResolveUrl("~/search")%>">Home</a>
+            </li>
+            <li class="main-nav">
 --%>
+                <ul class="drop">
+                    <li>
+                        <a id="about" style="border-left: 1px solid  #999; border-right: 1px solid  #999; border-bottom: 1px solid #999; width: 200px !important" href="<%=ResolveUrl("~/about/default.aspx?tab=overview")%>">Overview</a>
+                    </li>
+                    <li>
+                        <a id="data" style="border-left: 1px solid  #999; border-right: 1px solid  #999; border-bottom: 1px solid #999; width: 200px !important" href="<%=ResolveUrl("~/about/default.aspx?tab=data")%>">Sharing Data</a>
+                    </li>
+                    <li>
+                        <a id="orcid" style="border-left: 1px solid  #999; border-right: 1px solid  #999; border-bottom: 1px solid #999; width: 200px !important" href="<%=ResolveUrl("~/about/default.aspx?tab=orcid")%>">ORCID</a>
+                    </li>
+                </ul>
 
 <div id="navbarsearch-container">
 	<div id="navbarsearch">
@@ -65,11 +75,65 @@
 			</ul>
 			<span runat="server" id="panelMenu" visible="true"></span>
 <!--		<HistoryItem:History runat="server" ID="ProfileHistory" Visible="false" />  -->
-		</div>
+                    <asp:Literal ID="litDashboard" runat="server" /></li>
+                <li>
+                    <div class="divider"></div>
+                </li>--%>
+                <asp:Literal runat="server" ID="litGroups"></asp:Literal>
+                <li id="groupListDivider" visible="false" runat="server">
+                    <div class="divider"></div>
+                </li>
+                <asp:Literal runat="server" ID="litLogOut"></asp:Literal>
+            </ul>
+        </div>
 	</div>
 </div>
 
 
 
+
+
+    });
+
+    function setNavigation() {
+        var path = $(location).attr('href');
+        path = path.replace(/\/$/, "");
+        path = decodeURIComponent(path);
+
+        $(".prns-main li").each(function () {
+
+            var href = $(this).find("a").attr('href');
+            var urlParams = window.location.search;
+
+            if ((path + urlParams).indexOf(href) >= 0) {
+                $(this).addClass('landed');
+            }
+        });
+
+
+        return true;
+    }
+    $(document).ready(function () {
+        $("#menu-search").on("keypress", function (e) {
+            if (e.which == 13) {
+                minisearch();
+                return false;
+            }
+            return true;
+        });
+
+        $("#img-mag-glass").on("click", function () {
+            minisearch();
+            return true;
+        });
+    });
+    function minisearch() {
+        var keyword = $("#menu-search").val();
+        var classuri = 'http://xmlns.com/foaf/0.1/Person';
+        document.location.href = '<%=ResolveUrl("~/search/default.aspx")%>?searchtype=people&searchfor=' + keyword + '&classuri=' + classuri;
+        return true;
+    }
+
+</script>
 
 

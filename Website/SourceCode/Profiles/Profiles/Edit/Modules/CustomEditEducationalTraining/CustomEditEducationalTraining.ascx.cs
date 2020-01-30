@@ -129,7 +129,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
             TextBox txtEducationalTrainingInst = null;
             TextBox txtEducationalTrainingLocation = null;
             TextBox txtEducationalTrainingDegree = null;
-            TextBox txtYr2 = null;
+            TextBox txtEndDate = null;
             TextBox txtEducationalTrainingFieldOfStudy = null;
             ImageButton lnkEdit = null;
             ImageButton lnkDelete = null;
@@ -148,7 +148,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
                 txtEducationalTrainingInst = (TextBox)e.Row.Cells[3].FindControl("txtEducationalTrainingInst");
                 txtEducationalTrainingLocation = (TextBox)e.Row.Cells[3].FindControl("txtEducationalTrainingLocation");
                 txtEducationalTrainingDegree = (TextBox)e.Row.Cells[2].FindControl("txtEducationalTrainingDegree");
-                txtYr2 = (TextBox)e.Row.Cells[1].FindControl("txtYr2");
+                txtEndDate = (TextBox)e.Row.Cells[1].FindControl("txtEndDate");
                 txtEducationalTrainingFieldOfStudy = (TextBox)e.Row.Cells[2].FindControl("txtEducationalTrainingFieldOfStudy");
                 hdURI = (HiddenField)e.Row.Cells[3].FindControl("hdURI");
 
@@ -171,7 +171,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
                 txtEducationalTrainingInst.Text = Server.HtmlDecode((string)txtEducationalTrainingInst.Text);
                 txtEducationalTrainingLocation.Text = Server.HtmlDecode((string)txtEducationalTrainingLocation.Text);
                 txtEducationalTrainingDegree.Text = Server.HtmlDecode((string)txtEducationalTrainingDegree.Text);
-                txtYr2.Text = Server.HtmlDecode((string)txtYr2.Text);
+                txtEndDate.Text = Server.HtmlDecode((string)txtEndDate.Text);
                 txtEducationalTrainingFieldOfStudy.Text = Server.HtmlDecode((string)txtEducationalTrainingFieldOfStudy.Text);
 
             }
@@ -191,13 +191,13 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
             TextBox txtEducationalTrainingInst = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtEducationalTrainingInst");
             TextBox txtEducationalTrainingLocation = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtEducationalTrainingLocation");
             TextBox txtEducationalTrainingDegree = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtEducationalTrainingDegree");
-            TextBox txtYr2 = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtYr2");
+            TextBox txtEndDate = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtEndDate");
             TextBox txtEducationalTrainingFieldOfStudy = (TextBox)GridViewEducation.Rows[e.RowIndex].FindControl("txtEducationalTrainingFieldOfStudy");
 
             HiddenField hdURI = (HiddenField)GridViewEducation.Rows[e.RowIndex].FindControl("hdURI");
 
             //data.AddEducationalTraining(this.SubjectID, txtInstitution.Text, txtLocation.Text, txtEducationalTrainingDegree.Text, txtEndYear.Text, txtFieldOfStudy.Text, this.PropertyListXML);
-            data.UpdateEducationalTraining(hdURI.Value, this.SubjectID, txtEducationalTrainingInst.Text, txtEducationalTrainingLocation.Text, txtEducationalTrainingDegree.Text, txtYr2.Text, txtEducationalTrainingFieldOfStudy.Text);
+            data.UpdateEducationalTraining(hdURI.Value, this.SubjectID, txtEducationalTrainingInst.Text, txtEducationalTrainingLocation.Text, txtEducationalTrainingDegree.Text, txtEndDate.Text, txtEducationalTrainingFieldOfStudy.Text);
             GridViewEducation.EditIndex = -1;
             Session["pnlInsertEducationalTraining.Visible"] = null;
             this.FillEducationalTrainingGrid(true);
@@ -235,8 +235,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
             Session["pnlInsertEducationalTraining.Visible"] = null;
             txtEndYear.Text = "";
             txtInstitution.Text = "";
-            txtEducationalTrainingDegree.Text = "";
-            txtEducationalTrainingSchool.Text = "";
+            txtEducationalTrainingDegree.Text = "";   
             txtLocation.Text = "";
             txtFieldOfStudy.Text = "";
             pnlInsertEducationalTraining.Visible = false;
@@ -253,8 +252,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
                 txtEndYear.Text = "";
                 txtInstitution.Text = "";
                 txtEducationalTrainingDegree.Text = "";
-                txtEducationalTrainingSchool.Text = "";
-                txtLocation.Text = "";
+                           txtLocation.Text = "";
                 txtFieldOfStudy.Text = "";
                 Session["pnlInsertEducationalTraining.Visible"] = null;
                 btnEditEducation_OnClick(sender, e);

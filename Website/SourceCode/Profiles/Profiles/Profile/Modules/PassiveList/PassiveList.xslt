@@ -3,7 +3,7 @@
   <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="no" />
   <xsl:param name="root"/>  
   <xsl:template match="PassiveList">
-    <div class="passiveSectionHead">
+    <div class="passiveSectionHead editBody">
       <div style="white-space: nowrap;display:inline">
         <xsl:value-of select="@InfoCaption"/>
         <xsl:text> </xsl:text>
@@ -39,7 +39,7 @@ changed display none to block for next div
       </ul>
     </div>
     <xsl:if test ="@MoreURL!=''">
-      <div class="passiveSectionBodyDetails">
+      <div class="passiveSectionBodyDetails editBody">
         <a href="{@MoreURL}" class="dblarrow">          
           <xsl:value-of select="@MoreText"/>
         </a>

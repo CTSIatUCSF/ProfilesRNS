@@ -202,15 +202,6 @@ namespace Profiles.Framework {
         protected global::System.Web.UI.WebControls.Repeater rptHeader;
         
         /// <summary>
-        /// divProfilesPage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divProfilesPage;
-        
-        /// <summary>
         /// PageColumnLeft control.
         /// </summary>
         /// <remarks>
@@ -238,49 +229,49 @@ namespace Profiles.Framework {
         protected global::System.Web.UI.WebControls.Repeater rptInfo;
         
         /// <summary>
-        /// divProfilesPageColumnRightTopLine control.
+        /// ProfilesNotification control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divProfilesPageColumnRightTopLine;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ProfilesNotification;
         
         /// <summary>
-        /// divPageColumnRightCenter control.
+        /// litSystemNotice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPageColumnRightCenter;
+        protected global::System.Web.UI.WebControls.Literal litSystemNotice;
         
         /// <summary>
-        /// tblTableBody control.
+        /// divContentLeft control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable tblTableBody;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divContentLeft;
         
         /// <summary>
-        /// trbody control.
+        /// Contentleft control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableRow trbody;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder Contentleft;
         
         /// <summary>
-        /// divProfilesMainColumnLeft control.
+        /// rptLeft control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell divProfilesMainColumnLeft;
+        protected global::System.Web.UI.WebControls.Repeater rptLeft;
         
         /// <summary>
         /// divProfilesContentMain control.
@@ -292,13 +283,13 @@ namespace Profiles.Framework {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divProfilesContentMain;
         
         /// <summary>
-        /// litBackLink control.
+        /// divTopMainRow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litBackLink;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTopMainRow;
         
         /// <summary>
         /// litPageTitle control.
@@ -319,13 +310,13 @@ namespace Profiles.Framework {
         protected global::System.Web.UI.WebControls.Literal litPageSubTitle;
         
         /// <summary>
-        /// rptPage control.
+        /// litBackLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPage;
+        protected global::System.Web.UI.WebControls.Literal litBackLink;
         
         /// <summary>
         /// litPageDescription control.
@@ -347,14 +338,7 @@ namespace Profiles.Framework {
         
         /// <summary>
         /// ContentMain control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentMain;
-        
-        /// <summary>
         /// rptMain control.
         /// </summary>
         /// <remarks>
@@ -364,13 +348,13 @@ namespace Profiles.Framework {
         protected global::System.Web.UI.WebControls.Repeater rptMain;
         
         /// <summary>
-        /// tdProfilesMainColumnRight control.
+        /// rptMain control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell tdProfilesMainColumnRight;
+        protected global::System.Web.UI.WebControls.Repeater rptMain;
         
         /// <summary>
         /// ContentPassive control.
@@ -472,22 +456,12 @@ namespace Profiles.Framework {
         protected global::System.Web.UI.WebControls.Panel MasterPageFooterLBNL;
         
         /// <summary>
-        /// ContentFooter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentFooter;
-        
-        /// <summary>
-        /// rptFooter control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptFooter;
+        protected global::System.Web.UI.WebControls.Literal litJS;
         
         /// <summary>
         /// MasterPageQeryzUCSF control.

@@ -81,23 +81,29 @@ namespace Profiles.CustomAPI.v2
 
         private string find(Institution inst, string name)
         {
-            // try with full name
-            string uri = search(inst, name, false);
-            char[] splintOn = { ' ', '-' };
-            if (uri == null && name.Split(splintOn).Length >= 3)
+            // try this first
+            string uri = simpleSearch(inst, name);
+            if (uri != null)
+            {
+                return uri;
+            }
+            // now try with full name
+            uri = search(inst, name, false);
+            char[] splitOn = { ' ', '-' };
+            if (uri == null && name.Split(splitOn).Length >= 3)
             {
                 // had a middle name or initial, try dropping it
-                uri = search(inst, name.Split(splintOn)[0] + " " + name.Split(' ')[name.Split(splintOn).Length - 1], false);
+                uri = search(inst, name.Split(splitOn)[0] + " " + name.Split(splitOn)[name.Split(splitOn).Length - 1], false);
             }
             if (uri == null)
             {
                 // try just last name
-                uri = search(inst, name.Split(splintOn)[name.Split(splintOn).Length - 1], true);
+                uri = search(inst, name.Split(splitOn)[name.Split(splitOn).Length - 1], true);
             }
             if (uri == null)
             {
                 // try just first name
-                uri = search(inst, name.Split(splintOn)[0], true);
+                uri = search(inst, name.Split(splitOn)[0], true);
             }
 
             return uri;
@@ -141,6 +147,36 @@ namespace Profiles.CustomAPI.v2
                 }
             }
             return retval;
+        }
+
+        private string simpleSearch(Institution inst, string name)
+        {
+            try
+            {
+                char[] splitOn = { ' ', '-', '+' };
+                if (name.Split(splitOn).Length >= 2)
+                {
+                    Profiles.Framework.Utilities.DataIO data = new Profiles.Framework.Utilities.DataIO();
+                    string sql = "select nodeid from [UCSF.].vwPerson where InstitutionAbbreviation = '" + inst.GetAbbreviation() + 
+                        "' and FirstName = '" + name.Split(splitOn)[0] + "' and LastName = '" + name.Split(splitOn)[name.Split(splitOn).Length - 1] + "'";
+               
+                    using (System.Data.SqlClient.SqlDataReader sqldr = data.GetSQLDataReader("ProfilesDB", sql, System.Data.CommandType.Text, System.Data.CommandBehavior.CloseConnection, null))
+                    {
+                        if (sqldr.Read())
+                        {
+                            Int64 nodeId = sqldr.GetInt64(0);
+                            // only do this if just one row is returned
+                            return sqldr.Read() ? null : data.GetRESTBasePath() + "/profile/" + nodeId;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + " " + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+            return null;
         }
     }
 }

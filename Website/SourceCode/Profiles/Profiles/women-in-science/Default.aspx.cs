@@ -53,6 +53,23 @@ namespace Profiles.WomenInScience
             Aboutcss.Attributes["type"] = "text/css";
             Aboutcss.Attributes["media"] = "all";
             Page.Header.Controls.Add(Aboutcss);
+
+            HtmlLink BricklayerCSS = new HtmlLink();
+            BricklayerCSS.Href = "https://cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.css";
+            BricklayerCSS.Attributes["rel"] = "stylesheet";
+            Page.Header.Controls.Add(BricklayerCSS);
+
+            HtmlLink BootstrapCSS = new HtmlLink();
+            BootstrapCSS.Href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+            BootstrapCSS.Attributes["rel"] = "stylesheet";
+            BootstrapCSS.Attributes["crossorigin"] = "anonymous";
+            BootstrapCSS.Attributes["integrity"] = "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T";
+            Page.Header.Controls.Add(BootstrapCSS);
+
+            HtmlGenericControl Bricklayerjs = new HtmlGenericControl("script");
+            Bricklayerjs.Attributes.Add("type", "text/javascript");
+            Bricklayerjs.Attributes.Add("src", "https://cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.js");
+            Page.Header.Controls.Add(Bricklayerjs);
         }
     }
 }

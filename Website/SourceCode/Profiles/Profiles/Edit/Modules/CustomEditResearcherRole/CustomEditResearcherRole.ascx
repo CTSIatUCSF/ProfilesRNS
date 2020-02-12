@@ -267,7 +267,7 @@
         </div>
     </ContentTemplate>
 </asp:UpdatePanel>
-<script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
     function checkall() {

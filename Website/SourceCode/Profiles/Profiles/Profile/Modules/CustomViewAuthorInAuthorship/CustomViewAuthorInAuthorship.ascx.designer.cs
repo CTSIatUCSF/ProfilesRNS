@@ -40,15 +40,6 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.HyperLink Contact;
         
         /// <summary>
-        /// timelineBar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage timelineBar;
-        
-        /// <summary>
         /// rpPublication control.
         /// </summary>
         /// <remarks>
@@ -56,6 +47,15 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rpPublication;
+        
+        /// <summary>
+        /// timelineBar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage timelineBar;
         
         /// <summary>
         /// litTimelineTable control.

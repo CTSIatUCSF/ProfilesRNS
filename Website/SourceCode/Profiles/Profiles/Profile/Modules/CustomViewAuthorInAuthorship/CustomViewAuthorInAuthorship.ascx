@@ -30,14 +30,7 @@
         Some publications (especially newer ones and publications not in PubMed) might not yet be assigned Field or Translation tags.)
         Click a Field or Translation tag to filter the publications.
     </div>
-	<div class='toggle-vis' style='display:none;margin-top: 6px;'>		
-		Publications by year:
-		<div id="publicationTimelineGraph">
-			<a id="divShowTimelineTable" tabindex="0">View visualization as text</a><br />
-			<img id='timelineBar' runat='server' border='0' width='620' height='100'/>
-		</div>
-	</div>	
-
+    <div id="divPubList">
         <asp:Repeater ID="rpPublication" runat="server" OnItemDataBound="rpPublication_OnDataBound">
             <HeaderTemplate>
                 <div id="publicationListAll" class="publications">
@@ -61,7 +54,8 @@
             </FooterTemplate>
         </asp:Repeater>
 
-            <!--cp  <div style="text-align:left">To see the data from this visualization as text, <a id="divShowTimelineTable" tabindex="0">click here.</a></div> -->
+    </div>
+    <div id="divFiltered" style='display: none; margin-top: 6px;' class="publications">
         <ol id="ulFiltered">
         </ol>
     </div>
@@ -70,17 +64,19 @@
         
 
 
+		<div id="publicationTimelineGraph">
             <div class="details-text" style="margin-bottom: 10px;">
                 This graph shows the total number of publications by year. To see the data as text, <a id="divShowTimelineTable" tabindex="0">click here</a>.
             </div>
+            <img id='timelineBar' runat='server' border='0' />
         </div>
 
         <div id="divTimelineTable" class="listTable" style="display: none; margin-top: 12px; margin-bottom: 8px;">
-		    <a id="dirReturnToTimeline" tabindex="0">View timeline visualization</a><br />
+            <div class="details-text" style="margin-bottom: 10px;">
                 This graph shows the total number of publications by year. To return to the graph, <a id="dirReturnToTimeline" tabindex="0">click here</a>.
             </div>
             <asp:Literal runat="server" ID="litTimelineTable"></asp:Literal>
-            <!--cp  To return to the timeline, <a id="dirReturnToTimeline" tabindex="0">click here.</a> -->
+        </div>
 
     </div>
 
@@ -117,6 +113,7 @@
         <textarea id="txtPublications-text-options" style="margin-top:10px;" rows="24" cols="100" readonly></textarea>
     </div>
     <div id="divPlainText"></div>
+</div>
 
 <div class="SupportText">
     <asp:Literal runat='server' ID='supportText'></asp:Literal>
@@ -235,7 +232,8 @@
         }
     });
 
-    setTimeout(function () {        
+    setTimeout(function () {
+        
         $.getScript('//d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
     }, 1000);
 /*

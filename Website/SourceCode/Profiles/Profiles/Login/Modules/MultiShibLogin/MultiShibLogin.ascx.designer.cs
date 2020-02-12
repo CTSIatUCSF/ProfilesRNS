@@ -49,6 +49,15 @@ namespace Profiles.Login.Modules.MultiShibLogin {
         protected global::System.Web.UI.WebControls.ImageButton LoginUCSF;
         
         /// <summary>
+        /// LoginUCLA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton LoginUCLA;
+        
+        /// <summary>
         /// LoginUSC control.
         /// </summary>
         /// <remarks>
@@ -65,14 +74,5 @@ namespace Profiles.Login.Modules.MultiShibLogin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton LoginLBNL;
-        
-        /// <summary>
-        /// LoginUCLA control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton LoginUCLA;
     }
 }

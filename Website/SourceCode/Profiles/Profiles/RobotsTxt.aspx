@@ -5,5 +5,7 @@
 <%Response.Write("Disallow: /profile/" + Environment.NewLine);%>
 <%Response.Write("Disallow: /display/" + Environment.NewLine);%>
 <%Response.Write("Disallow: /search/default.aspx" + Environment.NewLine);%>
+<%Response.Write("Allow: /profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx" + Environment.NewLine);%>
+<%Response.Write(Environment.NewLine);%>
 <%Response.Write("Sitemap: " + Request.Url.Scheme + "://" + Request.Url.Host + "/sitemap.xml" + Environment.NewLine);%>
 <%Response.Write("Crawl-Delay: 10" + Environment.NewLine);%>

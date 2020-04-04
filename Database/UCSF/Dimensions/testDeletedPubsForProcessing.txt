@@ -1,0 +1,50 @@
+SELECT SourceAuthorID,p.personid,p.FirstName,p.LastName 
+             , ActualID as publ 
+	     FROM [UCSF.].[ExternalID] ExtID   
+	     join [Profile.Data].[Person] p on ExtID.personid =p.personid 
+         join DimensionsStage1 limList on LimList.personid =ExtID.personid 
+		 left outer join [Profile.Data].[Publication.Person.Include] inc  
+		   on inc.personid=ExtID.personid and inc.pmid<0 
+		 left join [Profile.Data].[Publication.Import.PubData] neg 
+		   on neg.ImportPubID=inc.pmid 
+		 left outer join [Profile.Data].[Publication.Person.Exclude] exc  
+		   on	cast(inc.personid as varchar)+cast(inc.pmid  as varchar(10)) =  
+			cast(exc.personid as varchar)+cast(exc.pmid  as varchar(10))  
+		  where exc.pmid is NULL   
+		    and PublicationSource='Dimensions' 
+            and p.internalusername  like '%@ucsf.edu' 
+            and  p.personid in ( 
+ 		    select top 1 IDs.personid from [UCSF.].[ExternalID] IDs 
+            join DimensionsStage1 limitedSet on LimitedSet.personid =IDs.personid  
+				where IDs.personid = 6614 -->  @lastIUN 
+            )
+
+pub.1084681936
+pub.1084697072
+pub.1104295493
+pub.1084677072
+pub.1110952027
+
+After deleting one pub old query shows 4 pubs, but new shows 5
+
+SELECT SourceAuthorID,p.personid,p.FirstName,p.LastName 
+             , ActualID as publ 
+	     FROM [UCSF.].[ExternalID] ExtID   
+	     join [Profile.Data].[Person] p on ExtID.personid =p.personid 
+         join DimensionsStage1 limList on LimList.personid =ExtID.personid 
+		 left outer join (
+		  select * from [Profile.Data].[Publication.Person.Include] 
+			union
+		  select * from [Profile.Data].[Publication.Person.Exclude]
+		 ) pubs
+		  on pubs.personid=ExtID.personid and pubs.pmid<0 
+		 left join [Profile.Data].[Publication.Import.PubData] neg 
+		   on neg.ImportPubID=pubs.pmid 
+		  where 
+			PublicationSource='Dimensions' 
+            and p.internalusername  like '%@ucsf.edu' 
+            and  p.personid in ( 
+ 		    select top 1 IDs.personid from [UCSF.].[ExternalID] IDs 
+            join DimensionsStage1 limitedSet on LimitedSet.personid =IDs.personid  
+				where IDs.personid = 6614 -->  @lastIUN 
+            )

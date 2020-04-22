@@ -13,6 +13,15 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
     public partial class EditDataTypeProperty {
         
         /// <summary>
+        /// litBackLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litBackLink;
+        
+        /// <summary>
         /// upnlEditSection control.
         /// </summary>
         /// <remarks>
@@ -31,13 +40,13 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         protected global::System.Web.UI.WebControls.HiddenField hiddenSubjectID;
         
         /// <summary>
-        /// litBackLink control.
+        /// updateProgress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litBackLink;
+        protected global::System.Web.UI.UpdateProgress updateProgress;
         
         /// <summary>
         /// Literal1 control.
@@ -49,15 +58,6 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         protected global::System.Web.UI.WebControls.Literal Literal1;
         
         /// <summary>
-        /// phSecuritySettings control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel phSecuritySettings;
-        
-        /// <summary>
         /// securityOptions control.
         /// </summary>
         /// <remarks>
@@ -67,15 +67,6 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         protected global::Profiles.Edit.Modules.SecurityOptions.SecurityOptions securityOptions;
         
         /// <summary>
-        /// imbAddArrow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imbAddArrow;
-        
-        /// <summary>
         /// btnEditProperty control.
         /// </summary>
         /// <remarks>
@@ -83,6 +74,24 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnEditProperty;
+        
+        /// <summary>
+        /// imbAddArror control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imbAddArror;
+        
+        /// <summary>
+        /// litEditProperty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litEditProperty;
         
         /// <summary>
         /// RptrEditProperty control.

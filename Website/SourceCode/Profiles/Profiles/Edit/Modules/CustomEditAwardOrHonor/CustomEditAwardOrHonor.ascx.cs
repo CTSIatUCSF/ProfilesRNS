@@ -127,7 +127,7 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
         protected void GridViewAwards_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             TextBox txtYr1 = null;
-            TextBox txtEndDate = null;
+            TextBox txtYr2 = null;
             TextBox txtAwardName = null;
             TextBox txtAwardInst = null;
             ImageButton lnkEdit = null;
@@ -146,7 +146,7 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
             {
 
                 txtYr1 = (TextBox)e.Row.Cells[0].FindControl("txtYr1");
-                txtEndDate = (TextBox)e.Row.Cells[1].FindControl("txtEndDate");
+                txtYr2 = (TextBox)e.Row.Cells[1].FindControl("txtYr2");
                 txtAwardName = (TextBox)e.Row.Cells[2].FindControl("txtAwardName");
                 txtAwardInst = (TextBox)e.Row.Cells[3].FindControl("txtAwardInst");
                 hdURI = (HiddenField)e.Row.Cells[3].FindControl("hdURI");
@@ -168,7 +168,7 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
             if (e.Row.RowType == DataControlRowType.DataRow && (e.Row.RowState & DataControlRowState.Edit) == DataControlRowState.Edit)
             {
                 txtYr1.Text = Server.HtmlDecode((string)txtYr1.Text);
-                txtEndDate.Text = Server.HtmlDecode((string)txtEndDate.Text);
+                txtYr2.Text = Server.HtmlDecode((string)txtYr2.Text);
                 txtAwardName.Text = Server.HtmlDecode((string)txtAwardName.Text);
                 txtAwardInst.Text = Server.HtmlDecode((string)txtAwardInst.Text);
             }
@@ -187,13 +187,13 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
         {
 
             TextBox txtYr1 = (TextBox)GridViewAwards.Rows[e.RowIndex].FindControl("txtYr1");
-            TextBox txtEndDate = (TextBox)GridViewAwards.Rows[e.RowIndex].FindControl("txtEndDate");
+            TextBox txtYr2 = (TextBox)GridViewAwards.Rows[e.RowIndex].FindControl("txtYr2");
             TextBox txtAwardName = (TextBox)GridViewAwards.Rows[e.RowIndex].FindControl("txtAwardName");
             TextBox txtAwardInst = (TextBox)GridViewAwards.Rows[e.RowIndex].FindControl("txtAwardInst");
             HiddenField hdURI = (HiddenField)GridViewAwards.Rows[e.RowIndex].FindControl("hdURI");
 
 
-            data.UpdateAward(hdURI.Value, txtAwardName.Text, txtAwardInst.Text, txtYr1.Text, txtEndDate.Text, this.PropertyListXML);
+            data.UpdateAward(hdURI.Value, txtAwardName.Text, txtAwardInst.Text, txtYr1.Text, txtYr2.Text, this.PropertyListXML);
             GridViewAwards.EditIndex = -1;
             Session["pnlInsertAward.Visible"] = null;
             this.FillAwardGrid(true);

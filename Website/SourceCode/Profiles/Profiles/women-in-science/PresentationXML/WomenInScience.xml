@@ -4942,7 +4942,9 @@
         </div>
 	</div>
 		
-	<p id="criteria" style="clear:left">This page was generated based on information in UCSF Profiles. It has people who have titles of Assistant, Associate or full Professor, who have obtained NIH grant support, who have photos in their pages and use "she/her pronouns" in their profile overviews, or have a loosely similar name in the SSA's list of the most common girls' names of the 1980s. Because of these limitations, this page is not a fully representative sample of all female-identified researchers at UCSF <i>Last updated: June 21, 2019</i></p>
+	<p id="criteria" style="clear:left">
+    This page was generated based on information in UCSF Profiles. It includes people who have titles of Assistant, Associate, or full Professor, who have photos in their pages, and either use "she/her pronouns" in their profile bios, have a similar name in the SSA's list of the most common girls' names of the 1980s, or have requested to be included. Because of these limitations, this page is not, and cannot be, a fully representative sample of female-identified researchers at UCSF. Last updated: February 2020
+  </p>
 
           </Param>
         </ParamList>

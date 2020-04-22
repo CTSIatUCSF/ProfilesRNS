@@ -13,6 +13,15 @@ namespace Profiles.Edit.Modules.EditPropertyList {
     public partial class EditPropertyList {
         
         /// <summary>
+        /// litBackLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litBackLink;
+        
+        /// <summary>
         /// imgLock control.
         /// </summary>
         /// <remarks>

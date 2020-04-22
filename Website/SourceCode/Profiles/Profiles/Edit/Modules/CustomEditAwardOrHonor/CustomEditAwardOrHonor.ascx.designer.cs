@@ -76,15 +76,6 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor {
         protected global::System.Web.UI.WebControls.Panel pnlEditAwards;
         
         /// <summary>
-        /// imbAddArrow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imbAddArrow;
-        
-        /// <summary>
         /// btnEditAwards control.
         /// </summary>
         /// <remarks>
@@ -92,6 +83,24 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnEditAwards;
+        
+        /// <summary>
+        /// imbAddArror control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imbAddArror;
+        
+        /// <summary>
+        /// RptrEditAwards control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RptrEditAwards;
         
         /// <summary>
         /// pnlInsertAward control.
@@ -139,15 +148,6 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor {
         protected global::System.Web.UI.WebControls.TextBox txtInstitution;
         
         /// <summary>
-        /// btnInsertAwardClose control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnInsertAwardClose;
-        
-        /// <summary>
         /// btnInsertAward control.
         /// </summary>
         /// <remarks>
@@ -155,6 +155,15 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnInsertAward;
+        
+        /// <summary>
+        /// btnInsertAward2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnInsertAward2;
         
         /// <summary>
         /// btnInsertCancel control.

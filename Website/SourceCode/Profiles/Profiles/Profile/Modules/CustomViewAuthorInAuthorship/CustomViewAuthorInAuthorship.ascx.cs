@@ -163,9 +163,10 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                     lblPubTxt += lblPubTxt.EndsWith(".") ? "" : ".";
 
                     //if (pub.PMCCitations <= 0) litViewIn.Text = "Citations: <span class=\"PMC-citations\"><span class=\"PMC-citation-count\">0</span></span>";
-                    if (pub.PMCCitations <= 0) litViewIn.Text = "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid + "'> Citations: <span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" + pub.bibo_pmid + "'></span>&nbsp;&nbsp;&nbsp;</span>";
-                    else litViewIn.Text = "Citations: <a href='https://www.ncbi.nlm.nih.gov/pmc/articles/pmid/" + pub.bibo_pmid + "/citedby/' target='_blank' class=\"PMC-citations\"><span class=\"PMC-citation-count\">" + pub.PMCCitations + "</span></a>" +
+                    if (pub.PMCCitations <= 0) litViewIn.Text = litViewIn.Text + " " + "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid + "'> Citations: <span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" + pub.bibo_pmid + "'></span>&nbsp;&nbsp;&nbsp;</span>";
+                    else litViewIn.Text = litViewIn.Text + " " + "Citations: <a href='https://www.ncbi.nlm.nih.gov/pmc/articles/pmid/" + pub.bibo_pmid + "/citedby/' target='_blank' class=\"PMC-citations\"><span class=\"PMC-citation-count\">" + pub.PMCCitations + "</span></a>" +
                        "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid + "'>&nbsp;&nbsp;<span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" + pub.bibo_pmid + "'></span></span>&nbsp;&nbsp;&nbsp;";
+                    
                     if (!pub.Fields.Equals(""))
                     {
                         litViewIn.Text = litViewIn.Text + "Fields:&nbsp;<div style='display:inline-flex'>";

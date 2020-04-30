@@ -561,7 +561,6 @@
     <Content Include="trace.aspx" />
     <Content Include="women-in-science\Default.aspx" />
     <Content Include="women-in-science\PresentationXML\WomenInScience.xml" />
-    <Content Include="Activity\CSS\activity.css.orig" />
     <None Include="Web.config">
       <SubType>Designer</SubType>
     </None>

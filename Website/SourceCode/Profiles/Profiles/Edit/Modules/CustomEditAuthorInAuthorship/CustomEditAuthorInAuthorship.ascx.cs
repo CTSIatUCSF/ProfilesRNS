@@ -177,14 +177,14 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             {
                 e.Row.Cells[0].Text = PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value;
                 e.Row.Cells[0].Attributes.Add("style", "border-right:none;");
-                e.Row.Cells[1].Attributes.Add("style", "width:70px;");
+                e.Row.Cells[1].Attributes.Add("style", "width:120px;");
             }
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
                 e.Row.Cells[0].Attributes.Add("style", "padding:2px;");
-                e.Row.Cells[1].Attributes.Add("style", "padding:2px;width:70px;vertical-align:top;");
+                e.Row.Cells[1].Attributes.Add("style", "padding:2px;width:120px;vertical-align:top;");
 
 
                 btnImgDeletePub2.Visible = false;
@@ -197,6 +197,25 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
                 Label lblCounter = (Label)e.Row.FindControl("lblCounter");
                 lblCounter.Text = (this.Counter).ToString() + ".";
+
+                CheckBox clm = (CheckBox)e.Row.FindControl("chkClaim");
+                clm.Attributes["PubID"] = grdEditPublications.DataKeys[e.Row.RowIndex].Value.ToString();
+                if (!DataBinder.Eval(e.Row.DataItem, "pmid").Equals(System.DBNull.Value))
+                    clm.Attributes["pmid"] = DataBinder.Eval(e.Row.DataItem, "pmid").ToString();
+                // temp ability to turn it off by setting visibility to false in ascx
+                if (clm.Visible)
+                {
+                    if (1 == (Int32)DataBinder.Eval(e.Row.DataItem, "Claimed"))
+                    {
+                        clm.Enabled = false;
+                        clm.Checked = true;
+                    }
+                    else
+                    {
+                        clm.Enabled = true;
+                        clm.Checked = false;
+                    }
+                }
 
                 if (!DataBinder.Eval(e.Row.DataItem, "mpid").Equals(System.DBNull.Value))
                 {
@@ -287,6 +306,20 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                     { reader.Close(); }
                 }
             }
+        }
+
+        protected void claimOne__OnCheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox clm = (CheckBox)sender;
+
+            Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
+
+            data.ClaimOnePublication(Convert.ToInt32(Session["ProfileUsername"]), Convert.ToInt64(Session["NodeID"]), clm.Attributes["PubID"], clm.Attributes["pmid"], this.PropertyListXML);
+            this.Counter = 0;
+
+            grdEditPublications.DataBind();
+            upnlEditSection.Update();
+
         }
         protected void deleteOne_Onclick(object sender, EventArgs e)
         {

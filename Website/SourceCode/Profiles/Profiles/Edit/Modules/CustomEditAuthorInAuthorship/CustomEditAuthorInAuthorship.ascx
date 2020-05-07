@@ -401,6 +401,8 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Action" ItemStyle-CssClass="alignCenterAction" HeaderStyle-CssClass="alignCenterAction">
                         <ItemTemplate>
+                            <asp:CheckBox ID="chkClaim" runat="server" Text="Confirm" AlternateText="confirm" Visible="true"
+                                AutoPostBack="true" OnCheckedChanged="claimOne__OnCheckedChanged"></asp:CheckBox>
 
                             <asp:ImageButton ID="lnkEdit" runat="server" ImageUrl="~/Edit/Images/icon_edit.gif"
                                 CausesValidation="False" CommandName="Select" Text="Edit" AlternateText="edit" Visible="false"></asp:ImageButton>

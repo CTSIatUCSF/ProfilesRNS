@@ -33,9 +33,9 @@ namespace Profiles.Login.Modules.MultiShibLogin
 
                 SessionManagement sm = new SessionManagement();
                 
+                // Note, it seems this is NEVER USED
                 if ("login".Equals(Request["method"]) && sm.Session().IsLoggedIn())
                 {
-                    ShibbolethSession.RememberLoginShibSessionID(Request);
                     Response.Redirect(ShibLogin.ShibLogin.GetRedirectForAuthenticatedUser(redirectto));
                 }
                 else if ("logout".Equals(Request["method"]))
@@ -83,6 +83,7 @@ namespace Profiles.Login.Modules.MultiShibLogin
 
                             user.UserName = userName;
                             inProfiles = data.UserLoginExternal(ref user);
+                            DebugLogging.Log("Logged in " + userName + " with session " + session.SessionID + " inProfiles " + inProfiles);
                         }
                         if (!inProfiles)
                         {
@@ -90,7 +91,6 @@ namespace Profiles.Login.Modules.MultiShibLogin
                             // update the session to capture DisplayName
                             data.SessionUpdate(ref session);
                         }
-                        DebugLogging.Log("Logged in " + userName + " with session " + session.SessionID + " inProfiles " + inProfiles);
                     }
                     else 
                     {

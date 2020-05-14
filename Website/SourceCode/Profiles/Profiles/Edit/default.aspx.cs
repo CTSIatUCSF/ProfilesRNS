@@ -56,7 +56,10 @@ namespace Profiles.Edit
             this.LoadPageData();
 
             if (this.PresentationXML.SelectSingleNode("Presentation/PageOptions[@CanEdit='true']") == null)
+            {
+                Framework.Utilities.DebugLogging.Log("Not allowing edit for " + this.RDFTriple.Key + ", SessionID = " + session.Session().SessionID);
                 Response.Redirect(Brand.GetThemedDomain() + "/search");
+            }
 
             //masterpage.Tab = base.Tab;
             masterpage.RDFData = this.RDFData;

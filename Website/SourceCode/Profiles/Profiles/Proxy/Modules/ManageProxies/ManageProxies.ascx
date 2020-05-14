@@ -60,11 +60,6 @@ own proxies.
                 <div style="float: left; padding-right: 5px; padding-top: 7px;">
                     <asp:Image runat="server" ID="imgAdd" AlternateText=" " />
                 </div>
-<!--
-            <div style="float: left; padding-top: 8px;">
-                <asp:Literal runat="server" ID='lnkAddProxyTmp' Text="Add a Proxy"></asp:Literal>
-            </div>
--->
                     <span class="dblarrow"></span><asp:Literal runat="server" ID='lnkAddProxyTmp' Text = "Add A Proxy"></asp:Literal>
         </asp:Panel>
         <div style="font-weight: bold; margin-top: 34px; margin-bottom: 8px;">Users who have given you permission to edit their profiles</div>

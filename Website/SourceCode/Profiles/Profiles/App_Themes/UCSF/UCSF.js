@@ -57,10 +57,9 @@
 					ID = idarr[1];
 					TYPE = "pmid";
 				}
-				if (ID) {
-					var span = " <span class='altmetric-embed' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-" + TYPE + "=" + '"' +
-						ID + '"' + "></span>" +  // also add dimensions
-						"<span class='__dimensions_badge_embed__' data-hide-zero-citations='true' data-style='small_rectangle' data-" + TYPE + "=" + '"' +
+                if (ID) {
+                    // just dimensions now
+					var span = "<span class='__dimensions_badge_embed__' data-hide-zero-citations='true' data-style='small_rectangle' data-" + TYPE + "=" + '"' +
 						ID + '"' + "></span>";
 				}
 				$(this).parent().append(span);

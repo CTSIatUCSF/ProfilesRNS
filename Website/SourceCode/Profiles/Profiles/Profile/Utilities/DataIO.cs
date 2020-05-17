@@ -173,13 +173,22 @@ namespace Profiles.Profile.Utilities
                     xmlrtn.LoadXml(xmlstr);
 
 
-                    xmlstr = string.Empty;
+                    // temp comment of pointless code by Eric xmlstr = string.Empty;
 
 
                     if (!dbreader.IsClosed)
                         dbreader.Close();
 
-                    Framework.Utilities.Cache.Set(key + "|GetPresentationData", xmlrtn);
+                    // Added by Eric, UCSF. If request wants edit and it was NOT granted, do not cache. Weird bug
+                    if (request.Edit && xmlrtn.SelectSingleNode("Presentation/PageOptions[@CanEdit='true']") == null)
+                    {
+                        Framework.Utilities.DebugLogging.Log("Denied request for edit of presentation xml! Key=" + key);
+                        Framework.Utilities.DebugLogging.Log("Denied request for edit of presentation xml! XML=" + xmlstr);
+                    }
+                    else
+                    {
+                        Framework.Utilities.Cache.Set(key + "|GetPresentationData", xmlrtn);
+                    }
                 }
 
             }

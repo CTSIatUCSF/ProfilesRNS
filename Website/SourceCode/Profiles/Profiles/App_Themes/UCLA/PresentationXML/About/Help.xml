@@ -39,7 +39,7 @@ $('.profiles .profilesContentMain .pageTitle h2').hide();
 	 
 	  <div class="content-block">
 		<h2 style="font-size:30px">Contact Us</h2>
-		<p>Please <a href="mailto:profiles@ucla.edu">share your feedback</a> about how to improve
+		<p>Please <a href="mailto:UCLAProfiles@mednet.ucla.edu">share your feedback</a> about how to improve
 		   UCLA Profiles, and let us know if UCLA Profiles has enabled your research in any way.
 		   Your success stories are important to enable the continued support and expansion of this
 		   important tool.

@@ -35,8 +35,8 @@ namespace Profiles.Login
             SessionManagement sm = new SessionManagement();
             Session session = sm.Session();
 
-            // not logged into this domain but logged in via shibboleth
-            if ("False".Equals(Request["loggedIn"]) && HasShibbolethSession(Request))
+            // not logged into this domain but logged in via shibboleth and profiles (to keep from endless loop and code push while shibbed in)
+            if ("False".Equals(Request["loggedIn"]) && HasShibbolethSession(Request) && session.IsLoggedIn())
             {
                 // user is logged into shibboleth but not here
 

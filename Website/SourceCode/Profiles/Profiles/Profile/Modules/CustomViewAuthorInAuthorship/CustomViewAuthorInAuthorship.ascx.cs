@@ -194,12 +194,12 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                     }
                     else
                     {
-                        citationText = "'> Citations: " + "<span id='spnHideOnNoDimensionsAltmetric" + pub.bibo_pmid +
-                                "'>&nbsp;&nbsp;<span class='__dimensions_badge_embed__' data-hide-zero-citations='true' data-style='small_rectangle' data-" + doi + "=" + '"' +
+                        citationText = "'>" + "<span id='spnHideOnNoDimensionsAltmetric" + pub.bibo_pmid +
+                                "'>&nbsp;&nbsp;<span class='__dimensions_badge_embed__' data-hide-zero-citations='true' data-style='small_rectangle' data-doi=" + '"' +
                         doi + '"' + "></span>" +
                         "<span id='spnHideOnNoDimesionsCited" + pub.bibo_pmid +
                                 "'>&nbsp;&nbsp;<span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-doi='" +
-                        doi + "'></span>&nbsp;&nbsp;&nbsp;</span>";
+                        doi + "'></span>&nbsp;&nbsp;&nbsp;</span>" + "</span><script async src='https://badge.dimensions.ai/badge.js' charset='utf-8'></script>";
                     }
 
                     litViewIn.Text = litViewIn.Text + citationText;

@@ -121,11 +121,22 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                 lblPubTxt += (!String.IsNullOrEmpty(lblPubTxt) && !lblPubTxt.TrimEnd().EndsWith(".") ? ". " : "") + pub.prns_informationResourceReference;
                 lblPubTxt = lblPubTxt.Replace(". .", ".");
 
+                string doi = "";
                 if (pub.bibo_pmid != string.Empty && pub.bibo_pmid != null)
                 {
                     if (pub.bibo_pmid.IndexOf("-") < 0)
                     {
                         lblPubTxt = lblPubTxt + " PMID: " + pub.bibo_pmid;
+                    }
+                    else
+                    {
+                        if (pub.vivo_webpage.IndexOf("doi.org") > -1)
+                        {
+                            pub.prns_pubsource = "Publisher Site";
+                            int doistart = pub.vivo_webpage.IndexOf("doi.org") + 8;
+                            doi = pub.vivo_webpage.Substring(doistart);
+                            liPublication.Attributes["data-doi"] = doi;
+                        }
                     }
                     liPublication.Attributes["data-pmid"] = pub.bibo_pmid;
                     liPublication.Attributes["data-citations"] = "" + pub.PMCCitations;
@@ -163,10 +174,41 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                     lblPubTxt += lblPubTxt.EndsWith(".") ? "" : ".";
 
                     //if (pub.PMCCitations <= 0) litViewIn.Text = "Citations: <span class=\"PMC-citations\"><span class=\"PMC-citation-count\">0</span></span>";
-                    if (pub.PMCCitations <= 0) litViewIn.Text = litViewIn.Text + " " + "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid + "'> Citations: <span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" + pub.bibo_pmid + "'></span>&nbsp;&nbsp;&nbsp;</span>";
-                    else litViewIn.Text = litViewIn.Text + " " + "Citations: <a href='https://www.ncbi.nlm.nih.gov/pmc/articles/pmid/" + pub.bibo_pmid + "/citedby/' target='_blank' class=\"PMC-citations\"><span class=\"PMC-citation-count\">" + pub.PMCCitations + "</span></a>" +
-                       "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid + "'>&nbsp;&nbsp;<span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" + pub.bibo_pmid + "'></span></span>&nbsp;&nbsp;&nbsp;";
-                    
+                    string citationText = "";
+                    if (pub.bibo_pmid.IndexOf("-") < 0)
+                    {
+                        if (pub.PMCCitations <= 0)
+                        {
+                            citationText = "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid +
+                                "'> Citations: <span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" +
+                                pub.bibo_pmid + "'></span>&nbsp;&nbsp;&nbsp;</span>";
+                        }
+                        else
+                        {
+                            citationText = "Citations: <a href='https://www.ncbi.nlm.nih.gov/pmc/articles/pmid/" + pub.bibo_pmid +
+                                "/citedby/' target='_blank' class=\"PMC-citations\"><span class=\"PMC-citation-count\">" +
+                                pub.PMCCitations + "</span></a>" + "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid +
+                                "'>&nbsp;&nbsp;<span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" +
+                                pub.bibo_pmid + "'></span></span>&nbsp;&nbsp;&nbsp;";
+                        }
+                    }
+                    else
+                    {
+                        citationText = "'> Citations: " + "<span id='spnHideOnNoDimensionsAltmetric" + pub.bibo_pmid +
+                                "'>&nbsp;&nbsp;<span class='__dimensions_badge_embed__' data-hide-zero-citations='true' data-style='small_rectangle' data-" + doi + "=" + '"' +
+                        doi + '"' + "></span>" +
+                        "<span id='spnHideOnNoDimesionsCited" + pub.bibo_pmid +
+                                "'>&nbsp;&nbsp;<span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-doi='" +
+                        doi + "'></span>&nbsp;&nbsp;&nbsp;</span>";
+                    }
+
+                    litViewIn.Text = litViewIn.Text + citationText;
+
+                    /*
+                                       if (pub.PMCCitations <= 0) litViewIn.Text = litViewIn.Text + " " + "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid + "'> Citations: <span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" + pub.bibo_pmid + "'></span>&nbsp;&nbsp;&nbsp;</span>";
+                                       else litViewIn.Text = litViewIn.Text + " " + "Citations: <a href='https://www.ncbi.nlm.nih.gov/pmc/articles/pmid/" + pub.bibo_pmid + "/citedby/' target='_blank' class=\"PMC-citations\"><span class=\"PMC-citation-count\">" + pub.PMCCitations + "</span></a>" +
+                                          "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid + "'>&nbsp;&nbsp;<span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" + pub.bibo_pmid + "'></span></span>&nbsp;&nbsp;&nbsp;";
+                   */
                     if (!pub.Fields.Equals(""))
                     {
                         litViewIn.Text = litViewIn.Text + "Fields:&nbsp;<div style='display:inline-flex'>";

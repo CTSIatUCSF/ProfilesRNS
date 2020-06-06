@@ -113,6 +113,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
                 btnInsertCancel_OnClick(sender, e);
                 pnlSecurityOptions.Visible = false;
                 pnlInsertEducationalTraining.Visible = true;
+                imbAddArrow.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                 Session["pnlInsertEducationalTraining.Visible"] = true;
             }
             else
@@ -120,6 +121,8 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
                 Session["pnlInsertEducationalTraining.Visible"] = null;
                 pnlSecurityOptions.Visible = true;
                 pnlInsertEducationalTraining.Visible = false;
+                imbAddArrow.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
+
             }
             upnlEditSection.Update();
         }

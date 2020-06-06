@@ -22,7 +22,17 @@
         <xsl:for-each select="ItemList/Item">
           <li>
             <a href="{@ItemURL}">
+              <xsl:if test="@PersonID">
+                <div class="thumbnail">
+                  <img src="{$root}/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?person={@PersonID}&amp;Thumbnail=True&amp;Width=15" width="15" height="30"/>
+                </div>
+              </xsl:if>                
               <xsl:value-of select="@ItemURLText"/>
+              <xsl:if test="@ItemInst">
+                <span class="authInst">
+                  <xsl:value-of select="@ItemInst"/>
+                </span>
+              </xsl:if>
             </a>
             <xsl:value-of select="."/>
           </li>

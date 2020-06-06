@@ -898,7 +898,7 @@ GO
 CREATE view [ORNG.].[vwPerson]
 as
 SELECT n.nodeId
-      ,par.[Value] + '/' + na.[UrlName] profileURL, p.IsActive
+      ,par.[Value] + '/' + na.[UrlName] profileURL, p.IsActive, p.internalusername
   FROM [Framework.].Parameter par JOIN
   [Profile.Data].[Person] p ON  par.[ParameterID] = 'basePath'
 	LEFT JOIN [UCSF.].[NameAdditions] na on na.internalusername = p.internalusername

@@ -18,6 +18,7 @@
     <ItemTemplate>
         <li>
             <asp:HyperLink runat="server" ID="itemUrl"></asp:HyperLink>
+            <asp:Literal runat="server" ID="ucsfPersonItem"></asp:Literal>
         </li>
     </ItemTemplate>
     <FooterTemplate>

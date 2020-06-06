@@ -21,9 +21,9 @@
             <security:Options runat="server" ID="securityOptions"></security:Options>
         </asp:Panel>
         <asp:Panel runat="server" ID="pnlEditEducation">
-                            <span class="dblarrow"></span>
-							<asp:LinkButton ID="btnEditEducation" runat="server" OnClick="btnEditEducation_OnClick"
-                                CssClass="profileHypLinks"> Add Education and Training</asp:LinkButton>
+            <div class="EditMenuItem">
+                <asp:ImageButton CssClass="EditMenuLinkImg" runat="server" OnClick="btnEditEducation_OnClick" ID="imbAddArrow" AlternateText=" " ImageUrl="~/Edit/Images/icon_squareArrow.gif" />
+                <asp:LinkButton ID="btnEditEducation" runat="server" OnClick="btnEditEducation_OnClick">Add Education and Training</asp:LinkButton>
             </div>
         </asp:Panel>      
         <asp:Panel ID="pnlInsertEducationalTraining" runat="server" CssClass="EditPanel" Visible="false">

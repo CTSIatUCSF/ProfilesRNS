@@ -57,10 +57,9 @@ namespace Profiles.Profile.Modules.PassiveList
 
                     XmlNode networknode = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about=\"" + i.Value + "\"]", this.Namespaces);
 
-                    string itemurl = CustomParse.Parse(base.GetModuleParamString("ItemURL"), networknode, this.Namespaces);
+                    string itemurl =CustomParse.Parse(base.GetModuleParamString("ItemURL"), networknode, this.Namespaces);
                     string itemurltext = CustomParse.Parse(base.GetModuleParamString("ItemURLText"), networknode, this.Namespaces);
                     string item = CustomParse.Parse(base.GetModuleParamString("ItemText"), networknode, this.Namespaces);
-
                     networkexists = true;
 
                     if (base.GetModuleParamString("ItemURL") != string.Empty)
@@ -113,7 +112,7 @@ namespace Profiles.Profile.Modules.PassiveList
                     HyperLink moreurl = (HyperLink)e.Item.FindControl("moreurl");
                     if (pl.MoreURL.Trim() != string.Empty)
                     {
-                        moreurl.NavigateUrl = pl.MoreURL;
+                        moreurl.NavigateUrl = Brand.CleanURL(pl.MoreURL);
                     }
                     else
                         moreurl.Visible = false;
@@ -123,9 +122,28 @@ namespace Profiles.Profile.Modules.PassiveList
                     itemList il = (itemList)e.Item.DataItem;
 
                     HyperLink itemurl = (HyperLink)e.Item.FindControl("itemUrl");
-                    itemurl.NavigateUrl = il.ItemURL;
-                    itemurl.Text = il.ItemURLText;
+                    Literal ucsfPersonItem = (Literal)e.Item.FindControl("ucsfPersonItem");
 
+                    // UCSF. Need to set HTML, not Text! May need to swap in a literal
+                    string personUrl = Brand.CleanURL(il.ItemURL);
+                    if (UCSFIDSet.ByPrettyURL.ContainsKey(personUrl))
+                    {
+                        itemurl.Visible = false;
+                        int personid = UCSFIDSet.ByPrettyURL[personUrl].PersonId;
+                        Institution inst = UCSFIDSet.ByPrettyURL[personUrl].Institution;
+
+                        ucsfPersonItem.Text = "<a href = '" + personUrl + "'>" +
+                            "<div class='thumbnail'><img src = '" + Brand.GetByPrimaryInstituion(inst).BasePath +
+                            "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?person=" + personid + "&Thumbnail=True&Width=15' width='15' height='30'/></div>" +
+                            il.ItemURLText +
+                            "<span class='authInst'>" + inst.GetAbbreviation() + "</span></a>";
+                    }
+                    else
+                    {
+                        ucsfPersonItem.Visible = false;
+                        itemurl.NavigateUrl = il.ItemURL;
+                        itemurl.Text = il.ItemURLText;
+                    }
                     break;
 
             }

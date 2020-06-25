@@ -67,15 +67,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.Panel phAddPubMed;
         
         /// <summary>
-        /// btnImgAddPubMed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnImgAddPubMed;
-        
-        /// <summary>
         /// btnAddPubMed control.
         /// </summary>
         /// <remarks>
@@ -92,15 +83,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel phAddPub;
-        
-        /// <summary>
-        /// btnImgAddPub control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnImgAddPub;
         
         /// <summary>
         /// btnAddPub control.
@@ -121,15 +103,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.Panel phAddCustom;
         
         /// <summary>
-        /// btnImgAddCustom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnImgAddCustom;
-        
-        /// <summary>
         /// btnAddCustom control.
         /// </summary>
         /// <remarks>
@@ -146,24 +119,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel phDeletePub;
-        
-        /// <summary>
-        /// btnImgDeletePub2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image btnImgDeletePub2;
-        
-        /// <summary>
-        /// btnImgDeletePub control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnImgDeletePub;
         
         /// <summary>
         /// btnDeletePub control.

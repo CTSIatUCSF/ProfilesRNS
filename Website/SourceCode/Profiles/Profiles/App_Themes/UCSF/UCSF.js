@@ -6,6 +6,7 @@
             "University of California San Francisco'",
             "University of California at San Francisco",
             "University of California in San Francisco",
+            "University of California, San Francisco, CA",
             "UC, San Francisco",
             "UC San Francisco",
             "UCSF"];
@@ -13,7 +14,7 @@
         for (i = 0; i < ucsfSpellings.length; ++i) {
             var ndx = 0;
             while (ndx > -1) {
-                var ndx = $('.education').html().indexOf(ucsfSpellings[i], ndx);
+                ndx = $('.education').html().indexOf(ucsfSpellings[i], ndx);
                 if (ndx > -1) {
                     // they have a UCSF listed entry, make sure it contains a degree
                     var degreeStartNdx = $('.education').html().indexOf('<td>', ndx + ucsfSpellings[i].length) + 4;
@@ -37,7 +38,8 @@
         $(".education:contains('Diversity, Equity, and Inclusion Training')").addClass('dei-champ');
         if ($('.dei-champ') && $('.dei-champ').length) $('.profilesContentMain').prepend('<a href="https://differencesmatter.ucsf.edu/diversity-equity-and-inclusion-champion-training" style="float: right; valign: top;" target="_blank"><img src="/App_Themes/UCSF/Images/dei-champ_large.png" width="50"/></a>');
     }	 
-	
+
+    /* Commented out by Eric on 6/23/2021 because this is now all in the c# code
     // altmetrics, don't attempt to load till after 7 seconds, which is 7000 milliseconds
 	setTimeout(function ()
 	{
@@ -59,7 +61,7 @@
 				}
                 if (ID) {
                     // just dimensions now
-					var span = "<span class='__dimensions_badge_embed__' data-hide-zero-citations='true' data-style='small_rectangle' data-" + TYPE + "=" + '"' +
+					var span = "<span class='__dimensions_badge_embed__' data-hide-zero-citations='true' data-style='small_circle' data-" + TYPE + "=" + '"' +
 						ID + '"' + "></span>";
 				}
 				$(this).parent().append(span);
@@ -69,7 +71,7 @@
 		}
 	}, 7000);
 
-/*    setTimeout(function () {
+    setTimeout(function () {
         if ($('#publicationListAll') && $('#publicationListAll').length) {
             $("#publicationListAll li a:contains('PubMed')").each(function () {
                 var pmid = $(this).attr('href').match(/pubmed\/(\d+)$/);

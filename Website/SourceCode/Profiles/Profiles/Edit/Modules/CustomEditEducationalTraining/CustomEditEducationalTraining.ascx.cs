@@ -113,7 +113,7 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
                 btnInsertCancel_OnClick(sender, e);
                 pnlSecurityOptions.Visible = false;
                 pnlInsertEducationalTraining.Visible = true;
-                imbAddArrow.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
+//                imbAddArrow.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                 Session["pnlInsertEducationalTraining.Visible"] = true;
             }
             else

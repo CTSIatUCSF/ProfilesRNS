@@ -175,31 +175,33 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
 
                     //if (pub.PMCCitations <= 0) litViewIn.Text = "Citations: <span class=\"PMC-citations\"><span class=\"PMC-citation-count\">0</span></span>";
                     string citationText = "";
-                    if (pub.bibo_pmid.IndexOf("-") < 0)
+                    if (pub.bibo_pmid.IndexOf("-") < 0) // if it has a dash it is a DOI, so only do this Harvard type stuff for non-DOI ones
                     {
+                        // don't worry about the Altmetric in the spnHideOnNoAltmetric, it really means hide on no citations
                         if (pub.PMCCitations <= 0)
                         {
                             citationText = "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid +
-                                "'> Citations: <span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" +
-                                pub.bibo_pmid + "'></span>&nbsp;&nbsp;&nbsp;</span>";
+                                "'>&nbsp;&nbsp;&nbsp;Mentions: <span class='__dimensions_badge_embed__' data-hide-zero-citations='true' data-style='small_rectangle' data-pmid='" +
+                                pub.bibo_pmid + "'></span><span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" +
+                                pub.bibo_pmid + "'></span></span>";
                         }
                         else
                         {
-                            citationText = "Citations: <a href='https://www.ncbi.nlm.nih.gov/pmc/articles/pmid/" + pub.bibo_pmid +
+                            citationText = "&nbsp;&nbsp;&nbsp;Mentions: <a href='https://www.ncbi.nlm.nih.gov/pmc/articles/pmid/" + pub.bibo_pmid +
                                 "/citedby/' target='_blank' class=\"PMC-citations\"><span class=\"PMC-citation-count\">" +
                                 pub.PMCCitations + "</span></a>" + "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid +
-                                "'>&nbsp;&nbsp;<span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" +
-                                pub.bibo_pmid + "'></span></span>&nbsp;&nbsp;&nbsp;";
+                                "'>&nbsp;&nbsp;<span class='__dimensions_badge_embed__' data-hide-zero-citations='true' data-style='small_rectangle' data-pmid='" +
+                                pub.bibo_pmid + "'></span><span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" +
+                                pub.bibo_pmid + "'></span></span>";
                         }
                     }
-                    else
+                    else if (!doi.IsNullOrEmpty())
                     {
-                        citationText = "'>" + "<span id='spnHideOnNoDimensionsAltmetric" + pub.bibo_pmid +
-                                "'>&nbsp;&nbsp;<span class='__dimensions_badge_embed__' data-hide-zero-citations='true' data-style='small_rectangle' data-doi=" + '"' +
-                        doi + '"' + "></span>" +
-                        "<span id='spnHideOnNoDimesionsCited" + pub.bibo_pmid +
-                                "'>&nbsp;&nbsp;<span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-doi='" +
-                        doi + "'></span>&nbsp;&nbsp;&nbsp;</span>" + "</span><script async src='https://badge.dimensions.ai/badge.js' charset='utf-8'></script>";
+                        // Add badges based on DOI but still use bibo_pmid in the span as that will trigger the hide properly if their are no citations
+                        citationText = "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid +
+                            "'>&nbsp;&nbsp;&nbsp;Mentions: <span class='__dimensions_badge_embed__' data-hide-zero-citations='true' data-style='small_rectangle' data-doi='" +
+                            doi + "'></span><span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-doi='" +
+                            doi + "'></span></span>";
                     }
 
                     litViewIn.Text = litViewIn.Text + citationText;
@@ -211,7 +213,7 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                    */
                     if (!pub.Fields.Equals(""))
                     {
-                        litViewIn.Text = litViewIn.Text + "Fields:&nbsp;<div style='display:inline-flex'>";
+                        litViewIn.Text = litViewIn.Text + "&nbsp;&nbsp;&nbsp;Fields:&nbsp;<div style='display:inline-flex'>";
                         string[] tmparray = pub.Fields.Split('|');
                         for (int i = 0; i < tmparray.Length; i++)
                         {

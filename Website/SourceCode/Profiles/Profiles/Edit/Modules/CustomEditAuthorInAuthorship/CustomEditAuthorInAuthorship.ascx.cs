@@ -128,7 +128,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             data = new Edit.Utilities.DataIO();
             string predicateuri = Request.QueryString["predicateuri"].Replace("!", "#");
             this.PropertyListXML = propdata.GetPropertyList(this.BaseData, base.PresentationXML, predicateuri, false, true, false);
-            litBackLink.Text = "<a href='" + Root.Domain + "/edit/default.aspx?subject=" + _subject + "'>Edit Menu</a>" + " &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+            litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + _subject + "'>Edit Menu</a>" + " &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
 
 
         }
@@ -140,8 +140,8 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 btnDeleteGray.Visible = true;
                 btnDeletePub.Visible = false;
                 btnDeletePub.Enabled = false;
-                btnImgDeletePub.Visible = false;
-                btnImgDeletePub2.Visible = true;
+//                btnImgDeletePub.Visible = false;
+//                btnImgDeletePub2.Visible = true;
 
                 btnDeletePubMedOnly.Enabled = false;
                 btnDeleteCustomOnly.Enabled = false;
@@ -187,8 +187,8 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 e.Row.Cells[1].Attributes.Add("style", "padding:2px;width:120px;vertical-align:top;");
 
 
-                btnImgDeletePub2.Visible = false;
-                btnImgDeletePub.Visible = true;
+//                btnImgDeletePub2.Visible = false;
+//                btnImgDeletePub.Visible = true;
                 btnDeletePub.Enabled = true;
                 ++this.Counter;
 
@@ -225,7 +225,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                     {
                         ImageButton lb = (ImageButton)e.Row.FindControl("lnkEdit");
                         lb.Visible = true;
-                        lb.ImageUrl = Root.Domain + "/edit/images/icon_edit.gif";
+//                        lb.ImageUrl = Root.Domain + "/edit/images/icon_edit.gif";
                         lb.Enabled = true;
                     }
 
@@ -314,7 +314,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
             Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
 
-            data.ClaimOnePublication(Convert.ToInt32(Session["ProfileUsername"]), Convert.ToInt64(Session["NodeID"]), clm.Attributes["PubID"], clm.Attributes["pmid"], this.PropertyListXML);
+            data.ClaimOnePublication(Convert.ToInt64(Session["NodeID"]), clm.Attributes["PubID"], clm.Attributes["pmid"], this.PropertyListXML);
             this.Counter = 0;
 
             grdEditPublications.DataBind();
@@ -346,7 +346,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
         {
             if (Session["phAddPub.Visible"] == null)
             {
-                btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+//                btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
 
                 phAddCustom.Visible = false;
                 phAddPubMed.Visible = false;
@@ -381,7 +381,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phSecuritySettings.Visible = true;
             txtPubId.Text = "";
             pnlAddPubById.Visible = false;
-            btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//            btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
             Session["phAddPub.Visible"] = null;
 
             upnlEditSection.Update();
@@ -431,7 +431,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                     txtPubId.Text = "";
                     pnlAddPubById.Visible = false;
                     grdEditPublications.DataBind();
-                    btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//                    btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
 
                 }
                 catch (Exception ex)
@@ -491,7 +491,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
             if (Session["pnlAddPubMed.Visible"] == null)
             {
-                btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+//                btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 phAddCustom.Visible = false;
                 phAddPub.Visible = false;
                 phDeletePub.Visible = false;
@@ -539,7 +539,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phAddPub.Visible = true;
             phDeletePub.Visible = true;
             phSecuritySettings.Visible = true;
-            btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//            btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
 
             upnlEditSection.Update();
         }
@@ -681,7 +681,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
             pnlAddPubMedResults.Visible = true;
 
-            btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+//            btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
             phAddCustom.Visible = false;
             phAddPub.Visible = false;
             phDeletePub.Visible = false;
@@ -743,7 +743,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phAddPub.Visible = true;
             phDeletePub.Visible = true;
             phSecuritySettings.Visible = true;
-            btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//            btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
             PubMedResults = null;
 
             upnlEditSection.Update();
@@ -781,7 +781,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
             if (Session["pnlAddCustomPubMed.Visible"] == null)
             {
-                btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+//                btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 grdEditPublications.SelectedIndex = -1;
                 phAddPub.Visible = false;
                 phAddPubMed.Visible = false;
@@ -1074,7 +1074,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 phSecuritySettings.Visible = true;
                 phMain.Visible = false;
                 pnlAddCustomPubMed.Visible = false;
-                btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//                btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
             }
             Session["pnlAddCustomPubMed.Visible"] = null;
 
@@ -1093,7 +1093,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             grdEditPublications.SelectedIndex = -1;
             phMain.Visible = false;
             pnlAddCustomPubMed.Visible = false;
-            btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//            btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
             Session["pnlAddCustomPubMed.Visible"] = null;
 
             upnlEditSection.Update();
@@ -1115,7 +1115,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
         {
             if (Session["pnlDeletePubMed.Visible"] == null)
             {
-                btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+//                btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 phAddCustom.Visible = false;
                 phAddPubMed.Visible = false;
                 phAddPub.Visible = false;
@@ -1150,7 +1150,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phAddCustom.Visible = true;
             pnlDeletePubMed.Visible = false;
             phSecuritySettings.Visible = true;
-            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
 
             grdEditPublications.DataBind();
 
@@ -1172,7 +1172,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phAddCustom.Visible = true;
             pnlDeletePubMed.Visible = false;
             phSecuritySettings.Visible = true;
-            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
 
             grdEditPublications.DataBind();
 
@@ -1196,7 +1196,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phAddCustom.Visible = true;
             phSecuritySettings.Visible = true;
             pnlDeletePubMed.Visible = false;
-            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
 
             grdEditPublications.DataBind();
 
@@ -1211,7 +1211,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phDeletePub.Visible = true;
             phSecuritySettings.Visible = true;
             pnlDeletePubMed.Visible = false;
-            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
 
             upnlEditSection.Update();
         }

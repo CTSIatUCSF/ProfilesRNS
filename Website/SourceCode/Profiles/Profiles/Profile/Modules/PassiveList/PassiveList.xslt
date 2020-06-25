@@ -8,13 +8,10 @@
         <xsl:value-of select="@InfoCaption"/>
         <xsl:text> </xsl:text>
         <xsl:if test="@Description">
-          <a href="JavaScript:toggleVisibility('{@ID}');">
-            <img alt="Expand Description" src="{$root}/Framework/Images/info.png"/>
-          </a>
+          <div id="{@ID}" class="passiveSectionHeadDescription" style="display:block;">
+            <xsl:value-of select="@Description"/>
+          </div>
         </xsl:if>
-      </div>
-      <div id="{@ID}" class="passiveSectionHeadDescription" style="display:none;">
-        <xsl:value-of select="@Description"/>
       </div>
     </div>
     <div class="passiveSectionBody">

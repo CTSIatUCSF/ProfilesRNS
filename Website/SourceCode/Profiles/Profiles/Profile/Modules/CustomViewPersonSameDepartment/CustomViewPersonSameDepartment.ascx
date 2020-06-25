@@ -23,7 +23,7 @@
     <FooterTemplate>
          </ul>   
         </div>
-           <asp:HyperLink runat="server" ID="moreurl" Text="Explore" CssClass="prns-explore-btn"></asp:HyperLink>
+            <asp:Literal runat="server" ID="litFooter"></asp:Literal>
         <div class="passiveSectionLine">_</div>
     </FooterTemplate>
 </asp:Repeater>

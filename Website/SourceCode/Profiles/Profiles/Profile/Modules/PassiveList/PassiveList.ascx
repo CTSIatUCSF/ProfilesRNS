@@ -5,10 +5,10 @@
             <div style="white-space: nowrap; display: inline">
                 <asp:Literal runat="server" ID="InfoCaption" />
                 <asp:Literal runat="server" ID="TotalCount"></asp:Literal>
-                <asp:HyperLink runat="server" ID="Info" CssClass="questionImage" ></asp:HyperLink>
+                <asp:HyperLink runat="server" ID="Info" CssClass="questionImage"></asp:HyperLink>
             </div>
             <asp:Literal runat="server" ID="divStart"></asp:Literal>
-                <asp:Literal runat="server" ID="Description"></asp:Literal>
+            <asp:Literal runat="server" ID="Description"></asp:Literal>
             <asp:Literal runat="server" ID="divEnd"></asp:Literal>
         </div>
 
@@ -24,7 +24,9 @@
     <FooterTemplate>
         </ul>
             </div>         
-             <asp:HyperLink runat="server" ID="moreurl" Text="Explore" CssClass="prns-explore-btn"></asp:HyperLink>
+        			<div class="dblarrow">
+                        <asp:HyperLink runat="server" ID="moreurl" Text="Explore" CssClass="prns-explore-btn"></asp:HyperLink>
+                    </div>
         <div class="passiveSectionLine">_</div>
     </FooterTemplate>
 </asp:Repeater>

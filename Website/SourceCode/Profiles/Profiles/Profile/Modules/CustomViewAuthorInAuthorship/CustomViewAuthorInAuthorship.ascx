@@ -22,14 +22,15 @@
         &nbsp; | &nbsp;
 		<a tabindex="0" id="aPlainText">Plain Text</a>
     </div>
-    <div id="divPubListDetails" class="details-text">
+    <details id="divPubListDetails" class="details-text">
+        <summary><i>Altmetrics Details</i></summary>
         <span class="details-text-highlight">PMC Citations</span> indicate the number of times the publication was cited by articles in PubMed Central, and the <span class="details-text-highlight">Altmetric</span> score represents citations in news articles and social media.
         (Note that publications are often cited in additional ways that are not shown here.)
         <span class="details-text-highlight">Fields</span> are based on how the National Library of Medicine (NLM) classifies the publication's journal and might not represent the specific topic of the publication.
         <span class="details-text-highlight">Translation</span> tags are based on the publication type and the MeSH terms NLM assigns to the publication.
         Some publications (especially newer ones and publications not in PubMed) might not yet be assigned Field or Translation tags.)
         Click a Field or Translation tag to filter the publications.
-    </div>
+    </details>
     <div id="divPubList">
         <asp:Repeater ID="rpPublication" runat="server" OnItemDataBound="rpPublication_OnDataBound">
             <HeaderTemplate>
@@ -235,8 +236,10 @@
     setTimeout(function () {
         
         $.getScript('//d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
+		$.getScript('https://badge.dimensions.ai/badge.js');
     }, 1000);
-/*
+
+/*  Timeout added to commented out section by Eric on 6/23/2021
     var altmetricChanged = false;
 
     setTimeout(function () {
@@ -351,6 +354,7 @@
         $("#divFiltered").show();
         $("#divPubListDetails").show();
         $.getScript('//d1bxh8uas1mnw7.cloudfront.net/assets/embed.js');
+		$.getScript('https://badge.dimensions.ai/badge.js');
     }
 
 

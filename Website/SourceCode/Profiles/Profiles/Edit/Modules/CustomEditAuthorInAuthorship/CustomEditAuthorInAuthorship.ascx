@@ -21,30 +21,25 @@
             <security:Options runat="server" ID="securityOptions"></security:Options>
         </asp:Panel>
         <asp:Panel ID="phAddPubMed" runat="server">
-            <div class="EditMenuItem">
-                <asp:ImageButton CssClass="EditMenuLinkImg" OnClick="btnAddPubMed_OnClick" runat="server" ID="btnImgAddPubMed" AlternateText=" " ImageUrl="~/Edit/Images/icon_squareArrow.gif" />
+			<div style="padding-bottom: 10px;" class="dblarrow">
                 <asp:LinkButton ID="btnAddPubMed" runat="server" OnClick="btnAddPubMed_OnClick">Add PubMed</asp:LinkButton>
                 (Search PubMed and add multiple articles.)
             </div>
         </asp:Panel>
         <asp:Panel ID="phAddPub" runat="server">
-            <div class="EditMenuItem">
-                <asp:ImageButton CssClass="EditMenuLinkImg" OnClick="btnAddPub_OnClick" runat="server" ID="btnImgAddPub" AlternateText=" " ImageUrl="~/Edit/Images/icon_squareArrow.gif" />
+			<div style="padding-bottom: 10px;" class="dblarrow">
                 <asp:LinkButton ID="btnAddPub" runat="server" OnClick="btnAddPub_OnClick">Add by ID</asp:LinkButton>
                 (Add one or more articles using codes, e.g., PubMed ID.)
             </div>
         </asp:Panel>
         <asp:Panel ID="phAddCustom" runat="server">
-            <div class="EditMenuItem">
-                <asp:ImageButton CssClass="EditMenuLinkImg" OnClick="btnAddCustom_OnClick" runat="server" ID="btnImgAddCustom" AlternateText=" " ImageUrl="~/Edit/Images/icon_squareArrow.gif" />
+			<div style="padding-bottom: 10px;" class="dblarrow">
                 <asp:LinkButton ID="btnAddCustom" runat="server" OnClick="btnAddCustom_OnClick">Add Custom Publication</asp:LinkButton>
                 (Enter your own publication using an online form.)
             </div>
         </asp:Panel>
         <asp:Panel ID="phDeletePub" runat="server">
-            <div class="EditMenuItem">
-                <asp:Image CssClass="EditMenuLinkImg" runat="server" ID="btnImgDeletePub2" AlternateText=" " ImageUrl="~/Edit/Images/Icon_square_ArrowGray.png" Visible="true" />
-                <asp:ImageButton CssClass="EditMenuLinkImg" OnClick="btnDeletePub_OnClick" runat="server" ID="btnImgDeletePub" AlternateText=" " ImageUrl="~/Edit/Images/icon_squareArrow.gif" Visible="false" />
+			<div style="padding-bottom: 10px;" class="dblarrow">
                 <asp:LinkButton ID="btnDeletePub" runat="server" OnClick="btnDeletePub_OnClick" Enabled="false">Delete</asp:LinkButton><asp:Literal runat="server" ID="btnDeleteGray" Visible="false" Text="Delete"></asp:Literal>
                 (Remove multiple publications from your profile.)
             </div>

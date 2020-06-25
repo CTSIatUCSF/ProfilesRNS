@@ -78,8 +78,9 @@ namespace Profiles.Profile.Modules.CustomViewPersonSameDepartment
 
             if (e.Item.ItemType == ListItemType.Footer)
             {
-                HyperLink moreurl = (HyperLink)e.Item.FindControl("moreurl");
-                //litFooter.Text = "<a href='" + Brand.GetThemedDomain() + "/search/default.aspx?searchtype=people&searchfor=&SearchRequest=" + this.SearchRequest + "' class='dblarrow'>Search Department</a>";
+                Literal litFooter = (Literal)e.Item.FindControl("litFooter");
+                //HyperLink moreurl = (HyperLink)e.Item.FindControl("moreurl");
+                litFooter.Text = "<a href='" + Brand.GetThemedDomain() + "/search/default.aspx?searchtype=people&searchfor=&SearchRequest=" + this.SearchRequest + "' class='dblarrow'>Search Department</a>";
             }
 
         }

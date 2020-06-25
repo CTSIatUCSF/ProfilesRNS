@@ -95,13 +95,10 @@ namespace Profiles.Profile.Modules.PassiveList
                     Literal divstart = (Literal)e.Item.FindControl("divStart");
                     Literal divend = (Literal)e.Item.FindControl("divEnd");
                     Literal Description = (Literal)e.Item.FindControl("Description");
-                    HyperLink InfoIcon = (HyperLink)e.Item.FindControl("Info");
 
-                    divstart.Text = "<div id='" + pl.ID + "' class='passiveSectionHeadDescription' style='display: none;'>";
+                    divstart.Text = "<div id='" + pl.ID + "' class='passiveSectionHeadDescription' style='display: block;'>";
                     Description.Text = "<div>" + pl.Description + "</div>";
                     divend.Text = "</div>";
-                    InfoIcon.Attributes.Add("href", "#");
-                    InfoIcon.ImageUrl = Root.Domain + "/profile/modules/passivelist/Images/info.png";
                     if (pl.TotalCount != string.Empty)
                     {
                         TotalCount.Text = "(" + pl.TotalCount + ")";

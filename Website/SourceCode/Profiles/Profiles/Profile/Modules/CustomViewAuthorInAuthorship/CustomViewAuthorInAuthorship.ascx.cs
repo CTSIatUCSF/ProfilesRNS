@@ -181,8 +181,7 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                         if (pub.PMCCitations <= 0)
                         {
                             citationText = "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid +
-                                "'>&nbsp;&nbsp;&nbsp;Mentions: <span class='__dimensions_badge_embed__' data-hide-zero-citations='true' data-style='small_rectangle' data-pmid='" +
-                                pub.bibo_pmid + "'></span><span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" +
+                                "'>&nbsp;&nbsp;&nbsp;Mentions: <span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" +
                                 pub.bibo_pmid + "'></span></span>";
                         }
                         else
@@ -190,17 +189,15 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                             citationText = "&nbsp;&nbsp;&nbsp;Mentions: <a href='https://www.ncbi.nlm.nih.gov/pmc/articles/pmid/" + pub.bibo_pmid +
                                 "/citedby/' target='_blank' class=\"PMC-citations\"><span class=\"PMC-citation-count\">" +
                                 pub.PMCCitations + "</span></a>" + "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid +
-                                "'>&nbsp;&nbsp;<span class='__dimensions_badge_embed__' data-hide-zero-citations='true' data-style='small_rectangle' data-pmid='" +
-                                pub.bibo_pmid + "'></span><span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" +
+                                "'>&nbsp;&nbsp;<span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" +
                                 pub.bibo_pmid + "'></span></span>";
                         }
                     }
                     else if (!doi.IsNullOrEmpty())
                     {
-                        // Add badges based on DOI but still use bibo_pmid in the span as that will trigger the hide properly if their are no citations
-                        citationText = "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid +
-                            "'>&nbsp;&nbsp;&nbsp;Mentions: <span class='__dimensions_badge_embed__' data-hide-zero-citations='true' data-style='small_rectangle' data-doi='" +
-                            doi + "'></span><span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-doi='" +
+                        // Add badges based on DOI
+                        citationText = "<span id='spnHideOnNoAltmetric" + doi +
+                            "'>&nbsp;&nbsp;&nbsp;Mentions: <span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-doi='" +
                             doi + "'></span></span>";
                     }
 

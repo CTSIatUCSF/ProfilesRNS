@@ -257,7 +257,7 @@
             $('span.altmetric-embed').on('altmetric:hide', function () {
                 var y = document.getElementsByClassName('altmetric-hidden');
                 for (var i = 0; i < y.length; i++) {
-                    var pmid = y[i].attributes["data-pmid"].value;
+                    var pmid = (y[i].attributes["data-pmid"] || y[i].attributes["data-doi"]).value;
 
                     var spn = document.getElementById("spnHideOnNoAltmetric" + pmid);
                     var parent = spn.parentNode;

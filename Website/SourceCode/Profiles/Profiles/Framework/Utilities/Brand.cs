@@ -47,7 +47,13 @@ namespace Profiles.Framework.Utilities
             return brand != null ? brand.GATrackingID : null;
         }
 
-        public static string GetDomainMatching(string URL)
+        public static string GetThemeName()
+        {
+            Brand brand = GetCurrentBrand();
+            return brand.Theme;
+        }
+
+            public static string GetDomainMatching(string URL)
         {
             Brand brand = GetByURL(URL);
             return brand != null ? brand.BasePath : Root.Domain;

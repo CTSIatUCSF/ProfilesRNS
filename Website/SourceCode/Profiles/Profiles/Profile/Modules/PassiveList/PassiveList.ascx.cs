@@ -1,28 +1,18 @@
-﻿/*  
- 
-    Copyright (c) 2008-2012 by the President and Fellows of Harvard College. All rights reserved.  
-    Profiles Research Networking Software was developed under the supervision of Griffin M Weber, MD, PhD.,
-    and Harvard Catalyst: The Harvard Clinical and Translational Science Center, with support from the 
-    National Center for Research Resources and Harvard University.
-
-
-    Code licensed under a BSD License. 
-    For details, see: LICENSE.txt 
-  
-*/
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using System.Xml.Xsl;
 
-
-
 using Profiles.Framework.Utilities;
+using System.Web.UI.WebControls;
 
 namespace Profiles.Profile.Modules.PassiveList
 {
     public partial class PassiveList : BaseModule
     {
+        passiveList pl;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             DrawProfilesModule();
@@ -45,40 +35,20 @@ namespace Profiles.Profile.Modules.PassiveList
             XsltArgumentList args = new XsltArgumentList();
             bool networkexists = false;
 
-            System.Text.StringBuilder documentdata = new System.Text.StringBuilder();
+            pl = new global::passiveList();
+            pl.InfoCaption = base.GetModuleParamString("InfoCaption");
+            pl.TotalCount = CustomParse.Parse(base.GetModuleParamString("TotalCount"), base.BaseData, base.Namespaces);
 
-            
-            documentdata.Append("<PassiveList");
-            documentdata.Append(" InfoCaption=\"");
-            documentdata.Append(base.GetModuleParamString("InfoCaption"));
-            documentdata.Append("\"");
-            documentdata.Append(" Description=\"");
-            documentdata.Append(base.GetModuleParamString("Description"));
-            documentdata.Append("\"");
-            documentdata.Append(" ID=\"");
-            documentdata.Append(Guid.NewGuid().ToString());
-            documentdata.Append("\"");
-            documentdata.Append(" MoreText=\"");
-            documentdata.Append(CustomParse.Parse(base.GetModuleParamString("MoreText"), base.BaseData, base.Namespaces));
+            pl.Description = base.GetModuleParamString("Description");
+            pl.ID = Guid.NewGuid().ToString();
 
-            documentdata.Append("\"");
-
-            documentdata.Append(" MoreURL=\"");
-            if (base.GetModuleParamString("MoreURL").Contains("&"))
-                documentdata.Append(Brand.GetThemedDomain() + CustomParse.Parse(base.GetModuleParamString("MoreURL"), base.BaseData, base.Namespaces).Replace("&", "&amp;"));
-            else
-                documentdata.Append(Brand.CleanURL(CustomParse.Parse(base.GetModuleParamString("MoreURL"), base.BaseData, base.Namespaces)));
-            documentdata.Append("\"");
-
-            documentdata.Append(">");
-            documentdata.Append("<ItemList>");
-
+            pl.MoreText = CustomParse.Parse(base.GetModuleParamString("MoreText"), base.BaseData, base.Namespaces);                       
+            pl.MoreURL = CustomParse.Parse(base.GetModuleParamString("MoreURL"), base.BaseData, base.Namespaces).Replace("amp;","");
             string path = base.GetModuleParamString("ListNode");
-            //path = path.Substring(path.LastIndexOf("@rdf:about=") + 12);
-            //path = path.Substring(0, path.Length - 1);
             try
             {
                 XmlNodeList items = this.BaseData.SelectNodes(path, this.Namespaces);
+                pl.ItemList = new List<itemList>();
                 int remainingItems = Convert.ToInt16(base.GetModuleParamString("MaxDisplay"));
                 foreach (XmlNode i in items)
                 {
@@ -87,100 +57,125 @@ namespace Profiles.Profile.Modules.PassiveList
 
                     XmlNode networknode = this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about=\"" + i.Value + "\"]", this.Namespaces);
 
-                    string itemurl = CustomParse.Parse(base.GetModuleParamString("ItemURL"), networknode, this.Namespaces);
+                    string itemurl =CustomParse.Parse(base.GetModuleParamString("ItemURL"), networknode, this.Namespaces);
                     string itemurltext = CustomParse.Parse(base.GetModuleParamString("ItemURLText"), networknode, this.Namespaces);
                     string item = CustomParse.Parse(base.GetModuleParamString("ItemText"), networknode, this.Namespaces);
-
                     networkexists = true;
-
-                    documentdata.Append("<Item");
 
                     if (base.GetModuleParamString("ItemURL") != string.Empty)
                     {
-                        string prettyUrl = Brand.CleanURL(itemurl);
-                        documentdata.Append(" ItemURL=\"" + prettyUrl);
-                        documentdata.Append("\"");
-                        if (!itemurltext.Equals("")) documentdata.Append(" ItemURLText=\"" + itemurltext);
-                        else documentdata.Append(" ItemURLText=\"" + CustomParse.Parse("{{{//rdf:Description[@rdf:about='" + itemurl + "']/rdfs:label}}}", this.BaseData, this.Namespaces));
-                        documentdata.Append("\"");
-                        if (UCSFIDSet.ByPrettyURL.ContainsKey(prettyUrl))
-                        {
-                            documentdata.Append(" PersonID=\"" + UCSFIDSet.ByPrettyURL[prettyUrl].PersonId);
-                            documentdata.Append("\"");
-                            documentdata.Append(" InstitutionAbbreviation=\"" + UCSFIDSet.ByPrettyURL[prettyUrl].Institution.GetAbbreviation());
-                            documentdata.Append("\"");
-                        }
+                        if (itemurltext.Equals("")) itemurltext = CustomParse.Parse("{{{//rdf:Description[@rdf:about='" + itemurl + "']/rdfs:label}}}", this.BaseData, this.Namespaces);
+
+                        networkexists = true;
+                        pl.ItemList.Add(new itemList { ItemURL = itemurl, ItemURLText = itemurltext, Item = item, ID = pl.ID });
                     }
-                    documentdata.Append(">");
-                    documentdata.Append(item);
-                    documentdata.Append("</Item>");
                 }
             }
-            catch (Exception ex) { Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace); }
-/*
-           try
-            {
-                var items = from XmlNode networknode in this.BaseData.SelectNodes(base.GetModuleParamString("ListNode") + "[position() < " + Math.BigMul((Convert.ToInt16(base.GetModuleParamString("MaxDisplay")) + 1), 1).ToString() + "]", this.Namespaces)                                                        
-                            select new
-                            {
-                                itemurl = Brand.CleanURL(CustomParse.Parse(base.GetModuleParamString("ItemURL"), networknode, this.Namespaces)),
-                                itemurltext = CustomParse.Parse(base.GetModuleParamString("ItemURLText"), networknode, this.Namespaces),
-                                item = CustomParse.Parse(base.GetModuleParamString("ItemText"), networknode, this.Namespaces),
-                                personid = CustomParse.Parse("{{{rdf:Description/prns:personId}}}", networknode, this.Namespaces)
-                            };
+            catch (Exception ex) { Framework.Utilities.DebugLogging.Log("Passive List died " + ex.Message + " ++ " + ex.StackTrace); }
 
-                foreach (var i in items)
-                {
-                    networkexists = true;
-
-                    documentdata.Append("<Item");
-
-                    if (base.GetModuleParamString("ItemURL") != string.Empty)
-                    {
-                        documentdata.Append(" ItemURL=\"" + i.itemurl);
-                        documentdata.Append("\"");
-                        if (!i.itemurltext.Equals("")) documentdata.Append(" ItemURLText=\"" + i.itemurltext);
-                        else documentdata.Append(" ItemURLText=\"" + CustomParse.Parse("{{{//rdf:Description[@rdf:about='"+ i.itemurl + "']/rdfs:label}}}", this.BaseData, this.Namespaces));
-                        documentdata.Append("\"");
-                        if (i.personid != string.Empty)
-                        {
-                            documentdata.Append(" PersonID=\"" + i.personid);
-                            documentdata.Append("\"");
-                            documentdata.Append(" InstitutionAbbreviation=\"" + UCSFIDSet.ByPersonId[Int64.Parse(i.personid)].Institution.GetAbbreviation());
-                            documentdata.Append("\"");
-                        }
-                    }
-                    documentdata.Append(">");
-                    documentdata.Append(i.item);
-                    documentdata.Append("</Item>");
-                }
-
-            }
-            catch (Exception ex) { Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace); }
-*/
-            documentdata.Append("</ItemList>");
-            documentdata.Append("</PassiveList>");
 
             if (networkexists)
             {
-                document.LoadXml(documentdata.ToString());
+                passiveList.DataSource = pl.ItemList;
+                passiveList.DataBind();
+            }
+        }
+
+        protected void passiveList_OnItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
 
 
-                args.AddParam("root", "", Brand.GetThemedDomain());
-                args.AddParam("ListNode", "", base.GetModuleParamString("ListNode"));
-                args.AddParam("InfoCaption", "", base.GetModuleParamString("InfoCaption"));
-                args.AddParam("Description", "", base.GetModuleParamString("Description"));
-                args.AddParam("MoreUrl", "", base.GetModuleParamString("ListNode"));
+            switch (e.Item.ItemType)
+            {
 
+                case ListItemType.Header:
+                    Literal infocaption = (Literal)e.Item.FindControl("InfoCaption");
+                    Literal TotalCount = (Literal)e.Item.FindControl("TotalCount");
 
+                    Literal divstart = (Literal)e.Item.FindControl("divStart");
+                    Literal divend = (Literal)e.Item.FindControl("divEnd");
+                    Literal Description = (Literal)e.Item.FindControl("Description");
 
-                litPassiveNetworkList.Text = XslHelper.TransformInMemory(Server.MapPath("~/Profile/Modules/PassiveList/PassiveList.xslt"), args, document.OuterXml);
+                    divstart.Text = "<div id='" + pl.ID + "' class='passiveSectionHeadDescription' style='display: block;'>";
+                    Description.Text = "<div>" + pl.Description + "</div>";
+                    divend.Text = "</div>";
+                    if (pl.TotalCount != string.Empty)
+                    {
+                        TotalCount.Text = "(" + pl.TotalCount + ")";
+                    }
+                    infocaption.Text = pl.InfoCaption;
+                    break;
+                case ListItemType.Footer:
+                    HyperLink moreurl = (HyperLink)e.Item.FindControl("moreurl");
+                    if (pl.MoreURL.Trim() != string.Empty)
+                    {
+                        moreurl.NavigateUrl = Brand.CleanURL(pl.MoreURL);
+                    }
+                    else
+                        moreurl.Visible = false;
+                    break;
 
-                Framework.Utilities.DebugLogging.Log("PASSIVE MODULE end Milliseconds:" + (DateTime.Now - d).TotalSeconds);
+                default:
+                    itemList il = (itemList)e.Item.DataItem;
+
+                    HyperLink itemurl = (HyperLink)e.Item.FindControl("itemUrl");
+                    Literal ucsfPersonItem = (Literal)e.Item.FindControl("ucsfPersonItem");
+
+                    // UCSF. Need to set HTML, not Text! May need to swap in a literal
+                    string personUrl = Brand.CleanURL(il.ItemURL);
+                    if (UCSFIDSet.ByPrettyURL.ContainsKey(personUrl))
+                    {
+                        itemurl.Visible = false;
+                        int personid = UCSFIDSet.ByPrettyURL[personUrl].PersonId;
+                        Institution inst = UCSFIDSet.ByPrettyURL[personUrl].Institution;
+
+                        ucsfPersonItem.Text = "<a href = '" + personUrl + "'>" +
+                            "<div class='thumbnail'><img src = '" + Brand.GetByPrimaryInstituion(inst).BasePath +
+                            "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?person=" + personid + "&Thumbnail=True&Width=15' width='15' height='30'/></div>" +
+                            il.ItemURLText +
+                            "<span class='authInst'>" + inst.GetAbbreviation() + "</span></a>";
+                    }
+                    else
+                    {
+                        ucsfPersonItem.Visible = false;
+                        itemurl.NavigateUrl = il.ItemURL;
+                        itemurl.Text = il.ItemURLText;
+                    }
+                    break;
+
             }
         }
     }
+
+
+
 }
+public class passiveList
+{
+    
+    public string InfoCaption { get; set; }
+    public string TotalCount { get; set; }
+    public string Description { get; set; }
+    public string ID { get; set; }
+    public string MoreText { get; set; }
+    public string MoreURL { get; set; }
+    public List<itemList> ItemList { get; set; }
+
+
+}
+public class itemList
+{
+    public string ItemURL { get; set; }
+    public string ItemURLText { get; set; }
+    public string Item { get; set; }
+
+    public string ID { get; set; }
+}
+
+
+
+
+
 
 
 

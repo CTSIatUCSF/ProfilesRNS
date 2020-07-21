@@ -354,12 +354,12 @@ namespace Profiles.Edit.Utilities
 
         }
 
-        public void ClaimOnePublication(int personid, long subjectID, string PubID, string pmid, XmlDocument PropertyListXML)
+        public void ClaimOnePublication(long subjectID, string PubID, string pmid, XmlDocument PropertyListXML)
         {
             ActivityLog(PropertyListXML, subjectID, "PMID", pmid);
             SqlParameter[] param = new SqlParameter[2];
 
-            param[0] = new SqlParameter("@PersonID", personid);
+            param[0] = new SqlParameter("@PersonID", UCSFIDSet.ByNodeId[subjectID].PersonId);
             param[1] = new SqlParameter("@PubID", PubID);
 
             using (SqlCommand comm = GetDBCommand("", "[Profile.Data].[Publication.ClaimOnePublication]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))

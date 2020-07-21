@@ -1,4 +1,4 @@
-﻿/*  
+/*  
  
     Copyright (c) 2008-2012 by the President and Fellows of Harvard College. All rights reserved.  
     Profiles Research Networking Software was developed under the supervision of Griffin M Weber, MD, PhD.,
@@ -48,6 +48,7 @@ namespace Profiles.Activity.Utilities
             }
 
             List<Activity> retval = activities;
+
             if (declump)
             {
                 retval = GetUnclumpedSubset(activities, count);
@@ -65,7 +66,7 @@ namespace Profiles.Activity.Utilities
                 {
                     while (count > retval.Count)
                     {
-                        SortedList<Int64, Activity> newActivities = GetRecentActivity(activities[activities.Count-1].Id, 10 * (count - retval.Count), true);
+                        SortedList<Int64, Activity> newActivities = GetRecentActivity(activities[activities.Count - 1].Id, 10 * (count - retval.Count), true);
                         if (newActivities.Count == 0)
                         {
                             // nothing more to load, time to bail
@@ -76,7 +77,7 @@ namespace Profiles.Activity.Utilities
                             activities.AddRange(newActivities.Values);
                             retval = GetUnclumpedSubset(activities, count);
                         }
-                    } 
+                    }
                 }
                 else
                 {
@@ -119,7 +120,7 @@ namespace Profiles.Activity.Utilities
                 subset.Add(clumpedList[random.Next(0, clumpedList.Count)]);
             }
 
-            return subset;        
+            return subset;
         }
 
         private static SortedList<Int64, Activity> GetCache()
@@ -161,22 +162,19 @@ namespace Profiles.Activity.Utilities
             }
             else if (isFresh == null)
             {
-                lock(syncLock)
+                lock (syncLock)
                 {
                     // get new ones from the DB
 
                     Int64 lastActivityLogID = cache.Count == 0 ? -1 : cache.Values[0].Id;
                     SortedList<Int64, Activity> newActivities = GetRecentActivity(lastActivityLogID, activityCacheSize, false);
+
                     // in with the new
                     foreach (Activity activity in newActivities.Values)
-                    {
                         cache.Add(activity.Id, activity);
-                    }
                     // out with the old
                     while (cache.Count > activityCacheSize)
-                    {
                         cache.RemoveAt(cache.Count - 1);
-                    }
                 }
                 // look for new activities once every minute
                 Framework.Utilities.Cache.SetWithTimeout("ActivityHistoryIsFresh", new object(), chechForNewActivitiesSeconds);
@@ -191,18 +189,18 @@ namespace Profiles.Activity.Utilities
 
             while (getMore)
             {
-                int foundCnt = 0; 
+                int foundCnt = 0;
 
                 string sql = "SELECT top " + count + "  i.activityLogID," +
                                 "p.personid,n.nodeid,p.firstname,p.lastname," +
                                 "i.methodName,i.property,cp._PropertyLabel as propertyLabel,i.param1,i.param2,i.createdDT " +
                                 "FROM [Framework.].[Log.Activity] i " +
                                 "LEFT OUTER JOIN [Profile.Data].[Person] p ON i.personId = p.personID " +
-                                "LEFT OUTER JOIN [RDF.Stage].internalnodemap n on n.internalid = p.personId and n.[class] = 'http://xmlns.com/foaf/0.1/Person' " +
+                            "LEFT OUTER JOIN [RDF.Stage].internalnodemap n on n.internalid = p.personId and n.[class] = 'http://xmlns.com/foaf/0.1/Person' " +
                                 "LEFT OUTER JOIN [Ontology.].[ClassProperty] cp ON cp.Property = i.property  and cp.Class = 'http://xmlns.com/foaf/0.1/Person' " +
                                 "LEFT OUTER JOIN [RDF.].[Node] rn on [RDF.].fnValueHash(null, null, i.property) = rn.ValueHash " +
-                    //"LEFT OUTER JOIN [RDF.].[Node] rn on i.property = rn.value COLLATE Latin1_General_Bin " +
-                                "LEFT OUTER JOIN [RDF.Security].[NodeProperty] np on n.NodeID = np.NodeID and rn.NodeID = np.Property " +
+                            //"LEFT OUTER JOIN [RDF.].[Node] rn on i.property = rn.value COLLATE Latin1_General_Bin " +
+                            "LEFT OUTER JOIN [RDF.Security].[NodeProperty] np on n.NodeID = np.NodeID and rn.NodeID = np.Property " +
                                 "where p.IsActive=1 and (np.ViewSecurityGroup = -1 or (i.privacyCode = -1 and np.ViewSecurityGroup is null) or (i.privacyCode is null and np.ViewSecurityGroup is null))" +
                                 (lastActivityLogID != -1 ? (" and i.activityLogID " + (older ? "<" : ">") + lastActivityLogID) : "") +
                                 " order by i.activityLogID desc";
@@ -234,8 +232,8 @@ namespace Profiles.Activity.Utilities
                             if (param1 == "PMID" || param1 == "Add PMID")
                             {
                                 url = "http://www.ncbi.nlm.nih.gov/pubmed/" + param2;
-                                queryTitle = "SELECT JournalTitle FROM [Profile.Data].[Publication.PubMed.General] " +
-                                                "WHERE PMID = cast(" + param2 + " as int)";
+                                queryTitle = "SELECT JournalTitle FROM [Profile.Data].[Publication.PubMed.General] with(nolock) " +
+                                                        "WHERE PMID = cast(" + param2 + " as int)";
                                 journalTitle = GetStringValue(queryTitle, "JournalTitle");
                             }
                             if (property == "http://vivoweb.org/ontology/core#ResearcherRole")
@@ -254,33 +252,32 @@ namespace Profiles.Activity.Utilities
                             else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.AddCustomPublication") == 0)
                             {
                                 title = "added a custom publication";
-                        if (param2.Length > 100) param2 = param2.Substring(0, 100) + "...";
+                                if (param2.Length > 100) param2 = param2.Substring(0, 100) + "...";
                                 body = "added \"" + param1 + "\" into " + propertyLabel +
                                     " section : " + param2;
                             }
                             else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.UpdateSecuritySetting") == 0)
                             {
                                 title = "made a section visible";
-                        body = "made \"" + propertyLabel + "\" public";
+                                body = "made \"" + propertyLabel + "\" public";
                             }
-                    else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.AddUpdateFunding") == 0)
+                            else if (methodName.CompareTo("Profiles.Edit.Utilities.DataIO.AddUpdateFunding") == 0)
                             {
                                 title = "added a research activity or funding";
                                 body = "added a research activity or funding: " + journalTitle;
                             }
-                    else if (methodName.CompareTo("[Profile.Data].[Funding.LoadDisambiguationResults]") == 0)
+                            else if (methodName.CompareTo("[Profile.Data].[Funding.LoadDisambiguationResults]") == 0)
                             {
                                 title = "has a new research activity or funding";
                                 body = "has a new research activity or funding: " + journalTitle;
                             }
-                    else if (property == "http://vivoweb.org/ontology/core#hasMemberRole")
-                    {
-
-                        queryTitle = "select GroupName from [Profile.Data].[vwGroup.General] where GroupNodeID = " + param1;
-                        string groupName = GetStringValue(queryTitle, "GroupName");
-                        title = "joined group: " + groupName;
-                        body = "joined group: " + groupName;
-                    }
+                            else if (property == "http://vivoweb.org/ontology/core#hasMemberRole")
+                            {
+                                queryTitle = "select GroupName from [Profile.Data].[vwGroup.General] where GroupNodeID = " + param1;
+                                string groupName = GetStringValue(queryTitle, "GroupName");
+                                title = "joined group: " + groupName;
+                                body = "joined group: " + groupName;
+                            }
                             else if (methodName.IndexOf("Profiles.Edit.Utilities.DataIO.Add") == 0)
                             {
                                 title = "added an item";
@@ -329,14 +326,14 @@ namespace Profiles.Activity.Utilities
                                 Activity act = new Activity
                                 {
                                     Id = Convert.ToInt64(activityLogId),
-                                    Message = body,
-                                    LinkUrl = url,
-                                    Title = title,
+                                    Message = body.Trim(),
+                                    LinkUrl = url.Trim(),
+                                    Title = title.Trim(),
                                     CreatedDT = Convert.ToDateTime(reader["CreatedDT"]),
                                     CreatedById = activityLogId,
                                     Profile = new Profile
                                     {
-                                        Name = firstname + " " + lastname,
+                                        Name = firstname.Trim() + " " + lastname.Trim(),
                                         PersonId = Convert.ToInt32(personid),
                                         NodeID = Convert.ToInt64(nodeid),
                                         URL = UCSFIDSet.ByNodeId[Convert.ToInt64(nodeid)].PrettyURL,
@@ -355,7 +352,7 @@ namespace Profiles.Activity.Utilities
                         }
                         catch (Exception e)
                         {
-                            Framework.Utilities.DebugLogging.Log("Exception loading activities (have,lookingfor,found) = (" + activities.Count +"," +
+                            Framework.Utilities.DebugLogging.Log("Exception loading activities (have,lookingfor,found) = (" + activities.Count + "," +
                                 count + "," + foundCnt + ") :" + e.Message + e.StackTrace);
                         }
                     }
@@ -373,7 +370,7 @@ namespace Profiles.Activity.Utilities
 
             return activities;
         }
-		
+
         public string GetEditedCount()
         {
             string sql = "select count(*) from [UCSF.].[vwPerson] p " +
@@ -382,12 +379,12 @@ namespace Profiles.Activity.Utilities
                             "join [RDF.].Node n on t.Predicate = n.NodeID and n.value in " +
                             "('http://profiles.catalyst.harvard.edu/ontology/prns#mainImage', 'http://vivoweb.org/ontology/core#awardOrHonor', " +
                             "'http://vivoweb.org/ontology/core#educationalTraining', 'http://vivoweb.org/ontology/core#freetextKeyword', 'http://vivoweb.org/ontology/core#overview')) t " +
-                            "on " + (Brand.GetCurrentBrand().GetInstitution() == null ? "" : "i.InstitutionAbbreviation = '" + Brand.GetCurrentBrand().GetInstitution() + "' AND ") + 
+                            "on " + (Brand.GetCurrentBrand().GetInstitution() == null ? "" : "i.InstitutionAbbreviation = '" + Brand.GetCurrentBrand().GetInstitution() + "' AND ") +
                             "i.NodeID = t.Subject union " +
                             "select distinct personid from [Profile.Data].[Publication.Person.Add] union " +
                             "select distinct personid from [Profile.Data].[Publication.Person.Exclude] as u) t " +
                             "on t.PersonID = p.PersonID " + GetBrandedJoin() + GetBrandedWhere(" and p.isactive = 1");
-                
+
             return GetCount(sql);
         }
 
@@ -398,9 +395,9 @@ namespace Profiles.Activity.Utilities
 
         public string GetPublicationsCount()
         {
-            string sql = "select (select count(distinct(PMID)) from [Profile.Data].[Publication.Person.Include] i join [UCSF.].[vwPerson] p on p.personid = i.personid " + 
+            string sql = "select (select count(distinct(PMID)) from [Profile.Data].[Publication.Person.Include] i join [UCSF.].[vwPerson] p on p.personid = i.personid " +
                                 GetBrandedJoin() + GetBrandedWhere(" where i.PMID is not null and p.isactive = 1") + ") + " +
-                                "(select count(distinct(MPID)) from [Profile.Data].[Publication.Person.Include] i join [UCSF.].[vwPerson] p on p.personid = i.personid " + 
+                                "(select count(distinct(MPID)) from [Profile.Data].[Publication.Person.Include] i join [UCSF.].[vwPerson] p on p.personid = i.personid " +
                                 GetBrandedJoin() + GetBrandedWhere(" where i.MPID is not null and p.isactive = 1") + ")";
             return GetCount(sql);
         }

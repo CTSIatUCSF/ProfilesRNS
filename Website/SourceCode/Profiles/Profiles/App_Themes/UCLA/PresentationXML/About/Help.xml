@@ -39,12 +39,12 @@ $('.profiles .profilesContentMain .pageTitle h2').hide();
 	 
 	  <div class="content-block">
 		<h2 style="font-size:30px">Contact Us</h2>
-		<p>Please <a href="mailto:profiles@ucla.edu">share your feedback</a> about how to improve
+		<p>Please <a href="mailto:UCLAProfiles@mednet.ucla.edu">share your feedback</a> about how to improve
 		   UCLA Profiles, and let us know if UCLA Profiles has enabled your research in any way.
 		   Your success stories are important to enable the continued support and expansion of this
 		   important tool.
 		</p>
-		<p><strong>Email us at <a href="mailto:profiles@ucla.edu">profiles@ucla.edu</a></strong></p>
+		<p><strong>Email us at <a href="mailto:UCLAProfiles@mednet.ucla.edu">UCLAProfiles@mednet.ucla.edu</a></strong></p>
 	  </div>
 	</div>
 
@@ -105,7 +105,7 @@ Researchers working on the same topics
   <li>UCLA Profiles was created for research networking so we initially focused on adding UCLA faculty members, 
   researchers with academic leadership appointments, and non-faculty academic researchers. </li>
   <li>We are happy to include research staff and other individuals in the UCLA community, on request and if possible. 
-  Send requests, with full name and employee ID, to <a href="mailto:profiles@ucla.edu">profiles@ucla.edu</a></li>
+  Send requests, with full name and employee ID, to <a href="mailto:UCLAProfiles@mednet.ucla.edu">UCLAProfiles@mednet.ucla.edu</a></li>
 </ul>
 
 <h3 id="view">Who can view UCLA Profiles?</h3>

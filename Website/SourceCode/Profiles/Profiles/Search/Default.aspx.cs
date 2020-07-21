@@ -143,13 +143,19 @@ namespace Profiles.Search
             Searchcss.Attributes["media"] = "all";
             Page.Header.Controls.Add(Searchcss);
 
+            HtmlLink Activitycss = new HtmlLink();
+            Activitycss.Href = Root.Domain + "/Activity/CSS/activity.css";
+            Activitycss.Attributes["rel"] = "stylesheet";
+            Activitycss.Attributes["type"] = "text/css";
+            Activitycss.Attributes["media"] = "all";
+            Page.Header.Controls.Add(Activitycss);
 
             HtmlLink Checkboxcss = new HtmlLink();
             Checkboxcss.Href = Brand.GetThemedDomain() + "/Search/CSS/comboTreeCheck.css";
             Checkboxcss.Attributes["rel"] = "stylesheet";
             Checkboxcss.Attributes["type"] = "text/css";
             Checkboxcss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(Searchcss);
+            Page.Header.Controls.Add(Checkboxcss);
 
             HtmlGenericControl jsscript = new HtmlGenericControl("script");
             jsscript.Attributes.Add("type", "text/javascript");

@@ -31,15 +31,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.UpdateProgress updateProgress;
         
         /// <summary>
-        /// pnlEditPublications control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlEditPublications;
-        
-        /// <summary>
         /// litBackLink control.
         /// </summary>
         /// <remarks>
@@ -55,7 +46,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phSecuritySettings;
+        protected global::System.Web.UI.WebControls.Panel phSecuritySettings;
         
         /// <summary>
         /// securityOptions control.
@@ -73,7 +64,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phAddPubMed;
+        protected global::System.Web.UI.WebControls.Panel phAddPubMed;
         
         /// <summary>
         /// btnAddPubMed control.
@@ -91,7 +82,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phAddPub;
+        protected global::System.Web.UI.WebControls.Panel phAddPub;
         
         /// <summary>
         /// btnAddPub control.
@@ -109,7 +100,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phAddCustom;
+        protected global::System.Web.UI.WebControls.Panel phAddCustom;
         
         /// <summary>
         /// btnAddCustom control.
@@ -127,7 +118,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phDeletePub;
+        protected global::System.Web.UI.WebControls.Panel phDeletePub;
         
         /// <summary>
         /// btnDeletePub control.
@@ -137,6 +128,15 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnDeletePub;
+        
+        /// <summary>
+        /// btnDeleteGray control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal btnDeleteGray;
         
         /// <summary>
         /// pnlAddPubById control.
@@ -172,7 +172,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton lnkUpdate;
+        protected global::System.Web.UI.WebControls.LinkButton lnkUpdate;
         
         /// <summary>
         /// lnkCancel control.
@@ -181,7 +181,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton lnkCancel;
+        protected global::System.Web.UI.WebControls.LinkButton lnkCancel;
         
         /// <summary>
         /// PublicationTypeDS control.
@@ -211,24 +211,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.RadioButton rdoPubMedKeyword;
         
         /// <summary>
-        /// Label18 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label18;
-        
-        /// <summary>
-        /// Label4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
-        /// <summary>
         /// txtSearchAuthor control.
         /// </summary>
         /// <remarks>
@@ -238,15 +220,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.TextBox txtSearchAuthor;
         
         /// <summary>
-        /// Label5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
-        
-        /// <summary>
         /// txtSearchAffiliation control.
         /// </summary>
         /// <remarks>
@@ -254,15 +227,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSearchAffiliation;
-        
-        /// <summary>
-        /// Label6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
         /// txtSearchKeyword control.
@@ -281,24 +245,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rdoPubMedQuery;
-        
-        /// <summary>
-        /// Label7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
-        
-        /// <summary>
-        /// Label17 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label17;
         
         /// <summary>
         /// txtPubMedQuery control.
@@ -328,15 +274,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.LinkButton btnPubMedSearch;
         
         /// <summary>
-        /// btnPubMedReset control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnPubMedReset;
-        
-        /// <summary>
         /// btnPubMedClose control.
         /// </summary>
         /// <remarks>
@@ -355,15 +292,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.Panel pnlAddPubMedResults;
         
         /// <summary>
-        /// Image1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
-        
-        /// <summary>
         /// lblPubMedResultsHeader control.
         /// </summary>
         /// <remarks>
@@ -371,15 +299,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPubMedResultsHeader;
-        
-        /// <summary>
-        /// pnlAddAll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAddAll;
         
         /// <summary>
         /// grdPubMedSearchResults control.
@@ -397,7 +316,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton lnkUpdatePubMed;
+        protected global::System.Web.UI.WebControls.LinkButton lnkUpdatePubMed;
         
         /// <summary>
         /// lnkCancelPubMed control.
@@ -406,7 +325,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton lnkCancelPubMed;
+        protected global::System.Web.UI.WebControls.LinkButton lnkCancelPubMed;
         
         /// <summary>
         /// pnlAddCustomPubMed control.
@@ -418,13 +337,13 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.Panel pnlAddCustomPubMed;
         
         /// <summary>
-        /// Label3 control.
+        /// btnPubMedById control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.LinkButton btnPubMedById;
         
         /// <summary>
         /// drpPublicationType control.
@@ -436,22 +355,13 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.DropDownList drpPublicationType;
         
         /// <summary>
-        /// btnPubMedById control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnPubMedById;
-        
-        /// <summary>
         /// ImageButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
+        protected global::System.Web.UI.WebControls.LinkButton ImageButton1;
         
         /// <summary>
         /// phMain control.
@@ -461,15 +371,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder phMain;
-        
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
         /// txtPubMedAuthors control.
@@ -535,15 +436,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.PlaceHolder phEdition;
         
         /// <summary>
-        /// Label8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
-        
-        /// <summary>
         /// txtPubMedEdition control.
         /// </summary>
         /// <remarks>
@@ -551,15 +443,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPubMedEdition;
-        
-        /// <summary>
-        /// Label9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
         /// txtPubMedPublicationDate control.
@@ -598,15 +481,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.PlaceHolder phPubIssue;
         
         /// <summary>
-        /// Label10 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
-        
-        /// <summary>
         /// txtPubMedPublicationIssue control.
         /// </summary>
         /// <remarks>
@@ -614,24 +488,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPubMedPublicationIssue;
-        
-        /// <summary>
-        /// phPubVolume control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phPubVolume;
-        
-        /// <summary>
-        /// Label11 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
         /// txtPubMedPublicationVolume control.
@@ -652,15 +508,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.PlaceHolder phPubPageNumbers;
         
         /// <summary>
-        /// Label12 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
-        
-        /// <summary>
         /// txtPubMedPublicationPages control.
         /// </summary>
         /// <remarks>
@@ -679,15 +526,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.PlaceHolder phNewsSection;
         
         /// <summary>
-        /// Label13 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label13;
-        
-        /// <summary>
         /// txtPubMedNewsSection control.
         /// </summary>
         /// <remarks>
@@ -695,15 +533,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPubMedNewsSection;
-        
-        /// <summary>
-        /// Label14 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label14;
         
         /// <summary>
         /// txtPubMedNewsColumn control.
@@ -724,15 +553,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.PlaceHolder phNewsUniversity;
         
         /// <summary>
-        /// Label15 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label15;
-        
-        /// <summary>
         /// txtPubMedNewsUniversity control.
         /// </summary>
         /// <remarks>
@@ -740,15 +560,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPubMedNewsUniversity;
-        
-        /// <summary>
-        /// Label16 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label16;
         
         /// <summary>
         /// txtPubMedNewsCity control.
@@ -760,15 +571,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.TextBox txtPubMedNewsCity;
         
         /// <summary>
-        /// phPublisherInfo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phPublisherInfo;
-        
-        /// <summary>
         /// phPublisherName control.
         /// </summary>
         /// <remarks>
@@ -778,15 +580,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.PlaceHolder phPublisherName;
         
         /// <summary>
-        /// Label19 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label19;
-        
-        /// <summary>
         /// txtPubMedPublisherName control.
         /// </summary>
         /// <remarks>
@@ -794,15 +587,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPubMedPublisherName;
-        
-        /// <summary>
-        /// Label20 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label20;
         
         /// <summary>
         /// txtPubMedPublisherCity control.
@@ -823,15 +607,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.PlaceHolder phPublisherNumbers;
         
         /// <summary>
-        /// lblPubMedPublisherReport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPubMedPublisherReport;
-        
-        /// <summary>
         /// txtPubMedPublisherReport control.
         /// </summary>
         /// <remarks>
@@ -839,15 +614,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPubMedPublisherReport;
-        
-        /// <summary>
-        /// lblPubMedPublisherContract control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPubMedPublisherContract;
         
         /// <summary>
         /// txtPubMedPublisherContract control.
@@ -868,15 +634,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.PlaceHolder phConferenceInfo;
         
         /// <summary>
-        /// Label23 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label23;
-        
-        /// <summary>
         /// txtPubMedConferenceEdition control.
         /// </summary>
         /// <remarks>
@@ -884,15 +641,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPubMedConferenceEdition;
-        
-        /// <summary>
-        /// Label24 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label24;
         
         /// <summary>
         /// txtPubMedConferenceName control.
@@ -904,15 +652,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.TextBox txtPubMedConferenceName;
         
         /// <summary>
-        /// Label25 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label25;
-        
-        /// <summary>
         /// txtPubMedConferenceDate control.
         /// </summary>
         /// <remarks>
@@ -920,15 +659,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPubMedConferenceDate;
-        
-        /// <summary>
-        /// Label26 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label26;
         
         /// <summary>
         /// txtPubMedConferenceLocation control.
@@ -985,15 +715,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.TextBox txtPubMedAbstract;
         
         /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
         /// txtPubMedOptionalWebsite control.
         /// </summary>
         /// <remarks>
@@ -1003,15 +724,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         protected global::System.Web.UI.WebControls.TextBox txtPubMedOptionalWebsite;
         
         /// <summary>
-        /// btnPubMedSaveCustomAdd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnPubMedSaveCustomAdd;
-        
-        /// <summary>
         /// btnPubMedSaveCustom control.
         /// </summary>
         /// <remarks>
@@ -1019,6 +731,15 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnPubMedSaveCustom;
+        
+        /// <summary>
+        /// btnPubMedSaveCustomAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnPubMedSaveCustomAdd;
         
         /// <summary>
         /// lnkCancelCustom control.
@@ -1099,6 +820,6 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNoItems;
+        protected global::System.Web.UI.WebControls.Literal lblNoItems;
     }
 }

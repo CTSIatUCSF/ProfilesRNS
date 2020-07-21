@@ -9,8 +9,7 @@
     Code licensed under a BSD License. 
     For details, see: LICENSE.txt 
   
-*/
-using System;
+*/using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -21,8 +20,7 @@ using System.IO;
 
 using Profiles.Framework.Utilities;
 using Profiles.Edit.Utilities;
-
-
+using System.Web.UI;
 
 namespace Profiles.Edit.Modules.CustomEditResearcherRole
 {
@@ -36,7 +34,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         private string _parentrow = string.Empty;
         public string _predicateuri = string.Empty;
         Profiles.Profile.Utilities.DataIO propdata;
-        private bool _clickedall = false;
 
 
         public CustomEditResearcherRole() { }
@@ -90,21 +87,101 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         }
 
         #endregion
+        public void InitUpDownArrows(ref GridView gv)
+        {
 
+
+            ImageButton ibLastUp = null;
+        ImageButton ibLastUpGray = null;
+        ImageButton ibLastDown = null;
+        ImageButton ibLastDownGray = null;
+
+
+        ImageButton ibFirstUp = null;
+        ImageButton ibFirstUpGray = null;
+        ImageButton ibFirstDown = null;
+        ImageButton ibFirstDownGray = null;
+
+        GridViewRow lastrow = null;
+        GridViewRow firstrow = null;
+
+        bool firstrowOnly = false;
+
+            try
+            {
+                if (gv.Rows.Count > 0)
+                {
+                    lastrow = gv.Rows[gv.Rows.Count - 1];
+                    firstrow = gv.Rows[0];
+                }
+
+                if (firstrow == lastrow && firstrow != null)
+                    firstrowOnly = true;
+
+                ibLastUp = (ImageButton)lastrow.FindControl("ibUp");
+                ibLastUpGray = (ImageButton)lastrow.FindControl("ibUpGray");
+                ibLastDown = (ImageButton)lastrow.FindControl("ibDown");
+                ibLastDownGray = (ImageButton)lastrow.FindControl("ibDownGray");
+
+                ibFirstUp = (ImageButton)firstrow.FindControl("ibUp");
+                ibFirstUpGray = (ImageButton)firstrow.FindControl("ibUpGray");
+                ibFirstDown = (ImageButton)firstrow.FindControl("ibDown");
+                ibFirstDownGray = (ImageButton)firstrow.FindControl("ibDownGray");
+
+
+                if (!firstrowOnly)
+                {
+                    try
+                    {
+                        ibLastUp.Visible = true;
+                        ibLastDown.Visible = false;
+                        ibLastUpGray.Visible = false;
+                        ibLastDownGray.Style.Add(HtmlTextWriterStyle.Cursor, "default");
+                        ibLastDownGray.Visible = true;
+                    }
+                    catch (Exception ex) { } //Its in edit mode on the last row.
+                    try
+                    {
+                        ibFirstUp.Visible = false;
+                        ibFirstDown.Visible = true;
+                        ibFirstUpGray.Visible = true;
+                        ibFirstUpGray.Style.Add(HtmlTextWriterStyle.Cursor, "default");
+                        ibFirstDownGray.Visible = false;
+                    }
+                    catch (Exception ex) { } //Its in edit mode on the first row.
+                }
+                if (firstrowOnly)
+                {
+                    ibFirstUp.Visible = false;
+                    ibFirstDown.Visible = false;
+                    ibFirstUpGray.Visible = true;
+                    ibFirstUpGray.Style.Add(HtmlTextWriterStyle.Cursor, "default");
+                    ibFirstDownGray.Visible = true;
+                    ibFirstDownGray.Style.Add(HtmlTextWriterStyle.Cursor, "default");
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+               
+            }
+        }
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            InitUpDownArrows(ref GridViewResearcherRole);
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack)
             {
                 if (HttpContext.Current.Session["GRANTREQUEST"] != null && Session["ADD"].ToString() != "true")
                 {
-                    //Need to stop this double post, its happening in an envent then it happens here after that event fires and a repost occurs. 
-
                     grdGrantSearchResults.DataSource = LoadFunding(CallAPI());
-                    grdGrantSearchResults.DataBind();                    
+                    grdGrantSearchResults.DataBind();
                 }
 
                 Session["ADD"] = "false";
-
             }
             else
             {
@@ -112,11 +189,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
                 Session["pnlAddCustomGrant.Visible"] = null;
                 Session["pnlDeleteGrant.Visible"] = null;
             }
-
-
-            // a flag to inform the ucProfileBaseInfo that it is edit page
-            Session["ProfileEdit"] = "true";
-            Session["ProfileUsername"] = _personId;
 
             if (_personId == 0)
             {
@@ -126,21 +198,38 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             else
                 Session["CurrentPersonEditing"] = _personId;
 
+
             Edit.Utilities.DataIO data;
             data = new Edit.Utilities.DataIO();
             string predicateuri = Request.QueryString["predicateuri"].Replace("!", "#");
             this.PropertyListXML = propdata.GetPropertyList(this.BaseData, base.PresentationXML, predicateuri, false, true, false);
-            litBackLink.Text = "<a Title='Edit Menu' href='" + Brand.GetThemedDomain() + "/edit/" + _subject + "'>Edit Menu</a>" + " &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+            litBackLink.Text = "<a Title='Edit Menu' href='" + Root.Domain + "/edit/default.aspx?subject=" + _subject + "'>Edit Menu</a>" + " &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
             LoadProjectYears();
             FillResearchGrid(true);
-            
+
+            if (GridViewResearcherRole.Rows.Count == 0)
+            {
+                btnDeleteGrantGray.Visible = true;
+                btnDeleteGrant.Visible = false;
+                btnImgDeleteGrant.Visible = false;
+                btnImgDeleteGrant2.Visible = true;
+                btnDeleteNIHOnly.Enabled = false;
+                btnDeleteCustomOnly.Enabled = false;
+                btnDeleteAll.Enabled = false;
+                btnDeleteGrantClose.Enabled = false;
+
+            }
+
+            InitUpDownArrows(ref GridViewResearcherRole);
+            upnlEditSection.Update();
         }
+
 
 
         #region Add Grant By Search
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
-          
+
             SearchRequest = new GrantRequest();
 
             SearchRequest.FirstName = txtFirstName.Text.Trim();
@@ -162,6 +251,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             grdGrantSearchResults.DataSource = LoadFunding(CallAPI());
             grdGrantSearchResults.DataBind();
 
+//            btnImgAddGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
             phAddCustom.Visible = false;
             phDeleteGrant.Visible = false;
             pnlAddGrantResults.Visible = false;
@@ -171,7 +261,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
 
             pnlAddGrantResults.Visible = true;
             upnlEditSection.Update();
-          
+
 
         }
         protected void LoadProjectYears()
@@ -187,6 +277,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         {
             if (Session["pnlAddGrant.Visible"] == null)
             {
+//                btnImgAddGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 phAddCustom.Visible = false;
                 phDeleteGrant.Visible = false;
                 pnlAddGrant.Visible = true;
@@ -206,6 +297,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         protected void btnClear_OnClick(object sender, EventArgs e)
         {
             ResetGrantSearch();
+//            btnImgAddGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
             phAddCustom.Visible = false;
             phDeleteGrant.Visible = false;
             pnlAddGrant.Visible = true;
@@ -213,6 +305,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             pnlAddCustomGrant.Visible = false;
             phSecuritySettings.Visible = false;
             Session["pnlAddGrant.Visible"] = true;
+
             upnlEditSection.Update();
         }
 
@@ -228,7 +321,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             txtOrganization.Text = "";
             txtProjectNumber.Text = "";
             txtTitle.Text = "";
-            ddlProjectYear.Items[0].Selected = true;
+            ddlProjectYear.SelectedIndex = 0;
 
             Session["pnlAddGrant.Visible"] = null;
             Session["pnlAddCustomGrant.Visible"] = null;
@@ -242,6 +335,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             phAddCustom.Visible = true;
             phDeleteGrant.Visible = true;
             phSecuritySettings.Visible = true;
+            btnImgAddGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
             upnlEditSection.Update();
         }
 
@@ -264,12 +358,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
                     e.Row.Cells[i].Attributes.Add("style", "padding:5px 5px 5px 0px");
             }
 
-
-            if (_clickedall)
-            {
-                CheckBox chkGrant = (CheckBox)e.Row.FindControl("chkGrant");
-                chkGrant.Checked = true;
-            }
 
             FundingState grant = (FundingState)e.Row.DataItem as FundingState;
             List<FundingState> subgrants = new List<FundingState>();
@@ -300,7 +388,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
 
             bool _rowzero = false;
             bool _lastrow = false;
-            bool _firstcell = false;
             bool _footer = false;
             string _backgroundcolor = string.Empty;
             string _borderstyle = string.Empty;
@@ -318,7 +405,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             {
                 _rowzero = true;
                 Image img = (Image)e.Row.FindControl("imgArrow");
-                img.ImageUrl = Brand.GetThemedDomain() + "/Edit/images/img_arrow.png";
+                img.ImageUrl = Root.Domain + "/Edit/images/img_arrow.png";
             }
 
             for (int i = 0; i < grdGrantSearchResults.Columns.Count; i++)
@@ -336,7 +423,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
 
                 if (i == 0)
                 {
-                    _firstcell = true;
+                    //_firstcell = true;
                     _borderstyle = string.Empty;
                     _backgroundcolor = _parentrow;
                 }
@@ -365,7 +452,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
                 _borderstyle = string.Empty;
                 //todo:null this stuff out, there is more
                 _backgroundcolor = string.Empty;
-                _firstcell = false;
+                //_firstcell = false;
             }
 
         }
@@ -392,8 +479,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         /// </summary>        
         protected void btnGrantAddSelected_OnClick(object sender, EventArgs e)
         {
-            string value = "";
-            string seperator = "";
+
             Edit.Utilities.DataIO data = new Edit.Utilities.DataIO();
             List<FundingState> funding = LoadFunding(CallAPI());
 
@@ -417,7 +503,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
                     {
                         FundingRoleID = result.FundingRoleID,
                         PersonID = this._personId,
-                        SubjectID = this.SubjectID,
                         FullFundingID = result.CoreProjectNum,
                         CoreProjectNum = result.CoreProjectNum,
                         RoleLabel = result.RoleLabel,
@@ -451,7 +536,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
                         {
                             FundingRoleID = subresult.FundingRoleID,
                             PersonID = this._personId,
-                            SubjectID = this.SubjectID,
                             FullFundingID = subresult.FullFundingID,
                             CoreProjectNum = subresult.CoreProjectNum,
                             RoleLabel = subresult.RoleLabel,
@@ -481,6 +565,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             phAddCustom.Visible = true;
             phDeleteGrant.Visible = true;
             phSecuritySettings.Visible = true;
+            btnImgAddGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
             FillResearchGrid(true);
             upnlEditSection.Update();
             Session["ADD"] = "true";
@@ -499,7 +584,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
                 SearchRequest.StringRequest = stringrequest;
 
                 string result = (string)Framework.Utilities.Cache.FetchObject(SearchRequest.StringRequest);
-              
+
                 if (result == null)
                 {
                     try
@@ -530,7 +615,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
 
                         result = result.ToLower() == "error" ? "" : result;
 
-                        Framework.Utilities.Cache.SetWithTimeout(SearchRequest.StringRequest, result,54000 );
+                        Framework.Utilities.Cache.SetWithTimeout(SearchRequest.StringRequest, result, 54000);
 
                         return result;
 
@@ -558,6 +643,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         {
             if (Session["pnlAddCustomGrant.Visible"] == null)
             {
+//                btnEditGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 phAddGrant.Visible = false;
                 phDeleteGrant.Visible = false;
                 pnlAddCustomGrant.Visible = true;
@@ -577,39 +663,10 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             upnlEditSection.Update();
         }
 
-
-
         #endregion
 
         #region GrantPageStuff
 
-        protected void btnUncheckAll_OnClick(object sender, EventArgs e)
-        {
-            this._clickedall = false;
-            phAddCustom.Visible = false;
-            phDeleteGrant.Visible = false;
-            phSecuritySettings.Visible = false;
-            pnlAddGrantResults.Visible = true;
-
-            grdGrantSearchResults.DataSource = LoadFunding(CallAPI());
-            grdGrantSearchResults.DataBind();
-            pnlAddGrantResults.Visible = true;
-            upnlEditSection.Update();
-        }
-        protected void btnCheckAll_OnClick(object sender, EventArgs e)
-        {
-            this._clickedall = true;
-            phAddCustom.Visible = false;
-            phDeleteGrant.Visible = false;
-            phSecuritySettings.Visible = false;
-            pnlAddGrantResults.Visible = true;
-
-            grdGrantSearchResults.DataSource = LoadFunding(CallAPI());
-            grdGrantSearchResults.DataBind();
-            pnlAddGrantResults.Visible = true;
-            upnlEditSection.Update();
-
-        }
         protected void GridViewResearcherRole_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             ImageButton lnkEdit = null;
@@ -619,25 +676,24 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             string pi = string.Empty;
             string date = string.Empty;
 
-
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                e.Row.Cells[0].Attributes.Add("style", "padding:5px;");
                 fundingstate = (FundingState)e.Row.DataItem;
 
                 Literal lblFundingItem = (Literal)e.Row.FindControl("lblFundingItem");
 
                 FundingState fs = (FundingState)e.Row.DataItem;
 
-                lblFundingItem.Text = "<table width='650px' border='0'><tr><td width='450px'>";
+                lblFundingItem.Text = "<div>";
 
                 if (fs.PrincipalInvestigatorName != string.Empty)
-                    pi = "(" + fs.PrincipalInvestigatorName.Trim() + ")";
-
+                    pi = "<span style=padding-left:6px;padding-top:2px;>(" + fs.PrincipalInvestigatorName.Trim() + ")</span>";
 
                 if (fs.FundingID != string.Empty)
-                    lblFundingItem.Text += fs.FullFundingID + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + pi;
+                    lblFundingItem.Text += fs.FullFundingID + "<span style=padding-left:16px;padding-top:2px;>" + pi + "</span>";
                 else
-                    lblFundingItem.Text += pi;
+                    lblFundingItem.Text += "<span style=padding-left:150px;padding-top:2px;>" + pi + "</span>";
 
 
                 if (fs.StartDate != "?")
@@ -650,17 +706,16 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
                     else
                         date = fs.EndDate;
                 }
-                else if(fs.StartDate =="?" && fs.EndDate =="?")
+                else if (fs.StartDate == "?" && fs.EndDate == "?")
                     date = string.Empty;
-
-
-                lblFundingItem.Text += "</td><td valign='right' width='200px'>" + date + "</td></tr>";
-                lblFundingItem.Text += "<tr><td colspan='2'>" + fs.GrantAwardedBy + "</td></tr>";
-                lblFundingItem.Text += "<tr><td colspan='2'>" + fs.AgreementLabel + "</td></tr>";
-                lblFundingItem.Text += "<tr><td colspan='2'>" + fs.RoleDescription + "</td></tr>";
+                lblFundingItem.Text += "<span style='padding-top:2px;float:right;margin-right:25px;'>" + date + "</span>";
+                lblFundingItem.Text += "</div>";
+                lblFundingItem.Text += "<div style='padding-top:2px;'>" + fs.GrantAwardedBy + "</div>";
+                lblFundingItem.Text += "<div style='padding-top:2px;'>" + fs.AgreementLabel + "</div>";
+                lblFundingItem.Text += "<div style='padding-top:2px;'>" + fs.RoleDescription + "</div>";
                 if (fs.RoleLabel != string.Empty)
-                    lblFundingItem.Text += "<tr><td colspan='2'>Role: " + fs.RoleLabel + "</td><tr>";
-                lblFundingItem.Text += "</table>";
+                    lblFundingItem.Text += "<div style='padding-top:2px;'>Role: " + fs.RoleLabel + "</div>";
+
 
                 lnkEdit = (ImageButton)e.Row.FindControl("lnkEdit");
                 lnkEdit.CommandArgument = fundingstate.FundingRoleID.ToString();
@@ -703,7 +758,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         }
         private void ClearFields()
         {
-
             txtStartYear.Text = "";
             txtEndYear.Text = "";
             txtRole.Text = "";
@@ -733,7 +787,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
 
             Edit.Utilities.DataIO data = new Utilities.DataIO();
 
-            if (HttpContext.Current.Session["FundingRoleID"] != null) //Edit existing
+            if (HttpContext.Current.Session["FundingRoleID"] != null)
                 FundingRoleID = new Guid((string)HttpContext.Current.Session["FundingRoleID"]);
             else
             {
@@ -746,7 +800,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             {
                 FundingRoleID = FundingRoleID,
                 PersonID = this._personId,
-                SubjectID = this.SubjectID,
                 FundingID = sponsorid,
                 FullFundingID = sponsorid,
                 RoleLabel = role,
@@ -775,6 +828,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             Session["pnlAddCustomGrant.Visible"] = null;
             btnAddCustom_OnClick(sender, e);
             this.FillResearchGrid(true);
+
             upnlEditSection.Update();
         }
 
@@ -796,21 +850,21 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
 
             List<FundingState> fundingstate = new List<FundingState>();
 
-            bool editexisting = false;
-            bool editaddnew = false;
-            bool editdelete = false;
+            //bool editexisting = false;
+            //bool editaddnew = false;
+            //bool editdelete = false;
 
-            if (this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@EditExisting").Value.ToLower() == "true" ||
-             this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@CustomEdit").Value.ToLower() == "true")
-                editexisting = true;
+            //if (this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@EditExisting").Value.ToLower() == "true" ||
+            // this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@CustomEdit").Value.ToLower() == "true")
+            //    editexisting = true;
 
-            if (this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@EditAddNew").Value.ToLower() == "true" ||
-                this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@CustomEdit").Value.ToLower() == "true")
-                editaddnew = true;
+            //if (this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@EditAddNew").Value.ToLower() == "true" ||
+            //    this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@CustomEdit").Value.ToLower() == "true")
+            //    editaddnew = true;
 
-            if (this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@EditDelete").Value.ToLower() == "true" ||
-                this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@CustomEdit").Value.ToLower() == "true")
-                editdelete = true;
+            //if (this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@EditDelete").Value.ToLower() == "true" ||
+            //    this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@CustomEdit").Value.ToLower() == "true")
+            //    editdelete = true;
 
 
             this.SubjectID = Convert.ToInt64(base.GetRawQueryStringItem("subject"));
@@ -822,13 +876,25 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
                 GridViewResearcherRole.DataSource = fs;
                 GridViewResearcherRole.DataBind();
                 GridViewResearcherRole.Visible = true;
+
                 lblNoResearcherRole.Visible = false;
+                btnImgDeleteGrant2.Visible = false;
+                btnImgDeleteGrant.Visible = true;
+                btnDeleteGrantGray.Visible = false;
+                btnDeleteGrant.Visible = true;
             }
             else
             {
                 lblNoResearcherRole.Visible = true;
                 GridViewResearcherRole.Visible = false;
+                btnImgDeleteGrant2.Visible = true;
+                btnImgDeleteGrant.Visible = false;
+                btnDeleteGrantGray.Visible = true;
+                btnDeleteGrant.Visible = false;
             }
+
+            InitUpDownArrows(ref GridViewResearcherRole);
+
 
             upnlEditSection.Update();
         }
@@ -840,11 +906,9 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
 
             string key = lb.CommandArgument;
             Session["FundingRoleID"] = null;
-            //string key = grdEditPublications.DataKeys[0].Value.ToString();
             Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
             FundingState fs = data.GetFundingItem(new Guid(key));
 
-            //btnAddCustom_OnClick(sender, e);                        
             pnlAddCustomGrant.Visible = true;
             btnInsertResearcherRole.Visible = false;
             lblInsertResearcherRolePipe.Visible = false;
@@ -859,7 +923,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             txtRole.Text = fs.RoleLabel;
             txtProjectTitle.Text = fs.AgreementLabel;
             txtRoleDescription.Text = fs.RoleDescription;
-            txtSponsorAwardID.Text = fs.FullFundingID;  //TODO: not sure on the mapping of this one.
+            txtSponsorAwardID.Text = fs.FullFundingID;
             txtStartYear.Text = fs.StartDate == "?" ? "" : fs.StartDate;
             txtEndYear.Text = fs.EndDate == "?" ? "" : fs.EndDate;
 
@@ -872,25 +936,24 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
                 SetForNIH(ref txtProjectTitle);
                 SetForNIH(ref txtSponsorAwardID);
                 SetForNIH(ref txtStartYear);
-            }
 
+                dateValidator1.Enabled = false;
+                dateValidator2.Enabled = false;
+
+                btnCalendar2.Visible = false;
+                btnCalendar3.Visible = false;
+                btnCalendar2.Enabled = false;
+                btnCalendar3.Enabled = false;
+
+            }
 
             Session["FundingRoleID"] = fs.FundingRoleID.ToString();
 
         }
-
         private void SetForNIH(ref TextBox textbox)
         {
             textbox.ReadOnly = true;
-            //textbox.Style.Add("border-Style", "none");
-            textbox.Style.Add("background-Color", "#D1D0CE");
-
-            textbox.Style["font-corlor"] = "black";
-            dateValidator1.Enabled = false;
-            dateValidator2.Enabled = false;
-            btnCalendar2.Visible = false;
-            btnCalendar3.Visible = false;
-
+            textbox.Enabled = false;
         }
         protected void deleteOne_Onclick(object sender, EventArgs e)
         {
@@ -901,11 +964,11 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             //string key = grdEditPublications.DataKeys[0].Value.ToString();
             Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
 
-            data.DeleteFunding(new Guid(key), this.SubjectID);
+            data.DeleteFunding(new Guid(key), data.GetPersonID(this.SubjectID));
             //after the batch is completed, call this method once,  same as publications.  All you need is the person ID.
             data.FundingUpdateOnePerson(new FundingState { PersonID = this._personId });
 
-            
+
             FillResearchGrid(false);
             upnlEditSection.Update();
 
@@ -918,6 +981,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         {
             if (Session["pnlDeleteGrant.Visible"] == null)
             {
+//                btnImgDeleteGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
                 phAddCustom.Visible = false;
                 phAddGrant.Visible = false;
                 pnlDeleteGrant.Visible = true;
@@ -941,21 +1005,31 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         {
             Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
 
-            FillResearchGrid(true);
+            FillResearchGrid(false);
+
             foreach (GridViewRow row in GridViewResearcherRole.Rows)
             {
-                data.DeleteFunding((Guid)GridViewResearcherRole.DataKeys[row.RowIndex]["FundingRoleID"], this.SubjectID);
+                data.DeleteFunding((Guid)GridViewResearcherRole.DataKeys[row.RowIndex]["FundingRoleID"], _personId);
+            }
+            try
+            {
+                Framework.Utilities.DebugLogging.Log("RTARD: " + this._personId);
+                //after the batch is completed, call this method once,  same as publications.  All you need is the person ID.
+                data.FundingUpdateOnePerson(new FundingState { PersonID = this._personId });
+            }
+            catch (Exception ex)
+            {
+                Framework.Utilities.DebugLogging.Log(ex.Message + ex.StackTrace);
+                throw new Exception(ex.Message);
             }
 
-
-            //after the batch is completed, call this method once,  same as publications.  All you need is the person ID.
-            data.FundingUpdateOnePerson(new FundingState { PersonID = this._personId });
-            
             phAddGrant.Visible = true;
             phAddCustom.Visible = true;
             phSecuritySettings.Visible = true;
             pnlDeleteGrant.Visible = false;
+            btnImgDeleteGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
             FillResearchGrid(true);
+
             upnlEditSection.Update();
         }
         protected void btnDeleteGrantClose_OnClick(object sender, EventArgs e)
@@ -965,6 +1039,9 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             phDeleteGrant.Visible = true;
             phSecuritySettings.Visible = true;
             pnlDeleteGrant.Visible = false;
+            btnImgDeleteGrant.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+            FillResearchGrid(true);
+
             upnlEditSection.Update();
         }
 
@@ -972,19 +1049,20 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         protected void btnDeleteNIHOnly_OnClick(object sender, EventArgs e)
         {
             Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
-
+            FillResearchGrid(false);
             List<FundingState> fs = (List<FundingState>)GridViewResearcherRole.DataSource;
             foreach (FundingState row in fs)
             {
 
                 if (row.Source == "NIH")
-                    data.DeleteFunding(row.FundingRoleID, this.SubjectID);
+                    data.DeleteFunding(row.FundingRoleID, _personId);
             }
 
             //after the batch is completed, call this method once,  same as publications.  All you need is the person ID.
             data.FundingUpdateOnePerson(new FundingState { PersonID = this._personId });
 
             FillResearchGrid(true);
+
             upnlEditSection.Update();
 
         }
@@ -992,17 +1070,23 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         protected void btnDeleteCustomOnly_OnClick(object sender, EventArgs e)
         {
             Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
+            FillResearchGrid(false);
             List<FundingState> fs = (List<FundingState>)GridViewResearcherRole.DataSource;
+
+
             foreach (FundingState row in fs)
             {
 
                 if (row.Source != "NIH")
-                    data.DeleteFunding(row.FundingRoleID, this.SubjectID);
+                    data.DeleteFunding(row.FundingRoleID, _personId);
             }
 
             //after the batch is completed, call this method once,  same as publications.  All you need is the person ID.
-            data.FundingUpdateOnePerson(new FundingState { PersonID = this._personId });
+
+            data.FundingUpdateOnePerson(new FundingState { PersonID = _personId });
+
             FillResearchGrid(true);
+
             upnlEditSection.Update();
 
         }
@@ -1056,15 +1140,13 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             }
             return err;
         } // end HttpPost 
-        
+
         private List<FundingState> LoadFunding(string rawxml)
         {
-
             XmlDocument xml = new XmlDocument();
             List<FundingState> funding = new List<FundingState>();
 
-            FundingState item;
-            if (rawxml != string.Empty)
+            if (rawxml != string.Empty && rawxml != null)
             {
                 xml.LoadXml(rawxml);
 
@@ -1140,7 +1222,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
 
                 }
             }
-            funding.Sort();
             return funding;
         }
 
@@ -1260,9 +1341,9 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
 
 
         }
-        public string GetThemedDomain()
+        public string GetURLDomain()
         {
-            return Brand.GetThemedDomain();
+            return Root.Domain;
         }
 
         private Int64 SubjectID { get; set; }

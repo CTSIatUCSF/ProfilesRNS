@@ -26,7 +26,7 @@
 
     <asp:ContentPlaceHolder ID="head" runat="server">
 
-        <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.2.min.js" type="text/javascript"></script>
+        <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js" type="text/javascript"></script>
 
     </asp:ContentPlaceHolder>
 
@@ -533,7 +533,7 @@
 					<div id="footer-contact">
 						<ul>
 							<li><a href="<%=GetThemedDomain()%>/">Home</a></li>
-							<li><a href="mailto:profiles@ucsf.edu">Contact us</a></li>
+							<li><a href="mailto:UCLAProfiles@mednet.ucla.edu">Contact us</a></li>
 						</ul>
 					</div>
 					<div id="footer-copyright">

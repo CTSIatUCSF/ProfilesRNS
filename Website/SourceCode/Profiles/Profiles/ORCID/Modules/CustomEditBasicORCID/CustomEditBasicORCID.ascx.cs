@@ -81,13 +81,13 @@ namespace Profiles.ORCID.Modules.CustomEditBasicORCID
             {
 
                 btnInsertCancel_OnClick(sender, e);
-                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
+//                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareArrow.gif";
                 Session["pnlInsertProperty.Visible"] = null;
             }
             else
             {
                 pnlInsertProperty.Visible = true;
-                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
+//                imbAddArror.ImageUrl = "~/Framework/Images/icon_squareDownArrow.gif";
                 Session["pnlInsertProperty.Visible"] = true;
 
             }

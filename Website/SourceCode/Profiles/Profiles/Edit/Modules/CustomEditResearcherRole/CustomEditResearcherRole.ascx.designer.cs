@@ -31,15 +31,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         protected global::System.Web.UI.UpdateProgress updateProgress;
         
         /// <summary>
-        /// pnlEditGrants control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlEditGrants;
-        
-        /// <summary>
         /// litBackLink control.
         /// </summary>
         /// <remarks>
@@ -55,7 +46,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phSecuritySettings;
+        protected global::System.Web.UI.WebControls.Panel phSecuritySettings;
         
         /// <summary>
         /// securityOptions control.
@@ -73,7 +64,16 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phAddGrant;
+        protected global::System.Web.UI.WebControls.Panel phAddGrant;
+        
+        /// <summary>
+        /// btnImgAddGrant control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnImgAddGrant;
         
         /// <summary>
         /// btnAddNewGrant control.
@@ -91,16 +91,25 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phAddCustom;
+        protected global::System.Web.UI.WebControls.Panel phAddCustom;
         
         /// <summary>
-        /// btnAddCustom control.
+        /// btnEditGrant control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddCustom;
+        protected global::System.Web.UI.WebControls.ImageButton btnEditGrant;
+        
+        /// <summary>
+        /// btnEditGrant2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnEditGrant2;
         
         /// <summary>
         /// phDeleteGrant control.
@@ -109,7 +118,25 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phDeleteGrant;
+        protected global::System.Web.UI.WebControls.Panel phDeleteGrant;
+        
+        /// <summary>
+        /// btnImgDeleteGrant2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image btnImgDeleteGrant2;
+        
+        /// <summary>
+        /// btnImgDeleteGrant control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnImgDeleteGrant;
         
         /// <summary>
         /// btnDeleteGrant control.
@@ -119,6 +146,15 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnDeleteGrant;
+        
+        /// <summary>
+        /// btnDeleteGrantGray control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal btnDeleteGrantGray;
         
         /// <summary>
         /// pnlAddGrant control.
@@ -220,42 +256,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         protected global::System.Web.UI.WebControls.Panel pnlAddGrantResults;
         
         /// <summary>
-        /// Image1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
-        
-        /// <summary>
-        /// pnlAddAll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAddAll;
-        
-        /// <summary>
-        /// btnCheckAll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCheckAll;
-        
-        /// <summary>
-        /// btnUncheckAll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnUncheckAll;
-        
-        /// <summary>
         /// grdGrantSearchResults control.
         /// </summary>
         /// <remarks>
@@ -271,7 +271,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton lnkUpdateGrant;
+        protected global::System.Web.UI.WebControls.LinkButton lnkUpdateGrant;
         
         /// <summary>
         /// lnkCancelGrant control.
@@ -280,7 +280,16 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton lnkCancelGrant;
+        protected global::System.Web.UI.WebControls.LinkButton lnkCancelGrant;
+        
+        /// <summary>
+        /// searchresultsJS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal searchresultsJS;
         
         /// <summary>
         /// pnlAddCustomGrant control.
@@ -400,15 +409,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         protected global::System.Web.UI.WebControls.TextBox txtProjectTitle;
         
         /// <summary>
-        /// txtRole control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRole;
-        
-        /// <summary>
         /// txtRoleDescription control.
         /// </summary>
         /// <remarks>
@@ -416,6 +416,15 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRoleDescription;
+        
+        /// <summary>
+        /// txtRole control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRole;
         
         /// <summary>
         /// txtAbstract control.
@@ -427,13 +436,13 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         protected global::System.Web.UI.WebControls.TextBox txtAbstract;
         
         /// <summary>
-        /// btnInsertResearcherRole control.
+        /// btnInsertResearcherRole2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnInsertResearcherRole;
+        protected global::System.Web.UI.WebControls.LinkButton btnInsertResearcherRole2;
         
         /// <summary>
         /// lblInsertResearcherRolePipe control.
@@ -445,13 +454,13 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole {
         protected global::System.Web.UI.WebControls.Literal lblInsertResearcherRolePipe;
         
         /// <summary>
-        /// btnInsertResearcherRole2 control.
+        /// btnInsertResearcherRole control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnInsertResearcherRole2;
+        protected global::System.Web.UI.WebControls.LinkButton btnInsertResearcherRole;
         
         /// <summary>
         /// btnInsertCancel control.

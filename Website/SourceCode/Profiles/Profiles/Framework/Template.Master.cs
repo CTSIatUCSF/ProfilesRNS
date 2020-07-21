@@ -200,8 +200,19 @@ namespace Profiles.Framework
 
                 gaTrackingjs.Attributes.Add("type", "text/javascript");
                 gaTrackingjs.InnerHtml = GetUniversalAnalyticsJavascipt(Brand.GetGATrackingID(), domain, trackingID2, domain2);
-
                 Page.Header.Controls.Add(gaTrackingjs);
+
+                // adding Siteimprove to the page 
+                if (Brand.GetThemeName().IndexOf("UC") > -1)
+                {
+                    HtmlGenericControl siTrackingjs = new HtmlGenericControl("script");
+                    siTrackingjs.Attributes.Add("type", "text/javascript");
+                    siTrackingjs.InnerHtml = "\r\n(function() {" + Environment.NewLine +
+                        "var sz = document.createElement('script'); sz.type = 'text/javascript'; sz.async = true;" + Environment.NewLine +
+                        "sz.src = '//siteimproveanalytics.com/js/siteanalyze_8343.js';" + Environment.NewLine +
+                        "var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz, s);})();\r\n";
+                    Page.Header.Controls.Add(siTrackingjs);
+                }
             }
 
 

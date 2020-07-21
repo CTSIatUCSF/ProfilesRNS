@@ -113,7 +113,6 @@ popd
 
 @RD /S /Q "ProfilesRNS\Database\Data\InstallData"
 
-echo d | xcopy /s ..\Database\SQL2008 ProfilesRNS\Database\SQL2008
 echo d | xcopy /s ..\Database\SQL2012 ProfilesRNS\Database\SQL2012
 echo d | xcopy /s ..\Database\SQL2014 ProfilesRNS\Database\SQL2014
 echo d | xcopy /s ..\Database\SQL2016 ProfilesRNS\Database\SQL2016
@@ -126,12 +125,14 @@ echo d | xcopy /s ..\Database\VersionUpgrade_2.9.0_2.10.0 ProfilesRNS\Database\V
 echo d | xcopy /s ..\Database\VersionUpgrade_2.10.0_2.10.1 ProfilesRNS\Database\VersionUpgrade_2.10.0_2.10.1
 echo d | xcopy /s ..\Database\VersionUpgrade_2.10.1_2.11.0 ProfilesRNS\Database\VersionUpgrade_2.10.1_2.11.0
 echo d | xcopy /s ..\Database\VersionUpgrade_2.11.0_2.11.1 ProfilesRNS\Database\VersionUpgrade_2.11.0_2.11.1
+echo d | xcopy /s ..\Database\VersionUpgrade_2.11.1_2.12.0 ProfilesRNS\Database\VersionUpgrade_2.11.1_2.12.0
 copy ..\Database\ProfilesRNS_CreateAccount.sql ProfilesRNS\Database\ProfilesRNS_CreateAccount.sql
 copy ..\Database\ProfilesRNS_CreateDatabase.sql ProfilesRNS\Database\ProfilesRNS_CreateDatabase.sql
 copy ..\Database\ProfilesRNS_DataLoad_Part1.sql ProfilesRNS\Database\ProfilesRNS_DataLoad_Part1.sql
 copy ..\Database\ProfilesRNS_DataLoad_Part3.sql ProfilesRNS\Database\ProfilesRNS_DataLoad_Part3.sql
 copy ..\Database\ProfilesRNS_GeoCodeJob.sql ProfilesRNS\Database\ProfilesRNS_GeoCodeJob.sql
 copy ..\Database\ExporterDisambiguation_GetFunding.sql ProfilesRNS\Database\ExporterDisambiguation_GetFunding.sql
+copy ..\Database\ProfilesRNS_BibliometricsJob.sql ProfilesRNS\Database\ProfilesRNS_BibliometricsJob.sql
 
 del "%RootPath%\Database\ProfilesRNS_CreateSchema.sql"
 pushd "%RootPath%\Database\schema"

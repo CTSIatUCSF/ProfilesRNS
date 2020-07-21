@@ -21,12 +21,9 @@
         <asp:Literal runat="server" ID="litListItem"></asp:Literal>
     </ItemTemplate>
     <FooterTemplate>
-        </ul>
-        <div class='passiveSectionBodyDetails'>
+         </ul>   
+        </div>
             <asp:Literal runat="server" ID="litFooter"></asp:Literal>
-        </div>
-        <div class="passiveSectionLine">
-        </div>
-        </div>
+        <div class="passiveSectionLine">_</div>
     </FooterTemplate>
 </asp:Repeater>

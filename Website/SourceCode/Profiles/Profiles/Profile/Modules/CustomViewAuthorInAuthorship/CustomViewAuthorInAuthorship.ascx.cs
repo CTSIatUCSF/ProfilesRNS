@@ -118,7 +118,7 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                     }
                 }
                 //some cleanup to help with the dimensions stuff
-                lblPubTxt += (!String.IsNullOrEmpty(lblPubTxt) && !lblPubTxt.TrimEnd().EndsWith(".") ? ". " : "") + pub.prns_informationResourceReference;
+                lblPubTxt += (!String.IsNullOrEmpty(lblPubTxt) && !lblPubTxt.TrimEnd().EndsWith(".") ? ". " : "");
                 lblPubTxt = lblPubTxt.Replace(". .", ".");
 
                 string doi = "";

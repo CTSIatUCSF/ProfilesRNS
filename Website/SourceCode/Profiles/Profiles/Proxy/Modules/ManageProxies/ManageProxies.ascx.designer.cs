@@ -49,15 +49,6 @@ namespace Profiles.Proxy.Modules.ManageProxies {
         protected global::System.Web.UI.WebControls.Panel pnlAddProxy;
         
         /// <summary>
-        /// imgAdd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgAdd;
-        
-        /// <summary>
         /// lnkAddProxyTmp control.
         /// </summary>
         /// <remarks>

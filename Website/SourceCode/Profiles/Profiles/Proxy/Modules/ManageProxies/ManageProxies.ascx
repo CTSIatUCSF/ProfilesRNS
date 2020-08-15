@@ -24,8 +24,7 @@ own proxies.
         </div>
         <div style="margin-top: 8px;">
             If one of the people listed below has a icon in the Delete column, then you may
-    remove that person as your proxy.    
-                        font-size: 36px; left: 40%; top: 40%;"><img alt="Loading.." src="<%=GetThemedDomain()%>/Edit/Images/loader.gif" width="400" height="213"/></span>
+    remove that person as your proxy. 
         </div>
         <div style="margin-top: 8px;">
             <asp:GridView Width="100%" ID="gvMyProxies" EmptyDataText="<div style='margin-top:5px;margin-left:5px;margin-bottom:5px;'>None</div>" AutoGenerateColumns="false"
@@ -57,9 +56,6 @@ own proxies.
         </div>
         <asp:Panel runat="server" ID="pnlAddProxy" Visible='false'>
             <div style="padding-top: 6px;">
-                <div style="float: left; padding-right: 5px; padding-top: 7px;">
-                    <asp:Image runat="server" ID="imgAdd" AlternateText=" " />
-                </div>
                     <span class="dblarrow"></span><asp:Literal runat="server" ID='lnkAddProxyTmp' Text = "Add A Proxy"></asp:Literal>
         </asp:Panel>
         <div style="font-weight: bold; margin-top: 34px; margin-bottom: 8px;">Users who have given you permission to edit their profiles</div>

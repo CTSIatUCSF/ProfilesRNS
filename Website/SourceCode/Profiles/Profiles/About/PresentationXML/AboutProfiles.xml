@@ -62,7 +62,29 @@
                   </ul>
                 </div>
             </div>
-
+            
+            <div class="aboutProfiles">
+              <div>
+                <h3 class="toolbox">Toolbox</h3>
+                <ul class="square">
+                  <li>
+                    <a href="ForDevelopers.aspx">Profiles data tools for your website</a>
+                  </li>
+                  <li>
+                    <a href="http://www.orng.info/index.html">Profiles OpenSocial extensions</a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="questions">Help</h3>
+                <ul class="square">
+                  <li>
+                    <a href="Help.aspx#faq">Frequently Asked Questions</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
             <h2>Acknowledgements</h2>
             <p>
               Researcher Profiles was developed from <a href="http://connects.catalyst.harvard.edu/Profiles/about/default.aspx" target="_blank">Profiles Research Networking Software</a>, which was created by <a href="http://catalyst.harvard.edu/" target="_new">Harvard Catalyst | The Harvard Clinical and Translational Science Center</a> (grant numbers 8UL1 TR000170-05 and 1UL1 TR001102-01) and Griffin M. Weber, MD, PhD.

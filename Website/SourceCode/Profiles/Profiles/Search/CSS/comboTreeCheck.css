@@ -10,15 +10,17 @@
     For details, see: LICENSE.txt 
   
 */
-.comboTreeCheck
-{
-    font-family:Arial;
-    font-size:12px;
-    width:253px;
-    color:black;
-    font-weight:normal;
-    background:white;
-    white-space:nowrap
+.comboTreeCheck {
+    font-family: Arial;
+    font-size: 12px;
+    width: 253px;
+    color: black;
+    font-weight: normal;
+    background: white;
+    white-space: normal;
+    min-height: 10em;
+    border: none;
+    width: 95%
 }
 .comboTreeCheck img
 {
@@ -58,18 +60,18 @@
     -khtml-opacity: 0.65;
     opacity: 0.65
 }
-#divMasterContent
-{
-    display:none;
-    position:absolute;
-    border:1px solid #7f9db9;
-    padding-left:4px;
-    overflow:hidden;
-    background:white;
-    width:244px;
-    line-height:18px;
-    height:153px;
-    overflow-y:auto
+#divMasterContent {
+    display: none;
+    position: absolute;
+    border: 1px solid #7f9db9;
+    padding-left: 4px;
+    overflow: hidden;
+    background: white;
+    width: 244px;
+    line-height: 18px;
+    height: 153px;
+    overflow-y: auto;
+    display: block !important
 }
 #divMasterContent img
 {

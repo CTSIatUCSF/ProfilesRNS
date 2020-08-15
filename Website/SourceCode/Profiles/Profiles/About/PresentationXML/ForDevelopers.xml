@@ -16,14 +16,26 @@
       <Module ID="HTMLBlock">
         <ParamList>
           <Param Name="HTML">
-		  
-<script type="text/javascript">
-$('#suckerfishmenu li#about a').addClass('active'); 
-</script>
 
-<p>Content under development--</p>
+            <script type="text/javascript">
+              $('#suckerfishmenu li#about a').addClass('active');
+            </script>
 
- 
+            <p>We make much of the data in Profiles available for use in your apps and websites.</p>
+            <p>Data is available through a simple HTTP GET API, where you can get information about any user in the system in JSON format. You can integrate this with applications using your favorite language/environment, including JavaScript, Python, or Java.</p>
+            <p>All you need to know is the person's Profiles URL or campus identifier—or you can use a 2-step process to download data for every user in the system.</p>
+
+            <h3>We currently support fields like:</h3>
+            <ul>
+              <li>name</li>
+              <li>bio</li>
+              <li>department</li>
+              <li>research keywords</li>
+              <li>photo URL</li>
+              <li>publications</li>
+            </ul>
+
+            <p>To learn more, contact us, and we can help get you set up.</p>
           </Param>
         </ParamList>
       </Module>

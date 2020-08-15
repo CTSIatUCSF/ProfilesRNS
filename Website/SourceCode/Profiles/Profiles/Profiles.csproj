@@ -258,11 +258,11 @@
     <Content Include="App_Themes\UCSF\Images\hero-photos18.png" />
     <Content Include="App_Themes\UCSF\Images\hero-photos19.png" />
     <Content Include="App_Themes\UCSF\Images\hero-photos2.png" />
-    <Content Include="App_Themes\UCSF\Images\hero-photos20.png" />
     <Content Include="App_Themes\UCSF\Images\hero-photos21.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos20.png" />
+    <Content Include="App_Themes\UCSF\Images\hero-photos5.png" />
     <Content Include="App_Themes\UCSF\Images\hero-photos3.png" />
     <Content Include="App_Themes\UCSF\Images\hero-photos4.png" />
-    <Content Include="App_Themes\UCSF\Images\hero-photos5.png" />
     <Content Include="App_Themes\UCSF\Images\hero-photos6.png" />
     <Content Include="App_Themes\UCSF\Images\hero-photos7.png" />
     <Content Include="App_Themes\UCSF\Images\hero-photos8.png" />

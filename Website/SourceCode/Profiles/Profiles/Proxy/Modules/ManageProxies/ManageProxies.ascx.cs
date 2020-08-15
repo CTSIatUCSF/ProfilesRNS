@@ -34,7 +34,7 @@ namespace Profiles.Proxy.Modules.ManageProxies
 
             Utilities.DataIO data = new Profiles.Proxy.Utilities.DataIO();
 
-            imgAdd.ImageUrl = Brand.GetThemedDomain() + "/framework/images/icon_roundArrow.gif";
+            //imgAdd.ImageUrl = Brand.GetThemedDomain() + "/framework/images/icon_roundArrow.gif";
                       
 
             SqlDataReader reader;

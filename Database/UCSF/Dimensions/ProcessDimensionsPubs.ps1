@@ -390,6 +390,7 @@ if ($args.count -eq 0) {
     if ($DEBUG -eq 1){write-host "Need file with names/passwords"}
     exit
 }
+# Dimension types described at https://docs.dimensions.ai/dsl/datasource-publications.html
 $allowedTypes=@("article"
 ,"chapter"
 #,"monograph"

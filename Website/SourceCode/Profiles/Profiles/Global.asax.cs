@@ -19,6 +19,7 @@ using System.Web.Compilation;
 using System.Diagnostics;
 
 using Profiles.Framework.Utilities;
+using System.Net;
 
 namespace Profiles
 {
@@ -41,6 +42,8 @@ namespace Profiles
             new Framework.Utilities.DataIO().LoadUCSFIdSet();
             RegisterRoutes(RouteTable.Routes);
             LoadModuleCatalogue();
+            // set this up
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
         }
 
 

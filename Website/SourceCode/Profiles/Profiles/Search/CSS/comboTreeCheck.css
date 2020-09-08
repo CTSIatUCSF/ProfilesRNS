@@ -103,3 +103,6 @@
 {
     width:15px;
 }
+/* this makes sure that the box inside isn't wider than the parent. unfuddle #260*/
+#divCTC_ctl00_ContentMain_rptMain_ctl00_ctl00_ctcFirst { min-height: 20rem }
+#divCTC_ctl00_ContentMain_rptMain_ctl00_ctl00_ctcFirst #divMasterContent { height: 100%; width: 95%; border: none; height: 18rem }

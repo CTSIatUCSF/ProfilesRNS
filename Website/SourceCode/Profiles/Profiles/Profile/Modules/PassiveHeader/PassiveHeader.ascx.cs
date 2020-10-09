@@ -67,7 +67,7 @@ namespace Profiles.Profile.Modules.PassiveHeader
                 {
                     fname = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about=/rdf:RDF/rdf:Description/rdf:subject/@rdf:resource]/foaf:firstName", base.Namespaces).InnerText;
                 }
-                else
+                else if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/foaf:firstName", base.Namespaces) != null)
                 {
                     fname = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/foaf:firstName", base.Namespaces).InnerText;
                 }

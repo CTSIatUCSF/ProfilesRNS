@@ -240,11 +240,13 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                     
                     if (pub.vivo_webpage != string.Empty && pub.vivo_webpage != null)
                     {
-                        lblPubTxt = "<a href='" + pub.vivo_webpage + "' target='_blank'>View Publication</a>.";
+                        lblPubTxt += "<a href='" + pub.vivo_webpage + "' target='_blank'>View Publication</a>.";
                     }
 
                 }
-                lblPublication.Text = pub.prns_informationResourceReference;
+                // hack on a hack for Unfuddle 265
+                lblPublication.Text = pub.authors != null && pub.authors.Length > 0 && pub.prns_informationResourceReference.StartsWith(pub.authors) ?
+                    pub.prns_informationResourceReference.Substring(pub.authors.Length) : pub.prns_informationResourceReference;
                 lblPublicationIDs.Text = lblPubTxt;
             }
         }

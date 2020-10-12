@@ -1244,7 +1244,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             myRequest.Method = "POST";
 
             /* byte[] bytes = Encoding.ASCII.GetBytes(myXml); */
-            byte[] bytes = Encoding.UTF8..GetBytes(myXml);
+            byte[] bytes = Encoding.UTF8.GetBytes(myXml);
             Stream os = null;
 
             string err = null;

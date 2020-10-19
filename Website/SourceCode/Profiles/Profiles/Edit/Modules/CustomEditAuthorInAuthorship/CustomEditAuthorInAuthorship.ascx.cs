@@ -624,6 +624,8 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 //do nothing. its a blank search
             }
 
+            // By waiting a second, we avoid PubMed blocking us for too many requests. 
+            System.Threading.Thread.Sleep(1000);
             uri = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?retmin=0&retmax=100&retmode=xml&db=Pubmed&query_key=" + queryKey + "&webenv=" + webEnv;
             myXml.LoadXml(this.HttpPost(uri, "Catalyst", "text/plain"));
 

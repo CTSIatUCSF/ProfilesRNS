@@ -28,3 +28,8 @@
 #site-logo h1 a:hover, #site-logo h1 a:hover #tagline { color: #F8EECC; }
 
 .profilesFooter { background-color: #002855; }
+
+/* USD only */
+.studentProjects2 {
+    margin-left: 12px; vertical-align: -2px;
+}

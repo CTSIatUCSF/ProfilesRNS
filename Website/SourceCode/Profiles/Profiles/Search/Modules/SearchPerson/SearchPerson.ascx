@@ -317,6 +317,16 @@
                                     </td>
                                 </tr>
 							</asp:Panel>
+							<asp:Panel ID="StudentProjectUCD" runat="server" SkinID="UCD" Visible="false">
+								<tr>
+                                    <th>
+                                        Student Projects
+                                    </th>
+                                    <td colspan="2">
+                                        <input type="checkbox" class="studentProjects2" />
+                                    </td>
+                                </tr>
+							</asp:Panel>
 <!--
                                 <tr>
                                     <th>

@@ -168,6 +168,7 @@
     <Content Include="App_Themes\Default\Images\help.gif" />
     <Content Include="App_Themes\Default\Images\ucbg.jpg" />
     <Content Include="App_Themes\Default\Images\uclogo137.png" />
+    <Content Include="App_Themes\Default\ThemeConfiguration.xml" />
     <Content Include="App_Themes\UCD\Images\backtotop.gif" />
     <Content Include="App_Themes\UCD\Images\comment.gif" />
     <Content Include="App_Themes\UCD\Images\davis-logo-white.svg" />
@@ -177,6 +178,7 @@
     <Content Include="App_Themes\UCD\Images\help.gif" />
     <Content Include="App_Themes\UCD\Images\ucdavis-logo.png" />
     <Content Include="App_Themes\UCD\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCD\ThemeConfiguration.xml" />
     <Content Include="App_Themes\UCD\UCD.css" />
     <Content Include="App_Themes\UCD\UCD.js" />
     <Content Include="App_Themes\UCI\Images\backtotop.gif" />
@@ -186,6 +188,7 @@
     <Content Include="App_Themes\UCI\Images\help.gif" />
     <Content Include="App_Themes\UCI\Images\uciLogo.png" />
     <Content Include="App_Themes\UCI\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCI\ThemeConfiguration.xml" />
     <Content Include="App_Themes\UCI\UCI.css" />
     <Content Include="App_Themes\UCI\UCI.js" />
     <Content Include="App_Themes\UCLA\Images\backtotop.gif" />
@@ -195,6 +198,7 @@
     <Content Include="App_Themes\UCLA\Images\help.gif" />
     <Content Include="App_Themes\UCLA\Images\ucla-logo.png" />
     <Content Include="App_Themes\UCLA\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCLA\ThemeConfiguration.xml" />
     <Content Include="App_Themes\UCLA\UCLA.css" />
     <Content Include="App_Themes\UCLA\UCLA.js" />
     <Content Include="App_Themes\UCR\Images\backtotop.gif" />
@@ -232,6 +236,7 @@
     <Content Include="App_Themes\UCSD\Images\ucsdlogo.png" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\AboutProfiles.xml" />
     <Content Include="App_Themes\UCSD\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\UCSD\ThemeConfiguration.xml" />
     <Content Include="App_Themes\UCSD\UCSD.css" />
     <Content Include="App_Themes\UCSD\UCSD.js" />
     <Content Include="App_Themes\UCSF\Images\backtotop.gif" />
@@ -282,6 +287,7 @@
     <Content Include="App_Themes\UCSF\PresentationXML\About\Help.xml" />
     <Content Include="App_Themes\UCSF\PresentationXML\About\NewFeatures.xml" />
     <Content Include="App_Themes\UCSF\PresentationXML\About\NoProfile.xml" />
+    <Content Include="App_Themes\UCSF\ThemeConfiguration.xml" />
     <Content Include="App_Themes\UCSF\UCSF.css" />
     <Content Include="App_Themes\UCSF\UCSF.js" />
     <Content Include="App_Themes\UC\Images\backtotop.gif" />
@@ -291,6 +297,7 @@
     <Content Include="App_Themes\UC\Images\help.gif" />
     <Content Include="App_Themes\UC\Images\ucbg.jpg" />
     <Content Include="App_Themes\UC\Images\uclogo137.png" />
+    <Content Include="App_Themes\UC\ThemeConfiguration.xml" />
     <Content Include="App_Themes\UC\UC.css" />
     <Content Include="App_Themes\UC\UC.js" />
     <Content Include="App_Themes\USC\Images\actri-logo.png" />
@@ -314,6 +321,7 @@
     <Content Include="App_Themes\USC\PresentationXML\About\FAQ.xml" />
     <Content Include="App_Themes\USC\PresentationXML\About\ForDevelopers.xml" />
     <Content Include="App_Themes\USC\PresentationXML\About\Help.xml" />
+    <Content Include="App_Themes\USC\ThemeConfiguration.xml" />
     <Content Include="App_Themes\USC\USC.css" />
     <Content Include="App_Themes\USC\USC.js" />
     <Content Include="CustomAPI\Secure\ActivityLog.aspx" />

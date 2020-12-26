@@ -155,6 +155,13 @@ namespace Profiles.Framework
             ThemeJs.Attributes.Add("src", Brand.GetThemedDomain() + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".js");
             Page.Header.Controls.Add(ThemeJs);
 
+            //modifying Google Varification
+            HtmlMeta pageMetaTag = new HtmlMeta();
+            pageMetaTag.Name = "google-site-verification" ;
+            string fileName=Brand.GetThemedDomain() + "/App_Themes/" + Page.Theme + "/ThemeConfiguration.xml";
+            pageMetaTag.Content = Brand.GetGoogleValidationContent(fileName); //"p5OaN7GUMQcNoavqEkMHqFPRAWZcgI_SUvQhqXBP1u0"; //for UCSD
+            Page.Header.Controls.Add(pageMetaTag);
+
             // UCSF. To support lazy login
             String lazyShibLogin = Profiles.Login.ShibbolethSession.GetJavascriptSrc(Request);
             if (!String.IsNullOrEmpty(lazyShibLogin))

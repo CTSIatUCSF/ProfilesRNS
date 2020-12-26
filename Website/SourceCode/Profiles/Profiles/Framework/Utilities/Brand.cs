@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Web.Configuration;
 using Profiles.ORNG.Utilities;
 using System.Data.SqlClient;
+using System.Xml;
 
 namespace Profiles.Framework.Utilities
 {
@@ -22,6 +23,16 @@ namespace Profiles.Framework.Utilities
         public string GATrackingID { get; set; }
         public string PersonFilter { get; set; }
         private List<Institution> RestrictedInstitutions = null;
+
+        public static string GetGoogleValidationContent(string fileName)
+        {
+            string content = "";
+            XmlDocument doc = new XmlDocument();
+            doc.Load(fileName);
+            content=doc.DocumentElement.SelectSingleNode("/root/Google_Site_Varification/content").InnerText; 
+            return content;
+        }
+        
 
         public bool IsMultiInstitutional()
         {

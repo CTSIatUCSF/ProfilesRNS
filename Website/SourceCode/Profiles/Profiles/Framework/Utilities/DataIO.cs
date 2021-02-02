@@ -766,7 +766,7 @@ namespace Profiles.Framework.Utilities
                     session.ViewSecurityGroup = -20;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 Framework.Utilities.DebugLogging.Log("ERROR" + ex.StackTrace);
             }

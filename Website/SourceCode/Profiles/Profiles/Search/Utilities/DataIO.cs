@@ -671,7 +671,6 @@ namespace Profiles.Search.Utilities
             foreach (Institution institution in Institution.GetAll())
             {
                 if (brand.IsApplicableFor(institution))
-                    {
                 {
                     institutions.Add(new GenericListItem(institution.GetName(), institution.GetURI()));
                 }

@@ -9,24 +9,24 @@
 <div>
     <div class="content-main" style="border-bottom: 1px solid #ccc; height: 32px;">
         <ul class="tabmenu">
-            <li class="tab" id="tab-view" style="cursor: pointer;" onclick="window.location='<%=string.Format("{0}/lists/default.aspx?type=view",Profiles.Framework.Utilities.Root.Domain)%>';">
-                <a href="<%=string.Format("{0}/lists/default.aspx?type=view",Profiles.Framework.Utilities.Root.Domain)%>">Manage List</a>
+            <li class="tab" id="tab-view" style="cursor: pointer;" onclick="window.location='<%=string.Format("{0}/lists/default.aspx?type=view",Profiles.Framework.Utilities.Brand.GetThemedDomain())%>';">
+                <a href="<%=string.Format("{0}/lists/default.aspx?type=view",Profiles.Framework.Utilities.Brand.GetThemedDomain())%>">Manage List</a>
             </li>
-            <li class="tab" id="tab-map" style="cursor: pointer;" onclick="window.location='<%=string.Format("{0}/lists/default.aspx?type=map",Profiles.Framework.Utilities.Root.Domain)%>';">
-                <a href="<%=string.Format("{0}/lists/default.aspx?type=map",Profiles.Framework.Utilities.Root.Domain)%>">Map View</a> </li>
-            <li class="tab" id="tab-coviz" style="cursor: pointer;" onclick="window.location='<%=string.Format("{0}/lists/default.aspx?type=coviz",Profiles.Framework.Utilities.Root.Domain)%>';">
-                <a href="<%=string.Format("{0}/lists/default.aspx?type=coviz",Profiles.Framework.Utilities.Root.Domain)%>">Cluster View</a> </li>
-            <li class="tab" id="tab-summary" style="cursor: pointer;" onclick="window.location='<%=string.Format("{0}/lists/default.aspx?type=summary",Profiles.Framework.Utilities.Root.Domain)%>';">
-                <a href="<%=string.Format("{0}/lists/default.aspx?type=summary",Profiles.Framework.Utilities.Root.Domain)%>">Reports</a> </li>
-            <li class="tab" id="tab-export" style="cursor: pointer;" onclick="window.location='<%=string.Format("{0}/lists/default.aspx?type=export",Profiles.Framework.Utilities.Root.Domain)%>';">
-                <a href="<%=string.Format("{0}/lists/default.aspx?type=export",Profiles.Framework.Utilities.Root.Domain)%>">Export Data</a> </li>
+            <li class="tab" id="tab-map" style="cursor: pointer;" onclick="window.location='<%=string.Format("{0}/lists/default.aspx?type=map",Profiles.Framework.Utilities.Brand.GetThemedDomain())%>';">
+                <a href="<%=string.Format("{0}/lists/default.aspx?type=map",Profiles.Framework.Utilities.Brand.GetThemedDomain())%>">Map View</a> </li>
+            <li class="tab" id="tab-coviz" style="cursor: pointer;" onclick="window.location='<%=string.Format("{0}/lists/default.aspx?type=coviz",Profiles.Framework.Utilities.Brand.GetThemedDomain())%>';">
+                <a href="<%=string.Format("{0}/lists/default.aspx?type=coviz",Profiles.Framework.Utilities.Brand.GetThemedDomain())%>">Cluster View</a> </li>
+            <li class="tab" id="tab-summary" style="cursor: pointer;" onclick="window.location='<%=string.Format("{0}/lists/default.aspx?type=summary",Profiles.Framework.Utilities.Brand.GetThemedDomain())%>';">
+                <a href="<%=string.Format("{0}/lists/default.aspx?type=summary",Profiles.Framework.Utilities.Brand.GetThemedDomain())%>">Reports</a> </li>
+            <li class="tab" id="tab-export" style="cursor: pointer;" onclick="window.location='<%=string.Format("{0}/lists/default.aspx?type=export",Profiles.Framework.Utilities.Brand.GetThemedDomain())%>';">
+                <a href="<%=string.Format("{0}/lists/default.aspx?type=export",Profiles.Framework.Utilities.Brand.GetThemedDomain())%>">Export Data</a> </li>
         </ul>
     </div>
 </div>
 
 <div class="modalupdate">
     <div class="modalcenter">
-        <img alt="Updating..." src="<%=Profiles.Framework.Utilities.Root.Domain%>/edit/images/loader.gif" /><br />
+        <img alt="Updating..." src="<%=Profiles.Framework.Utilities.Brand.GetThemedDomain()%>/edit/images/loader.gif" /><br />
         <div>This may take a few seconds to process.</div>
         <i>Updating...</i>
     </div>
@@ -59,11 +59,11 @@
         }
         function NavToPage() {
 
-            window.location = "<%=Profiles.Framework.Utilities.Root.Domain %>/lists/default.aspx?type=view&page=" + _page + GetFilters();
+            window.location = "<%=Profiles.Framework.Utilities.Brand.GetThemedDomain() %>/lists/default.aspx?type=view&page=" + _page + GetFilters();
         }
 
         function NavToProfile(personid) {
-            document.location.href = "<%= Profiles.Framework.Utilities.Root.Domain %>/display/Person/" + personid;
+            document.location.href = "<%= Profiles.Framework.Utilities.Brand.GetThemedDomain() %>/display/Person/" + personid;
         }
 
         function removeselected() {
@@ -76,13 +76,13 @@
             RemoveSelected('<%=this.ListID%>', selected.slice(0, -1));
         }
         function removefilter() {
-            document.location.href = "<%= Profiles.Framework.Utilities.Root.Domain%>/lists/default.aspx?type=deletefilter" + GetFilters();
+            document.location.href = "<%= Profiles.Framework.Utilities.Brand.GetThemedDomain()%>/lists/default.aspx?type=deletefilter" + GetFilters();
         }
 
         function RemoveSelected(listid, personids) {
             jQuery.ajax({
                 type: "POST",
-                url: "<%=Profiles.Framework.Utilities.Root.Domain%>/Lists/Default.aspx/DeleteSelected",
+                url: "<%=Profiles.Framework.Utilities.Brand.GetThemedDomain()%>/Lists/Default.aspx/DeleteSelected",
                 data: "{listid: '" + listid + "', personids: '" + personids + "' }",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -90,16 +90,16 @@
                 failure: function (response) {
                     //  debugger;
                     // alert(response.d + " " + check_text + " " + obj.checked);
-                    document.location.href = "<%= Profiles.Framework.Utilities.Root.Domain%>/lists/default.aspx";
+                    document.location.href = "<%= Profiles.Framework.Utilities.Brand.GetThemedDomain()%>/lists/default.aspx";
                 }
             });
         }
         function OnListSuccess(response) {  //debugger; alert(response.d); 
-            document.location.href = "<%= Profiles.Framework.Utilities.Root.Domain%>/lists/default.aspx?type=view" + GetFilters();
+            document.location.href = "<%= Profiles.Framework.Utilities.Brand.GetThemedDomain()%>/lists/default.aspx?type=view" + GetFilters();
         }
 
         function ApplyFilter() {
-            document.location.href = "<%= Profiles.Framework.Utilities.Root.Domain%>/lists/default.aspx?type=view" + GetFilters();
+            document.location.href = "<%= Profiles.Framework.Utilities.Brand.GetThemedDomain()%>/lists/default.aspx?type=view" + GetFilters();
         }
         function GetFilters() {
             var institution = $("#ddlinstitution").find(":selected").val();
@@ -171,15 +171,15 @@
             <div class="throw thborderright">Description</div>
         </div>
         <div style="display: table-row">
-            <div class="tdrow tdborderleft thborderright"><a style="margin-left: 5px;" href="<%= Profiles.Framework.Utilities.Root.Domain%>/lists/default.aspx?exporttype=persons&type=export&ok=true&tab=export">People</a></div>
+            <div class="tdrow tdborderleft thborderright"><a style="margin-left: 5px;" href="<%= Profiles.Framework.Utilities.Brand.GetThemedDomain()%>/lists/default.aspx?exporttype=persons&type=export&ok=true&tab=export">People</a></div>
             <div class="tdrow thborderright" style="padding-left: 5px;">One row per person.  Columns include name, address, institution, department, faculty rank, and number of publications.</div>
         </div>
         <div style="display: table-row">
-            <div class="tdrow tdborderleft thborderright"><a style="margin-left: 5px;" href="<%= Profiles.Framework.Utilities.Root.Domain%>/lists/default.aspx?exporttype=publications&type=export&ok=true&tab=export">Publications</a></div>
+            <div class="tdrow tdborderleft thborderright"><a style="margin-left: 5px;" href="<%= Profiles.Framework.Utilities.Brand.GetThemedDomain()%>/lists/default.aspx?exporttype=publications&type=export&ok=true&tab=export">Publications</a></div>
             <div class="tdrow thborderright" style="padding-left: 5px;">One row per person-publication pair.  Columns include the publication title, date, and PubMed ID if available.</div>
         </div>
         <div style="display: table-row">
-            <div class="tdrow tdborderleft thborderright"><a style="margin-left: 5px;" href="<%= Profiles.Framework.Utilities.Root.Domain%>/lists/default.aspx?exporttype=coconnections&type=export&ok=true&tab=export">Connections</a></div>
+            <div class="tdrow tdborderleft thborderright"><a style="margin-left: 5px;" href="<%= Profiles.Framework.Utilities.Brand.GetThemedDomain()%>/lists/default.aspx?exporttype=coconnections&type=export&ok=true&tab=export">Connections</a></div>
             <div class="tdrow thborderright" style="padding-left: 5px;">This file lists pairs of people who are co-authors.  Columns include the number of co-authored publications.</div>
         </div>
     </div>
@@ -206,7 +206,7 @@
           
     </div>
     <div>
-        <a id="a-institution" href="<%=string.Format("{0}/lists/default.aspx?type=summary&summarytype=institution",Profiles.Framework.Utilities.Root.Domain) %>">Institution Summary</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a id="a-department" href="<%=string.Format("{0}/lists/default.aspx?type=summary&summarytype=department",Profiles.Framework.Utilities.Root.Domain) %>">Department Summary</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a id="a-facultyrank" href="<%=string.Format("{0}/lists/default.aspx?type=summary&summarytype=facultyrank",Profiles.Framework.Utilities.Root.Domain) %>">Faculty Rank Summary</a>
+        <a id="a-institution" href="<%=string.Format("{0}/lists/default.aspx?type=summary&summarytype=institution",Profiles.Framework.Utilities.Brand.GetThemedDomain()) %>">Institution Summary</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a id="a-department" href="<%=string.Format("{0}/lists/default.aspx?type=summary&summarytype=department",Profiles.Framework.Utilities.Brand.GetThemedDomain()) %>">Department Summary</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a id="a-facultyrank" href="<%=string.Format("{0}/lists/default.aspx?type=summary&summarytype=facultyrank",Profiles.Framework.Utilities.Brand.GetThemedDomain()) %>">Faculty Rank Summary</a>
     </div>
     <div id="piechart" style="width: 580px; height: 340px; margin-top: 16px;"></div>
 

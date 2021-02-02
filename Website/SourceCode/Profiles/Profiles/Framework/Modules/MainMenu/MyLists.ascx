@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MyLists.ascx.cs" Inherits="Profiles.Framework.Modules.MainMenu.MyLists" %>
 <ul class="drop">
     <li class="view-list-reports">
-        <a href="<%=string.Format("{0}/lists/default.aspx",Profiles.Framework.Utilities.Root.Domain)%>">View my list and generate reports</a>
+        <a href="<%=string.Format("{0}/lists/default.aspx",Profiles.Framework.Utilities.Brand.GetThemedDomain())%>">View my list and generate reports</a>
     </li>
     <li id="add-people-to-list">
         <asp:HyperLink runat="server" ID="hlAddToList">Add matching people to my list</asp:HyperLink>
@@ -21,7 +21,7 @@
         function AddPerson(ownerid, listid, personid) {
             jQuery.ajax({
                 type: "POST",
-                url: "<%=ResolveUrl(Profiles.Framework.Utilities.Root.Domain + "/Lists/Default.aspx/AddPersonToList")%>",
+                url: "<%=ResolveUrl(Profiles.Framework.Utilities.Brand.GetThemedDomain() + "/Lists/Default.aspx/AddPersonToList")%>",
                 data: "{ownernodeid: '" + ownerid + "', listid: '" + listid + "', personid: '" + personid + "' }",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -46,7 +46,7 @@
         function RemovePerson(listid, personid) {
             jQuery.ajax({
                 type: "POST",
-                url: "<%=ResolveUrl(Profiles.Framework.Utilities.Root.Domain + "/Lists/Default.aspx/DeleteSingle")%>",
+                url: "<%=ResolveUrl(Profiles.Framework.Utilities.Brand.GetThemedDomain() + "/Lists/Default.aspx/DeleteSingle")%>",
                 data: "{listid: '" + listid + "', personid: '" + personid + "' }",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -78,7 +78,7 @@
             if (confirm('Are you sure you want to remove all people from your list?')) {
                 jQuery.ajax({
                     type: "POST",
-                    url: "<%=ResolveUrl(Profiles.Framework.Utilities.Root.Domain + "/Lists/Default.aspx/ClearList")%>",
+                    url: "<%=ResolveUrl(Profiles.Framework.Utilities.Brand.GetThemedDomain() + "/Lists/Default.aspx/ClearList")%>",
                     data: "{ListID: '" + listid + "' }",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",

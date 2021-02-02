@@ -193,6 +193,15 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource {
         protected global::System.Web.UI.WebControls.LinkButton btnDeletePub;
         
         /// <summary>
+        /// btnImgDeletePub control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image btnImgDeletePub;
+        
+        /// <summary>
         /// btnDeleteGray control.
         /// </summary>
         /// <remarks>

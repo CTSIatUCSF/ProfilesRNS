@@ -76,6 +76,15 @@ namespace Profiles.Edit.Modules.CustomEditWebsite {
         protected global::System.Web.UI.WebControls.Panel pnlEditAwards;
         
         /// <summary>
+        /// imbAddArrow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imbAddArrow;
+        
+        /// <summary>
         /// btnEditAwards control.
         /// </summary>
         /// <remarks>
@@ -83,33 +92,6 @@ namespace Profiles.Edit.Modules.CustomEditWebsite {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnEditAwards;
-        
-        /// <summary>
-        /// imbAddArror control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imbAddArror;
-        
-        /// <summary>
-        /// litAddAwardsText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litAddAwardsText;
-        
-        /// <summary>
-        /// RptrEditAwards control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RptrEditAwards;
         
         /// <summary>
         /// pnlInsertAward control.

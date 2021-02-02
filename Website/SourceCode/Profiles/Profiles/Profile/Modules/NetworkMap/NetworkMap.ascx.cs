@@ -14,9 +14,9 @@ namespace Profiles.Profile.Modules.NetworkMap
     {
         protected string googleKey {
             get {
-                if (ConfigurationManager.AppSettings["Login.PresentationXML"] != null)
+                if (ConfigurationManager.AppSettings["GoogleMapsKey"] != null)
                 {
-                    if (ConfigurationManager.AppSettings["Login.PresentationXML"].ToString().Trim().Length > 0)
+                    if (ConfigurationManager.AppSettings["GoogleMapsKey"].ToString().Trim().Length > 0)
                         return "?key=" + ConfigurationManager.AppSettings["GoogleMapsKey"].ToString().Trim();
                 }
                 return "" ;
@@ -302,6 +302,7 @@ namespace Profiles.Profile.Modules.NetworkMap
             public string DefaultLevel { get; set; }
             public string PersonsAtagString { get; set; }
             public string ZoomLevel { get; set; }
+            public string PersonName { get; set; }
         }
 
 

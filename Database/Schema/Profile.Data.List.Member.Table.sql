@@ -1,0 +1,14 @@
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [Profile.Data].[List.Member] (
+	[UserID] [int] NOT NULL,
+	[PersonID] [int] NOT NULL,
+    PRIMARY KEY CLUSTERED ([UserID] ASC, [PersonID] ASC)
+)
+
+GO

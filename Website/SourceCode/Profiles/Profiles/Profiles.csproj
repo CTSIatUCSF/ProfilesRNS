@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -63,6 +63,10 @@
       <HintPath>..\packages\CsvHelper.7.1.1\lib\net45\CsvHelper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>    
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -333,6 +337,8 @@
     <Content Include="Edit\CSS\Edit.css" />
     <Content Include="Edit\Images\cal.png" />
     <Content Include="Edit\Images\icon_alert.gif" />
+    <Content Include="Edit\Images\Icon_rounded_ArrowGrayDown.png" />
+    <Content Include="Edit\Images\Icon_rounded_ArrowGrayUp.png" />
     <Content Include="Edit\Images\icon_squareArrow.gif" />
     <Content Include="Edit\Images\icon_squareDownArrow.gif" />
     <Content Include="Edit\Images\Icon_square_ArrowGray.png" />
@@ -352,6 +358,9 @@
     <Content Include="Error\PresentationXML\HttpRequestValidationExceptionPresentation.xml" />
     <Content Include="favicon.ico" />
     <Content Include="Framework\Images\arrow-orgbg.gif" />
+    <Content Include="Edit\Modules\CustomEditSocialMediaPlugIns\EditFeaturedPresentations.ascx" />
+    <Content Include="Edit\Modules\CustomEditSocialMediaPlugIns\EditFeaturedVideos.ascx" />
+    <Content Include="Edit\Modules\CustomEditSocialMediaPlugIns\EditTwitter.ascx" />
     <Content Include="Framework\Images\arrow-tealbg.gif" />
     <Content Include="Framework\Images\collapseRound.gif" />
     <Content Include="Framework\Images\connection.gif" />
@@ -406,6 +415,22 @@
     <Content Include="Login\Images\ucsd.edu.png" />
     <Content Include="Login\Images\ucsf.edu.png" />
     <Content Include="Login\Images\usc.edu.png" />
+    <Content Include="Lists\CSS\lists.css" />
+    <Content Include="Lists\Default.aspx" />
+    <Content Include="Lists\Modules\Lists\ManageLists.ascx" />
+    <Content Include="Lists\Modules\Lists\SearchResultsList.ascx" />
+    <Content Include="Lists\Modules\ModuleCatalogue.xml" />
+    <Content Include="Lists\Modules\NetworkClusterList\crossdomain.xml" />
+    <Content Include="Lists\Modules\NetworkClusterList\Images\yui-loading.gif" />
+    <Content Include="Lists\Modules\NetworkClusterList\JavaScript\networkBrowserClass.js" />
+    <Content Include="Lists\Modules\NetworkClusterList\JavaScript\networkClusterLayoutEngine.js" />
+    <Content Include="Lists\Modules\NetworkClusterList\NetworkClusterList.aspx" />
+    <Content Include="Lists\Modules\NetworkClusterList\NetworkClusterListSvc.aspx" />
+    <Content Include="Lists\Modules\NetworkClusterList\network_browser_force.swf" />
+    <Content Include="Lists\Modules\NetworkMapList\config.xml" />
+    <Content Include="Lists\Modules\NetworkMapList\NetworkMapList.aspx" />
+    <Content Include="Lists\PresentationXML\MyClusterList.xml" />
+    <Content Include="Lists\PresentationXML\MyLists.xml" />
     <Content Include="Login\Modules\ADLogin\ADLogin.ascx" />
     <Content Include="Login\Modules\MultiShibLogin\MultiShibLogin.ascx" />
     <Content Include="Login\Modules\ShibLogin\ShibLogin.ascx" />
@@ -476,6 +501,44 @@
     <Content Include="ORNG\PresentationXML\DashboardPresentation.xml" />
     <Content Include="ORNG\PresentationXML\GadgetDetailsPresentation.xml" />
     <Content Include="ORNG\PresentationXML\SandboxFormPresentation.xml" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Content\bootstrap-grid.css" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Content\bootstrap-grid.min.css" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Content\bootstrap-reboot.css" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Content\bootstrap-reboot.min.css" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Content\bootstrap.css" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Content\bootstrap.min.css" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Scripts\bootstrap.bundle.js" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Scripts\bootstrap.bundle.min.js" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Scripts\bootstrap.js" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Scripts\bootstrap.min.js" />
+    <Content Include="packages\bootstrap.4.1.3\content\Content\bootstrap-grid.css" />
+    <Content Include="packages\bootstrap.4.1.3\content\Content\bootstrap-grid.min.css" />
+    <Content Include="packages\bootstrap.4.1.3\content\Content\bootstrap-reboot.css" />
+    <Content Include="packages\bootstrap.4.1.3\content\Content\bootstrap-reboot.min.css" />
+    <Content Include="packages\bootstrap.4.1.3\content\Content\bootstrap.css" />
+    <Content Include="packages\bootstrap.4.1.3\content\Content\bootstrap.min.css" />
+    <Content Include="packages\bootstrap.4.1.3\content\Scripts\bootstrap.bundle.js" />
+    <Content Include="packages\bootstrap.4.1.3\content\Scripts\bootstrap.bundle.min.js" />
+    <Content Include="packages\bootstrap.4.1.3\content\Scripts\bootstrap.js" />
+    <Content Include="packages\bootstrap.4.1.3\content\Scripts\bootstrap.min.js" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\net20\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\net20\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\net35\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\net35\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\net40\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\net40\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\netstandard1.0\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\netstandard1.0\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\netstandard1.3\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\netstandard1.3\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\portable-net40+sl5+win8+wp8+wpa81\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\portable-net40+sl5+win8+wp8+wpa81\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.xml" />
     <Content Include="Profile\CSS\viz.css" />
     <Content Include="Profile\Images\default_img.png" />
     <Content Include="Profile\Images\ucsf_alumni_blue.jpg" />
@@ -489,6 +552,12 @@
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx" />
     <Content Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx" />
+    <Content Include="Profile\Modules\CustomViewSocialMediaPlugins\FeaturedPresentations.ascx" />
+    <Content Include="Profile\Modules\CustomViewSocialMediaPlugins\FeaturedVideos.ascx" />
+    <Content Include="Profile\Modules\CustomViewSocialMediaPlugins\SlideShareJquery.js" />
+    <Content Include="Profile\Modules\CustomViewSocialMediaPlugins\style.css" />
+    <Content Include="Profile\Modules\CustomViewSocialMediaPlugins\Twitter.ascx" />
+    <Content Include="Profile\Modules\CustomViewSocialMediaPlugins\YouTubeJquery.js" />
     <Content Include="Profile\Modules\NetworkClusterFlash\crossdomain.xml" />
     <Content Include="Profile\Modules\NetworkClusterFlash\Default.aspx" />
     <Content Include="Profile\Modules\NetworkClusterFlash\Images\yui-loading.gif" />
@@ -786,6 +855,8 @@
     <Compile Include="Edit\Modules\CustomEditAssociatedInformationResource\CustomEditAssociatedInformationResource.ascx.designer.cs">
       <DependentUpon>CustomEditAssociatedInformationResource.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Edit\Modules\CustomEditAssociatedInformationResource\DataIO.cs" />
+    <Compile Include="Edit\Modules\CustomEditAuthorInAuthorship\DataIO.cs" />
     <Compile Include="Edit\Modules\CustomEditEagleI\CustomEditEagleI.ascx.cs">
       <DependentUpon>CustomEditEagleI.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -849,6 +920,28 @@
     <Compile Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx.designer.cs">
       <DependentUpon>CustomEditResearcherRole.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Edit\Modules\CustomEditResearcherRole\DataIO.cs" />
+    <Compile Include="Edit\Modules\CustomEditSocialMediaPlugIns\EditFeaturedPresentations.ascx.cs">
+      <DependentUpon>EditFeaturedPresentations.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditSocialMediaPlugIns\EditFeaturedPresentations.ascx.designer.cs">
+      <DependentUpon>EditFeaturedPresentations.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditSocialMediaPlugIns\EditFeaturedVideos.ascx.cs">
+      <DependentUpon>EditFeaturedVideos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditSocialMediaPlugIns\EditFeaturedVideos.ascx.designer.cs">
+      <DependentUpon>EditFeaturedVideos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditSocialMediaPlugIns\EditTwitter.ascx.cs">
+      <DependentUpon>EditTwitter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditSocialMediaPlugIns\EditTwitter.ascx.designer.cs">
+      <DependentUpon>EditTwitter.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Edit\Modules\CustomEditWebsite\CustomEditWebsite.ascx.cs">
       <DependentUpon>CustomEditWebsite.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -896,6 +989,7 @@
     <Compile Include="Framework\Modules\MainMenu\MyLists.ascx.designer.cs">
       <DependentUpon>MyLists.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Framework\Utilities\GenericRDFDataIO.cs" />
     <Compile Include="Framework\Utilities\UserHistory.cs" />
     <Compile Include="GroupAdmin\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -935,11 +1029,52 @@
     </Compile>
     <Compile Include="Login\ShibbolethSession.aspx.cs">
       <DependentUpon>ShibbolethSession.aspx</DependentUpon>
+    <Compile Include="Lists\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Login\ShibbolethSession.aspx.designer.cs">
       <DependentUpon>ShibbolethSession.aspx</DependentUpon>
+    <Compile Include="Lists\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Lists\Modules\Lists\ManageLists.ascx.cs">
+      <DependentUpon>ManageLists.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lists\Modules\Lists\ManageLists.ascx.designer.cs">
+      <DependentUpon>ManageLists.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Lists\Modules\Lists\SearchResultsList.ascx.cs">
+      <DependentUpon>SearchResultsList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lists\Modules\Lists\SearchResultsList.ascx.designer.cs">
+      <DependentUpon>SearchResultsList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Lists\Modules\NetworkClusterList\NetworkClusterList.aspx.cs">
+      <DependentUpon>NetworkClusterList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lists\Modules\NetworkClusterList\NetworkClusterList.aspx.designer.cs">
+      <DependentUpon>NetworkClusterList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Lists\Modules\NetworkClusterList\NetworkClusterListSvc.aspx.cs">
+      <DependentUpon>NetworkClusterListSvc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lists\Modules\NetworkClusterList\NetworkClusterListSvc.aspx.designer.cs">
+      <DependentUpon>NetworkClusterListSvc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Lists\Modules\NetworkMapList\NetworkMapList.aspx.cs">
+      <DependentUpon>NetworkMapList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lists\Modules\NetworkMapList\NetworkMapList.aspx.designer.cs">
+      <DependentUpon>NetworkMapList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Lists\Utilities\DataIO.cs" />
+    <Compile Include="Lists\Utilities\Pager.cs" />
     <Compile Include="Login\Modules\ADLogin\ADLogin.ascx.cs">
       <DependentUpon>ADLogin.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1475,6 +1610,30 @@
     </Compile>
     <Compile Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx.designer.cs">
       <DependentUpon>CustomViewResearcherRole.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewSocialMediaPlugins\BaseSocialMediaModule.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewSocialMediaPlugins\FeaturedPresentations.ascx.cs">
+      <DependentUpon>FeaturedPresentations.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewSocialMediaPlugins\FeaturedPresentations.ascx.designer.cs">
+      <DependentUpon>FeaturedPresentations.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewSocialMediaPlugins\FeaturedVideos.ascx.cs">
+      <DependentUpon>FeaturedVideos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewSocialMediaPlugins\FeaturedVideos.ascx.designer.cs">
+      <DependentUpon>FeaturedVideos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewSocialMediaPlugins\Twitter.ascx.cs">
+      <DependentUpon>Twitter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewSocialMediaPlugins\Twitter.ascx.designer.cs">
+      <DependentUpon>Twitter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\HRFooter\HRFooter.ascx.cs">
       <DependentUpon>HRFooter.ascx</DependentUpon>
@@ -2339,6 +2498,30 @@
     <Content Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master" />
     <Content Include="Profile\Modules\CustomViewGroupGeneralInfo\GroupCompositePhotoHandler.ashx" />
     <None Include="packages.config" />
+    <Content Include="packages\bootstrap.4.1.3\bootstrap.4.1.3.nupkg" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Content\bootstrap-grid.css.map" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Content\bootstrap-grid.min.css.map" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Content\bootstrap-reboot.css.map" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Content\bootstrap-reboot.min.css.map" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Content\bootstrap.css.map" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Content\bootstrap.min.css.map" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Scripts\bootstrap.bundle.js.map" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Scripts\bootstrap.js.map" />
+    <Content Include="packages\bootstrap.4.1.3\contentFiles\Scripts\bootstrap.min.js.map" />
+    <Content Include="packages\bootstrap.4.1.3\content\Content\bootstrap-grid.css.map" />
+    <Content Include="packages\bootstrap.4.1.3\content\Content\bootstrap-grid.min.css.map" />
+    <Content Include="packages\bootstrap.4.1.3\content\Content\bootstrap-reboot.css.map" />
+    <Content Include="packages\bootstrap.4.1.3\content\Content\bootstrap-reboot.min.css.map" />
+    <Content Include="packages\bootstrap.4.1.3\content\Content\bootstrap.css.map" />
+    <Content Include="packages\bootstrap.4.1.3\content\Content\bootstrap.min.css.map" />
+    <Content Include="packages\bootstrap.4.1.3\content\Scripts\bootstrap.bundle.js.map" />
+    <Content Include="packages\bootstrap.4.1.3\content\Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="packages\bootstrap.4.1.3\content\Scripts\bootstrap.js.map" />
+    <Content Include="packages\bootstrap.4.1.3\content\Scripts\bootstrap.min.js.map" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\.signature.p7s" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\LICENSE.md" />
+    <Content Include="packages\Newtonsoft.Json.11.0.2\Newtonsoft.Json.11.0.2.nupkg" />
     <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\CHANGELOG" />
     <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\MIT-LICENSE" />
     <None Include="Profile\Modules\NetworkClusterFlash\scriptaculous\README.rdoc" />

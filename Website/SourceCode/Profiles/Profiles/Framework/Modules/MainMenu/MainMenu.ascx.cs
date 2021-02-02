@@ -221,6 +221,11 @@ namespace Profiles.Framework.Modules.MainMenu
             foreach (ListItem item in searchTypeDropDown.Items)
             {
                 item.Attributes.Add("Title", item.Text.Trim());
+                    string pt = base.GetModuleParamString("PageType");
+                    if (pt.Equals("Person")) MyLists.pageType = MyLists.pageTypes.Person;
+                    else if (pt.Equals("SearchResults")) MyLists.pageType = MyLists.pageTypes.SearchResults;
+                }
+
             }
 
             // pick one to select

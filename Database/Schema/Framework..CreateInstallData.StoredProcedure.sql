@@ -402,33 +402,19 @@ BEGIN
 						for xml path(''), type
 					),
 					--------------------------------------------------------
-					-- [ORNG.]
+					-- [Profile.Module].[GenericRDF.Plugins]
 					--------------------------------------------------------					
 					(
-						select '[ORNG.].[Apps]' 'Table/@Name',
+						select '[Profile.Module].[GenericRDF.Plugins]' 'Table/@Name',
 						(
-							SELECT	AppID 'AppID',
-									Name 'Name',
-									Url 'URL',
-									PersonFilterID 'PersonFilterID',
-									OAuthSecret 'OAuthSecret',
-									[Enabled] 'Enabled'
-								from [ORNG.].[Apps]
-									for xml path('Row'), type
-						) 'Table'  
-						for xml path(''), type
-					),
-					(
-						select '[ORNG.].[AppViews]' 'Table/@Name',
-						(
-							SELECT	[AppID] 'AppID',
-									[Page] 'Page',
-									[View] 'View',
-									[ChromeID] 'ChromeID',
-									[Visibility] 'Visibility',
-									[DisplayOrder] 'DisplayOrder',
-									[OptParams] 'OptParams'
-								from [ORNG.].[AppViews]
+							SELECT	Name 'Name',
+									EnabledForPerson 'EnabledForPerson',
+									EnabledForGroup 'EnabledForGroup',
+									Label 'Label',
+									PropertyGroupURI 'PropertyGroupURI',
+									[CustomDisplayModule] 'CustomDisplayModule',
+									[CustomEditModule] 'CustomEditModule'
+								from [Profile.Module].[GenericRDF.Plugins]
 									for xml path('Row'), type
 						) 'Table'  
 						for xml path(''), type
@@ -437,6 +423,7 @@ BEGIN
 			) 'Import'
 		for xml path(''), type
 	)
+
 
 	insert into [Framework.].[InstallData] (Data)
 		select @x

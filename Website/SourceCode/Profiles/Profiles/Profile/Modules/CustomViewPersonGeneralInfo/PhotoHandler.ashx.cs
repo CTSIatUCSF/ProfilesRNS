@@ -35,123 +35,88 @@ namespace Profiles.Profile.Modules.ProfileImage
 
         public void ProcessRequest(HttpContext context)
         {
-            try
+            Utilities.DataIO data = new Profiles.Profile.Utilities.DataIO();
+            // Set up the response settings
+            context.Response.ContentType = "image/jpeg";
+            context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            context.Response.BufferOutput = false;
+
+            Int64 nodeid = -1;
+
+            if (!string.IsNullOrEmpty(context.Request.QueryString["NodeID"]))
             {
-                bool DEBUG = "true".Equals(context.Request.QueryString["DEBUG"]);
 
-                Utilities.DataIO data = new Profiles.Profile.Utilities.DataIO();
-                // Set up the response settings
-                context.Response.ContentType = "image/jpeg";
-                context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                context.Response.BufferOutput = false;
-
-                Int64 nodeid = -1;
-                try
-                {
-                    if (!string.IsNullOrEmpty(context.Request.QueryString["NodeID"]))
-                    {
-                        // get the id for the image
-                        nodeid = Convert.ToInt64(context.Request.QueryString["NodeID"]);
-                    }
-                    else if (!string.IsNullOrEmpty(context.Request.QueryString["person"]))
-                    {
-                        // UCSF.  Allow old id to work
-                        nodeid = Framework.Utilities.UCSFIDSet.ByPersonId[Convert.ToInt64(context.Request.QueryString["person"])].NodeId;
-                    }
-                    Framework.Utilities.DebugLogging.Log("Node ID = " + nodeid);
-                }
-                catch (Exception e)
-                {
-                    Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
-                }
-                if (nodeid > 0)
-                {
-                    bool thumbnail = false;
-                    int width = 150;
-                    int height = 300;
-                    if (context.Request.QueryString["Thumbnail"] != null)
-                    {
-                        thumbnail = true;
-                    }
-                    if (context.Request.QueryString["Width"] != null)
-                    {
-                        width = Convert.ToInt32(context.Request.QueryString["Width"]);
-                        height = 2 * width;
-                    }
-                    if (context.Request.QueryString["Height"] != null)
-                    {
-                        height = Convert.ToInt32(context.Request.QueryString["Height"]);
-                    }
-
-                    byte[] image = DEBUG ? null : (byte[])Framework.Utilities.Cache.FetchObject(GetCacheKey(nodeid, width, height));
-                    // UCSF items
-                    if (image == null)
-                    {
-                        // stuff below this and if statement is what makes it slow
-                        Framework.Utilities.RDFTriple request = new Profiles.Framework.Utilities.RDFTriple(nodeid);
-
-                        request.Expand = true;
-                        request.ShowDetails = true;
-                        string type = data.GetNodeType(nodeid);
-                        if (type.Equals("Person")) request.ExpandRDFList = "<ExpandRDFOptions ExpandPredicates=\"false\" ClassPropertyCustomTypeID=\"1\" />";
-                        else if (type.Equals("Group")) request.ExpandRDFList = "<ExpandRDFOptions ExpandPredicates=\"false\" ClassPropertyCustomTypeID=\"5\" />";
-                        Framework.Utilities.Namespace xmlnamespace = new Profiles.Framework.Utilities.Namespace();
-                        XmlDocument person;
-
-                        person = data.GetRDFData(request);
-                        Framework.Utilities.DebugLogging.Log("Person = " + person.InnerXml);
-                        XmlNamespaceManager namespaces = xmlnamespace.LoadNamespaces(person);
-
-                        byte[] rawimage = null;
-                        if (person.SelectSingleNode("rdf:RDF/rdf:Description[1]/prns:mainImage/@rdf:resource", namespaces) != null)
-                        {
-                            rawimage = data.GetUserPhotoList(nodeid);
-                            Framework.Utilities.DebugLogging.Log("RawImage size  = " + rawimage.Length);
-                        }
-                        else if (thumbnail)
-                        {
-                            rawimage = silhouetteImage;
-                        }
-                        if (rawimage != null)
-                        {
-                            Edit.Utilities.DataIO resize = new Profiles.Edit.Utilities.DataIO();
-                            image = resize.ResizeImageFile(rawimage, width, height);
-                            // we are caching silhouettes many times, but that is OK
-                            Framework.Utilities.Cache.Set(GetCacheKey(nodeid, width, height), image, nodeid, request.Session.SessionID);
-                        }
-                    }
-
-                    if (image != null)
-                    {
-                        Stream stream = new System.IO.MemoryStream(image);
-
-                        // Set up the response settings
-                        context.Response.ContentType = "image/jpeg";
-                        context.Response.Cache.SetExpires(DateTime.Now.AddDays(7));
-                        context.Response.Cache.SetCacheability(HttpCacheability.Public);
-                        context.Response.Cache.SetValidUntilExpires(true);
-                        context.Response.BufferOutput = false;
-                        context.Response.AddHeader("Content-Length", stream.Length.ToString());
-
-                        const int buffersize = 1024 * 16;
-                        byte[] buffer2 = new byte[buffersize];
-                        int count = stream.Read(buffer2, 0, buffersize);
-                        while (count > 0)
-                        {
-                            context.Response.OutputStream.Write(buffer2, 0, count);
-                            count = stream.Read(buffer2, 0, buffersize);
-                        }
-                    }
-                    else
-                    {
-                        context.Response.Write("No Image Found");
-                    }
-
-                }
+                // get the id for the image
+                nodeid = Convert.ToInt32(context.Request.QueryString["NodeID"]);
             }
-            catch (Exception ex)
+            if (nodeid > 0)
             {
-                Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
+                bool thumbnail = false;
+                int width = 150;
+                int height = 300;
+                if (context.Request.QueryString["Thumbnail"] != null)
+                {
+                    thumbnail = true;
+                }
+                if (context.Request.QueryString["Width"] != null)
+                {
+                    width = Convert.ToInt32(context.Request.QueryString["Width"]);
+                    height = 2 * width;
+                }
+                if (context.Request.QueryString["Height"] != null)
+                {
+                    height = Convert.ToInt32(context.Request.QueryString["Height"]);
+                }
+
+                byte[] image = (byte[])Framework.Utilities.Cache.FetchObject(GetCacheKey(nodeid, width, height));
+
+                if (image == null)
+                {
+                    // stuff below this and if statement is what makes it slow
+                    Framework.Utilities.RDFTriple request = new Profiles.Framework.Utilities.RDFTriple(nodeid);
+
+                    byte[] rawimage = null;
+                    rawimage = data.GetUserPhotoList(nodeid, request.Session.SessionID);
+
+                    if (thumbnail && rawimage == null)
+                    {
+                        rawimage = silhouetteImage;
+                    }
+                    if (rawimage != null)
+                    {
+                        Edit.Utilities.DataIO resize = new Profiles.Edit.Utilities.DataIO();
+                        image = resize.ResizeImageFile(rawimage, width, height);
+                        // we are caching silhouettes many times, but that is OK
+                        Framework.Utilities.Cache.Set(GetCacheKey(nodeid, width, height), image, nodeid, request.Session.SessionID);
+                    }
+                }
+
+                if (image != null)
+                {
+                    Stream stream = new System.IO.MemoryStream(image);
+
+                    // Set up the response settings
+                    context.Response.ContentType = "image/jpeg";
+                    context.Response.Cache.SetExpires(DateTime.Now.AddDays(7));
+                    context.Response.Cache.SetCacheability(HttpCacheability.Public);
+                    context.Response.Cache.SetValidUntilExpires(true);
+                    context.Response.BufferOutput = false;
+                    context.Response.AddHeader("Content-Length", stream.Length.ToString());
+
+                    const int buffersize = 1024 * 16;
+                    byte[] buffer2 = new byte[buffersize];
+                    int count = stream.Read(buffer2, 0, buffersize);
+                    while (count > 0)
+                    {
+                        context.Response.OutputStream.Write(buffer2, 0, count);
+                        count = stream.Read(buffer2, 0, buffersize);
+                    }
+                }
+                else
+                {
+                    context.Response.Write("No Image Found");
+                }
+
             }
         }
 
@@ -159,6 +124,7 @@ namespace Profiles.Profile.Modules.ProfileImage
         {
             return IMAGE_CACHE_PREFIX + nodeid + "_" + width + "_" + height;
         }
+
 
         //this is required for using the IHttpHandler interface. 
         public bool IsReusable

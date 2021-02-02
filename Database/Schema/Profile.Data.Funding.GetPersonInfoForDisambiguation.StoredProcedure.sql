@@ -23,8 +23,8 @@ SET nocount  ON;
 	SELECT @baseURI = [Value] FROM [Framework.].[Parameter] WHERE [ParameterID] = 'baseURI'
 	SELECT @orcidNodeID = NodeID from [RDF.].Node where Value = 'http://vivoweb.org/ontology/core#orcidId'
 	
-	SELECT personID, ROW_NUMBER() OVER (ORDER BY personID) AS rownum INTO #personIDs FROM [Profile.Data].Person 
-	WHERE IsActive = 1
+	SELECT personID, ROW_NUMBER() OVER (ORDER BY personID) AS rownum INTO #personIDs FROM [Profile.Data].Person p
+	WHERE IsActive = 1 and not exists (select 1 from [Profile.Data].[Funding.DisambiguationSettings] s where s.PersonID = p.PersonID and enabled = 0)
 
 	SELECT @rows = count(*) FROM #personIDs
 	SELECT @nextRow = CASE WHEN @rows > @startRow + @batchSize THEN @startRow + @batchSize ELSE -1 END

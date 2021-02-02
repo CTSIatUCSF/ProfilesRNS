@@ -676,54 +676,56 @@ SELECT  Row_Number() OVER (ORDER BY (SELECT 1)),
   CROSS APPLY x.nodes('//Row') AS R ( x )
 
    ---------------------------------------------------------------
--- [ORNG.]
+-- [Profile.Module].[GenericRDF.*]
 ---------------------------------------------------------------
-	INSERT INTO [ORNG.].[Apps]
+	INSERT INTO [Profile.Module].[GenericRDF.Plugins]
 		(
-			[AppID],
 			[Name],
-			[Url],
-			[PersonFilterID],
-			[OAuthSecret],
-			[Enabled]
+			[EnabledForPerson],
+			[EnabledForGroup],
+			[Label],
+			[PropertyGroupURI],
+			[CustomDisplayModule],
+			[CustomEditModule]
 		)
-   SELECT	R.x.value('AppID[1]','varchar(max)'),
-			R.x.value('Name[1]','varchar(max)'),
-			R.x.value('URL[1]','varchar(max)'),
-			R.x.value('PersonFilterID[1]','varchar(max)'),
-			R.x.value('OAuthSecret[1]','varchar(max)'),
-			R.x.value('Enabled[1]','varchar(max)')
+   SELECT	R.x.value('Name[1]','varchar(max)'),
+			R.x.value('EnabledForPerson[1]','int'),
+			R.x.value('EnabledForGroup[1]','int'),
+			R.x.value('Label[1]','varchar(max)'),
+			R.x.value('PropertyGroupURI[1]','varchar(max)'),
+			R.x.value('CustomDisplayModule[1]','varchar(max)'),
+			R.x.value('CustomEditModule[1]','varchar(max)')
 	 FROM    (SELECT
                       @x.query
-                      ('Import[1]/Table[@Name=''[ORNG.].[Apps]'']')
+                      ('Import[1]/Table[@Name=''[Profile.Module].[GenericRDF.Plugins]'']')
                       x
           ) t
   CROSS APPLY x.nodes('//Row') AS R ( x )
 
-  	INSERT INTO [ORNG.].[AppViews]
+
+   ---------------------------------------------------------------
+-- [Profile.Import].[PRNSWebservice.*]
+---------------------------------------------------------------
+	INSERT INTO [Profile.Import].[PRNSWebservice.Options]
 		(
-			[AppID],
-			[Page],
-			[View],
-			[ChromeID],
-			[Visibility],
-			[DisplayOrder],
-			[OptParams]
+			[job],
+			[url],
+			[apiKey],
+			[logLevel],
+			[batchSize]
 		)
-   SELECT	R.x.value('AppID[1]','varchar(max)'),
-			R.x.value('Page[1]','varchar(max)'),
-			R.x.value('View[1]','varchar(max)'),
-			R.x.value('ChromeID[1]','varchar(max)'),
-			R.x.value('Visibility[1]','varchar(max)'),
-			R.x.value('DisplayOrder[1]','varchar(max)'),
-			R.x.value('OptParams[1]','varchar(max)')
+   SELECT	R.x.value('job[1]','varchar(max)'),
+			R.x.value('url[1]','varchar(max)'),
+			R.x.value('apiKey[1]','varchar(max)'),
+			R.x.value('logLevel[1]','int'),
+			R.x.value('batchSize[1]','int')
 	 FROM    (SELECT
                       @x.query
-                      ('Import[1]/Table[@Name=''[ORNG.].[AppViews]'']')
+                      ('Import[1]/Table[@Name=''[Profile.Import].[PRNSWebservice.Options]'']')
                       x
           ) t
   CROSS APPLY x.nodes('//Row') AS R ( x )
-  
+
   -- Use to generate select lists for new tables
   -- SELECT   'R.x.value(''' + c.name +  '[1]'',' + '''varchar(max)'')'+ ',' ,* 
   -- FROM sys.columns c 

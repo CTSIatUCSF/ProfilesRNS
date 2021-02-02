@@ -47,5 +47,14 @@ namespace Profiles.Framework.Modules.MainMenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Profiles.Framework.Modules.MainMenu.History ProfileHistory;
+        /// MyLists control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Profiles.Framework.Modules.MainMenu.MyLists MyLists;
+        
+        /// <summary>
     }
 }

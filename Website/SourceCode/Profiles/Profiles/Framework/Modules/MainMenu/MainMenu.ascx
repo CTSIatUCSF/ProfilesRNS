@@ -66,6 +66,8 @@
 			<span runat="server" id="panelMenu" visible="true"></span>
 <!--		<HistoryItem:History runat="server" ID="ProfileHistory" Visible="false" />  -->
 		</div>
+                <li id="navMyLists">
+                </li>
 	</div>
 </div>
 

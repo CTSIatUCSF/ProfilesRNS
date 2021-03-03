@@ -112,6 +112,39 @@ namespace Profiles.GroupAdmin.Utilities
 
         }
 
+        public SqlDataReader GetThemeConfiguration(string themeName)
+        {
+            SqlDataReader dbreader = null;
+            SessionManagement sm = new SessionManagement();
+
+            try
+            {
+
+                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                SqlConnection dbconnection = new SqlConnection(connstr);
+
+                dbconnection.Open();
+
+                SqlCommand dbcommand = new SqlCommand();
+                dbcommand.CommandType = CommandType.StoredProcedure;
+                dbcommand.Parameters.Add(new SqlParameter("@themeName", themeName));
+
+                dbcommand.CommandText = "[UCSF.].[GetThemeConfiguration]";
+                dbcommand.CommandTimeout = base.GetCommandTimeout();
+
+                dbcommand.Connection = dbconnection;
+                dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+
+            return dbreader;
+        }
+
+
         public SqlDataReader GetActiveGroups()
         {
             SqlDataReader dbreader = null;

@@ -123,6 +123,51 @@ namespace Profiles.Framework
             //This should loop the application table or be set based on the contest of the RESTFul URL to know
             //What application is currently being viewed then set the correct asset link.
 
+
+            //modifying metadata for Google Varification
+            string groupName = "google_validation";
+            Framework.Utilities.DebugLogging.Log("in Master.cs calling GetGoogleValidation for " + groupName);
+            Brand brand = Brand.GetCurrentBrand();
+            string brandTheme = brand.Theme;
+
+            XmlNode properties = Brand.GetGoogleValidationContent(brandTheme,groupName);
+            if (properties != null)
+            {
+                foreach (XmlNode property in properties.SelectNodes("*"))
+                {
+                    if (property.Name == "meta")
+                    {
+                        string n = null;
+                        string c = null;
+                        for (int i = 0; i < property.Attributes.Count; i++)
+                        {
+                            if (property.Attributes[i].Name == "name")
+                            {
+                                n = property.Attributes[i].Value;
+                            }
+                            if (property.Attributes[i].Name == "content")
+                            {
+                                c = property.Attributes[i].Value;
+                            }
+                        }
+                        string line = "\r\n" + n + "=" + c;
+                        Framework.Utilities.DebugLogging.Log(line);
+                        if (n != null & c != null)
+                        {
+                            HtmlMeta pageMetaTag = new HtmlMeta();
+                            pageMetaTag.Name = n;
+                            pageMetaTag.Content = c;
+                            Framework.Utilities.DebugLogging.Log("adding Meta control for " + n + "=" + c);
+                            Page.Header.Controls.Add(pageMetaTag);
+                        }
+
+                    }
+                }
+            }
+
+
+
+
             HtmlLink Profilescss = new HtmlLink();
             Profilescss.Href = Brand.GetThemedDomain() + "/Framework/CSS/profiles.css";
             Profilescss.Attributes["rel"] = "stylesheet";
@@ -155,13 +200,7 @@ namespace Profiles.Framework
             ThemeJs.Attributes.Add("src", Brand.GetThemedDomain() + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".js");
             Page.Header.Controls.Add(ThemeJs);
 
-            //modifying Google Varification
-            HtmlMeta pageMetaTag = new HtmlMeta();
-            pageMetaTag.Name = "google-site-verification" ;
-            string fileName=Brand.GetThemedDomain() + "/App_Themes/" + Page.Theme + "/ThemeConfiguration.xml";
-            pageMetaTag.Content = Brand.GetGoogleValidationContent(fileName); //"p5OaN7GUMQcNoavqEkMHqFPRAWZcgI_SUvQhqXBP1u0"; //for UCSD
-            Page.Header.Controls.Add(pageMetaTag);
-
+ 
             // UCSF. To support lazy login
             String lazyShibLogin = Profiles.Login.ShibbolethSession.GetJavascriptSrc(Request);
             if (!String.IsNullOrEmpty(lazyShibLogin))

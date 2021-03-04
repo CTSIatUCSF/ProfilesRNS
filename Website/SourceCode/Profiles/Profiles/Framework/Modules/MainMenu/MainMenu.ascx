@@ -36,8 +36,30 @@
                 </ul>
             </li>--%>
             <HistoryItem:History runat="server" ID="ProfileHistory" Visible="true" />
+
+            <!-- UCSF search -->
+			<li class="nav-facade-active" id="nav-search-in">
+				<div id="nav-search-in-content"></div>
+				<div class="searchSelect" id="searchDropdownBox">
+					<asp:DropDownList ID="searchTypeDropDown" CssClass="searchSelect" EnableViewState="true" runat="server">
+						<asp:ListItem Value="Everything" Text="Everything" />
+						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupResearch" Text="Research" />
+						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupConcepts" Text="Concepts" />
+						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupAwards" Text="Awards" />
+						<asp:ListItem Value="People" Text="People" />
+						<asp:ListItem Value="UC" Text="&nbsp;&nbsp;&nbsp;UC Health People" />
+						<asp:ListItem Value="UCD" Text="&nbsp;&nbsp;&nbsp;UC Davis People" />
+						<asp:ListItem Value="UCI" Text="&nbsp;&nbsp;&nbsp;UCI People" />
+						<asp:ListItem Value="UCLA" Text="&nbsp;&nbsp;&nbsp;UCLA People" />
+						<asp:ListItem Value="UCSD" Text="&nbsp;&nbsp;&nbsp;UCSD People" />
+						<asp:ListItem Value="UCSF" Text="&nbsp;&nbsp;&nbsp;UCSF People" />
+						<asp:ListItem Value="USC" Text="&nbsp;&nbsp;&nbsp;USC People" />
+					</asp:DropDownList>
+				</div>
+			<!-- next few tags have > on next line to remove space between -->
+			</li>
             <li class="search main-nav" style="width: 492px;">
-                <input name="search" id="menu-search" placeholder="Search Profiles (people, publications, concepts, etc.)" type="text" style="padding-left: 5px;" />
+                <input name="search" id="menu-search" placeholder="e.g. Smith or HIV" type="text" style="padding-left: 5px;" />
                 <img style="cursor: pointer" alt="search" id="img-mag-glass" src="<%=ResolveUrl("~/framework/images/blackMagnifyGlass.png")%>" />
             </li>
             <li id="search-drop" class="last main-nav" style="float: right !important; width: 25px;">
@@ -67,6 +89,7 @@
                 <li id="ListDivider">
                     <div class="divider"></div>
                 </li>
+                <asp:Literal runat="server" ID="litDashboard"></asp:Literal>
                 <li id="navMyLists">
                    <a href="#">My Person List (<span id="list-count">0</span>)</a>
                     <MyLists:Lists runat="server" ID="MyLists" Visible="false" />
@@ -74,11 +97,6 @@
                  <li>
                     <div class="divider"></div>
                 </li>
-              <%--  <li>
-                    <asp:Literal ID="litDashboard" runat="server" /></li>
-                <li>
-                    <div class="divider"></div>
-                </li>--%>
                 <asp:Literal runat="server" ID="litGroups"></asp:Literal>
                 <li id="groupListDivider" visible="false" runat="server">
                     <div class="divider"></div>
@@ -86,6 +104,10 @@
                 <asp:Literal runat="server" ID="litLogOut"></asp:Literal>
             </ul>
         </div>
+         <asp:Panel ID="HeroNavbarPanel" runat="server" SkinID="UCSF" Visible="false">
+            <!-- UCSF This panelActive navbar div holds the heros photos -->
+            <div class="panelActive navbar"/>
+        </asp:Panel>
     </nav>
 </div>
 

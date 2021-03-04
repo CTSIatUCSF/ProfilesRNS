@@ -9,7 +9,7 @@ namespace Profiles.Framework.Utilities
         public HistoryItem(string itemlabel, string uri, List<string> types)
         {
             this.ItemLabel = itemlabel;
-            this.URI = uri;
+            this.URI = Brand.CleanURL(uri);
             this.Types = types;
             this.TimeStamp = DateTime.Now;
         }

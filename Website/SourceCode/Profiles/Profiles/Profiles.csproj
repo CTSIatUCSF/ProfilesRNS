@@ -2327,7 +2327,6 @@
     <Content Include="Framework\CSS\jquery-ui-1.8.13.custom.css" />
     <Content Include="Framework\CSS\ui.dropdownchecklist.themeroller.css" />
     <Content Include="Framework\Images\banner.jpg" />
-    <Content Include="Framework\Images\banner.png" />
     <Content Include="Framework\Images\connection_left.gif" />
     <Content Include="Framework\Images\connection_right.gif" />
     <Content Include="Framework\Images\icon_alert.gif" />

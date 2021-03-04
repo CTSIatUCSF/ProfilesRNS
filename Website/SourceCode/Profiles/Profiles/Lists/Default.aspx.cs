@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Profiles.Framework.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,7 +9,7 @@ using System.Xml;
 
 namespace Profiles.Lists
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : BrandedPage
     {
         Profiles.Framework.Template masterpage;
         Framework.Utilities.SessionManagement sm;
@@ -18,7 +19,7 @@ namespace Profiles.Lists
             sm = new Framework.Utilities.SessionManagement();
 
             if (sm.Session().UserID < 0 || sm.Session().UserID == 0)
-                Response.Redirect(Framework.Utilities.Root.Domain);
+                Response.Redirect(Framework.Utilities.Brand.GetThemedDomain());
 
             masterpage = (Framework.Template)base.Master;
 

@@ -22,6 +22,15 @@ namespace Profiles.Framework.Modules.MainMenu {
         protected global::Profiles.Framework.Modules.MainMenu.History ProfileHistory;
         
         /// <summary>
+        /// searchTypeDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList searchTypeDropDown;
+        
+        /// <summary>
         /// litSearchOptions control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace Profiles.Framework.Modules.MainMenu {
         protected global::System.Web.UI.WebControls.Literal litProxy;
         
         /// <summary>
+        /// litDashboard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litDashboard;
+        
+        /// <summary>
         /// MyLists control.
         /// </summary>
         /// <remarks>
@@ -101,6 +119,15 @@ namespace Profiles.Framework.Modules.MainMenu {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litLogOut;
+        
+        /// <summary>
+        /// HeroNavbarPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel HeroNavbarPanel;
         
         /// <summary>
         /// litJs control.

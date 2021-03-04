@@ -50,9 +50,9 @@ namespace Profiles.Lists.Modules.Lists
 
                     Profiles.Lists.Utilities.DataIO.AddRemoveSearchResults(true);
 
-                    Response.Redirect(Root.Domain + "/search/default.aspx?showcolumns=1&searchtype=people&otherfilters=");
+                    Response.Redirect(Brand.GetThemedDomain() + "/search/default.aspx?showcolumns=1&searchtype=people&otherfilters=");
 
-                    //Response.Redirect(Root.Domain + "/lists/default.aspx?type=view");
+                    //Response.Redirect(Brand.GetThemedDomain() + "/lists/default.aspx?type=view");
 
 
 
@@ -63,7 +63,7 @@ namespace Profiles.Lists.Modules.Lists
                     //need a lable to display that the user added x number of humans to their list
 
                     // litJS.Text += string.Format("<script type='text/javascript'>jQuery('#navMyLists ul').remove();jQuery('#list-count').html('{0}');</script>", this.ProfilesList.ListItems.Count.ToString());
-                    Response.Redirect(Root.Domain + "/search/default.aspx?showcolumns=1&searchtype=people&otherfilters=");
+                    Response.Redirect(Brand.GetThemedDomain() + "/search/default.aspx?showcolumns=1&searchtype=people&otherfilters=");
 
                     break;
                 case "summary":
@@ -109,7 +109,7 @@ namespace Profiles.Lists.Modules.Lists
 
                     Profiles.Lists.Utilities.DataIO.DeleteFildered(ListID, (this.Institution == "" ? null : this.Institution), (this.FacultyRank == "" ? null : this.FacultyRank));
 
-                    Response.Redirect(Root.Domain + "/lists/default.aspx?type=view");
+                    Response.Redirect(Brand.GetThemedDomain() + "/lists/default.aspx?type=view");
                     break;
                 case "remove":
 
@@ -118,7 +118,7 @@ namespace Profiles.Lists.Modules.Lists
                         Profiles.Lists.Utilities.DataIO.DeleteSelected(ListID, Request.QueryString["persons"]);
                     }
 
-                    Response.Redirect(Root.Domain + "/lists/default.aspx?type=view");
+                    Response.Redirect(Brand.GetThemedDomain() + "/lists/default.aspx?type=view");
                     break;
                 case "export":
 
@@ -337,15 +337,15 @@ namespace Profiles.Lists.Modules.Lists
                     Literal litPage = (Literal)e.Row.FindControl("litPage");
 
                     if (this.ListPager.CurrentPage > 1)
-                        litFirst.Text = "<a onClick='JavaScript:GotoFirstPage(); return false;'><img style='margin-left:5px;margin-bottom:2px;' src='" + Root.Domain + "/framework/images/arrow_first.gif" + "'/></a><a href='JavaScript:GotoPreviousPage();'><img style='margin-left:5px;;margin-bottom:2px;' src='" + Root.Domain + "/framework/images/arrow_prev.gif" + "'/><span style='padding-left:5px;font-size:11px;'>Prev</span></a>";
+                        litFirst.Text = "<a onClick='JavaScript:GotoFirstPage(); return false;'><img style='margin-left:5px;margin-bottom:2px;' src='" + Brand.GetThemedDomain() + "/framework/images/arrow_first.gif" + "'/></a><a href='JavaScript:GotoPreviousPage();'><img style='margin-left:5px;;margin-bottom:2px;' src='" + Brand.GetThemedDomain() + "/framework/images/arrow_prev.gif" + "'/><span style='padding-left:5px;font-size:11px;'>Prev</span></a>";
                     else
-                        litFirst.Text = "<img style='margin-left:5px;margin-bottom:2px;' src='" + Root.Domain + "/framework/images/arrow_first_d.gif" + "' /> <img style='margin-left:5px;margin-bottom:2px;' src='" + Root.Domain + "/framework/images/arrow_prev_d.gif" + "' /><span style='padding-left:5px;font-size:11px;'>Prev</span>";
+                        litFirst.Text = "<img style='margin-left:5px;margin-bottom:2px;' src='" + Brand.GetThemedDomain() + "/framework/images/arrow_first_d.gif" + "' /> <img style='margin-left:5px;margin-bottom:2px;' src='" + Brand.GetThemedDomain() + "/framework/images/arrow_prev_d.gif" + "' /><span style='padding-left:5px;font-size:11px;'>Prev</span>";
 
 
                     if (this.ListPager.CurrentPage <= (this.ListPager.TotalPages - 1))
-                        litLast.Text = "<a onClick='javascript:GotoNextPage();return false;'>Next<img style='margin-left:5px;margin-bottom:2px;' src='" + Root.Domain + "/framework/images/arrow_next.gif'/></a><a href='JavaScript:GotoLastPage();' ><img style='margin-left:5px;margin-bottom:2px;' src='" + Root.Domain + "/framework/images/arrow_last.gif'/></a>";
+                        litLast.Text = "<a onClick='javascript:GotoNextPage();return false;'>Next<img style='margin-left:5px;margin-bottom:2px;' src='" + Brand.GetThemedDomain() + "/framework/images/arrow_next.gif'/></a><a href='JavaScript:GotoLastPage();' ><img style='margin-left:5px;margin-bottom:2px;' src='" + Brand.GetThemedDomain() + "/framework/images/arrow_last.gif'/></a>";
                     else
-                        litLast.Text = "<img style='margin-left:5px;margin-bottom:2px;' src='" + Root.Domain + "/framework/images/arrow_next_d.gif" + "'/><img style='margin-left:5px;margin-bottom:2px;'  src='" + Root.Domain + "/framework/images/arrow_last_d.gif" + "'/><span style='padding-left:5px;font-size:11px;'>Next</span>";
+                        litLast.Text = "<img style='margin-left:5px;margin-bottom:2px;' src='" + Brand.GetThemedDomain() + "/framework/images/arrow_next_d.gif" + "'/><img style='margin-left:5px;margin-bottom:2px;'  src='" + Brand.GetThemedDomain() + "/framework/images/arrow_last_d.gif" + "'/><span style='padding-left:5px;font-size:11px;'>Next</span>";
 
                     int displaypage = 1;
                     if (this.ListPager.CurrentPage != 0)
@@ -364,7 +364,7 @@ namespace Profiles.Lists.Modules.Lists
         {
 
             HtmlLink editcss = new HtmlLink();
-            editcss.Href = Root.Domain + "/edit/CSS/edit.css";
+            editcss.Href = Brand.GetThemedDomain() + "/edit/CSS/edit.css";
             editcss.Attributes["rel"] = "stylesheet";
             editcss.Attributes["type"] = "text/css";
             editcss.Attributes["media"] = "all";
@@ -372,14 +372,14 @@ namespace Profiles.Lists.Modules.Lists
 
 
             HtmlLink searchcss = new HtmlLink();
-            searchcss.Href = Root.Domain + "/search/CSS/search.css";
+            searchcss.Href = Brand.GetThemedDomain() + "/search/CSS/search.css";
             searchcss.Attributes["rel"] = "stylesheet";
             searchcss.Attributes["type"] = "text/css";
             searchcss.Attributes["media"] = "all";
             Page.Header.Controls.Add(searchcss);
 
             HtmlLink listcss = new HtmlLink();
-            listcss.Href = Root.Domain + "/lists/CSS/lists.css";
+            listcss.Href = Brand.GetThemedDomain() + "/lists/CSS/lists.css";
             listcss.Attributes["rel"] = "stylesheet";
             listcss.Attributes["type"] = "text/css";
             listcss.Attributes["media"] = "all";
@@ -389,12 +389,12 @@ namespace Profiles.Lists.Modules.Lists
 
         private void GetCoViz()
         {
-            litCluster.Text = "<script>$(window).on('load', function() {" + string.Format("$('#iframe-cluster').attr('src','{0}/lists/modules/Networkclusterlist/Networkclusterlist.aspx?listid={1}');", Root.Domain, this.ListID) + "});</script>";
+            litCluster.Text = "<script>$(window).on('load', function() {" + string.Format("$('#iframe-cluster').attr('src','{0}/lists/modules/Networkclusterlist/Networkclusterlist.aspx?listid={1}');", Brand.GetThemedDomain(), this.ListID) + "});</script>";
         }
 
         private void GetMap()
         {
-            litMap.Text = "<script>$(window).on('load', function() {" + string.Format("$('#iframe-map').attr('src','{0}/lists/modules/NetworkMapList/NetworkMapList.aspx?listid={1}');", Root.Domain, this.ListID) + "});</script>";
+            litMap.Text = "<script>$(window).on('load', function() {" + string.Format("$('#iframe-map').attr('src','{0}/lists/modules/NetworkMapList/NetworkMapList.aspx?listid={1}');", Brand.GetThemedDomain(), this.ListID) + "});</script>";
         }
         private void NoList()
         {

@@ -1,17 +1,4 @@
-﻿/*  
- 
-    Copyright (c) 2008-2012 by the President and Fellows of Harvard College. All rights reserved.  
-    Profiles Research Networking Software was developed under the supervision of Griffin M Weber, MD, PhD.,
-    and Harvard Catalyst: The Harvard Clinical and Translational Science Center, with support from the 
-    National Center for Research Resources and Harvard University.
-
-
-    Code licensed under a BSD License. 
-    For details, see: LICENSE.txt 
-  
-*/
-using System;
-using System.Configuration;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,27 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using System.Web.UI.HtmlControls;
-
-
 using Profiles.Framework.Utilities;
+using System.Configuration;
 
 namespace Profiles.Framework
 {
-    /// <summary>
-    /// Template.Master.cs
-    /// 
-    /// 
-    /// Used as the master page template for all profiles framework UI pages.
-    /// 
-    /// Each Panel area of the template is managed by a repeater control.  Each Repeater control will be bound to a List of
-    /// List<Utilities.Module> objects that are based on the PresentationXML PannelList/Panel/Module node for each panel.
-    /// 
-    ///     
-    /// 
-    ///
-    /// </summary>
     public partial class Template : System.Web.UI.MasterPage
     {
+
         public static readonly string VERSION_CACHE_KEY = "GitVersion";
 
         #region "Private Properties"
@@ -48,7 +22,10 @@ namespace Profiles.Framework
         private List<Framework.Utilities.Panel> _panels;
         private ModulesProcessing mp;
         #endregion
+        override protected void OnInit(EventArgs e)
+        {
 
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -63,66 +40,51 @@ namespace Profiles.Framework
                 else
                     this.CanEdit = false;
 
-
-
                 this.LoadAssets();
 
                 this.InitFrameworkPanels();
 
-
                 this.BindRepeaterToPanel(ref rptHeader, GetPanelByType("header"));
                 this.BindRepeaterToPanel(ref rptActive, GetPanelByType("active"));
-                this.BindRepeaterToPanel(ref rptInfo, GetPanelByType("info"));
-                this.BindRepeaterToPanel(ref rptPage, GetPanelByType("page"));
                 this.BindRepeaterToPanel(ref rptMain, GetPanelByType("main"));
                 this.BindRepeaterToPanel(ref rptPassive, GetPanelByType("passive"));
-                this.BindRepeaterToPanel(ref rptFooter, GetPanelByType("footer"));
-
 
                 if (rptHeader.Items.Count == 0)
                 {
                     divProfilesHeader.Visible = false;
                 }
 
-                if (this.GetStringFromPresentationXML("Presentation/PageOptions/@Columns") == "2")
+                this.DrawTabs();
+                if (this.GetStringFromPresentationXML("Presentation/PanelList/Panel[@Type='left']") != string.Empty)
                 {
-                    tdProfilesMainColumnRight.Visible = false;
-                    divProfilesPageColumnRightTopLine.Visible = false;
-                    divProfilesPage.Style.Remove("background-image");
-                    //These two lines are adding inline styles to get the rounded border at bottom of left column. This has been replicated in CSS.
-                    //divProfilesPageColumnRightBottom.Style.Remove("background-image");
-                    //divProfilesPageColumnRightBottom.Style.Add("background-image", Brand.GetDomain() + "/Framework/images/passive_bottom_alt.gif");
-                    divProfilesMainColumnLeft.Style.Remove("width");
-                    divProfilesMainColumnLeft.Style.Add("width", "777px");
-                    divProfilesContentMain.Style.Remove("width");
-                    divProfilesContentMain.Style.Add("width", "756px");
+                    this.BindRepeaterToPanel(ref rptLeft, GetPanelByType("left"));
+                }
+                else
+                {
+                    divContentLeft.Visible = false;
                 }
 
 
-                this.DrawTabs();
+
             }
             catch (Exception ex)
             {
-
-                Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
+                Framework.Utilities.DebugLogging.Log(ex.Message + " ++ master page  protected void Page_Load(object sender, EventArgs e) " + ex.StackTrace);
 
                 HttpContext.Current.Session["GLOBAL_ERROR"] = ex.Message + " ++ " + ex.StackTrace;
-                Response.Redirect(Brand.GetThemedDomain() + "/error/default.aspx");
+                Response.Redirect(Root.Domain + "/error/default.aspx");
+                Response.End();
             }
-
-
-
         }
+
+
 
         /// <summary>
         /// Used to set the link for css/js client Assets
         /// </summary>
         protected void LoadAssets()
         {
-
-            //This should loop the application table or be set based on the contest of the RESTFul URL to know
-            //What application is currently being viewed then set the correct asset link.
-
+            // UCSF Added Themes START
             HtmlLink Profilescss = new HtmlLink();
             Profilescss.Href = Brand.GetThemedDomain() + "/Framework/CSS/profiles.css";
             Profilescss.Attributes["rel"] = "stylesheet";
@@ -131,29 +93,43 @@ namespace Profiles.Framework
             //Page.Header.Controls.Add(Profilescss);
             head.Controls.Add(Profilescss);
 
-            HtmlLink DEFAULTcss = new HtmlLink();
-            DEFAULTcss.Href = Brand.GetThemedDomain() + "/App_Themes/DEFAULT.css";
-            DEFAULTcss.Attributes["rel"] = "stylesheet";
-            DEFAULTcss.Attributes["type"] = "text/css";
-            DEFAULTcss.Attributes["media"] = "all";
-            //Page.Header.Controls.Add(DEFAULTcss); 
-            head.Controls.Add(DEFAULTcss);
-            
             HtmlGenericControl jsscript = new HtmlGenericControl("script");
             jsscript.Attributes.Add("type", "text/javascript");
             jsscript.Attributes.Add("src", Brand.GetThemedDomain() + "/Framework/JavaScript/profiles.js");
             Page.Header.Controls.Add(jsscript);
 
-            HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
-            UCSFjs.Attributes.Add("type", "text/javascript");
-            UCSFjs.Attributes.Add("src", Brand.GetThemedDomain() + "/Framework/JavaScript/UCSF.js");
-            Page.Header.Controls.Add(UCSFjs);
+            // UCSF. More testing! Need to think of framework to include for some themese but not others.
+            if (Page.Theme != "Default")
+            {
+                HtmlLink DEFAULTcss = new HtmlLink();
+                DEFAULTcss.Href = Brand.GetThemedDomain() + "/App_Themes/DEFAULT.css";
+                DEFAULTcss.Attributes["rel"] = "stylesheet";
+                DEFAULTcss.Attributes["type"] = "text/css";
+                DEFAULTcss.Attributes["media"] = "all";
+                //Page.Header.Controls.Add(DEFAULTcss); 
+                head.Controls.Add(DEFAULTcss);
 
-            // add one specific to the theme
-            HtmlGenericControl ThemeJs = new HtmlGenericControl("script");
-            ThemeJs.Attributes.Add("type", "text/javascript");
-            ThemeJs.Attributes.Add("src", Brand.GetThemedDomain() + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".js");
-            Page.Header.Controls.Add(ThemeJs);
+                HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
+                UCSFjs.Attributes.Add("type", "text/javascript");
+                UCSFjs.Attributes.Add("src", Brand.GetThemedDomain() + "/Framework/JavaScript/UCSF.js");
+                Page.Header.Controls.Add(UCSFjs);
+
+                // add one specific to the theme
+                HtmlGenericControl ThemeJs = new HtmlGenericControl("script");
+                ThemeJs.Attributes.Add("type", "text/javascript");
+                ThemeJs.Attributes.Add("src", Brand.GetThemedDomain() + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".js");
+                Page.Header.Controls.Add(ThemeJs);
+
+
+                // UCSF. More themese testing stuff
+                HtmlLink ThemeCss = new HtmlLink();
+                //ThemeCss.Href = Root.GetThemedFile(Page, "Search/CSS/Theme.css");
+                ThemeCss.Href = Brand.GetThemedDomain() + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".css";
+                ThemeCss.Attributes["rel"] = "stylesheet";
+                ThemeCss.Attributes["type"] = "text/css";
+                ThemeCss.Attributes["media"] = "all";
+                Page.Header.Controls.Add(ThemeCss);
+            }
 
             // UCSF. To support lazy login
             String lazyShibLogin = Profiles.Login.ShibbolethSession.GetJavascriptSrc(Request);
@@ -226,6 +202,55 @@ namespace Profiles.Framework
             Brand.GetThemedDomain());
             Page.Header.Controls.Add(ieCss);
 
+            // UCSF Added Themes END
+
+            //This should loop the application table or be set based on the contest of the RESTFul URL to know
+            //What application is currently being viewed then set the correct asset link.
+
+            /*** UCSF Collision
+            HtmlLink Profilescss = new HtmlLink();
+            Profilescss.Href = Root.Domain + "/framework/css/profiles.css";
+            Profilescss.Attributes["rel"] = "stylesheet";
+            Profilescss.Attributes["type"] = "text/css";
+            Profilescss.Attributes["media"] = "all";
+            head.Controls.Add(Profilescss);
+
+
+            HtmlGenericControl jsscript = new HtmlGenericControl("script");
+            jsscript.Attributes.Add("type", "text/javascript");
+            jsscript.Attributes.Add("src", Root.Domain + "/Framework/JavaScript/profiles.js");
+            Page.Header.Controls.Add(jsscript);
+            ***/
+
+
+            HtmlLink PRNStheme = new HtmlLink();
+            PRNStheme.Href = Brand.GetThemedDomain() + "/framework/css/prns-theme.css";
+            PRNStheme.Attributes["rel"] = "stylesheet";
+            PRNStheme.Attributes["type"] = "text/css";
+            PRNStheme.Attributes["media"] = "all";
+            head.Controls.Add(PRNStheme);
+
+
+            HtmlLink PRNSthemeMenusTop = new HtmlLink();
+            PRNSthemeMenusTop.Href = Brand.GetThemedDomain() + "/framework/css/prns-theme-menus-top.css";
+            PRNSthemeMenusTop.Attributes["rel"] = "stylesheet";
+            PRNSthemeMenusTop.Attributes["type"] = "text/css";
+            PRNSthemeMenusTop.Attributes["media"] = "all";
+            head.Controls.Add(PRNSthemeMenusTop);
+
+            Framework.Utilities.DataIO data = new DataIO();
+/*
+            if (data.CheckSystemMessage() != "")
+            {
+                ProfilesNotification.Visible = true;
+                litSystemNotice.Visible = true;
+                litSystemNotice.Text = data.CheckSystemMessage();
+            }
+            else
+            {
+ */               ProfilesNotification.Visible = false;
+                litSystemNotice.Visible = false;
+ //           }
 
         }
         /// <summary>
@@ -250,6 +275,7 @@ namespace Profiles.Framework
 
                 if (!p.Alias.IsNullOrEmpty())
                     listtabs.Add(new Tab(p.Name, p.Alias, currenttab, p.DefaultTab));
+
             }
 
             if (listtabs.Count > 0)
@@ -264,7 +290,7 @@ namespace Profiles.Framework
                         {
                             tabs.Append(Framework.Utilities.Tabs.DrawTabsStart());
                             drawstart = false;
-                        }               
+                        }
 
                         if (t.Active)
                         {
@@ -325,16 +351,12 @@ namespace Profiles.Framework
                             }
                             else
                             {
+
                                 t.URL = Brand.GetThemedDomain() + Root.AbsolutePath + "/" + t.URL;
                             }
 
                             tabs.Append(Framework.Utilities.Tabs.DrawDisabledTab(t.Name, t.URL));
                         }
-
-
-
-
-
                     }
                 }
 
@@ -342,12 +364,11 @@ namespace Profiles.Framework
                     tabs.Append(Framework.Utilities.Tabs.DrawTabsEnd());
 
                 litTabs.Text = tabs.ToString();
-
-
             }
             else
             {
                 litTabs.Visible = false;
+                litJS.Text += "$(document).ready(function () {$('.prns-screen-search').remove();});";
             }
         }
 
@@ -358,8 +379,6 @@ namespace Profiles.Framework
         /// <param name="e"></param>
         protected void DrawModule(object sender, RepeaterItemEventArgs e)
         {
-
-
             PlaceHolder placeholder = null;
             mp = new ModulesProcessing();
             Literal literal = null;
@@ -386,7 +405,7 @@ namespace Profiles.Framework
                 placeholder = (PlaceHolder)e.Item.FindControl("phActive");
 
             if (placeholder == null)
-                placeholder = (PlaceHolder)e.Item.FindControl("phInfo");
+                placeholder = (PlaceHolder)e.Item.FindControl("phLeft");
 
             if (placeholder == null)
                 placeholder = (PlaceHolder)e.Item.FindControl("phMain");
@@ -397,8 +416,6 @@ namespace Profiles.Framework
             if (placeholder == null)
                 placeholder = (PlaceHolder)e.Item.FindControl("phPassive");
 
-            if (placeholder == null)
-                placeholder = (PlaceHolder)e.Item.FindControl("phFooter");
 
             if (module.Path != "")
             {
@@ -411,53 +428,59 @@ namespace Profiles.Framework
                     placeholder.Controls.Add(mp.LoadControl(module.Path, this, this.RDFData, module.ParamList, this.RDFNamespaces));
             }
 
+
             display = true;
         }
         protected string GetStringFromPresentationXML(string XPath)
         {
             string buffer = string.Empty;
+
             XmlNode MyXMLNode = this.PresentationXML.SelectSingleNode(XPath);
+
             if (MyXMLNode != null)
             {
                 buffer = CustomParse.Parse(MyXMLNode.InnerText, this.RDFData, this.RDFNamespaces);
             }
-            return buffer;
+
+            return buffer.Trim();
         }
 
         protected void ProcessPresentationXML()
         {
+
+            string js = string.Empty;
             string buffer = string.Empty;
             SessionManagement sm = new SessionManagement();
 
             // PageTitle
             buffer = GetStringFromPresentationXML("Presentation/PageTitle");
-            string PresentationClass = GetStringFromPresentationXML("//Presentation/@PresentationClass").ToLower();
-            if ((PresentationClass == "profile") || (PresentationClass == "network") || (PresentationClass == "connection"))
+            if (buffer != String.Empty)
+                litPageTitle.Text = " <div class=\"pageTitle\"><h2 style='margin-bottom:0px;'>" + buffer + "</h2></div>";
+            else
             {
-                if (buffer == String.Empty)
-                {
-                    buffer = PresentationClass.Substring(0, 1).ToUpper() + PresentationClass.Substring(1, PresentationClass.Length - 1);
-                }
-                // UCSF schema.org addition to improve SEO
-                if (PresentationClass == "profile")
-                {
-                    buffer = "<span itemprop=\"name\">" + buffer + "</span>";
-                }
-                litPageTitle.Text = "<h2><a><img class=\"pageIcon\" src=\"" + Brand.GetThemedDomain() + "/Framework/Images/icon_" + PresentationClass + ".gif\"/></a>" + buffer + "</h2>";
+                divTopMainRow.Visible = false;
+                litPageTitle.Visible = false;
+                js += "$(document).ready(function () {$('#divTopMainRow').remove();});";
             }
 
             // PageSubTitle
             buffer = GetStringFromPresentationXML("Presentation/PageSubTitle");
             if (buffer != String.Empty)
+                litPageSubTitle.Text = "<div class=\"pageSubTitle\"><h2 style=\"margin-bottom:0px;margin-top:0px;font-weight:bold\">" + buffer + "</h2></div>";
+            else
             {
-                litPageSubTitle.Text = "<h3>" + buffer + "</h3>";
+                litPageSubTitle.Visible = false;
+                js += "$(document).ready(function () {jQuery('.pageSubTitle').remove();});";
             }
 
             // PageDescription
             buffer = GetStringFromPresentationXML("Presentation/PageDescription");
             if (buffer != String.Empty)
+                litPageDescription.Text = buffer;
+            else
             {
-                litPageDescription.Text = "<p>" + buffer + "</p>";
+                litPageDescription.Visible = false;
+                js += "$(document).ready(function () {$('.pageDescription').remove();});";
             }
 
             // PageBackLink
@@ -472,28 +495,21 @@ namespace Profiles.Framework
                 else if (PageBackLinkURL.Contains("~"))
                     url = Brand.GetThemedDomain() + PageBackLinkURL.Replace("~", "");
                 else
-                    url = Brand.CleanURL(PageBackLinkURL);
+                    url = PageBackLinkURL;
 
-                // UCSF hack for groups
-                if (!String.IsNullOrEmpty(this.RDFData.InnerText) && this.RDFData.SelectSingleNode("rdf:RDF/rdf:Description[1]/rdf:type[@rdf:resource='http://xmlns.com/foaf/0.1/Group']", this.RDFNamespaces) != null)
-                {
-                    litBackLink.Text = "<a href=\"" + url + "\" class=\"dblarrow\">" + PageBackLinkName.Replace("Profile", "Group") + "</a>";
-                }
-                else
-                {
-                    litBackLink.Text = "<a href=\"" + url + "\" class=\"dblarrow\">" + PageBackLinkName + "</a>";
-                }
-
+                litBackLink.Text = "<a class='masterpage-backlink' href=\"" + url + "\"><img src=\"" + Brand.GetThemedDomain() + "/Framework/Images/arrowLeft.png\" class=\"pageBackLinkIcon\" alt=\"\" />" + PageBackLinkName + "</a>";
+            }
+            else
+            {
+                js += "$(document).ready(function () {$('.backLink').remove();});";
             }
 
             // Window Title
             buffer = GetStringFromPresentationXML("Presentation/WindowName");
 
-            if (buffer != String.Empty)
-            {
-                buffer = buffer + " | ";
-            }
-            Page.Header.Title = buffer + Brand.GetNiceTitle(Page.Theme) + " Profiles";
+            Page.Header.Title = buffer + " | Profiles RNS";
+            litJS.Text += js;
+
         }
 
         #region "Panel Methods"
@@ -517,11 +533,14 @@ namespace Profiles.Framework
                     }
                 }
 
-
-
                 if (display)
                 {
+
+
+
                     _panels.Add(new Framework.Utilities.Panel(panels[i]));
+
+
                 }
 
                 //reset the default to true.  All Panels will display by default unless a DisplayRule is supplied and that rule fails the test to see
@@ -544,23 +563,10 @@ namespace Profiles.Framework
                 rtnpanel = p.ToList();
 
             }
-            catch (Exception ex) { Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace); }
+            catch (Exception ex) { Framework.Utilities.DebugLogging.Log(ex.Message + " ++  private List<Framework.Utilities.Panel> GetPanelByType(string paneltype) " + ex.StackTrace); }
 
             return rtnpanel;
         }
-
-        private string GetGoogleAnalyticsJavascipt(string trackingID)
-        {
-            string scriptText = Environment.NewLine +
-                    "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){" + Environment.NewLine +
-                    "(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o)," + Environment.NewLine +
-                    " m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)" + Environment.NewLine +
-                    "})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');" + Environment.NewLine +
-                    "ga('create', '" + trackingID + "', 'auto');" + Environment.NewLine +
-                    "ga('send', 'pageview');" + Environment.NewLine;
-            return scriptText;
-        }
-
 
         /// <summary>
         /// Used to bind a repeater for a given Panel to a List of Modules.  Each panel is defined by a type.  Each type can be assigned
@@ -571,9 +577,7 @@ namespace Profiles.Framework
         public void BindRepeaterToPanel(ref Repeater repeater, List<Framework.Utilities.Panel> panels)
         {
 
-
             Framework.Utilities.Panel rtnpanel = new Profiles.Framework.Utilities.Panel();
-
             try
             {
                 if (panels.Count() == 1)
@@ -584,7 +588,6 @@ namespace Profiles.Framework
                 else
                 {
                     rtnpanel.Modules = new List<Utilities.Module>();
-
                     foreach (Framework.Utilities.Panel f in panels)
                     {
                         if (f.Alias != string.Empty && this.Tab != string.Empty)
@@ -597,63 +600,22 @@ namespace Profiles.Framework
                             foreach (Utilities.Module m in f.Modules)
                                 rtnpanel.Modules.Add(m);
                         }
-
                     }
                 }
             }
-            catch (Exception ex) { Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace); }
+            catch (Exception ex) { Framework.Utilities.DebugLogging.Log(ex.Message + " ++ at public void BindRepeaterToPanel(ref Repeater repeater, List<Framework.Utilities.Panel> panels) " + ex.StackTrace); }
 
             repeater.DataSource = rtnpanel.Modules;
             repeater.DataBind();
+
         }
 
         #endregion
 
-        private string GetUniversalAnalyticsJavascipt(string trackingID, string domain, string trackingID2, string domain2)
+        public string GetURLDomain()
         {
-            domain = (domain == null) ? "auto" : domain;
-            domain2 = (domain2 == null) ? "auto" : domain2;
-            string createID2 = (trackingID2 != null) ? "ga('create', '" + trackingID2 + "', '" + domain2 + "', { 'name': 'b' });" + Environment.NewLine : "";
-            string sendID2 = (trackingID2 != null) ? "ga('b.send', 'pageview')" : "";
-
-            string scriptText = Environment.NewLine +
-                "(function (i, s, o, g, r, a, m) {" + Environment.NewLine +
-                "i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {" + Environment.NewLine +
-                "(i[r].q = i[r].q || []).push(arguments)" + Environment.NewLine +
-                "}, i[r].l = 1 * new Date(); a = s.createElement(o)," + Environment.NewLine +
-                "m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)" + Environment.NewLine +
-                "})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');" + Environment.NewLine +
-                "ga('create', '" + trackingID + "', '"+domain+"');" + Environment.NewLine +
-                createID2 +
-                "ga('send', 'pageview');" + Environment.NewLine +
-                sendID2;
-            return scriptText;
+            return Root.Domain;
         }
-
-
-        public string GetThemedDomain()
-        {
-            return Brand.GetThemedDomain();
-        }
-
-        public string GetVersion()
-        {
-            string version = (string)Framework.Utilities.Cache.FetchObject(VERSION_CACHE_KEY);
-            if (version == null)
-            {
-                string contents = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/GitVersion.txt");
-                string[] contentsLines = contents.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
-                version = contentsLines[contentsLines.Length - 1];
-                Framework.Utilities.Cache.SetWithTimeout(VERSION_CACHE_KEY, version, 604800); // Cache for 7 days
-            }
-            return version;
-        }
-
-        public string GetThemedFavicon()
-        {
-            return Brand.GetThemedFile(Page, "Images/favicon.ico");
-        }
-
 
         #region "Public Properties"
         public XmlDocument PresentationXML
@@ -684,6 +646,54 @@ namespace Profiles.Framework
         public string Tab { get; set; }
         public string SessionID { get; set; }
         public Boolean CanEdit { get; set; }
+
+        #endregion
+
+        #region "Themed Items"
+
+        private string GetUniversalAnalyticsJavascipt(string trackingID, string domain, string trackingID2, string domain2)
+        {
+            domain = (domain == null) ? "auto" : domain;
+            domain2 = (domain2 == null) ? "auto" : domain2;
+            string createID2 = (trackingID2 != null) ? "ga('create', '" + trackingID2 + "', '" + domain2 + "', { 'name': 'b' });" + Environment.NewLine : "";
+            string sendID2 = (trackingID2 != null) ? "ga('b.send', 'pageview')" : "";
+
+            string scriptText = Environment.NewLine +
+                "(function (i, s, o, g, r, a, m) {" + Environment.NewLine +
+                "i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {" + Environment.NewLine +
+                "(i[r].q = i[r].q || []).push(arguments)" + Environment.NewLine +
+                "}, i[r].l = 1 * new Date(); a = s.createElement(o)," + Environment.NewLine +
+                "m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)" + Environment.NewLine +
+                "})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');" + Environment.NewLine +
+                "ga('create', '" + trackingID + "', '" + domain + "');" + Environment.NewLine +
+                createID2 +
+                "ga('send', 'pageview');" + Environment.NewLine +
+                sendID2;
+            return scriptText;
+        }
+
+        public string GetThemedDomain()
+        {
+            return Brand.GetThemedDomain();
+        }
+
+        public string GetVersion()
+        {
+            string version = (string)Framework.Utilities.Cache.FetchObject(VERSION_CACHE_KEY);
+            if (version == null)
+            {
+                string contents = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "/GitVersion.txt");
+                string[] contentsLines = contents.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
+                version = contentsLines[contentsLines.Length - 1];
+                Framework.Utilities.Cache.SetWithTimeout(VERSION_CACHE_KEY, version, 604800); // Cache for 7 days
+            }
+            return version;
+        }
+
+        public string GetThemedFavicon()
+        {
+            return Brand.GetThemedFile(Page, "Images/favicon.ico");
+        }
         #endregion
 
     }

@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Xml;
@@ -51,25 +52,47 @@ namespace Profiles.Framework.Modules.MainMenu
             if (Request.QueryString["subject"] != null)
                 subject = Convert.ToInt64(Request.QueryString["subject"]);
 
+            Brand userBrand = Brand.GetCurrentBrand();
+
             Utilities.DataIO data = new Profiles.Framework.Utilities.DataIO();
 
-            litSearchOptions.Text = "<li class='first'><a class='search-drop' href='" + Root.Domain + "/search'>Find People</a></li><li class='last'><a class='search-drop' style='border-bottom:1px solid #383737;' href='" + Root.Domain + "/search/all'>Find Everything</a></li>";
+            litSearchOptions.Text = "<li class='first'><a class='search-drop' href='" + Brand.GetThemedDomain() + "/search'>Find People</a></li><li class='last'><a class='search-drop' style='border-bottom:1px solid #383737;' href='" + Brand.GetThemedDomain() + "/search/all'>Find Everything</a></li>";
             litJs.Text = "";
+            /*** 
             if (sm.Session().NodeID > 0)
             {
                 litViewMyProfile.Text = "<li><a href='" + sm.Session().PersonURI + "'>View My Profile</a></li>";
+            }**/
+            // logged in Person
+            if (UCSFIDSet.IsPerson(sm.Session().NodeID))
+            {
+                userBrand = Brand.GetForSubject(sm.Session().NodeID);
+                litViewMyProfile.Text = "<li id='myprofile'><a href='" + UCSFIDSet.ByNodeId[sm.Session().NodeID].PrettyURL
+                    + "'><div id='menuthumb'><img src='" + userBrand.BasePath + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID="
+                    + sm.Session().NodeID + "&Thumbnail=True&Width=20' width='20' alt=''></div>"
+                    + sm.Session().DisplayName + "</a></li>";
+            }
+            else if (!String.IsNullOrEmpty(sm.Session().DisplayName)) // logged in person
+            {
+                litViewMyProfile.Text = "<li>" + sm.Session().DisplayName + "</li>";
             }
 
 
-            litEditThisProfile.Text = "<li><a href='" + Root.Domain + "/login/default.aspx?pin=send&method=login&edit=true'>Edit My Profile</a></li>";
+            litEditThisProfile.Text = "<li><a href='" + Brand.GetThemedDomain() + "/login/default.aspx?pin=send&method=login&edit=true'>Edit My Profile</a></li>";
 
             if (base.MasterPage.CanEdit)
-                litEditThisProfile.Text += "<li><div class=\"divider\"></div></li><li><a href='" + Root.Domain + "/edit/default.aspx?subject=" + subject.ToString() + "'>Edit This Profile</a></li>";
+                litEditThisProfile.Text += "<li><div class=\"divider\"></div></li><li><a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + subject.ToString() + "'>Edit This Profile</a></li>";
 
             if (sm.Session().UserID > 0)
             {
-                litProxy.Text = "<li>Manage Proxies</li>";
-                litProxy.Text = "<li><a href='" + Root.Domain + "/proxy/default.aspx?subject=" + sm.Session().NodeID.ToString() + "'>Manage Proxies</a></li>";
+                // litProxy.Text = "<li>Manage Proxies</li>"; This line of code makes on sense. Ask Nick about this.
+                litProxy.Text = "<li><a href='" + Brand.GetThemedDomain() + "/proxy/default.aspx?subject=" + sm.Session().NodeID.ToString() + "'>Manage Proxies</a></li>";
+            }
+            // ORNG Dashboard (only show for UCSF and UCSD for now)
+            string[] dashboardInstitutions = { "UCSF", "UCSD" };
+            if (UCSFIDSet.IsPerson(sm.Session().NodeID) && userBrand.GetInstitution() != null && dashboardInstitutions.Contains(userBrand.GetInstitution().GetAbbreviation()))
+            {
+                litDashboard.Text = "<li id='dashboard'><a href='" + userBrand.BasePath + "/ORNG/Dashboard.aspx?owner=" + sm.Session().PersonURI + "'>Dashboard</a></li><li><div class='divider'></div></li>";
             }
 
             if (base.BaseData.SelectSingleNode(".").OuterXml != string.Empty && !Root.AbsolutePath.ToLower().Contains("/search"))
@@ -82,7 +105,7 @@ namespace Profiles.Framework.Modules.MainMenu
                     string spostring = string.Empty;
                     string[] spoarray;
 
-                    spostring = uri.ToLower().Replace(Root.Domain.ToLower() + "/profile/", "");
+                    spostring = uri.ToLower().Replace(Brand.GetThemedDomain().ToLower() + "/profile/", "");
                     spoarray = spostring.Split('/');
 
                     for (int i = 0; i < spoarray.Length; i++)
@@ -112,7 +135,7 @@ namespace Profiles.Framework.Modules.MainMenu
             {
                 if (data.IsGroupAdmin(sm.Session().UserID))
                 {
-                    litGroups.Text = "<li><a href='" + Root.Domain + "/groupAdmin/default.aspx'>Manage Groups</a></li>";
+                    litGroups.Text = "<li><a href='" + Brand.GetThemedDomain() + "/groupAdmin/default.aspx'>Manage Groups</a></li>";
                     groupListDivider.Visible = true;
                 }
             }
@@ -122,19 +145,14 @@ namespace Profiles.Framework.Modules.MainMenu
             {
                 if (!Root.AbsolutePath.Contains("login"))
                 {
-                    litLogin.Text = "<a href='" + Root.Domain + "/login/default.aspx?method=login&redirectto=" + Root.Domain + Root.AbsolutePath + "'>Login</a> to edit your profile (add a photo, awards, links to other websites, etc.)";
+                    litLogin.Text = "<a href='" + Brand.GetThemedDomain() + "/login/default.aspx?method=login&redirectto=" + Brand.GetThemedDomain() + Root.AbsolutePath + "'>Login</a> to edit your profile (add a photo, awards, links to other websites, etc.)";
                     loginclass = "pub";
                 }
             }
             else
             {
-                litLogOut.Text = "<li><a href='" + Root.Domain + "/login/default.aspx?method=logout&redirectto=" + Root.Domain + "/search'>Logout</a></li>";
+                litLogOut.Text = "<li><a href='" + Brand.GetThemedDomain() + "/login/default.aspx?method=logout&redirectto=" + Brand.GetThemedDomain() + "/search'>Logout</a></li>";
                 loginclass = "user";
-            }
-
-            if (sm.Session().UserID > 0)
-            {
-                // litDashboard.Text = "<a href ='" + ResolveUrl("~/dashboard/default.aspx?subject=" + sm.Session().NodeID.ToString()) + "'>My Dashboard </a>";
             }
 
             litJs.Text += "<script type='text/javascript'> var NAME = document.getElementById('prns-usrnav'); NAME.className = '" + loginclass + "';";

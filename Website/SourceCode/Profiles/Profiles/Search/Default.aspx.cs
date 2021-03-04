@@ -139,10 +139,11 @@ namespace Profiles.Search
         private void LoadAssets()
         {
             HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
-            body.Attributes.Add("class", "search");
+            //body.Attributes.Add("class", "search"); Commented out 2/3/2021
 
-            PlaceHolder pageColumnLeft = (PlaceHolder)Page.Master.FindControl("PageColumnLeft");
-            pageColumnLeft.Visible = true;
+            // Commented out 2/2/2021
+            //PlaceHolder pageColumnLeft = (PlaceHolder)Page.Master.FindControl("PageColumnLeft");
+            //pageColumnLeft.Visible = true;
 
             HtmlLink Searchcss = new HtmlLink();
             Searchcss.Href = Brand.GetThemedDomain() + "/Search/CSS/search.css";
@@ -152,7 +153,7 @@ namespace Profiles.Search
             Page.Header.Controls.Add(Searchcss);
 
             HtmlLink Activitycss = new HtmlLink();
-            Activitycss.Href = Root.Domain + "/Activity/CSS/activity.css";
+            Activitycss.Href = Brand.GetThemedDomain() + "/Activity/CSS/activity.css";
             Activitycss.Attributes["rel"] = "stylesheet";
             Activitycss.Attributes["type"] = "text/css";
             Activitycss.Attributes["media"] = "all";
@@ -175,19 +176,14 @@ namespace Profiles.Search
             script.Text = "<script>var _path = \"" + Brand.GetThemedDomain() + "\";</script>";
             Page.Header.Controls.Add(script);
 
-            // This should get included automatically, but isn't working for Search for some reason
-            HtmlLink ThemeCss = new HtmlLink();
-            //ThemeCss.Href = Root.GetThemedFile(Page, "Search/CSS/Theme.css");
-            ThemeCss.Href = Brand.GetThemedDomain() + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".css";
-            ThemeCss.Attributes["rel"] = "stylesheet";
-            ThemeCss.Attributes["type"] = "text/css";
-            ThemeCss.Attributes["media"] = "all";
-            Page.Header.Controls.Add(ThemeCss);
-
-            HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
-            UCSFjs.Attributes.Add("type", "text/javascript");
-            UCSFjs.Attributes.Add("src", Brand.GetThemedDomain() + "/Search/JavaScript/UCSF.js");
-            Page.Header.Controls.Add(UCSFjs);
+            // UCSF. More testing! Need to think of framework to include for some themese but not others.
+            if (Page.Theme != "Default")
+            {
+                HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
+                UCSFjs.Attributes.Add("type", "text/javascript");
+                UCSFjs.Attributes.Add("src", Brand.GetThemedDomain() + "/Search/JavaScript/UCSF.js");
+                Page.Header.Controls.Add(UCSFjs);
+            }
         }
 
         //Need to process this at the page level for the framework data
@@ -362,17 +358,13 @@ namespace Profiles.Search
                     break;
             }
 
-            try
-            {
-                if (nodeuri != string.Empty && nodeid != string.Empty)
-                    masterpage.RDFData = data.WhySearch(xml, nodeuri, Convert.ToInt64(nodeid));
-                else
-                    masterpage.RDFData = data.Search(xml, false);
-            }
-            catch (DisallowedSearchException se)
-            {
-                masterpage.RDFData = se.GetDisallowedSearchResults();
-            }
+            searchrequest = xml.OuterXml;
+            Session["SearchRequest"] = searchrequest;
+
+            if (nodeuri != string.Empty && nodeid != string.Empty)
+                masterpage.RDFData = data.WhySearch(xml, nodeuri, Convert.ToInt64(nodeid));
+            else
+                masterpage.RDFData = data.Search(xml, false);
 
             Framework.Utilities.DebugLogging.Log(masterpage.RDFData.OuterXml);
             masterpage.RDFNamespaces = rdfnamespaces.LoadNamespaces(masterpage.RDFData);

@@ -18,35 +18,35 @@
           <Param Name="GadgetClass">gadgets-gadget-parent</Param>
         </ParamList>
       </Module>
-      <Module ID="Statistics">
-      </Module>
-      <Module ID="ActivityHistory">
+    </Panel>
+    <Panel Type="left">
+      <Module ID="LatestUpdates">
         <ParamList>
           <Param Name="Show">3</Param>
           <Param Name="SeeMore">True</Param>
         </ParamList>
       </Module>
     </Panel>
-    <Panel Type="main">
+    <Panel Name="Find People" Alias="people" Type="main" TabType="Default" TabSort="0">
       <Module ID="SearchPerson">
-      </Module>    
+      </Module>
     </Panel>
-    <!--Panel Name="Find Research" Alias="all" Type="main" TabType="Fixed" TabSort="1" >
-      <Module ID="SearchEverything" />        
-    </Panel-->
+    <Panel Name="Find Everything" Alias="all" Type="main" TabType="Fixed" TabSort="1" >
+      <Module ID="SearchEverything" />
+    </Panel>
     <Panel Type="passive" >
       <Module ID="TopSearchPhrase">
         <ParamList>
-          <Param Name="Description">Most viewed</Param>
+          <Param Name="Description">Most viewed (today)</Param>
           <Param Name="TimePeriod">d</Param>
         </ParamList>
       </Module>
-      <!--Module ID="TopSearchPhrase">
+      <Module ID="TopSearchPhrase">
         <ParamList>
           <Param Name="Description">Most viewed (month)</Param>
           <Param Name="TimePeriod">m</Param>
         </ParamList>
-      </Module-->
+      </Module>
     </Panel>
     <Panel type="footer" />
   </PanelList>

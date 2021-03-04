@@ -7,12 +7,14 @@ using System.Configuration;
 using System.Web.Configuration;
 using Profiles.ORNG.Utilities;
 using System.Data.SqlClient;
+using System.Xml;
 
 namespace Profiles.Framework.Utilities
 {
     public class Brand
     {
         public static String GROUPS_CACHE_KEY = "GroupsCache";
+        public static String THEMECONFIGURATION_CACHE_KEY = "ThemeConfiguration";
 
         private static Dictionary<string, Brand> ByTheme = new Dictionary<string, Brand>();
         private static Dictionary<Institution, Brand> ByPrimaryInstitution = new Dictionary<Institution, Brand>();
@@ -22,6 +24,40 @@ namespace Profiles.Framework.Utilities
         public string GATrackingID { get; set; }
         public string PersonFilter { get; set; }
         private List<Institution> RestrictedInstitutions = null;
+
+        public static XmlNode GetGoogleValidationContent(string brandTheme,string groupName)
+        {
+            string xmlstr = GetThemePropertiesXML(brandTheme);
+            DebugLogging.Log("ERROR" + "read from DB for " + brandTheme +" "+ xmlstr);
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xmlstr);
+            XmlNode root = doc.DocumentElement;
+            string rootName = root.Name;
+            XmlNode properties = root.SelectSingleNode("/" + rootName + "/" + groupName);
+            DebugLogging.Log("ERROR" + "returning properties " + properties.InnerText);
+            return properties;
+        }
+
+        static public string GetThemePropertiesXML(string themeName)
+        {
+            string xmlstr = (string)Framework.Utilities.Cache.FetchObject(themeName + "_" + THEMECONFIGURATION_CACHE_KEY);
+            if (xmlstr != null)
+            {
+                return xmlstr;
+            }
+            else
+            {
+                SqlDataReader reader = new GroupAdmin.Utilities.DataIO().GetThemeConfiguration(themeName);
+                while (reader.Read())
+                {
+                    xmlstr = reader["config"].ToString();
+                }
+                reader.Close();
+                Framework.Utilities.Cache.Set(themeName + "_" + THEMECONFIGURATION_CACHE_KEY, xmlstr);
+                return xmlstr;
+            }
+        }
+
 
         public bool IsMultiInstitutional()
         {

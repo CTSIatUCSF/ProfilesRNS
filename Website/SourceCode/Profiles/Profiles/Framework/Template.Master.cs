@@ -84,6 +84,22 @@ namespace Profiles.Framework
         /// </summary>
         protected void LoadAssets()
         {
+            // Moved up per Anirvans request
+            HtmlLink PRNStheme = new HtmlLink();
+            PRNStheme.Href = Brand.GetThemedDomain() + "/framework/css/prns-theme.css";
+            PRNStheme.Attributes["rel"] = "stylesheet";
+            PRNStheme.Attributes["type"] = "text/css";
+            PRNStheme.Attributes["media"] = "all";
+            head.Controls.Add(PRNStheme);
+
+
+            HtmlLink PRNSthemeMenusTop = new HtmlLink();
+            PRNSthemeMenusTop.Href = Brand.GetThemedDomain() + "/framework/css/prns-theme-menus-top.css";
+            PRNSthemeMenusTop.Attributes["rel"] = "stylesheet";
+            PRNSthemeMenusTop.Attributes["type"] = "text/css";
+            PRNSthemeMenusTop.Attributes["media"] = "all";
+            head.Controls.Add(PRNSthemeMenusTop);
+            
             // UCSF Added Themes START
             HtmlLink Profilescss = new HtmlLink();
             Profilescss.Href = Brand.GetThemedDomain() + "/Framework/CSS/profiles.css";
@@ -223,20 +239,6 @@ namespace Profiles.Framework
             ***/
 
 
-            HtmlLink PRNStheme = new HtmlLink();
-            PRNStheme.Href = Brand.GetThemedDomain() + "/framework/css/prns-theme.css";
-            PRNStheme.Attributes["rel"] = "stylesheet";
-            PRNStheme.Attributes["type"] = "text/css";
-            PRNStheme.Attributes["media"] = "all";
-            head.Controls.Add(PRNStheme);
-
-
-            HtmlLink PRNSthemeMenusTop = new HtmlLink();
-            PRNSthemeMenusTop.Href = Brand.GetThemedDomain() + "/framework/css/prns-theme-menus-top.css";
-            PRNSthemeMenusTop.Attributes["rel"] = "stylesheet";
-            PRNSthemeMenusTop.Attributes["type"] = "text/css";
-            PRNSthemeMenusTop.Attributes["media"] = "all";
-            head.Controls.Add(PRNSthemeMenusTop);
 
             Framework.Utilities.DataIO data = new DataIO();
 /*

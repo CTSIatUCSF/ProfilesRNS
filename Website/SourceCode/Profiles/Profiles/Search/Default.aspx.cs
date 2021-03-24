@@ -140,7 +140,7 @@ namespace Profiles.Search
         {
             HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
             //body.Attributes.Add("class", "search"); Commented out 2/3/2021
-            if ("searchform".Equals(type.ToLower()))
+            if (type == null || "searchform".Equals(type.ToLower()))
             {
                 body.Attributes.Add("class", "researcherprofiles--home-page");
             }

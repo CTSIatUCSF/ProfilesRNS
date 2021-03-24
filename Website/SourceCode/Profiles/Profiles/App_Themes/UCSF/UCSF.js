@@ -20,7 +20,7 @@
                     var degreeStartNdx = $('.education').html().indexOf('<td>', ndx + ucsfSpellings[i].length) + 4;
                     var degree = $('.education').html().substring(degreeStartNdx, $('.education').html().indexOf('</td>', degreeStartNdx));
                     if (degree.trim().length > 0) {
-                        $('.profilesContentMain').prepend('<img style="float: right; valign: top;" src="/App_Themes/UCSF/Images/UCSF_alumni_badge_500x500.png" width="50"/>');
+                        $('.profilesContentMain').prepend('<div class="researcherprofiles--ucsf-researcher-badge"><img src="/App_Themes/UCSF/Images/UCSF_alumni_badge_500x500.png" alt="UCSF Alumni"/></div>');
                         i = ucsfSpellings.length;
                         break;
                     }
@@ -36,7 +36,7 @@
         $(".education:contains('Diversity, Equity & Inclusion Training')").addClass('dei-champ');
         $(".education:contains('Diversity, Equity and Inclusion Training')").addClass('dei-champ');
         $(".education:contains('Diversity, Equity, and Inclusion Training')").addClass('dei-champ');
-        if ($('.dei-champ') && $('.dei-champ').length) $('.profilesContentMain').prepend('<a href="https://differencesmatter.ucsf.edu/diversity-equity-and-inclusion-champion-training" style="float: right; valign: top;" target="_blank"><img src="/App_Themes/UCSF/Images/dei-champ_large.png" width="50"/></a>');
+        if ($('.dei-champ') && $('.dei-champ').length) $('.profilesContentMain').prepend('<div class="researcherprofiles--ucsf-researcher-badge"><a href="https://meded.ucsf.edu/faculty-educators/faculty-development/diversity-equity-and-inclusion-champion-training" target="_blank"><img src="/App_Themes/UCSF/Images/dei-champ_large.png" alt="Completed " alt="Diversity, Equity, and Inclusion Champion" /></a>');
     }	 
 
     /* Commented out by Eric on 6/23/2021 because this is now all in the c# code

@@ -691,17 +691,14 @@
       }
 
       function ShowDetails(nodeURI,obj){
-
-//      doListTableRowOver(obj);
+        doListTableRowOver(obj);
 //      debugger;
-//      document.getElementById('divItemDetails').innerHTML = document.getElementById(nodeURI).value;
-
+        document.getElementById('divItemDetails').innerHTML = document.getElementById(nodeURI).value;
       }
 
       function HideDetails(obj,ord){
-
-//      doListTableRowOut(obj,ord);
-//      document.getElementById('divItemDetails').innerHTML = '';
+        doListTableRowOut(obj,ord);
+        document.getElementById('divItemDetails').innerHTML = '';
       }
 
 
@@ -860,7 +857,7 @@
     <xsl:variable name="facranklink">
       <xsl:choose>
         <xsl:when test="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label">
-          &lt;br/&gt;&lt;br/&gt;&lt;u&gt;Faculty Rank&lt;/u&gt;&lt;br/&gt;<xsl:value-of select="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label"/>
+          &lt;br/&gt;&lt;br/&gt;&lt;u&gt;Researcher Type&lt;/u&gt;&lt;br/&gt;<xsl:value-of select="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label"/>
         </xsl:when>
         <xsl:otherwise>
 
@@ -1034,7 +1031,7 @@
       <xsl:variable name="facranklink">
         <xsl:choose>
           <xsl:when test="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label">
-            &lt;br/&gt;&lt;br/&gt;&lt;u&gt;Faculty Rank&lt;/u&gt;&lt;br/&gt;<xsl:value-of select="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label"/>
+            &lt;br/&gt;&lt;br/&gt;&lt;u&gt;Researcher Type&lt;/u&gt;&lt;br/&gt;<xsl:value-of select="$doc/rdf:Description[@rdf:about=$doc/rdf:Description[@rdf:about=$nodeURI]/prns:hasFacultyRank/@rdf:resource]/rdfs:label"/>
           </xsl:when>
           <xsl:otherwise>
 

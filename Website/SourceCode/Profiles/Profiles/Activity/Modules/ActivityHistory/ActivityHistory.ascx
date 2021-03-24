@@ -71,7 +71,7 @@
             }
             activityTemplate.find("a").attr("href", newActivity.Profile.URL);
             activityTemplate.find(".act-image").find("img").attr("src", newActivity.Profile.Thumbnail);
-            activityTemplate.find(".act-user").find("a").html(newActivity.Profile.Name + '<span class="authInst">' + newActivity.Profile.InstitutionAbbreviation + '</span>');
+            activityTemplate.find(".act-user").find("a").html(newActivity.Profile.Name + '<span class="researcherprofiles--institution-name-associated-with-researcher">' + newActivity.Profile.InstitutionAbbreviation + '</span>');
             activityTemplate.find(".act-date").html(newActivity.Date);
             activityTemplate.find(".act-msg").html(newActivity.Message);
             activityTemplate.find(".act-id").text(newActivity.Id);

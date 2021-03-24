@@ -2,6 +2,10 @@
     Inherits="Profiles.Search.Modules.SearchPerson.SearchPerson" EnableViewState="true" %>
 <%@ Register Src="ComboTreeCheck.ascx" TagName="ComboTreeCheck" TagPrefix="uc1" %>
 
+<style type="text/css">
+.profiles .profilesContentMain .pageTitle h2 { display: none; }
+</style>
+
 <script type="text/javascript">
 
 	function runScript(e) {
@@ -121,44 +125,50 @@
                 <tbody align="left">
                     <tr>
                         <td colspan='3'>
-                            <%-- New class to replace inline heading styles --%>
-                            <div class="headings">
-                                Find people by keyword
-                            </div>
+                            <div class='header'>
+                                Find People by Research Topic or Name
+							</div>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="3"  style="padding: 0 2px">
                             <div class="searchSection" id="divSearchSection">
-                                <table class='searchForm'>
+                                <table width="100%" class='searchForm'>
                                     <tr>
-                                        <th>Keywords
+                                        <th style="width: 140px">
+                                            Research Topics
                                         </th>
-                                        <td colspan="2" class="fieldOptions">
-                                            <asp:TextBox runat="server" ID="txtSearchFor" CssClass="inputText" title="Keywords"></asp:TextBox>
-                                            <asp:CheckBox runat="server" ID="chkExactphrase" Text="&nbsp;Search for exact phrase" />
-
+                                        <td class="fieldOptions">
+                                            <asp:TextBox runat="server" ID="txtSearchFor" CssClass="inputText"></asp:TextBox>
+                                            <asp:CheckBox runat="server" ID="chkExactphrase" CssClass="unused" />
                                         </td>
+                                       <td align="center">
+					    <a href="JavaScript:search();" class="search-button">Search</a>
+                                       </td>
+<!--  NOTE: checkboxes are hidden in css
+                                            Search for exact phrase
                                     </tr>
                                     <tr>
-                                        <th></th>
+                                        </tr>
+                                        <th>
+                                        </th>
                                         <td colspan="2">
                                             <div class="search-button-container">
                                                 <%--Inline styles on this is no longer needed as the button is now all CSS--%>
                                                 <a href="JavaScript:search();" class="search-button">
                                                     <%--    No longer need a search button as an image--%>
-                                                    <%--<img src="<%=GetURLDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />--%>
+                                                        <%--<img src="<%=GetThemedDomain()%>/Search/Images/search.jpg" style="border: 0;" alt="Search" />--%>
                                                         Search
-                                                    </a>
+						    </a>
                                             </div>
                                         </td>
+                                        </tr>     (cp end comment out)-->
                                     </tr>
                                 </table>
                             </div>
                         </td>
                     </tr>
-            </table>
-            <table>
+<!--
                 <tr>
                     <td colspan='3'>
                         <div class="headings">
@@ -166,30 +176,31 @@
                         </div>
                     </td>
                 </tr>
-                
+-->
                 <tr>
-                    <td colspan='3'>
+                    <td colspan='3' style="padding: 0 2px">
                         <div class="searchSection" id="div1">
-                            <table class='searchForm'>
+							<span id="andor">and/or</span>
+                            <table width="100%" class='searchForm'>
                                 <asp:Panel ID="ClinicalTrialsUSC" runat="server" SkinID="USC" Visible="false">
-								    <tr>
-                                        <th>
-                                            Clinical Trials
-                                        </th>
-                                        <td colspan="2">
-                                            <input type="checkbox" class="trials2" />
-                                        </td>
-                                    </tr>
-								    <tr>
-                                        <th>
-                                            Find Mentors
-                                        </th>
-                                        <td colspan="2">
-                                            <input type="checkbox" class="student2" /> Student Mentors
-                                            <input type="checkbox" class="faculty2" /> Faculty Mentors
-                                        </td>
-                                    </tr>
-							    </asp:Panel>
+								<tr>
+                                    <th>
+                                        Clinical Trials
+                                    </th>
+                                    <td colspan="2">
+                                        <input type="checkbox" class="trials2" />
+                                    </td>
+                                </tr>
+								<tr>
+                                    <th>
+                                        Find Mentors
+                                    </th>
+                                    <td colspan="2">
+                                        <input type="checkbox" class="student2" /> Student Mentors
+                                        <input type="checkbox" class="faculty2" /> Faculty Mentors
+                                    </td>
+                                </tr>
+							</asp:Panel>
                                 <tr>
                                     <th>Last Name
                                     </th>
@@ -209,7 +220,10 @@
                                     </th>
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litInstitution"></asp:Literal>
-                                        <asp:CheckBox runat="server" ID="institutionallexcept" Text="&nbsp;All <b>except</b> the one selected" />
+                                        <asp:CheckBox runat="server" ID="institutionallexcept" CssClass="unused" />
+<!--
+                                        All <b>except</b> the one selected
+-->
                                     </td>
                                 </tr>
                                 <tr runat="server" id="trDivision">
@@ -218,7 +232,10 @@
                                     </th>
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litDivision"></asp:Literal>
-                                        <asp:CheckBox runat="server" ID="divisionallexcept" label="except division" Text="&nbsp;All <b>except</b> the one selected" />
+                                        <asp:CheckBox runat="server" id="divisionallexcept" CssClass="unused" />
+<!--
+                                        All <b>except</b> the one selected
+-->
                                     </td>
                                 </tr>
 
@@ -229,7 +246,10 @@
 										</th>
 										<td colspan="2">
 											<asp:Literal runat="server" ID="litDepartment"></asp:Literal>
-											<asp:CheckBox runat="server" ID="departmentallexcept" label="except department" Text="&nbsp;All <b>except</b> the one selected" />
+											<asp:CheckBox runat="server" ID="departmentallexcept" CssClass="unused" />
+<!--
+											All <b>except</b> the one selected
+-->
 										</td>
 									</tr>
 								</asp:Panel>
@@ -238,30 +258,38 @@
                                     <th>
                                         Researcher Type
                                     </th>
-                                    <td colspan="2">
-                                        <div>
-                                            <asp:PlaceHolder ID="phDDLCHK" runat="server"></asp:PlaceHolder>
-                                        </div>
-                                        <div>
-                                            <asp:PlaceHolder ID="phDDLList" runat="server"></asp:PlaceHolder>
-                                        </div>
+                                    <td class="pan" colspan="2">
+                                        <table cellpadding="0">
+                                            <tr>
+                                                <td>
+                                                    <asp:PlaceHolder ID="phDDLCHK" runat="server"></asp:PlaceHolder>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <asp:PlaceHolder ID="phDDLList" runat="server"></asp:PlaceHolder>
+                                                </td>
+                                            </tr>
+                                        </table>
                                         <asp:Label ID="lblSelectedItem" runat="server"></asp:Label>
                                         <asp:HiddenField ID="hidList" runat="server" />
                                         <asp:HiddenField ID="hidURIs" runat="server" />
                                     </td>
                                 </tr>
                                 <tr runat="server" id="trOtherOptions">
-                                    <th style="vertical-align:top">
+                                    <th>
                                         More Options
                                     </th>
                                     <td colspan='2'>
-                                        <select onmousedown="(function(e){ e.preventDefault(); })(event, this)" id="selOtherOptions" style="width: 249px; height: 20px" title="other options">
-                                            <option value=""></option>
+                                        <input type="hidden" id="hiddenToggle" value="off" />
+                                        <select id="selOtherOptions" style="width: 249px; height: 20px">
+                                            <option value="" style="font-size: 1px"></option>
                                         </select>
                                         <table>
                                             <tr>
                                                 <td>
-                                                    <div id="divOtherOptions">
+                                                    <div id="divOtherOptions" style="padding-top:2px">
+                                                        <!-- <br /> -->
                                                         <uc1:ComboTreeCheck ID="ctcFirst" runat="server" Width="255px" />
                                                     </div>
                                                 </td>
@@ -269,38 +297,40 @@
                                         </table>
                                     </td>
                                 </tr>
-							    <asp:Panel ID="ClinicalTrialsUC" runat="server" SkinID="UC" Visible="false">
-								    <tr>
-                                        <th>
-                                            Clinical Trials
-                                        </th>
-                                        <td colspan="2">
-                                            <input type="checkbox" class="trials2" />
-                                        </td>
-                                    </tr>
-							    </asp:Panel>
-							    <asp:Panel ID="ClinicalTrialsUCSF" runat="server" SkinID="UCSF" Visible="false">
-								    <tr>
-                                        <th>
-                                            Clinical Trials
-                                        </th>
-                                        <td colspan="2">
-                                            <input type="checkbox" class="trials2" />
-                                        </td>
-                                    </tr>
-							    </asp:Panel>
-							    <asp:Panel ID="StudentProjectUCD" runat="server" SkinID="UCD" Visible="false">
-								    <tr>
-                                        <th>
-                                            Student Projects
-                                        </th>
-                                        <td colspan="2">
-                                            <input type="checkbox" class="studentProjects2" />
-                                        </td>
-                                    </tr>
-							    </asp:Panel>
+							<asp:Panel ID="ClinicalTrialsUC" runat="server" SkinID="UC" Visible="false">
+								<tr>
+                                    <th>
+                                        Clinical Trials
+                                    </th>
+                                    <td colspan="2">
+                                        <input type="checkbox" class="trials2" />
+                                    </td>
+                                </tr>
+							</asp:Panel>
+							<asp:Panel ID="ClinicalTrialsUCSF" runat="server" SkinID="UCSF" Visible="false">
+								<tr>
+                                    <th>
+                                        Clinical Trials
+                                    </th>
+                                    <td colspan="2">
+                                        <input type="checkbox" class="trials2" />
+                                    </td>
+                                </tr>
+							</asp:Panel>
+							<asp:Panel ID="StudentProjectUCD" runat="server" SkinID="UCD" Visible="false">
+								<tr>
+                                    <th>
+                                        Student Projects
+                                    </th>
+                                    <td colspan="2">
+                                        <input type="checkbox" class="studentProjects2" />
+                                    </td>
+                                </tr>
+							</asp:Panel>
+<!--
                                 <tr>
-                                    <td></td>
+                                    <th>
+                                    </th>
                                     <td colspan="2">
                                         <div class="search-button-container">
                                             <%--Inline styles on this is no longer needed as the button is now all CSS--%>
@@ -311,6 +341,7 @@
                                         </div>
                                     </td>
                                 </tr>
+-->
                             </table>
                             <asp:Literal runat="server" ID="litFacRankScript"></asp:Literal>
 

@@ -133,7 +133,7 @@ namespace Profiles.Profile.Modules.PassiveList
                             "<div class='thumbnail'><img src = '" + Brand.GetByPrimaryInstituion(inst).BasePath +
                             "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?person=" + personid + "&Thumbnail=True&Width=15' width='15' height='30'/></div>" +
                             il.ItemURLText +
-                            "<span class='authInst'>" + inst.GetAbbreviation() + "</span></a>";
+                            "<span class='researcherprofiles--institution-name-associated-with-researcher'>" + inst.GetAbbreviation() + "</span></a>";
                     }
                     else
                     {

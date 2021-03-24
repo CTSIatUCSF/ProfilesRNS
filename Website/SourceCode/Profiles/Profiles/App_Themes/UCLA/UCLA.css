@@ -1,26 +1,48 @@
-﻿/* highlight color */
+/*
+  using UCLA style guide at https://brand.ucla.edu/identity/colors
+  but specifically, at https://webcomponents.ucla.edu/build/1.0.0-beta.8/docs/colors/interactive-light.html
+*/
+
+/* global variables */
+:root {
+    /* UCLA purple. This is the only UCLA non-blue color that meets AA+ contrast compliance. */
+    --heading-color: #8237FF;
+    /* as specified in style guide */
+    --generic-link-color: #00598C;
+    /* as specified in style guide */
+    --generic-link-visited-color: #5223B0;
+}
+
+/* old rules targeting Profiles 2.x… */
+
+/* highlight color */
+/*
 .dblarrow:before, .about .profiles h2, .content-block h2, .searchForm td div.header, .highlight,
 .passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
-.profiles a .authInst, .profiles a .authInst:hover, 
+.profiles a .researcherprofiles--institution-name-associated-with-researcher, .profiles a .researcherprofiles--institution-name-associated-with-researcher:hover, 
 .profiles .profilesContentMain .pageTitle h2 { color: #ffb300; }
 .profiles a.search-button, #navbarsearch input[type=submit], .more span, .less span { background-color: #ffb300; }
 .profiles a.search-button:hover, #navbarsearch input[type=submit]:hover { background-color: #FFE800; box-shadow: none; }
 #navbarsearch input[type=submit]  { border: 4px solid #ffb300; }
 #navbarsearch input[type=submit]:hover  { border: 4px solid #FFE800; }
+*/
 
 /* banner */
-#header-ucsf { background-color: #93d3eb; }
-#header-ucsf div#ucsfnav ul li a, #header-ucsf div#ucsfnav ul li a:visited { color: #000; }
-.profilesFooter, .institutionHeader { background-color: #2c5e91; }
-
+/*
+#researcherprofiles--branded-institutional-banner { background-color: #93d3eb; }
+#researcherprofiles--branded-institutional-banner div#researcherprofiles--branded-institutional-banner--menu ul li a, #researcherprofiles--branded-institutional-banner div#researcherprofiles--branded-institutional-banner--menu ul li a:visited { color: #000; }
+.profilesFooter, .researcherprofiles--institution-header { background-color: #2c5e91; }
+*/
 /* LINK Color */
+/*
 .profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000; }
 .profiles .basicInfo .grants a, .profiles .basicInfo .grants a:visited, 
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.edittable td:first-child, 
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child, 
 #profile-components table td#namedegree, .listTable .listTableLink, .linky, 
-.institutionHeader a, .institutionHeader a:hover,
+.researcherprofiles--institution-header a, .researcherprofiles--institution-header a:hover,
 .profiles a, .profiles a:visited { color: #1295d8; }
-#site-logo h1 a { color: #FFF; }
-#site-logo h1 a:hover, #site-logo h1 a:hover #tagline { color: #93d3eb; }
+#researcherprofiles--institution-header--site-logo h1 a { color: #FFF; }
+#researcherprofiles--institution-header--site-logo h1 a:hover, #researcherprofiles--institution-header--site-logo h1 a:hover #researcherprofiles--institution-header--tagline { color: #93d3eb; }
+*/

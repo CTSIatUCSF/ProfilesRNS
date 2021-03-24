@@ -1,5 +1,5 @@
 ﻿/* highlight color */
-.profiles a .authInst, .profiles a .authInst:hover, 
+.profiles a .researcherprofiles--institution-name-associated-with-researcher, .profiles a .researcherprofiles--institution-name-associated-with-researcher:hover, 
 .dblarrow:before, .highlight { color: #771111; }
 .about .profiles h2, .content-block h2, .searchForm td div.header, 
 .passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
@@ -11,16 +11,16 @@
 #navbarsearch input[type=submit]:hover  { background-color: #990000; border: 4px solid #990000; }
 
 /* banner */
-#header-ucsf div#ucsfnav ul li { padding: 0; }
-#header-ucsf div#ucsfnav ul li a { border-left: 1px solid #fff; padding: 0 8px 0 12px; font-size: 11px; }
-#header-ucsf div#ucsfnav ul li.first a { border: none; padding-left: 0; }
-#header-ucsf div#ucsfnav ul li a#powered-by-ctsi {
+#researcherprofiles--branded-institutional-banner div#researcherprofiles--branded-institutional-banner--menu ul li { padding: 0; }
+#researcherprofiles--branded-institutional-banner div#researcherprofiles--branded-institutional-banner--menu ul li a { border-left: 1px solid #fff; padding: 0 8px 0 12px; font-size: 11px; }
+#researcherprofiles--branded-institutional-banner div#researcherprofiles--branded-institutional-banner--menu ul li.first a { border: none; padding-left: 0; }
+#researcherprofiles--branded-institutional-banner div#researcherprofiles--branded-institutional-banner--menu ul li a#powered-by-ctsi {
   float: right; border: none; padding: 0 0 0 30px; 
   background: transparent url("Images/powered_by_scctsi.png") no-repeat scroll 0 4px;
   background-size: 22px 22px;
 }
-#site-logo h1 { margin: 0; padding: 8px 0 0 10px; }
-#site-logo h1 a img { height: auto; }
+#researcherprofiles--institution-header--site-logo h1 { margin: 0; padding: 8px 0 0 10px; }
+#researcherprofiles--institution-header--site-logo h1 a img { height: auto; }
 #new-features { clear: right; float: right; width: 300px; margin: 55px 10px 0 0; }
 #new-features a, #new-features a:visited {
     padding: 6px;
@@ -37,13 +37,13 @@
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.edittable td:first-child, 
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child, 
 #profile-components table td#namedegree, .listTable .listTableLink, .linky, 
-.institutionHeader a,
+.researcherprofiles--institution-header a,
 .profiles a, .profiles a:visited { color: #4d8ba9; }
-.profiles a:hover, .institutionHeader a:hover { color: #267196; }
+.profiles a:hover, .researcherprofiles--institution-header a:hover { color: #267196; }
 .profilesFooter a, .profilesFooter a:hover { color: #FFCC00; }
 
 /* navbar & footer colors */
-#header-ucsf, .profilesFooter { background-color: #000; }
+#researcherprofiles--branded-institutional-banner, .profilesFooter { background-color: #000; }
 .profilesFooter { border: none; padding-bottom: 10px; }
 .profilesFooter  p { color: #FFF; padding: 5px; width: 700px; text-align: center; font-size: 12px; margin: 5px auto; }
 

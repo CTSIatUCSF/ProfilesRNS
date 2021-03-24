@@ -101,7 +101,7 @@ namespace Profiles.Search
                 this.LoadRDFSearchResults();
             }
 
-            this.LoadAssets();
+            this.LoadAssets(this.SearchType);
             masterpage.PresentationXML = this.PresentationXML;
 
 
@@ -136,10 +136,18 @@ namespace Profiles.Search
 
         }
 
-        private void LoadAssets()
+        private void LoadAssets(string type)
         {
             HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
             //body.Attributes.Add("class", "search"); Commented out 2/3/2021
+            if ("searchform".Equals(type.ToLower()))
+            {
+                body.Attributes.Add("class", "researcherprofiles--home-page");
+            }
+            else
+            {
+                body.Attributes.Add("class", "researcherprofiles--search-results-page");
+            }
 
             // Commented out 2/2/2021
             //PlaceHolder pageColumnLeft = (PlaceHolder)Page.Master.FindControl("PageColumnLeft");

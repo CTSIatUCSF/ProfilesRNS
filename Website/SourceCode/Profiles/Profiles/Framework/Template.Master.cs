@@ -114,38 +114,33 @@ namespace Profiles.Framework
             jsscript.Attributes.Add("src", Brand.GetThemedDomain() + "/Framework/JavaScript/profiles.js");
             Page.Header.Controls.Add(jsscript);
 
-            // UCSF. More testing! Need to think of framework to include for some themese but not others.
-            if (Page.Theme != "Default")
-            {
-                HtmlLink DEFAULTcss = new HtmlLink();
-                DEFAULTcss.Href = Brand.GetThemedDomain() + "/App_Themes/DEFAULT.css";
-                DEFAULTcss.Attributes["rel"] = "stylesheet";
-                DEFAULTcss.Attributes["type"] = "text/css";
-                DEFAULTcss.Attributes["media"] = "all";
-                //Page.Header.Controls.Add(DEFAULTcss); 
-                head.Controls.Add(DEFAULTcss);
+            HtmlLink DEFAULTcss = new HtmlLink();
+            DEFAULTcss.Href = Brand.GetThemedDomain() + "/App_Themes/DEFAULT.css";
+            DEFAULTcss.Attributes["rel"] = "stylesheet";
+            DEFAULTcss.Attributes["type"] = "text/css";
+            DEFAULTcss.Attributes["media"] = "all";
+            //Page.Header.Controls.Add(DEFAULTcss); 
+            head.Controls.Add(DEFAULTcss);
 
-                HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
-                UCSFjs.Attributes.Add("type", "text/javascript");
-                UCSFjs.Attributes.Add("src", Brand.GetThemedDomain() + "/Framework/JavaScript/UCSF.js");
-                Page.Header.Controls.Add(UCSFjs);
+            HtmlGenericControl UCSFjs = new HtmlGenericControl("script");
+            UCSFjs.Attributes.Add("type", "text/javascript");
+            UCSFjs.Attributes.Add("src", Brand.GetThemedDomain() + "/Framework/JavaScript/UCSF.js");
+            Page.Header.Controls.Add(UCSFjs);
 
-                // add one specific to the theme
-                HtmlGenericControl ThemeJs = new HtmlGenericControl("script");
-                ThemeJs.Attributes.Add("type", "text/javascript");
-                ThemeJs.Attributes.Add("src", Brand.GetThemedDomain() + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".js");
-                Page.Header.Controls.Add(ThemeJs);
+            // add one specific to the theme
+            HtmlGenericControl ThemeJs = new HtmlGenericControl("script");
+            ThemeJs.Attributes.Add("type", "text/javascript");
+            ThemeJs.Attributes.Add("src", Brand.GetThemedDomain() + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".js");
+            Page.Header.Controls.Add(ThemeJs);
 
-
-                // UCSF. More themese testing stuff
-                HtmlLink ThemeCss = new HtmlLink();
-                //ThemeCss.Href = Root.GetThemedFile(Page, "Search/CSS/Theme.css");
-                ThemeCss.Href = Brand.GetThemedDomain() + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".css";
-                ThemeCss.Attributes["rel"] = "stylesheet";
-                ThemeCss.Attributes["type"] = "text/css";
-                ThemeCss.Attributes["media"] = "all";
-                Page.Header.Controls.Add(ThemeCss);
-            }
+            // UCSF. More themese testing stuff
+            HtmlLink ThemeCss = new HtmlLink();
+            //ThemeCss.Href = Root.GetThemedFile(Page, "Search/CSS/Theme.css");
+            ThemeCss.Href = Brand.GetThemedDomain() + "/App_Themes/" + Page.Theme + "/" + Page.Theme + ".css";
+            ThemeCss.Attributes["rel"] = "stylesheet";
+            ThemeCss.Attributes["type"] = "text/css";
+            ThemeCss.Attributes["media"] = "all";
+            Page.Header.Controls.Add(ThemeCss);
 
             // UCSF. To support lazy login
             String lazyShibLogin = Profiles.Login.ShibbolethSession.GetJavascriptSrc(Request);

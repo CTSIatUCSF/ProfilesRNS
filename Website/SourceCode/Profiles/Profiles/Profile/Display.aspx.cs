@@ -131,7 +131,14 @@ namespace Profiles.Profile
         private void LoadAssets()
         {
             HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
-            body.Attributes.Add("class", "profile");
+            if (Root.AbsolutePath.ToLower().Contains("/network/"))
+            {
+                body.Attributes.Add("class", "researcherprofiles--researcher-profile-page");
+            }
+            else
+            {
+                body.Attributes.Add("class", "researcherprofiles--researcher-network-page");
+            }
 
             HtmlLink Displaycss = new HtmlLink();
             Displaycss.Href = Brand.GetThemedDomain() + "/Profile/CSS/display.css";

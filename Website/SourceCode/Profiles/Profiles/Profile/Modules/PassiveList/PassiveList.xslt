@@ -26,7 +26,7 @@
               </xsl:if>                
               <xsl:value-of select="@ItemURLText"/>
               <xsl:if test="@ItemInst">
-                <span class="authInst">
+                <span class="researcherprofiles--institution-name-associated-with-researcher">
                   <xsl:value-of select="@ItemInst"/>
                 </span>
               </xsl:if>

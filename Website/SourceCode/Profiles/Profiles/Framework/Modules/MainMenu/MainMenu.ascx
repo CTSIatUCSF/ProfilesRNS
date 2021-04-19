@@ -37,6 +37,19 @@
             </li>--%>
             <HistoryItem:History runat="server" ID="ProfileHistory" Visible="true" />
 
+			<li class="main-nav"><a href="<%=GetThemedDomain()%>">Search Options</a>
+				<ul class="drop">
+					<li><a href="<%=GetDomainFor("UCD")%>/search/">UC Davis</a></li>
+					<li><a href="<%=GetDomainFor("UCI")%>/search/">UCI</a></li>
+					<li><a href="<%=GetDomainFor("UCLA")%>/search/">UCLA</a></li>
+					<li><a href="<%=GetDomainFor("UCSD")%>/search/">UCSD</a></li>
+					<li><a href="<%=GetDomainFor("UCSF")%>/search/">UCSF</a></li>
+					<li><a href="<%=GetDomainFor("UC")%>/search/">All UC Health</a></li>
+					<li><a href="<%=GetDomainFor("USC")%>/search/">USC</a></li>
+					<li><a href="<%=GetDomainFor("Default")%>/search/">All</a></li>
+				</ul>
+			</li>
+
             <!-- UCSF search -->
 			<li class="nav-facade-active" id="nav-search-in">
 				<div id="nav-search-in-content"></div>

@@ -1,26 +1,22 @@
-﻿/* highlight color */
-.dblarrow:before, .about .profiles h2, .content-block h2, .highlight,
-.passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
-#ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
-.profiles a .researcherprofiles--institution-name-associated-with-researcher, .profiles a .researcherprofiles--institution-name-associated-with-researcher:hover { color: #f78d2d; }
-.searchForm td div.header, .profiles .profilesContentMain .pageTitle h2 { color: #1b3d6d; }
-.profiles a.search-button, #navbarsearch input[type=submit], .more span, .less span { background-color: #f78d2d; }
-.profiles a.search-button:hover, #navbarsearch input[type=submit]:hover { background-color: #ffd200; box-shadow: none; }
-#navbarsearch input[type=submit]  { border: 4px solid #f78d2d; }
-#navbarsearch input[type=submit]:hover  { border: 4px solid #ffd200; }
+/* UCI style guide is at https://brand.uci.edu/brand-assets/color-palette/ */
 
-/* banner */
-#researcherprofiles--branded-institutional-banner, .profilesFooter { background-color: #222; }
-.researcherprofiles--institution-header { background-color: #0064a4; border-bottom: 3px solid #ffd200; height: 92px; }
+/* global variables */
+:root {
+    /* official UCI blue, via https://brand.uci.edu/brand-assets/color-palette/ */
+    --heading-color: rgb(0, 100, 164);
+    /* dark color used on tippy top header at https://uci.edu/ */
+    --very-dark-background-color: rgb(51, 51, 51);
+}
 
-/* LINK Color */
-.profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000; }
-.profiles .basicInfo .grants a, .profiles .basicInfo .grants a:visited, 
-#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.edittable td:first-child, 
-#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child, 
-#profile-components table td#namedegree, .listTable .listTableLink, .linky, 
-.researcherprofiles--institution-header a, .researcherprofiles--institution-header a:hover,
-.profiles a, .profiles a:visited { color: #0064a4; }
-#researcherprofiles--institution-header--site-logo h1 a { color: #FFF; }
-#researcherprofiles--institution-header--site-logo h1 a:hover { color: #eee; }
+#ctl00_MasterPageHeaderUCI,
+.researcherprofiles--institution-header,
+#site-branding a {
+    background: rgb(0, 100, 164);
+    color: white;
+}
 
+/* little yellow fringe below blue header */
+/* using size and color from https://uci.edu/ */
+#ctl00_MasterPageHeaderUCI {
+    border-bottom: 3px solid #ffd200;
+}

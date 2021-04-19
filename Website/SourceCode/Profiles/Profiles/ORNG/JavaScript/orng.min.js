@@ -26,8 +26,6 @@ if (typeof String.prototype.trim !== 'function') {
 
 var OrngContainer = OrngContainer || {};
 
-my.orngRPCEndpoint = _rootDomain + "/ORNG/Default.aspx/CallORNGRPC";
-
 my.init = function () {
 
     // 1. Create the OrngContainer object

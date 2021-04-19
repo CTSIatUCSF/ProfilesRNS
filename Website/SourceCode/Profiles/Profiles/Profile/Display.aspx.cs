@@ -133,11 +133,11 @@ namespace Profiles.Profile
             HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
             if (Root.AbsolutePath.ToLower().Contains("/network/"))
             {
-                body.Attributes.Add("class", "researcherprofiles--researcher-profile-page");
+                body.Attributes.Add("class", "researcherprofiles--researcher-network-page researcherprofiles--researcher-profile-or-network-page");
             }
             else
             {
-                body.Attributes.Add("class", "researcherprofiles--researcher-network-page");
+                body.Attributes.Add("class", "researcherprofiles--researcher-profile-page researcherprofiles--researcher-profile-or-network-page");
             }
 
             HtmlLink Displaycss = new HtmlLink();

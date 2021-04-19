@@ -10,15 +10,17 @@
     --generic-link-visited-color: #2B4192;
     /* UCSD's darkest nutral gray */
     --text-muted-color: #747678;
+    /* same color as used at https://blink.ucsd.edu/technology/websites/training/new-page/templates/general-cms/v5/homepage.html and elsewhere */
+    --very-dark-background-color: rgb(0, 106, 150);
 }
 
 /* show Powered by... only on medium/large screens */
-#researcherprofiles--branded-institutional-banner #researcherprofiles--branded-institutional-banner--menu>ul:only-child>li:last-of-type {
+.researcherprofiles--branded-institutional-banner--menu #powered-by-ctsi {
     display: none;
 }
 
 @media only screen and (min-width: 40rem) {
-    #researcherprofiles--branded-institutional-banner #researcherprofiles--branded-institutional-banner--menu>ul:only-child>li:last-of-type {
+    .researcherprofiles--branded-institutional-banner--menu #powered-by-ctsi {
         display: initial;
     }
 }
@@ -26,26 +28,13 @@
 /* show header icon on big screen widths */
 /* this image sizing is hardcoded, which isn't cool */
 @media only screen and (min-width: 980px) {
-    #researcherprofiles--institution-header--site-logo h1 {
+    .researcherprofiles--institution-header--site-logo h1 {
         background: transparent url("/App_Themes/UCSD/Images/network.png") no-repeat scroll 0 0;
         padding: 15px 0 12px 100px;
     }
 }
 
-/* same color as used at https://blink.ucsd.edu/technology/websites/training/new-page/templates/general-cms/v5/homepage.html and elsewhere */
-#ctl00_MasterPageHeaderUCSD #researcherprofiles--branded-institutional-banner {
-    background-color: rgb(0, 106, 150);
-}
-
 /* same color as used in header at https://blink.ucsd.edu/technology/websites/training/new-page/templates/general-cms/v5/homepage.html and elsewhere */
-.researcherprofiles--institution-header #researcherprofiles--institution-header--site-logo h1 a {
-    color: rgb(0, 106, 150);
+.researcherprofiles--institution-header--site-logo h1 a {
+    color: rgb(0, 106, 150) !important;
 }
-
-/* old rules targeting Profiles 2.x */
-
-/* banner */
-/*
-#researcherprofiles--branded-institutional-banner, .profilesFooter { background-color: #2b92b9; }
-#powered-by-ctsi { float: right; }
-*/

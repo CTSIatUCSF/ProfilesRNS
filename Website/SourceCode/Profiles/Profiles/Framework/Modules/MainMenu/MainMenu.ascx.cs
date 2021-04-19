@@ -186,5 +186,16 @@ namespace Profiles.Framework.Modules.MainMenu
             ProfileHistory.Namespaces = base.Namespaces;
 
         }
+
+        // For megasearch items
+        public string GetThemedDomain()
+        {
+            return Brand.GetThemedDomain();
+        }
+
+        public string GetDomainFor(String theme)
+        {
+            return Brand.GetByTheme(theme).BasePath;
+        }
     }
 }

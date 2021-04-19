@@ -9,7 +9,7 @@
         $(".education:contains('UC, San Diego')").addClass('alum');
         $(".education:contains('UC San Diego')").addClass('alum');
         $(".education:contains('UCSD')").addClass('alum');
-        if ($('.alum') && $('.alum').length) $('.profilesContentMain').prepend('<img style="float: right; valign: top;" src="/App_Themes/UCSD/Images/college-alumni.png" />');
+        if ($('.alum') && $('.alum').length) $('.profilesContentMain').prepend('<div class="researcherprofiles--researcher-badge"><img src="/App_Themes/UCSD/Images/college-alumni.png" height="50" width="50" alt="UCSD Alumni"></div>');
     }
 
 });

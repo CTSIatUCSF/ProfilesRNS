@@ -1,25 +1,35 @@
 :root {
-        --heading-color: #F26D04;
-
-}
-#researcherprofiles--branded-institutional-banner {
-    background-color: #052049;
+    --heading-color: #F26D04;
+    --very-dark-background-color: #052049;
 }
 
-#researcherprofiles--branded-institutional-banner #researcherprofiles--branded-institutional-banner--menu {
+.researcherprofiles--branded-institutional-banner--menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
     align-content: space-between;
 
 }
-#researcherprofiles--branded-institutional-banner #researcherprofiles--branded-institutional-banner--menu > ul:last-of-type li {
-    display: inline; float: left; margin-right: 1rem;
+
+.researcherprofiles--branded-institutional-banner--menu>ul:last-of-type li {
+    display: inline;
+    float: left;
+    margin-right: 1rem;
 }
 
+.researcherprofiles--branded-institutional-banner--menu {
+    padding: 0.5rem 1rem;
+}
 
-#researcherprofiles--branded-institutional-banner #researcherprofiles--branded-institutional-banner--menu {
-        padding: 0.5rem 1rem;    
+@media only screen and (max-width: 980px) {
+    .researcherprofiles--branded-institutional-banner--menu ul.right {
+        display: none;
+    }
+
+    .researcherprofiles--branded-institutional-banner--menu {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 /* temporarily disabling heroes for UCSF */

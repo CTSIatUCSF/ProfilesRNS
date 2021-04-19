@@ -70,7 +70,7 @@ namespace Profiles.Edit
         private void LoadAssets()
         {
             HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
-            body.Attributes.Add("class", "edit");
+            body.Attributes.Add("class", "edit researcherprofiles--edit-page");
 
 //            this.Master.FindControl("pnlNavBarSearch").Visible = false;
 

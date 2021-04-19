@@ -73,8 +73,8 @@
         </script>
         <div id='page-container'>
             <asp:Panel ID="MasterPageHeaderDefault" runat="server" SkinID="Default" Visible="false">
-                <div id="header-ucsf">
-                    <div id="ucsfnav">
+                <div class="researcherprofiles--branded-institutional-banner">
+                    <div class="researcherprofiles--branded-institutional-banner--menu">
                         <ul>
                             <li>
                                 <a href="https://www.ucdavis.edu/" target="_blank">UC Davis</a>
@@ -98,16 +98,14 @@
                     </div>
                 </div>
                 <div class="researcherprofiles--institution-header">
-					<div id="site-branding">
-						<div class="researcherprofiles--institution-header--site-logo">
-							<h1><a href="<%=GetThemedDomain()%>/">Research Profiles</a></h1>
-						</div>
+					<div class="researcherprofiles--institution-header--site-logo">
+						<h1><a href="<%=GetThemedDomain()%>/">Research Profiles</a></h1>
 					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUC" runat="server" SkinID="UC" Visible="false">
                 <div class="researcherprofiles--institution-header">
-					<div id="site-branding">
+					<div class="researcherprofiles--institution-header--site-logo">
 						<div id="uc">
 							<a target="_blank" href="https://www.universityofcalifornia.edu/">
 								<img src="<%=GetThemedDomain()%>/App_Themes/UC/Images/uclogo137.png" alt="University of California" /></a>
@@ -119,8 +117,8 @@
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCSF" runat="server" SkinID="UCSF" Visible="false">
-                <div id="header-ucsf">
-                    <div id="ucsfnav">
+                <div class="researcherprofiles--branded-institutional-banner">
+                    <div class="researcherprofiles--branded-institutional-banner--menu">
                         <ul>
                             <li class="first">
                                 <a title="University of California, San Francisco" href="http://www.ucsf.edu/" target="_blank">University of California, San Francisco</a>
@@ -140,16 +138,14 @@
                     </div>
                 </div>
                 <div class="researcherprofiles--institution-header">
-					<div id="site-branding">
-						<div class="researcherprofiles--institution-header--site-logo">
-							<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_themes/UCSF/Images/ucsfProfilesLogo.png" alt="UCSF Profiles" /></a></h1>
-						</div>
+					<div class="researcherprofiles--institution-header--site-logo">
+						<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_themes/UCSF/Images/ucsfProfilesLogo.png" alt="UCSF Profiles" /></a></h1>
                     </div>					
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCSD" runat="server" SkinID="UCSD" Visible="false">
-                <div id="header-ucsf">
-                    <div id="ucsfnav">
+                <div class="researcherprofiles--branded-institutional-banner">
+                    <div class="researcherprofiles--branded-institutional-banner--menu">
                         <ul>
 							<li><a target="_blank" href="http://ucsd.edu/">
 								<img src="<%=GetThemedDomain()%>/App_Themes/UCSD/Images/ucsdlogo.png" alt="UC San Diego" /></a></li>
@@ -158,18 +154,16 @@
                     </div>
                 </div>
                 <div class="researcherprofiles--institution-header">
-					<div id="site-branding">
-						<div class="researcherprofiles--institution-header--site-logo">
-							<h1><a href="<%=GetThemedDomain()%>/">UCSD Profiles
-								<div class="researcherprofiles--institution-header--tagline">search, discover, network</div>
-							</a></h1>
-						</div>
+					<div class="researcherprofiles--institution-header--site-logo">
+						<h1><a href="<%=GetThemedDomain()%>/">UCSD Profiles
+							<div class="researcherprofiles--institution-header--tagline">search, discover, network</div>
+						</a></h1>
 					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCI" runat="server" SkinID="UCI" Visible="false">
-                <div id="header-ucsf">
-                    <div id="ucsfnav">
+                <div class="researcherprofiles--branded-institutional-banner">
+                    <div class="researcherprofiles--branded-institutional-banner--menu">
                         <ul>
                             <li class="first">
                                 <a href="https://uci.edu" target="_blank">University of California, Irvine</a>
@@ -178,17 +172,15 @@
 					</div>
 				</div>
                 <div class="researcherprofiles--institution-header">
-					<div id="site-branding">
-						<div class="researcherprofiles--institution-header--site-logo">
-							<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/UCI/Images/ucilogo.png" alt="University of California, Irvine" /> Profiles</a></h1>
-						</div>
+					<div class="researcherprofiles--institution-header--site-logo">
+						<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/UCI/Images/ucilogo.png" alt="University of California, Irvine" /> Profiles</a></h1>
 					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCD" runat="server" SkinID="UCD" Visible="false">
                 <div id="banner">
-					<div id="header-ucsf">
-						<div id="ucsfnav">
+					<div class="researcherprofiles--branded-institutional-banner">
+						<div class="researcherprofiles--branded-institutional-banner--menu">
 							<ul>
 								<li class="first">
 									<a href="https://www.ucdavis.edu/" target="_blank">University of California, Davis</a>
@@ -199,17 +191,15 @@
 						</div>
 					</div>
 					<div class="researcherprofiles--institution-header">
-						<div id="site-branding">
-							<div class="researcherprofiles--institution-header--site-logo">
-								<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/UCD/Images/davis-logo-white.svg" alt="University of California, Davis" /> Profiles</a></h1>
-							</div>
+						<div class="researcherprofiles--institution-header--site-logo">
+							<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/UCD/Images/davis-logo-white.svg" alt="University of California, Davis" /> Profiles</a></h1>
 						</div>
 					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCLA" runat="server" SkinID="UCLA" Visible="false">
-                <div id="header-ucsf">
-                    <div id="ucsfnav">
+                <div class="researcherprofiles--branded-institutional-banner">
+                    <div class="researcherprofiles--branded-institutional-banner--menu">
                         <ul>
                             <li class="first">
                                 <a href="http://www.ucla.edu/" target="_blank">UCLA.edu</a>
@@ -218,16 +208,14 @@
 					</div>
 				</div>
                 <div class="researcherprofiles--institution-header">
-					<div id="site-branding">
-						<div class="researcherprofiles--institution-header--site-logo">
-							<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/UCLA/Images/ucla-logo.png" alt="UCLA" /> Profiles</a></h1>
-						</div>
+					<div class="researcherprofiles--institution-header--site-logo">
+						<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/UCLA/Images/ucla-logo.png" alt="UCLA" /> Profiles</a></h1>
 					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCR" runat="server" SkinID="UCR" Visible="false">
                 <div class="researcherprofiles--institution-header">
-					<div id="site-branding">
+					<div class="researcherprofiles--institution-header--site-logo">
 						<div id="ucr">
 							<a target="_blank" href="https://www.ucr.edu/">
 								<img src="<%=GetThemedDomain()%>/App_Themes/UCR/Images/uclogo137.png" alt="University of California Riverside" /></a>
@@ -241,8 +229,8 @@
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUSC" runat="server" SkinID="USC" Visible="false">
-                <div id="header-ucsf">
-                    <div id="ucsfnav">
+                <div class="researcherprofiles--branded-institutional-banner">
+                    <div class="researcherprofiles--branded-institutional-banner--menu">
 						<ul>
 							<li class="first">
 								<a title="USC Home" href="http://www.usc.edu/" target="_blank">USC Home</a>
@@ -263,15 +251,13 @@
                     </div>
                 </div>
                 <div class="researcherprofiles--institution-header">
-					<div id="site-branding">
-						<div class="researcherprofiles--institution-header--site-logo">
-							<h1>
-								<a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/USC/Images/usc-ctsi.jpg" alt="USC Health Sciences Profiles" /></a>
-							</h1>
-						</div>
-						<div id="new-features">
-							<a href="https://sc-ctsi.org/resources" class="dblarrow" target="_blank">Find more Research Resources</a>
-						</div>
+					<div class="researcherprofiles--institution-header--site-logo">
+						<h1>
+							<a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/USC/Images/usc-ctsi.jpg" alt="USC Health Sciences Profiles" /></a>
+						</h1>
+					</div>
+					<div id="new-features">
+						<a href="https://sc-ctsi.org/resources" class="dblarrow" target="_blank">Find more Research Resources</a>
 					</div>
                 </div>
             </asp:Panel>

@@ -496,7 +496,6 @@
     <Content Include="ORNG\Modules\GadgetSandbox\GadgetSandbox.ascx" />
     <Content Include="ORNG\Modules\Gadgets\Gadgets.ascx" />
     <Content Include="ORNG\Modules\ModuleCatalogue.xml" />
-    <Content Include="ORNG\Modules\SearchGadgets\SearchGadgets.ascx" />
     <Content Include="ORNG\Modules\ViewPersonalGadget\ViewPersonalGadget.ascx" />
     <Content Include="ORNG\PresentationXML\DashboardPresentation.xml" />
     <Content Include="ORNG\PresentationXML\GadgetDetailsPresentation.xml" />
@@ -1508,13 +1507,6 @@
     </Compile>
     <Compile Include="ORNG\Modules\Gadgets\Gadgets.ascx.designer.cs">
       <DependentUpon>Gadgets.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="ORNG\Modules\SearchGadgets\SearchGadgets.ascx.cs">
-      <DependentUpon>SearchGadgets.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ORNG\Modules\SearchGadgets\SearchGadgets.ascx.designer.cs">
-      <DependentUpon>SearchGadgets.ascx</DependentUpon>
     </Compile>
     <Compile Include="ORNG\Modules\ViewPersonalGadget\ViewPersonalGadget.ascx.cs">
       <DependentUpon>ViewPersonalGadget.ascx</DependentUpon>

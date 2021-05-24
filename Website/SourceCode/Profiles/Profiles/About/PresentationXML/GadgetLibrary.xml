@@ -16,7 +16,7 @@
       <Module ID="HTMLBlock">
         <ParamList>
           <Param Name="HTML">
-<p>Please see <a href="http://opendata.profiles.ucsf.edu/" target="_blank">Profiles Open Data</a> for more information.</p>
+<p>Please see <a href="https://profilesdeveloper.ucsf.edu" target="_blank">UCSF Profiles Data and APIs</a> for more information.</p>
           
           </Param>
         </ParamList>

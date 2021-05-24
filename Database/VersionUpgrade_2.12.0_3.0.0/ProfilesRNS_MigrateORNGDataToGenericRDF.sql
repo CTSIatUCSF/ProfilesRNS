@@ -1,4 +1,5 @@
 /*******************************
+* UCSF DO NOT RUN!!!! Look for conversion scripts in ../UCSF/Upgdade/
 *
 * Convert Twitter, YouTube and Slideshare data. 
 * If you did not have the open social installed you can skip this script

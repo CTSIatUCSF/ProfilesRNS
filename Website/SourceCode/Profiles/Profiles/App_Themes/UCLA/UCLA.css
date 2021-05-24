@@ -15,23 +15,27 @@
     --very-dark-background-color: #2774AE;
 }
 
+/* hide tippy-top menu */
 .researcherprofiles--branded-institutional-banner--menu {
     display: none;
 }
 
+/* logo zone is white on dark blue */
 #ctl00_MasterPageHeaderUCLA,
 .researcherprofiles--institution-header,
-#site-branding a {
+.researcherprofiles--institution-header--site-logo a {
     /* UCLA darkest blue */
     background: #003B5C;
     color: white;
 }
 
-#site-branding h1 a img {
+/* normalize logo image size */
+.researcherprofiles--institution-header--site-logo h1 a img {
     vertical-align: baseline;
     height: 50px;
 }
 
-#site-branding h1 a {
+/* normalize logo font size */
+.researcherprofiles--institution-header--site-logo h1 a {
     font-size: 40px;
 }

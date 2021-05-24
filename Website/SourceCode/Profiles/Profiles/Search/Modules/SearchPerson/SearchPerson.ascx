@@ -361,6 +361,4 @@
 </div>
 <script>$(document).ready(function () {
     $("[id*=ddlChkList]").css("width", "249px");
-    $("select").css("height", "25px");
-    
 });</script>

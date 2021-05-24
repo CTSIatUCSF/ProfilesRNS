@@ -25,27 +25,54 @@
 .profile-view-slideshare .ss_list li img { float:left ; }
 .profile-view-slideshare .ss_list li div { margin-left: 130px; }
 
-.youtube { 
-  position: relative; 
-  display: inline-flex; 
-  height: 400px; } 
+/*** YouTube video gadget ***/
 
-.youtube .yt_div { width: 440px; }
-
-.youtube .yt_list { 
-  height: 400px;   
-  overflow-y: scroll;
-  margin: 0px 0px 0px 68px; 
-  padding: 0px;
-  padding-right:5px;
-  width:280px;
+/* parent container will have two children */
+.youtube {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    min-height: 400px;
 }
-  
-.youtube .yt_list li { 
-  cursor: pointer;
-  height: 90px;
-  padding: 0px; 
-  margin-bottom: 6px }
-  
-.youtube .yt_list li img { float:left ; }
-.youtube .yt_list li div { margin-left: 130px; }
+
+/* position the video container on the left */
+.youtube .yt_div {
+    flex: 1 1 65%;
+}
+
+/* position the videos list on the right */
+.youtube .yt_list {
+    margin: 0;
+    padding: 0 1rem;
+    list-style-type: none;
+    order: 0;
+    flex: 1 1 35%;
+    align-self: auto;
+    overflow: auto;
+}
+
+/* make the video iframe on the left hand side as wide as its container */
+.youtube .yt_div .yt_player {
+    width: 100% !important;
+}
+
+/* size each entry in the right hand video list, and act a little like a link */
+.youtube .yt_list li {
+    cursor: pointer;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+}
+.youtube .yt_list li:hover {
+    background: #f4f4f4;
+    text-decoration: underline;
+}
+
+/* in each video list entry, the image is on the left and maxes out at 40% width */
+.youtube .yt_list li > img {
+    max-height: 100%;
+    max-width: 40%;
+    margin-right: 1rem;
+    object-fit: contain;
+    vertical-align: bottom;
+}

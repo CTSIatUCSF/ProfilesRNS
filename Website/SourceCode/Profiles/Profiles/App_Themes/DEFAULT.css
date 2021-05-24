@@ -16,6 +16,9 @@
     /* used for significant titles */
     --heading-color: green;
 
+    /* used for errors, alerts, etc. */
+    --alert-red-color: rgb(172, 27, 48);
+
     /* used for table of contents, etc. */
     --highlighted-panel-background-color: #eee;
     --highlighted-panel-border-color: #ccc;
@@ -54,6 +57,7 @@ body,
 .profiles ul,
 .profiles ol,
 .searchForm th,
+.topRow,
 #ctl00_divProfilesContentMain .basicInfo td,
 #ctl00_divProfilesContentMain .basicInfo th {
     font-size: 1rem;
@@ -81,8 +85,9 @@ a:active,
 
 /* normalize heading colors */
 h2,
-.profiles .profilesContentMain .pageTitle h2 {
-    color: var(--heading-color)
+.profiles .profilesContentMain .pageTitle h2,
+.editPage h2 {
+    color: var(--heading-color);
 }
 
 /* ############################################################################################ */
@@ -107,16 +112,6 @@ span.unused,
 /* DREAM: someday move these into upstream code */
 /* ############################################################################################ */
 
-/* even at full size, we still have our limits */
-    html body .profiles,
-    html body .profiles .profilesPage,
-    #prns-nav ul.prns-main{
-        width: auto;
-        max-width: 95vw;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
 @media only screen and (max-width: 980px) {
 
     /* window is limited to screen width, and kill all the pixel widths */
@@ -128,7 +123,6 @@ span.unused,
     html body .profiles .profilesPage,
     #prns-nav ul.prns-main,
     .profilesMaxWidth {
-        width: auto;
         max-width: 90vw;
         margin-left: auto;
         margin-right: auto;
@@ -277,7 +271,7 @@ span.unused,
 
 /* the tagline, if present (e.g. on UCSD), should be smaller and muted */
 .researcherprofiles--institution-header--tagline {
-    margin: 0;
+    margin: 0 0 0 1rem;
     font-size: 1.3rem;
     color: var(--text-muted-color);
 }
@@ -325,6 +319,7 @@ span.unused,
 #prns-nav ul.usermenu ul.drop a {
     color: var(--text-color) !important;
     background-color: var(--menu-background-color) !important;
+    height: unset;
 }
 
 /* but background of user menu should be white */
@@ -375,7 +370,7 @@ span.unused,
 }
 
 #prns-usrnav ul.usermenu {
-    justify-content: center;
+    justify-content: normal;
 }
 
 #prns-usrnav ul.usermenu>li>a {
@@ -401,6 +396,10 @@ span.unused,
     justify-content: center;
     flex-direction: column;
     padding-right: 1rem;
+}
+
+#prns-nav ul.prns-main #nav-search-in {
+    padding-right: 0;
 }
 
 /* put all the unused space to the left of the Amazon-style pulldown */
@@ -434,7 +433,7 @@ span.unused,
 
 /* some space around the "log in", etc. navigation and menu at botton of menu */
 #prns-nav #prns-usrnav {
-    margin: 1rem 2rem 0 2rem;
+    margin: 0.5rem 2rem 0 2rem;
 }
 
 /* photo next to name in user menu is *before* name, not *abive* name */
@@ -455,7 +454,7 @@ span.unused,
 /* extra space that sites below menu area, and at top of Profiles page content */
 @media only screen and (min-width: 980px) {
     .profiles .profilesPage {
-        padding-top: 3rem;
+        padding-top: 2rem;
     }
 }
 
@@ -494,15 +493,15 @@ span.unused,
     margin: 0 auto auto auto !important;
     padding-top: 0.3rem;
     text-align: right;
-    color: var(--heading-color);
-    font-weight: bold;
     cursor: pointer;
-
 }
 
 .expand-collapse .more,
 .accordion .more {
-    border-top: 3px dashed var(--heading-color);
+    /* border-top: 1px dashed var(--heading-color); */
+    color: var(--heading-color);
+    font-weight: bold;
+
 }
 
 /* hide plus/minus after the more/less indicator, which we're going to replace */
@@ -516,14 +515,14 @@ span.unused,
 .expand-collapse .more:after,
 .accordion .more:after {
     /* arrow via https://unicode-table.com/en/sets/arrow-symbols/#up-arrows */
-    content: "\25BC";
+    content: " \25BC";
     font-size: 1.1em;
 }
 
 .expand-collapse .less:after,
 .accordion .less:after {
     /* arrow via https://unicode-table.com/en/sets/arrow-symbols/#down-arrows */
-    content: "\25B2";
+    content: " \25B2";
     font-size: 1.1em;
 }
 
@@ -706,6 +705,20 @@ span.unused,
 }
 
 /* ############################################################################################ */
+/* PROFILE PAGE: WEBSITES
+/* ############################################################################################ */
+
+/* fix stupid hardcoded spacing around website entries */
+
+.researcherprofiles--researcher-profile-page tr.website-table>td {
+    padding: 0.5rem;
+}
+
+.researcherprofiles--researcher-profile-page #view_links_table {
+    padding-bottom: 0 !important;
+}
+
+/* ############################################################################################ */
 /* PROFILE PAGE: COMMON PATTERNS AND COMPONENTS
 /* ############################################################################################ */
 
@@ -805,7 +818,8 @@ span.unused,
 
 /* reset the highly styled Explore buttons, and make them look like links */
 /* TODO: figure out why not all the explore links are wrapped in this class and dblarrow */
-.researcherprofiles--researcher-profile-or-network-page .prns-explore-btn {
+.researcherprofiles--researcher-profile-or-network-page .prns-explore-btn,
+.researcherprofiles--researcher-profile-or-network-page .profilesContentPassive .dblarrow {
     display: inline;
     color: var(--generic-link-color) !important;
     background-color: revert !important;
@@ -827,16 +841,13 @@ span.unused,
 @media only screen and (min-width: 60rem) and (min-width: 980px) {
     .researcherprofiles--researcher-profile-or-network-page .profilesContentMain:first-child+.profilesContentPassive {
         width: 25%;
-        padding-left: 4rem !important;
-        background: red;
-        border: 5px solid red;
+        padding-left: 2.5rem !important;
     }
 }
 
-/* make "Name's Networks" top heading big */
+/* totally hide "Name's Networks" top heading big */
 .researcherprofiles--researcher-profile-or-network-page .passive-header {
-    font-size: 1.3rem;
-    margin-bottom: 1.3rem;
+    display: none;
 }
 
 /* main "Name's Networks" heading and "Concepts", etc. subheadings are all colored */
@@ -886,22 +897,101 @@ span.unused,
 /* ABOUT PAGES */
 /* ############################################################################################ */
 
-.profiles .profilesContentMain .aboutText {
+.profiles .profilesContentMain .aboutText,
+body.about #ctl00_ContentMain_rptMain_ctl00_ctl00_lblHTMLBlock {
+    display: block;
+    text-align: left;
     width: auto;
     max-width: 50rem;
     margin-left: 2rem;
     margin-right: 2rem;
 }
 
+/* this attempts to overrides dorky styles in profiles.css. I have no idea why this wasn't left as is */
+body.about h3 {
+    font-size: 1.5rem;
+}
+
+/* there's a dumb hardcoded "margin-bottom: 0px" in h2s. undo this. */
+body .profiles .profilesContentMain .pageTitle h2 {
+    margin-bottom: 1rem !important;
+}
+
 /* everything is jammed together on these pages, so more space below headings */
-body .profiles .profilesContentMain .aboutText h3 {
-    margin-top: 3em;
+body .profiles .profilesContentMain h2,
+body .profiles .profilesContentMain h3 {
     color: var(--text-color);
 }
 
 /* but no space before the *first* heading */
+body.about .profiles .profilesContentMain h2:first-child,
 body .profiles .profilesContentMain .aboutText h3:first-child {
     margin-top: 0;
+}
+
+/* CUSTOMIZED ABOUT PROFILES PAGE CONTENT */
+
+/* there are two of these blocks on the UCSF site */
+body.about .aboutProfiles {
+    border: 0.25rem solid var(--highlighted-panel-border-color);
+    display: flex;
+    margin: 2rem 0;
+}
+
+body.about .aboutProfiles div {
+    text-align: center;
+    padding: 1rem;
+    flex: 1;
+}
+
+body.about .aboutProfiles div.shaded {
+  background: #f2f2f2;
+}
+
+body.about .aboutProfiles h2,
+body.about .aboutProfiles h3 {
+    color: var(--heading-color);
+}
+
+body.about .aboutProfiles img {
+    padding: 0.3rem;
+    max-height: 5rem;
+    max-width: 100%;
+}
+
+body.about .center {
+    text-align: center;
+}
+
+body.about iframe {
+    max-width: 100% !important;
+    width: 100%;
+}
+
+body.about .aboutProfiles ul {
+    margin: 1rem 0;
+    text-align: left;
+}
+
+body.about .aboutProfiles h3.toolbox,
+body.about .aboutProfiles h3.questions,
+body.about .aboutProfiles h3.share {
+    font-size: 130%;
+    color: #777;
+    padding: 12px 0 8px 45px;
+    text-align: left;
+}
+
+body.about .toolbox {
+    background: transparent url(../About/Images/gear.gif) no-repeat 8px 5px;
+}
+
+body.about .questions {
+    background: transparent url(../About/Images/help.gif) no-repeat 8px 5px;
+}
+
+body.about .share {
+    background: transparent url(../About/Images/comment.gif) no-repeat 8px 5px;
 }
 
 /* ############################################################################################ */
@@ -982,6 +1072,11 @@ body .profiles .profilesContentMain .aboutText h3:first-child {
     width: 100% !important;
 }
 
+/* The stupid Profiles CSS styles tables in the search form, but this also applies to heavily-nested tables, which isn't what we want. We try to reset it, and prevent extra gaps around researcher type section. */
+.searchForm td table td table td {
+    padding: 0;
+}
+
 @media only screen and (min-width: 981px) {
 
     .researcherprofiles--home-page .searchForm td select,
@@ -1033,48 +1128,17 @@ body .profiles .profilesContentMain .aboutText h3:first-child {
     }
 }
 
+/* in "More Options" dropdown, put a little space before each checkbox's label */
+#divDetailCheck label,
+div[id="divDetailCheck"] label {
+    margin-left: 0.5rem;
+}
+
 /* hide DIRECT search link under search form */
 /* DREAM: remove from upstream */
 .researcherprofiles--home-page #ctl00_ContentMain_rptMain_ctl00_ctl00_DirectSearchUCSF {
     display: none;
 }
-
-/*
-#divChkList {
-    border: 1px solid #ccc !important;
-    margin-top: -5px;
-    width: 248px !important;
-    height: 200px !important;
-    padding-top: 15px !important;
-}
-
-#divOtherOptions {
-    border-right: 1px solid #ccc !important;
-    border-bottom: 1px solid #ccc !important;
-    border-left: 1px solid #ccc !important;
-    height: auto !important;
-}
-
-#ctcFirst_rMaster_ctl00_imgExpand {
-    visibility: hidden;
-    width: 1px;
-}
-
-#divDetailCheck {
-    margin: 3px 0;
-}
-
-#chkLstItem label,
-#divDetailCheck label,
-label[for=ctl00_ContentMain_rptMain_ctl00_ctl00_chkExactPhrase] {
-    vertical-align: 2px;
-}
-
-.listTable th {
-    border: 1px solid #ccc !important;
-}
-
-*/
 
 /* what are these??? */
 #tblSearchResults th,
@@ -1189,29 +1253,29 @@ label[for=ctl00_ContentMain_rptMain_ctl00_ctl00_chkExactPhrase] {
 }
 
 /* ############################################################################################ */
-/* PROFILE EDIT SCREEN */
+/* PROFILE EDITING: MAIN SCREEN WHERE YOU PICK AN AREA */
 /* ############################################################################################ */
 
-/* TODO: add a clear class for this screen, ticket 289 */
-
-body.researcherprofiles--edit-page .panelMain>h2 {
+/* "Edit menu" is big and left-aligned */
+.researcherprofiles--edit-page .panelMain>h2 {
     text-align: left;
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
 
-/* TODO: hide this? */
-body.researcherprofiles--edit-page .panelMain h3 {
+/* hide "Components" heading */
+.researcherprofiles--edit-page .panelMain h3 {
     display: none;
 }
 
-/* reset column sizes */
-body.researcherprofiles--edit-page #profile-components {
+/* column with each content type to edit is on the left */
+.researcherprofiles--edit-page #profile-components {
     float: left;
     width: 55%;
 }
 
-body.researcherprofiles--edit-page #profile-visibility {
+/* column with info on visibility types is on the right, in a legend box */
+.researcherprofiles--edit-page #profile-visibility {
     float: right;
     max-width: 40%;
     margin-left: 5%;
@@ -1219,9 +1283,9 @@ body.researcherprofiles--edit-page #profile-visibility {
 }
 
 /* make left column items look like one big table */
-body.researcherprofiles--edit-page #profile-components tr,
-body.researcherprofiles--edit-page #profile-components tr.evenRow,
-body.researcherprofiles--edit-page #profile-components tr.oddRow {
+.researcherprofiles--edit-page #profile-components tr,
+.researcherprofiles--edit-page #profile-components tr.evenRow,
+.researcherprofiles--edit-page #profile-components tr.oddRow {
     background-color: var(--page-background-color);
     border-top: none;
     border-bottom: 1px solid var(--striped-row-border-color) !important;
@@ -1230,88 +1294,138 @@ body.researcherprofiles--edit-page #profile-components tr.oddRow {
     border-collapse: collapse;
 }
 
-body.researcherprofiles--edit-page #profile-components td {
+/* put a little space between each row in left column */
+.researcherprofiles--edit-page #profile-components td {
     padding: 0.5rem 0;
     vertical-align: top;
 }
 
-/* Hide items counts, stars, ORNG indicators, and random returns in profile components column */
-body.researcherprofiles--edit-page #profile-components br,
-body.researcherprofiles--edit-page #profile-components .colItemCnt span,
-body.researcherprofiles--edit-page #profile-components .colItemCnt span,
-body.researcherprofiles--edit-page img[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_repPropertyGroups_ctl06_grdSecurityGroups_ctl"]
-{
+/* hide items counts, stars, ORNG indicators, and random returns in profile components column */
+.researcherprofiles--edit-page #profile-components br,
+.researcherprofiles--edit-page #profile-components .colItemCnt span,
+.researcherprofiles--edit-page #profile-components .colItemCnt span,
+.researcherprofiles--edit-page img[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_repPropertyGroups_ctl06_grdSecurityGroups_ctl"] {
     display: none
 }
 
-/* Lock icons align right */
-body.researcherprofiles--edit-page #profile-components .colItemCnt {
+/* lock icons align right */
+.researcherprofiles--edit-page #profile-components .colItemCnt {
     text-align: right;
 }
 
 /* the whole namedegree/cls thing is TERRIBLE HTML, and should be burned to the ground */
-body.researcherprofiles--edit-page #profile-components #namedegreerow #public {
+
+/* name/degree: "always public" is on the right */
+.researcherprofiles--edit-page #profile-components #namedegreerow #public {
     float: right;
 }
 
-body.researcherprofiles--edit-page #profile-components #namedegreerow #public img {
+/* name/degree: space between lock icon and "always public" */
+.researcherprofiles--edit-page #profile-components #namedegreerow #public img {
     margin-right: 3rem;
 }
 
-body.researcherprofiles--edit-page #profile-components #namedegree {
+/* name/degree: "Name and Degrees" looks like a link */
+.researcherprofiles--edit-page #profile-components #namedegree {
     color: var(--generic-link-color);
     font-weight: bold;
 }
 
-/* keep "this info is..." text hidden, except on mouseover */
-body.researcherprofiles--edit-page #profile-components #cls {
-    visibility: hidden
+/* keep "This info is..." text hidden */
+.researcherprofiles--edit-page #profile-components #cls {
+    display: none;
+    font-size: 0.9em;
 }
 
-/* keep "this info is..." text hidden, except on mouseover */
-body.researcherprofiles--edit-page #profile-components #namedegreerow:hover #cls {
-    visibility: visible;
-    color: red; /* TODO: change color? */
+/* but show "This info is..." text on mouseover */
+.researcherprofiles--edit-page #profile-components #namedegreerow:hover #cls {
+    display: block;
+    text-align: right;
+    color: var(--alert-red-color);
 }
 
-/* keep "always public" visible, except on mouseover */
-body.researcherprofiles--edit-page #profile-components #namedegreerow:hover #public {
+/* "Always public" is visible, except on mouseover */
+.researcherprofiles--edit-page #profile-components #namedegreerow:hover #public {
     display: none
 }
 
-/* normalize capitalization of each profile component title */
-body.researcherprofiles--edit-page #profile-components tr>td:first-child {
+/* capitalize each profile component title */
+.researcherprofiles--edit-page #profile-components tr>td:first-child:first-letter {
     text-transform: capitalize;
 }
 
-/* more visual weight on each category */
-body.researcherprofiles--edit-page #profile-components a.listTableLink {
+/* more visual weight on each profile component */
+.researcherprofiles--edit-page #profile-components a.listTableLink {
     font-weight: bold;
 }
 
-/* less visual weight on public/private listing */
-body.researcherprofiles--edit-page #profile-components #namedegreerow #public,
-body.researcherprofiles--edit-page .colSecurity {
+/* less visual weight on public/private listing indicator */
+.researcherprofiles--edit-page #profile-components #namedegreerow #public,
+.researcherprofiles--edit-page .colSecurity {
     text-align: right;
     font-size: 0.9em;
     color: var(--text-muted-color);
 }
 
 /* a little space around visibility description items */
-body.researcherprofiles--edit-page #profile-visibility td {
+.researcherprofiles--edit-page #profile-visibility td {
     padding: 0.5rem;
     vertical-align: top;
 }
 
-
-/* hide ad for ORNG at the bottom, since it's going away */
-body.researcherprofiles--edit-page .orng-credit {
+/* hide ad for ORNG at the bottom, since ORNG is going away */
+.researcherprofiles--edit-page .orng-credit {
     display: none;
 }
 
 /* hide column headings, but leave visible to screen readers */
-body.researcherprofiles--edit-page .EditMenuTopRow {
+.researcherprofiles--edit-page .EditMenuTopRow {
     display: none
+}
+
+/* ############################################################################################ */
+/* PROFILE EDITING: EDITING A SPECIFIC SECTION */
+/* ############################################################################################ */
+
+/* put some space between edit navigation menu and everything below */
+.editBackLink {
+    margin-bottom: 2rem;
+}
+
+/* some space below edit visibility */
+#ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_pnlSecurityOptions {
+    margin-bottom: 1rem;
+}
+
+/* a little space above every grid (e.g. education and training) */
+.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridView"] {
+    margin-top: 1rem;
+}
+
+/* in grid-based editor, reset colors, heights, padding of header row */
+.researcherprofiles--edit-page table tr.topRow {
+    background-color: var(--highlighted-panel-background-color);
+    color: var(--text-color);
+    height: auto;
+    padding: auto;
+    border: 1px solid var(--highlighted-panel-border-color);
+}
+
+/* each body row in a grid has nice spacing */
+.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridView"] td,
+.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridView"] th {
+    padding: 0.5rem;
+    text-align: left;
+    border: 1px solid var(--highlighted-panel-border-color);
+
+}
+
+/* edit buttons are squished, but can collapse if needed */
+.researcherprofiles--edit-page .actionbuttons td,
+.researcherprofiles--edit-page .actionbuttons th {
+    border: none !important;
+    display: inline-block;
+    padding: 0 !important;
 }
 
 /* ############################################################################################ */

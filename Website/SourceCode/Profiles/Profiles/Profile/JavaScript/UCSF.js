@@ -39,6 +39,7 @@
     //Expand/collapse for Tables (Awards, Education, Grants)
     if ($('.collapsible') && $('.collapsible').length) {
         $('.collapsible').find('tr:gt(4)').addClass('show-or-hide-as-needed').hide();
+        $('.collapsible').find('tr:lt(5)').addClass('always-show');
         $(".collapsible:has('.show-or-hide-as-needed')").append("<tr class='accordion'><td colspan='5'><div class='more'>Show more</div><div class='less' style='display:none'>Show less</div></td></tr>");
         $('.accordion').click(function () {
             $(this).siblings('.show-or-hide-as-needed').toggle();

@@ -28,8 +28,6 @@ $(document).ready(function () {
     // Back to top http://typicalwhiner.com/116/effortless-jquery-floating-back-to-top-script-v2/
 	// Not used on network pages
   if(window.location.href.indexOf("coauthors") === -1) {
-    $("table").removeAttr("border").removeAttr("rules");
-
     var pxShow = 300; //height on which the button will show  
     var fadeInTime = 1000;  //how slow/fast you want the button to show  
     var fadeOutTime = 1000;  //how slow/fast you want the button to hide  

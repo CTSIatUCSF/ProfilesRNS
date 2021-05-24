@@ -1,6 +1,8 @@
 :root {
     --heading-color: #F26D04;
     --very-dark-background-color: #052049;
+    --menu-important-background-color: #efded1;
+
 }
 
 .researcherprofiles--branded-institutional-banner--menu {
@@ -25,7 +27,6 @@
     .researcherprofiles--branded-institutional-banner--menu ul.right {
         display: none;
     }
-
     .researcherprofiles--branded-institutional-banner--menu {
         padding-left: 0;
         padding-right: 0;

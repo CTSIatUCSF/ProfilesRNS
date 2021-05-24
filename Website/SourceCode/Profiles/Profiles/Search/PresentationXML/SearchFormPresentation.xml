@@ -43,7 +43,7 @@
       </Module>
       <Module ID="TopSearchPhrase">
         <ParamList>
-          <Param Name="Description">Most viewed (month)</Param>
+          <Param Name="Description">Most viewed</Param>
           <Param Name="TimePeriod">m</Param>
         </ParamList>
       </Module>

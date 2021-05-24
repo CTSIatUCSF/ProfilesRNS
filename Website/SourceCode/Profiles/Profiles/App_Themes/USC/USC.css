@@ -42,7 +42,7 @@
 
 /* put the site name on left, new features block on right */
 
-#site-branding {
+.researcherprofiles--institution-header {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -59,6 +59,12 @@
 
 /* STYLE "TOUR PROFILES" AND "NEW FEATURES" */
 
+@media (max-width: 960px) {
+    #new-features {
+        display: none
+    }
+}
+
 #new-features a,
 #new-features a:visited {
     color: var(--generic-link-color);
@@ -66,7 +72,6 @@
 
 #new-features,
 .tour {
-    background-color: pink;
     font-weight: bold;
     padding: 0.5rem;
     background: var(--highlighted-panel-background-color);
@@ -79,7 +84,7 @@
 
 /* TODO: remove this at source */
 div[id^="ctl00_ContentPassive_rptPassive_ctl00_ctl00_TwitterUSC"] {
-  display: none;
+    display: none;
 }
 
 /* SITEWIDE */
@@ -138,6 +143,6 @@ div.PlumX-Popup {
     background-color: #CCC;
 }
 
-.aboutProfiles {
-    border-color: #CCC;
+body.about .toolbox {
+    background: none;
 }

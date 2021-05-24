@@ -9,6 +9,8 @@
                 <a href="<%=ResolveUrl("~/search")%>">Home</a>
             </li>
             <li class="main-nav">
+                <a href="<%=ResolveUrl("~/about/AboutProfiles.aspx")%>">About</a>
+                <%-- 
                 <a href='#'>About</a>
                 <ul class="drop">
                     <li>
@@ -21,10 +23,10 @@
                         <a id="orcid" style="border-left: 1px solid  #999; border-right: 1px solid  #999; border-bottom: 1px solid #999; width: 200px !important" href="<%=ResolveUrl("~/about/default.aspx?tab=orcid")%>">ORCID</a>
                     </li>
                 </ul>
-
+                --%>
             </li>
             <li class="main-nav">
-                <a href="<%=ResolveUrl("~/about/default.aspx?tab=faq")%>">Help</a>
+                <a href="<%=ResolveUrl("~/about/Help.aspx")%>">Help/FAQs</a>
             </li>
             <%-- <li class="main-nav">
                 <a href="<%=ResolveUrl("~/about/default.aspx?type=UseOurData")%>">Use Our Data</a>
@@ -37,7 +39,7 @@
             </li>--%>
             <HistoryItem:History runat="server" ID="ProfileHistory" Visible="true" />
 
-			<li class="main-nav"><a href="<%=GetThemedDomain()%>">Search Options</a>
+			<li class="main-nav"><a href="<%=GetThemedDomain()%>/search/">Search Options</a>
 				<ul class="drop">
 					<li><a href="<%=GetDomainFor("UCD")%>/search/">UC Davis</a></li>
 					<li><a href="<%=GetDomainFor("UCI")%>/search/">UCI</a></li>
@@ -54,7 +56,7 @@
 			<li class="nav-facade-active" id="nav-search-in">
 				<div id="nav-search-in-content"></div>
 				<div class="searchSelect" id="searchDropdownBox">
-					<asp:DropDownList ID="searchTypeDropDown" CssClass="searchSelect" EnableViewState="true" runat="server">
+					<asp:DropDownList ID="searchTypeDropDown" CssClass="searchSelect form-control input-sm" EnableViewState="true" runat="server">
 						<asp:ListItem Value="Everything" Text="Everything" />
 						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupResearch" Text="Research" />
 						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupConcepts" Text="Concepts" />
@@ -72,7 +74,7 @@
 			<!-- next few tags have > on next line to remove space between -->
 			</li>
             <li class="search main-nav" style="width: 492px;">
-                <input name="search" id="menu-search" placeholder="e.g. Smith or HIV" type="text" style="padding-left: 5px;" />
+                <input name="search" id="menu-search" placeholder="e.g. Smith or HIV" type="text" style="padding-left: 5px;" class="form-control input-sm"/>
                 <img style="cursor: pointer" alt="search" id="img-mag-glass" src="<%=ResolveUrl("~/framework/images/blackMagnifyGlass.png")%>" />
             </li>
             <li id="search-drop" class="last main-nav" style="float: right !important; width: 25px;">

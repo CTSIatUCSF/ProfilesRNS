@@ -2,17 +2,22 @@
 
 /* global variables */
 :root {
+
     /* official UCI blue, via https://brand.uci.edu/brand-assets/color-palette/ */
     --heading-color: rgb(0, 100, 164);
+
     /* dark color used on tippy top header at https://uci.edu/ */
     --very-dark-background-color: rgb(51, 51, 51);
+
+    /* started with UCI light blue #6AA2B8, then lightened by 25% */
+    --menu-important-background-color: #c0d8e1;
 }
 
 #ctl00_MasterPageHeaderUCI,
 .researcherprofiles--institution-header,
-#site-branding a {
+.researcherprofiles--institution-header--site-logo a {
     background: rgb(0, 100, 164);
-    color: white;
+    color: white !important;
 }
 
 /* little yellow fringe below blue header */

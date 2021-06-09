@@ -57,7 +57,6 @@
 		$('.expand-collapse').click(function(){
 			$(this).siblings().toggleClass('full');
 			$(this).find('.more, .less').toggle();
-			location.href = "#narrative";
 		});
     }
 

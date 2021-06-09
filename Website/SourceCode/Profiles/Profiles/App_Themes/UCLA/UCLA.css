@@ -5,6 +5,7 @@
 
 /* global variables */
 :root {
+
     /* UCLA warning orange. This is from https://webcomponents.ucla.edu/build/1.0.0-beta.8/docs/colors/denotive.html */
     --heading-color: #F57F17;
     /* as used at www.ucla.edu */
@@ -13,6 +14,7 @@
     --generic-link-visited-color: #00598C;
     /* darkest blue from https://webcomponents.ucla.edu/build/1.0.0-beta.8/docs/colors/layout.html */
     --very-dark-background-color: #2774AE;
+
 }
 
 /* hide tippy-top menu */
@@ -26,7 +28,7 @@
 .researcherprofiles--institution-header--site-logo a {
     /* UCLA darkest blue */
     background: #003B5C;
-    color: white;
+    color: white !important;
 }
 
 /* normalize logo image size */

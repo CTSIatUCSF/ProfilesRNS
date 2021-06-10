@@ -1,0 +1,1 @@
+  update [profilesRNS].[ORNG.].[Apps] set [Enabled] = 0 where [Name] in ('Profile List Tool', 'Research Blogs and Feeds', 'PopulationHealthSciences');

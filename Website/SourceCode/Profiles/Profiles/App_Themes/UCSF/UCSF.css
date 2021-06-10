@@ -1,8 +1,8 @@
+/* colors are from style guide at https://identity.ucsf.edu/print-digital/digital-colors */
 :root {
     --heading-color: #F26D04;
     --very-dark-background-color: #052049;
     --menu-important-background-color: #efded1;
-
 }
 
 .researcherprofiles--branded-institutional-banner--menu {

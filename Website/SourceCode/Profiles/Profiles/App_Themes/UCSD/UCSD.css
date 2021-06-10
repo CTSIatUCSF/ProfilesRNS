@@ -2,13 +2,13 @@
 
 /* global variables */
 :root {
-    /* UCSD's forest green. This used to be dark red rgb(205, 32, 64) in Profiles 2, but that's not in the style guide anymore. So I picked the darkest color that's not blue or black. */
-    --heading-color: #6E963B;
+    /* UCSD's dark blue from core colors */
+    --heading-color: #182B49;
     /* UCSD's official link color in style guide */
     --generic-link-color: #00629B;
     /* our manually-computed purpler version of link color */
     --generic-link-visited-color: #2B4192;
-    /* UCSD's darkest nutral gray */
+    /* UCSD's darkest neutral gray */
     --text-muted-color: #747678;
     /* same color as used at https://blink.ucsd.edu/technology/websites/training/new-page/templates/general-cms/v5/homepage.html and elsewhere */
     --very-dark-background-color: rgb(0, 106, 150);

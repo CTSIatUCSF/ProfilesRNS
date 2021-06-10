@@ -2,9 +2,6 @@
 
 /* global variables for all our hosted sites */
 :root {
-    /* globals */
-    --menu-background: #fff;
-
     /* all these colors need to have sufficient contrast of text on background */
     --text-color: #111;
     --text-muted-color: #777;
@@ -14,7 +11,8 @@
     --max-main-content-width: 980px;
 
     /* used for significant titles */
-    --heading-color: green;
+    --heading-color: #1295d8;
+    /* UC blue */
 
     /* used for errors, alerts, etc. */
     --alert-red-color: rgb(172, 27, 48);
@@ -52,8 +50,10 @@ body,
 .profiles td,
 .profiles th,
 .profiles .profilesContentMain .basicInfo td,
+.profiles .PropertyGroup,
 .profiles .PropertyGroupData,
 .profiles .PropertyGroupItem,
+.profiles .PropertyItemHeader,
 .profiles ul,
 .profiles ol,
 .searchForm th,
@@ -62,6 +62,43 @@ body,
 #ctl00_divProfilesContentMain .basicInfo th {
     font-size: 1rem;
     line-height: 1.5;
+
+}
+
+/* Bootstrap 5.0 native font stack */
+body,
+.profiles,
+.profiles td,
+.profiles th,
+.profiles .profilesContentMain .basicInfo td,
+.profiles .PropertyGroup,
+.profiles .PropertyGroupData,
+.profiles .PropertyGroupItem,
+.profiles .PropertyItemHeader,
+.profiles ul,
+.profiles ol,
+.searchForm th,
+.topRow,
+#ctl00_divProfilesContentMain .basicInfo td,
+#ctl00_divProfilesContentMain .basicInfo th,
+.profiles textarea,
+.profiles select,
+.profiles h2,
+.profiles h3,
+.profiles h4,
+.profiles h5,
+.profiles h6,
+.profiles ol {
+    font-family: system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue", Arial,
+        "Noto Sans",
+        "Liberation Sans",
+        sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 /* set global font and background colors */
@@ -126,6 +163,15 @@ span.unused,
         max-width: 90vw;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    html body .profiles .profilesPage {
+        width: auto !important;
+    }
+
+    /* less horizontal space? make font size smaller in menus */
+    #prns-nav ul.prns-main li a {
+        font-size: 0.8rem;
     }
 
     /* don't be afraid of breaking long words if we need to prevent overflows */
@@ -319,7 +365,7 @@ span.unused,
 #prns-nav ul.usermenu ul.drop a {
     color: var(--text-color) !important;
     background-color: var(--menu-background-color) !important;
-    height: unset;
+    //height: unset;
 }
 
 /* but background of user menu should be white */
@@ -327,13 +373,14 @@ span.unused,
     background-color: var(--page-background-color) !important;
 }
 
-/* put borders between items that should have borders */
+/* put borders between items that should have borders, and normalize height */
 #prns-nav ul.prns-main li a,
 #prns-nav ul.prns-main li.landed a,
 #prns-usrnav ul.usermenu li a,
 #prns-usrnav ul.usermenu li.landed a {
     border: 1px solid var(--menu-important-background-color) !important;
     border-collapse: collapse;
+    height: 100%;
 }
 
 /* important/hovered/selected items should be in important color */
@@ -358,8 +405,8 @@ span.unused,
 #prns-usrnav ul.usermenu li a,
 #prns-usrnav ul.usermenu li.landed a,
 #prns-nav ul.usermenu li.selected>a {
-    background-color: var(--menu-background) !important;
-    border: 1px solid var(--menu-background) !important;
+    background-color: var(--page-background-color) !important;
+    border: 1px solid var(--page-background-color) !important;
 }
 
 /* 2. then reset spacing, alignment and layout */
@@ -384,7 +431,7 @@ span.unused,
 #prns-usrnav ul.usermenu,
 #prns-usrnav ul.usermenu>li,
 #prns-usrnav ul.usermenu>li a img {
-    height: auto;
+    height: initial;
 }
 
 /* 3. OK, we're finally done with setup and resets! now on to the main menu search inputs */
@@ -945,7 +992,7 @@ body.about .aboutProfiles div {
 }
 
 body.about .aboutProfiles div.shaded {
-  background: #f2f2f2;
+    background: #f2f2f2;
 }
 
 body.about .aboutProfiles h2,
@@ -1128,6 +1175,17 @@ body.about .share {
     }
 }
 
+/* normalize padding in researcher type pulldown */
+#ctl00_ContentMain_rptMain_ctl00_ctl00_divChkList {
+    padding: 1rem !important;
+}
+
+/* researcher type pulldown labels have some space before them */
+#ctl00_ContentMain_rptMain_ctl00_ctl00_divChkList input+label {
+    margin-left: 1rem;
+    font-weight: normal;
+}
+
 /* in "More Options" dropdown, put a little space before each checkbox's label */
 #divDetailCheck label,
 div[id="divDetailCheck"] label {
@@ -1282,7 +1340,13 @@ div[id="divDetailCheck"] label {
     border: 1px solid #ccc;
 }
 
-/* make left column items look like one big table */
+/* remove extra borders around each table and table item */
+.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_repPropertyGroups"],
+.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_repPropertyGroups"] td {
+    border: none !important;
+}
+
+/* make left column items look like one big table, and add nice borders underneath */
 .researcherprofiles--edit-page #profile-components tr,
 .researcherprofiles--edit-page #profile-components tr.evenRow,
 .researcherprofiles--edit-page #profile-components tr.oddRow {

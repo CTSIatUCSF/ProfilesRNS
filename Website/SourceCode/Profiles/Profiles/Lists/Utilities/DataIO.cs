@@ -519,7 +519,8 @@ namespace Profiles.Lists.Utilities
                 cmd.Parameters.Add(parm);
                 parm = new SqlParameter("@SearchXML", SqlDbType.Xml);
                 parm.Direction = ParameterDirection.Input;
-                parm.Value = HttpContext.Current.Session["SEARCHREQUEST"].ToString();
+                //parm.Value = HttpContext.Current.Session["searchrequest"].ToString();
+                parm.Value= Framework.Utilities.Cache.FetchObject("SEARCHFOR_" + listid).ToString();
                 cmd.Parameters.Add(parm);
                 parm = new SqlParameter("@Remove", SqlDbType.Bit);
                 parm.Direction = ParameterDirection.Input;

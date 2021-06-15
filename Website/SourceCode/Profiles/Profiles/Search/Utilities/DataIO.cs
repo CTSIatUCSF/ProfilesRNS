@@ -326,8 +326,14 @@ namespace Profiles.Search.Utilities
             searchxml.LoadXml(search.ToString());
 
             if (cacheinsession)
+            {
                 HttpContext.Current.Session["searchrequest"] = search.ToString();
-
+                string listid = sessionmanagement.Session().ListID;
+                if (listid != null)
+                {
+                    Framework.Utilities.Cache.Set("SEARCHFOR_"+listid, search.ToString());
+                                    }
+            }
             return searchxml;
 
         }

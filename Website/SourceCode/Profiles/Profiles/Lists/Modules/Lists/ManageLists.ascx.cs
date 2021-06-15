@@ -49,22 +49,23 @@ namespace Profiles.Lists.Modules.Lists
                 case "removefromsearch":
 
                     Profiles.Lists.Utilities.DataIO.AddRemoveSearchResults(true);
+                    int totalitems = Convert.ToInt32(Profiles.Lists.Utilities.DataIO.GetListCount());
+                    int deleteditems =  this.ProfilesList.ListItems.Count - totalitems ;
 
-                    Response.Redirect(Brand.GetThemedDomain() + "/search/default.aspx?showcolumns=1&searchtype=people&otherfilters=");
-
-                    //Response.Redirect(Brand.GetThemedDomain() + "/lists/default.aspx?type=view");
-
-
-
+                    litJS.Text += string.Format("<script type='text/javascript'>jQuery('#navMyLists ul').remove();jQuery('#list-count').html('{0}');</script>", totalitems);
+                    litJS.Text += string.Format("<script>$('.pageTitle').children('h2').html('My Person List ({0}, including recently deleted {1}')</script>", totalitems, deleteditems);
                     break;
                 case "search":
-                    Profiles.Lists.Utilities.DataIO.AddRemoveSearchResults(false);
 
+                    Profiles.Lists.Utilities.DataIO.AddRemoveSearchResults(false);
+ 
                     //need a lable to display that the user added x number of humans to their list
 
-                    // litJS.Text += string.Format("<script type='text/javascript'>jQuery('#navMyLists ul').remove();jQuery('#list-count').html('{0}');</script>", this.ProfilesList.ListItems.Count.ToString());
-                    Response.Redirect(Brand.GetThemedDomain() + "/search/default.aspx?showcolumns=1&searchtype=people&otherfilters=");
-
+                    totalitems =Convert.ToInt32(Profiles.Lists.Utilities.DataIO.GetListCount());
+                    int addeditems = totalitems - this.ProfilesList.ListItems.Count;
+                 
+                    litJS.Text += string.Format("<script type='text/javascript'>jQuery('#navMyLists ul').remove();jQuery('#list-count').html('{0}');</script>", totalitems);
+                    litJS.Text += string.Format("<script>$('.pageTitle').children('h2').html('My Person List ({0}, including recently added {1})'</script>", totalitems,addeditems);
                     break;
                 case "summary":
 

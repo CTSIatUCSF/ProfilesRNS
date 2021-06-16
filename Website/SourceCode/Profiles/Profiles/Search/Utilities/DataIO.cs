@@ -331,7 +331,7 @@ namespace Profiles.Search.Utilities
                 string listid = sessionmanagement.Session().ListID;
                 if (listid != null)
                 {
-                    Framework.Utilities.Cache.Set("SEARCHFOR_"+listid, search.ToString());
+                    Framework.Utilities.Cache.SetWithTimeout("SEARCHFOR_"+listid, search.ToString(),3600);
                                     }
             }
             return searchxml;

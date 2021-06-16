@@ -166,10 +166,10 @@ namespace Profiles.Lists.Utilities
         public static string GetListCount()
         {
             SessionManagement sm = new SessionManagement();
-            if (sm.Session().ListID == null || sm.Session().ListSize == null)
-            {
+            //if (sm.Session().ListID == null || sm.Session().ListSize == null)
+            //{
                 Profiles.Lists.Utilities.DataIO.GetList();
-            }
+            //}
             return sm.Session().ListSize.ToString();
 
 

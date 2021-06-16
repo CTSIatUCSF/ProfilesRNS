@@ -24,7 +24,8 @@ namespace Profiles.Lists.Modules.Lists
             this.ProfilesList = new Utilities.DataIO.ProfilesList();
             this.ProfilesList = Profiles.Lists.Utilities.DataIO.GetPeople(this.Institution, this.FacultyRank);
 
-            litJS.Text += string.Format("<script>$('.pageTitle').children('h2').html('My Person List ({0})')</script>", Profiles.Lists.Utilities.DataIO.GetListCount());
+            litJS.Text += string.Format("<script>$('.pageTitle').children('h2 style='allign;').html('My Person List </script>"); 
+            //Profiles.Lists.Utilities.DataIO.GetListCount());
 
             this.Institution = (this.Institution.ToLower() == "(all institutions)" ? "" : this.Institution);
             this.FacultyRank = (this.FacultyRank.ToLower() == "(all faculty ranks)" ? "" : this.FacultyRank);
@@ -49,11 +50,6 @@ namespace Profiles.Lists.Modules.Lists
                 case "removefromsearch":
 
                     Profiles.Lists.Utilities.DataIO.AddRemoveSearchResults(true);
-                    int totalitems = Convert.ToInt32(Profiles.Lists.Utilities.DataIO.GetListCount());
-                    int deleteditems =  this.ProfilesList.ListItems.Count - totalitems ;
-
-                    litJS.Text += string.Format("<script type='text/javascript'>jQuery('#navMyLists ul').remove();jQuery('#list-count').html('{0}');</script>", totalitems);
-                    litJS.Text += string.Format("<script>$('.pageTitle').children('h2').html('My Person List ({0}, including recently deleted {1}')</script>", totalitems, deleteditems);
                     break;
                 case "search":
 
@@ -61,11 +57,12 @@ namespace Profiles.Lists.Modules.Lists
  
                     //need a lable to display that the user added x number of humans to their list
 
-                    totalitems =Convert.ToInt32(Profiles.Lists.Utilities.DataIO.GetListCount());
+                    int totalitems =Convert.ToInt32(Profiles.Lists.Utilities.DataIO.GetListCount());
                     int addeditems = totalitems - this.ProfilesList.ListItems.Count;
-                 
+
+ //                   litJS.Text = string.Format("<script>$('.pageTitle').children('h2').html('My Person List after update ({0})'</script>", totalitems);
                     litJS.Text += string.Format("<script type='text/javascript'>jQuery('#navMyLists ul').remove();jQuery('#list-count').html('{0}');</script>", totalitems);
-                    litJS.Text += string.Format("<script>$('.pageTitle').children('h2').html('My Person List ({0}, including recently added {1})'</script>", totalitems,addeditems);
+                    
                     break;
                 case "summary":
 

@@ -24,7 +24,7 @@ namespace Profiles.Lists.Modules.Lists
             this.ProfilesList = new Utilities.DataIO.ProfilesList();
             this.ProfilesList = Profiles.Lists.Utilities.DataIO.GetPeople(this.Institution, this.FacultyRank);
 
-            litJS.Text += string.Format("<script>$('.pageTitle').children('h2 style='allign;').html('My Person List </script>"); 
+            litJS.Text += string.Format("<script>$('.pageTitle').children('h2 style='align;').html('My Person List </script>"); 
             //Profiles.Lists.Utilities.DataIO.GetListCount());
 
             this.Institution = (this.Institution.ToLower() == "(all institutions)" ? "" : this.Institution);

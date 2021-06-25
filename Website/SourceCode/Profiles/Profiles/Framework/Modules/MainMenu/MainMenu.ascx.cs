@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml;
 
 using Profiles.Framework.Utilities;
@@ -105,7 +106,7 @@ namespace Profiles.Framework.Modules.MainMenu
                     string spostring = string.Empty;
                     string[] spoarray;
 
-                    spostring = uri.ToLower().Replace(Brand.GetThemedDomain().ToLower() + "/profile/", "");
+                    spostring = uri.ToLower().Replace(Root.Domain.ToLower() + "/profile/", "");
                     spoarray = spostring.Split('/');
 
                     for (int i = 0; i < spoarray.Length; i++)
@@ -186,7 +187,7 @@ namespace Profiles.Framework.Modules.MainMenu
             ProfileHistory.RDFData = base.BaseData;
             ProfileHistory.PresentationXML = base.MasterPage.PresentationXML;
             ProfileHistory.Namespaces = base.Namespaces;
-
+            DrawSearchBar();
         }
 
         // For megasearch items
@@ -199,5 +200,53 @@ namespace Profiles.Framework.Modules.MainMenu
         {
             return Brand.GetByTheme(theme).BasePath;
         }
+
+        protected void DrawSearchBar()
+        {
+            foreach (ListItem item in searchTypeDropDown.Items)
+            {
+                // default everything search
+                item.Attributes.Add("searchtype", "everything");
+
+                Brand brand = Brand.GetByTheme(item.Value);
+                if (brand != null)
+                {
+                    item.Attributes.Add("searchtype", "people");
+                    if (!brand.IsMultiInstitutional())
+                    {
+                        item.Attributes.Add("institution", brand.GetInstitution().GetURI());
+                    }
+                    else if (brand.PersonFilter != null)
+                    {
+                        item.Attributes.Add("otherfilters", brand.PersonFilter);
+                    }
+                }
+                else if ("People".Equals(item.Value))
+                {
+                    item.Attributes.Add("searchtype", "people");
+                }
+                else if (item.Value.StartsWith("http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroup"))
+                {
+                    item.Attributes.Add("classgroupuri", item.Value);
+                }
+            }
+
+            // pick one to select
+            ListItem selected = null;
+            if (!String.IsNullOrEmpty(Request.Params["classgroupuri"]))
+            {
+                selected = searchTypeDropDown.Items.FindByValue(Request.Params["classgroupuri"]);
+            }
+            else if (!Request.Path.ToLower().Contains("/search/") || Request.QueryString["searchtype"] != null || Request.Form["searchtype"] != null) //if (!Request.Path.ToLower().Contains("/search/"))
+            {
+                selected = searchTypeDropDown.Items.FindByValue(Brand.GetCurrentBrand().Theme);
+            }
+
+            if (selected != null)
+            {
+                searchTypeDropDown.SelectedIndex = searchTypeDropDown.Items.IndexOf(selected);
+            }
+        }
+
     }
 }

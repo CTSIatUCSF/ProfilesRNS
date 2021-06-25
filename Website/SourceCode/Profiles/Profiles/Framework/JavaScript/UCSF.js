@@ -17,14 +17,6 @@ $(document).ready(function () {
 		$("#copyright-year").text( (new Date).getFullYear() );
 	}
 	
-    // navbarsearch
-	if ($('#nav-search-in-content') && $('#nav-search-in-content').length) {
-		$('#nav-search-in-content').text($('#searchDropdownBox select').find("option:selected").attr("title"));
-		$('#searchDropdownBox select').change(function() {
-			$('#nav-search-in-content').text($(this).find("option:selected").attr("title"));
-		});
-	}
-
     // Back to top http://typicalwhiner.com/116/effortless-jquery-floating-back-to-top-script-v2/
 	// Not used on network pages
   if(window.location.href.indexOf("coauthors") === -1) {

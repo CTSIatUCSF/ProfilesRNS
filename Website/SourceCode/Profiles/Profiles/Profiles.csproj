@@ -198,6 +198,7 @@
     <Content Include="App_Themes\UCLA\Images\gear.gif" />
     <Content Include="App_Themes\UCLA\Images\help.gif" />
     <Content Include="App_Themes\UCLA\Images\ucla-logo.png" />
+    <Content Include="App_Themes\UCLA\Images\ucla-profiles-banner-background-wide.jpg" />
     <Content Include="App_Themes\UCLA\PresentationXML\About\Help.xml" />
     <Content Include="App_Themes\UCLA\UCLA.css" />
     <Content Include="App_Themes\UCLA\UCLA.js" />

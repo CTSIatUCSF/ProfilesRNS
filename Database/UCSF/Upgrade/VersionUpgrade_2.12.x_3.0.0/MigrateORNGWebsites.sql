@@ -189,5 +189,16 @@ SELECT * FROM [Profile.Data].[Person.FilterRelationship] WHERE PersonFilterid = 
 DELETE FROM [Profile.Data].[Person.Filter] WHERE PersonFilter = 'Websites';
 delete from [Profile.Import].[PersonFilterFlag] where personfilter = 'Websites';
 
+-- BREAK GLASS IN EMERGENCY
+-- run and exec results.
+ select 'exec [Edit.Module].[CustomEditWebsite.AddEditWebsite] @ExistingURLID = ''' + w2.URLID + ''', @Delete=1;'
+ from [Profile.Data].[Person.Websites] w1 join  [Profile.Data].[Person.Websites] w2 on w1.PersonID = w2.PersonID and
+ w1.[URL] = w2.[URL] and w1.SortOrder < w2.SortOrder;
+ 
+ -- these are ones that share sort order but have different UrlID's
+  select 'exec [Edit.Module].[CustomEditWebsite.AddEditWebsite] @ExistingURLID = ''' + w2.URLID + ''', @Delete=1;'
+ from [Profile.Data].[Person.Websites] w1 join  [Profile.Data].[Person.Websites] w2 on w1.PersonID = w2.PersonID and
+ w1.[URL] = w2.[URL] and w1.SortOrder = w2.SortOrder and w1.UrlID < w2.UrlID;
+
 
 

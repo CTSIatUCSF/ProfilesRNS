@@ -42,7 +42,7 @@ namespace Profiles.Framework.Modules.RDFLink
                 string spostring = string.Empty;
                 string[] spoarray;                
 
-                spostring = uri.ToLower().Replace(Brand.GetThemedDomain().ToLower() + "/profile/", "");
+                spostring = uri.ToLower().Replace(Root.Domain.ToLower() + "/profile/", "");
                 spoarray = spostring.Split('/');
 
                 for (int i = 0; i < spoarray.Length; i++)

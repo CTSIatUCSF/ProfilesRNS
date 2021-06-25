@@ -96,16 +96,25 @@ Researchers working on the same topics
   <li><a href="#login">How do I sign in to UCLA Profiles?</a></li>
   <li><a href="#pubs">Why are there missing or incorrect publications in my profile? How can I correct this?</a></li>
   <li><a href="#proxy">Can someone manage my profile page for me?</a></li>
-  <li><a href="#manage">Who manages UCLA Profiles?</a></li>
 </ul>
 
 <h3 id="who">Who is listed in UCLA Profiles?</h3>
 
 <ul>
-  <li>UCLA Profiles was created for research networking so we initially focused on adding UCLA faculty members, 
-  researchers with academic leadership appointments, and non-faculty academic researchers. </li>
-  <li>We are happy to include research staff and other individuals in the UCLA community, on request and if possible. 
-  Send requests, with full name and employee ID, to <a href="mailto:UCLAProfiles@mednet.ucla.edu">UCLAProfiles@mednet.ucla.edu</a></li>
+  <li>UCLA Profiles currently allows the following UCLA series:
+  <ul>
+    <li>Regular Professors</li>
+    <li>In-residence</li>
+    <li>Clinical Professors</li>
+    <li>HS clinical Professors</li>
+    <li>Visiting Professors</li>
+    <li>Acting Professors</li>
+    <li>Adjunct Professors</li>
+  </ul>
+  </li>
+  <li>
+    If a profile appears to be missing, please send requests, with full name and employee ID, to <a href="mailto:UCLAProfiles@mednet.ucla.edu">UCLAProfiles@mednet.ucla.edu</a>
+  </li>
 </ul>
 
 <h3 id="view">Who can view UCLA Profiles?</h3>
@@ -141,14 +150,10 @@ Researchers working on the same topics
   their assistants as proxies to edit their profiles. If you have a profile, then one or more proxies might be assigned to you automatically 
   by your department or institution. You also have the option of designating your own proxies by signing in and going to Manage Proxies in 
   the edit menu. Proxies do not need to have profile pages themselves.</li>
+  <li>To request a Proxy, please follow these brief, step-by-step 
+    <a href="https://www.ctsi.ucla.edu/files/view/uc-profiles/Adding_A_Proxy_in_UCLA_Profiles_6.10.21.pdf" target="_blank">directions.</a> Please anticipate up to 2 weeks for a Proxy to be added.</li>
+  <li>Allowable proxy email addresses can be from the following domains: @mednet.ucla.edu. </li>
 </ul>
-
-<h3 id="manage">Who manages UCLA Profiles?</h3>
-<ul>
-  <li>UCLA Profiles is managed by the <a href="https://ctsi.ucsf.edu/about-us/programs/research-technology" target="_blank">Research Technology</a> 
-  program of UCSF's <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>.</li>
-</ul>
-
           </Param>
         </ParamList>
       </Module>

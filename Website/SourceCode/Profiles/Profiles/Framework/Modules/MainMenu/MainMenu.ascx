@@ -10,33 +10,10 @@
             </li>
             <li class="main-nav">
                 <a href="<%=ResolveUrl("~/about/AboutProfiles.aspx")%>">About</a>
-                <%-- 
-                <a href='#'>About</a>
-                <ul class="drop">
-                    <li>
-                        <a id="about" style="border-left: 1px solid  #999; border-right: 1px solid  #999; border-bottom: 1px solid #999; width: 200px !important" href="<%=ResolveUrl("~/about/default.aspx?tab=overview")%>">Overview</a>
-                    </li>
-                    <li>
-                        <a id="data" style="border-left: 1px solid  #999; border-right: 1px solid  #999; border-bottom: 1px solid #999; width: 200px !important" href="<%=ResolveUrl("~/about/default.aspx?tab=data")%>">Sharing Data</a>
-                    </li>
-                    <li>
-                        <a id="orcid" style="border-left: 1px solid  #999; border-right: 1px solid  #999; border-bottom: 1px solid #999; width: 200px !important" href="<%=ResolveUrl("~/about/default.aspx?tab=orcid")%>">ORCID</a>
-                    </li>
-                </ul>
-                --%>
             </li>
             <li class="main-nav">
                 <a href="<%=ResolveUrl("~/about/Help.aspx")%>">Help/FAQs</a>
             </li>
-            <%-- <li class="main-nav">
-                <a href="<%=ResolveUrl("~/about/default.aspx?type=UseOurData")%>">Use Our Data</a>
-                <ul class="drop">
-                    <li>
-                        <a id="useourdata" style="border-left: 1px solid  #383737; border-right: 1px solid  #383737; border-bottom: 1px solid #383737; width: 200px !important" href="<%=ResolveUrl("~/about/default.aspx?type=UseOurData")%>">Overview</a>
-                    </li>
-                    <asp:Literal runat="server" ID="litExportRDF"></asp:Literal>
-                </ul>
-            </li>--%>
             <HistoryItem:History runat="server" ID="ProfileHistory" Visible="true" />
 
 			<li class="main-nav"><a href="<%=GetThemedDomain()%>/search/">Search Options</a>
@@ -75,7 +52,6 @@
 			</li>
             <li class="search main-nav" style="width: 492px;">
                 <input name="search" id="menu-search" placeholder="e.g. Smith or HIV" type="text" style="padding-left: 5px;" class="form-control input-sm"/>
-                <img style="cursor: pointer" alt="search" id="img-mag-glass" src="<%=ResolveUrl("~/framework/images/blackMagnifyGlass.png")%>" />
             </li>
             <li id="search-drop" class="last main-nav" style="float: right !important; width: 25px;">
                 <a href="#" style="padding: 0px; padding-top: 9px; margin: 0px;">
@@ -128,27 +104,20 @@
 
 <asp:Literal runat="server" ID="litJs"></asp:Literal>
 <script type="text/javascript">
-
     $(function () {
         setNavigation();
     });
-
     function setNavigation() {
         var path = $(location).attr('href');
         path = path.replace(/\/$/, "");
         path = decodeURIComponent(path);
-
         $(".prns-main li").each(function () {
-
             var href = $(this).find("a").attr('href');
             var urlParams = window.location.search;
-
             if ((path + urlParams).indexOf(href) >= 0) {
                 $(this).addClass('landed');
             }
         });
-
-
         return true;
     }
     $(document).ready(function () {
@@ -159,19 +128,24 @@
             }
             return true;
         });
-
+        /** Removed by UCSF
         $("#img-mag-glass").on("click", function () {
             minisearch();
             return true;
         });
+        **/
     });
     function minisearch() {
         var keyword = $("#menu-search").val();
-        var classuri = 'http://xmlns.com/foaf/0.1/Person';
-        document.location.href = '<%=ResolveUrl("~/search/default.aspx")%>?searchtype=people&searchfor=' + keyword + '&classuri=' + classuri;
+        var searchtype = $('#searchDropdownBox select').find("option:selected").attr("searchtype");
+        var classgroupuri = $('#searchDropdownBox select').find("option:selected").attr("classgroupuri") || '';
+        var institution = $('#searchDropdownBox select').find("option:selected").attr("institution") || '';
+        var otherfilters = $('#searchDropdownBox select').find("option:selected").attr("otherfilters") || '';
+
+        document.location.href = '<%=ResolveUrl("~/search/default.aspx")%>?searchtype=' + searchtype + '&searchfor=' + keyword +
+            '&classgroupuri=' + classgroupuri + '&institution=' + institution + '&otherfilters=' + otherfilters + '&exactphrase=false&new=true';
         return true;
     }
-
 </script>
 
 

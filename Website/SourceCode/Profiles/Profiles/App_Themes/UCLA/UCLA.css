@@ -6,15 +6,16 @@
 /* global variables */
 :root {
 
-    /* UCLA warning orange. This is from https://webcomponents.ucla.edu/build/1.0.0-beta.8/docs/colors/denotive.html */
-    --heading-color: #F57F17;
+    /* UCLA blue, as requested. note: this is very close to the link color */
+    --heading-color: #2774AE;
     /* as used at www.ucla.edu */
     --generic-link-color: rgb(30, 75, 135);
     /* as specified in style guide */
     --generic-link-visited-color: #00598C;
     /* darkest blue from https://webcomponents.ucla.edu/build/1.0.0-beta.8/docs/colors/layout.html */
     --very-dark-background-color: #2774AE;
-
+    /* official 10% tint of UC Davis blue, requested by UCLA team */
+    --menu-important-background-color: #CDD6E0;
 }
 
 /* hide tippy-top menu */
@@ -22,12 +23,17 @@
     display: none;
 }
 
-/* logo zone is white on dark blue */
-#ctl00_MasterPageHeaderUCLA,
+#ctl00_MasterPageHeaderUCLA {
+    background-color: #1C416A;
+    background-image: url("/App_Themes/UCLA/Images/ucla-profiles-banner-background-wide.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .researcherprofiles--institution-header,
 .researcherprofiles--institution-header--site-logo a {
-    /* UCLA darkest blue */
-    background: #003B5C;
+    background: transparent;
     color: white !important;
 }
 

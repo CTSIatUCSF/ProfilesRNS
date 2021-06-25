@@ -127,6 +127,10 @@ h2,
     color: var(--heading-color);
 }
 
+input.form-control {
+    color: var(--text-color);
+}
+
 /* ############################################################################################ */
 /* ZAP JUNK SITE-WIDE
 /* ############################################################################################ */
@@ -197,12 +201,13 @@ span.unused,
         max-height: 2rem !important
     }
 
-    /* hide search bar and history in menu */
+    /* hide search bar, history, other sites in menu */
     /* TODO: should we hide search options as well? */
     /* DREAM: every menu item should have a class */
     .prns-main .search,
     .prns-main #nav-search-in,
-    .prns-main li a[href*="history"] {
+    .prns-main li a[href*="history"],
+    .prns-main li+li+li a[href*="/search/"] {
         display: none !important;
     }
 
@@ -1061,6 +1066,24 @@ body.about .share {
     padding: 0 2rem !important;
 }
 
+/* make the tabs a little smaller, for narrow responsive screens */
+/* and recolor them so the *selected* one is highlighted, not the unselected one */
+
+.researcherprofiles--home-page .content-main ul.tabmenu li {
+    border-width: 1px;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-color: var(--highlighted-panel-border-color);
+    background: var(--page-background-color) !important;
+    padding: 0.5rem 1.25rem;
+    height: 2.2rem !important;
+    font-size: 1rem;
+}
+
+.researcherprofiles--home-page .content-main ul.tabmenu li.tab:not(.selected) {
+    border-bottom-style: solid;
+}
+
 /* reset sizes on all three search rows, including the heading */
 .researcherprofiles--home-page .profilesContentMain .tabContainer>.searchForm>table>tbody>tr>td>div {
     margin: 0;
@@ -1595,4 +1618,14 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
 /* DREAM: remove from upstream */
 .researcherprofiles--search-results-page a[href*='/direct/default.aspx?'] {
     display: none;
+}
+
+// This is just a sample script. Paste your real code (javascript or HTML) here.
+
+if ('this_is'==/an_example/) {
+    of_beautifier();
+}
+
+else {
+    var a=b?(c%d): e[f];
 }

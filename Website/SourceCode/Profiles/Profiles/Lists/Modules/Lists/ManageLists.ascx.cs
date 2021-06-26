@@ -62,7 +62,7 @@ namespace Profiles.Lists.Modules.Lists
 
  //                   litJS.Text = string.Format("<script>$('.pageTitle').children('h2').html('My Person List after update ({0})'</script>", totalitems);
                     litJS.Text += string.Format("<script type='text/javascript'>jQuery('#navMyLists ul').remove();jQuery('#list-count').html('{0}');</script>", totalitems);
-                    
+                    Response.Redirect(Brand.GetThemedDomain() + "/lists/default.aspx?type=view");
                     break;
                 case "summary":
 

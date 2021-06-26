@@ -9,7 +9,7 @@
             <ProgressTemplate>
                 <div class="modalupdate">
                     <div class="modalcenter">
-                        <img alt="Updating..." src="<%=Profiles.Framework.Utilities.Root.Domain%>/edit/images/loader.gif" /><br/>
+                        <img alt="Updating..." src="<%=Profiles.Framework.Utilities.Brand.GetThemedDomain()%>/edit/images/loader.gif" /><br/>
                             <i>This operation might take several minutes to complete. Please do not close your browser.</i>
                     </div>
                 </div>

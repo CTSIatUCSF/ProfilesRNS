@@ -52,7 +52,7 @@ namespace Profiles.Framework.Modules.MainMenu
                     seeall = "See all " + networkitem.Count.ToString() + " people";
                 else
                     seeall = "See all people";
-                litActiveNetworkDetails.Text = "<li  style='height: 25px !important'><a style='border-left:1px solid #383737;border-right:1px solid #383737;border-bottom:1px solid #383737;border-top:2px solid #383737;' href='" + Root.Domain + "/activenetwork/default.aspx'>" + seeall + "</a></li>";
+                litActiveNetworkDetails.Text = "<li  style='height: 25px !important'><a style='border-left:1px solid #383737;border-right:1px solid #383737;border-bottom:1px solid #383737;border-top:2px solid #383737;' href='" + Brand.GetThemedDomain() + "/activenetwork/default.aspx'>" + seeall + "</a></li>";
 
             }
             else

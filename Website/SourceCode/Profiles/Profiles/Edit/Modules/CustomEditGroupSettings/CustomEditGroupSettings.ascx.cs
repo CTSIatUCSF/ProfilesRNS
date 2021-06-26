@@ -48,7 +48,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings
             else
                 Response.Redirect("~/search");
 
-            litBackLink.Text = "<a href='" + Root.Domain + "/edit/default.aspx?subject=" + this.SubjectID + "'>Edit Menu</a> &gt; <b>Group Settings</b>";
+            litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + this.SubjectID + "'>Edit Menu</a> &gt; <b>Group Settings</b>";
 
             
             //imbAddArror.Visible = true;

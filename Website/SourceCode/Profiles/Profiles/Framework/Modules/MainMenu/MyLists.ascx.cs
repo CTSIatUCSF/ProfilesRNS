@@ -31,12 +31,12 @@ namespace Profiles.Framework.Modules.MainMenu
                 //if (!string.IsNullOrEmpty((string)HttpContext.Current.Session["PERSON-SEARCH-ADD"]))
                 if (pageType == pageTypes.SearchResults)
                 {
-                    hlAddToList.NavigateUrl = String.Format("{0}/lists/default.aspx?type=search", Root.Domain);
+                    hlAddToList.NavigateUrl = String.Format("{0}/lists/default.aspx?type=search", Brand.GetThemedDomain());
                     hlAddToList.Text = "Add matching people to my list";
                     hlAddToList.Attributes.Add("style", "width:255px;");
 
                     if (count > 0)
-                        hlRemoveFromList.NavigateUrl = string.Format("{0}/lists/default.aspx?type=removefromsearch", Root.Domain);
+                        hlRemoveFromList.NavigateUrl = string.Format("{0}/lists/default.aspx?type=removefromsearch", Brand.GetThemedDomain());
                     else { litJS.Text += string.Format("<script type='text/javascript'>{0}</script>", "jQuery('#remove-people-from-list').remove();"); }
 
 

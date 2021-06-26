@@ -57,7 +57,7 @@ namespace Profiles.Edit.Modules.CustomEditWebsite
 
             base.GetNetworkProfile(this.SubjectID, this.PredicateID);
 
-            litBackLink.Text = "<a href='" + Root.Domain + "/edit/default.aspx?subject=" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+            litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
 
             btnEditAwards.Text = "Add " + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "(s)";
             lblNoAwards.Text = "No " + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "s have been added.";

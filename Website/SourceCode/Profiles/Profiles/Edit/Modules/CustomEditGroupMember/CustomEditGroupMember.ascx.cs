@@ -77,12 +77,12 @@ namespace Profiles.Edit.Modules.CustomEditGroupMember
 
 
             if (sm.Session().UserID == 0)
-                Response.Redirect(Root.Domain + "/search");
+                Response.Redirect(Brand.GetThemedDomain() + "/search");
       
             string predicateName;
             if (isManagerPage) predicateName = "Group Managers";
             else predicateName = "Group Members";
-            litBackLink.Text = "<a href='" + Root.Domain + "/edit/default.aspx?subject=" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + predicateName + "</b>";
+            litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + predicateName + "</b>";
             btnLitAddGroupMembers.Text = "Add " + predicateName;
 
             if (Request.QueryString["fname"] != null)
@@ -259,7 +259,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupMember
 
         public string GetURLDomain()
         {
-            return Root.Domain;
+            return Brand.GetThemedDomain();
         }
         public DataSet MyDataSet
         {
@@ -286,7 +286,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupMember
                 this.Offset = 0;
 
                 this.ExecuteSearch(true);
-                //if (Session["pnlAddGroupMembers.Visible"] != null) btnImgAddGroupMembers.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+                //if (Session["pnlAddGroupMembers.Visible"] != null) btnImgAddGroupMembers.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareDownArrow.gif";
             }
             catch (Exception ex)
             {
@@ -341,7 +341,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupMember
             gridSearchResults.DataBind();
             pnlProxySearchResults.Visible = false;
             pnlProxySearch.Visible = true;
-            //if (Session["pnlAddGroupMembers.Visible"] != null) btnImgAddGroupMembers.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+            //if (Session["pnlAddGroupMembers.Visible"] != null) btnImgAddGroupMembers.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareDownArrow.gif";
         }
 
         protected void btnSearchCancel_Click(object sender, EventArgs e)
@@ -397,8 +397,8 @@ namespace Profiles.Edit.Modules.CustomEditGroupMember
                 }
             }
             btnAddGroupMembers_OnClick(sender, e);
-            if (isManagerPage) Response.Redirect(Root.Domain + "/edit/default.aspx?subject=" + Request.QueryString["subject"] + "&predicateuri=http://profiles.catalyst.harvard.edu/ontology/prns!hasGroupManager&module=DisplayItemToEdit&ObjectType=Entity");
-            else Response.Redirect(Root.Domain + "/edit/default.aspx?subject=" + Request.QueryString["subject"] + "&predicateuri=http%3a%2f%2fvivoweb.org%2fontology%2fcore!contributingRole&module=DisplayItemToEdit&ObjectType=Entity");
+            if (isManagerPage) Response.Redirect(Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + Request.QueryString["subject"] + "&predicateuri=http://profiles.catalyst.harvard.edu/ontology/prns!hasGroupManager&module=DisplayItemToEdit&ObjectType=Entity");
+            else Response.Redirect(Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + Request.QueryString["subject"] + "&predicateuri=http%3a%2f%2fvivoweb.org%2fontology%2fcore!contributingRole&module=DisplayItemToEdit&ObjectType=Entity");
         }
 
        
@@ -406,7 +406,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupMember
         {
             if (Session["pnlAddGroupMembers.Visible"] == null)
             {
-                //btnImgAddGroupMembers.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+                //btnImgAddGroupMembers.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareDownArrow.gif";
                 searchReset();
                 Session["pnlAddGroupMembers.Visible"] = true;
             }
@@ -421,7 +421,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupMember
         private void LoadAssets()
         {
             HtmlLink Searchcss = new HtmlLink();
-            Searchcss.Href = Root.Domain + "/Search/CSS/search.css";
+            Searchcss.Href = Brand.GetThemedDomain() + "/Search/CSS/search.css";
             Searchcss.Attributes["rel"] = "stylesheet";
             Searchcss.Attributes["type"] = "text/css";
             Searchcss.Attributes["media"] = "all";

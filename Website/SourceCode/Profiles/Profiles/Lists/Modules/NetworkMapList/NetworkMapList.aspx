@@ -152,7 +152,7 @@
                 ProfilesRNS.currentPage.InitPage();
                 ProfilesRNS.currentPage.InitPage();
             });
-            jQuery('a[href*="<%=Profiles.Framework.Utilities.Root.Domain%>"]').attr('target', '_parent');
+            jQuery('a[href*="<%=Profiles.Framework.Utilities.Brand.GetThemedDomain()%>"]').attr('target', '_parent');
 
         </script>
 

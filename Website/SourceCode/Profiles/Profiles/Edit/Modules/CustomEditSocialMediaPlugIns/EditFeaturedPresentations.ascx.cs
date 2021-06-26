@@ -31,7 +31,7 @@ namespace Profiles.Edit.Modules.EditSocialMedia.FeaturedPresentations
             this.PlugInName = "FeaturedPresentations";
             data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.PlugInName);
 
-            litBackLink.Text = "<a href='" + Root.Domain + "/edit/default.aspx?subject=" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+            litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
 
             if (data.Length > 0)
                 dataexists = true;
@@ -44,7 +44,7 @@ namespace Profiles.Edit.Modules.EditSocialMedia.FeaturedPresentations
         {
             HtmlGenericControl jsscript1 = new HtmlGenericControl("script");
             jsscript1.Attributes.Add("type", "text/javascript");
-            jsscript1.Attributes.Add("src", Root.Domain + "/Profile/Modules/CustomViewSocialMediaPlugins/SlideShareJquery.js");
+            jsscript1.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/CustomViewSocialMediaPlugins/SlideShareJquery.js");
             Page.Header.Controls.Add(jsscript1);
 
             litjs.Text = base.jsStart + "var rss = " + Get(data) + "; rssCallback(rss);" + base.jsEnd;
@@ -58,7 +58,7 @@ namespace Profiles.Edit.Modules.EditSocialMedia.FeaturedPresentations
         {
             HtmlGenericControl jsscript1 = new HtmlGenericControl("script");
             jsscript1.Attributes.Add("type", "text/javascript");
-            jsscript1.Attributes.Add("src", Root.Domain + "/Profile/Modules/CustomViewSocialMediaPlugins/SlideShareJquery.js");
+            jsscript1.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/CustomViewSocialMediaPlugins/SlideShareJquery.js");
             Page.Header.Controls.Add(jsscript1);
             txtUsername.Attributes.Add("style", "width:300px");
         }

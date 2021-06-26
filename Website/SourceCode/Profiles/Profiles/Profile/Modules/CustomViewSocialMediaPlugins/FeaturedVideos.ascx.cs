@@ -28,13 +28,13 @@ namespace Profiles.Profile.Modules.CustomViewSocialMediaPlugins
 
             HtmlGenericControl jsscript1 = new HtmlGenericControl("script");
             jsscript1.Attributes.Add("type", "text/javascript");
-            jsscript1.Attributes.Add("src", Root.Domain + "/Profile/Modules/CustomViewSocialMediaPlugins/YouTubeJquery.js");
+            jsscript1.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/CustomViewSocialMediaPlugins/YouTubeJquery.js");
             Page.Header.Controls.Add(jsscript1);
             this.PlugInName = "FeaturedVideos";
             litjs.Text = base.SocialMediaInit(this.PlugInName);
 
             HtmlLink Displaycss = new HtmlLink();
-            Displaycss.Href = Root.Domain + "/Profile/Modules/CustomViewSocialMediaPlugins/style.css";
+            Displaycss.Href = Brand.GetThemedDomain() + "/Profile/Modules/CustomViewSocialMediaPlugins/style.css";
             Displaycss.Attributes["rel"] = "stylesheet";
             Displaycss.Attributes["type"] = "text/css";
             Displaycss.Attributes["media"] = "all";

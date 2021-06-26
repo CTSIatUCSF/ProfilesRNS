@@ -36,7 +36,7 @@ namespace Profiles.Framework.Modules.RDFLink
             string uri = base.BaseData.SelectSingleNode("//rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
 
             //IF the URI is in our system then we build the link. If not then we do not build the link for the data.
-            if (uri.Contains(Brand.GetThemedDomain()))
+            if (uri.Contains(Root.Domain))
             {
                 string file = string.Empty;
                 string spostring = string.Empty;

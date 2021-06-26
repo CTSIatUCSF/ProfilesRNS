@@ -72,7 +72,7 @@ namespace Profiles.Framework
                 Framework.Utilities.DebugLogging.Log(ex.Message + " ++ master page  protected void Page_Load(object sender, EventArgs e) " + ex.StackTrace);
 
                 HttpContext.Current.Session["GLOBAL_ERROR"] = ex.Message + " ++ " + ex.StackTrace;
-                Response.Redirect(Root.Domain + "/error/default.aspx");
+                Response.Redirect(Brand.GetThemedDomain() + "/error/default.aspx");
                 Response.End();
             }
         }
@@ -220,7 +220,7 @@ namespace Profiles.Framework
 
             /*** UCSF Collision
             HtmlLink Profilescss = new HtmlLink();
-            Profilescss.Href = Root.Domain + "/framework/css/profiles.css";
+            Profilescss.Href = Brand.GetThemedDomain() + "/framework/css/profiles.css";
             Profilescss.Attributes["rel"] = "stylesheet";
             Profilescss.Attributes["type"] = "text/css";
             Profilescss.Attributes["media"] = "all";
@@ -229,7 +229,7 @@ namespace Profiles.Framework
 
             HtmlGenericControl jsscript = new HtmlGenericControl("script");
             jsscript.Attributes.Add("type", "text/javascript");
-            jsscript.Attributes.Add("src", Root.Domain + "/Framework/JavaScript/profiles.js");
+            jsscript.Attributes.Add("src", Brand.GetThemedDomain() + "/Framework/JavaScript/profiles.js");
             Page.Header.Controls.Add(jsscript);
             ***/
 
@@ -611,7 +611,7 @@ namespace Profiles.Framework
 
         public string GetURLDomain()
         {
-            return Root.Domain;
+            return Brand.GetThemedDomain();
         }
 
         #region "Public Properties"

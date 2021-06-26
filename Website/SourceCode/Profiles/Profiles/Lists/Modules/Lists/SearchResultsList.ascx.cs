@@ -25,7 +25,7 @@ namespace Profiles.Lists.Modules.Lists
         {
                   
               
-            hlCreateList.NavigateUrl = String.Format("{0}/lists/default.aspx?type=search", Root.Domain);
+            hlCreateList.NavigateUrl = String.Format("{0}/lists/default.aspx?type=search", Brand.GetThemedDomain());
 
 
 

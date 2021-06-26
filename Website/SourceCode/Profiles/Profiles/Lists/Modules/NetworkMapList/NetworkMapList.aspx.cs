@@ -41,7 +41,7 @@ namespace Profiles.Lists.Modules.NetworkMapList
             //What application is currently being viewed then set the correct asset link.
 
             HtmlLink Profilescss = new HtmlLink();
-            Profilescss.Href = Root.Domain + "/framework/css/profiles.css";
+            Profilescss.Href = Brand.GetThemedDomain() + "/framework/css/profiles.css";
             Profilescss.Attributes["rel"] = "stylesheet";
             Profilescss.Attributes["type"] = "text/css";
             Profilescss.Attributes["media"] = "all";
@@ -50,13 +50,13 @@ namespace Profiles.Lists.Modules.NetworkMapList
 
             HtmlGenericControl jsscript = new HtmlGenericControl("script");
             jsscript.Attributes.Add("type", "text/javascript");
-            jsscript.Attributes.Add("src", Root.Domain + "/Framework/JavaScript/profiles.js");
+            jsscript.Attributes.Add("src", Brand.GetThemedDomain() + "/Framework/JavaScript/profiles.js");
             Page.Header.Controls.Add(jsscript);
 
 
 
             HtmlLink PRNStheme = new HtmlLink();
-            PRNStheme.Href = Root.Domain + "/framework/css/prns-theme.css";
+            PRNStheme.Href = Brand.GetThemedDomain() + "/framework/css/prns-theme.css";
             PRNStheme.Attributes["rel"] = "stylesheet";
             PRNStheme.Attributes["type"] = "text/css";
             PRNStheme.Attributes["media"] = "all";
@@ -64,14 +64,14 @@ namespace Profiles.Lists.Modules.NetworkMapList
 
 
             HtmlLink PRNSthemeMenusTop = new HtmlLink();
-            PRNSthemeMenusTop.Href = Root.Domain + "/framework/css/prns-theme-menus-top.css";
+            PRNSthemeMenusTop.Href = Brand.GetThemedDomain() + "/framework/css/prns-theme-menus-top.css";
             PRNSthemeMenusTop.Attributes["rel"] = "stylesheet";
             PRNSthemeMenusTop.Attributes["type"] = "text/css";
             PRNSthemeMenusTop.Attributes["media"] = "all";
             Page.Header.Controls.Add(PRNSthemeMenusTop);
 
             HtmlLink Displaycss = new HtmlLink();
-            Displaycss.Href = Root.Domain + "/Profile/CSS/display.css";
+            Displaycss.Href = Brand.GetThemedDomain() + "/Profile/CSS/display.css";
             Displaycss.Attributes["rel"] = "stylesheet";
             Displaycss.Attributes["type"] = "text/css";
             Displaycss.Attributes["media"] = "all";

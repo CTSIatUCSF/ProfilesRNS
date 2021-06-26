@@ -55,7 +55,7 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
         {
 
             if (sm.Session().UserID == 0)
-                Response.Redirect(Root.Domain + "/search");
+                Response.Redirect(Brand.GetThemedDomain() + "/search");
 
             data = new Profiles.GroupAdmin.Utilities.DataIO();
 
@@ -151,7 +151,7 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
         {
             if (Session["pnlAddGroupMembers.Visible"] == null)
             {
-//                btnImgAddGroup.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+//                btnImgAddGroup.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareDownArrow.gif";
                 addGroupsReset();
                 phDeletedGroups.Visible = false;
                 Session["pnlAddGroupMembers.Visible"] = true;
@@ -175,7 +175,7 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
         {
             if (Session["pnlDeletedGroups.Visible"] == null)
             {
-//                btnImgDeletedGroups.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+//                btnImgDeletedGroups.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareDownArrow.gif";
                 pnlDeletedGroups.Visible = true;
                 phAddGroups.Visible = false;
                 gvGroups.Visible = false;
@@ -308,7 +308,7 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
 
         public string GetURLDomain()
         {
-            return Root.Domain;
+            return Brand.GetThemedDomain();
         }
 
         class Group

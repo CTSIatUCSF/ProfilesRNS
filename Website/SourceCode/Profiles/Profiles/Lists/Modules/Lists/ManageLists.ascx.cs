@@ -63,7 +63,6 @@ namespace Profiles.Lists.Modules.Lists
                     // litJS.Text += string.Format("<script type='text/javascript'>jQuery('#navMyLists ul').remove();jQuery('#list-count').html('{0}');</script>", this.ProfilesList.ListItems.Count.ToString());
                     Response.Redirect(Brand.GetThemedDomain() + "/search/default.aspx?showcolumns=1&searchtype=people&otherfilters=");
 
-                    
                     break;
                 case "summary":
 

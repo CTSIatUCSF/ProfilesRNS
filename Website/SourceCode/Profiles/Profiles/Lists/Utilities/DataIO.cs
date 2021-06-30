@@ -166,10 +166,10 @@ namespace Profiles.Lists.Utilities
         public static string GetListCount()
         {
             SessionManagement sm = new SessionManagement();
-            //if (sm.Session().ListID == null || sm.Session().ListSize == null)
-            //{
+            if (sm.Session().ListID == null || sm.Session().ListSize == null)
+            {
                 Profiles.Lists.Utilities.DataIO.GetList();
-            //}
+            }
             return sm.Session().ListSize.ToString();
 
 
@@ -519,8 +519,7 @@ namespace Profiles.Lists.Utilities
                 cmd.Parameters.Add(parm);
                 parm = new SqlParameter("@SearchXML", SqlDbType.Xml);
                 parm.Direction = ParameterDirection.Input;
-                //parm.Value = HttpContext.Current.Session["searchrequest"].ToString();
-                parm.Value= Framework.Utilities.Cache.FetchObject("SEARCHFOR_" + listid).ToString();
+                parm.Value = HttpContext.Current.Session["SEARCHREQUEST"].ToString();
                 cmd.Parameters.Add(parm);
                 parm = new SqlParameter("@Remove", SqlDbType.Bit);
                 parm.Direction = ParameterDirection.Input;

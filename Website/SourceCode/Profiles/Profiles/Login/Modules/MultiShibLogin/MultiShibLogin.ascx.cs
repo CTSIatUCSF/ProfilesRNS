@@ -33,10 +33,10 @@ namespace Profiles.Login.Modules.MultiShibLogin
 
                 SessionManagement sm = new SessionManagement();
                 
-                // Note, it seems this is NEVER USED
+                // Note, this is used when used clicks Edit My Profile after logging in
                 if ("login".Equals(Request["method"]) && sm.Session().IsLoggedIn())
                 {
-                    Response.Redirect(ShibLogin.ShibLogin.GetRedirectForAuthenticatedUser(redirectto));
+                    Response.Redirect(ShibLogin.ShibLogin.GetRedirectForAuthenticatedUser("true".Equals(Request["edit"]) ? "edit" : redirectto));
                 }
                 else if ("logout".Equals(Request["method"]))
                 {

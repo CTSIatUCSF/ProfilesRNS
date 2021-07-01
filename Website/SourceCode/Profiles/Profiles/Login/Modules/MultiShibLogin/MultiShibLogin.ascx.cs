@@ -29,14 +29,14 @@ namespace Profiles.Login.Modules.MultiShibLogin
         {
             if (!IsPostBack)
             {
-                string redirectto = Request["redirectto"];
+                string redirectto = getRedirectToFromRequest(Request);
 
                 SessionManagement sm = new SessionManagement();
                 
                 // Note, this is used when used clicks Edit My Profile after logging in
                 if ("login".Equals(Request["method"]) && sm.Session().IsLoggedIn())
                 {
-                    Response.Redirect(ShibLogin.ShibLogin.GetRedirectForAuthenticatedUser("true".Equals(Request["edit"]) ? "edit" : redirectto));
+                    Response.Redirect(ShibLogin.ShibLogin.GetRedirectForAuthenticatedUser(redirectto));
                 }
                 else if ("logout".Equals(Request["method"]))
                 {
@@ -58,7 +58,7 @@ namespace Profiles.Login.Modules.MultiShibLogin
                     {
                         remainingDomains = Request["remainingDomains"];
                     }
-                    Response.Redirect(GetRedirect(false, remainingDomains, "continue", "", "", Request["redirectto"]));
+                    Response.Redirect(GetRedirect(false, remainingDomains, "continue", "", "", getRedirectToFromRequest(Request)));
                 }
                 else if ("shibboleth".Equals(Request["method"]))
                 {
@@ -110,6 +110,11 @@ namespace Profiles.Login.Modules.MultiShibLogin
         {
         }
 
+        public static String getRedirectToFromRequest(HttpRequest req)
+        {
+            return "true".Equals(req["edit"]) ? "edit" : req["redirectto"];
+        }
+
         public static List<String> GetListOfDomainsShibbolizedFirst()
         {
             List<String> domains = new List<String>();
@@ -151,7 +156,7 @@ namespace Profiles.Login.Modules.MultiShibLogin
             string displayNameHeader = institution.GetShibbolethDisplayNameHeader(); //ConfigurationManager.AppSettings["Shibboleth.DisplayNameHeader"];
 
             // this is the only time we pass through Shibboleth. We currently assume Root.domain is the one that is set up.
-            string target = GetRedirect(true, String.Join(",", GetListOfDomainsShibbolizedFirst().ToArray()), "", userNameHeader, String.IsNullOrEmpty(displayNameHeader) ? userNameHeader : displayNameHeader, Request["redirectto"]);
+            string target = GetRedirect(true, String.Join(",", GetListOfDomainsShibbolizedFirst().ToArray()), "", userNameHeader, String.IsNullOrEmpty(displayNameHeader) ? userNameHeader : displayNameHeader, getRedirectToFromRequest(Request));
        
             string url = ConfigurationManager.AppSettings["Shibboleth.LoginURL"] + "?entityID=" + HttpUtility.UrlEncode(institution.GetShibbolethIdP()) +
                     "&target=" + HttpUtility.UrlEncode(target);

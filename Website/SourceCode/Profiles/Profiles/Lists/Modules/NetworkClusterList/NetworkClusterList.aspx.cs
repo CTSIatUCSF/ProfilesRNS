@@ -5,7 +5,7 @@ using Profiles.Framework.Utilities;
 
 namespace Profiles.Lists.Modules.NetworkClusterList
 {
-    public partial class NetworkClusterList : System.Web.UI.Page
+    public partial class NetworkClusterList : BrandedPage
     {
        
         protected void Page_PreRender(object sender, EventArgs e)

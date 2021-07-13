@@ -127,6 +127,7 @@ h2,
 }
 
 input.form-control,
+input.inputText,
 .PropertyGroupData {
     color: var(--text-color) !important;
 }
@@ -1639,4 +1640,40 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
 /* In search results, click on "why" link, and list of properties/values th's should have standard background color */
 .researcherprofiles--search-results-page #ctl00_ContentMain_rptMain_ctl00_ctl00_gvConnectionDetails th {
     background-color: var(--highlighted-panel-background-color);
+}
+
+/* ############################################################################################ */
+/* FOOTER */
+/* ############################################################################################ */
+
+/* make sure main content stretches to at least the bottom of viewport */
+#page-container {
+    min-height: 100vh;
+}
+
+/* now stick the footer to the very bottom of the container */
+#page-container .researcherprofiles--footer {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border-top: 0.25rem solid #ccc;
+    font-size: x-small;
+    color: var(--text-muted-color);
+}
+
+/* it's ugly if long footer text blocks stretch all the way across, so dial it back */
+#researcherprofiles--footer-collaboration,
+#researcherprofiles--footer-combined-text-block {
+    max-width: 60rem;
+    margin: 0 auto;
+}
+
+/* list of prominent links? make them bold, standalone, fit on a line */
+#researcherprofiles--footer-contact ul li {
+    display: inline;
+    font-weight: bold;
+    margin: 0 2rem;
+    font-size: 1rem;
 }

@@ -10,9 +10,8 @@
     --generic-link-visited-color: #4a3696;
     --max-main-content-width: 980px;
 
-    /* used for significant titles */
+    /* used for significant titles. default is UC blue */
     --heading-color: #1295d8;
-    /* UC blue */
 
     /* used for errors, alerts, etc. */
     --alert-red-color: rgb(172, 27, 48);
@@ -127,8 +126,9 @@ h2,
     color: var(--heading-color);
 }
 
-input.form-control {
-    color: var(--text-color);
+input.form-control,
+.PropertyGroupData {
+    color: var(--text-color) !important;
 }
 
 /* ############################################################################################ */
@@ -1564,7 +1564,6 @@ div[id="divDetailCheck"] label {
 .researcherprofiles--search-results-page .panelMain table:first-of-type tbody tr:first-child td[style] div {
     float: none !important;
     margin: 0 auto;
-    text-align: center;
 }
 
 /* if the "Sort / Show  Click..." content is too close to each other, hide the "Why" text on small screens */
@@ -1620,12 +1619,24 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
     display: none;
 }
 
-// This is just a sample script. Paste your real code (javascript or HTML) here.
+/* ############################################################################################ */
+/* SEARCH RESULTS PAGE: WHY */
+/* ############################################################################################ */
 
-if ('this_is'==/an_example/) {
-    of_beautifier();
+/* List of properties/values have td's with table-row display?! normalize table cells to table-cell display, and remove hard-coded widths */
+.researcherprofiles--search-results-page #ctl00_ContentMain_rptMain_ctl00_ctl00_gvConnectionDetails td.connectionTableRow,
+.researcherprofiles--search-results-page #ctl00_ContentMain_rptMain_ctl00_ctl00_gvConnectionDetails th {
+    display: table-cell;
+    padding: 0.5rem;
+    width: auto !important;
 }
 
-else {
-    var a=b?(c%d): e[f];
+/* There's an arrow between the "Search results" and the topic. This centers the arrow, instead of having it be left-aligned by default */
+.researcherprofiles--search-results-page .connectionContainer .connectionContainerArrow {
+    text-align: center;
+}
+
+/* In search results, click on "why" link, and list of properties/values th's should have standard background color */
+.researcherprofiles--search-results-page #ctl00_ContentMain_rptMain_ctl00_ctl00_gvConnectionDetails th {
+    background-color: var(--highlighted-panel-background-color);
 }

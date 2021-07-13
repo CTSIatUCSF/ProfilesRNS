@@ -35,11 +35,5 @@
 			<asp:ImageButton ImageUrl="~/login/images/usc.edu.png" runat="server" ID="LoginUSC"
 					InstitutionAbbreviation="USC" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login to USC"/>
 		</div>
-<!--
-		<div>
-			<asp:ImageButton ImageUrl="~/login/images/lbnl.gov.png" runat="server" ID="LoginLBNL"
-					InstitutionAbbreviation="LBNL" Text="Login" OnClick="cmdSubmit_Click" alternatetext="Login to LBNL"/>
-		</div>
--->	
 </div>
 

@@ -40,11 +40,11 @@
             <div style="display: inline-flex;">
                 <div>
                     <div style="font-weight: bold;">Title</div>
-                    <asp:TextBox ID="txtTitle" runat="server" MaxLength="100" Width="220px" title="Title"></asp:TextBox>
+                    <asp:TextBox ID="txtTitle" runat="server" MaxLength="500" Width="220px" title="Title"></asp:TextBox>
                 </div>
                 <div style="padding-left: 10px">
                     <div style="font-weight: bold;">URL</div>
-                    <asp:TextBox ID="txtURL" runat="server" MaxLength="100" Width="220px" title="URL"></asp:TextBox>
+                    <asp:TextBox ID="txtURL" runat="server" MaxLength="500" Width="220px" title="URL"></asp:TextBox>
                 </div>
                 <div style="padding-left: 10px">
                     <asp:Literal ID="litPubDateLabel" runat="server"><div style="font-weight: bold;">Publication Date</div></asp:Literal>

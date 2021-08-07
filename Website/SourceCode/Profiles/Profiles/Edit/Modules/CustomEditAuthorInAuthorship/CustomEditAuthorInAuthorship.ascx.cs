@@ -1339,7 +1339,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 WebResponse myResponse = myRequest.GetResponse();
                 if (myResponse == null)
                 { return null; }
-                StreamReader sr = new StreamReader(myResponse.GetResponseStream());
+                StreamReader sr = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8);
                 return sr.ReadToEnd().Trim();
             }
             catch (WebException ex)

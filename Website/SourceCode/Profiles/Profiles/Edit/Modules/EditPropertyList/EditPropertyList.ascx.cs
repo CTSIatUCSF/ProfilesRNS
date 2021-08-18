@@ -74,6 +74,11 @@ namespace Profiles.Edit.Modules.EditPropertyList
                             continue;
                         }
                     }
+                    // skip mailing address for UCLA
+                    if (node.SelectSingleNode("@URI").Value.StartsWith("http://vivoweb.org/ontology/core#mailingAddress") && UCSFIDSet.ByNodeId[Subject].Institution != null && "UCLA".Equals(UCSFIDSet.ByNodeId[Subject].Institution.GetAbbreviation()))
+                    {
+                        continue;
+                    }
 
                     if (node.SelectSingleNode("@EditExisting").Value == "false"
                         && node.SelectSingleNode("@EditAddExisting").Value == "false"

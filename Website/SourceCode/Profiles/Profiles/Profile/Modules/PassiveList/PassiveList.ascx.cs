@@ -126,14 +126,14 @@ namespace Profiles.Profile.Modules.PassiveList
                     if (UCSFIDSet.ByPrettyURL.ContainsKey(personUrl))
                     {
                         itemurl.Visible = false;
-                        int personid = UCSFIDSet.ByPrettyURL[personUrl].PersonId;
+                        long nodeId = UCSFIDSet.ByPrettyURL[personUrl].NodeId;
                         Institution inst = UCSFIDSet.ByPrettyURL[personUrl].Institution;
 
                         ucsfPersonItem.Text = "<a href = '" + personUrl + "'>" +
                             "<div class='thumbnail'><img src = '" + Brand.GetByPrimaryInstituion(inst).BasePath +
-                            "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?person=" + personid + "&Thumbnail=True&Width=15' width='15' height='30'/></div>" +
+                            "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + nodeId + "&Thumbnail=True&Width=15' width='15' height='30'/></div>" +
                             il.ItemURLText +
-                            "<span class='authInst'>" + inst.GetAbbreviation() + "</span></a>";
+                            "<span class='researcherprofiles--institution-name-associated-with-researcher'>" + inst.GetAbbreviation() + "</span></a>";
                     }
                     else
                     {

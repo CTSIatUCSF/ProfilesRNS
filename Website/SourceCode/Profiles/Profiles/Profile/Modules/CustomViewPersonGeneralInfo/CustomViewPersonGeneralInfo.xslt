@@ -73,7 +73,13 @@
         </td>
       </tr>
     </xsl:if>
-    <xsl:if test="rdf:RDF[1]/rdf:Description[1]/vivo:mailingAddress/@rdf:resource !=''">
+    <xsl:if test="(rdf:RDF[1]/rdf:Description[1]/vivo:mailingAddress/@rdf:resource !='') and (
+            (rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/vivo:mailingAddress/@rdf:resource]/vivo:address1 !='') or 
+            (rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/vivo:mailingAddress/@rdf:resource]/vivo:address2 !='') or
+            (rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/vivo:mailingAddress/@rdf:resource]/vivo:address3 !='') or
+            (rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/vivo:mailingAddress/@rdf:resource]/vivo:addressCity !='') or
+            (rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/vivo:mailingAddress/@rdf:resource]/vivo:addressState !='') or
+            (rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/vivo:mailingAddress/@rdf:resource]/vivo:addressPostalCode !=''))">
       <tr>
         <th>Address</th>
         <td>

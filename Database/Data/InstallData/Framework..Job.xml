@@ -15,13 +15,13 @@
     <JobGroup>1</JobGroup>
     <Step>3</Step>
     <IsActive>1</IsActive>
-    <Script>UPDATE [Ontology.Import].OWL SET Graph = 3 WHERE name = 'PRNS_1.3'</Script>
+    <Script>UPDATE [Ontology.Import].OWL SET Graph = 3 WHERE name = 'PRNS_1.4'</Script>
   </Row>
   <Row>
     <JobGroup>1</JobGroup>
     <Step>4</Step>
     <IsActive>1</IsActive>
-    <Script>UPDATE [Ontology.Import].OWL SET Graph = 4 WHERE name = 'ORNG_1.0'</Script>
+    <Script>Insert into [Ontology.Import].OWL (Name, Graph) values('PLUGINS_1.0', 5)</Script>
   </Row>
   <Row>
     <JobGroup>1</JobGroup>
@@ -33,55 +33,67 @@
     <JobGroup>1</JobGroup>
     <Step>6</Step>
     <IsActive>1</IsActive>
-    <Script>EXEC [Ontology.Import].[ConvertOWL2Triple] @OWL = 'PRNS_1.3'</Script>
+    <Script>EXEC [Ontology.Import].[ConvertOWL2Triple] @OWL = 'PRNS_1.4'</Script>
   </Row>
   <Row>
     <JobGroup>1</JobGroup>
     <Step>7</Step>
     <IsActive>1</IsActive>
-    <Script>EXEC [Ontology.Import].[ConvertOWL2Triple] @OWL = 'ORNG_1.0'</Script>
+    <Script>EXEC [RDF.Stage].[LoadTriplesFromOntology] @Truncate = 1</Script>
   </Row>
   <Row>
     <JobGroup>1</JobGroup>
     <Step>8</Step>
     <IsActive>1</IsActive>
-    <Script>EXEC [RDF.Stage].[LoadTriplesFromOntology] @Truncate = 1</Script>
+    <Script>EXEC [RDF.Stage].[ProcessTriples]</Script>
   </Row>
   <Row>
     <JobGroup>1</JobGroup>
     <Step>9</Step>
     <IsActive>1</IsActive>
-    <Script>EXEC [RDF.Stage].[ProcessTriples]</Script>
+    <Script>EXEC [Ontology.].[UpdateDerivedFields]</Script>
   </Row>
   <Row>
     <JobGroup>1</JobGroup>
     <Step>10</Step>
     <IsActive>1</IsActive>
-    <Script>EXEC [Ontology.].[UpdateDerivedFields]</Script>
+    <Script>EXEC [Ontology.].CleanUp @action='UpdateIDs'</Script>
   </Row>
   <Row>
     <JobGroup>1</JobGroup>
     <Step>11</Step>
     <IsActive>1</IsActive>
-    <Script>EXEC [Ontology.].CleanUp @action='UpdateIDs'</Script>
+    <Script>EXEC [Profile.Data].[Concept.Mesh.ParseMeshXML]</Script>
   </Row>
   <Row>
     <JobGroup>1</JobGroup>
     <Step>12</Step>
     <IsActive>1</IsActive>
-    <Script>EXEC [Profile.Data].[Concept.Mesh.ParseMeshXML]</Script>
+    <Script>EXEC [Profile.Cache].[Concept.Mesh.UpdateTreeTop]</Script>
   </Row>
   <Row>
     <JobGroup>1</JobGroup>
     <Step>13</Step>
     <IsActive>1</IsActive>
-    <Script>EXEC [Profile.Cache].[Concept.Mesh.UpdateTreeTop]</Script>
+    <Script>EXEC [Utility.NLP].[UpdateThesaurus]</Script>
   </Row>
-  <Row>
+    <Row>
     <JobGroup>1</JobGroup>
     <Step>14</Step>
     <IsActive>1</IsActive>
-    <Script>EXEC [Utility.NLP].[UpdateThesaurus]</Script>
+    <Script>EXEC [Profile.Module].[GenericRDF.AddUpdateOntology] @pluginName='FeaturedPresentations'</Script>
+  </Row>
+    <Row>
+    <JobGroup>1</JobGroup>
+    <Step>15</Step>
+    <IsActive>1</IsActive>
+    <Script>EXEC [Profile.Module].[GenericRDF.AddUpdateOntology] @pluginName='FeaturedVideos'</Script>
+  </Row>
+    <Row>
+    <JobGroup>1</JobGroup>
+    <Step>16</Step>
+    <IsActive>1</IsActive>
+    <Script>EXEC [Profile.Module].[GenericRDF.AddUpdateOntology] @pluginName='Twitter'</Script>
   </Row>
   <Row>
     <JobGroup>2</JobGroup>
@@ -304,6 +316,12 @@
     <Step>15</Step>
     <IsActive>1</IsActive>
     <Script>UPDATE [Profile.Data].[Group.General] SET ViewSecurityGroup = 0 WHERE EndDate &lt; GETDATE()</Script>
+  </Row>
+  <Row>
+    <JobGroup>7</JobGroup>
+    <Step>16</Step>
+    <IsActive>1</IsActive>
+    <Script>EXEC [Profile.Cache].[List.Export.UpdatePublications]</Script>
   </Row>
   <Row>
     <JobGroup>8</JobGroup>

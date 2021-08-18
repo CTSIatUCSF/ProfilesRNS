@@ -1,26 +1,39 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MainMenu.ascx.cs"
-    Inherits="Profiles.Framework.Modules.MainMenu.MainMenu" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MainMenu.ascx.cs" Inherits="Profiles.Framework.Modules.MainMenu.MainMenu" %>
 <%@ Register TagName="History" TagPrefix="HistoryItem" Src="~/Framework/Modules/MainMenu/History.ascx" %>
-<%--
-    Copyright (c) 2008-2012 by the President and Fellows of Harvard College. All rights reserved.  
-    Profiles Research Networking Software was developed under the supervision of Griffin M Weber, MD, PhD.,
-    and Harvard Catalyst: The Harvard Clinical and Translational Science Center, with support from the 
-    National Center for Research Resources and Harvard University.
+<%@ Register TagName="Lists" TagPrefix="MyLists" Src="~/Framework/Modules/MainMenu/MyLists.ascx" %>
+<div id="prns-nav">
+    <!-- MAIN NAVIGATION MENU -->
+    <nav>
+        <ul class="prns-main">
+            <li class="main-nav">
+                <a href="<%=ResolveUrl("~/search")%>">Home</a>
+            </li>
+            <li class="main-nav">
+                <a href="<%=ResolveUrl("~/about/AboutProfiles.aspx")%>">About</a>
+            </li>
+            <li class="main-nav">
+                <a href="<%=ResolveUrl("~/about/Help.aspx")%>">Help/FAQs</a>
+            </li>
+            <HistoryItem:History runat="server" ID="ProfileHistory" Visible="true" />
 
+			<li class="main-nav"><a href="<%=GetThemedDomain()%>/search/">Search Options</a>
+				<ul class="drop">
+					<li><a href="<%=GetDomainFor("UCD")%>/search/">UC Davis</a></li>
+					<li><a href="<%=GetDomainFor("UCI")%>/search/">UCI</a></li>
+					<li><a href="<%=GetDomainFor("UCLA")%>/search/">UCLA</a></li>
+					<li><a href="<%=GetDomainFor("UCSD")%>/search/">UCSD</a></li>
+					<li><a href="<%=GetDomainFor("UCSF")%>/search/">UCSF</a></li>
+					<li><a href="<%=GetDomainFor("UC")%>/search/">All UC Health</a></li>
+					<li><a href="<%=GetDomainFor("USC")%>/search/">USC</a></li>
+					<li><a href="<%=GetDomainFor("Default")%>/search/">All</a></li>
+				</ul>
+			</li>
 
-    Code licensed under a BSD License. 
-    For details, see: LICENSE.txt 
---%>
-
-<div id="navbarsearch-container">
-	<div id="navbarsearch">
-		<asp:Panel runat="server" ID="pnlNavBarSearch" Visible="true">
-			<!--input type="hidden" name="searchtype" id="searchtype" value="people" />
-			<input type="hidden" name="exactphrase" value="false" /-->
-			<div class="nav-facade-active" id="nav-search-in">
+            <!-- UCSF search -->
+			<li class="nav-facade-active" id="nav-search-in">
 				<div id="nav-search-in-content"></div>
 				<div class="searchSelect" id="searchDropdownBox">
-					<asp:DropDownList ID="searchTypeDropDown" CssClass="searchSelect" EnableViewState="true" runat="server">
+					<asp:DropDownList ID="searchTypeDropDown" CssClass="searchSelect form-control input-sm" EnableViewState="true" runat="server">
 						<asp:ListItem Value="Everything" Text="Everything" />
 						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupResearch" Text="Research" />
 						<asp:ListItem Value="http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupConcepts" Text="Concepts" />
@@ -36,40 +49,103 @@
 					</asp:DropDownList>
 				</div>
 			<!-- next few tags have > on next line to remove space between -->
-			</div
-			><div class="nav-searchfield-outer">
-				<input type="text" autocomplete="off" name="mainMenuSearchFor" placeholder="e.g. Smith or HIV" title="Search For" id="nav-searchfield" />
-			</div
-			><asp:Button runat="server" Text="Search" OnClick="Submit_Click" />
-		</asp:Panel>
-	</div>
+			</li>
+            <li class="search main-nav" style="width: 492px;">
+                <input name="search" id="menu-search" placeholder="e.g. Smith or HIV" type="text" style="padding-left: 5px;" class="form-control input-sm"/>
+            </li>
+            <li id="search-drop" class="last main-nav" style="float: right !important; width: 25px;">
+                <a href="#" style="padding: 0px; padding-top: 9px; margin: 0px;">
+                    <img src="<%=ResolveUrl("~/framework/images/arrowDown.png") %>" /></a>
+                <ul class="drop" style="top: 39px; left: 835px;">
+                    <asp:Literal runat="server" ID="litSearchOptions"></asp:Literal>
+                </ul>
+            </li>
+        </ul>
+        <!-- USER LOGIN MSG / USER FUNCTION MENU -->
+        <div id="prns-usrnav" class="pub" class-help="class should be [pub|user]">
+            <div class="loginbar">
+                <asp:Literal runat="server" ID="litLogin"></asp:Literal>
+            </div>
+            <!-- SUB NAVIGATION MENU (logged on) -->
+            <ul class="usermenu">
+                <asp:Literal runat="server" ID="litViewMyProfile"></asp:Literal>
+                <li style="margin-top: 0px !important;">
+                    <div class="divider"></div>
+                </li>
+                <asp:Literal runat="server" ID="litEditThisProfile"></asp:Literal>
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <asp:Literal runat="server" ID="litProxy"></asp:Literal>               
+                <li id="ListDivider">
+                    <div class="divider"></div>
+                </li>
+                <asp:Literal runat="server" ID="litDashboard"></asp:Literal>
+                <li id="navMyLists">
+                   <a href="#">My Person List (<span id="list-count">0</span>)</a>
+                    <MyLists:Lists runat="server" ID="MyLists" Visible="false" />
+                </li>
+                 <li>
+                    <div class="divider"></div>
+                </li>
+                <asp:Literal runat="server" ID="litGroups"></asp:Literal>
+                <li id="groupListDivider" visible="false" runat="server">
+                    <div class="divider"></div>
+                </li>
+                <asp:Literal runat="server" ID="litLogOut"></asp:Literal>
+            </ul>
+        </div>
+         <asp:Panel ID="HeroNavbarPanel" runat="server" SkinID="UCSF" Visible="false">
+            <!-- UCSF This panelActive navbar div holds the heros photos -->
+            <div class="panelActive navbar"/>
+        </asp:Panel>
+    </nav>
 </div>
-<div id="suckerfish-container">
-    <div id="suckerfishmenu">
-		<div class="activeContainer" id="defaultmenu">
-			<ul class="menu">
-				<li id="about"><a href="<%=GetThemedDomain()%>/about/AboutProfiles.aspx">ABOUT</a></li>
-				<li id="contact"><a href="<%=GetThemedDomain()%>/about/Help.aspx">HELP / FAQ</a></li>
-				<li class="item-home"><a href="<%=GetThemedDomain()%>">SEARCH OPTIONS</a>
-					<ul>
-						<li><a href="<%=GetDomainFor("UCD")%>/search/">UC Davis</a></li>
-						<li><a href="<%=GetDomainFor("UCI")%>/search/">UCI</a></li>
-						<li><a href="<%=GetDomainFor("UCLA")%>/search/">UCLA</a></li>
-						<li><a href="<%=GetDomainFor("UCSD")%>/search/">UCSD</a></li>
-						<li><a href="<%=GetDomainFor("UCSF")%>/search/">UCSF</a></li>
-						<li><a href="<%=GetDomainFor("UC")%>/search/">All UC Health</a></li>
-						<li><a href="<%=GetDomainFor("USC")%>/search/">USC</a></li>
-						<li><a href="<%=GetDomainFor("Default")%>/search/">All</a></li>
-					</ul>
-				</li>
-			</ul>
-			<span runat="server" id="panelMenu" visible="true"></span>
-<!--		<HistoryItem:History runat="server" ID="ProfileHistory" Visible="false" />  -->
-		</div>
-	</div>
-</div>
 
+<asp:Literal runat="server" ID="litJs"></asp:Literal>
+<script type="text/javascript">
+    $(function () {
+        setNavigation();
+    });
+    function setNavigation() {
+        var path = $(location).attr('href');
+        path = path.replace(/\/$/, "");
+        path = decodeURIComponent(path);
+        $(".prns-main li").each(function () {
+            var href = $(this).find("a").attr('href');
+            var urlParams = window.location.search;
+            if ((path + urlParams).indexOf(href) >= 0) {
+                $(this).addClass('landed');
+            }
+        });
+        return true;
+    }
+    $(document).ready(function () {
+        $("#menu-search").on("keypress", function (e) {
+            if (e.which == 13) {
+                minisearch();
+                return false;
+            }
+            return true;
+        });
+        /** Removed by UCSF
+        $("#img-mag-glass").on("click", function () {
+            minisearch();
+            return true;
+        });
+        **/
+    });
+    function minisearch() {
+        var keyword = $("#menu-search").val();
+        var searchtype = $('#searchDropdownBox select').find("option:selected").attr("searchtype");
+        var classgroupuri = $('#searchDropdownBox select').find("option:selected").attr("classgroupuri") || '';
+        var institution = $('#searchDropdownBox select').find("option:selected").attr("institution") || '';
+        var otherfilters = $('#searchDropdownBox select').find("option:selected").attr("otherfilters") || '';
 
-
+        document.location.href = '<%=ResolveUrl("~/search/default.aspx")%>?searchtype=' + searchtype + '&searchfor=' + keyword +
+            '&classgroupuri=' + classgroupuri + '&institution=' + institution + '&otherfilters=' + otherfilters + '&exactphrase=false&new=true';
+        return true;
+    }
+</script>
 
 

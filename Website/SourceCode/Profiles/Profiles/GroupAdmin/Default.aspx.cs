@@ -51,7 +51,7 @@ namespace Profiles.GroupAdmin
         private void LoadAssets()
         {
             HtmlLink Aboutcss = new HtmlLink();
-            Aboutcss.Href = Root.Domain + "/GroupAdmin/CSS/GroupAdmin.css";
+            Aboutcss.Href = Brand.GetThemedDomain() + "/GroupAdmin/CSS/GroupAdmin.css";
             Aboutcss.Attributes["rel"] = "stylesheet";
             Aboutcss.Attributes["type"] = "text/css";
             Aboutcss.Attributes["media"] = "all";
@@ -59,7 +59,7 @@ namespace Profiles.GroupAdmin
 
 
             HtmlLink editcss = new HtmlLink();
-            editcss.Href = Root.Domain + "/edit/CSS/edit.css";
+            editcss.Href = Brand.GetThemedDomain() + "/edit/CSS/edit.css";
             editcss.Attributes["rel"] = "stylesheet";
             editcss.Attributes["type"] = "text/css";
             editcss.Attributes["media"] = "all";

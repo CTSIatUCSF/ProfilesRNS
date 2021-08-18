@@ -39,7 +39,6 @@ type Direct..Schema.sql
 type ORNG..Schema.sql
 type ORCID..Schema.sql
 
-
 type ft.FullTextCatalog.sql
 
 type Profile.Import.Person.Table.sql
@@ -234,13 +233,23 @@ type Profile.Data.Group.Photo.Table.sql
 type Profile.Data.Publication.Group.Include.Table.sql
 type Profile.Data.Publication.Group.MyPub.General.Table.sql
 type Profile.Data.Publication.Group.Option.Table.sql
-rem type Profile.Data.Group.Websites.Table.sql
-rem type Profile.Data.Group.MediaLinks.Table.sql
-rem type Profile.Data.Person.Websites.Table.sql
-rem type Profile.Data.Person.MediaLinks.Table.sql
+type Profile.Data.Group.Websites.Table.sql
+type Profile.Data.Group.MediaLinks.Table.sql
+type Profile.Data.Person.Websites.Table.sql
+type Profile.Data.Person.MediaLinks.Table.sql
 type Profile.Data.Publication.PubMed.Bibliometrics.Table.sql
 type Profile.Data.Publication.PubMed.JournalHeading.Table.sql
 type Profile.Import.PRNSWebservice.Log.Table.sql
+type Profile.Module.GenericRDF.Data.Table.sql
+type Profile.Module.GenericRDF.Plugins.Table.sql
+type Profile.Cache.List.Export.Publications.Table.sql
+type Profile.Data.List.Admin.Table.sql
+type Profile.Data.List.General.Table.sql
+type Profile.Data.List.Member.Table.sql
+type Profile.Data.Publication.PubMed.DisambiguationExclude.Table.sql
+type Profile.Data.Publication.PubMed.DisambiguationSettings.Table.sql
+type Profile.Data.Publication.Funding.DisambiguationSettings.Table.sql
+type Profile.Import.PRNSWebservice.Options.Table.sql
 
 type RDF..fnTripleHash.UserDefinedFunction.sql
 type Utility.Application.fnText2Bool.UserDefinedFunction.sql
@@ -318,7 +327,9 @@ type Profile.Data.vwGroup.Manager.View.sql
 type Profile.Data.vwGroup.Member.View.sql
 type Profile.Data.vwGroup.Photo.View.sql
 type Profile.Data.vwGroup.Publication.Entity.AssociatedInformationResource.View.sql
-rem type Profile.Data.vwURL.View.sql
+type Framework..GetBasePath.StoredProcedure.sql
+type Framework..GetBaseURI.StoredProcedure.sql
+type Profile.Data.vwURL.View.sql
 
 rem type PresentationXML.SqlAssembly.sql
 
@@ -615,6 +626,7 @@ type Profile.Data.Group.GetGroups.StoredProcedure.sql
 type Profile.Data.Group.Manager.AddManager.StoredProcedure.sql
 type Profile.Data.Group.Manager.DeleteManager.StoredProcedure.sql
 type Profile.Data.Group.Manager.GetManagers.StoredProcedure.sql
+type Profile.Data.Publication.Entity.UpdateEntityOneGroup.StoredProcedure.sql
 type Profile.Data.Group.Member.AddUpdateMember.StoredProcedure.sql
 type Profile.Data.Group.Member.DeleteMember.StoredProcedure.sql
 type Profile.Data.Group.Member.GetMembers.StoredProcedure.sql
@@ -625,7 +637,6 @@ type Profile.Module.CustomViewAuthorInAuthorship.GetGroupList.StoredProcedure.sq
 type Profile.Module.NetworkAuthorshipTimeline.Group.GetData.StoredProcedure.sql
 type Profile.Module.NetworkRadial.Group.GetCoauthors.StoredProcedure.sql
 type Profile.Module.NetworkMap.GetGroup.StoredProcedure.sql
-type Profile.Data.Publication.Entity.UpdateEntityOneGroup.StoredProcedure.sql
 type Profile.Data.Publication.Group.DeleteAllPublications.StoredProcedure.sql
 type Profile.Data.Publication.Group.DeleteOnePublication.StoredProcedure.sql
 type Profile.Data.Publication.Group.MyPub.AddPublication.StoredProcedure.sql
@@ -635,11 +646,40 @@ type Direct..AddLogOutgoing.StoredProcedure.sql
 type Direct..AddLogIncoming.StoredProcedure.sql
 type Profile.Data.Publication.GetGroupOption.StoredProcedure.sql
 type Profile.Data.Publication.SetGroupOption.StoredProcedure.sql
-rem type Edit.Module.CustomEditWebsite.AddEditWebsite.sql
-rem type Edit.Module.CustomEditWebsite.GetData.sql
+type Edit.Module.CustomEditWebsite.AddEditWebsite.StoredProcedure.sql
+type Edit.Module.CustomEditWebsite.GetData.StoredProcedure.sql
 type Profile.Data.Publication.Pubmed.GetPMIDsForBibliometrics.StoredProcedure.sql
 type Profile.Data.Publication.Pubmed.ParseBibliometricResults.StoredProcedure.sql
+type Profile.Import.PRNSWebservice.GetGeocodeAPIData.StoredProcedure.sql
+type Profile.Import.PRNSWebservice.ParseGeocodeResults.StoredProcedure.sql
+type Profile.Import.PRNSWebservice.CheckForErrors.StoredProcedure.sql
 type Profile.Import.PRNSWebservice.GetPostData.StoredProcedure.sql
 type Profile.Import.PRNSWebservice.ImportData.StoredProcedure.sql
 type Profile.Import.PRNSWebservice.AddLog.StoredProcedure.sql
 type Profile.Module.CustomViewAuthorInAuthorship.GetJournalHeadings.StoredProcedure.sql
+type Profile.Module.GenericRDF.AddPluginToProfile.StoredProcedure.sql
+type Profile.Module.GenericRDF.RemovePluginFromProfile.StoredProcedure.sql
+type Profile.Module.GenericRDF.AddEditPluginData.StoredProcedure.sql
+type Profile.Module.GenericRDF.AddUpdateOntology.StoredProcedure.sql
+type Profile.Module.GenericRDF.GetPluginData.StoredProcedure.sql
+type Profile.Data.List.AddRemove.Filter.StoredProcedure.sql
+type Profile.Data.List.AddRemove.Person.StoredProcedure.sql
+type Profile.Data.List.AddRemove.SelectedPeople.StoredProcedure.sql
+type Profile.Data.List.AddRemove.Search.StoredProcedure.sql
+type Profile.Data.List.ExportCoAuthorConnections.StoredProcedure.sql
+type Profile.Data.List.ExportPersonList.StoredProcedure.sql
+type Profile.Data.List.ExportPersonPublicationsList.StoredProcedure.sql
+type Profile.Data.List.GetList.StoredProcedure.sql
+type Profile.Data.List.GetPeople.StoredProcedure.sql
+type Profile.Data.List.GetSummary.StoredProcedure.sql
+type Profile.Data.List.UpdateAllLists.StoredProcedure.sql
+type Profile.Module.NetworkMap.GetList.StoredProcedure.sql
+type Profile.Module.NetworkRadial.List.GetCoAuthors.StoredProcedure.sql
+type Profile.Cache.List.Export.UpdatePublications.StoredProcedure.sql
+type Profile.Data.Publication.Pubmed.UpdateDisambiguationSettings.StoredProcedure.sql
+type Profile.Data.Publication.Pubmed.GetDisambiguationSettings.StoredProcedure.sql
+type Profile.Data.Funding.UpdateDisambiguationSettings.StoredProcedure.sql
+type Profile.Data.Funding.GetDisambiguationSettings.StoredProcedure.sql
+type Profile.Data.Publication.Group.MyPub.GetPublication.StoredProcedure.sql
+type Profile.Data.Publication.Group.MyPub.UpdatePublication.StoredProcedure.sql
+

@@ -11,6 +11,6 @@ Code licensed under a BSD License.
 For details, see: LICENSE.txt
 -->
 <ModuleList>
-  <Module ModulePath="Modules" NameSpace="HistoryByType" FileName="HistoryByType.ascx" Enabled="false"/>
-  <Module ModulePath="Modules" NameSpace="HistoryList" FileName="HistoryList.ascx" Enabled="false"/>
+  <Module ModulePath="Modules" NameSpace="HistoryByType" FileName="HistoryByType.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="HistoryList" FileName="HistoryList.ascx" Enabled="true"/>
 </ModuleList>

@@ -37,26 +37,26 @@
     }
 
     //Expand/collapse for Tables (Awards, Education, Grants)
-	if ($('.collapsible') && $('.collapsible').length) {			
-		$('.collapsible').find('tr:gt(4)').addClass('hide').hide();
-		$(".collapsible:has('.hide')").append("<tr class='accordion'><td colspan='5'><div class='more'>Show more <span>+</span></div><div class='less' style='display:none'>Show less <span>-</span></div></td></tr>");
-		$('.accordion').click(function(){
-			$(this).siblings('.hide').toggle();
-			$(this).find('.more, .less').toggle();
-		});
-	}
+    if ($('.collapsible') && $('.collapsible').length) {
+        $('.collapsible').find('tr:gt(4)').addClass('show-or-hide-as-needed').hide();
+        $('.collapsible').find('tr:lt(5)').addClass('always-show');
+        $(".collapsible:has('.show-or-hide-as-needed')").append("<tr class='accordion'><td colspan='5'><div class='more'>Show more</div><div class='less' style='display:none'>Show less</div></td></tr>");
+        $('.accordion').click(function () {
+            $(this).siblings('.show-or-hide-as-needed').toggle();
+            $(this).find('.more, .less').toggle();
+        });
+    }
 
     //Overview expand/collapse
     if ($('.basicInfo') && $('.basicInfo').length) {
         $('.PropertyItemHeader:contains("verview")').next('.PropertyGroupData').attr("id", "narrative");
         if ($('#narrative').height() > 280) {
-			$('#narrative > div').addClass('overview');
-            $("<div class='expand-collapse'><div class='more'>Show more <span>+</span></div><div class='less' style='display:none;margin-top:-20px;'>Show less <span>-</span></div></div>").insertAfter('.overview');
+            $('#narrative > div').addClass('overview');
+            $("<div class='expand-collapse'><div class='more'>Show more</div><div class='less' style='display:none'>Show less</div></div>").insertAfter('.overview');
         }
 		$('.expand-collapse').click(function(){
 			$(this).siblings().toggleClass('full');
 			$(this).find('.more, .less').toggle();
-			location.href = "#narrative";
 		});
     }
 

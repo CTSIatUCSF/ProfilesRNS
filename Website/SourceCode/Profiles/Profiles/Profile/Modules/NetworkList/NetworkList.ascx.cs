@@ -247,7 +247,6 @@ namespace Profiles.Framework.Modules.NetworkList
                     documentdata.Append(i.item);
                     documentdata.Append("</Item>");
                 }
-                new ORNGNetworkListRPCService(Page, orngCallbackItems);
             }
 
             documentdata.Append("</ListView>");
@@ -287,35 +286,6 @@ namespace Profiles.Framework.Modules.NetworkList
         public double Weight { get; set; }
         public String About { get; set; }
         public string Rank { get; set; }
-    }
-
-    // OpenSocial 
-    public class ORNGNetworkListRPCService : PeopleListRPCService
-    {
-        List<string> orngCallbackItems;
-
-        public ORNGNetworkListRPCService(Page page, List<string> orngCallbackItems)
-            : base(null, page, false)
-        {
-            this.orngCallbackItems = orngCallbackItems;
-        }
-
-        public override string getPeopleListMetadata()
-        {
-            if (orngCallbackItems.Count == 1)
-            {
-                return "" + orngCallbackItems.Count + " profile";
-            }
-            else
-            {
-                return "" + orngCallbackItems.Count + " profiles";
-            }
-        }
-
-        public override List<string> getPeople()
-        {
-            return orngCallbackItems;
-        }
     }
 
 }

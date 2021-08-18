@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CustomViewInformationResource.ascx.cs"
     Inherits="Profiles.Profile.Modules.CustomViewInformationResource.CustomViewInformationResource" %>
-<div>
+<div style="margin-top:12px;">
     <asp:Literal runat="server" ID="litinformationResourceReference"></asp:Literal>
 </div>
 <br />
@@ -12,7 +12,7 @@
 <asp:Panel runat="server" ID="pnlSubjectAreas" Visible="true">
     <div class="PropertyGroupItem">
         <div class="PropertyItemHeader">
-            <a href="javascript:toggleBlock('propertyitem','subjectAreaItems')">
+            <a onClick="javascript:toggleBlock('subjectAreaItems'); return false;">
                 <img runat="server" id="imgSubjectArea" src="minusSign.gif" style="border: none;
                     text-decoration: none !important" border="0" width="9" height="9"/>
             </a>subject areas
@@ -35,7 +35,7 @@
 <asp:Panel runat="server" ID="pnlAuthors" Visible="true">
 <div class="PropertyGroupItem" style="margin-bottom: 10px;">
     <div class="PropertyItemHeader">
-        <a href="javascript:toggleBlock('propertyitem','authorshipItems')">
+        <a onClick="javascript:toggleBlock('authorshipItems'); return false">authors with profiles</a>
             <img runat="server" id="imgAuthor" src="minusSign.gif" style="border: none; text-decoration: none !important"
                 border="0" width="9" height="9"/>
         </a>authors with profiles

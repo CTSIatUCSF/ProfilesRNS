@@ -1,59 +1,150 @@
-﻿/* highlight color */
-.profiles a .authInst, .profiles a .authInst:hover, 
-.dblarrow:before, .highlight { color: #771111; }
-.about .profiles h2, .content-block h2, .searchForm td div.header, 
-.passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
-#ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
-.profiles .profilesContentMain .pageTitle h2 { color: #000; }
-.profiles a.search-button, .more span, .less span { background-color: #771111; }
-.profiles a.search-button:hover { background-color: #990000; box-shadow: none; color: #FFF; }
-#navbarsearch input[type=submit]  { background-color: #771111; border: 4px solid #771111; }
-#navbarsearch input[type=submit]:hover  { background-color: #990000; border: 4px solid #990000; }
+/* global variables */
+:root {
+    --heading-color: #771111;
+    --generic-link-color: #4d8ba9;
+    --generic-link-visited-color: #8d8ba9;
+    --menu-important-background-color: #ebe0e0;
 
-/* banner */
-#header-ucsf div#ucsfnav ul li { padding: 0; }
-#header-ucsf div#ucsfnav ul li a { border-left: 1px solid #fff; padding: 0 8px 0 12px; font-size: 11px; }
-#header-ucsf div#ucsfnav ul li.first a { border: none; padding-left: 0; }
-#header-ucsf div#ucsfnav ul li a#powered-by-ctsi {
-  float: right; border: none; padding: 0 0 0 30px; 
-  background: transparent url("Images/powered_by_scctsi.png") no-repeat scroll 0 4px;
-  background-size: 22px 22px;
-}
-#site-logo h1 { margin: 0; padding: 8px 0 0 10px; }
-#site-logo h1 a img { height: auto; }
-#new-features { clear: right; float: right; width: 300px; margin: 55px 10px 0 0; }
-#new-features a, #new-features a:visited {
-    padding: 6px;
-    margin: 0;
-    display: inline-block;
-    font-size: 13px;
-	background-color: #f8f8f9;
-	float: right;
+    
+    /* dark color in footer at https://sc-ctsi.org/ */
+    --very-dark-background-color: #2c3238;
+
 }
 
-/* LINK Color */
-.profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000; }
-.profiles .basicInfo .grants a, .profiles .basicInfo .grants a:visited, 
-#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.edittable td:first-child, 
-#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child, 
-#profile-components table td#namedegree, .listTable .listTableLink, .linky, 
-.institutionHeader a,
-.profiles a, .profiles a:visited { color: #4d8ba9; }
-.profiles a:hover, .institutionHeader a:hover { color: #267196; }
-.profilesFooter a, .profilesFooter a:hover { color: #FFCC00; }
+/* TIPPY TOP INSTITUTIONAL HEADER */
+
+/* items are smooshed on left, except last one's on the right */
+.researcherprofiles--branded-institutional-banner--menu ul:only-of-type {
+    justify-content: start;
+}
+
+.researcherprofiles--branded-institutional-banner--menu ul:only-of-type li {
+    margin-right: 2rem;
+}
+
+.researcherprofiles--branded-institutional-banner--menu ul:only-of-type li:last-child {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+/* reduce font size a little */
+.researcherprofiles--branded-institutional-banner--menu ul li a {
+    font-size: 0.9rem;
+}
+
+/* logo before final item */
+.researcherprofiles--branded-institutional-banner--menu a#powered-by-ctsi {
+    border: none;
+    padding: 0 0 0 1.5rem;
+    background: transparent url("/App_Themes/USC/Images/powered_by_scctsi.png") no-repeat scroll 0 4px;
+    background-size: 1em 1em;
+}
+
+/* SITE NAME BANNER */
+
+/* put the site name on left, new features block on right */
+
+.researcherprofiles--institution-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: space-around;
+    align-items: center;
+}
+
+/* make name image bigger */
+.researcherprofiles--institution-header--site-logo h1 a img {
+    height: 5rem;
+    max-height: 5rem;
+}
+
+/* STYLE "TOUR PROFILES" AND "NEW FEATURES" */
+
+@media (max-width: 960px) {
+    #new-features {
+        display: none
+    }
+}
+
+#new-features a,
+#new-features a:visited {
+    color: var(--generic-link-color);
+}
+
+#new-features,
+.tour {
+    font-weight: bold;
+    padding: 0.5rem;
+    background: var(--highlighted-panel-background-color);
+    border: 1px solid var(--highlighted-panel-border-color);
+}
+
+.tour {
+    margin-top: 1rem;
+}
+
+/* TODO: remove this at source */
+div[id^="ctl00_ContentPassive_rptPassive_ctl00_ctl00_TwitterUSC"] {
+    display: none;
+}
+
+/* SITEWIDE */
+
+.dblarrow:before {
+    color: var(--heading-color);
+}
+
+/* TODO: DETERMINE WHERE ANY OF THIS IS USED */
 
 /* navbar & footer colors */
-#header-ucsf, .profilesFooter { background-color: #000; }
-.profilesFooter { border: none; padding-bottom: 10px; }
-.profilesFooter  p { color: #FFF; padding: 5px; width: 700px; text-align: center; font-size: 12px; margin: 5px auto; }
+.profilesFooter {
+    border: none;
+    padding-bottom: 10px;
+}
 
-/* USC only */
-.faculty2 { margin-left: 12px; }
-.student2, .faculty2 { vertical-align: -2px; }
-.tour { background-color: #f8f8f9; font-weight: bold; margin-top: 15px; padding: 6px; }
-.profile .passive-header { background-color: #f8f8f9; text-align: center; margin: 10px 0 -8px; padding: 8px 2px; }
-div.PlumX-Popup { display: inline; margin-left: 10px; }
-.PlumX-Popup .ppp-container.ppp-badge > a { font-family: arial,helvetica,sans serif !important; }
-#gadgets-gadget-title-bar-119 { background-color: #FFF; }
-.aboutProfiles .shaded { background-color: #CCC; }
-.aboutProfiles { border-color: #CCC; }
+.profilesFooter p {
+    color: #FFF;
+    padding: 5px;
+    width: 700px;
+    text-align: center;
+    font-size: 12px;
+    margin: 5px auto;
+}
+
+.faculty2 {
+    margin-left: 12px;
+}
+
+.student2,
+.faculty2 {
+    vertical-align: -2px;
+}
+
+.profile .passive-header {
+    background-color: #f8f8f9;
+    text-align: center;
+    margin: 10px 0 -8px;
+    padding: 8px 2px;
+}
+
+div.PlumX-Popup {
+    display: inline;
+    margin-left: 10px;
+}
+
+.PlumX-Popup .ppp-container.ppp-badge>a {
+    font-family: arial, helvetica, sans serif !important;
+}
+
+#gadgets-gadget-title-bar-119 {
+    background-color: #FFF;
+}
+
+.aboutProfiles .shaded {
+    background-color: #CCC;
+}
+
+body.about .toolbox {
+    background: none;
+}

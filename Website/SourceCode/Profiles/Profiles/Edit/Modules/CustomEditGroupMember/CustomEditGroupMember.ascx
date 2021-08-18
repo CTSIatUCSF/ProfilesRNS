@@ -81,7 +81,7 @@
     <div class="editPage">
 
         <div style="width: 25px; float: left;">
-            <img src="<%=Profiles.Framework.Utilities.Root.Domain%>/Edit/Images/icon_alert.gif" />
+            <img src="<%=Profiles.Framework.Utilities.Brand.GetThemedDomain()%>/Edit/Images/icon_alert.gif" />
         </div>
         <div style="margin-left: 25px; margin-top: 3px;">
             Check the people you wish to add to this group, and then click the Add Selected link at the bottom of the page.               

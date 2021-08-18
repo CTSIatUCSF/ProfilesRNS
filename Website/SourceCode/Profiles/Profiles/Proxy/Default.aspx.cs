@@ -81,7 +81,7 @@ namespace Profiles.Proxy
             body.Attributes.Add("class", "orng");
 
             HtmlLink Editcss = new HtmlLink();
-            Editcss.Href = Root.Domain + "/Edit/CSS/edit.css";
+            Editcss.Href = Brand.GetThemedDomain() + "/Edit/CSS/edit.css";
             Editcss.Attributes["rel"] = "stylesheet";
             Editcss.Attributes["type"] = "text/css";
             Editcss.Attributes["media"] = "all";

@@ -1,16 +1,4 @@
-﻿/*  
- 
-    Copyright (c) 2008-2012 by the President and Fellows of Harvard College. All rights reserved.  
-    Profiles Research Networking Software was developed under the supervision of Griffin M Weber, MD, PhD.,
-    and Harvard Catalyst: The Harvard Clinical and Translational Science Center, with support from the 
-    National Center for Research Resources and Harvard University.
-
-
-    Code licensed under a BSD License. 
-    For details, see: LICENSE.txt 
-  
-*/
-
+﻿
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -79,6 +67,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 phAddPub.Visible = true;
                 phAddCustom.Visible = true;
                 phDeletePub.Visible = true;
+                phDisableDisambig.Visible = true;
 
             }
             else
@@ -87,7 +76,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 phAddPub.Visible = false;
                 phAddCustom.Visible = false;
                 phDeletePub.Visible = false;
-
+                phDisableDisambig.Visible = false;
             }
 
         }
@@ -124,12 +113,14 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 Session["CurrentPersonEditing"] = _personId;
 
 
-            Edit.Utilities.DataIO data;
-            data = new Edit.Utilities.DataIO();
+            Profiles.Edit.Modules.CustomEditAuthorInAuthorship.DataIO data;
+            data = new Profiles.Edit.Modules.CustomEditAuthorInAuthorship.DataIO();
             string predicateuri = Request.QueryString["predicateuri"].Replace("!", "#");
             this.PropertyListXML = propdata.GetPropertyList(this.BaseData, base.PresentationXML, predicateuri, false, true, false);
             litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + _subject + "'>Edit Menu</a>" + " &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
-
+            Boolean disambig = data.GetDisambiguationSettings(_personId);
+            rblDisambiguationSettings.SelectedValue = disambig ? "enable" : "disable"; 
+            lblDisambigStatus.Text = disambig ? "Automatically adding publications to my profile." : "Not automatically adding publications to my profile.";
 
         }
 
@@ -225,7 +216,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                     {
                         ImageButton lb = (ImageButton)e.Row.FindControl("lnkEdit");
                         lb.Visible = true;
-//                        lb.ImageUrl = Root.Domain + "/edit/images/icon_edit.gif";
+//                        lb.ImageUrl = Brand.GetThemedDomain() + "/edit/images/icon_edit.gif";
                         lb.Enabled = true;
                     }
 
@@ -346,11 +337,12 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
         {
             if (Session["phAddPub.Visible"] == null)
             {
-//                btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+//                btnImgAddPub.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareDownArrow.gif";
 
                 phAddCustom.Visible = false;
                 phAddPubMed.Visible = false;
                 phDeletePub.Visible = false;
+                phDisableDisambig.Visible = false;
                 pnlAddPubById.Visible = true;
                 pnlAddPubMed.Visible = false;
                 phSecuritySettings.Visible = false;
@@ -378,10 +370,11 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phAddCustom.Visible = true;
             phAddPubMed.Visible = true;
             phDeletePub.Visible = true;
+            phDisableDisambig.Visible = true;
             phSecuritySettings.Visible = true;
             txtPubId.Text = "";
             pnlAddPubById.Visible = false;
-//            btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//            btnImgAddPub.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareArrow.gif";
             Session["phAddPub.Visible"] = null;
 
             upnlEditSection.Update();
@@ -427,11 +420,12 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                     phAddCustom.Visible = true;
                     phAddPubMed.Visible = true;
                     phDeletePub.Visible = true;
+                    phDisableDisambig.Visible = true;
                     phSecuritySettings.Visible = true;
                     txtPubId.Text = "";
                     pnlAddPubById.Visible = false;
                     grdEditPublications.DataBind();
-//                    btnImgAddPub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//                    btnImgAddPub.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareArrow.gif";
 
                 }
                 catch (Exception ex)
@@ -491,10 +485,11 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
             if (Session["pnlAddPubMed.Visible"] == null)
             {
-//                btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+//                btnImgAddPubMed.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareDownArrow.gif";
                 phAddCustom.Visible = false;
                 phAddPub.Visible = false;
                 phDeletePub.Visible = false;
+                phDisableDisambig.Visible = false;
                 pnlAddPubMed.Visible = true;
                 pnlAddPubById.Visible = false;
                 pnlAddPubMedResults.Visible = false;
@@ -538,8 +533,9 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phAddCustom.Visible = true;
             phAddPub.Visible = true;
             phDeletePub.Visible = true;
+            phDisableDisambig.Visible = true;
             phSecuritySettings.Visible = true;
-//            btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//            btnImgAddPubMed.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareArrow.gif";
 
             upnlEditSection.Update();
         }
@@ -683,7 +679,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
             pnlAddPubMedResults.Visible = true;
 
-//            btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+//            btnImgAddPubMed.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareDownArrow.gif";
             phAddCustom.Visible = false;
             phAddPub.Visible = false;
             phDeletePub.Visible = false;
@@ -745,7 +741,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phAddPub.Visible = true;
             phDeletePub.Visible = true;
             phSecuritySettings.Visible = true;
-//            btnImgAddPubMed.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//            btnImgAddPubMed.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareArrow.gif";
             PubMedResults = null;
 
             upnlEditSection.Update();
@@ -783,11 +779,12 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
             if (Session["pnlAddCustomPubMed.Visible"] == null)
             {
-//                btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+//                btnImgAddCustom.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareDownArrow.gif";
                 grdEditPublications.SelectedIndex = -1;
                 phAddPub.Visible = false;
                 phAddPubMed.Visible = false;
                 phDeletePub.Visible = false;
+                phDisableDisambig.Visible = false;
                 pnlAddCustomPubMed.Visible = true;
                 drpPublicationType.Enabled = true;
                 phMain.Visible = false;
@@ -1076,7 +1073,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 phSecuritySettings.Visible = true;
                 phMain.Visible = false;
                 pnlAddCustomPubMed.Visible = false;
-//                btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//                btnImgAddCustom.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareArrow.gif";
             }
             Session["pnlAddCustomPubMed.Visible"] = null;
 
@@ -1095,7 +1092,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             grdEditPublications.SelectedIndex = -1;
             phMain.Visible = false;
             pnlAddCustomPubMed.Visible = false;
-//            btnImgAddCustom.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//            btnImgAddCustom.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareArrow.gif";
             Session["pnlAddCustomPubMed.Visible"] = null;
 
             upnlEditSection.Update();
@@ -1113,15 +1110,17 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
         #region DeletePubMed
 
+
         protected void btnDeletePub_OnClick(object sender, EventArgs e)
         {
             if (Session["pnlDeletePubMed.Visible"] == null)
             {
-//                btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareDownArrow.gif";
+//                btnImgDeletePub.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareDownArrow.gif";
                 phAddCustom.Visible = false;
                 phAddPubMed.Visible = false;
                 phAddPub.Visible = false;
                 pnlDeletePubMed.Visible = true;
+                phDisableDisambig.Visible = false;
                 pnlAddPubById.Visible = false;
                 pnlAddPubMed.Visible = false;
                 pnlAddPubMedResults.Visible = false;
@@ -1139,6 +1138,10 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
         }
 
+
+
+
+
         protected void btnDeletePubMedOnly_OnClick(object sender, EventArgs e)
         {
 
@@ -1152,7 +1155,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phAddCustom.Visible = true;
             pnlDeletePubMed.Visible = false;
             phSecuritySettings.Visible = true;
-//            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//            btnImgDeletePub.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareArrow.gif";
 
             grdEditPublications.DataBind();
 
@@ -1174,7 +1177,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phAddCustom.Visible = true;
             pnlDeletePubMed.Visible = false;
             phSecuritySettings.Visible = true;
-//            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//            btnImgDeletePub.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareArrow.gif";
 
             grdEditPublications.DataBind();
 
@@ -1198,7 +1201,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phAddCustom.Visible = true;
             phSecuritySettings.Visible = true;
             pnlDeletePubMed.Visible = false;
-//            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//            btnImgDeletePub.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareArrow.gif";
 
             grdEditPublications.DataBind();
 
@@ -1213,12 +1216,77 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             phDeletePub.Visible = true;
             phSecuritySettings.Visible = true;
             pnlDeletePubMed.Visible = false;
-//            btnImgDeletePub.ImageUrl = Root.Domain + "/Framework/images/icon_squareArrow.gif";
+//            btnImgDeletePub.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareArrow.gif";
 
             upnlEditSection.Update();
         }
 
         #endregion
+
+        #region Disable Disambiguation
+        protected void btnDisableDisambig_OnClick(object sender, EventArgs e)
+        {
+            if (Session["pnlDisableDisambig.Visible"] == null)
+            {
+                btnImgDisableDisambig.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareDownArrow.gif";
+                phAddCustom.Visible = false;
+                phAddPubMed.Visible = false;
+                phAddPub.Visible = false;
+                pnlDeletePubMed.Visible = false;
+                phDeletePub.Visible = false;
+                pnlAddPubById.Visible = false;
+                pnlAddPubMed.Visible = false;
+                pnlDisableDisambig.Visible = true;
+                pnlAddPubMedResults.Visible = false;
+                pnlAddCustomPubMed.Visible = false;
+                phSecuritySettings.Visible = false;
+                Session["pnlDisableDisambig.Visible"] = true;
+            }
+            else
+            {
+                Session["pnlDisableDisambig.Visible"] = null;
+                pnlDisableDisambig.Visible = false;
+            }
+
+            upnlEditSection.Update();
+
+
+        }
+
+
+        protected void btnSaveDisambig_OnClick(object sender, EventArgs e)
+        {
+            Profiles.Edit.Modules.CustomEditAuthorInAuthorship.DataIO data = new Profiles.Edit.Modules.CustomEditAuthorInAuthorship.DataIO();
+            if (rblDisambiguationSettings.SelectedValue == "disable")
+            {
+                Session["disambig"] = "false";
+                data.UpdateDisambiguationSettings(_personId, false);
+            }
+            else
+            {
+                Session["disambig"] = null;
+                data.UpdateDisambiguationSettings(_personId, true);
+            }
+            Boolean disambig = data.GetDisambiguationSettings(_personId);
+            rblDisambiguationSettings.SelectedValue = disambig ? "enable" : "disable";
+            lblDisambigStatus.Text = disambig ? "Automatically adding publications to my profile." : "Not automatically adding publications to my profile.";
+
+            upnlEditSection.Update();
+            Session["pnlDisableDisambig.Visible"] = null;
+            pnlDisableDisambig.Visible = false;
+
+        }
+        protected void btnCancel_OnClick(object sender, EventArgs e)
+        {
+            Session["pnlDisableDisambig.Visible"] = null;
+            pnlDisableDisambig.Visible = false;
+        }
+
+        #endregion
+
+
+
+
 
         public DataSet PubMedResults
         {
@@ -1271,7 +1339,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 WebResponse myResponse = myRequest.GetResponse();
                 if (myResponse == null)
                 { return null; }
-                StreamReader sr = new StreamReader(myResponse.GetResponseStream());
+                StreamReader sr = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8);
                 return sr.ReadToEnd().Trim();
             }
             catch (WebException ex)

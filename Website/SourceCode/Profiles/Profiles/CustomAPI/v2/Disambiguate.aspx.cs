@@ -113,7 +113,7 @@ namespace Profiles.CustomAPI.v2
         {
             string searchrequest = String.Empty;
             Profiles.Search.Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
-            XmlDocument searchRequest = data.SearchRequest(name.Replace("'", ""), "false", "", "", inst.GetURI(), "", "", "", "", "", "http://xmlns.com/foaf/0.1/Person", "15", "0", "", "", "", "", ref searchrequest);
+            XmlDocument searchRequest = data.SearchRequest(name.Replace("'", ""), "false", "", "", inst.GetURI(), "", "", "", "", "", "http://xmlns.com/foaf/0.1/Person", "15", "0", "", "", "", "", false, ref searchrequest);
             XmlDocument searchResult = data.Search(searchRequest, false);
 
             string retval = null;

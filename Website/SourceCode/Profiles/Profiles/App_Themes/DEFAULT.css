@@ -1,446 +1,1742 @@
-﻿/* GLOBAL LAYOUT */
-#header-ucsf div#ucsfnav, #site-branding, 
-#suckerfish-container, #navbarsearch-container, 
-.profiles, #footer-collaboration p, #footer-contact ul, #footer-copyright p { 
-  margin: 0 auto; width: 980px; 
-}
-.profiles .profilesMainColumnLeft, .profiles .profilesMainColumnLeft td, .profiles .profilesMainColumnLeft th, .profiles .profilesMainColumnLeft ul, .profiles .profilesMainColumnLeft ol { line-height: 20px; }
-#header-ucsf { background-color: #052049; }
-#header-ucsf div#ucsfnav { height: 30px; }
-#header-ucsf ul { padding: 0 10px; margin: 0; }
-#header-ucsf ul li { display: inline; list-style-type: none; padding-left: 26px; line-height: 28px; }
-#header-ucsf ul li:first-child { padding-left: 0; }
-#header-ucsf div#ucsfnav ul li a { text-decoration: none; font-size:13px; color:#fff; }
-#header-ucsf div#ucsfnav ul li a:hover { text-decoration: underline; }
-.institutionHeader { background-color: #FFF; height: 95px; border-bottom: none; padding: 0; text-align: left; overflow: hidden;  }
-#site-logo { width: 400px; float: left; line-height: 30px; }
-#site-logo h1 { margin: 40px 0 0 10px; font-size: 36px; font-weight: normal; }
-h1 a, h1 a:visited, h1 a:hover { text-decoration: none; }
-#site-logo h1 a img { height: 28px; vertical-align: -1px; padding-right: 4px; }
-#tagline { color: #506480; font-size: 20px; font-style: italic; font-weight: normal; line-height: 16px; letter-spacing: 0.2px; padding: 0; margin: 0; }
-#powered-by-block { float: right; padding: 18px 20px 0; }
-#powered-by-block a, #powered-by-block a:visited { font-size: 13px; font-weight: bold; }
-#page-container { background-color: #FFF; } 
-.profiles { margin-top: 0; max-width: 980px; }
-.profiles .profilesPage table { border-color: transparent; }
-.profiles .profilesPageColumnRightCenter { border: none; box-shadow: none; border-radius: 0; }
-.profilesMainColumnRight { background-color: transparent; border-left:none; width: 180px; }
-.profiles .profilesPageColumnRightTop,
-.profiles .profilesPageColumnRightBottom { display: none; }
-.profiles .profilesContentMain .pageTitle h2 { font-size: 30px; font-weight: bold; line-height: 30px; }
-.profiles .profilesContentMain .pageTitle h2 a img { display: none; }  
-.profiles .profilesContentMain .aboutText h3, h3 { color: #4D4D4D; }
-.EditMenuTopRow, .topRow, .editPage .topRow td, 
-.profiles .profilesContentActive .activeSectionHead, 
-.searchForm .searchSection, .listTable th { background-color: #F8F8F9; }
-.notice { color: #990000; }
-.inlineBlock { display: inline-block; }
+/* pretty-printed with https://beautifier.io/ */
 
-/* COLS */
-.profiles .profilesContentMain { width: 690px; margin: 10px 60px 0 10px; } 
-.profiles .profilesContentPassive { width: 200px; padding: 4px 10px 0 0; }
-.search .profiles .profilesContentMain {  width: 540px; margin: 0 40px; } /* overwritten in SearchResults.ascx */
-.search .profiles .profilesContentPassive { width: 152px; padding: 9px 10px 0 0; }
-#minisearch { display: none; } 
+/* global variables for all our hosted sites */
+:root {
+    /* all these colors need to have sufficient contrast of text on background */
+    --text-color: #111;
+    --text-muted-color: #777;
+    --page-background-color: #fff;
+    --generic-link-color: #0054c0;
+    --generic-link-visited-color: #4a3696;
+    --max-main-content-width: 980px;
 
-/* LINK DEFAULTS */
-.profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000; }
-.profiles .basicInfo .grants a, .profiles .basicInfo .grants a:visited, 
-#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.edittable td:first-child, 
-#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child, 
-#profile-components table td#namedegree, .listTable .listTableLink, .linky, 
-.institutionHeader a, .institutionHeader a:hover,
-.profilesfooter a, .profilesfooter a:visited, 
-.profiles a, .profiles a:visited { text-decoration: none; color: #0071AD; cursor: pointer; }
-.profiles .profilesContentMain .kwCloud0 a { color: #5DAFDB !important; }
-.profiles .basicInfo .grants a:hover,
-.searchResults td:first-child:hover, .linky:hover { text-decoration: underline; cursor: pointer; }
-#ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before,
-.dblarrow:before { content: ">>"; font-family: "Courier New", Courier, monospace; letter-spacing: -3px; font-size: 12px; font-weight: bold; display: inline-block; padding-right: 6px; vertical-align: middle; }
-#ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:hover:before,
-.dblarrow:hover:before { text-decoration: none; }
+    /* used for significant titles. default is UC blue */
+    --heading-color: #1295d8;
 
-/* SEARCH FORM */
-.profiles .profilesPageColumnLeft { padding: 18px 6px 0 10px; }
-.search .profiles .profilesContentMain .pageTabs { padding-left: 315px; 
-  background-image: url('../Framework/Images/tab_back.gif'); }
-.searchForm th { color: #000; }
-.searchForm .pan td { padding: 2px 0; }
-.searchForm td div.header { font-size: 28px; font-weight: bold; margin: 10px 0; white-space: nowrap; }
-.searchForm .searchSection { margin-bottom: 0; border: 1px solid #CCC; }
-.searchForm #divSearchSection { border-width: 1px 1px 0 1px; }
-.searchForm #div1 th { font-weight: normal; width: 140px; }
-#ctl00_ContentMain_rptMain_ctl00_ctl00_searchfor,
-#txtSearchFor { height: 30px; }
-.profiles a.search-button { border: none; padding: 5px 12px 4px 33px; background-position: 10% 50%; font-size: 18px; }
-.profiles a.search-button:visited, .profiles a.search-button:active, .profiles a.search-button:hover { color: #FFF; }
-.unused, input#chkExactphrase, input#institutionallexcept, input#departmentallexcept { display: none; }
-.searchForm .inputText { width: 249px; }
-#divChkList { border: 1px solid #CCC !important; margin-top: -5px; width: 248px !important; 
-  height: 200px !important; padding-top: 15px !important; } 
-#divOtherOptions { 
-  border-right: 1px solid #CCC !important;
-  border-bottom: 1px solid #CCC !important;
-  border-left: 1px solid #CCC !important;
-  height: auto !important; 
-}
-#ctcFirst_rMaster_ctl00_imgExpand { visibility: hidden; width: 1px; }
-#divDetailCheck { margin: 3px 0; }
-#chkLstItem label, #divDetailCheck label , label[for=ctl00_ContentMain_rptMain_ctl00_ctl00_chkExactPhrase]  { vertical-align: 2px; }
-#andor { display: block; float: left; margin: -18px 0 0 153px;   
- color: #666; background-color: #F8F8F9; padding: 0 6px; font-size: 11px; letter-spacing: 2px; }
+    /* used for errors, alerts, etc. */
+    --alert-red-color: rgb(172, 27, 48);
 
-/* SEARCH RESULTS */
-.listTable th { border: 1px solid #CCC !important; }
-.direct .listTable tr:first-child td,
-#tblSearchResults th { text-align: left; font-weight: bold; }
-#tblSearchResults th.alignCenter { text-align: center; }
-#filters ul li strong { font-size: 150%; line-height: 20px; }
-.connectionContainerTable { background-color: #F7F7F8; height: 60px; border-color: #CCC; }
-#ctl00_ContentMain_rptMain_ctl00_ctl00_gvConnectionDetails th,
-#ctl00_ContentMain_rptMain_ctl00_ctl00_gvIndirectConnectionDetails th { text-align: left; padding-left: 6px; }
-.listTable .evenRow, .evenRow { background-color: #F7F7F8; }
-.listTable td { border: none; border-right: solid 1px #CCC; cursor: default; }
-.listTablePagination { border-color: #CCC; background-color: #FFF; margin-bottom: 10px; width: 706px; }
-.listTablePaginationFL img { margin-top: 4px; } 
-.listTablePaginationFL img { margin-top: 5px\9; } 
-#why { width:190px; font-size:11px; padding:1px; text-align:center; background-color:#F7F7F8; margin-left:30px; float: right; }
-.listTable table, .oddRow td, .evenRow td, .topRow th,
-#thetable1 th, #similarConnection th,
-#ctl00_ContentMain_rptMain_ctl00_ctl00_gvIndirectConnectionDetails,
-#ctl00_ContentMain_rptMain_ctl00_ctl00_gvWhoCanIEdit td,
-#ctl00_ContentMain_rptMain_ctl00_ctl00_gvYouCanEdit td,
-#ctl00_ContentMain_rptMain_ctl00_ctl00_gvMyProxies tr td,
-#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr th,
-#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr td { 
-  border: 1px solid #CCC !important; 
-}
-#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults .listTablePagination tr td { 
-  border: none !important; padding-top: 5px; }
-.connectionContainerTable { background-color: #F7F7F8; border: 1px solid #CCC; }
-.connectionContainerTable td { width: 220px; }
+    /* used for table of contents, etc. */
+    --highlighted-panel-background-color: #eee;
+    --highlighted-panel-border-color: #ccc;
+    --highlighted-panel-text-color: black;
 
-/* PROFILE PAGES */
-.basicInfo > table { margin-bottom: 20px; }
-img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto { width: 150px; padding-bottom: 10px; }
-.PropertyGroup { display: none; }
-.PropertyGroupItem { margin: 0 0 10px; border: none; }
-.PropertyItemHeader { font-size: 16px; background-color: #FFF; width: 100%; border-top: 1px solid #EEE; 
-  padding: 6px 0 0 !important; margin: 20px 0 0 -4px; display: inline-block; }
-.PropertyItemHeader.first-section { margin-top: 0; border-top: none; }
-.PropertyItemHeader img { display: none; }
-.PropertyItemHeader:focus { outline: none; }
-#toc { min-height: 27px; margin: 10px 0 30px; background-color: #F7F7F8; border: none; width: 680px\9; padding-bottom: 4px\9; }
-#toc ul { padding: 0 0 0 10px; }
-#toc ul li { list-style-type: none; display: inline-block; white-space: nowrap; padding: 0 15px 0 0;
-   border-right: 1px solid #CCC; margin: 5px 15px 5px 0; } 
-.PropertyGroupData { padding-bottom: 0; }
-.PropertyGroupData div { padding: 0 !important; }
-.profiles .ProfilesContentMain .PropertyGroupData { padding-left: 0; }
-.profiles .ProfilesContentMain .PropertyGroupData table { width: 100% !important; }
-.profiles .ProfilesContentMain .PropertyGroupData td { line-height: 16px; padding: 1px 6px 8px 0 !important;vertical-align: top; }
-.profiles .ProfilesContentMain .PropertyGroupData hr { border: none; background-color: #F7F7F8; height: 1px; }
-.profiles .profilesContentMain .sectionHeader { padding-top: 6px;  text-decoration: none; }
-.profiles .profilesContentMain .awardsList { margin-top: 6px; }
-.profiles .profilesContentMain .awardsList td:first-child { white-space: normal !important; }
-.profiles .profilesContentMain .publications li { border: none !important; padding-top: 0 !important; }
-.profiles .profilesContentMain .basicInfo th,
-.profiles .profilesContentMain .basicInfo td { font-size: 13px !important; line-height: 20px; }
-#ctl00_lblHTMLBlockLineBreaks { display: block; padding-bottom: 20px; }
-#newest { padding-top: 15px; }
-#meshDetails .label { vertical-align: top; padding-right: 10px; }
-.keywordTimelineLabels { width: 220px; }
-.passive-header { font-weight: bold; margin: 10px 0 0; }
-.profiles .profilesContentPassive .passiveSectionBody li  { text-indent: -22px; padding-left: 22px; }
-.profiles .profilesContentPassive .passiveSectionBodyDetails { padding-top: 4px; }
-.profiles .profilesContentPassive .passiveSectionBodyDetails a { font-weight: bold; }
-.profiles .profilesContentPassive .passiveSectionBodyDetails a.dblarrow:before { padding: 0 9px 0 5px; }
-.SupportText { border: none !important; }
-#divShowTimelineTable, #showClusterViewLink { cursor: pointer; }
-.thumbnail { display: inline-block; height: 15px; width: 18px; overflow: hidden; 
-  position: relative; margin: 2px 4px -2px 0; }
-.thumbnail img { position: absolute; left: 2px; height: auto !important; }
-.viewIn a { display: inline-block; }
-.altmetric-embed img { vertical-align: -5px; padding-left: 5px; }
-/*
-.__dimensions_badge_embed__ {
-    display: inline-block !important;
-    margin-left: 5px !important;
-} */
-#publicationTimelineGraph { width: auto;  }
-#publicationTimelineGraph img { padding: 10px 0 20px; }
-.profiles .profilesContentMain  .awardsList td.awardStartDate { white-space: nowrap; }
-.authInst { display: inline-block; font-size: 10px; padding-left: 4px; }
-.profilesContentPassive .authInst { padding-left: 26px; }
+    /* menus */
+    --menu-background-color: #eee;
+    --menu-important-text-color: #003;
+    --menu-important-background-color: #cdd;
 
-/* PROFILE show & hide */
-.overview { max-height: 179px; overflow: hidden; }
-.overview.full { max-height: none; }
-.accordion td, .expand-collapse { text-align: right !important; font-weight: bold; cursor: pointer; }
-.expand-collapse { margin-top: 6px; }
-.more span, .less  span { display: inline-block; font-family: "Courier New", Courier, monospace; font-size: 20px; color: #FFF; border-radius: 12px; padding: 2px 4px; line-height: 16px; }
-.scroll { max-height: 275px; overflow-y: auto; }
+    /* used for blocks that may have white text on it, including in menubar */
+    --very-dark-background-color: #052049;
 
-/* EDIT */
-.edit .panelMain { width: 900px; }
-.edit h3 { color: #4D4D4D; margin-top: 20px; }
-#profile-components { width: 400px; float: left; border-top: 1px solid #CCC; }
-#profile-components table { margin-bottom: -20px; }
-#profile-components table td { height: 30px; border-width: 0 0 1px !important; }
-.EditMenuTopRow, .colItemCnt span , #cls  { display: none; }
-.edit .evenRow { background-color: #FFF;}
-#profile-components table td#namedegree { width: 150px; }
-#profile-components table td#namedegree:hover { text-decoration: none; cursor: default; }
-#namedegreerow { border-bottom:1px solid #CCC; }
-#namedegreerow:hover #cls { display: inline-block; }
-#namedegreerow:hover #public { display: none; }
-#cls { float: right; color: #990000; font-size: 11px; line-height: 13px; width: 230px; }
-#public { color: #000; }
-#public img { margin: 0 47px 0 79px; }
-.profiles .emphasize { font-weight: bold; font-size: 16px; }
-#profile-visibility { width: 450px; float: left; margin-left: 50px; border: 1px solid #CCC; }
-#profile-visibility td { vertical-align: top; padding: 4px 10px; }
-#profile-visibility td p { margin: 0; }
-.orng-credit { display: inline-block;margin: 20px 0 0 70px; text-indent: -18px; width: 420px; }
-.progress { text-align: center; }
-.edittable td, 
-#ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridViewAwards td,
-#ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridViewEducation td,
-#ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_securityOptions_grdSecurityGroups td { border: 1px solid #CCC; }
-.actionbuttons td { border: none !important; }
-.edit tr { border-color: #CCC; }
-
-/* ABOUT */
-.profiles h3.about-subheading { text-align: center; font-size: 20px; padding: 0 0 16px; color: #777; margin:0; font-weight: normal; line-height: 26px; }
-.about .profiles h2 { font-size: 20px; padding-top: 10px; line-height: 24px; }
-.aboutProfiles { border-top: 3px solid #EDEDEE; border-bottom: 3px solid #EDEDEE; display: table; margin: 24px 0; }
-.aboutProfiles .shaded { background-color: #EDEDEE; }
-.aboutProfiles h2 { text-align: center; padding: 10px 0 8px; margin: 0; }
-.aboutProfiles h3 { font-size: 14px; padding-bottom: 4px; padding-top: 4px; margin: 0; color: #333; }
-.aboutProfiles div { width: 33%; text-align: center; display: table-cell; }
-.aboutProfiles img { padding: 5px; height: 100px; width: auto; }
-.develop-button { text-align: center; margin: 15px 40px 6px; padding:5px 0; border-right: solid 1px #DDD;
-  border-bottom: solid 1px #DDD; background-color: #FFF; }
-.center { text-align: center; }
-ul.square { padding-left: 14px; margin: 6px 8px 8px; text-align: left; }
-ul.square li { list-style-type: square; }
-.content-block-container { width: 960px; } 
-.content-block { width: 260px; float: left; }
-.content-block:first-child { width: 500px; padding-right: 100px; }
-.content-block h2 { font-size: 16px; line-height: 20px; margin-top: 12px; 
-  padding: 0; margin-bottom: 14px; }
-h3.toolbox, .aboutProfiles h3.toolbox, .aboutProfiles h3.questions, .aboutProfiles h3.share { 
-  font-size: 130%; color: #777; 
-  padding: 12px 0 8px 45px; text-align: left; 
-}
-.toolbox { background: transparent url(../About/Images/gear.gif) no-repeat 8px 5px; }
-.questions { background: transparent url(../About/Images/help.gif) no-repeat 8px 5px; }
-.share { background: transparent url(../About/Images/comment.gif) no-repeat 8px 5px; }
-ul.highlights { padding-left: 20px; }
-ul.highlights li {
-  background:transparent url(../images/orangeArrow.gif) no-repeat scroll 0px 0.45em;
-  list-style-image:none;
-  list-style-position:outside;
-  list-style-type:none;
-  margin: 0;
-  padding: 0 0 5px 18px;
-  font-size: 14px;
-}
-.screenshot {
--webkit-box-shadow: 10px 10px 10px -10px rgba(153,153,153,1);
--moz-box-shadow: 10px 10px 10px -10px rgba(153,153,153,1);
-box-shadow: 10px 10px 10px -10px rgba(153,153,153,1);
+    /* publication lists, etc. have alternating striped rows */
+    --striped-row-border-color: #e0e0e0;
+    --striped-row-colored-row-color: #f8f8f8;
 }
 
-/* FOOTER */
-.profilesFooter { background-color: #506480; text-align: center; border-top: 3px solid #9AA5B6; margin-top: 20px; }
-#footer-collaboration { background-color: #FFF; }
-#footer-collaboration p { padding: 12px 0; width: 820px; font-size: 12px; }
-#footer-contact { padding: 6px; }
-#footer-contact ul li { display: inline; list-display-type: none; padding: 8px 20px; font-weight: bold; }
-#footer-contact ul li a, #footer-contact ul li a:visited, #footer-contact ul li a:hover {
- 	color: #FFF !important;
-}
-.profilesfooter a {	text-decoration: none; }
-.profilesfooter a:hover { text-decoration: underline; }
-#footer-copyright { color: #FFF; border-top: 1px solid #FFF; }
-#footer-copyright p { padding: 6px 10px; font-size: 12px; }
+/* ############################################################################################ */
+/* GLOBAL HTML RESETS */
+/* ############################################################################################ */
 
-/* MENU */
-#suckerfishmenu { position: relative; }
-#suckerfishmenu	 ul { 
-  padding: 0; margin: 5px 10px 0 0; 
-  list-style: none;
-  z-index: 100;
-  font-size: 14px;
-} 
-#suckerfishmenu	 ul.menu { 
-  float: right;
-} 
-#suckerfishmenu	span ul { clear: both; } 
-#suckerfishmenu	span ul.anon { clear: none; float: right; } 
-#suckerfishmenu	li {
-  display: inline-block;
-  padding: 0;
-  margin: 0 0 0 40px;
-  vertical-align: top;
+/* set the global font size */
+html {
+    font-size: 14px
 }
-#suckerfishmenu	span ul li { margin-left: 24px; margin-top: 5px; }
-#suckerfishmenu	span ul.anon li { margin-top: 0; }
-#suckerfishmenu	span ul li:first-child { margin-left: 10px; }
-#suckerfishmenu	 a {
-  padding: 0 0 5px;
-  text-decoration: none;
-  font-weight: bold;
-  color: #000;
-  display: inline-block; 
-  border-bottom: 2px solid #FFF;
-}
-#suckerfishmenu	span ul li a { font-weight: normal; }
-#suckerfishmenu	span ul li#signin a { font-weight: bold; }
-#suckerfishmenu	 a:active,
-#suckerfishmenu	 a:hover {
-  border-bottom: 2px solid #CCC;
-}
-#suckerfishmenu	 ul.menu li ul { position: absolute; right: 9999px; padding: 0; margin: -2px 10px 0 0; }
-#suckerfishmenu	 ul.menu li:hover ul { right: 0; }
-#suckerfishmenu	 ul.menu li ul li { display: block; float: none; border-bottom: 1px solid #DDD; background-color: #F8F8F9; 
-   padding: 8px 15px 6px; width: 114px; text-transform: none; margin: 0; }
-.item-home > a:after { content:'\25BC'; padding-left: 8px; font-size: 80%; display: inline-block; height: 10px; vertical-align: 1px; }
-#suckerfishmenu	 ul.menu li ul li:first-child { border-top: 2px solid #666; }
-.search #suckerfishmenu .item-home > a, .about #suckerfishmenu .active,
-#suckerfishmenu	 ul.menu li ul li:hover { border-color: #666; }
-#suckerfishmenu	 ul.menu li ul li a { border-bottom: none; width: 100%; }
 
-/* login & edit links */
-#menuthumb { float: left; height: 20px; width: 20px; overflow: hidden; margin: 0 4px -5px 0; background-color: #666; vertical-align: bottom; }
-#menuthumb img { width: 20px; height: auto; margin-top: -10%; }
-#ctl00_trbody .rdf { list-style-type: none; margin: 20px 10px; width: 190px; }
+/* now use that global font size everywhere where font sizes are hard-coded */
+body,
+.profiles,
+.profiles td,
+.profiles th,
+.profiles .profilesContentMain .basicInfo td,
+.profiles .PropertyGroup,
+.profiles .PropertyGroupData,
+.profiles .PropertyGroupItem,
+.profiles .PropertyItemHeader,
+.profiles ul,
+.profiles ol,
+.searchForm th,
+.topRow,
+#ctl00_divProfilesContentMain .basicInfo td,
+#ctl00_divProfilesContentMain .basicInfo th {
+    font-size: 1rem;
+    line-height: 1.5;
 
-/* NAVBAR SEARCH */
-#navbarsearch-container {
-	position: relative; 
 }
-#navbarsearch { 
-    position: absolute;
-	right: 10px;
-	top: -85px;
-	border: 2px solid #CCC;
-	font-size: 13px;
-	line-height: 28px; 
+
+/* Bootstrap 5.0 native font stack */
+body,
+.profiles,
+.profiles td,
+.profiles th,
+.profiles .profilesContentMain .basicInfo td,
+.profiles .PropertyGroup,
+.profiles .PropertyGroupData,
+.profiles .PropertyGroupItem,
+.profiles .PropertyItemHeader,
+.profiles ul,
+.profiles ol,
+.searchForm th,
+.topRow,
+#ctl00_divProfilesContentMain .basicInfo td,
+#ctl00_divProfilesContentMain .basicInfo th,
+.profiles textarea,
+.profiles select,
+.profiles h2,
+.profiles h3,
+.profiles h4,
+.profiles h5,
+.profiles h6,
+.profiles ol {
+    font-family: system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue", Arial,
+        "Noto Sans",
+        "Liberation Sans",
+        sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
-.nav-searchfield-outer {
-    margin: 0;
-    width: 230px;
-	display: inline-block;
-	vertical-align: top;
+
+/* set global font and background colors */
+body {
+    color: var(--text-color);
+    background: var(--page-background-color);
 }
-#nav-searchfield {
-    height: 26px;
-    margin: 0;
-    padding: 0 3px 0 5px;
-    width: 250px;
-    display:inline-block; 
-    background-color:#fff;
-	border: none;
+
+/* normalize link colors */
+a,
+.profiles a {
+    color: var(--generic-link-color);
 }
-#navbarsearch input[type=submit] { 
-    width: 30px;
-  	height: 26px;
-	margin: 0; 
-    background: #f2a900 url(../Framework/Images/search.png) no-repeat scroll center center; 
-	background-size: contain;
-	text-indent: -1000px;
-	vertical-align: top;
+
+a:visited,
+.profiles a:visited,
+a:active,
+.profiles a:active {
+    color: var(--generic-link-visited-color);
 }
-#navbarsearch input[type=submit]:hover { cursor: pointer; } /* colors within themes */
-#nav-search-in {
-    display: inline-block;
-    height: 26px;
-    overflow: hidden;
-	border-right: 1px solid #999;
-	background-color: #f7f7f8;
-	width: 125px;
-	background: #f7f7f8 url(../Framework/Images/sort_desc.gif) no-repeat scroll 112px 10px;
+
+/* normalize heading colors */
+h2,
+.profiles .profilesContentMain .pageTitle h2,
+.editPage h2 {
+    color: var(--heading-color);
 }
-#nav-search-in #nav-search-in-content {
-    color: #444;
-    display: inline-block;
-    padding: 0 10px 0 5px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+
+input.form-control,
+input.inputText,
+.PropertyGroupData {
+    color: var(--text-color) !important;
 }
-.nav-facade-active #searchDropdownBox {
-    left: -1px;
-    opacity: 0;
-    top: 8px;                  /* gap in Firefox */
-    visibility: visible;
+
+/* ############################################################################################ */
+/* ZAP JUNK SITE-WIDE
+/* ############################################################################################ */
+
+/* warning: Profiles has a bunch of random empty divs, some of which are unnecessarily styled, e.g. .SupportText on profile pages. This rule kills the borders. It's a sledgehammer rather than a knife but it may be helpful. */
+/* span.unused is generated on the server for disabled "all except" junk in the search form. Not sure why this isn't already set to hidden. */
+/* passiveSectionLine creates stupid lines between blocks on home page and profile pages, can recreate with borders if needed */
+
+div:empty,
+.SupportText,
+span.unused,
+.passiveSectionLine {
+    border: none;
+    display: none;
 }
-#searchDropdownBox {
+
+/* ############################################################################################ */
+/* RESPONSIVENESS: make responsive to keep cell phones happy */
+/* small screen? most things are 100% wide, and passive content is hidden */
+/* DREAM: someday move these into upstream code */
+/* ############################################################################################ */
+
+@media only screen and (max-width: 980px) {
+
+    /* window is limited to screen width, and kill all the pixel widths */
+    :root {
+        --max-main-content-width: 98vw;
+    }
+
+    html body .profiles,
+    html body .profiles .profilesPage,
+    #prns-nav ul.prns-main,
+    .profilesMaxWidth {
+        max-width: 90vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    html body .profiles .profilesPage {
+        width: auto !important;
+    }
+
+    /* less horizontal space? make font size smaller in menus */
+    #prns-nav ul.prns-main li a {
+        font-size: 0.8rem;
+    }
+
+    /* don't be afraid of breaking long words if we need to prevent overflows */
+    /* this is highly aggressive, and ideally shouldn't have to exist */
+    * {
+        word-wrap: anywhere;
+        overflow-wrap: anywhere;
+    }
+
+    /* hide unimportant bars on left and right, so main content is highlighted */
+    html body .profilesContentPassive,
+    html body #ctl00_divContentLeft {
+        display: none;
+    }
+
+    /* at top, make site logo smaller */
+    .researcherprofiles--institution-header--site-logo h1 {
+        font-size: 1rem
+    }
+
+    /* TODO: make sure this actually works across multiple sites */
+    html body .researcherprofiles--institution-header--site-logo h1 a img {
+        max-height: 2rem !important
+    }
+
+    /* hide search bar, history, other sites in menu */
+    /* TODO: should we hide search options as well? */
+    /* DREAM: every menu item should have a class */
+    .prns-main .search,
+    .prns-main #nav-search-in,
+    .prns-main li a[href*="history"],
+    .prns-main li+li+li a[href*="/search/"] {
+        display: none !important;
+    }
+
+    /* hide some stuff in logged-in user menu */
+    /* DREAM: every menu item should have a class */
+    #prns-usrnav .usermenu #dashboard,
+    #prns-usrnav .usermenu #navMyLists,
+    #prns-usrnav .usermenu #ListDivider,
+    #prns-usrnav .usermenu a[href*="proxy"] {
+        display: none !important;
+    }
+
+    /* in profile pages top basic info block, save space by making photo smaller, and hide headings */
+    .researcherprofiles--researcher-profile-page img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto {
+        max-width: 25vw
+    }
+
+    /* in publication lists, hide busy/wordy article metrics */
+    .researcherprofiles--researcher-profile-page .profilesContentMain .publications .article-metrics {
+        display: none
+    }
+
+    /* table text is a smidgen smaller */
+    .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible td,
+    .researcherprofiles--researcher-profile-page .profilesContentMain table.grants td {
+        font-size: 0.9em !important;
+    }
+
+}
+
+/* ############################################################################################ */
+/* TIPPY-TOP THIN INSTITUTION BRANDING HEADER
+/* structure is: .researcherprofiles--branded-institutional-banner > .researcherprofiles--branded-institutional-banner--menu > ul > li */
+/* sites like UCSD have one <ul>, while UCSF has multiple <ul>s */
+/* ############################################################################################ */
+
+.researcherprofiles--branded-institutional-banner--menu {
+    background-color: var(--very-dark-background-color);
+}
+
+/* for every institution, which has only one ul */
+.researcherprofiles--branded-institutional-banner--menu>ul:only-of-type {
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-between;
+}
+
+.researcherprofiles--branded-institutional-banner--menu>ul li {
+    display: inline;
     margin: 0;
     padding: 0;
-    position: absolute;
-    visibility: hidden;
-	width: 90px;
-}
-#searchDropdownBox .searchSelect {
-	height: 20px;
-}
-.nav-facade-active .searchSelect option {
-	padding-bottom: 4px;   /* no effect except Firefox */
+    list-style-type: none;
+    max-height: 3rem;
+    overflow: hidden;
 }
 
-/* gadget badges */
-ul#badge { list-style-type: none; padding-left: 0; margin: 0\9; }
-.badge {
-  margin: 20px 0 20px 8px;  
-  width: 136px;
-  padding-left: 0; padding-bottom: 10px;
+.researcherprofiles--branded-institutional-banner--menu ul {
+    margin: 0;
 }
-.badge h3 { color: #333; font-size: 12px; font-weight: normal; padding: 4px 8px; }
-h2.badge-top  { padding: 12px 0 14px 4px; margin: -68px 0 0 60px; width: 70px; font-size: 13px; }
-.badge p { padding: 0 0 6px; margin: 0 -3px 0 0; margin: 0\9; line-height: 18px; }
 
-/* Back to top */
-#backtotop {  
-    position: fixed;  
-    right:0px;  
-    bottom:15px;  
-    display:none; /*hid the button first*/  
-}  
-#backtotop a {  
-    text-decoration:none;  
-    border:0 none;  
-    display:block;  
-    font-size:50px;  
-	padding-right:10px;
-	color:#000;
-}  
-#backtotop a:hover {  
-    opacity:.8; /*mouse over fade effect*/  
-}  
+.researcherprofiles--branded-institutional-banner--menu ul li img {
+    max-height: 2.5rem;
+    max-width: 100%;
+}
 
-/* Metrics & Activity Stream */
-.panelActive.navbar { padding: 0 0 70px; } 
-.metrics { margin: 0 0 20px; padding: 0 0 12px; border-bottom: 1px solid #ccc; }
-.metrics .act-heading, .activities .act-heading { padding-bottom: 12px; white-space: nowrap; }
-.activities .act-heading span { display: block; font-size: 90%; padding: 4px 0; color: #444; }
-.metricsDetails span { display: inline-block; width: 4em; text-align: right; font-family: "Courier New", Courier, monospace; }
-.activities { max-width: 600px; padding-bottom: 0; margin-bottom: 0; }
-.act { margin-bottom: 10px; padding: 0 0 8px; clear: left; border-bottom: 1px solid #ccc; min-height: 48px; }
-.act-user { line-height: 15px; }
-.act-userdate .date { color: #506380; font-size: 11px; }
-.act-image { float: left; height: 45px; padding-right: 5px; overflow-y: hidden; }
-.act-msg { clear: left; padding-top: 6px; }
-.panelMain .activities { margin-top: 30px; margin-left: 60px; }
-.panelMain .act-heading { display: none; }
-.panelMain .act-userdate { float: left; width: 160px; padding-right: 10px; }
-.panelMain .act-msg { clear: none; float: left; width: 360px; padding: 0; margin-top: -2px; }
+.researcherprofiles--branded-institutional-banner--menu ul li a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #fff;
+}
 
-/* Login */
-.login_container { border: 1px solid #CCC; display: table; width: 960px; }
-.login_container row { display: table; width: 100%; }
-.login_container div { display: table-cell; text-align: center; }
-.login input[type="image"] { width: 160px; padding: 20px; vertical-align: middle; }
-.login .plus-size input[type="image"] { width: 200px; }
+.researcherprofiles--branded-institutional-banner--menu ul li a:hover {
+    text-decoration: underline;
+}
 
+/* ############################################################################################ */
+/* OUR INSTITUTION HEADER WITH NAME OF SITE, RIGHT BELOW TOP BRANDING HEADER
+/* this is generated by us, and largely similar between sites */
+/* structure is: .researcherprofiles--institution-header > .researcherprofiles--institution-header--site-logo > h1 > a > img */
+/* ############################################################################################ */
+
+.researcherprofiles--institution-header {
+    background-color: var(--page-background-color);
+    border: none;
+    text-align: left;
+    margin: 0 auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: var(--max-main-content-width);
+}
+
+/* any links in this sections should be unobstrusive */
+.researcherprofiles--institution-header a,
+.researcherprofiles--institution-header a:hover,
+.researcherprofiles--institution-header a:visited {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+/* a smidgen of space around the branding/h1 section */
+.researcherprofiles--institution-header--site-logo {
+    margin: 0 0.5rem;
+}
+
+/* site name should be big */
+.researcherprofiles--institution-header--site-logo h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* the tagline, if present (e.g. on UCSD), should be smaller and muted */
+.researcherprofiles--institution-header--tagline {
+    margin: 0 0 0 1rem;
+    font-size: 1.3rem;
+    color: var(--text-muted-color);
+}
+
+/* the site logo shouldn't really be taller than the text that would be in its place */
+.researcherprofiles--institution-header--site-logo h1 a img {
+    max-height: 2.5rem;
+}
+
+/* the h1 on sites like UCI have text, images, etc. We want to vertically center them, and smoosh to the right */
+.researcherprofiles--institution-header--site-logo h1 a {
+    display: flex;
+    align-items: center;
+}
+
+/* if the h1 has an image first, then put some space after the image */
+.researcherprofiles--institution-header--site-logo h1 a img:first-child {
+    margin-right: 1rem;
+}
+
+/* ############################################################################################ */
+/* INTERNAL INTRA-SITE NAVIGATION, MENU, LOGIN, ETC. */
+/* ############################################################################################ */
+
+/* entire top block, menu and surrounding -- includes Home, About, Help as well as row of login info */
+
+/* menu stretches as wide as possible */
+#prns-nav {
+    width: 100%;
+}
+
+/* 1. first, recolor the menus so they're dark on light */
+
+#prns-nav ul.prns-main,
+#prns-nav ul.prns-main li,
+#prns-nav ul.prns-main li a,
+#prns-nav ul.prns-main li.landed a,
+#prns-usrnav ul.usermenu,
+#prns-usrnav ul.usermenu li,
+#prns-usrnav ul.usermenu li a,
+#prns-usrnav ul.usermenu li.landed a,
+#prns-nav ul.usermenu li:hover>a,
+#prns-nav ul.usermenu li.selected>a,
+#prns-nav ul.usermenu li ul.drop li:hover,
+#prns-nav ul.usermenu ul.drop a {
+    color: var(--text-color) !important;
+    background-color: var(--menu-background-color) !important;
+    //height: unset;
+}
+
+/* but background of user menu should be white */
+#prns-usrnav ul.usermenu {
+    background-color: var(--page-background-color) !important;
+}
+
+/* put borders between items that should have borders, and normalize height */
+#prns-nav ul.prns-main li a,
+#prns-nav ul.prns-main li.landed a,
+#prns-usrnav ul.usermenu li a,
+#prns-usrnav ul.usermenu li.landed a {
+    border: 1px solid var(--menu-important-background-color) !important;
+    border-collapse: collapse;
+    height: 100%;
+}
+
+/* important/hovered/selected items should be in important color */
+#prns-nav ul.prns-main li.landed a,
+#prns-nav ul.prns-main li a:hover,
+#prns-nav ul.prns-main li.landed a:hover,
+#prns-nav ul.prns-main .drop li a:hover,
+#prns-usrnav ul.usermenu li.landed a,
+#prns-usrnav ul.usermenu li a:hover,
+#prns-usrnav ul.usermenu li.landed a:hover,
+#prns-usrnav ul.usermenu .drop li a:hover {
+    color: var(--menu-important-text-color) !important;
+    background-color: var(--menu-important-background-color) !important;
+}
+
+/* "Login to edit your profile..." */
+#prns-usrnav .loginbar {
+    color: var(--text-muted-color);
+}
+
+/* was asked to make background of user menu items white */
+#prns-usrnav ul.usermenu li a,
+#prns-usrnav ul.usermenu li.landed a,
+#prns-nav ul.usermenu li.selected>a {
+    background-color: var(--page-background-color) !important;
+    border: 1px solid var(--page-background-color) !important;
+}
+
+/* 2. then reset spacing, alignment and layout */
+#prns-nav ul.prns-main,
+#prns-usrnav ul.usermenu {
+    display: flex;
+    align-items: stretch;
+}
+
+#prns-usrnav ul.usermenu {
+    justify-content: normal;
+}
+
+#prns-usrnav ul.usermenu>li>a {
+    height: 100%;
+}
+
+/* undo all the stupid fixed pixel heights in the menu */
+#prns-nav ul.prns-main,
+#prns-nav ul.prns-main>li,
+#prns-nav ul.prns-main>li a img,
+#prns-usrnav ul.usermenu,
+#prns-usrnav ul.usermenu>li,
+#prns-usrnav ul.usermenu>li a img {
+    height: initial;
+}
+
+/* 3. OK, we're finally done with setup and resets! now on to the main menu search inputs */
+
+/* search input elements are vertically aligned, and have some extra padding */
+#prns-nav ul.prns-main #nav-search-in,
+#prns-nav ul.prns-main .search {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-right: 1rem;
+}
+
+#prns-nav ul.prns-main #nav-search-in {
+    padding-right: 0;
+}
+
+/* put all the unused space to the left of the Amazon-style pulldown */
+.prns-main #nav-search-in {
+    margin-left: auto;
+}
+
+/* remove fixed width of search box container */
+.prns-main .search {
+    width: auto !important;
+}
+
+/* and normalize the search box itself */
+#prns-nav li.search input {
+    border: revert;
+    padding-right: 0;
+    margin-left: auto;
+    width: auto;
+    max-width: 18rem;
+    min-width: 12rem;
+    position: static;
+}
+
+/* remove the magnifying glass image in the search box and the search type dropdown */
+#prns-nav li.search img,
+#prns-nav #search-drop {
+    display: none
+}
+
+/* 4. Now we make tweaks to the user menu */
+
+/* some space around the "log in", etc. navigation and menu at botton of menu */
+#prns-nav #prns-usrnav {
+    margin: 0.5rem 2rem 0 2rem;
+}
+
+/* photo next to name in user menu is *before* name, not *abive* name */
+#prns-usrnav #menuthumb {
+    display: inline;
+    padding: 0 1rem 0 0;
+}
+
+#prns-usrnav #menuthumb img {
+    max-height: 2em;
+    width: auto;
+}
+
+/* ############################################################################################ */
+/* GLOBAL PAGE CONTENT
+/* ############################################################################################ */
+
+/* extra space that sites below menu area, and at top of Profiles page content */
+@media only screen and (min-width: 980px) {
+    .profiles .profilesPage {
+        padding-top: 2rem;
+    }
+}
+
+/* ############################################################################################ */
+/* GLOBAL COMPONENTS
+/* ############################################################################################ */
+
+/* double arrow is used both on homepage and profile pages */
+.dblarrow {
+    font-weight: normal;
+}
+
+.dblarrow:before {
+    content: "> ";
+    font-weight: bold;
+    display: inline-block;
+    padding-right: 0.5rem;
+    font-size: 1rem;
+    color: #999;
+}
+
+/* name of institution, e.g. "UCSF", "USC", used on profile pages, profile network pages, and home page activity feed */
+.researcherprofiles--institution-name-associated-with-researcher {
+    font-size: 70%;
+    padding-left: 0.5rem;
+    color: var(--heading-color);
+    text-decoration: none;
+}
+
+/* show more , show less is definitely used on profile pages
+   unsure if it's used elsewhere, but let's assume it might be  */
+.expand-collapse .more,
+.accordion .more,
+.expand-collapse .less,
+.accordion .less {
+    margin: 0 auto auto auto !important;
+    padding-top: 0.3rem;
+    text-align: right;
+    cursor: pointer;
+}
+
+.expand-collapse .more,
+.accordion .more {
+    /* border-top: 1px dashed var(--heading-color); */
+    color: var(--heading-color);
+    font-weight: bold;
+
+}
+
+/* hide plus/minus after the more/less indicator, which we're going to replace */
+.expand-collapse .more>span:last-child,
+.accordion .more>span:last-child,
+.expand-collapse .less>span:last-child,
+.accordion .less>span:last-child {
+    display: none;
+}
+
+.expand-collapse .more:after,
+.accordion .more:after {
+    /* arrow via https://unicode-table.com/en/sets/arrow-symbols/#up-arrows */
+    content: " \25BC";
+    font-size: 1.1em;
+}
+
+.expand-collapse .less:after,
+.accordion .less:after {
+    /* arrow via https://unicode-table.com/en/sets/arrow-symbols/#down-arrows */
+    content: " \25B2";
+    font-size: 1.1em;
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE: PERSON'S NAME, PHOTO, BASIC DETAILS, AND BADGES
+/* ############################################################################################ */
+
+/* containing table should be as small as possible, so things stay left */
+.researcherprofiles--researcher-profile-page .panelMain>table {
+    display: inline-block;
+}
+
+/* person's name is big */
+.researcherprofiles--researcher-profile-page .pageTitle h2 {
+    font-size: 2.5rem !important;
+    font-weight: bold !important;
+    padding-bottom: 2rem;
+}
+
+/* the left container that may or may not contain photo should be as small as needed */
+.researcherprofiles--researcher-profile-page .panelMain>table>tbody>tr>td:first-child {
+    padding: 0 !important;
+    margin: 0 !important;
+    padding: 0 0 0 0 !important;
+    text-align: left;
+}
+
+/* photo size is always 150px. wish we could make this bigger! */
+.researcherprofiles--researcher-profile-page img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto {
+    width: 150px;
+    margin-right: 2rem;
+}
+
+/* some required space below the photo and basicinfo blocks, if they exist */
+.researcherprofiles--researcher-profile-page img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto,
+.researcherprofiles--researcher-profile-page .basicInfo>table {
+    margin-bottom: 2rem;
+}
+
+/* in basic info, the email and vcard links should look unobstrusive */
+.researcherprofiles--researcher-profile-page .basicInfo a,
+.researcherprofiles--researcher-profile-page .basicInfo a:visited {
+    color: var(--text-color) !important;
+    text-decoration: none;
+}
+
+/* in basic info, make th headings like "Title", "School", etc. gray, with a little right space */
+.researcherprofiles--researcher-profile-page .basicInfo th {
+    color: var(--text-muted-color);
+    padding-right: 1rem;
+}
+
+/* but in basic info, hide th headings like "Title", "School", etc. on smaller screens */
+@media only screen and (max-width: 30rem) {
+    .researcherprofiles--researcher-profile-page .basicInfo th {
+        display: none;
+    }
+}
+
+/* Put some space around badges */
+/* TODO: should redo with object-fit */
+.researcherprofiles--researcher-badge {
+    display: inline-block;
+    float: right;
+    margin: 0.3rem 0 0.3rem 0.5rem;
+    border: 1px solid var(--highlighted-panel-border-color);
+    text-align: right;
+}
+
+/* set badge size */
+.researcherprofiles--researcher-badge img {
+    width: 4rem;
+    height: auto;
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE: TABLE OF CONTENTS
+/* ############################################################################################ */
+
+/* restyle the TOC box */
+.researcherprofiles--researcher-profile-page #toc {
+    margin: 2rem 0;
+    background-color: var(--highlighted-panel-background-color);
+    padding: 0.5rem;
+    border: none;
+    text-align: left;
+}
+
+/* reset random padding around ul */
+.researcherprofiles--researcher-profile-page #toc ul {
+    padding: 0;
+}
+
+/* make the list horizontal, with standalone items */
+.researcherprofiles--researcher-profile-page #toc ul li {
+    list-style-type: none;
+    display: inline-block;
+    white-space: nowrap;
+    padding: 0;
+    margin: 0.1rem 1em;
+}
+
+/* the links colors are the same as the heading colors below */
+.researcherprofiles--researcher-profile-page #toc ul li a {
+    color: var(--heading-color);
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE: TABLE OF CONTENTS AND ASSOCIATED HEADINGS
+/* table of contents items and matching headings may be lowercase. force title case */
+/* ############################################################################################ */
+
+.researcherprofiles--researcher-profile-page #toc,
+.researcherprofiles--researcher-profile-page .toc-item {
+    text-transform: capitalize
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE: STRUCTURE OF EACH SECTION
+/* ############################################################################################ */
+
+/* weird grouping of multiple content sections that we don't care about */
+
+/* hide the stupid collapsible meta-section headers */
+.researcherprofiles--researcher-profile-page .PropertyGroup {
+    display: none;
+}
+
+.researcherprofiles--researcher-profile-page .PropertyGroupItem {
+    border: none !important
+}
+
+/* section headings are bigger, recolored, and unclickable */
+.researcherprofiles--researcher-profile-page .PropertyItemHeader {
+    color: var(--heading-color);
+    font-size: 1.8rem;
+    background-color: var(--page-background-color);
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0.5rem 0 0 0 !important;
+    display: inline-block;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* hide the stupid expand icon graphic in section headings */
+.researcherprofiles--researcher-profile-page .PropertyItemHeader img {
+    display: none;
+}
+
+/* a little space below each content section body */
+.researcherprofiles--researcher-profile-page .PropertyGroupData {
+    margin-bottom: 2rem;
+    padding-bottom: 0;
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE: COMMON PATTERNS AND COMPONENTS
+/* ############################################################################################ */
+
+/* something weird is going on with table borders popping up on Safari? */
+.researcherprofiles--researcher-profile-page table,
+.researcherprofiles--researcher-profile-page table td {
+    border-collapse: collapse;
+    border: none;
+}
+
+/* collapsible tables are used in education, awards and honors */
+/* DREAM: remove fixed pixel widths */
+
+/* collapsible tables have a stupid pixel width, stretching out */
+.researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible,
+.researcherprofiles--researcher-profile-page .profilesContentMain table.grants {
+    width: 100% !important;
+    border: none;
+    overflow-wrap: break-word;
+}
+
+/* adding little borders between non-linky collapsible table rows */
+/* It's quite hard to select the right tables. Ideally, we'd hand-list each one, but in this case, we need this funky selector to get awards/grants/education, but not in the news, websites, or pubs. */
+.researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible tr:not(.website-table),
+.researcherprofiles--researcher-profile-page .profilesContentMain table.grants tr {
+    border-top: 2px solid var(--striped-row-border-color);
+}
+
+.researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible tr:first-of-type,
+.researcherprofiles--researcher-profile-page .profilesContentMain table.grants tr:first-of-type,
+.researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible tr.accordion {
+    border: none;
+}
+
+/* adding a little space between collapsible table items */
+/* and cells are never too narrow */
+.researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible td,
+.researcherprofiles--researcher-profile-page .profilesContentMain table.grants td {
+    padding: 0.2rem 0.5rem 0.2rem 0rem;
+    min-width: 5em;
+}
+
+/* empty table cells can be as narrow as possible */
+.researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible td:empty,
+.researcherprofiles--researcher-profile-page .profilesContentMain table.grants td:empty {
+    min-width: 0;
+    padding: 0;
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE: GADGETS
+/* ############################################################################################ */
+
+/* don't let gadgets overflow! */
+.gadgets-gadget-chrome {
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow: auto;
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE: PUBLICATIONS
+/* ############################################################################################ */
+
+/* clean up explanation of where publications are derived, at top of pubs list */
+.researcherprofiles--researcher-profile-page .profilesContentMain .publicationList #ctl01_divPubHeaderText {
+    color: var(--text-muted-color) !important;
+    font-weight: normal !important;
+}
+
+/* more spacing between each publication */
+.researcherprofiles--researcher-profile-page .profilesContentMain .publications li {
+    border: none;
+    padding: 0.65rem;
+    margin: 0;
+}
+
+/* at some point in time, publication names are too long to make sense of */
+.researcherprofiles--researcher-profile-page .profilesContentMain .publications li {
+    max-width: 50em;
+}
+
+/* shade every second line */
+.researcherprofiles--researcher-profile-page .profilesContentMain .publications li:nth-child(even) {
+    background: var(--striped-row-colored-row-color);
+    border-top: 0.5px solid var(--striped-row-border-color);
+    border-bottom: 0.5px solid var(--striped-row-border-color);
+}
+
+/* normalize color of links to see visualizations */
+.researcherprofiles--researcher-profile-page .anchor-tab a.link-visualization {
+    color: var(--generic-link-color) !important;
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE: BIO / OVERVIEW
+/* ############################################################################################ */
+
+/* Long bios shouldn't be excessively wide */
+/* see https://ux.stackexchange.com/q/108801 and https://ux.stackexchange.com/q/3618 for explanation */
+.researcherprofiles--researcher-profile-page .overview {
+    max-width: 70em;
+}
+
+/* We need this to use the "show more" / "show less" */
+/* but it sucks that if JavaScript fails, this will just hide content */
+.researcherprofiles--researcher-profile-page .overview {
+    max-height: 20rem;
+    overflow: hidden;
+    /* fade out the bottom 10% to white */
+    mask-image: linear-gradient(180deg, #000 90%, transparent);
+}
+
+.researcherprofiles--researcher-profile-page .overview.full {
+    max-height: none;
+    mask-image: none;
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE: WEBSITES
+/* ############################################################################################ */
+
+/* fix stupid hardcoded spacing around website entries */
+
+.researcherprofiles--researcher-profile-page tr.website-table>td {
+    padding: 0.5rem;
+}
+
+.researcherprofiles--researcher-profile-page #view_links_table {
+    padding-bottom: 0 !important;
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE: BIO / OVERVIEW
+/* ############################################################################################ */
+
+/* Long bios shouldn't be excessively wide */
+/* see https://ux.stackexchange.com/q/108801 and https://ux.stackexchange.com/q/3618 for explanation */
+.researcherprofiles--researcher-profile-page .overview {
+    max-width: 70em;
+}
+
+/* We need this to use the "show more" / "show less" */
+/* but it sucks that if JavaScript fails, this will just hide content */
+.researcherprofiles--researcher-profile-page .overview {
+    max-height: 20rem;
+    overflow: hidden;
+    /* fade out the bottom 10% to white */
+    mask-image: linear-gradient(180deg, #000 90%, transparent);
+}
+
+.researcherprofiles--researcher-profile-page .overview.full {
+    max-height: none;
+    mask-image: none;
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE: VIDEOS
+/* ############################################################################################ */
+
+/* limit height of overall YouTube section */
+.researcherprofiles--researcher-profile-page .youtube {
+    height: 25rem !important;
+    min-height: 0;
+    min-height: auto;
+    overflow: clip;
+}
+
+/* YouTube iframe takes up the whole left side */
+.researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#FeaturedVideos"] .yt_div iframe.yt_player {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+/* make list of videos pretty and scrollable */
+.researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#FeaturedVideos"] .yt_list {
+    height: 100%;
+    overflow: auto;
+    background: var(--menu-background-color);
+    border: 1px solid var(--highlighted-panel-border-color);
+    color: var(--generic-link-color);
+    padding: 1rem;
+}
+
+/* a little whitespace around each video link */
+.researcherprofiles--researcher-profile-page .youtube .yt_list li {
+    padding: 0.5rem;
+}
+
+/* selected video link is visually highlighted */
+.researcherprofiles--researcher-profile-page .youtube .yt_list li:hover {
+    background: var(--menu-important-background-color);
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE RIGHT COLUMN PASSIVE NETWORKS */
+/* ############################################################################################ */
+
+/* reset the highly styled Explore buttons, and make them look like links */
+/* TODO: figure out why not all the explore links are wrapped in this class and dblarrow */
+.researcherprofiles--researcher-profile-or-network-page .prns-explore-btn,
+.researcherprofiles--researcher-profile-or-network-page .profilesContentPassive .dblarrow {
+    display: inline;
+    color: var(--generic-link-color) !important;
+    background-color: revert !important;
+    padding: 0 !important;
+    margin: 0 0 3.5rem 0;
+    font-weight: bold;
+}
+
+.researcherprofiles--researcher-profile-or-network-page .profilesContentPassive,
+.researcherprofiles--researcher-profile-or-network-page .profilesContentPassive .panelPassive,
+.researcherprofiles--researcher-profile-or-network-page .profilesContentPassive .panelPassive .passive-header {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    background: white !important;
+    border: none !important;
+}
+
+/* if page is sufficiently wide, and there's only one passive column, make sure right column is at least ~20% of screen, and give it some room to breathe */
+@media only screen and (min-width: 60rem) and (min-width: 980px) {
+    .researcherprofiles--researcher-profile-or-network-page .profilesContentMain:first-child+.profilesContentPassive {
+        width: 25%;
+        padding-left: 2.5rem !important;
+    }
+}
+
+/* totally hide "Name's Networks" top heading big */
+.researcherprofiles--researcher-profile-or-network-page .passive-header {
+    display: none;
+}
+
+/* main "Name's Networks" heading and "Concepts", etc. subheadings are all colored */
+.researcherprofiles--researcher-profile-or-network-page .passive-header,
+.researcherprofiles--researcher-profile-or-network-page .passiveSectionHead {
+    font-weight: bold;
+    color: var(--heading-color) !important;
+}
+
+/* a little extra space above every subheading */
+.researcherprofiles--researcher-profile-or-network-page .passiveSectionHead {
+    margin-top: 1rem !important;
+}
+
+/* gray out description of where the network data came from */
+.researcherprofiles--researcher-profile-or-network-page .passiveSectionHead .passiveSectionHeadDescription {
+    color: var(--text-muted-color) !important;
+    margin: 0.1rem 0 0.5rem 0 !important;
+}
+
+/* in people lists, indent text over a bit */
+.researcherprofiles--researcher-profile-or-network-page .profilesContentPassive .passiveSectionBody li {
+    text-indent: -2rem;
+    padding-left: 2rem;
+}
+
+/* headshot photo container */
+.researcherprofiles--researcher-profile-or-network-page .profilesContentPassive a .thumbnail {
+    display: inline-block;
+    height: 1rem;
+    width: 1.3rem;
+    position: relative;
+    margin: 0 0.5rem 0 0;
+    padding: 0;
+    border: none !important;
+}
+
+/* headshot photo is no bigger than container */
+.researcherprofiles--researcher-profile-or-network-page .thumbnail img {
+    width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: middle center;
+}
+
+/* ############################################################################################ */
+/* ABOUT PAGES */
+/* ############################################################################################ */
+
+.profiles .profilesContentMain .aboutText,
+body.about #ctl00_ContentMain_rptMain_ctl00_ctl00_lblHTMLBlock {
+    display: block;
+    text-align: left;
+    width: auto;
+    max-width: 50rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+/* this attempts to overrides dorky styles in profiles.css. I have no idea why this wasn't left as is */
+body.about h3 {
+    font-size: 1.5rem;
+}
+
+/* there's a dumb hardcoded "margin-bottom: 0px" in h2s. undo this. */
+body .profiles .profilesContentMain .pageTitle h2 {
+    margin-bottom: 1rem !important;
+}
+
+/* everything is jammed together on these pages, so more space below headings */
+body .profiles .profilesContentMain h2,
+body .profiles .profilesContentMain h3 {
+    color: var(--text-color);
+}
+
+/* but no space before the *first* heading */
+body.about .profiles .profilesContentMain h2:first-child,
+body .profiles .profilesContentMain .aboutText h3:first-child {
+    margin-top: 0;
+}
+
+/* CUSTOMIZED ABOUT PROFILES PAGE CONTENT */
+
+/* there are two of these blocks on the UCSF site */
+body.about .aboutProfiles {
+    border: 0.25rem solid var(--highlighted-panel-border-color);
+    display: flex;
+    margin: 2rem 0;
+}
+
+body.about .aboutProfiles div {
+    text-align: center;
+    padding: 1rem;
+    flex: 1;
+}
+
+body.about .aboutProfiles div.shaded {
+    background: #f2f2f2;
+}
+
+body.about .aboutProfiles h2,
+body.about .aboutProfiles h3 {
+    color: var(--heading-color);
+}
+
+body.about .aboutProfiles img {
+    padding: 0.3rem;
+    max-height: 5rem;
+    max-width: 100%;
+}
+
+body.about .center {
+    text-align: center;
+}
+
+body.about iframe {
+    max-width: 100% !important;
+    width: 100%;
+}
+
+body.about .aboutProfiles ul {
+    margin: 1rem 0;
+    text-align: left;
+}
+
+body.about .aboutProfiles h3.toolbox,
+body.about .aboutProfiles h3.questions,
+body.about .aboutProfiles h3.share {
+    font-size: 130%;
+    color: #777;
+    padding: 12px 0 8px 45px;
+    text-align: left;
+}
+
+body.about .toolbox {
+    background: transparent url(../About/Images/gear.gif) no-repeat 8px 5px;
+}
+
+body.about .questions {
+    background: transparent url(../About/Images/help.gif) no-repeat 8px 5px;
+}
+
+body.about .share {
+    background: transparent url(../About/Images/comment.gif) no-repeat 8px 5px;
+}
+
+/* ############################################################################################ */
+/* HOME PAGE */
+/* ############################################################################################ */
+
+/* what is this? */
+.profiles .profilesPage .headings {
+    color: var(--heading-color);
+}
+
+/* ############################################################################################ */
+/* HOME PAGE: SEARCH FORM */
+/* ############################################################################################ */
+
+/* search form is .researcherprofiles--home-page .profilesContentMain */
+
+/* search form padding to left and right */
+.researcherprofiles--home-page .profilesContentMain {
+    padding: 0 2rem !important;
+}
+
+/* make the tabs a little smaller, for narrow responsive screens */
+/* and recolor them so the *selected* one is highlighted, not the unselected one */
+
+.researcherprofiles--home-page .content-main ul.tabmenu li {
+    border-width: 1px;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-color: var(--highlighted-panel-border-color);
+    background: var(--page-background-color) !important;
+    padding: 0.5rem 1.25rem;
+    height: 2.2rem !important;
+    font-size: 1rem;
+}
+
+.researcherprofiles--home-page .content-main ul.tabmenu li.tab:not(.selected) {
+    border-bottom-style: solid;
+}
+
+/* reset sizes on all three search rows, including the heading */
+.researcherprofiles--home-page .profilesContentMain .tabContainer>.searchForm>table>tbody>tr>td>div {
+    margin: 0;
+    padding: 0;
+}
+
+/* try to visually merge the two search blocks, but not the heading */
+.researcherprofiles--home-page .profilesContentMain .tabContainer>.searchForm>table>tbody>tr:not(:first-child)>td>div {
+    background: var(--highlighted-panel-background-color);
+    margin: 0;
+    padding: 0 2.5rem;
+    border: 1px solid var(--highlighted-panel-border-color);
+    border-top: 0;
+    border-bottom: 0;
+}
+
+.researcherprofiles--home-page .profilesContentMain .tabContainer>.searchForm>table>tbody>tr:last-child>td>div {
+    border-bottom: 1px solid var(--highlighted-panel-border-color);
+    padding-bottom: 1rem;
+}
+
+.researcherprofiles--home-page .profilesContentMain .tabContainer>.searchForm>table>tbody>tr:nth-child(2)>td>div {
+    padding-top: 1rem;
+    border-top: 1px solid var(--highlighted-panel-border-color);
+}
+
+/* big "Find people..." text at top of search box */
+.researcherprofiles--home-page .profilesContentMain .tabContainer .searchForm table td .header {
+    color: var(--heading-color);
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+    padding-bottom: 0;
+}
+
+/* reset sizing of primary containers used throughout form */
+.researcherprofiles--home-page .profilesContentMain .searchForm .searchForm {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    width: auto;
+}
+
+/* search form header labels ("Research Topic," "Last Name," etc.) are uniform width */
+.researcherprofiles--home-page .searchForm .searchSection th {
+    color: var(--text-color);
+    font-weight: normal;
+    width: 9rem !important;
+    padding: 0 0.75rem 0 0;
+}
+
+/* search form input elements are also fixed width on wider screens */
+.researcherprofiles--home-page .searchForm td select,
+.researcherprofiles--home-page .searchForm td select[style],
+.researcherprofiles--home-page .searchForm td input.inputText {
+    width: 100% !important;
+}
+
+/* The stupid Profiles CSS styles tables in the search form, but this also applies to heavily-nested tables, which isn't what we want. We try to reset it, and prevent extra gaps around researcher type section. */
+.searchForm td table td table td {
+    padding: 0;
+}
+
+@media only screen and (min-width: 981px) {
+
+    .researcherprofiles--home-page .searchForm td select,
+    .researcherprofiles--home-page .searchForm td select[style],
+    .researcherprofiles--home-page .searchForm td input.inputText {
+        width: 15rem !important;
+    }
+}
+
+/* "and/or" in the middle of the search form */
+.researcherprofiles--home-page .searchForm #andor {
+    display: block;
+    padding: 0.5rem 0 0.5rem 9.2rem;
+    margin: 0;
+    font-style: italic;
+}
+
+/* search button */
+.researcherprofiles--home-page a.search-button {
+    border: none;
+    padding: 5px 12px 4px 33px;
+    background-position: 10% 50%;
+    font-size: 1.3rem;
+    background-color: var(--heading-color);
+    filter: contrast(1.5);
+    white-space: nowrap;
+}
+
+/* hover state for search button */
+.researcherprofiles--home-page a.search-button:active,
+.researcherprofiles--home-page a.search-button:hover,
+.researcherprofiles--home-page a.search-button:visited {
+    color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+
+    .researcherprofiles--home-page .searchForm .searchSection th,
+    .researcherprofiles--home-page .searchForm .searchSection td {
+        display: block;
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: left;
+    }
+
+    .researcherprofiles--home-page .searchForm #andor {
+        padding-left: 1rem;
+    }
+}
+
+/* normalize padding in researcher type pulldown */
+#ctl00_ContentMain_rptMain_ctl00_ctl00_divChkList {
+    padding: 1rem !important;
+}
+
+/* researcher type pulldown labels have some space before them */
+#ctl00_ContentMain_rptMain_ctl00_ctl00_divChkList input+label {
+    margin-left: 1rem;
+    font-weight: normal;
+}
+
+/* in "More Options" dropdown, put a little space before each checkbox's label */
+#divDetailCheck label,
+div[id="divDetailCheck"] label {
+    margin-left: 0.5rem;
+}
+
+/* hide DIRECT search link under search form */
+/* DREAM: remove from upstream */
+.researcherprofiles--home-page #ctl00_ContentMain_rptMain_ctl00_ctl00_DirectSearchUCSF {
+    display: none;
+}
+
+/* what are these??? */
+#tblSearchResults th,
+.direct .listTable tr:first-child td {
+    text-align: left;
+    font-weight: 700;
+}
+
+#tblSearchResults th.alignCenter {
+    text-align: center;
+}
+
+/* ############################################################################################ */
+/* HOME PAGE: NETWORK UPDATES IN LEFT COLUMN */
+/* ############################################################################################ */
+
+.researcherprofiles--home-page .activeSectionBody .activities .act-heading span {
+    display: block;
+    color: var(--text-muted-color);
+    font-weight: normal
+}
+
+.researcherprofiles--home-page .activeSectionBody .metrics {
+    font-size: 0.8rem;
+}
+
+.researcherprofiles--home-page .activeSectionBody .metrics div span {
+    /* Bootstrap 4.1 monospace font stack */
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    margin-right: 0.4rem;
+}
+
+.researcherprofiles--home-page .activeSectionBody .activities .act {
+    margin-bottom: 10px;
+    padding: 0 0 8px;
+    clear: left;
+    border-bottom: 1px solid var(--highlighted-panel-border-color);
+    min-height: 48px;
+}
+
+.researcherprofiles--home-page .act-userdate .date {
+    color: var(--text-muted-color);
+    font-size: 0.7em;
+}
+
+.researcherprofiles--home-page .act-image {
+    float: left;
+    height: 3rem;
+    padding-right: 0.5rem;
+    overflow-y: hidden;
+}
+
+/* position, then tighten line height because it's short text */
+.researcherprofiles--home-page .act-msg {
+    clear: left;
+    padding-top: 0.5rem;
+    line-height: 1.3;
+}
+
+/* ############################################################################################ */
+/* HOME PAGE: MOST VIEWED, ETC. IN LEFT COLUMN */
+/* ############################################################################################ */
+
+/* remove border */
+.researcherprofiles--home-page .panelPassive {
+    background: none !important;
+    border: none !important;
+}
+
+/* hide first "most viewed" block and heading */
+.researcherprofiles--home-page .panelPassive>.passiveSectionBody.topSearchPhrases:nth-child(3) {
+    display: none;
+}
+
+.researcherprofiles--home-page .panelPassive>.passiveSectionHead:nth-child(2) {
+    display: none;
+}
+
+/* ############################################################################################ */
+/* ACTIVITY HISTORY */
+/* PAGE: /Activity/Modules/ActivityHistory/ActivityDetails.aspx */
+/* ############################################################################################ */
+
+/* remove stupid scrollbars */
+#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlActivities {
+    overflow: visible !important;
+    height: auto;
+    margin: 2rem;
+}
+
+/* a little space around each block */
+#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlActivities .actTemplate {
+    padding: 1rem;
+}
+
+/* stripe every second row */
+#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlActivities .actTemplate:nth-of-type(even) {
+    background-color: var(--striped-row-colored-row-color);
+    border-color: var(--striped-row-border-color);
+    border-width: 1px 0;
+    border-style: solid;
+}
+
+/* photo to the left */
+#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlActivities .act-image {
+    float: left;
+    width: 6rem;
+}
+
+#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlActivities .act-image img {
+    max-width: 75%;
+}
+
+/* ############################################################################################ */
+/* PROFILE EDITING: MAIN SCREEN WHERE YOU PICK AN AREA */
+/* ############################################################################################ */
+
+/* "Edit menu" is big and left-aligned */
+.researcherprofiles--edit-page .panelMain>h2 {
+    text-align: left;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* hide "Components" heading */
+.researcherprofiles--edit-page .panelMain h3 {
+    display: none;
+}
+
+/* column with each content type to edit is on the left */
+.researcherprofiles--edit-page #profile-components {
+    float: left;
+    width: 55%;
+}
+
+/* column with info on visibility types is on the right, in a legend box */
+.researcherprofiles--edit-page #profile-visibility {
+    float: right;
+    max-width: 40%;
+    margin-left: 5%;
+    border: 1px solid #ccc;
+}
+
+/* remove extra borders around each table and table item */
+.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_repPropertyGroups"],
+.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_repPropertyGroups"] td {
+    border: none !important;
+}
+
+/* make left column items look like one big table, and add nice borders underneath */
+.researcherprofiles--edit-page #profile-components tr,
+.researcherprofiles--edit-page #profile-components tr.evenRow,
+.researcherprofiles--edit-page #profile-components tr.oddRow {
+    background-color: var(--page-background-color);
+    border-top: none;
+    border-bottom: 1px solid var(--striped-row-border-color) !important;
+    border-left: none;
+    border-right: none;
+    border-collapse: collapse;
+}
+
+/* put a little space between each row in left column */
+.researcherprofiles--edit-page #profile-components td {
+    padding: 0.5rem 0;
+    vertical-align: top;
+}
+
+/* hide items counts, stars, ORNG indicators, and random returns in profile components column */
+.researcherprofiles--edit-page #profile-components br,
+.researcherprofiles--edit-page #profile-components .colItemCnt span,
+.researcherprofiles--edit-page #profile-components .colItemCnt span,
+.researcherprofiles--edit-page img[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_repPropertyGroups_ctl06_grdSecurityGroups_ctl"] {
+    display: none
+}
+
+/* lock icons align right */
+.researcherprofiles--edit-page #profile-components .colItemCnt {
+    text-align: right;
+}
+
+/* the whole namedegree/cls thing is TERRIBLE HTML, and should be burned to the ground */
+
+/* name/degree: "always public" is on the right */
+.researcherprofiles--edit-page #profile-components #namedegreerow #public {
+    float: right;
+}
+
+/* name/degree: space between lock icon and "always public" */
+.researcherprofiles--edit-page #profile-components #namedegreerow #public img {
+    margin-right: 3rem;
+}
+
+/* name/degree: "Name and Degrees" looks like a link */
+.researcherprofiles--edit-page #profile-components #namedegree {
+    color: var(--generic-link-color);
+    font-weight: bold;
+}
+
+/* keep "This info is..." text hidden */
+.researcherprofiles--edit-page #profile-components #cls {
+    display: none;
+    font-size: 0.9em;
+}
+
+/* but show "This info is..." text on mouseover */
+.researcherprofiles--edit-page #profile-components #namedegreerow:hover #cls {
+    display: block;
+    text-align: right;
+    color: var(--alert-red-color);
+}
+
+/* "Always public" is visible, except on mouseover */
+.researcherprofiles--edit-page #profile-components #namedegreerow:hover #public {
+    display: none
+}
+
+/* capitalize each profile component title */
+.researcherprofiles--edit-page #profile-components tr>td:first-child:first-letter {
+    text-transform: capitalize;
+}
+
+/* more visual weight on each profile component */
+.researcherprofiles--edit-page #profile-components a.listTableLink {
+    font-weight: bold;
+}
+
+/* less visual weight on public/private listing indicator */
+.researcherprofiles--edit-page #profile-components #namedegreerow #public,
+.researcherprofiles--edit-page .colSecurity {
+    text-align: right;
+    font-size: 0.9em;
+    color: var(--text-muted-color);
+}
+
+/* a little space around visibility description items */
+.researcherprofiles--edit-page #profile-visibility td {
+    padding: 0.5rem;
+    vertical-align: top;
+}
+
+/* hide ad for ORNG at the bottom, since ORNG is going away */
+.researcherprofiles--edit-page .orng-credit {
+    display: none;
+}
+
+/* hide column headings, but leave visible to screen readers */
+.researcherprofiles--edit-page .EditMenuTopRow {
+    display: none
+}
+
+/* ############################################################################################ */
+/* PROFILE EDITING: EDITING A SPECIFIC SECTION */
+/* ############################################################################################ */
+
+/* put some space between edit navigation menu and everything below */
+.editBackLink {
+    margin-bottom: 2rem;
+}
+
+/* some space below edit visibility */
+#ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_pnlSecurityOptions {
+    margin-bottom: 1rem;
+}
+
+/* a little space above every grid (e.g. education and training) */
+.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridView"] {
+    margin-top: 1rem;
+}
+
+/* in grid-based editor, reset colors, heights, padding of header row */
+.researcherprofiles--edit-page table tr.topRow {
+    background-color: var(--highlighted-panel-background-color);
+    color: var(--text-color);
+    height: auto;
+    padding: auto;
+    border: 1px solid var(--highlighted-panel-border-color);
+}
+
+/* each body row in a grid has nice spacing */
+.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridView"] td,
+.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridView"] th {
+    padding: 0.5rem;
+    text-align: left;
+    border: 1px solid var(--highlighted-panel-border-color);
+
+}
+
+/* edit buttons are squished, but can collapse if needed */
+.researcherprofiles--edit-page .actionbuttons td,
+.researcherprofiles--edit-page .actionbuttons th {
+    border: none !important;
+    display: inline-block;
+    padding: 0 !important;
+}
+
+/* ############################################################################################ */
+/* LOGIN PAGE */
+/* /login/default.aspx?method=login */
+/* ############################################################################################ */
+
+/* the box that contains all the campus login options */
+.login_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: stretch;
+    align-items: center;
+    margin: 2rem auto 0 auto;
+    max-width: 75rem;
+}
+
+/* each particular campus login option */
+.login_container div {
+    text-align: center;
+    flex: 0 0 15rem;
+    margin: 1rem;
+    border: 6px solid #eee;
+}
+
+/* image size */
+.login_container input[type=image] {
+    width: 11rem;
+    padding: 1rem;
+}
+
+/* big image size */
+.login_container .plus-size input[type=image] {
+    width: 14rem;
+}
+
+/* ############################################################################################ */
+/* SEARCH RESULTS PAGE */
+/* ############################################################################################ */
+
+/* "Sort / Show  Click..." content is too close to each other, because it's hard-coded 33% per td */
+.researcherprofiles--search-results-page .panelMain table:first-of-type tbody tr:first-child td[style] {
+    padding: 0 0.5rem;
+}
+
+/* center the "Sort / Show  Click..." content within each of their respective containers */
+.researcherprofiles--search-results-page .panelMain table:first-of-type tbody tr:first-child td[style] div {
+    float: none !important;
+    margin: 0 auto;
+}
+
+/* if the "Sort / Show  Click..." content is too close to each other, hide the "Why" text on small screens */
+@media only screen and (max-width: 30rem) {
+    .researcherprofiles--search-results-page .panelMain table:first-of-type tbody tr:first-child td[style] #why {
+        display: none;
+    }
+}
+
+/* the main search results table was hard-coded to 720px */
+.researcherprofiles--search-results-page .panelMain #tblSearchResults {
+    width: 100%;
+}
+
+/*
+FYI, the selectors for the search results table are funky:
+
+                  first header row is:  .researcherprofiles--search-results-page .panelMain .listTable tr:first-of-type
+         all header and body rows are:  .researcherprofiles--search-results-page .panelMain .listTable #tblSearchResults tr
+next/prev row underneath the table is: .researcherprofiles--search-results-page .panelMain .listTablePagination
+*/
+
+/* reset all table borders */
+.researcherprofiles--search-results-page .panelMain .listTable,
+.researcherprofiles--search-results-page .panelMain .listTable td,
+.researcherprofiles--search-results-page .panelMain .listTable th,
+.researcherprofiles--search-results-page .panelMain .listTablePagination {
+    border: 1px solid var(--striped-row-border-color) !important;
+    margin: 0 !important;
+    border-collapse: collapse;
+}
+
+/* normalize colors of alternating rows */
+.researcherprofiles--search-results-page .panelMain .listTable tr.evenRow {
+    background-color: var(--striped-row-colored-row-color);
+}
+
+/* color header and footer rows are a little different */
+.researcherprofiles--search-results-page .panelMain .listTable tr:first-of-type,
+.researcherprofiles--search-results-page .panelMain .listTable tr:first-of-type th,
+.researcherprofiles--search-results-page .panelMain .listTablePagination {
+    background: #eed;
+}
+
+/* kill hardcoded pixel width */
+.researcherprofiles--search-results-page .panelMain .listTablePagination td {
+    width: auto;
+}
+
+/* hide DIRECT link from search results page. Ask Brian for advice here. */
+/* DREAM: remove from upstream */
+.researcherprofiles--search-results-page a[href*='/direct/default.aspx?'] {
+    display: none;
+}
+
+/* ############################################################################################ */
+/* SEARCH RESULTS PAGE: WHY */
+/* ############################################################################################ */
+
+/* List of properties/values have td's with table-row display?! normalize table cells to table-cell display, and remove hard-coded widths */
+.researcherprofiles--search-results-page #ctl00_ContentMain_rptMain_ctl00_ctl00_gvConnectionDetails td.connectionTableRow,
+.researcherprofiles--search-results-page #ctl00_ContentMain_rptMain_ctl00_ctl00_gvConnectionDetails th {
+    display: table-cell;
+    padding: 0.5rem;
+    width: auto !important;
+}
+
+/* There's an arrow between the "Search results" and the topic. This centers the arrow, instead of having it be left-aligned by default */
+.researcherprofiles--search-results-page .connectionContainer .connectionContainerArrow {
+    text-align: center;
+}
+
+/* In search results, click on "why" link, and list of properties/values th's should have standard background color */
+.researcherprofiles--search-results-page #ctl00_ContentMain_rptMain_ctl00_ctl00_gvConnectionDetails th {
+    background-color: var(--highlighted-panel-background-color);
+}
+
+/* ############################################################################################ */
+/* FOOTER */
+/* ############################################################################################ */
+
+/* make sure main content stretches to at least the bottom of viewport */
+#page-container {
+    min-height: 100vh;
+}
+
+/* now stick the footer to the very bottom of the container */
+#page-container .researcherprofiles--footer {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border-top: 0.25rem solid #ccc;
+    font-size: x-small;
+    color: var(--text-muted-color);
+}
+
+/* it's ugly if long footer text blocks stretch all the way across, so dial it back */
+#researcherprofiles--footer-collaboration,
+#researcherprofiles--footer-combined-text-block {
+    max-width: 60rem;
+    margin: 0 auto;
+}
+
+/* list of prominent links? make them bold, standalone, fit on a line */
+#researcherprofiles--footer-contact ul li {
+    display: inline;
+    font-weight: bold;
+    margin: 0 2rem;
+    font-size: 1rem;
+}

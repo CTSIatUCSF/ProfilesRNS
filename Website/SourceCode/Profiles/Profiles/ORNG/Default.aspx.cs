@@ -58,16 +58,6 @@ namespace Profiles.ORNG
         }
         public XmlDocument PresentationXML { get; set; }
 
-        [System.Web.Services.WebMethod]
-        public static string CallORNGRPC(string guid, string channel, string opt_params)
-        {
-            DebugLogging.Log("CallORNGRPC " + guid + ":" + channel);
-            ORNGRPCService responder = ORNGRPCService.GetRPCService(new Guid(guid), channel);
-            string retval = responder != null ? responder.call(channel, opt_params) : null;
-            DebugLogging.Log("CallORNGRPC " + (responder == null ? "ORNGRPCService not found! guid =" : guid));
-            return retval != null ? retval : "";
-        }
-
     }
 
 }

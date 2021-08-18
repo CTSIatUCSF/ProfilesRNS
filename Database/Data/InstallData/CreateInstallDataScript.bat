@@ -22,6 +22,7 @@ type User.Session.Bot.xml
 type Direct..Sites.xml
 type Profile.Data.Publication.Type.xml
 type Profile.Data.Publication.MyPub.Category.xml
+type Profile.Import.PRNSWebservice.Options.xml
 type ORCID..REF_Permission.xml
 type ORCID..REF_PersonStatusType.xml
 type ORCID..REF_RecordStatus.xml
@@ -29,6 +30,5 @@ type ORCID..REF_Decision.xml
 type ORCID..REF_WorkExternalType.xml
 type ORCID..RecordLevelAuditType.xml
 type ORCID..DefaultORCIDDecisionIDMapping.xml
-type ORNG..Apps.xml
-type ORNG..AppViews.xml
+type Profile.Module.GenericRDF.Plugins.xml
 echo ^</Import^>

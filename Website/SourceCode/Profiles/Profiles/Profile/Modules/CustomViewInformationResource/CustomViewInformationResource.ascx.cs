@@ -46,11 +46,9 @@ namespace Profiles.Profile.Modules.CustomViewInformationResource
                 authors.Add(new GenericListItem(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[@rdf:about='" + x.Value + "']/prns:fullName", base.Namespaces).InnerText, Brand.CleanURL(x.Value)));
             }
 
-
+            
             imgSubjectArea.Src = Brand.GetThemedDomain() + "/Profile/Modules/PropertyList/images/minusSign.gif";
-
             imgAuthor.Src = Brand.GetThemedDomain() + "/Profile/Modules/PropertyList/images/minusSign.gif";
-
 
             if (subjectareas.Count > 0)
             {

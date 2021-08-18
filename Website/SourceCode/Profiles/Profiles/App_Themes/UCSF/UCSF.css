@@ -1,39 +1,44 @@
-﻿/* highlight color */
-#powered-by-block a, #powered-by-block a:visited, .highlight,
-.dblarrow:before, .about .profiles h2, .content-block h2, .searchForm td div.header,
-.passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
-#ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
-.profiles a .authInst, .profiles a .authInst:hover, 
-.profiles .profilesContentMain .pageTitle h2 { color: #F26D04; }
-.profiles a.search-button, .more span, .less span { background-color: #F26D04; }
-.profiles a.search-button:hover { background-color: #F48024; box-shadow: none; }
-#navbarsearch input[type=submit]  { background-color: #F26D04; border: 4px solid #F26D04; }
-#navbarsearch input[type=submit]:hover  { background-color: #F48024; border: 4px solid #F48024; }
-
-/* UCSF only elements */
-#site-logo h1 { margin-top: 50px; }
-#site-logo h1 a img { height: 40px; }
-#header-ucsf div#ucsfnav ul { display: inline-block; }
-#header-ucsf div#ucsfnav ul.right { float: right; }
-#header-ucsf div#ucsfnav ul.right li { text-align: right; }
-.profiles .button-link a, .profiles .button-link a:visited,
-#new-features a, #new-features a:visited { 
-padding: 6px; margin: 0; display: inline-block; font-family: Arial, Helvetica, sans serif; font-size: 14px; background-color: #F26D04; color: #FFF; text-decoration: none; }
-#new-features a:hover, .profiles .button-link a:hover  { background-color: #F48024; }
-.button-link { padding-top: 20px; padding-bottom: 20px; }
-#new-features { clear: right; float: right; width: 300px; margin: 20px 20px 0 0; }
-#new-features a { width: 198px; text-align: center; float: right; padding: 6px 0; }
-
-ul.highlights { padding-left: 20px; }
-ul.highlights li {
-  background:transparent url(Images/orangeArrow.gif) no-repeat scroll 0px 0.45em;
-  list-style-image:none;
-  list-style-position:outside;
-  list-style-type:none;
-  margin: 0;
-  padding: 0 0 5px 18px;
-  font-size: 14px;
+/* colors are from style guide at https://identity.ucsf.edu/print-digital/digital-colors */
+:root {
+    --heading-color: #F26D04;
+    --very-dark-background-color: #052049;
+    --menu-important-background-color: #efded1;
 }
+
+.researcherprofiles--branded-institutional-banner--menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-between;
+
+}
+
+.researcherprofiles--branded-institutional-banner--menu>ul:last-of-type li {
+    display: inline;
+    float: left;
+    margin-right: 1rem;
+}
+
+.researcherprofiles--branded-institutional-banner--menu {
+    padding: 0.5rem 1rem;
+}
+
+@media only screen and (max-width: 980px) {
+    .researcherprofiles--branded-institutional-banner--menu ul.right {
+        display: none;
+    }
+    .researcherprofiles--branded-institutional-banner--menu {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+/* temporarily disabling heroes for UCSF */
+#ctl00_ContentActive_rptActive_ctl00_ctl00_HeroNavbarPanel {
+    display: none
+}
+
+/*
 .sautter { text-align: center; margin-top: 0; font-size: 15px; font-style: italic; } 
 .panelActive.navbar { padding: 0 0 110px; background: transparent url(Images/hero.png) no-repeat scroll center 60px; }
 .hero-women .panelActive.navbar { padding: 0 0 160px; background-image: url(Images/hero-women.png); }
@@ -59,10 +64,4 @@ ul.highlights li {
 .hero-photos19 .panelActive.navbar { padding: 0 0 160px; background-image: url(Images/hero-photos19.png); }
 .hero-photos20 .panelActive.navbar { padding: 0 0 160px; background-image: url(Images/hero-photos20.png); }
 .hero-photos21 .panelActive.navbar { padding: 0 0 160px; background-image: url(Images/hero-photos21.png); }
-
-
-
-
- 
-
-
+*/

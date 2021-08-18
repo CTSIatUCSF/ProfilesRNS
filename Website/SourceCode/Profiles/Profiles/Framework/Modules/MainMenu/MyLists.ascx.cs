@@ -6,12 +6,15 @@ namespace Profiles.Framework.Modules.MainMenu
 {
     public partial class MyLists : System.Web.UI.UserControl
     {
-        SessionManagement sm;     
+        SessionManagement sm;
+
+        public enum pageTypes {SearchResults, Person, Other}
+        public pageTypes pageType = pageTypes.Other;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             sm = new SessionManagement();
- /*          
+            //TM199
             if (sm.Session().UserID > 0)
             {
                 int count = GetCount();
@@ -25,20 +28,21 @@ namespace Profiles.Framework.Modules.MainMenu
                 else
                     litJS.Text = string.Format("<script type='text/javascript'>{0}</script>", "jQuery('#view-list-reports').remove();jQuery('#remove-all-people-from-list').remove();");
 
-                if (!string.IsNullOrEmpty((string)HttpContext.Current.Session["PERSON-SEARCH-ADD"]))
+                //if (!string.IsNullOrEmpty((string)HttpContext.Current.Session["PERSON-SEARCH-ADD"]))
+                if (pageType == pageTypes.SearchResults)
                 {
-                    hlAddToList.NavigateUrl = String.Format("{0}/lists/default.aspx?type=search", Root.Domain);
+                    hlAddToList.NavigateUrl = String.Format("{0}/lists/default.aspx?type=search", Brand.GetThemedDomain());
                     hlAddToList.Text = "Add matching people to my list";
                     hlAddToList.Attributes.Add("style", "width:255px;");
 
                     if (count > 0)
-                        hlRemoveFromList.NavigateUrl = string.Format("{0}/lists/default.aspx?type=removefromsearch", Root.Domain);
+                        hlRemoveFromList.NavigateUrl = string.Format("{0}/lists/default.aspx?type=removefromsearch", Brand.GetThemedDomain());
                     else { litJS.Text += string.Format("<script type='text/javascript'>{0}</script>", "jQuery('#remove-people-from-list').remove();"); }
 
 
                     pnlPersonScript.Visible = false;
                 }
-                else if (Root.AbsolutePath.ToLower().Contains("/person/"))
+                else if (pageType == pageTypes.Person)
                 {
                     Profiles.Edit.Utilities.DataIO dataio = new Edit.Utilities.DataIO();
                     string personid = dataio.GetPersonID(Convert.ToInt64(Request.QueryString["subject"])).ToString();
@@ -69,9 +73,9 @@ namespace Profiles.Framework.Modules.MainMenu
 
                 }
             }
-*/
+
         }
-/*
+
         public int GetCount()
         {
             return Convert.ToInt16(Lists.Utilities.DataIO.GetListCount());
@@ -82,7 +86,7 @@ namespace Profiles.Framework.Modules.MainMenu
             get
             {
 
-               return Lists.Utilities.DataIO.GetList();
+                return Lists.Utilities.DataIO.GetList();
 
             }
         }
@@ -93,8 +97,5 @@ namespace Profiles.Framework.Modules.MainMenu
                 return sm.Session().UserID.ToString();
             }
         }
-
-*/
     }
-    
 }

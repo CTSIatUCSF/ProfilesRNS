@@ -34,7 +34,7 @@
                   <h3>Experts, Collaborators, Mentors</h3>
                   <ul class="square">
                     <li>Researchers at institutions nationwide</li>
-                    <li style="white-space:nowrap">Hundreds of thousands of publications</li>
+                    <li>Hundreds of thousands of publications</li>
                     <li>Thousands of grants</li>
                     <li>Hundreds of clinical trials</li>
                   </ul>
@@ -56,7 +56,7 @@
                   <img src="Images/experts.png" alt="" />
                   <h3>Information About Research</h3>
                   <ul class="square">
-                    <li style="white-space:nowrap">Individual overviews, photos, education</li>
+                    <li>Individual overviews, photos, education</li>
                     <li>Awards, publications, grants, clinical trials</li>
                     <li>Video lectures, news items, and more</li>
                   </ul>

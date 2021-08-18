@@ -57,12 +57,12 @@ namespace Profiles.Edit.Modules.CustomEditGroupMemberOf
             if (Request.QueryString["subject"] != null)
                 this.SubjectID = Convert.ToInt64(Request.QueryString["subject"]);
             else
-                Response.Redirect(Root.Domain + "/search");
+                Response.Redirect(Brand.GetThemedDomain() + "/search");
 
             securityOptions.Subject = this.SubjectID;
             securityOptions.PredicateURI = predicateuri;
             securityOptions.PrivacyCode = Convert.ToInt32(this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@ViewSecurityGroup").Value);
-            securityOptions.SecurityGroups = new XmlDataDocument();
+            securityOptions.SecurityGroups = new XmlDocument();
             securityOptions.SecurityGroups.LoadXml(base.PresentationXML.DocumentElement.LastChild.OuterXml);
 
         }
@@ -72,7 +72,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupMemberOf
             this.EntityName = this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").InnerText;
             this.TagName = this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@TagName").Value;
      
-            litBackLink.Text = "<a href='" + Root.Domain + "/edit/" + this.SubjectID.ToString() + "'>Edit Menu</a> &gt; <b>" + EntityName + "</b>";
+            litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + EntityName + "</b>";
 
      
         }

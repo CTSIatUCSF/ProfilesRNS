@@ -1,14 +1,80 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+ 
+/*******************************************************************************
+ * OAuth2Client persistence for the default OAuth2Persister                    *
+ *    org.apache.shindig.gadgets.oauth2.persistence.sample.JSONOAuth2Persister *
+ *                                                                             *
+ * Used in conjunction with the OAuth2 <ModulePrefs> described in:             *
+ *                                                                             *
+ *    http://code.google.com/p/opensocial-resources/issues/detail?id=1209      *
+ *                                                                             *
+ * to attain the information necessary to complete the OAuth 2.0 request       *
+ *                                                                             *
+ *                                                                             *
+ *******************************************************************************
+ *
+ *	Note by Eric Meeks, UCSF.  We hack up these fields to support JWT style of grant_type
+ *	without having to build a new persistence model
+ *
+*/
 {
    "gadgetBindings" : {
-      "http://stage-profiles.ucsf.edu/apps_ucsf/GoogleOAuth.xml" : {
+      "https://researcherprofiles.org/apps_godzilla/PersonalStats.xml" : {
          "googleAPIv3" : {
             "clientName"          : "googleApi_JWT",
             "allowModuleOverride" : "true"
          }
       },
-      "http://cranestylelabs.github.io/personal-stats-gadget/PersonalStats.xml" : {
+      "https://stage.researcherprofiles.org/apps_godzilla/PersonalStats.xml" : {
          "googleAPIv3" : {
-            "clientName"          : "googleApi_JWT",
+            "clientName"          : "googleApi_JWT_stage",
+            "allowModuleOverride" : "true"
+         }
+      },
+      "https://dev.researcherprofiles.org/apps_godzilla/PersonalStats.xml" : {
+         "googleAPIv3" : {
+            "clientName"          : "googleApi_JWT_dev",
+            "allowModuleOverride" : "true"
+         }
+      },
+      "https://dev.researcherprofiles.org/apps_godzilla/AcademicSenate.xml" : {  
+         "academicSenateAPI" : {
+            "clientName"          : "academicSenate_dev",
+            "allowModuleOverride" : "true"
+         }
+      },
+      "http://107.205.10.101/ucsf/AcademicSenate.xml" : {
+         "academicSenateAPI" : {
+            "clientName"          : "academicSenate_dev",
+            "allowModuleOverride" : "true"
+         }
+      },
+      "https://stage.researcherprofiles.org/apps_godzilla/AcademicSenate.xml" : {  
+         "academicSenateAPI" : {
+            "clientName"          : "academicSenate_stage",
+            "allowModuleOverride" : "true"
+         }
+      },
+      "https://researcherprofiles.org/apps_godzilla/AcademicSenate.xml" : {  
+         "academicSenateAPI" : {
+            "clientName"          : "academicSenate_prod",
             "allowModuleOverride" : "true"
          }
       },
@@ -64,14 +130,59 @@
    "clients" : {
       "googleApi_JWT" : {
          "providerName"  : "googleAPIv3",
-         "redirect_uri"  : "http://stage-profiles.ucsf.edu/shindigorng/gadgets/oauth2callback",
+         "redirect_uri"  : "https://www.researcherprofiles.org/shindigorng/gadgets/oauth2callback",
          "type"          : "confidential",
          "grant_type"    : "urn:ietf:params:oauth:grant-type:jwt-bearer",
-         "client_id"     : "986158168925-tal6v19vu8sbj4ib6pchrhuhvt8m0r90@developer.gserviceaccount.com",
-         "client_secret" : "-----BEGIN PRIVATE KEY-----\nSecret Stuff\n-----END PRIVATE KEY-----\n",
+         "client_id"     : "117977105506-sfmn6rkeo9hlh273d367ujtdo2cb0rra@developer.gserviceaccount.com",
+		 "client_secret" : "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDZcS7OYlkEwWIu\nvLFf4qeKGPZuq3zbhLHc/0oogBlckwJ+7XzTGcU9tUEPiWx+lgb7V389bVoMWxYw\nhvxwX/7fKG2URRb8A22IxnlapejIOfX0nsvNJBq0d1X5O8M4RW8Dd1sD5wCedNx+\n/HCM98SZ96QG3jrQPvN6VnBTNv3GNk94B07q7eabGPZxh3Rz9gAAyE5FVQUo0T/t\nnUB6QfoxFuclS6jwO7wW5eupXk4tfQyrViwvOKUikgxncjb18uON8HdBbjA9HLW5\nC7+FqQpbb/XSQIWM4bMVGIu2tHorKykueO3JCbrUbndG5EIJd4E02t3IyzJkfDxz\nMcJDfFPXAgMBAAECggEAGQy+9avC0ZdttjCqxn8YCgLCMRG0ep2Y1/rZEj1frpiJ\nCxJU9QTdAjTlX+LXCuZBu6bi07LLUu0Ta1fBsTh95juEFDa5ZSMH9V/YDydZ3+c9\nfIbmt6VXJj8xOls2LD9jgKS5aYOtQJP56u8uEC9jCNHMpbXoVKFL72YR3qRRLApT\nLS3eFjhLq2/cPaivs4nVrGnN3UsO54pd9gcemO9PxedlIk8E94rfuQaySeGrVx0P\n+gUi7i+AixgtrQHrbzc2uGMsGPKw81xt8S4WQUk5BUw1LeONeTk7wju3oIo7drPa\nZJTIs83cWJj2unFJfK0btrk/J17u+sXuurr/Gkl8kQKBgQD+c+ZJO3NecuXE5dWv\nxbdL46E1qXqfd6BqS3sgYX7hIX0d7BtMagzrr/pqXAq8ul8eWVDV+4H2F0SBW2kb\niO7YFZvbLWZE9DiWbuhsmwLuJh0mD/GbsnoKUwQLwuZsMP4I1m0jMyMenDQC3Jhu\n9A0wyZJQCIoR0/GzNWUH50kTXQKBgQDaw6t05f0UIqe1u4pBC4F1t1AdUZCbuFYD\nh8jcNmZwbsXUjvgZknZzf9yKkrPBb5OwGQTUbYt2D0eMomTpv0C9s0PX0Z0dVIIn\nX25HNLhXh0UHbnbyGablmxq+VUJbQRDPfoZbSCqOKp76kpPYk+/lRxsN5kugZ6+U\naIg9rGekwwKBgQDijXDZfTxQOL7JW9WxhbmYsRjE/Zv3RfynB4OeJhBhBH8w2BrK\nI5ZTdsDgWAkbVlkAXYeyrhdddAQDpM7lvDrkXAED2d03wbZsgl0g7bdjML49OG7n\nMLamYJm2mxar98cHOVu8vngjdfJ9Jcn26AaijKZf6ep8yxdld0H4En6m5QKBgQC9\nmnNjKOZ06ihTIU0NXQyCWzPrhUMBQ/4Ap1IWUmvsrIV32cX8W+2f40ThMY7sa2kk\najq+ZodF9q47nJA761AQWmvFhN5YimMX/uUUgAP5kLrqWvpqkIMPY6QFLN4LO1R3\nkiCewuhnOVd6s0nCn01/eWZgYKZRSyxpQ0Q5t9BIgwKBgQDR3B8QNKv9YagsxvOf\nR7fs4DJ6Zq/3NZ0vcxudVp+Ia7rFqJtl2D+3xL2XU3f0rzkFgljLPehnXBABHFZC\nojbu9JFi5kwh/A0YW2lmnlEafclQc0iGDeizl4f2M7qFPMuB82fkKMcVH742iZqZ\nyF///boU+nEt6O5xIuATpJkK+Q\u003d\u003d\n-----END PRIVATE KEY-----\n",
          "sharedToken"   : "false"
       },
-      "googleApi_client1" : {
+      "googleApi_JWT_stage" : {
+         "providerName"  : "googleAPIv3",
+         "redirect_uri"  : "https://stage.researcherprofiles.org/shindigorng/gadgets/oauth2callback",
+         "type"          : "confidential",
+         "grant_type"    : "urn:ietf:params:oauth:grant-type:jwt-bearer",
+         "client_id"     : "117977105506-sfmn6rkeo9hlh273d367ujtdo2cb0rra@developer.gserviceaccount.com",
+		 "client_secret" : "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDZcS7OYlkEwWIu\nvLFf4qeKGPZuq3zbhLHc/0oogBlckwJ+7XzTGcU9tUEPiWx+lgb7V389bVoMWxYw\nhvxwX/7fKG2URRb8A22IxnlapejIOfX0nsvNJBq0d1X5O8M4RW8Dd1sD5wCedNx+\n/HCM98SZ96QG3jrQPvN6VnBTNv3GNk94B07q7eabGPZxh3Rz9gAAyE5FVQUo0T/t\nnUB6QfoxFuclS6jwO7wW5eupXk4tfQyrViwvOKUikgxncjb18uON8HdBbjA9HLW5\nC7+FqQpbb/XSQIWM4bMVGIu2tHorKykueO3JCbrUbndG5EIJd4E02t3IyzJkfDxz\nMcJDfFPXAgMBAAECggEAGQy+9avC0ZdttjCqxn8YCgLCMRG0ep2Y1/rZEj1frpiJ\nCxJU9QTdAjTlX+LXCuZBu6bi07LLUu0Ta1fBsTh95juEFDa5ZSMH9V/YDydZ3+c9\nfIbmt6VXJj8xOls2LD9jgKS5aYOtQJP56u8uEC9jCNHMpbXoVKFL72YR3qRRLApT\nLS3eFjhLq2/cPaivs4nVrGnN3UsO54pd9gcemO9PxedlIk8E94rfuQaySeGrVx0P\n+gUi7i+AixgtrQHrbzc2uGMsGPKw81xt8S4WQUk5BUw1LeONeTk7wju3oIo7drPa\nZJTIs83cWJj2unFJfK0btrk/J17u+sXuurr/Gkl8kQKBgQD+c+ZJO3NecuXE5dWv\nxbdL46E1qXqfd6BqS3sgYX7hIX0d7BtMagzrr/pqXAq8ul8eWVDV+4H2F0SBW2kb\niO7YFZvbLWZE9DiWbuhsmwLuJh0mD/GbsnoKUwQLwuZsMP4I1m0jMyMenDQC3Jhu\n9A0wyZJQCIoR0/GzNWUH50kTXQKBgQDaw6t05f0UIqe1u4pBC4F1t1AdUZCbuFYD\nh8jcNmZwbsXUjvgZknZzf9yKkrPBb5OwGQTUbYt2D0eMomTpv0C9s0PX0Z0dVIIn\nX25HNLhXh0UHbnbyGablmxq+VUJbQRDPfoZbSCqOKp76kpPYk+/lRxsN5kugZ6+U\naIg9rGekwwKBgQDijXDZfTxQOL7JW9WxhbmYsRjE/Zv3RfynB4OeJhBhBH8w2BrK\nI5ZTdsDgWAkbVlkAXYeyrhdddAQDpM7lvDrkXAED2d03wbZsgl0g7bdjML49OG7n\nMLamYJm2mxar98cHOVu8vngjdfJ9Jcn26AaijKZf6ep8yxdld0H4En6m5QKBgQC9\nmnNjKOZ06ihTIU0NXQyCWzPrhUMBQ/4Ap1IWUmvsrIV32cX8W+2f40ThMY7sa2kk\najq+ZodF9q47nJA761AQWmvFhN5YimMX/uUUgAP5kLrqWvpqkIMPY6QFLN4LO1R3\nkiCewuhnOVd6s0nCn01/eWZgYKZRSyxpQ0Q5t9BIgwKBgQDR3B8QNKv9YagsxvOf\nR7fs4DJ6Zq/3NZ0vcxudVp+Ia7rFqJtl2D+3xL2XU3f0rzkFgljLPehnXBABHFZC\nojbu9JFi5kwh/A0YW2lmnlEafclQc0iGDeizl4f2M7qFPMuB82fkKMcVH742iZqZ\nyF///boU+nEt6O5xIuATpJkK+Q\u003d\u003d\n-----END PRIVATE KEY-----\n",
+         "sharedToken"   : "false"
+      },
+      "googleApi_JWT_dev" : {
+         "providerName"  : "googleAPIv3",
+         "redirect_uri"  : "https://dev.researcherprofiles.org/shindigorng/gadgets/oauth2callback",
+         "type"          : "confidential",
+         "grant_type"    : "urn:ietf:params:oauth:grant-type:jwt-bearer",
+         "client_id"     : "117977105506-sfmn6rkeo9hlh273d367ujtdo2cb0rra@developer.gserviceaccount.com",
+		 "client_secret" : "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDZcS7OYlkEwWIu\nvLFf4qeKGPZuq3zbhLHc/0oogBlckwJ+7XzTGcU9tUEPiWx+lgb7V389bVoMWxYw\nhvxwX/7fKG2URRb8A22IxnlapejIOfX0nsvNJBq0d1X5O8M4RW8Dd1sD5wCedNx+\n/HCM98SZ96QG3jrQPvN6VnBTNv3GNk94B07q7eabGPZxh3Rz9gAAyE5FVQUo0T/t\nnUB6QfoxFuclS6jwO7wW5eupXk4tfQyrViwvOKUikgxncjb18uON8HdBbjA9HLW5\nC7+FqQpbb/XSQIWM4bMVGIu2tHorKykueO3JCbrUbndG5EIJd4E02t3IyzJkfDxz\nMcJDfFPXAgMBAAECggEAGQy+9avC0ZdttjCqxn8YCgLCMRG0ep2Y1/rZEj1frpiJ\nCxJU9QTdAjTlX+LXCuZBu6bi07LLUu0Ta1fBsTh95juEFDa5ZSMH9V/YDydZ3+c9\nfIbmt6VXJj8xOls2LD9jgKS5aYOtQJP56u8uEC9jCNHMpbXoVKFL72YR3qRRLApT\nLS3eFjhLq2/cPaivs4nVrGnN3UsO54pd9gcemO9PxedlIk8E94rfuQaySeGrVx0P\n+gUi7i+AixgtrQHrbzc2uGMsGPKw81xt8S4WQUk5BUw1LeONeTk7wju3oIo7drPa\nZJTIs83cWJj2unFJfK0btrk/J17u+sXuurr/Gkl8kQKBgQD+c+ZJO3NecuXE5dWv\nxbdL46E1qXqfd6BqS3sgYX7hIX0d7BtMagzrr/pqXAq8ul8eWVDV+4H2F0SBW2kb\niO7YFZvbLWZE9DiWbuhsmwLuJh0mD/GbsnoKUwQLwuZsMP4I1m0jMyMenDQC3Jhu\n9A0wyZJQCIoR0/GzNWUH50kTXQKBgQDaw6t05f0UIqe1u4pBC4F1t1AdUZCbuFYD\nh8jcNmZwbsXUjvgZknZzf9yKkrPBb5OwGQTUbYt2D0eMomTpv0C9s0PX0Z0dVIIn\nX25HNLhXh0UHbnbyGablmxq+VUJbQRDPfoZbSCqOKp76kpPYk+/lRxsN5kugZ6+U\naIg9rGekwwKBgQDijXDZfTxQOL7JW9WxhbmYsRjE/Zv3RfynB4OeJhBhBH8w2BrK\nI5ZTdsDgWAkbVlkAXYeyrhdddAQDpM7lvDrkXAED2d03wbZsgl0g7bdjML49OG7n\nMLamYJm2mxar98cHOVu8vngjdfJ9Jcn26AaijKZf6ep8yxdld0H4En6m5QKBgQC9\nmnNjKOZ06ihTIU0NXQyCWzPrhUMBQ/4Ap1IWUmvsrIV32cX8W+2f40ThMY7sa2kk\najq+ZodF9q47nJA761AQWmvFhN5YimMX/uUUgAP5kLrqWvpqkIMPY6QFLN4LO1R3\nkiCewuhnOVd6s0nCn01/eWZgYKZRSyxpQ0Q5t9BIgwKBgQDR3B8QNKv9YagsxvOf\nR7fs4DJ6Zq/3NZ0vcxudVp+Ia7rFqJtl2D+3xL2XU3f0rzkFgljLPehnXBABHFZC\nojbu9JFi5kwh/A0YW2lmnlEafclQc0iGDeizl4f2M7qFPMuB82fkKMcVH742iZqZ\nyF///boU+nEt6O5xIuATpJkK+Q\u003d\u003d\n-----END PRIVATE KEY-----\n",
+         "sharedToken"   : "false"
+      },      
+      "academicSenate_dev" : {
+         "providerName"  : "academicSenateAPI",
+         "redirect_uri"  : "https://dev.researcherprofiles.org/shindigorng/gadgets/oauth2callback",
+         "type"          : "confidential",
+         "grant_type"    : "client_credentials",
+         "client_id"     : "2",
+		 "client_secret" : "PhS8Wd6rNCCUlTG0ItRUvU5Lljmxx3EPkmOcL9RV",
+         "sharedToken"   : "false"
+      },      
+      "academicSenate_stage" : {
+         "providerName"  : "academicSenateAPI",
+         "redirect_uri"  : "https://stage.researcherprofiles.org/shindigorng/gadgets/oauth2callback",
+         "type"          : "confidential",
+         "grant_type"    : "client_credentials",
+         "client_id"     : "2",
+		 "client_secret" : "PhS8Wd6rNCCUlTG0ItRUvU5Lljmxx3EPkmOcL9RV",
+         "sharedToken"   : "false"
+      },      
+      "academicSenate_prod" : {
+         "providerName"  : "academicSenateAPI",
+         "redirect_uri"  : "https://researcherprofiles.org/shindigorng/gadgets/oauth2callback",
+         "type"          : "confidential",
+         "grant_type"    : "client_credentials",
+         "client_id"     : "2",
+		 "client_secret" : "PhS8Wd6rNCCUlTG0ItRUvU5Lljmxx3EPkmOcL9RV",
+         "sharedToken"   : "false"
+      },      
+	  "googleApi_client1" : {
          "providerName"  : "googleAPI",
          "redirect_uri"  : "%origin%%contextRoot%/gadgets/oauth2callback",
          "type"          : "confidential",
@@ -146,6 +257,14 @@
         "endpoints" : {
             "authorizationUrl"  : "https://www.googleapis.com/oauth2/v3/auth",
             "tokenUrl"          : "https://www.googleapis.com/oauth2/v3/token"
+        }
+      },
+      "academicSenateAPI" : {
+        "client_authentication" : "NONE",
+        "usesAuthorizationHeader" : "true",
+        "usesUrlParameter" : "false",
+        "endpoints" : {
+            "tokenUrl"          : "https://senateserviceportal.ucsf.edu/oauth/token"
         }
       },
       "facebook" : {

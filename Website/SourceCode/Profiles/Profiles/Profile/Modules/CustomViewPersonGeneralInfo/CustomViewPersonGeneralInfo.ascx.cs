@@ -62,8 +62,8 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
                 args.AddParam("orcid", "", base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/vivo:orcidId", base.Namespaces).InnerText);
                 args.AddParam("orcidurl", "", Profiles.ORCID.Utilities.config.ORCID_URL + "/" + base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/vivo:orcidId", base.Namespaces).InnerText);
                 string infosite;
-                if (Profiles.ORCID.Utilities.config.InfoSite == null) infosite = Root.Domain + "/about/default.aspx?tab=orcid";
-                else if (Profiles.ORCID.Utilities.config.InfoSite.Equals("")) infosite = Root.Domain + "/about/default.aspx?tab=orcid";
+                if (Profiles.ORCID.Utilities.config.InfoSite == null) infosite = Brand.GetThemedDomain() + "/about/default.aspx?tab=orcid";
+                else if (Profiles.ORCID.Utilities.config.InfoSite.Equals("")) infosite = Brand.GetThemedDomain() + "/about/default.aspx?tab=orcid";
                 else infosite = Profiles.ORCID.Utilities.config.InfoSite;
                 args.AddParam("orcidimage", "", Brand.GetThemedDomain() + "/Framework/Images/orcid_16x16(1).gif");
                 args.AddParam("orcidinfosite", "", infosite);
@@ -115,8 +115,6 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
                     litSandboxGadgets.Text = sandboxDivs;
                     om.LoadAssets();
                 }
-                // Add this just in case it is needed.
-                new ORNGProfileRPCService(Page, this.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/foaf:firstName", base.Namespaces).InnerText, uri);
             }
         }
 
@@ -135,29 +133,5 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
             return emailPlain;
         }
     }
-
-    public class ORNGProfileRPCService : PeopleListRPCService
-    {
-        string name;
-        List<string> people = new List<string>();
-
-        public ORNGProfileRPCService(Page page, string name, string uri)
-            : base(null, page, false)
-        {
-            this.name = name;
-            this.people.Add(uri);
-        }
-
-        public override string getPeopleListMetadata()
-        {
-            return name;
-        }
-
-        public override List<string> getPeople()
-        {
-            return people;
-        }
-    }
-
 
 }

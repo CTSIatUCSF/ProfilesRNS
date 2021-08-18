@@ -36,7 +36,6 @@ namespace Profiles.ORNG.Utilities
         #region "LocalVars"
 
         private List<PreparedGadget> gadgets = new List<PreparedGadget>();
-        private Dictionary<string, ORNGRPCService> callbackResponders = new Dictionary<string, ORNGRPCService>();
         private Guid guid;
         private string containerSecurityToken;
         private string viewerUri = null;

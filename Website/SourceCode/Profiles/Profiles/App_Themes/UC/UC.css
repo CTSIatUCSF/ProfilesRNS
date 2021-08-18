@@ -1,30 +1,51 @@
-﻿/* highlight color */
+#ctl00_MasterPageHeaderUC {
+    background: url("Images/ucbg.jpg") top center no-repeat padding-box #C6E3F5
+}
+
+.researcherprofiles--institution-header {
+    background-color: transparent !important;
+}
+
+.researcherprofiles--institution-header--site-logo h1 a img,
+.researcherprofiles--institution-header--site-logo h1 a img:first-child {
+    margin-right: 2rem;
+}
+
+/* highlight color */
+/*
 .dblarrow:before, .about .profiles h2, .content-block h2, .searchForm td div.header, .highlight,
 .passive-header, .PropertyItemHeader, .accordion td, .expand-collapse,
 #ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_btnEditProperty:before, 
-.profiles a .authInst, .profiles a .authInst:hover, 
+.profiles a .researcherprofiles--institution-name-associated-with-researcher, .profiles a .researcherprofiles--institution-name-associated-with-researcher:hover, 
 .profiles .profilesContentMain .pageTitle h2 { color: #f2a900; }
 .profiles a.search-button, #navbarsearch input[type=submit], .more span, .less span { background-color: #f2a900; }
 .profiles a.search-button:hover, #navbarsearch input[type=submit]:hover { background-color: #FFB815; box-shadow: none; }
 #navbarsearch input[type=submit]  { border: 4px solid #f2a900; }
 #navbarsearch input[type=submit]:hover  { border: 4px solid #FFB815; }
+*/
 
 /* banner */
-.institutionHeader { background: #eef9ff url("Images/ucbg.jpg") no-repeat scroll 20% top; }
+/*
+.researcherprofiles--institution-header { background: #eef9ff url("Images/ucbg.jpg") no-repeat scroll 20% top; }
 #uc { float:left; width: 200px; height: 95px; }
 #uc img { padding: 15px 0 0 10px; }
-#site-logo h1 { margin: 35px 0 0 10px; }
+#researcherprofiles--institution-header--site-logo h1 { margin: 35px 0 0 10px; }
+*/
 
 /* LINK Color */
+/*
 .profiles .basicInfo a, .profiles .basicInfo a:visited, .profiles .basicInfo a:hover { color: #000; }
 .profiles .basicInfo .grants a, .profiles .basicInfo .grants a:visited, 
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.edittable td:first-child, 
 #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlProxySearchResults tr.evenRow td:first-child, 
 #profile-components table td#namedegree, .listTable .listTableLink, .linky, 
-.institutionHeader a, .institutionHeader a:hover,
+.researcherprofiles--institution-header a, .researcherprofiles--institution-header a:hover,
 .profilesfooter a, .profilesfooter a:visited, 
 .profiles a, .profiles a:visited { color: #1295d8; }
+*/
 
 /* navbar & footer colors */
+/*
 #suckerfishmenu li#contact { display: none; }
-#header-ucsf, .profilesFooter { background-color: #1295d8; }
+#researcherprofiles--branded-institutional-banner, .profilesFooter { background-color: #1295d8; }
+*/

@@ -1,99 +1,99 @@
-﻿/*  
- 
-    Copyright (c) 2008-2012 by the President and Fellows of Harvard College. All rights reserved.  
-    Profiles Research Networking Software was developed under the supervision of Griffin M Weber, MD, PhD.,
-    and Harvard Catalyst: The Harvard Clinical and Translational Science Center, with support from the 
-    National Center for Research Resources and Harvard University.
-
-
-    Code licensed under a BSD License. 
-    For details, see: LICENSE.txt 
-  
-*/
+﻿
 using System;
 using System.Collections.Generic;
-using System.Web.UI;
-using System.Xml;
 using System.Linq;
-using Profiles.Framework.Utilities;
-using System.Web.UI.WebControls;
 using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Xml;
 
+using Profiles.Framework.Utilities;
 namespace Profiles.Framework.Modules.MainMenu
 {
     public partial class MainMenu : BaseModule
     {
 
+        System.Text.StringBuilder menulist;
+        SessionManagement sm;
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            menulist = new System.Text.StringBuilder();
+            sm = new SessionManagement();
+
+            DrawProfilesModule();
+
+        }
         protected void Page_Init(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                DrawProfilesModule();
-            }
-        }
 
+        }
+        protected override void OnInit(EventArgs e)
+        {
+
+
+        }
         public MainMenu() : base() { }
 
         public MainMenu(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
             : base(pagedata, moduleparams, pagenamespaces)
         {
-            //ActiveNetworkRelationshipTypes.ClassURI = "";
+          
+
         }
 
         private void DrawProfilesModule()
         {
-            System.Text.StringBuilder menulist = new System.Text.StringBuilder();
-            SessionManagement sm = new SessionManagement();
             Int64 subject = 0;
+
+            HttpContext.Current.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            HttpContext.Current.Response.Cache.SetExpires(DateTime.Now);
+            HttpContext.Current.Response.Cache.SetNoServerCaching();
+            HttpContext.Current.Response.Cache.SetNoStore();
 
             if (Request.QueryString["subject"] != null)
                 subject = Convert.ToInt64(Request.QueryString["subject"]);
 
-            Utilities.DataIO data = new Profiles.Framework.Utilities.DataIO();
-            menulist.Append("<ul>");
-
-            //-50 is the profiles Admin
-            if (data.GetSessionSecurityGroup() == -50)
-                menulist.Append("<li><a href='" + Brand.GetThemedDomain() + "/SPARQL/default.aspx'>SPARQL Query</a></li>");
-
             Brand userBrand = Brand.GetCurrentBrand();
-            Session session = sm.Session();
+
+            Utilities.DataIO data = new Profiles.Framework.Utilities.DataIO();
+
+            litSearchOptions.Text = "<li class='first'><a class='search-drop' href='" + Brand.GetThemedDomain() + "/search'>Find People</a></li><li class='last'><a class='search-drop' style='border-bottom:1px solid #383737;' href='" + Brand.GetThemedDomain() + "/search/all'>Find Everything</a></li>";
+            litJs.Text = "";
+            /*** 
+            if (sm.Session().NodeID > 0)
+            {
+                litViewMyProfile.Text = "<li><a href='" + sm.Session().PersonURI + "'>View My Profile</a></li>";
+            }**/
             // logged in Person
-            if (UCSFIDSet.IsPerson(session.NodeID))
+            if (UCSFIDSet.IsPerson(sm.Session().NodeID))
             {
-                userBrand = Brand.GetForSubject(session.NodeID);
-                menulist.Append("<li id='myprofile'><a href='" + UCSFIDSet.ByNodeId[session.NodeID].PrettyURL
+                userBrand = Brand.GetForSubject(sm.Session().NodeID);
+                litViewMyProfile.Text = "<li id='myprofile'><a href='" + UCSFIDSet.ByNodeId[sm.Session().NodeID].PrettyURL
                     + "'><div id='menuthumb'><img src='" + userBrand.BasePath + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID="
-                    + session.NodeID + "&Thumbnail=True&Width=20' width='20' alt=''></div>"
-                    + session.DisplayName + "</a></li>");
+                    + sm.Session().NodeID + "&Thumbnail=True&Width=20' width='20' alt=''></div>"
+                    + sm.Session().DisplayName + "</a></li>";
             }
-            else if (!String.IsNullOrEmpty(session.DisplayName)) // logged in person
+            else if (!String.IsNullOrEmpty(sm.Session().DisplayName)) // logged in person
             {
-                menulist.Append("<li>" + session.DisplayName + "</li>");
+                litViewMyProfile.Text = "<li>" + sm.Session().DisplayName + "</li>";
             }
 
-            if (UCSFIDSet.IsPerson(session.NodeID))
-            {
-                menulist.Append("<li id='editmy'><a href='" + userBrand.BasePath + "/edit/" + session.NodeID.ToString() + "'>Edit Your Profile</a></li>");
-            }
 
+            litEditThisProfile.Text = "<li><a href='" + Brand.GetThemedDomain() + "/login/default.aspx?pin=send&method=login&edit=true'>Edit My Profile</a></li>";
 
             if (base.MasterPage.CanEdit)
+                litEditThisProfile.Text += "<li><div class=\"divider\"></div></li><li><a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + subject.ToString() + "'>Edit This Profile</a></li>";
+
+            if (sm.Session().UserID > 0)
             {
-                menulist.Append("<li><a href='" + Brand.GetForSubject(subject).BasePath + "/edit/" + subject.ToString() + "'>Edit This " + (UCSFIDSet.IsPerson(subject) ? "Profile" : "Group") + "</a></li>");
+                // litProxy.Text = "<li>Manage Proxies</li>"; This line of code makes on sense. Ask Nick about this.
+                litProxy.Text = "<li><a href='" + Brand.GetThemedDomain() + "/proxy/default.aspx?subject=" + sm.Session().NodeID.ToString() + "'>Manage Proxies</a></li>";
             }
-
-
-            // ORNG Dashboard (only show for UCSF adn UCSD for now)
-            string[] dashboardInstitutions = {"UCSF", "UCSD"};
-            if (UCSFIDSet.IsPerson(session.NodeID) && userBrand.GetInstitution() != null && dashboardInstitutions.Contains(userBrand.GetInstitution().GetAbbreviation()))
+            // ORNG Dashboard (only show for UCSF and UCSD for now)
+            string[] dashboardInstitutions = { "UCSF", "UCSD" };
+            if (UCSFIDSet.IsPerson(sm.Session().NodeID) && userBrand.GetInstitution() != null && dashboardInstitutions.Contains(userBrand.GetInstitution().GetAbbreviation()))
             {
-                menulist.Append("<li id='dashboard'><a href='" + userBrand.BasePath + "/ORNG/Dashboard.aspx?owner=" + session.PersonURI + "'>Dashboard</a></li>");
-            }
-
-            if (UCSFIDSet.IsPerson(session.NodeID))
-            {
-                menulist.Append("<li><a href='" + userBrand.BasePath + "/proxy/default.aspx?subject=" + session.NodeID.ToString() + "'>Proxies</a></li>");
+                litDashboard.Text = "<li id='dashboard'><a href='" + userBrand.BasePath + "/ORNG/Dashboard.aspx?owner=" + sm.Session().PersonURI + "'>Dashboard</a></li><li><div class='divider'></div></li>";
             }
 
             if (base.BaseData.SelectSingleNode(".").OuterXml != string.Empty && !Root.AbsolutePath.ToLower().Contains("/search"))
@@ -102,91 +102,93 @@ namespace Profiles.Framework.Modules.MainMenu
                 {
                     string uri = this.BaseData.SelectSingleNode("//rdf:RDF/rdf:Description/@rdf:about", base.Namespaces).Value;
 
-                    //IF the URI is in our system then we build the link. If not then we do not build the link for the data.
-                    if (uri.Contains(Root.Domain))
+                    string file = string.Empty;
+                    string spostring = string.Empty;
+                    string[] spoarray;
+
+                    spostring = uri.ToLower().Replace(Root.Domain.ToLower() + "/profile/", "");
+                    spoarray = spostring.Split('/');
+
+                    for (int i = 0; i < spoarray.Length; i++)
                     {
-                        string file = string.Empty;
-                        string spostring = string.Empty;
-                        string[] spoarray;
+                        file = file + spoarray[i] + "_";
+                    }
 
-                        spostring = uri.ToLower().Replace(Root.Domain.ToLower() + "/profile/", "");
-                        spoarray = spostring.Split('/');
+                    file = file.Substring(0, file.Length - 1);
 
-                        for (int i = 0; i < spoarray.Length; i++)
-                        {
-                            file = file + spoarray[i] + "_";
-                        }
+                    //litExportRDF.Text = "<li ><a style='border-bottom:1px solid #383737;border-left:1px solid #383737;border-right:1px solid  #383737;width:200px !important' href=\"" + uri + "/" + file + ".rdf\" target=\"_blank\">" + "Export This Page as RDF" + "</a></li>";
 
-                        file = file.Substring(0, file.Length - 1);
-
-                        //menulist.Append("<li><a href=\"" + uri + "/" + file + ".rdf\" target=\"_blank\">" + "Export RDF" + "</a>&nbsp;<a style='border: none;' href='" + Brand.GetDomain() + "/about/default.aspx?tab=data'><img style='border-style: none' src='" + Brand.GetDomain() + "/Framework/Images/info.png' width='11' height='11' border='0'></a></li>");
-                        if (base.MasterPage != null)
-                        {
-                            System.Web.UI.HtmlControls.HtmlContainerControl Head1;
-                            Head1 = (System.Web.UI.HtmlControls.HtmlContainerControl)base.MasterPage.FindControl("Head1");
-                            //If a masterpage exists, you need to to create an ASP.Net Literal object and pass it to the masterpage so it can process the link in the Head block.
-                            string link = "<link rel=\"alternate\" type=\"application/rdf+xml\" href=\"" + uri + "/" + file + ".rdf\" />";
-                            Head1.Controls.Add(new LiteralControl(link));
-                        }
-
+                    if (base.MasterPage != null)
+                    {
+                        System.Web.UI.HtmlControls.HtmlContainerControl Head1;
+                        Head1 = (System.Web.UI.HtmlControls.HtmlContainerControl)base.MasterPage.FindControl("Head1");
+                        //If a masterpage exists, you need to to create an ASP.Net Literal object and pass it to the masterpage so it can process the link in the Head block.
+                        string link = "<link rel=\"alternate\" type=\"application/rdf+xml\" href=\"" + uri + "/" + file + ".rdf\" />";
+                        Head1.Controls.Add(new LiteralControl(link));
+                        litJs.Text += "<script type='text/javascript'>$('#useourdata').css('border-bottom','');</script>";
                     }
                 }
             }
+            //else
+            //  litExportRDF.Visible = false;
 
+            /**** Turned off by UCSF for now
+            if (sm.Session().UserID > 0)
+            {
+                if (data.IsGroupAdmin(sm.Session().UserID))
+                {
+                    litGroups.Text = "<li><a href='" + Brand.GetThemedDomain() + "/groupAdmin/default.aspx'>Manage Groups</a></li>";
+                    groupListDivider.Visible = true;
+                }
+            }
+            ****/
 
-            if (!session.IsLoggedIn())
+            string loginclass = string.Empty;
+            if (sm.Session().UserID == 0)
             {
                 if (!Root.AbsolutePath.Contains("login"))
                 {
-                    menulist.Append("<li id='signin'><a href='" + Brand.GetThemedDomain() + "/login/default.aspx?method=login&redirectto=edit'>SIGN IN TO EDIT</a></li>");
+                    litLogin.Text = "<a href='" + Brand.GetThemedDomain() + "/login/default.aspx?method=login&redirectto=" + Brand.GetThemedDomain() + Root.AbsolutePath + "'>Login</a> to edit your profile (add a photo, awards, links to other websites, etc.)";
+                    loginclass = "pub";
                 }
             }
             else
             {
-                if (session.UserID > 0)
+                litLogOut.Text = "<li><a href='" + Brand.GetThemedDomain() + "/login/default.aspx?method=logout&redirectto=" + Brand.GetThemedDomain() + "/search'>Logout</a></li>";
+                loginclass = "user";
+            }
+
+            litJs.Text += "<script type='text/javascript'> var NAME = document.getElementById('prns-usrnav'); NAME.className = '" + loginclass + "';";
+
+          
+            if (sm.Session().UserID > 0 )
+            {                
+              
+                //Change this to show two drop down items based on the count.
+                MyLists.Visible = true;
+                if(base.GetModuleParamString("pageType") != null)
                 {
-                    if (data.IsGroupAdmin(session.UserID))
-                        menulist.Append("<li><a href='" + Root.Domain + "/groupAdmin/default.aspx'>Manage Groups</a></li>");
+                    string pt = base.GetModuleParamString("PageType");
+                    if (pt.Equals("Person")) MyLists.pageType = MyLists.pageTypes.Person;
+                    else if (pt.Equals("SearchResults")) MyLists.pageType = MyLists.pageTypes.SearchResults;
                 }
-                menulist.Append("<li><a href='" + Brand.GetThemedDomain() + "/login/default.aspx?method=logout&redirectto=" + Brand.GetThemedDomain() + "/About/CloseBrowser.aspx" + "'>Sign Out</a></li>");
+
             }
-
-            menulist.Append("</ul>");
-
-            // hide active networks DIV if not logged in
-            /** UCSF
-            if (session.UserID > 0)
+            else if (sm.Session().UserID == 0)
             {
-                ActiveNetworkRelationshipTypes.Visible = true;
+                MyLists.Visible = false;
+                litJs.Text += " $('#navMyLists').remove(); $('#ListDivider').remove();";
             }
-            else
-            {
-                ActiveNetworkRelationshipTypes.Visible = false;
-            }
-             **/
 
+
+            litJs.Text += "</script>";
             UserHistory uh = new UserHistory();
 
             ProfileHistory.RDFData = base.BaseData;
             ProfileHistory.PresentationXML = base.MasterPage.PresentationXML;
             ProfileHistory.Namespaces = base.Namespaces;
-
-
-            if (uh.GetItems() != null)
-            {
-                ProfileHistory.Visible = true;
-            }
-            else
-            {
-                ProfileHistory.Visible = false;
-            }
-
-
-
-            panelMenu.InnerHtml = menulist.ToString();
             DrawSearchBar();
         }
-
 
         // For megasearch items
         public string GetThemedDomain()
@@ -197,30 +199,36 @@ namespace Profiles.Framework.Modules.MainMenu
         public string GetDomainFor(String theme)
         {
             return Brand.GetByTheme(theme).BasePath;
-
         }
 
         protected void DrawSearchBar()
         {
-            /** Dynamic controls SUCK in .net
-            int ndx = searchTypeDropDown.Items.Count;
-            foreach (Brand brand in Brand.GetAll())
-            {
-                if (!String.IsNullOrEmpty(brand.PersonFilter))
-                {
-                    searchTypeDropDown.Items.Insert(ndx, new ListItem(HttpUtility.HtmlDecode("&nbsp;&nbsp;&nbsp;") + brand.PersonFilter + " People", brand.Theme));
-                }
-                else if (!String.IsNullOrEmpty(brand.InstitutionAbbreviation))
-                {
-                    searchTypeDropDown.Items.Add(new ListItem(HttpUtility.HtmlDecode("&nbsp;&nbsp;&nbsp;") + brand.InstitutionAbbreviation + " People", brand.Theme));
-                }
-            }
-            **********/
-
-            // add Title to the dropdownlist items
             foreach (ListItem item in searchTypeDropDown.Items)
             {
-                item.Attributes.Add("Title", item.Text.Trim());
+                // default everything search
+                item.Attributes.Add("searchtype", "everything");
+
+                Brand brand = Brand.GetByTheme(item.Value);
+                if (brand != null)
+                {
+                    item.Attributes.Add("searchtype", "people");
+                    if (!brand.IsMultiInstitutional())
+                    {
+                        item.Attributes.Add("institution", brand.GetInstitution().GetURI());
+                    }
+                    else if (brand.PersonFilter != null)
+                    {
+                        item.Attributes.Add("otherfilters", brand.PersonFilter);
+                    }
+                }
+                else if ("People".Equals(item.Value))
+                {
+                    item.Attributes.Add("searchtype", "people");
+                }
+                else if (item.Value.StartsWith("http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroup"))
+                {
+                    item.Attributes.Add("classgroupuri", item.Value);
+                }
             }
 
             // pick one to select
@@ -238,53 +246,6 @@ namespace Profiles.Framework.Modules.MainMenu
             {
                 searchTypeDropDown.SelectedIndex = searchTypeDropDown.Items.IndexOf(selected);
             }
-        }
-
-
-        protected void ProcessSearch()
-        {
-            string searchTypeDropDownValue = this.searchTypeDropDown.SelectedItem.Value;
-            string searchType = "everything";
-            string classGroupURI = "";
-            string institution = "";
-            string otherFilters = "";
-            string searchFor = Request.Form["mainMenuSearchFor"];
-
-            Brand brand = Brand.GetByTheme(searchTypeDropDownValue);
-            if (brand != null)
-            {
-                searchType = "people";
-
-                if (!brand.IsMultiInstitutional())
-                {
-                    institution = brand.GetInstitution().GetURI();
-                }
-                else if (brand.PersonFilter != null)
-                {
-                    otherFilters = brand.PersonFilter;
-                }
-            }
-            else if ("People".Equals(searchTypeDropDownValue))
-            {
-                searchType = "people";
-            }
-            else if (searchTypeDropDownValue.StartsWith("http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroup"))
-            {
-                classGroupURI = searchTypeDropDownValue;
-            }
-
-            Response.Redirect(Brand.GetThemedDomain() + "/search/default.aspx?searchtype=" + searchType +
-                                "&searchfor=" + HttpUtility.UrlEncode(searchFor) +
-                                "&classgroupuri=" + HttpUtility.UrlEncode(classGroupURI) +
-                                "&institution=" + HttpUtility.UrlEncode(institution) +
-                                "&otherfilters=" + HttpUtility.UrlEncode(otherFilters) +
-                                "&exactphrase=false", false);
-            HttpContext.Current.ApplicationInstance.CompleteRequest(); 
-        }
-
-        protected void Submit_Click(object sender, EventArgs e)
-        {
-            ProcessSearch();
         }
 
     }

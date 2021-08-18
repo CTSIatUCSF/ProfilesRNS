@@ -192,7 +192,7 @@ namespace Profiles.Profile.Utilities
                 }
 
             }
-            catch (Exception ex) { }
+            catch (Exception) { }
 
             return xmlrtn;
         }
@@ -295,11 +295,11 @@ namespace Profiles.Profile.Utilities
 
         #region "Profile Photo"
 
-        public System.IO.Stream GetUserPhotoList150x300(Int64 NodeID)
+        public System.IO.Stream GetUserPhotoList150x300(Int64 NodeID, string sessionID)
         {
             Object result = null;
             Edit.Utilities.DataIO resize = new Profiles.Edit.Utilities.DataIO();
-            result = resize.ResizeImageFile(GetUserPhotoList(NodeID), 150, 300);
+            result = resize.ResizeImageFile(GetUserPhotoList(NodeID, sessionID), 150, 300);
 
             if (result == null)
             {
@@ -308,7 +308,7 @@ namespace Profiles.Profile.Utilities
             return new System.IO.MemoryStream((byte[])result);
         }
 
-        public byte[] GetUserPhotoList(Int64 NodeID)
+        public byte[] GetUserPhotoList(Int64 NodeID, string sessionID)
         {
             using (SqlConnection dbconnection = new SqlConnection(GetConnectionString()))
             {
@@ -318,6 +318,7 @@ namespace Profiles.Profile.Utilities
                 dbcommand.CommandType = CommandType.StoredProcedure;
                 dbcommand.CommandTimeout = base.GetCommandTimeout();
                 dbcommand.Parameters.Add(new SqlParameter("@NodeID", NodeID));
+                dbcommand.Parameters.Add(new SqlParameter("@SessionID", sessionID));
                 dbcommand.Connection = dbconnection;
                 return (byte[])dbcommand.ExecuteScalar();
             }

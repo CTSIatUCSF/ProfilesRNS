@@ -1,153 +1,63 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Template.master.cs" Inherits="Profiles.Framework.Template"
-    EnableViewState='true' %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Template.master.cs" Inherits="Profiles.Framework.Template" EnableViewState='true' 
+   %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-<%--
-    Copyright (c) 2008-2012 by the President and Fellows of Harvard College. All rights reserved.  
-    Profiles Research Networking Software was developed under the supervision of Griffin M Weber, MD, PhD.,
-    and Harvard Catalyst: The Harvard Clinical and Translational Science Center, with support from the 
-    National Center for Research Resources and Harvard University.
-
-
-    Code licensed under a BSD License. 
-    For details, see: LICENSE.txt 
---%>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
 <head id="Head1" runat="server">
     <title>Profiles</title>
     <asp:PlaceHolder runat="server">
       <link rel="shortcut icon" href="<%= GetThemedFavicon() %>" />
     </asp:PlaceHolder>
 
-    <%--Force ie out of quirks mode (Catalyst)
-	removed	<meta name="msvalidate.01" content="4E5209CC6688B86BBDD2FE074176C029" /> 
-		it depends now on Institution URL
-	--%>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
+    <!-- Latest compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>      
 
     <asp:ContentPlaceHolder ID="head" runat="server">
-
-        <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js" type="text/javascript"></script>
-
     </asp:ContentPlaceHolder>
+    <meta name="apple-mobile-web-app-title" content="Profiles RNS">
+    <meta name="application-name" content="Profiles RNS">
+    <meta name="msapplication-TileColor" content="#a41c2f">
+    <meta name="theme-color" content="#a41c2f">
 
-<asp:Panel ID="MasterPageFeedbackUSC" runat="server" SkinID="USC" Visible="false">
-<script id="_webengage_script_tag" type="text/javascript">
-  var _weq = _weq || {};
-  _weq['webengage.licenseCode'] = 'd3a4a16b';
-  _weq['webengage.widgetVersion'] = "4.0";
+    <!-- Anirvan Stuff -->
+	<meta name="msvalidate.01" content="4E5209CC6688B86BBDD2FE074176C029" />
+	<meta name="msvalidate.01" content="0535E3191ABF67DFC9F7E03516F4B881" />
+
+    <asp:Panel ID="MasterPageFeedbackUSC" runat="server" SkinID="USC" Visible="false">
+    <script id="_webengage_script_tag" type="text/javascript">
+      var _weq = _weq || {};
+      _weq['webengage.licenseCode'] = 'd3a4a16b';
+      _weq['webengage.widgetVersion'] = "4.0";
   
-  (function(d){
-    var _we = d.createElement('script');
-    _we.type = 'text/javascript';
-    _we.async = true;
-    _we.src = (d.location.protocol == 'https:' ? "https://ssl.widgets.webengage.com" : "http://cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-4.0.js";
-    var _sNode = d.getElementById('_webengage_script_tag');
-    _sNode.parentNode.insertBefore(_we, _sNode);
-  })(document);
-</script>
+      (function(d){
+        var _we = d.createElement('script');
+        _we.type = 'text/javascript';
+        _we.async = true;
+        _we.src = (d.location.protocol == 'https:' ? "https://ssl.widgets.webengage.com" : "http://cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-4.0.js";
+        var _sNode = d.getElementById('_webengage_script_tag');
+        _sNode.parentNode.insertBefore(_we, _sNode);
+      })(document);
+    </script>
 </asp:Panel>
-
-    <%--Catalyst styles--%>
 </head>
 <body id="bodyMaster" runat="server">
     <form runat="server" id="form1" enctype="multipart/form-data" method="post">
-
-        <div id="divStatus">
-            <div class="loader">
-                <span>
-                    <img alt="Loading..." src="<%=GetThemedDomain()%>/Edit/Images/loader.gif" width="400" height="213" /></span>
-            </div>
-        </div>
-
-        <asp:ToolkitScriptManager AsyncPostBackTimeout="36000" CombineScripts="false" ID="toolkitScriptMaster"
-            runat="server">
-        </asp:ToolkitScriptManager>
-
-        <script type="text/javascript" language="javascript">
-
-            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
-
-            function EndRequestHandler(sender, args) {
-                if (args.get_error() != undefined) {
-                    args.set_errorHandled(true);
-                }
-            }
-
-            function ShowStatus() {
-                document.getElementById("divStatus").style.display = "block";
-            }
-
-
-
-        </script>
+        <asp:ToolkitScriptManager AsyncPostBackTimeout="3600" EnablePartialRendering="true" CombineScripts="false" EnableViewState="true" ID="toolkitScriptMaster" runat="server" />
 
         <div id='page-container'>
-            <asp:Panel ID="MasterPageHeaderUC" runat="server" SkinID="UC" Visible="false">
-                <div class="institutionHeader">
-					<div id="site-branding">
-						<div id="uc">
-							<a target="_blank" href="https://www.universityofcalifornia.edu/">
-								<img src="<%=GetThemedDomain()%>/App_Themes/UC/Images/uclogo137.png" alt="University of California" /></a>
-						</div>
-						<div id="site-logo">
-							<h1><a href="<%=GetThemedDomain()%>/">UC Health Profiles</a></h1>
-						</div>
-					</div>
-                </div>
-            </asp:Panel>
-            <asp:Panel ID="MasterPageHeaderUCSF" runat="server" SkinID="UCSF" Visible="false">
-                <div id="header-ucsf">
-                    <div id="ucsfnav">
-                        <ul>
-                            <li class="first">
-                                <a title="University of California, San Francisco" href="http://www.ucsf.edu/" target="_blank">University of California, San Francisco</a>
-                            </li>
-                        </ul>
-                        <ul class="right">
-                            <li>
-                                <a title="About UCSF" href="http://www.ucsf.edu/about" target="_blank">About UCSF</a>
-                            </li>
-                            <li>
-                                <a title="Search UCSF" href="http://www.ucsf.edu/ucsf/search" target="_blank">Search UCSF</a>
-                            </li>
-                            <li>
-                                <a title="UCSF Medical Center" href="http://www.ucsfhealth.org/" target="_blank">UCSF Medical Center</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="institutionHeader">
-					<div id="site-branding">
-						<div id="site-logo">
-							<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_themes/UCSF/Images/ucsfProfilesLogo.png" alt="UCSF Profiles" /></a></h1>
-						</div>
-                    </div>					
-                </div>
-            </asp:Panel>
-            <asp:Panel ID="MasterPageHeaderUCSD" runat="server" SkinID="UCSD" Visible="false">
-                <div id="header-ucsf">
-                    <div id="ucsfnav">
-                        <ul>
-							<li><a target="_blank" href="http://ucsd.edu/">
-								<img src="<%=GetThemedDomain()%>/App_Themes/UCSD/Images/ucsdlogo.png" alt="UC San Diego" /></a></li>
-                            <li><a id="powered-by-ctsi" href="http://actri.ucsd.edu/Pages/default.aspx" target="_blank">Powered by Altman Clinical and Translational Research Institute</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="institutionHeader">
-					<div id="site-branding">
-						<div id="site-logo">
-							<h1><a href="<%=GetThemedDomain()%>/">UCSD Profiles
-								<div id="tagline">search, discover, network</div>
-							</a></h1>
-						</div>
-					</div>
-                </div>
-            </asp:Panel>
             <asp:Panel ID="MasterPageHeaderDefault" runat="server" SkinID="Default" Visible="false">
-                <div id="header-ucsf">
-                    <div id="ucsfnav">
+                <div class="researcherprofiles--branded-institutional-banner">
+                    <div class="researcherprofiles--branded-institutional-banner--menu">
                         <ul>
                             <li>
                                 <a href="https://www.ucdavis.edu/" target="_blank">UC Davis</a>
@@ -170,17 +80,74 @@
                         </ul>
                     </div>
                 </div>
-                <div class="institutionHeader">
-					<div id="site-branding">
-						<div id="site-logo">
-							<h1><a href="<%=GetThemedDomain()%>/">Research Profiles</a></h1>
-						</div>
+                <div class="researcherprofiles--institution-header">
+					<div class="researcherprofiles--institution-header--site-logo">
+						<h1><a href="<%=GetThemedDomain()%>/">Research Profiles</a></h1>
+					</div>
+                </div>
+            </asp:Panel>
+            <asp:Panel ID="MasterPageHeaderUC" runat="server" SkinID="UC" Visible="false">
+                <div id="banner">
+                    <div class="researcherprofiles--institution-header">
+                        <div class="researcherprofiles--institution-header--site-logo">
+                            <h1>
+                                <a href="<%=GetThemedDomain()%>/">
+                                    <img src="<%=GetThemedDomain()%>/App_Themes/UC/Images/uclogo137.png" alt="University of California">
+                                    UC Health Profiles
+                                </a>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </asp:Panel>
+            <asp:Panel ID="MasterPageHeaderUCSF" runat="server" SkinID="UCSF" Visible="false">
+                <div class="researcherprofiles--branded-institutional-banner">
+                    <div class="researcherprofiles--branded-institutional-banner--menu">
+                        <ul>
+                            <li class="first">
+                                <a title="University of California, San Francisco" href="http://www.ucsf.edu/" target="_blank">University of California, San Francisco</a>
+                            </li>
+                        </ul>
+                        <ul class="right">
+                            <li>
+                                <a title="About UCSF" href="http://www.ucsf.edu/about" target="_blank">About UCSF</a>
+                            </li>
+                            <li>
+                                <a title="Search UCSF" href="http://www.ucsf.edu/ucsf/search" target="_blank">Search UCSF</a>
+                            </li>
+                            <li>
+                                <a title="UCSF Medical Center" href="http://www.ucsfhealth.org/" target="_blank">UCSF Medical Center</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="researcherprofiles--institution-header">
+					<div class="researcherprofiles--institution-header--site-logo">
+						<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_themes/UCSF/Images/ucsfProfilesLogo.png" alt="UCSF Profiles" /></a></h1>
+                    </div>					
+                </div>
+            </asp:Panel>
+            <asp:Panel ID="MasterPageHeaderUCSD" runat="server" SkinID="UCSD" Visible="false">
+                <div class="researcherprofiles--branded-institutional-banner">
+                    <div class="researcherprofiles--branded-institutional-banner--menu">
+                        <ul>
+							<li><a target="_blank" href="http://ucsd.edu/">
+								<img src="<%=GetThemedDomain()%>/App_Themes/UCSD/Images/ucsdlogo.png" alt="UC San Diego" /></a></li>
+                            <li><a id="powered-by-ctsi" href="http://actri.ucsd.edu/Pages/default.aspx" target="_blank">Powered by Altman Clinical and Translational Research Institute</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="researcherprofiles--institution-header">
+					<div class="researcherprofiles--institution-header--site-logo">
+						<h1><a href="<%=GetThemedDomain()%>/">UCSD Profiles
+							<div class="researcherprofiles--institution-header--tagline">search, discover, network</div>
+						</a></h1>
 					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCI" runat="server" SkinID="UCI" Visible="false">
-                <div id="header-ucsf">
-                    <div id="ucsfnav">
+                <div class="researcherprofiles--branded-institutional-banner">
+                    <div class="researcherprofiles--branded-institutional-banner--menu">
                         <ul>
                             <li class="first">
                                 <a href="https://uci.edu" target="_blank">University of California, Irvine</a>
@@ -188,18 +155,16 @@
 						</ul>
 					</div>
 				</div>
-                <div class="institutionHeader">
-					<div id="site-branding">
-						<div id="site-logo">
-							<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/UCI/Images/ucilogo.png" alt="University of California, Irvine" /> Profiles</a></h1>
-						</div>
+                <div class="researcherprofiles--institution-header">
+					<div class="researcherprofiles--institution-header--site-logo">
+						<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/UCI/Images/ucilogo.png" alt="University of California, Irvine" /> Profiles</a></h1>
 					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCD" runat="server" SkinID="UCD" Visible="false">
                 <div id="banner">
-					<div id="header-ucsf">
-						<div id="ucsfnav">
+					<div class="researcherprofiles--branded-institutional-banner">
+						<div class="researcherprofiles--branded-institutional-banner--menu">
 							<ul>
 								<li class="first">
 									<a href="https://www.ucdavis.edu/" target="_blank">University of California, Davis</a>
@@ -209,18 +174,16 @@
 							</ul>
 						</div>
 					</div>
-					<div class="institutionHeader">
-						<div id="site-branding">
-							<div id="site-logo">
-								<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/UCD/Images/davis-logo-white.svg" alt="University of California, Davis" /> Profiles</a></h1>
-							</div>
+					<div class="researcherprofiles--institution-header">
+						<div class="researcherprofiles--institution-header--site-logo">
+							<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/UCD/Images/davis-logo-white.svg" alt="University of California, Davis" /> Profiles</a></h1>
 						</div>
 					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCLA" runat="server" SkinID="UCLA" Visible="false">
-                <div id="header-ucsf">
-                    <div id="ucsfnav">
+                <div class="researcherprofiles--branded-institutional-banner">
+                    <div class="researcherprofiles--branded-institutional-banner--menu">
                         <ul>
                             <li class="first">
                                 <a href="http://www.ucla.edu/" target="_blank">UCLA.edu</a>
@@ -228,32 +191,30 @@
 						</ul>
 					</div>
 				</div>
-                <div class="institutionHeader">
-					<div id="site-branding">
-						<div id="site-logo">
-							<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/UCLA/Images/ucla-logo.png" alt="UCLA" /> Profiles</a></h1>
-						</div>
+                <div class="researcherprofiles--institution-header">
+					<div class="researcherprofiles--institution-header--site-logo">
+						<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/UCLA/Images/ucla-logo.png" alt="UCLA" /> Profiles</a></h1>
 					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCR" runat="server" SkinID="UCR" Visible="false">
-                <div class="institutionHeader">
-					<div id="site-branding">
+                <div class="researcherprofiles--institution-header">
+					<div class="researcherprofiles--institution-header--site-logo">
 						<div id="ucr">
 							<a target="_blank" href="https://www.ucr.edu/">
 								<img src="<%=GetThemedDomain()%>/App_Themes/UCR/Images/uclogo137.png" alt="University of California Riverside" /></a>
 						</div>
-						<div id="site-logo">
+						<div class="researcherprofiles--institution-header--site-logo">
 							<h1><a href="<%=GetThemedDomain()%>/">UCR Profiles
-								<div id="tagline">search, discover, network</div>
+								<div class="researcherprofiles--institution-header--tagline">search, discover, network</div>
 							</a></h1>
 						</div>
 					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUSC" runat="server" SkinID="USC" Visible="false">
-                <div id="header-ucsf">
-                    <div id="ucsfnav">
+                <div class="researcherprofiles--branded-institutional-banner">
+                    <div class="researcherprofiles--branded-institutional-banner--menu">
 						<ul>
 							<li class="first">
 								<a title="USC Home" href="http://www.usc.edu/" target="_blank">USC Home</a>
@@ -273,47 +234,17 @@
 						</ul>
                     </div>
                 </div>
-                <div class="institutionHeader">
-					<div id="site-branding">
-						<div id="site-logo">
-							<h1>
-								<a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/USC/Images/usc-ctsi.jpg" alt="USC Health Sciences Profiles" /></a>
-							</h1>
-						</div>
-						<div id="new-features">
-							<a href="https://sc-ctsi.org/resources" class="dblarrow" target="_blank">Find more Research Resources</a>
-						</div>
+                <div class="researcherprofiles--institution-header">
+					<div class="researcherprofiles--institution-header--site-logo">
+						<h1>
+							<a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/USC/Images/usc-ctsi.jpg" alt="USC Health Sciences Profiles" /></a>
+						</h1>
+					</div>
+					<div id="new-features">
+						<a href="https://sc-ctsi.org/resources" class="dblarrow" target="_blank">Find more Research Resources</a>
 					</div>
                 </div>
             </asp:Panel>
-            <asp:Panel ID="MasterPageHeaderLBNL" runat="server" SkinID="LBNL" Visible="false">
-                <div class="institutionHeader">
-					<div id="site-branding">
-						<div id="site-logo">
-							<h1>
-								<a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_Themes/LBNL/Images/lbl-logo.png" alt="Berkeley Lab Profiles" /></a>
-							</h1>
-						</div>
-						<div id="powered-by-block">
-							<a class="last-item" href="http://map.lbl.gov" target="_blank">MAP</a>
-							<a href="http://www.lbl.gov/lab-index/" target="_blank">A-Z INDEX</a>
-							<a href="http://search.lbl.gov/" target="_blank">SEARCH LBL</a>
-						</div>
-					</div>
-                </div>
-            </asp:Panel>
-
-			<div class="profilesContentActive">
-				<div class="panelActive navbar">
-					<asp:ContentPlaceHolder ID="ContentActive" runat="server">
-						<asp:Repeater runat="server" ID="rptActive" OnItemDataBound="DrawModule">
-							<ItemTemplate>
-								<asp:PlaceHolder ID="phActive" runat="server"></asp:PlaceHolder>
-							</ItemTemplate>
-						</asp:Repeater>
-					</asp:ContentPlaceHolder>
-				</div>
-            </div>
 
             <div class="profiles">
                 <div class="profilesHeader" runat="server" id="divProfilesHeader">
@@ -327,116 +258,72 @@
                         </asp:ContentPlaceHolder>
                     </div>
                 </div>
-                <div class="profilesPage" runat="server" id="divProfilesPage">
-                    <table>
-                        <tr>
-                            <asp:PlaceHolder runat="server" ID="PageColumnLeft" Visible="false">
-                                <td valign="top">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="profilesPageColumnLeft">
-                                                    <div class="profilesContentInfo">
-                                                        <div class="panelInfo">
-                                                            <asp:ContentPlaceHolder ID="ContentInfo" runat="server">
-                                                                <asp:Repeater runat="server" ID="rptInfo" OnItemDataBound="DrawModule">
-                                                                    <ItemTemplate>
-                                                                        <asp:PlaceHolder ID="phInfo" runat="server"></asp:PlaceHolder>
-                                                                    </ItemTemplate>
-                                                                </asp:Repeater>
-                                                            </asp:ContentPlaceHolder>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </asp:PlaceHolder>
-                            <td valign="top">
-                                <table>
-                                    <tr>
-                                        <td class="profilesPageColumnRight">
-                                            <div class="profilesPageColumnRightTop">
-                                                <div class="profilesPageColumnRightTopLine" runat="server" id="divProfilesPageColumnRightTopLine">
-                                                </div>
-                                            </div>
-                                            <div class="profilesPageColumnRightCenter" runat="server" id="divPageColumnRightCenter">
-                                                <%-- Removed below inline styles as they made no discernible improvement--%>
-                                                <table id="tblTableBody" runat="server">
-                                                    <tbody>
-                                                        <tr id="trbody">
-                                                            <td class="profilesMainColumnLeft" runat="server" id="divProfilesMainColumnLeft">
-                                                                <div class="profilesContentMain" runat="server" id="divProfilesContentMain">
-                                                                    <div class="backLink">
-                                                                        <asp:Literal runat="server" ID="litBackLink"></asp:Literal>
-                                                                    </div>
-                                                                    <div class="pageTitle">
-                                                                        <asp:Literal runat="server" ID="litPageTitle"></asp:Literal>
-                                                                    </div>
-                                                                    <div class="pageSubTitle">
-                                                                        <asp:Literal runat="server" ID="litPageSubTitle"></asp:Literal>
-                                                                    </div>
-                                                                    <div class="panelPage">
-                                                                        <asp:Repeater runat="server" ID="rptPage" OnItemDataBound="DrawModule">
-                                                                            <ItemTemplate>
-                                                                                <asp:PlaceHolder ID="phPage" runat="server"></asp:PlaceHolder>
-                                                                            </ItemTemplate>
-                                                                        </asp:Repeater>
-                                                                    </div>
-                                                                    <div class="pageDescription">
-                                                                        <asp:Literal runat="server" ID="litPageDescription"></asp:Literal>
-                                                                    </div>
-                                                                    <div class="pageTabs">
-                                                                        <asp:Literal runat="server" ID="litTabs"></asp:Literal>
-                                                                    </div>
-                                                                    <div class="panelMain">
-                                                                        <asp:ContentPlaceHolder ID="ContentMain" runat="server">
-                                                                            <asp:Repeater runat="server" ID="rptMain" OnItemDataBound="DrawModule">
-                                                                                <ItemTemplate>
-                                                                                    <asp:PlaceHolder ID="phMain" runat="server"></asp:PlaceHolder>
-                                                                                </ItemTemplate>
-                                                                            </asp:Repeater>
-                                                                        </asp:ContentPlaceHolder>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td class="profilesMainColumnRight" runat="server" id="tdProfilesMainColumnRight">
-                                                                <div class="profilesContentPassive">
-                                                                    <div class="panelPassive">
-                                                                        <asp:ContentPlaceHolder ID="ContentPassive" runat="server">
-                                                                            <asp:Repeater runat="server" ID="rptPassive" OnItemDataBound="DrawModule">
-                                                                                <ItemTemplate>
-                                                                                    <asp:PlaceHolder ID="phPassive" runat="server"></asp:PlaceHolder>
-                                                                                </ItemTemplate>
-                                                                            </asp:Repeater>
-                                                                        </asp:ContentPlaceHolder>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <%-- This row only exists to add a border to the bottom of the main app. No longer needed.--%>
-                                    <%--  <tr>
-										<td colspan="2">
-											<div class="profilesPageColumnRightBottom" runat="server" id="divProfilesPageColumnRightBottom">
-											</div>
-										</td>
-									</tr>--%>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
+                <asp:ContentPlaceHolder ID="ContentActive" runat="server">
+                    <asp:Repeater runat="server" ID="rptActive" OnItemDataBound="DrawModule">
+                        <ItemTemplate>
+                            <asp:PlaceHolder ID="phActive" runat="server"></asp:PlaceHolder>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </asp:ContentPlaceHolder>
+                <div id="ProfilesNotification" visible="false" runat="server" style="margin-top: 8px; font-weight: bold;">
+                    <asp:Literal runat="server" ID="litSystemNotice"></asp:Literal>
+                </div>
+                <div class="profilesPage">
+                    <button type="button" style="color: #000000;" onclick="javascript:topFunction();" id="rtnBtn" title="Go to top">Return to Top</button>
+                    <div id="profilesMainRow" class="MainRow">
+                        <div id="divContentLeft" class="profilesLeftCol" runat="server">
+                            <asp:ContentPlaceHolder ID="Contentleft" runat="server">
+                                <asp:Repeater runat="server" ID="rptLeft" OnItemDataBound="DrawModule">
+                                    <ItemTemplate>
+                                        <asp:PlaceHolder ID="phLeft" runat="server"></asp:PlaceHolder>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </asp:ContentPlaceHolder>
+                        </div>
+                        <div id="divProfilesContentMain" class="profilesContentMain profilesMaxWidth" runat="server">
+                            <div id="divTopMainRow" style="width: 100%" runat="server">
+                                <asp:Literal runat="server" ID="litPageTitle"></asp:Literal>
+                            </div>
+                            <asp:Literal runat="server" ID="litPageSubTitle"></asp:Literal>
+                            <div class="backLink">
+                                <asp:Literal runat="server" ID="litBackLink"></asp:Literal>
+                            </div>
+                            <div class="pageDescription">
+                                <asp:Literal runat="server" ID="litPageDescription"></asp:Literal>
+                            </div>
+                            <div class="prns-screen-search" id="prns-content">
+                                <div class="content-main">
+                                    <asp:Literal runat="server" ID="litTabs"></asp:Literal>
+                                </div>
+                            </div>
+                            <div class="panelMain">
+                                <asp:ContentPlaceHolder ID="ContentMain" runat="server">
+                                    <asp:Repeater runat="server" ID="rptMain" OnItemDataBound="DrawModule">
+                                        <ItemTemplate>
+                                            <asp:PlaceHolder ID="phMain" runat="server"></asp:PlaceHolder>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </asp:ContentPlaceHolder>
+                            </div>
+                        </div>
+                        <div class="profilesContentPassive">
+                            <div class="panelPassive">
+                                <asp:ContentPlaceHolder ID="ContentPassive" runat="server">
+                                    <asp:Repeater runat="server" ID="rptPassive" OnItemDataBound="DrawModule">
+                                        <ItemTemplate>
+                                            <asp:PlaceHolder ID="phPassive" runat="server"></asp:PlaceHolder>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </asp:ContentPlaceHolder>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-			<div class="profilesFooter">
+			<div class="researcherprofiles--footer">
 				<div id="gadgets-log"></div>
 				<asp:Panel ID="MasterPageFooterUCSF" runat="server" SkinID="UCSF" Visible="false">
-					<div id="footer-collaboration">
+					<div id="researcherprofiles--footer-collaboration">
 						<p>
 							UCSF Profiles is managed by the UCSF 
 							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
@@ -445,40 +332,40 @@
 							<br />This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
-					<div id="footer-contact">
+					<div id="researcherprofiles--footer-contact">
 						<ul>
 							<li><a href="<%=GetThemedDomain()%>/">Home</a></li>
 							<li><a href="mailto:profiles@ucsf.edu">Contact us</a></li>
 						</ul>
 					</div>
-					<div id="footer-copyright">
+					<div id="researcherprofiles--footer-copyright">
 						<p>
 							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California
 						</p>
 					</div>
 				</asp:Panel>
 				<asp:Panel ID="MasterPageFooterUCSD" runat="server" SkinID="UCSD" Visible="false">
-					<div id="footer-collaboration">
+					<div id="researcherprofiles--footer-collaboration">
 						<p>
 							UCSD Profiles is managed by the UC San Diego
 							<a href="https://actri.ucsd.edu/Pages/default.aspx" target="_blank">Altman Clinical and Translational Research Institute (ACTRI)</a>.<br />
 							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
-					<div id="footer-contact">
+					<div id="researcherprofiles--footer-contact">
 						<ul>
 							<li><a href="<%=GetThemedDomain()%>/">Home</a></li>
 							<li><a href="mailto:ctri-support@ucsd.edu?subject=Profiles Service Request">Contact us</a></li>
 						</ul>
 					</div>
-					<div id="footer-copyright">
+					<div id="researcherprofiles--footer-copyright">
 						<p>
 							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California
 						</p>
 					</div>
 				</asp:Panel>
 				<asp:Panel ID="MasterPageFooterUCD" runat="server" SkinID="UCD" Visible="false">
-					<div id="footer-collaboration">
+					<div id="researcherprofiles--footer-collaboration">
 						<p>
 							UC Davis Profiles is managed by the UCSF 
 							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
@@ -487,20 +374,20 @@
 							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
-					<div id="footer-contact">
+					<div id="researcherprofiles--footer-contact">
 						<ul>
 							<li><a href="<%=GetThemedDomain()%>/">Home</a></li>
 							<li><a href="mailto:profiles@ucdavis.edu">Contact us</a></li>
 						</ul>
 					</div>
-					<div id="footer-copyright">
+					<div id="researcherprofiles--footer-copyright">
 						<p>
 							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California 
 						</p>
 					</div>
 				</asp:Panel>
 				<asp:Panel ID="MasterPageFooterUCI" runat="server" SkinID="UCI" Visible="false">
-					<div id="footer-collaboration">
+					<div id="researcherprofiles--footer-collaboration">
 						<p>
 							UCI Profiles is managed by the UCSF 
 							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
@@ -509,20 +396,20 @@
 							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
-					<div id="footer-contact">
+					<div id="researcherprofiles--footer-contact">
 						<ul>
 							<li><a href="<%=GetThemedDomain()%>/">Home</a></li>
 							<li><a href="mailto:bio-som-profiles@uci.edu">Contact us</a></li>
 						</ul>
 					</div>
-					<div id="footer-copyright">
+					<div id="researcherprofiles--footer-copyright">
 						<p>
 							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California 
 						</p>
 					</div>
 				</asp:Panel>
 				<asp:Panel ID="MasterPageFooterUCLA" runat="server" SkinID="UCLA" Visible="false">
-					<div id="footer-collaboration">
+					<div id="researcherprofiles--footer-collaboration">
 						<p>
 							UCLA Profiles is managed by the UCSF 
 							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
@@ -531,20 +418,20 @@
 							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
-					<div id="footer-contact">
+					<div id="researcherprofiles--footer-contact">
 						<ul>
 							<li><a href="<%=GetThemedDomain()%>/">Home</a></li>
 							<li><a href="mailto:UCLAProfiles@mednet.ucla.edu">Contact us</a></li>
 						</ul>
 					</div>
-					<div id="footer-copyright">
+					<div id="researcherprofiles--footer-copyright">
 						<p>
 							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California
 						</p>
 					</div>
 				</asp:Panel>
 				<asp:Panel ID="MasterPageFooterDefault" runat="server" SkinID="Default" Visible="false">
-					<div id="footer-collaboration">
+					<div id="researcherprofiles--footer-collaboration">
 						<p>
 							Research Profiles is managed by the UCSF 
 							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
@@ -553,14 +440,14 @@
 							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
-					<div id="footer-copyright">
+					<div id="researcherprofiles--footer-copyright">
 						<p>
 							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California
 						</p>
 					</div>
 				</asp:Panel>
 				<asp:Panel ID="MasterPageFooterUC" runat="server" SkinID="UC" Visible="false">
-					<div id="footer-collaboration">
+					<div id="researcherprofiles--footer-collaboration">
 						<p>
 							UC Profiles is managed by the UCSF 
 							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
@@ -569,14 +456,14 @@
 							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>
-					<div id="footer-copyright">
+					<div id="researcherprofiles--footer-copyright">
 						<p>
 							Copyright &copy;<span id="copyright-year"></span> The Regents of the University of California 
 						</p>
 					</div>
 				</asp:Panel>
 				<asp:Panel ID="MasterPageFooterUSC" runat="server" SkinID="USC" Visible="false">
-					<div id="footer">
+					<div id="researcherprofiles--footer-combined-text-block">
 						<p>
 						NIH Funding Acknowledgment: Important - All publications resulting from the utilization of SC CTSI resources are required to credit the SC CTSI grant by including the <a href="http://sc-ctsi.org/index.php/home/NIH_acknowledgement">NIH funding acknowledgment</a> and must comply with the <a target="blank" href="http://publicaccess.nih.gov/">NIH Public Access Policy.</a>
 						</p>
@@ -585,85 +472,77 @@
 						</p>
 					</div>
 				</asp:Panel>
-				<asp:Panel ID="MasterPageFooterLBNL" runat="server" SkinID="LBNL" Visible="false">
-					<div id="footer">
-						<div class="disclaimer-logos">
-							<ul class="disclaimer-logos">
-								<li class="disclaimer-logos item1"></li>
-								<li class="disclaimer-logos item2"></li>
-							</ul>
-						</div>
-						<div class="disclaimer-text">
-							<p>A U.S. Department of Energy National Laboratory Managed by the University of California</p>
-						</div>
-						<div class="lbl-disclaimer">
-							<p>
-								<a class="disclaimer-left" href="http://wwwdev.lbl.gov/web-support/">Questions & Comments</a>
-								<a class="disclaimer-right" href="http://wwwdev.lbl.gov/disclaimers/">Privacy & Security Notice</a>
-							</p>
-						</div>
-						<div class="social">
-							<ul class="social-links">
-								<li class="social-links">
-									<a class="item1 ir" target="_blank" href="http://twitter.com/BerkeleyLab">twitter</a>
-								</li>
-								<li class="social-links">
-									<a class="item2 ir" target="_blank" href="http://instagram.com/berkeleylab#">instagram</a>
-								</li>
-								<li class="social-links">
-									<a class="item3 ir" target="_blank" href="https://plus.google.com/+BerkeleyLab/posts">google plus</a>
-								</li>
-								<li class="social-links">
-									<a class="item4 ir" target="_blank" href="http://www.facebook.com/BerkeleyLab">facebook</a>
-								</li>
-								<li class="social-links">
-									<a class="item5 ir" target="_blank" href="http://www.youtube.com/user/BerkeleyLab">youtube</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="version">
-						<p>
-						This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
-						</p>
-					</div>
-				</asp:Panel>
-				<asp:ContentPlaceHolder ID="ContentFooter" runat="server">
-					<asp:Repeater runat="server" ID="rptFooter" OnItemDataBound="DrawModule">
-						<ItemTemplate>
-							<asp:PlaceHolder ID="phFooter" runat="server"></asp:PlaceHolder>
-						</ItemTemplate>
-					</asp:Repeater>
-				</asp:ContentPlaceHolder>
 			</div>
+
         </div>
     </form>
-    <div id="backtotop">
-        <a href="#">&#8593;</a>
-    </div>
-
     <script type="text/javascript">
-        setTimeout(function () {
-            var a = document.createElement("script");
-            var b = document.getElementsByTagName("script")[0];
-            a.src = document.location.protocol + "//dnn506yrbagrg.cloudfront.net/pages/scripts/0010/2559.js?" + Math.floor(new Date().getTime() / 3600000);
-            a.async = true; a.type = "text/javascript"; b.parentNode.insertBefore(a, b)
-        }, 1);
+        $(document).ready(function () {
+
+
+            $("#page-container a").css("cursor", "pointer");
+            $(".title-container").css("cursor", "pointer");
+            $('.title-container').hover(function () {
+                $(".title-container").css("opacity", ".5");
+            });
+
+            $(".title-container").click(function () {
+                //  window.location.href = "https://staging.connects.catalyst.harvard.edu/profiles/search";
+            });
+
+            $(".questionImage").on("click", function (event) {
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                $(this).parent().siblings(".passiveSectionHeadDescription").toggle();
+                event.preventDefault();
+            });
+
+            $('input[type="text"]').on("focusout", function (event) {
+                $(this).val($.trim($(this).val()));
+                return true;
+            });
+
+            if ($(".panelPassive").text().trim().length == 0) { $(".panelPassive").remove(); }
+            if ($(".profilesContentPassive").text().trim().length == 0) { $(".profilesContentPassive").remove(); }
+            if ($(".content-main").text().trim().length == 0) { $(".content-main").remove(); }
+            if ($(".prns-screen-search").text().trim().length == 0) { $(".prns-screen-search").remove(); }
+            if ($(".profilesHeader").text().trim().length == 0) { $(".profilesHeader").remove(); }
+            if ($(".panelHeader").text().trim().length == 0) { $(".panelHeader").remove(); }
+
+        });
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+                document.getElementById("rtnBtn").style.display = "block";
+            } else {
+                document.getElementById("rtnBtn").style.display = "none";
+            }
+            return true;
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            $('body,html').animate({ scrollTop: 0 }, 500);
+            return true;
+        }
+
+        $(document).ready(function () {
+            $(".lnk-edit-arrow").on("click", function () {
+                var img = $(this).find("img");
+                var current = img.attr("src");
+                var newsrc = img.attr("data-swap");
+                $("#" + $(this).attr("data-item")).toggle();
+                img.attr("src", newsrc).attr("data-swap", current);
+            });
+        });
+
+
     </script>
-	<asp:Panel ID="MasterPageQeryzUCSF" runat="server" SkinID="UCSF" Visible="false">
-	  <script type='text/javascript' src='https://qeryz.com/survey/js/qryz_v3.2.js'></script>
-	  <script type='text/javascript'>
-		var qRz = qRz || [];
-		(function() {
-          setTimeout(function(){
-            var qryz_plks = document.createElement('div');
-            qryz_plks.id = 'qryz_plks';
-            qryz_plks.className = 'qryz_plks';
-            document.body.appendChild(qryz_plks);
-            qryzInit2('2511');
-          },0);
-		})();
-	  </script>
-	</asp:Panel>
+    <%="<script type=\"text/javascript\">"%>
+    <asp:Literal runat="server" ID="litJS"></asp:Literal>
+    <%="</script>"%>
 </body>
 </html>

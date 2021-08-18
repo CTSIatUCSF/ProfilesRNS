@@ -5,6 +5,8 @@ create table #medialinkssort (
 	SortOrder int
 )
 
+--DROP TABLE #medialinkssort
+
 -- order globally 
 INSERT #medialinkssort SELECT UrlID, PersonID,  ROW_NUMBER() OVER(order by personid, try_cast([PublicationDate] as date) desc)
 FROM  [Profile.Data].[Person.MediaLinks] 
@@ -12,7 +14,7 @@ FROM  [Profile.Data].[Person.MediaLinks]
 SELECT * FROM #medialinkssort order by PersonID, SortOrder
 
 -- reset for each person so its like 0,1,2 instead of 14,15,16, etc. 
-UPDATE D set D.SortOrder = D.SortOrder  - MinSort FROM #medialinkssort D 
+UPDATE D set D.SortOrder = D.SortOrder  - MinSort + 1 FROM #medialinkssort D 
 CROSS APPLY  ( SELECT  MIN(SortOrder) [MinSort] FROM  #medialinkssort where PersonID = D.PersonID) A
 
 -- now fix in main table
@@ -37,3 +39,4 @@ EXEC [RDF.Stage].[ProcessDataMap] @DataMapID = @d5, @ShowCounts = 1
 EXEC [RDF.Stage].[ProcessDataMap] @DataMapID = @d6, @ShowCounts = 1
 EXEC [RDF.Stage].[ProcessDataMap] @DataMapID = @d7, @ShowCounts = 1
    
+

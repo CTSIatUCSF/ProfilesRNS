@@ -734,44 +734,6 @@ span.unused,
 }
 
 /* ############################################################################################ */
-/* PROFILE PAGE: BIO / OVERVIEW
-/* ############################################################################################ */
-
-/* Long bios shouldn't be excessively wide */
-/* see https://ux.stackexchange.com/q/108801 and https://ux.stackexchange.com/q/3618 for explanation */
-.researcherprofiles--researcher-profile-page .overview {
-    max-width: 70em;
-}
-
-/* We need this to use the "show more" / "show less" */
-/* but it sucks that if JavaScript fails, this will just hide content */
-.researcherprofiles--researcher-profile-page .overview {
-    max-height: 20rem;
-    overflow: hidden;
-    /* fade out the bottom 10% to white */
-    mask-image: linear-gradient(180deg, #000 90%, transparent);
-}
-
-.researcherprofiles--researcher-profile-page .overview.full {
-    max-height: none;
-    mask-image: none;
-}
-
-/* ############################################################################################ */
-/* PROFILE PAGE: WEBSITES
-/* ############################################################################################ */
-
-/* fix stupid hardcoded spacing around website entries */
-
-.researcherprofiles--researcher-profile-page tr.website-table>td {
-    padding: 0.5rem;
-}
-
-.researcherprofiles--researcher-profile-page #view_links_table {
-    padding-bottom: 0 !important;
-}
-
-/* ############################################################################################ */
 /* PROFILE PAGE: COMMON PATTERNS AND COMPONENTS
 /* ############################################################################################ */
 
@@ -793,8 +755,9 @@ span.unused,
     overflow-wrap: break-word;
 }
 
-/* adding little borders between collapsible table rows */
-.researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible tr,
+/* adding little borders between non-linky collapsible table rows */
+/* It's quite hard to select the right tables. Ideally, we'd hand-list each one, but in this case, we need this funky selector to get awards/grants/education, but not in the news, websites, or pubs. */
+.researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible tr:not(.website-table),
 .researcherprofiles--researcher-profile-page .profilesContentMain table.grants tr {
     border-top: 2px solid var(--striped-row-border-color);
 }
@@ -863,6 +826,106 @@ span.unused,
 /* normalize color of links to see visualizations */
 .researcherprofiles--researcher-profile-page .anchor-tab a.link-visualization {
     color: var(--generic-link-color) !important;
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE: BIO / OVERVIEW
+/* ############################################################################################ */
+
+/* Long bios shouldn't be excessively wide */
+/* see https://ux.stackexchange.com/q/108801 and https://ux.stackexchange.com/q/3618 for explanation */
+.researcherprofiles--researcher-profile-page .overview {
+    max-width: 70em;
+}
+
+/* We need this to use the "show more" / "show less" */
+/* but it sucks that if JavaScript fails, this will just hide content */
+.researcherprofiles--researcher-profile-page .overview {
+    max-height: 20rem;
+    overflow: hidden;
+    /* fade out the bottom 10% to white */
+    mask-image: linear-gradient(180deg, #000 90%, transparent);
+}
+
+.researcherprofiles--researcher-profile-page .overview.full {
+    max-height: none;
+    mask-image: none;
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE: WEBSITES
+/* ############################################################################################ */
+
+/* fix stupid hardcoded spacing around website entries */
+
+.researcherprofiles--researcher-profile-page tr.website-table>td {
+    padding: 0.5rem;
+}
+
+.researcherprofiles--researcher-profile-page #view_links_table {
+    padding-bottom: 0 !important;
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE: BIO / OVERVIEW
+/* ############################################################################################ */
+
+/* Long bios shouldn't be excessively wide */
+/* see https://ux.stackexchange.com/q/108801 and https://ux.stackexchange.com/q/3618 for explanation */
+.researcherprofiles--researcher-profile-page .overview {
+    max-width: 70em;
+}
+
+/* We need this to use the "show more" / "show less" */
+/* but it sucks that if JavaScript fails, this will just hide content */
+.researcherprofiles--researcher-profile-page .overview {
+    max-height: 20rem;
+    overflow: hidden;
+    /* fade out the bottom 10% to white */
+    mask-image: linear-gradient(180deg, #000 90%, transparent);
+}
+
+.researcherprofiles--researcher-profile-page .overview.full {
+    max-height: none;
+    mask-image: none;
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE: VIDEOS
+/* ############################################################################################ */
+
+/* limit height of overall YouTube section */
+.researcherprofiles--researcher-profile-page .youtube {
+    height: 25rem !important;
+    min-height: 0;
+    min-height: auto;
+    overflow: clip;
+}
+
+/* YouTube iframe takes up the whole left side */
+.researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#FeaturedVideos"] .yt_div iframe.yt_player {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+/* make list of videos pretty and scrollable */
+.researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#FeaturedVideos"] .yt_list {
+    height: 100%;
+    overflow: auto;
+    background: var(--menu-background-color);
+    border: 1px solid var(--highlighted-panel-border-color);
+    color: var(--generic-link-color);
+    padding: 1rem;
+}
+
+/* a little whitespace around each video link */
+.researcherprofiles--researcher-profile-page .youtube .yt_list li {
+    padding: 0.5rem;
+}
+
+/* selected video link is visually highlighted */
+.researcherprofiles--researcher-profile-page .youtube .yt_list li:hover {
+    background: var(--menu-important-background-color);
 }
 
 /* ############################################################################################ */

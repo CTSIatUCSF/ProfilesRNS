@@ -39,7 +39,7 @@
     <div style="padding-top: 3px;">
         <div style="margin-bottom: 5px;">
             <div style="margin-bottom: 4px"><b>Description</b></div>
-            <asp:TextBox Width="400px" runat="server" MaxLength="55" ID="txtName"></asp:TextBox>
+            <asp:TextBox Width="400px" runat="server" MaxLength="100" ID="txtName"></asp:TextBox>
         </div>
         <div style="margin-bottom: 5px;">
             <div style="margin-bottom: 4px"><b>YouTube URL</b></div>

@@ -504,7 +504,24 @@ namespace Profiles.Framework
             // Window Title
             buffer = GetStringFromPresentationXML("Presentation/WindowName");
 
-            Page.Header.Title = buffer + " | Profiles RNS";
+            //Page.Header.Title = buffer + " | Profiles RNS";
+            bool isperson = false;
+            try
+            {
+                isperson = !String.IsNullOrEmpty(HttpContext.Current.Request.QueryString["Subject"]) && UCSFIDSet.IsPerson(Convert.ToInt64(Request.QueryString["Subject"].Trim()));
+            }
+            catch (Exception ex)
+            {
+                Framework.Utilities.DebugLogging.Log(ex.Message + " ++ master page seeing if on person page " + ex.StackTrace);
+            }
+            if (isperson)
+            {   //Person
+                Page.Header.Title = buffer + " | " + Brand.GetCurrentBrand().Theme + " Profiles";
+            }
+            else
+            {
+                Page.Header.Title = Brand.GetCurrentBrand().Theme + " Profiles • " + buffer;
+            }
             litJS.Text += js;
 
         }

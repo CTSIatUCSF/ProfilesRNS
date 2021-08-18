@@ -12,7 +12,7 @@
   <xsl:param name="root" />
   <xsl:template match="/">
     <div id="view_links_table" style="padding:10px 0px 10px 20px;">
-      <table cellspacing="10" cellpadding="10" border="0">
+      <table cellspacing="10" cellpadding="10" border="0" class="collapsible">
         <tbody>
           <tr/>
           <xsl:for-each select="rdf:RDF/rdf:Description[1]/prns:mediaLinks">

@@ -211,8 +211,9 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 if (!DataBinder.Eval(e.Row.DataItem, "mpid").Equals(System.DBNull.Value))
                 {
                     string str = (string)DataBinder.Eval(e.Row.DataItem, "mpid");
+                    string category = (string)DataBinder.Eval(e.Row.DataItem, "Category");
 
-                    if (str.Length > 0)
+                    if (str.Length > 0 && !category.Equals("PubMedBookDocument"))
                     {
                         ImageButton lb = (ImageButton)e.Row.FindControl("lnkEdit");
                         lb.Visible = true;
@@ -446,20 +447,29 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             myXml.LoadXml(this.HttpPost(uri, "Catalyst", "text/plain"));
             XmlNodeList nodes = myXml.SelectNodes("PubmedArticleSet/PubmedArticle");
 
-            Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
+            DataIO data = new DataIO();
 
             foreach (XmlNode node in nodes)
             {
                 string pmid = node.SelectSingleNode("MedlineCitation/PMID").InnerText;
-
                 if (!data.CheckPublicationExists(pmid))
                     // Insert or update the publication
                     data.AddPublication(pmid, node.OuterXml);
 
                 // Assign the user to the publication
                 data.AddPublication(_personId, _subject, Convert.ToInt32(pmid), this.PropertyListXML);
-
             }
+
+            XmlNodeList bookDocNodes = myXml.SelectNodes("PubmedArticleSet/PubmedBookArticle");
+            foreach (XmlNode node in bookDocNodes)
+            {
+                string pmid = node.SelectSingleNode("BookDocument/PMID").InnerText;
+                if (!data.CheckPublicationExists(pmid))
+                    // Insert or update the publication
+                    data.AddPublication(pmid, node.OuterXml);
+                data.AddPubmedBookArticle(_personId, _subject, Convert.ToInt32(pmid), this.PropertyListXML);
+            }
+
 
             data.UpdateEntityOnePerson(_personId);
             this.KillCache();
@@ -596,7 +606,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
             Hashtable MyParameters = new Hashtable();
 
-            string uri = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&usehistory=y&retmax=100&retmode=xml&term=" + value;
+            string uri = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&usehistory=y&retmax=1&retmode=xml&term=" + value;
             System.Xml.XmlDocument myXml = new System.Xml.XmlDocument();
             myXml.LoadXml(this.HttpPost(uri, "Catalyst", "text/plain"));
 
@@ -620,9 +630,10 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 //do nothing. its a blank search
             }
 
-            // By waiting a second, we avoid PubMed blocking us for too many requests. 
-            System.Threading.Thread.Sleep(1000);
-            uri = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?retmin=0&retmax=100&retmode=xml&db=Pubmed&query_key=" + queryKey + "&webenv=" + webEnv;
+			System.Threading.Thread.Sleep(1000);
+            int pubscount = 100;
+            if (chkPubMedExclude.Checked) pubscount += Convert.ToInt32(this.PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@NumberOfConnections").Value) + 100;
+            uri = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?retmin=0&retmax="+ pubscount + "&retmode=xml&db=Pubmed&query_key=" + queryKey + "&webenv=" + webEnv;
             myXml.LoadXml(this.HttpPost(uri, "Catalyst", "text/plain"));
 
             string pubMedAuthors = "";
@@ -637,6 +648,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             PubMedResults.Tables["Results"].Columns.Add(new System.Data.DataColumn("citation"));
             PubMedResults.Tables["Results"].Columns.Add(new System.Data.DataColumn("checked"));
 
+            int MaxPubs = 100;
             XmlNodeList docSums = myXml.SelectNodes("eSummaryResult/DocSum");
             foreach (XmlNode docSum in docSums)
             {
@@ -663,7 +675,9 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                     myDataRow["citation"] = pubMedAuthors + "; " + pubMedTitle + "; " + pubMedSO;
                     PubMedResults.Tables["Results"].Rows.Add(myDataRow);
                     PubMedResults.AcceptChanges();
+                    MaxPubs--;
                 }
+                if (MaxPubs <= 0) break;
             }
 
             grdPubMedSearchResults.DataSource = PubMedResults;
@@ -701,7 +715,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
 
             CheckBox cb = (CheckBox)e.Row.FindControl("chkPubMed");
 
-            cb.Attributes.Add("cheked", "");
+            cb.Attributes.Add("checked", "");
 
             if (drv["checked"].ToString() == "0")
                 cb.Checked = false;
@@ -1308,6 +1322,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
         public string HttpPost(string myUri, string myXml, string contentType)
         {
             Uri uri = new Uri(myUri);
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             WebRequest myRequest = WebRequest.Create(uri);
             myRequest.ContentType = contentType;
             //myRequest.ContentType = "application/x-www-form-urlencoded";
@@ -1334,6 +1349,50 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 { os.Close(); }
             }
 
+            try
+            { // get the response
+                WebResponse myResponse = myRequest.GetResponse();
+                if (myResponse == null)
+                { return null; }
+                StreamReader sr = new StreamReader(myResponse.GetResponseStream());
+                return sr.ReadToEnd().Trim();
+            }
+            catch (WebException ex)
+            {
+                err = "Output=" + ex.Message;
+            }
+            return err;
+        } // end HttpPost 
+
+        public string HttpGet(string myUri)
+        {
+            Uri uri = new Uri(myUri);
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            WebRequest myRequest = WebRequest.Create(uri);
+            //myRequest.ContentType = contentType;
+            //myRequest.ContentType = "application/x-www-form-urlencoded";
+            myRequest.Method = "GET";
+
+            //byte[] bytes = Encoding.ASCII.GetBytes(myXml);
+            //Stream os = null;
+
+            string err = null;
+/*            try
+            { // send the Post
+                myRequest.ContentLength = bytes.Length;   //Count bytes to send
+                os = myRequest.GetRequestStream();
+                os.Write(bytes, 0, bytes.Length);         //Send it
+            }
+            catch (WebException ex)
+            {
+                err = "Input=" + ex.Message;
+            }
+            finally
+            {
+                if (os != null)
+                { os.Close(); }
+            }
+*/
             try
             { // get the response
                 WebResponse myResponse = myRequest.GetResponse();

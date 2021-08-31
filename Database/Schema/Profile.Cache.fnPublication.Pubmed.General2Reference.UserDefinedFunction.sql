@@ -7,8 +7,8 @@ create function [Profile.Cache].[fnPublication.Pubmed.General2Reference]	(
 	@ArticleDay varchar(10),
 	@ArticleMonth varchar(10),
 	@ArticleYear varchar(10),
-	@ArticleTitle varchar(4000),
-	@Authors varchar(4000),
+	@ArticleTitle nvarchar(4000),
+	@Authors nvarchar(4000),
 	@AuthorListCompleteYN varchar(1),
 	@Issue varchar(255),
 	@JournalDay varchar(50),
@@ -27,11 +27,11 @@ BEGIN
 
 	DECLARE @Reference NVARCHAR(MAX)
 
-	SET @Reference = (case when right(@Authors,5) = 'et al' then @Authors+'. '
+	SET @Reference = /*(case when right(@Authors,5) = 'et al' then @Authors+'. '
 								when @AuthorListCompleteYN = 'N' then @Authors+', et al. '
 								when @Authors <> '' then @Authors+'. '
 								else '' end)
-					+ CASE WHEN @encode_html=1 THEN '<a href="'+'http'+'://www.ncbi.nlm.nih.gov/pubmed/'+cast(@pmid as varchar(50))+'" target="_blank">'+coalesce(@ArticleTitle,'')+'</a>' + ' '
+					+*/ CASE WHEN @encode_html=1 THEN '<a href="'+'http'+'://www.ncbi.nlm.nih.gov/pubmed/'+cast(@pmid as varchar(50))+'" target="_blank">'+coalesce(@ArticleTitle,'')+'</a>' + ' '
 								 ELSE coalesce(@ArticleTitle,'') + ' '
 						END
 					+ coalesce(@MedlineTA,'') + '. '

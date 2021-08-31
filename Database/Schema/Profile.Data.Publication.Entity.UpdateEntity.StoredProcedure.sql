@@ -27,11 +27,13 @@ BEGIN
 		PMID INT NULL ,
 		MPID NVARCHAR(50) NULL ,
 		PMCID NVARCHAR(55) NULL,
+		doi [varchar](100) NULL,
 		EntityDate DATETIME NULL ,
-		Reference VARCHAR(MAX) NULL ,
+		Authors NVARCHAR(4000) NULL,
+		Reference NVARCHAR(MAX) NULL ,
 		Source VARCHAR(25) NULL ,
 		URL VARCHAR(1000) NULL ,
-		Title VARCHAR(4000) NULL ,
+		Title NVARCHAR(4000) NULL ,
 		EntityID INT NULL
 	)
  
@@ -39,7 +41,9 @@ BEGIN
 	INSERT  INTO #Publications
             ( PMID ,
 			  PMCID,
+			  doi,
               EntityDate ,
+			  Authors,
               Reference ,
               Source ,
               URL ,
@@ -48,7 +52,12 @@ BEGIN
             SELECT -- Get Pub Med pubs
                     PG.PMID ,
 					PG.PMCID,
+					PG.doi,
                     EntityDate = PG.PubDate,
+					authors = case when right(PG.Authors,5) = 'et al' then PG.Authors+'. '
+								when PG.AuthorListCompleteYN = 'N' then PG.Authors+', et al. '
+								when PG.Authors <> '' then PG.Authors+'. '
+								else '' end,
                     Reference = REPLACE([Profile.Cache].[fnPublication.Pubmed.General2Reference](PG.PMID,
                                                               PG.ArticleDay,
                                                               PG.ArticleMonth,
@@ -77,11 +86,12 @@ BEGIN
 						SELECT PMID 
 							FROM [Profile.Data].[Publication.Group.Include]
 							WHERE PMID IS NOT NULL)
- 
+	   
 	-- Add MPIDs to the publications temp table
 	INSERT  INTO #Publications
             ( MPID ,
               EntityDate ,
+			  Authors,
 			  Reference ,
 			  Source ,
               URL ,
@@ -89,8 +99,8 @@ BEGIN
             )
             SELECT  MPID ,
                     EntityDate ,
-                    Reference = REPLACE(authors
-										+ (CASE WHEN IsNull(article,'') <> '' THEN article + '. ' ELSE '' END)
+					Authors = REPLACE(authors, CHAR(11), '') ,
+                    Reference = REPLACE( (CASE WHEN IsNull(article,'') <> '' THEN article + '. ' ELSE '' END)
 										+ (CASE WHEN IsNull(pub,'') <> '' THEN pub + '. ' ELSE '' END)
 										+ y
                                         + CASE WHEN y <> ''
@@ -133,9 +143,9 @@ BEGIN
                                                            THEN ''
                                                            WHEN RIGHT(COALESCE(MPG.authors,
                                                               ''), 1) = '.'
-                                                            THEN  COALESCE(MPG.authors,
+                                                            THEN  COALESCE([Profile.Data].[fnPublication.MyPub.HighlightAuthors] (MPG.authors, p.FirstName, p.MiddleName, p.LastName),
                                                               '') + ' '
-                                                           ELSE COALESCE(MPG.authors,
+                                                           ELSE COALESCE([Profile.Data].[fnPublication.MyPub.HighlightAuthors] (MPG.authors, p.FirstName, p.MiddleName, p.LastName),
                                                               '') + '. '
                                                       END ,
                                             url = CASE WHEN COALESCE(MPG.url,
@@ -178,11 +188,30 @@ BEGIN
                                                            AND PL.mpid NOT LIKE 'DASH%'
                                                            AND PL.mpid NOT LIKE 'ISI%'
                                                            AND PL.pmid IS NULL
+									join [Profile.Data].Person p on pl.PersonID = p.PersonID
                                 ) T0
                     ) T0
  
 	CREATE NONCLUSTERED INDEX idx_pmid on #publications(pmid)
 	CREATE NONCLUSTERED INDEX idx_mpid on #publications(mpid)
+
+	declare @baseURI varchar(255)
+	select @baseURI = Value From [Framework.].Parameter where ParameterID = 'baseURI'
+	select a.PmPubsAuthorID, a.pmid, a2p.personID, isnull(Lastname + ' ' + Initials, CollectiveName) as Name, case when nodeID is not null then'<a href="' + @baseURI + cast(i.nodeID as varchar(55)) + '">'+ Lastname + ' ' + Initials + '</a>' else isnull(Lastname + ' ' + Initials, CollectiveName) END as link into #tmpAuthorLinks from [Profile.Data].[Publication.PubMed.Author] a 
+		left outer join [Profile.Data].[Publication.PubMed.Author2Person] a2p on a.PmPubsAuthorID = a2p.PmPubsAuthorID
+		left outer join [RDF.Stage].InternalNodeMap i on a2p.PersonID = i.InternalID and i.class = 'http://xmlns.com/foaf/0.1/Person'
+
+	select pmid, [Profile.Data].[fnPublication.Pubmed.ShortenAuthorLengthString](replace(replace(isnull(cast((
+		select ', '+ link
+		from #tmpAuthorLinks q
+		where q.pmid = p.pmid
+		order by PmPubsAuthorID
+		for xml path(''), type
+		) as nvarchar(max)),''), '&lt;' , '<'), '&gt;', '>')) s
+		into #tmpPublicationLinks from #publications p where pmid is not null
+
+	update g set g.Authors = t.s from #publications g
+		join #tmpPublicationLinks t on g.PMID = t.PMID 
 
 	----------------------------------------------------------------------
 	-- Update the Publication.Entity.InformationResource table
@@ -209,6 +238,8 @@ BEGIN
 	UPDATE e
 		SET e.EntityDate = p.EntityDate,
 			e.pmcid = p.pmcid,
+			e.doi = p.doi,
+			e.Authors = p.Authors,
 			e.Reference = p.Reference,
 			e.Source = p.Source,
 			e.URL = p.URL,
@@ -226,9 +257,11 @@ BEGIN
 	INSERT INTO [Profile.Data].[Publication.Entity.InformationResource] (
 			PMID,
 			PMCID,
+			doi,
 			MPID,
 			EntityName,
 			EntityDate,
+			Authors,
 			Reference,
 			Source,
 			URL,
@@ -238,9 +271,11 @@ BEGIN
 		)
 		SELECT 	PMID,
 				PMCID,
+				doi,
 				MPID,
 				Title,
 				EntityDate,
+				Authors,
 				Reference,
 				Source,
 				URL,
@@ -278,7 +313,8 @@ BEGIN
 		InformationResourceID INT NULL,
 		PMID INT NULL,
 		IsActive BIT,
-		EntityID INT
+		EntityID INT,
+		AuthorsString varchar(max)
 	)
  
 	INSERT INTO #Authorship (EntityDate, PersonID, InformationResourceID, PMID, IsActive)
@@ -320,6 +356,23 @@ BEGIN
 							end)
 		WHERE YearWeight IS NULL
 
+		select pmid, personID, [Profile.Data].[fnPublication.Pubmed.ShortenAuthorLengthString](replace(replace(isnull(cast((
+		select ', '+case when p.personID = q.personID then '<b>' + name + '</b>' else link end
+		from #tmpAuthorLinks q
+		where q.pmid = p.pmid
+		order by PmPubsAuthorID
+		for xml path(''), type
+	) as nvarchar(max)),''), '&lt;' , '<'), '&gt;', '>')) s
+	into #tmp2 from #Authorship p where pmid is not null
+
+	update a set a.s = case when right(a.s,5) = 'et al' then a.s+'. '
+								when g.AuthorListCompleteYN = 'N' then a.s+', et al. '
+								when a.s <> '' then a.s+'. '
+								else '' end
+		from #tmp2 a join [Profile.Data].[Publication.PubMed.General] g on a.PMID = g.PMID
+
+
+	update a set a.AuthorsString = b.s from #Authorship a join #tmp2 b on a.pmid = b.PMID and a.PersonID = b.PersonID
 	----------------------------------------------------------------------
 	-- Update the Publication.Authorship table
 	----------------------------------------------------------------------
@@ -347,7 +400,8 @@ BEGIN
 			e.authorPosition = a.authorPosition,
 			e.PubYear = a.PubYear,
 			e.YearWeight = a.YearWeight,
-			e.IsActive = 1
+			e.IsActive = 1,
+			e.AuthorsString = a.AuthorsString
 		FROM #authorship a, [Profile.Data].[Publication.Entity.Authorship] e
 		WHERE a.EntityID = e.EntityID and a.EntityID is not null
 
@@ -363,7 +417,8 @@ BEGIN
 			YearWeight,
 			PersonID,
 			InformationResourceID,
-			IsActive
+			IsActive,
+			AuthorsString
 		)
 		SELECT 	EntityDate,
 				authorRank,
@@ -375,7 +430,8 @@ BEGIN
 				YearWeight,
 				PersonID,
 				InformationResourceID,
-				IsActive
+				IsActive,
+				AuthorsString
 		FROM #authorship a
 		WHERE EntityID IS NULL
 

@@ -7,6 +7,7 @@ GO
 CREATE TABLE [Profile.Data].[Publication.PubMed.General.Stage](
 	[PMID] [int] NOT NULL,
 	[PMCID] [nvarchar](55) NULL,
+	[doi] [varchar](100) NULL,
 	[Owner] [varchar](50) NULL,
 	[Status] [varchar](50) NULL,
 	[PubModel] [varchar](50) NULL,
@@ -19,7 +20,7 @@ CREATE TABLE [Profile.Data].[Publication.PubMed.General.Stage](
 	[JournalTitle] [varchar](1000) NULL,
 	[ISOAbbreviation] [varchar](100) NULL,
 	[MedlineTA] [varchar](1000) NULL,
-	[ArticleTitle] [varchar](4000) NULL,
+	[ArticleTitle] [nvarchar](4000) NULL,
 	[MedlinePgn] [varchar](255) NULL,
 	[AbstractText] [text] NULL,
 	[ArticleDateType] [varchar](50) NULL,
@@ -30,7 +31,7 @@ CREATE TABLE [Profile.Data].[Publication.PubMed.General.Stage](
 	[AuthorListCompleteYN] [varchar](1) NULL,
 	[GrantListCompleteYN] [varchar](1) NULL,
 	[PubDate] [datetime] NULL,
-	[Authors] [varchar](4000) NULL,
+	[Authors] [nvarchar](4000) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[PMID] ASC

@@ -7,17 +7,19 @@ GO
 CREATE TABLE [Profile.Data].[Publication.Entity.InformationResource](
 	[EntityID] [int] IDENTITY(1,1) NOT NULL,
 	[PMID] [int] NULL,
-	[PMCID] [nvarchar](55) NULL,
 	[MPID] [nvarchar](50) NULL,
-	[EntityName] [varchar](4000) NULL,
+	[PMCID] [nvarchar](55) NULL,
+	[doi] [varchar](100) NULL,
+	[EntityName] [nvarchar](4000) NULL,
 	[EntityDate] [datetime] NULL,
-	[Reference] [varchar](max) NULL,
+	[Reference] [nvarchar](max) NULL,
 	[Source] [varchar](25) NULL,
 	[URL] [varchar](2000) NULL,
 	[PubYear] [int] NULL,
 	[YearWeight] [float] NULL,
 	[SummaryXML] [xml] NULL,
 	[IsActive] [bit] NULL,
+	[Authors] [nvarchar](MAX),
  CONSTRAINT [PK__Publication.Enti__6892926B] PRIMARY KEY CLUSTERED 
 (
 	[EntityID] ASC

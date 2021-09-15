@@ -1,0 +1,4 @@
+INSERT [Profile.Import].[PRNSWebservice.Options] ([job], [url], [options], [apiKey], [logLevel], [batchSize], [GetPostDataProc], [ImportDataProc]) VALUES (N'GetPubMedXML_Refresh', N'http://profiles.catalyst.harvard.edu/services/GetPMIDs/GetPubMedXML.asp', N'Refresh=True', NULL, 0, NULL, N'[Profile.Import].[PRNSWebservice.PubMed.GetAllPMIDs]', N'[Profile.Import].[PRNSWebservice.Pubmed.AddPubMedXML]')
+GO
+INSERT [Profile.Import].[PRNSWebservice.Options] ([job], [url], [options], [apiKey], [logLevel], [batchSize], [GetPostDataProc], [ImportDataProc]) VALUES (N'GetPubMedXML_DEBUG', N'http://profiles.catalyst.harvard.edu/services/GetPMIDs/GetPubMedXML.asp', N'DEBUG', NULL, 0, NULL, N'[Profile.Import].[PRNSWebservice.PubMed.GetAllPMIDs]', N'[Profile.Import].[PRNSWebservice.Pubmed.AddPubMedXML]')
+GO

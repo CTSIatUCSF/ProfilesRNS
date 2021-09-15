@@ -11,3 +11,11 @@ CREATE NONCLUSTERED INDEX [idx_PublicationEntityInformationResourceIsActive]
     ON [Profile.Data].[Publication.Entity.InformationResource]([IsActive] ASC)
     INCLUDE([EntityID], [PubYear], [PMID], [EntityDate], [Reference]);
 GO
+
+
+Also, do update jobs as outlined in the InstallGuide
+Update SSIS packages called by jobs as well
+Turns out only ONE SSIS package is now being called
+Get Partial FullPubRefresh working on STAGE/PROD with Harvard new job framework
+
+update [Profile.Import].[PRNSWebservice.Options] set logLevel = 1 where job = 'PubMedDisambiguation_GetPubs'

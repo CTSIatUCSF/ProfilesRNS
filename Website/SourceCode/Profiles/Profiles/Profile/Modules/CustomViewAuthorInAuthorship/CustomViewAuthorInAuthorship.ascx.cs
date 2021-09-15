@@ -273,7 +273,7 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                     else
                     {
                         // this is a coauthor, make it a hyperlink
-                        authorList += "<a href='" + url + "' target='_blank'>" + display + "</a>";
+                        authorList += "<a href='" + Brand.CleanURL(url) + "' target='_blank'>" + display + "</a>";
                     }
                 }
                 else
@@ -329,7 +329,7 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
             {
                 this.bibo_pmid = _bibo_pmid;
                 this.vivo_pmcid = _vivo_pmcid;
-                this.authors = _authors;
+                this.authors = swapInPrettyURLS(_authors);
                 this.prns_informationResourceReference = prns_informationresourcereference;
                 this.vivo_webpage = _vivo_webpage;
                 this.PMCCitations = PMCCitations;
@@ -358,6 +358,20 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
             public int TranslationCells { get; set; }
             public int TranslationPublicHealth { get; set; }
             public int TranslationClinicalTrial { get; set; }
+
+            private string swapInPrettyURLS(string authors)
+            {
+                // look for https://thisURI/profile/12345 and swap it in. 
+                int ndx = authors.IndexOf(Root.Domain + "/profile/");
+                while (ndx >= 0)
+                {
+                    string uri = authors.Substring(ndx, authors.IndexOf('"', ndx + Root.Domain.Length + 9) - ndx);
+                    authors = authors.Replace(uri, Brand.CleanURL(uri));
+                    ndx = authors.IndexOf(Root.Domain + "/profile/", ndx + Root.Domain.Length + 9);
+                }
+                return authors;
+            }
+
         }
     }
 }

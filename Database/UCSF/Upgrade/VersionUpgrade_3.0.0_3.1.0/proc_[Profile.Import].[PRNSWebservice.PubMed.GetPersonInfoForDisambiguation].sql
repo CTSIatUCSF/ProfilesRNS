@@ -1,7 +1,4 @@
-USE [ProfilesRNS_Dev]
-GO
-
-/****** Object:  StoredProcedure [Profile.Import].[PRNSWebservice.PubMed.GetPersonInfoForDisambiguation]    Script Date: 8/31/2021 10:13:57 AM ******/
+/****** Object:  StoredProcedure [Profile.Import].[PRNSWebservice.PubMed.GetPersonInfoForDisambiguation]    Script Date: 9/8/2021 7:09:12 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -36,7 +33,7 @@ SELECT @baseURI = [Value] FROM [Framework.].[Parameter] WHERE [ParameterID] = 'b
 SELECT @orcidNodeID = NodeID from [RDF.].Node where Value = 'http://vivoweb.org/ontology/core#orcidId'
 
 CREATE TABLE #tmp (LogID INT, RowID INT not null primary key, PostData XML) 
-
+--drop table #tmp;
 insert into #tmp (LogID, RowID, PostData)
 SELECT -1, personid, 
                    (SELECT 
@@ -142,6 +139,8 @@ SELECT -1, personid,
   --INTO #batch
   FROM [Profile.Data].vwperson  p2 where PersonID not in (select PersonID from [Profile.Data].[Publication.Pubmed.DisambiguationSettings] where Enabled = 0)
 
+--select * from #tmp;
+
   select @BatchSize = @@ROWCOUNT
 
 	Update [Profile.Import].[PRNSWebservice.Log.Summary]  set RecordsCount = @BatchSize, RowsCount = @BatchSize  where BatchID = @BatchID
@@ -164,6 +163,5 @@ SELECT -1, personid,
 
 	select LogID, cast(@batchID as varchar(100)) as BatchID, RowID, 'POST' as HttpMethod, @URL as URL, cast(PostData as varchar(max)) from #tmp
 END
+
 GO
-
-

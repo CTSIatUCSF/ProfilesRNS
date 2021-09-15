@@ -356,6 +356,7 @@
     <Content Include="Edit\Modules\CustomEditGroupSettings\CustomEditGroupSettings.ascx" />
     <Content Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx" />
     <Content Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx" />
+    <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditGlobalHealthEquity.ascx" />
     <Content Include="Error\PresentationXML\HttpRequestValidationExceptionPresentation.xml" />
     <Content Include="favicon.ico" />
     <Content Include="Framework\Images\arrow-orgbg.gif" />
@@ -553,6 +554,9 @@
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx" />
     <Content Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\GlobalHealthEquity.ascx" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\UCSFPluginStyle.css" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\GlobalHealthEquity.js" />
     <Content Include="Profile\Modules\CustomViewSocialMediaPlugins\FeaturedPresentations.ascx" />
     <Content Include="Profile\Modules\CustomViewSocialMediaPlugins\FeaturedVideos.ascx" />
     <Content Include="Profile\Modules\CustomViewSocialMediaPlugins\SlideShareJquery.js" />
@@ -942,6 +946,13 @@
     </Compile>
     <Compile Include="Edit\Modules\CustomEditSocialMediaPlugIns\EditTwitter.ascx.designer.cs">
       <DependentUpon>EditTwitter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditGlobalHealthEquity.ascx.cs">
+      <DependentUpon>EditGlobalHealthEquity.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditGlobalHealthEquity.ascx.designer.cs">
+      <DependentUpon>EditGlobalHealthEquity.ascx</DependentUpon>
     </Compile>
     <Compile Include="Edit\Modules\CustomEditWebsite\CustomEditWebsite.ascx.cs">
       <DependentUpon>CustomEditWebsite.ascx</DependentUpon>
@@ -1605,6 +1616,16 @@
     </Compile>
     <Compile Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx.designer.cs">
       <DependentUpon>CustomViewResearcherRole.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\BaseUCSFModule.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\GlobalHealthEquity.ascx.cs">
+      <DependentUpon>GlobalHealthEquity.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\GlobalHealthEquity.ascx.designer.cs">
+      <DependentUpon>GlobalHealthEquity.ascx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\CustomViewSocialMediaPlugins\BaseSocialMediaModule.cs">
       <SubType>ASPXCodeBehind</SubType>

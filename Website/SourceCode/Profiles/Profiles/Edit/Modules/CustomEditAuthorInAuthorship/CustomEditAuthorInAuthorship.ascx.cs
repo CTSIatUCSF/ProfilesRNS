@@ -444,7 +444,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             string uri = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?retmax=1000&db=pubmed&retmode=xml&id=" + value;
 
             System.Xml.XmlDocument myXml = new System.Xml.XmlDocument();
-            myXml.LoadXml(this.HttpPost(uri, "Catalyst", "text/plain"));
+            myXml.LoadXml(this.HttpPost(uri, "Catalyst", "text/html; charset=utf-8"));
             XmlNodeList nodes = myXml.SelectNodes("PubmedArticleSet/PubmedArticle");
 
             DataIO data = new DataIO();

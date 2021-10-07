@@ -92,7 +92,13 @@ namespace Profiles.Login.Modules.ShibLogin
         public static string GetShibbolethAttribute(HttpRequest request, string attribute)
         {
             // new school vs oldschool
-            return String.IsNullOrEmpty(request[attribute]) ? request.Headers[attribute] : request[attribute];
+            string retval = String.IsNullOrEmpty(request[attribute]) ? request.Headers[attribute] : request[attribute];
+            // weird doubling bug
+            if (retval != null && retval.Contains(";"))
+            {
+                return retval.Substring(retval.IndexOf(';') + 1);
+            }
+            return retval;
         }
 
         private void RedirectAuthenticatedUser()

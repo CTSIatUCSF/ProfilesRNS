@@ -19,3 +19,9 @@ Turns out only ONE SSIS package is now being called
 Get Partial FullPubRefresh working on STAGE/PROD with Harvard new job framework
 
 update [Profile.Import].[PRNSWebservice.Options] set logLevel = 1 where job = 'PubMedDisambiguation_GetPubs'
+
+BELOW DOES NOT QUITE WORK :)
+call 
+exec [Profile.Data].[Publication.Pubmed.ParseALLPubMedXML]
+exec [Profile.Data].[Publication.Entity.UpdateEntity]
+To fix pub authors

@@ -1580,6 +1580,16 @@ div[id="divDetailCheck"] label {
 }
 
 /* ############################################################################################ */
+/* PROFILE EDITING: GLOBAL HEALTH EQUITY */
+/* ############################################################################################ */
+
+/* in the global health equity gadget, every table's action button column should be 25% of the width */
+
+.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridViewGlobalHealth"] .alignCenterAction {
+    width: 25%;
+}
+
+/* ############################################################################################ */
 /* LOGIN PAGE */
 /* /login/default.aspx?method=login */
 /* ############################################################################################ */
@@ -1680,6 +1690,11 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
 /* hide DIRECT link from search results page. Ask Brian for advice here. */
 /* DREAM: remove from upstream */
 .researcherprofiles--search-results-page a[href*='/direct/default.aspx?'] {
+    display: none;
+}
+
+/* permanently hide extra details about a person that appear to the right when hovering over a row in search results */
+.researcherprofiles--search-results-page #divItemDetails {
     display: none;
 }
 

@@ -59,40 +59,35 @@ namespace Profiles.Framework.Utilities
 
         public static void RemovePluginData(string name, Int64 subject)
         {
-
             //keep this stub/fake in place, just gut the internals.  this 
+            Framework.Utilities.DataIO dataio = new Framework.Utilities.DataIO();
+            try
+            {
+                SessionManagement sessionmanagement = new SessionManagement();
+                Session session = sessionmanagement.Session();
 
+                string connstr = dataio.GetConnectionString();
+                SqlConnection dbconnection = new SqlConnection(connstr);
 
-            //Framework.Utilities.DataIO dataio = new Framework.Utilities.DataIO();
-            //try
-            //{
-            //    SessionManagement sessionmanagement = new SessionManagement();
-            //    Session session = sessionmanagement.Session();
+                dbconnection.Open();
 
-            //    string connstr = dataio.GetConnectionString();
-            //    SqlConnection dbconnection = new SqlConnection(connstr);
+                SqlCommand dbcommand = new SqlCommand();
+                dbcommand.CommandType = CommandType.Text;
+                dbcommand.CommandText = "exec [Profile.Module].[GenericRDF.RemovePluginFromProfile] @PluginName = '" + name + "', @SubjectID = " + subject.ToString() + ", @SessionID='" + session.SessionID + "'";
+                dbcommand.CommandTimeout = dataio.GetCommandTimeout();
+                Framework.Utilities.Cache.AlterDependency(subject.ToString());
+                dbcommand.Connection = dbconnection;
+                dbcommand.ExecuteNonQuery();
+                dbcommand.Connection.Close();
 
-            //    dbconnection.Open();
-
-            //    SqlCommand dbcommand = new SqlCommand();
-            //    dbcommand.CommandType = CommandType.Text;
-            //    dbcommand.CommandText = "exec [Profile.Module].[GenericRDF.RemovePluginFromProfile] @PluginName = '" + name + "', @SubjectID = " + subject.ToString() + ", @SessionID='" + session.SessionID + "'";
-            //    dbcommand.CommandTimeout = dataio.GetCommandTimeout();
-            //    Framework.Utilities.Cache.AlterDependency(subject.ToString());
-            //    dbcommand.Connection = dbconnection;
-            //    dbcommand.ExecuteNonQuery();
-            //    dbcommand.Connection.Close();
-
-            //}
-            //catch (Exception e)
-            //{
-            //    throw new Exception(e.Message);
-            //}
-
-
-
-
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
+
+
         public static void AddEditPluginData(string name, Int64 subject, string data, string searchableitem)
         {
             Framework.Utilities.DataIO dataio = new Framework.Utilities.DataIO();

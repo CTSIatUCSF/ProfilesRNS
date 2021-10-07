@@ -56,19 +56,19 @@
     -khtml-opacity: 0.65;
     opacity: 0.65
 }
-#divMasterContent
-{
-    display:none;
-    position:absolute;
-    border:1px solid #7f9db9;
-    padding-left:4px;
-    overflow:hidden;
-    background:white;
-    width:248px;
-    line-height:18px;
-    height:153px;
-    overflow-y:auto;
-    padding-top:15px;
+#divMasterContent {
+    display: none;
+    position: absolute;
+    border: 1px solid #7f9db9;
+    padding-left: 4px;
+    overflow: hidden;
+    background: white;
+    width: 248px;
+    line-height: 18px;
+    height: 153px;
+    overflow-y: auto;
+    padding-top: 15px;
+    z-index: 100
 }
 #divMasterContent img
 {

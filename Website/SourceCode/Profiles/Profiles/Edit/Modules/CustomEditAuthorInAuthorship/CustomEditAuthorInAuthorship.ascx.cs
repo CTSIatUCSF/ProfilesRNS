@@ -444,7 +444,7 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
             string uri = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?retmax=1000&db=pubmed&retmode=xml&id=" + value;
 
             System.Xml.XmlDocument myXml = new System.Xml.XmlDocument();
-            myXml.LoadXml(this.HttpPost(uri, "Catalyst", "text/plain"));
+            myXml.LoadXml(this.HttpPost(uri, "Catalyst", "text/html; charset=utf-8"));
             XmlNodeList nodes = myXml.SelectNodes("PubmedArticleSet/PubmedArticle");
 
             DataIO data = new DataIO();
@@ -1399,7 +1399,19 @@ namespace Profiles.Edit.Modules.CustomEditAuthorInAuthorship
                 if (myResponse == null)
                 { return null; }
                 StreamReader sr = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8);
-                return sr.ReadToEnd().Trim();
+                //return sr.ReadToEnd().Trim();
+                String test = sr.ReadToEnd().Trim();
+                for (int i = 0; i < test.Length; i++)
+                {
+                    char c = test[i];
+                    int dec = (int)c;
+                    if (dec > 8000)
+                    {
+                        test=test.Remove(i,1).Insert(i," ");
+                    }
+                    //Console.WriteLine(dec.ToString());
+                }
+                return test;
             }
             catch (WebException ex)
             {

@@ -13,3 +13,43 @@ exec [Profile.Module].[GenericRDF.AddEditPluginData] @Name='GlobalHealthEquity',
 
 
 exec [RDF.].GetDataRDF @subject=225751;
+
+-- create table for seed data
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [UCSF.].[GlobalHealthEquitySeedData](
+	[internalusername] [nvarchar](50) NULL,
+	[jsondata] [nvarchar](max) NULL,
+	[searchabledata] [nvarchar](max) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+-- After loading data run this and execute results, but first clean up the 4 instances of womens's health to be women''s health
+
+  select 'exec [Profile.Module].[GenericRDF.AddEditPluginData] @Name=''GlobalHealthEquity'', @NodeID=' + cast(v.nodeid as varchar) +
+	', @Data=''' + jsondata + ''', @SearchableData=''' + searchabledata + ''';' FROM [UCSF.].[GlobalHealthEquitySeedData] s 
+	JOIN [UCSF.].vwPerson v on v.InternalUsername = s.internalusername;
+	
+
+-- EXCEL forumla example to format data 
+--=SUBSTITUTE(CONCATENATE("'{""interests"":[","""",TEXTJOIN(""",""", TRUE, E1:N1),"""],""locations"": [""",TEXTJOIN(""",""", TRUE, O1:X1),"""],""centers"": [""",TEXTJOIN(""",""", TRUE, B1:C1),"""]}'"),"""""","")
+--'{"interests":["Oncology","Child or adolescent health","Education"],"locations": ["China","Ethiopia","India","Japan"],"centers": ["IGHS - Faculty Affiliate Program"]}'
+
+-- for searchable data 
+--=SUBSTITUTE(SUBSTITUTE(CONCATENATE("'",TEXTJOIN(", ", TRUE, E1:N1),", ", TEXTJOIN(", ", TRUE, O1:X1),", ",TEXTJOIN(", ", TRUE, B1:C1),"'"),"',","'")," , ", "")
+--'Oncology, Child or adolescent health, Education, China, Ethiopia, India, Japan, IGHS - Faculty Affiliate Program'
+
+-- for internalusername 
+--=CONCATENATE("'", MID(A1, 2,6), "@ucsf.edu'")
+
+-- for insert
+--=concatenate("INSERT [UCSF.].[GlobalHealthEquitySeedData] VALUES (", AA1, ",", Y1, ",", Z1, ");")
+--INSERT [UCSF.].[GlobalHealthEquitySeedData] VALUES ('001640@ucsf.edu','{"interests":["Oncology","Child or adolescent health","Education"],"locations": ["China","Ethiopia","India","Japan"],"centers": ["IGHS - Faculty Affiliate Program"]}','Oncology, Child or adolescent health, Education, China, Ethiopia, India, Japan, IGHS - Faculty Affiliate Program');
+
+--INSERT [UCSF.].[GlobalHealthEquitySeedData] VALUES ('927200@ucsf.edu','{"interests":[],"locations": [],"centers": ["IGHS - Faculty Affiliate Program"]}','IGHS - Faculty Affiliate Program';
+
+

@@ -31,15 +31,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         protected global::System.Web.UI.UpdateProgress updateProgress;
         
         /// <summary>
-        /// hdnURL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnURL;
-        
-        /// <summary>
         /// litBackLink control.
         /// </summary>
         /// <remarks>
@@ -67,31 +58,85 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         protected global::Profiles.Edit.Modules.SecurityOptions.SecurityOptions securityOptions;
         
         /// <summary>
-        /// pnlAddEdit control.
+        /// pnlAddEditInterest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAddEdit;
+        protected global::System.Web.UI.WebControls.Panel pnlAddEditInterest;
         
         /// <summary>
-        /// imbAddArrow control.
+        /// imbAddArrowInterest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imbAddArrow;
+        protected global::System.Web.UI.WebControls.ImageButton imbAddArrowInterest;
         
         /// <summary>
-        /// btnAddEditEdit control.
+        /// btnAddEditEditInterest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddEditEdit;
+        protected global::System.Web.UI.WebControls.LinkButton btnAddEditEditInterest;
+        
+        /// <summary>
+        /// pnlAddEditLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAddEditLocation;
+        
+        /// <summary>
+        /// imbAddArrowLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imbAddArrowLocation;
+        
+        /// <summary>
+        /// btnAddEditEditLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnAddEditEditLocation;
+        
+        /// <summary>
+        /// pnlAddEditCenter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAddEditCenter;
+        
+        /// <summary>
+        /// imbAddArrowCenter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imbAddArrowCenter;
+        
+        /// <summary>
+        /// btnAddEditCenter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnAddEditCenter;
         
         /// <summary>
         /// pnlGlobalHealthInterests control.
@@ -112,22 +157,121 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         protected global::System.Web.UI.WebControls.DropDownList ddlInterests;
         
         /// <summary>
-        /// btnSaveAndClose control.
+        /// btnInsertInterests control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSaveAndClose;
+        protected global::System.Web.UI.WebControls.LinkButton btnInsertInterests;
         
         /// <summary>
-        /// btnCancel control.
+        /// btnSaveAndCloseInterests control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCancel;
+        protected global::System.Web.UI.WebControls.LinkButton btnSaveAndCloseInterests;
+        
+        /// <summary>
+        /// btnCancelInterests control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnCancelInterests;
+        
+        /// <summary>
+        /// pnlGlobalHealthLocations control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlGlobalHealthLocations;
+        
+        /// <summary>
+        /// ddlLocations control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLocations;
+        
+        /// <summary>
+        /// btnInsertLocations control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnInsertLocations;
+        
+        /// <summary>
+        /// btnSaveAndCloseLocations control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSaveAndCloseLocations;
+        
+        /// <summary>
+        /// btnCancelLocations control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnCancelLocations;
+        
+        /// <summary>
+        /// pnlGlobalHealthCenters control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlGlobalHealthCenters;
+        
+        /// <summary>
+        /// ddlCenters control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCenters;
+        
+        /// <summary>
+        /// btnInsertCenters control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnInsertCenters;
+        
+        /// <summary>
+        /// btnSaveAndCloseCenters control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSaveAndCloseCenters;
+        
+        /// <summary>
+        /// btnCancelCenters control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnCancelCenters;
         
         /// <summary>
         /// GridViewGlobalHealthInterests control.
@@ -139,21 +283,39 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         protected global::System.Web.UI.WebControls.GridView GridViewGlobalHealthInterests;
         
         /// <summary>
-        /// divNoInterests control.
+        /// GridViewGlobalHealthLocations control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNoInterests;
+        protected global::System.Web.UI.WebControls.GridView GridViewGlobalHealthLocations;
         
         /// <summary>
-        /// lblNoInterests control.
+        /// GridViewGlobalHealthCenters control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNoInterests;
+        protected global::System.Web.UI.WebControls.GridView GridViewGlobalHealthCenters;
+        
+        /// <summary>
+        /// divNoGlobalHealthEquity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNoGlobalHealthEquity;
+        
+        /// <summary>
+        /// lblNoGlobalHealthEquity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNoGlobalHealthEquity;
     }
 }

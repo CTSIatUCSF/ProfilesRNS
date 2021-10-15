@@ -275,41 +275,41 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         {
             List<string> retval = new List<string>();
             if (type == GlobalHealthEquityType.Interest)
-            {   //=CONCATENATE("retval.Add(""", A1, """);")
-                retval.Add("Cardiovascular health (NCD)");
+            {   //=CONCATENATE("retval.Add(""", TRIM(A1), """);")
+                retval.Add("Cardiovascular health");
                 retval.Add("Child & adolescent health");
-                retval.Add("Chronic respiratory disease (NCD)");
+                retval.Add("Chronic respiratory disease");
                 retval.Add("Climate change");
-                retval.Add("COVID-19 (ID)");
-                retval.Add("Diabetes (NCD)");
-                retval.Add("Diagnostics");
-                retval.Add("Diarrheal disease (ID)");
+                retval.Add("COVID-19");
+                retval.Add("Diabetes");
+                retval.Add("Diagnostics & Laboratory Medicine");
+                retval.Add("Diarrheal disease");
                 retval.Add("Disaster relief");
                 retval.Add("Education");
                 retval.Add("Emergency & critical care");
                 retval.Add("Epidemiology & surveillance");
-                retval.Add("Ocular health ");
+                retval.Add("Ocular health");
                 retval.Add("Reproductive health");
                 retval.Add("Guideline development & reviews");
                 retval.Add("Health economics");
-                retval.Add("HIV/AIDS (ID)");
+                retval.Add("HIV/AIDS");
                 retval.Add("Human rights & refugee health");
-                retval.Add("Immunization & immunology (ID)");
+                retval.Add("Immunization & immunology");
                 retval.Add("Implementation science");
-                retval.Add("Infectious disease (ID)");
+                retval.Add("Infectious disease");
                 retval.Add("Injury & violence");
-                retval.Add("Malaria (ID)");
+                retval.Add("Malaria");
                 retval.Add("Maternal health");
                 retval.Add("Memory & aging");
                 retval.Add("Mental health");
-                retval.Add("Neglected Tropical Diseases (ID)");
+                retval.Add("Neglected Tropical Diseases");
                 retval.Add("Newborn & infant health");
-                retval.Add("Non-communicable diseases (NCD)");
+                retval.Add("Non-communicable diseases");
                 retval.Add("Nursing");
-                retval.Add("Nutrition & food security ");
-                retval.Add("Oncology  ");
+                retval.Add("Nutrition & food security");
+                retval.Add("Oncology");
                 retval.Add("Oral health");
-                retval.Add("Pandemic response & preparedness (ID)");
+                retval.Add("Pandemic response & preparedness");
                 retval.Add("Pharmacology");
                 retval.Add("Policy & standards of care");
                 retval.Add("Reproductive health");
@@ -317,20 +317,20 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 retval.Add("Substance abuse");
                 retval.Add("Surgery, anesthesia & pain");
                 retval.Add("Technology innovation");
-                retval.Add("Tuberculosis (ID)");
+                retval.Add("Tuberculosis");
                 retval.Add("Women's health");
-                retval.Add("Zoonosis & emerging diseases (ID)");
+                retval.Add("Zoonosis & emerging diseases");
             }
             else if (type == GlobalHealthEquityType.Location)
             {
                 retval.Add("California");
                 retval.Add("Rural United States");
-                retval.Add("East Asia ");
+                retval.Add("East Asia");
                 retval.Add("Europe and Central Asia");
                 retval.Add("Latin America and the Caribbean");
                 retval.Add("Middle East and North Africa");
-                retval.Add("South Asia ");
-                retval.Add("Western Pacific ");
+                retval.Add("South Asia");
+                retval.Add("Western Pacific");
                 retval.Add("Sub-Saharan Africa");
                 retval.Add("Afghanistan");
                 retval.Add("Akrotiri");
@@ -594,13 +594,20 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             }
             else if (type == GlobalHealthEquityType.Center)
             {
-                retval.Add("IGHS - Center for Pandemic Preparedness and Response");
-                retval.Add("IGHS - Center for Health Equity in Surgery and Anesthesia");
-                retval.Add("IGHS - Center for Global Maternal, Newborn and Child Health");
-                retval.Add("IGHS - Center for Global Health Diplomacy, Delivery and Economics ");
+                retval.Add("IGHS - Center for Pandemic Preparedness & Response");
+                retval.Add("IGHS - Center for Health Equity in Surgery & Anesthesia");
+                retval.Add("IGHS - Center for Global Maternal, Newborn & Child Health");
+                retval.Add("IGHS - Center for Global Health Diplomacy, Delivery & Economics");
                 retval.Add("IGHS - Center for Infectious Diseases");
-                retval.Add("IGHS - Center for Strategic Information and Global Health Pratice");
-                retval.Add("IGHS - Faculty Affiliate Program");
+                retval.Add("IGHS - Center for Strategic Information");
+                retval.Add("IGHS - Affiliate Program");
+                retval.Add("HEAL Initiative");
+                retval.Add("WHO Collaborating Center for Emergency, Critical & Operative Care");
+                retval.Add("Health & Human Rights Initiative");
+                retval.Add("Global Disaster Assistance Committee (GDAC)");
+                retval.Add("PRISE Center");
+                retval.Add("IGOT");
+                retval.Add("Center for Health Equity");
             }
             return retval;
         }

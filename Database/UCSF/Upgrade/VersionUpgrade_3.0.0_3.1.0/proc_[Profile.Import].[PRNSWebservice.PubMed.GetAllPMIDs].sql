@@ -1,3 +1,16 @@
+/****** Object:  Table [UCSF.].[PubmedXMLListForDisambiguation]    Script Date: 10/14/2021 8:59:50 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [UCSF.].[PubmedXMLListForDisambiguation](
+	[pmid] [int] NULL
+) ON [PRIMARY]
+
+GO
+
 SET ANSI_NULLS ON
 GO
 
@@ -59,8 +72,13 @@ select @URL = URL, @logLevel = logLevel from [Profile.Import].[PRNSWebservice.Op
 	ELSE IF @Debug = 1
 		BEGIN
 			-- Whatever we want here
-			INSERT INTO #tmp(RowID) 
-				SELECT 24509520
+			if exists (SELECT *	FROM sys.Tables where [name] ='PubmedXMLListForDisambiguation')
+			begin
+				insert into #tmp(RowID)
+				select pmid from [UCSF.].PubmedXMLListForDisambiguation
+			end
+			else	
+				INSERT INTO #tmp(RowID) values (24509520),(29128334),(34051824)
 		END
 	ELSE
 	-- FULL REFRESH

@@ -28,11 +28,29 @@ CREATE TABLE [UCSF.].[GlobalHealthEquitySeedData](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
--- After loading data run this and execute results, but first clean up the 4 instances of womens's health to be women''s health
+-- After loading data run this and execute results, but first clean up the instances of womens's health to be women''s health and Cote d'Ivorie
 
   select 'exec [Profile.Module].[GenericRDF.AddEditPluginData] @Name=''GlobalHealthEquity'', @NodeID=' + cast(v.nodeid as varchar) +
 	', @Data=''' + jsondata + ''', @SearchableData=''' + searchabledata + ''';' FROM [UCSF.].[GlobalHealthEquitySeedData] s 
 	JOIN [UCSF.].vwPerson v on v.InternalUsername = s.internalusername;
+	
+-- To set old gaget to OWNER view only, find the predicate for the gadget and then set the ViewSecurityGroup to the user nodeid for each triple with that predicate
+DECLARE @ghPredicate bigint
+
+SELECT @ghPredicate = _PropertyNode FROM [Ontology.].[ClassProperty] where Property like '%orng#hasGlobal%'
+SELECT @ghPredicate;
+UPDATE t set t.ViewSecurityGroup = m.NodeID from [RDF.].Triple t join [UCSF.].[vwPerson] p on p.nodeid = t.subject
+  join [RDF.Stage].[InternalNodeMap] m on  m.InternalID = p.UserID and m.InternalType = 'User'
+  where t.Predicate = @ghPredicate;
+  
+-- to remove old gadget search filters
+DECLARE @ghFilter int
+
+SELECT @ghFilter = [PersonFilterID] FROM [Profile.Data].[Person.Filter] where PersonFilter = 'Global Health';
+SELECT @ghFilter;
+DELETE FROM [Profile.Data].[Person.FilterRelationship] WHERE PersonFilterid = @ghFilter;
+DELETE FROM [Profile.Data].[Person.Filter] WHERE PersonFilterid = @ghFilter;
+DELETE FROM [Profile.Import].[PersonFilterFlag] WHERE personfilter = 'Global Health';
 	
 
 -- EXCEL forumla example to format data 

@@ -27,6 +27,8 @@
     <security:Options runat="server" ID="securityOptions"></security:Options>
 </asp:Panel>
 
+<p class="text-left">For questions about this section or to request inclusion of new categories, locations or centers & programs, please <a href="mailto:ighsaffiliates@ucsf.edu">contact us</a>.</p>
+
 <asp:Panel runat="server" ID="pnlAddEditInterest">
     <div class="EditMenuItem">
         <asp:ImageButton CssClass="EditMenuLinkImg" OnClick="btnAddEdit_OnClick" runat="server" ID="imbAddArrowInterest" AlternateText=" " ImageUrl="~/Edit/Images/icon_squareArrow.gif" />

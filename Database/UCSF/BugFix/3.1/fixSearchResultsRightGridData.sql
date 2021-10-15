@@ -1,0 +1,2 @@
+
+update  [Ontology.].ClassProperty set IsDetail = 1 where class = 'http://xmlns.com/foaf/0.1/Person' and Property in ('http://profiles.catalyst.harvard.edu/ontology/plugins#FeaturedPresentations', 'http://profiles.catalyst.harvard.edu/ontology/plugins#FeaturedVideos', 'http://profiles.catalyst.harvard.edu/ontology/plugins#Twitter', 'http://profiles.catalyst.harvard.edu/ontology/prns#mediaLinks', 'http://vivoweb.org/ontology/core#webpage')

@@ -227,7 +227,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
         private string GetSearchData()
         {
-            string search = string.Empty;
+            string search = "Global Health Equity";
             foreach (string v in this.ghData.interests)
             {
                 search += " " + v;
@@ -598,8 +598,8 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 retval.Add("IGHS - Center for Health Equity in Surgery & Anesthesia");
                 retval.Add("IGHS - Center for Global Maternal, Newborn & Child Health");
                 retval.Add("IGHS - Center for Global Health Diplomacy, Delivery & Economics");
-                retval.Add("IGHS - Center for Infectious Diseases");
-                retval.Add("IGHS - Center for Strategic Information");
+                retval.Add("IGHS - Center for Infectious and Parasitic Diseases");
+                retval.Add("IGHS - Center for Strategic Information and Public Health Practice");
                 retval.Add("IGHS - Affiliate Program");
                 retval.Add("HEAL Initiative");
                 retval.Add("WHO Collaborating Center for Emergency, Critical & Operative Care");
@@ -608,6 +608,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 retval.Add("PRISE Center");
                 retval.Add("IGOT");
                 retval.Add("Center for Health Equity");
+                retval.Add("Center for Vulnerable Populations");
             }
             return retval;
         }

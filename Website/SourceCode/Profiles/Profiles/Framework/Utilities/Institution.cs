@@ -93,6 +93,12 @@ namespace Profiles.Framework.Utilities
             return "";
         }
 
+        public static bool IsPluginAllowedFor(String plugin, Institution inst)
+        {
+            // make fanicer and even DB driven if ever needed
+            return "GlobalHealthEquity".Equals(plugin) ? "UCSF".Equals(inst.GetAbbreviation()) : true;
+        }
+
         public string GetShibbolethUserNameHeader()
         {
             return ShibbolethUserNameHeader;

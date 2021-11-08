@@ -100,7 +100,7 @@ namespace Profiles.Framework.Utilities
 
                 SqlCommand dbcommand = new SqlCommand();
                 dbcommand.CommandType = CommandType.Text;
-                dbcommand.CommandText = "exec [Profile.Module].[GenericRDF.AddEditPluginData] @Name = '" + name + "', @NodeID = " + subject.ToString() + ", @data='" + data + "', @searchabledata ='" + searchableitem + "'";
+                dbcommand.CommandText = "exec [Profile.Module].[GenericRDF.AddEditPluginData] @Name = '" + name + "', @NodeID = " + subject.ToString() + ", @data='" + data.Replace("'", "''") + "', @searchabledata ='" + searchableitem.Replace("'", "''") + "'";
                 dbcommand.CommandTimeout = dataio.GetCommandTimeout();
                 Framework.Utilities.Cache.AlterDependency(subject.ToString());
                 dbcommand.Connection = dbconnection;

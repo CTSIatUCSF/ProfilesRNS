@@ -74,6 +74,15 @@ namespace Profiles.Edit.Modules.EditPropertyList
                             continue;
                         }
                     }
+                    // plugins http://profiles.catalyst.harvard.edu/ontology/plugins!GlobalHealthEquity
+                    else if (node.SelectSingleNode("@URI").Value.StartsWith("http://profiles.catalyst.harvard.edu/ontology/plugins"))
+                    {
+                        if (!Institution.IsPluginAllowedFor(node.SelectSingleNode("@URI").Value.Substring("http://profiles.catalyst.harvard.edu/ontology/plugins".Length + 1), UCSFIDSet.ByNodeId[Subject].Institution) )
+                        {
+                            continue;
+                        }
+                    }
+
                     // skip mailing address for UCLA
                     if (node.SelectSingleNode("@URI").Value.StartsWith("http://vivoweb.org/ontology/core#mailingAddress") && UCSFIDSet.ByNodeId[Subject].Institution != null && "UCLA".Equals(UCSFIDSet.ByNodeId[Subject].Institution.GetAbbreviation()))
                     {

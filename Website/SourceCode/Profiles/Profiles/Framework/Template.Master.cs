@@ -176,6 +176,13 @@ namespace Profiles.Framework
             //    divPageColumnRightCenter.Style["background-repeat"] = "repeat";
             //}
 
+            if ("UCSD".Equals(Page.Theme))
+            {
+                HtmlMeta meta = new HtmlMeta();
+                meta.Name = "google-site-verification";
+                meta.Content = "p5OaN7GUMQcNoavqEkMHqFPRAWZcgI_SUvQhqXBP1u0";
+            }
+
 
             if (Brand.GetGATrackingID() != null)
             {

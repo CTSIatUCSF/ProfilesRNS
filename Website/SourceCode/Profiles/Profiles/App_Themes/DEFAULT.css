@@ -149,6 +149,23 @@ span.unused,
 }
 
 /* ############################################################################################ */
+/* NORMALIZE TOP LEVEL WIDTHS USING VARS
+/* these start off as 968px, but we want to set to either 980 or 100% */
+/* ############################################################################################ */
+
+/* override hardcoded 968px */
+html body .profiles, html body .profiles .profilesPage {
+    width: var(--max-main-content-width);
+    max-width: var(--max-main-content-width);
+}
+
+/* override hardcoded 968px */
+html body #prns-nav ul.prns-main {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* ############################################################################################ */
 /* RESPONSIVENESS: make responsive to keep cell phones happy */
 /* small screen? most things are 100% wide, and passive content is hidden */
 /* DREAM: someday move these into upstream code */
@@ -292,6 +309,7 @@ span.unused,
 /* structure is: .researcherprofiles--institution-header > .researcherprofiles--institution-header--site-logo > h1 > a > img */
 /* ############################################################################################ */
 
+/* there's usually only one child, the site logo on the left, but if you add in more children, they distribute horizontally, center-aligned */
 .researcherprofiles--institution-header {
     background-color: var(--page-background-color);
     border: none;
@@ -300,6 +318,12 @@ span.unused,
     padding-top: 1rem;
     padding-bottom: 1rem;
     width: var(--max-main-content-width);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: stretch;
+    align-items: center;
 }
 
 /* any links in this sections should be unobstrusive */
@@ -1128,6 +1152,11 @@ body.about .share {
 /* search form padding to left and right */
 .researcherprofiles--home-page .profilesContentMain {
     padding: 0 2rem !important;
+}
+
+/* no right padding on search form if there's nothing after it */
+.researcherprofiles--home-page .profilesContentMain:last-child {
+    padding-right: 0 !important;
 }
 
 /* make the tabs a little smaller, for narrow responsive screens */

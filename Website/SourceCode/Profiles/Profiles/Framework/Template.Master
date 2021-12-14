@@ -124,7 +124,8 @@
                 <div class="researcherprofiles--institution-header">
 					<div class="researcherprofiles--institution-header--site-logo">
 						<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_themes/UCSF/Images/ucsfProfilesLogo.png" alt="UCSF Profiles" /></a></h1>
-                    </div>					
+                    </div>	
+                    <div class="researcherprofiles--institution-header--ucsf-modern-search-callout">Try the new <a href="https://profilesbeta.ucsf.edu/search/" style="cursor: pointer;">modern search</a> for UCSF Profiles!</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCSD" runat="server" SkinID="UCSD" Visible="false">

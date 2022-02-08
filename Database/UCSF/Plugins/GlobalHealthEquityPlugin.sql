@@ -1,5 +1,9 @@
 INSERT [Profile.Module].[GenericRDF.Plugins] ([Name], [EnabledForPerson], [EnabledForGroup], [Label], [PropertyGroupURI], [CustomDisplayModule], [CustomEditModule], [CustomDisplayModuleXML], [CustomEditModuleXML]) VALUES (N'GlobalHealthEquity', 1, 1, N'Global Health Equity', N'http://profiles.catalyst.harvard.edu/ontology/prns#PropertyGroupFeaturedContent', N'GlobalHealthEquity', N'EditGlobalHealthEquity', NULL, NULL)
 
+-- 2/8/2022. Run the following to clean up. only run the first two on DEV.
+delete from [Ontology.].[ClassProperty] where Property = 'http://profiles.catalyst.harvard.edu/ontology/plugins#GlobalHealth';
+delete from [Ontology.].[PropertyGroupProperty] where PropertyURI = 'http://profiles.catalyst.harvard.edu/ontology/plugins#GlobalHealth';
+UPDATE [Profile.Module].[GenericRDF.Plugins] SET [PropertyGroupURI] = 'http://profiles.catalyst.harvard.edu/ontology/prns#PropertyGroupOverview' WHERE [Name] = 'GlobalHealthEquity';
 EXEC [Profile.Module].[GenericRDF.AddUpdateOntology] @pluginName='GlobalHealthEquity'
 
 --- Add fake data to Eric

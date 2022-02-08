@@ -21,6 +21,19 @@ namespace Profiles.Framework
         private XmlDocument _presentationxml;
         private List<Framework.Utilities.Panel> _panels;
         private ModulesProcessing mp;
+
+        private static Dictionary<String, String> googleVerifications = new Dictionary<string, string>();
+
+        static Template()
+        {
+            googleVerifications.Add("UCSD", "p5OaN7GUMQcNoavqEkMHqFPRAWZcgI_SUvQhqXBP1u0");
+            googleVerifications.Add("UCI", "AxJdyUfTWrJIZm5l8ag4WIyqjxhgN6x0oYXbHoPsig4");
+            googleVerifications.Add("UCLA", "2rqsXhjXl5IXtjJ7cHh6E0q5S1_hQg4wvTRYw0YKA6I");
+            googleVerifications.Add("UCD", "o-FxPIvxLIPd8ztO7wddaleF3PWjp7aYWTDE5rfViZg");
+            googleVerifications.Add("USC", "HGTrtQw_hu2M8AF4aDTUW6c-cqUIQ9Gz6zuS_39z1UM");
+            googleVerifications.Add("UCSF", "JXe923j97sTSgp-6yxsCdd25Muv0wMNfDR27ba3ER8M");
+        }
+
         #endregion
         override protected void OnInit(EventArgs e)
         {
@@ -63,9 +76,6 @@ namespace Profiles.Framework
                 {
                     divContentLeft.Visible = false;
                 }
-
-
-
             }
             catch (Exception ex)
             {
@@ -176,13 +186,13 @@ namespace Profiles.Framework
             //    divPageColumnRightCenter.Style["background-repeat"] = "repeat";
             //}
 
-            if ("UCSD".Equals(Page.Theme))
+            if (googleVerifications.ContainsKey(Page.Theme))
             {
                 HtmlMeta meta = new HtmlMeta();
                 meta.Name = "google-site-verification";
-                meta.Content = "p5OaN7GUMQcNoavqEkMHqFPRAWZcgI_SUvQhqXBP1u0";
+                meta.Content = googleVerifications[Page.Theme];
+                Page.Header.Controls.Add(meta);
             }
-
 
             if (Brand.GetGATrackingID() != null)
             {
@@ -521,13 +531,15 @@ namespace Profiles.Framework
             {
                 Framework.Utilities.DebugLogging.Log(ex.Message + " ++ master page seeing if on person page " + ex.StackTrace);
             }
+            //Unfuddle #375
+            string brandPrefix = "UCD".Equals(Brand.GetCurrentBrand().Theme) ? "UC Davis" : Brand.GetCurrentBrand().Theme;
             if (isperson)
             {   //Person
-                Page.Header.Title = buffer + " | " + Brand.GetCurrentBrand().Theme + " Profiles";
+                Page.Header.Title = buffer + " | " + brandPrefix + " Profiles";
             }
             else
             {
-                Page.Header.Title = Brand.GetCurrentBrand().Theme + " Profiles • " + buffer;
+                Page.Header.Title = brandPrefix + " Profiles • " + buffer;
             }
             litJS.Text += js;
 

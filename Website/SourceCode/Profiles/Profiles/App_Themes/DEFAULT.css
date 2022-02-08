@@ -154,7 +154,8 @@ span.unused,
 /* ############################################################################################ */
 
 /* override hardcoded 968px */
-html body .profiles, html body .profiles .profilesPage {
+html body .profiles,
+html body .profiles .profilesPage {
     width: var(--max-main-content-width);
     max-width: var(--max-main-content-width);
 }
@@ -1045,6 +1046,13 @@ body.about #ctl00_ContentMain_rptMain_ctl00_ctl00_lblHTMLBlock {
     max-width: 50rem;
     margin-left: 2rem;
     margin-right: 2rem;
+}
+
+/* …but don't apply previous rule on full-width "about"-ish pages */
+body.about.researcherprofiles--full-width-static-page #ctl00_ContentMain_rptMain_ctl00_ctl00_lblHTMLBlock {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 /* this attempts to overrides dorky styles in profiles.css. I have no idea why this wasn't left as is */

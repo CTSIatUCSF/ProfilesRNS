@@ -4,6 +4,8 @@
 <%Response.Write("Disallow: /sparql/" + Environment.NewLine);%>
 <%Response.Write("Disallow: /profile/" + Environment.NewLine);%>
 <%Response.Write("Disallow: /display/" + Environment.NewLine);%>
+<%Response.Write("Disallow: /login/" + Environment.NewLine);%>
+<%Response.Write("Disallow: /Activity/" + Environment.NewLine);%>
 <%Response.Write("Disallow: /search/default.aspx" + Environment.NewLine);%>
 <%Response.Write("Allow: /profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx" + Environment.NewLine);%>
 <%Response.Write(Environment.NewLine);%>

@@ -48,6 +48,9 @@ namespace Profiles.Profile.Modules
         }
         protected string EscapeStringValue(string value)
         {
+            // do need to escape single quote
+            return value.Replace("'", @"\'");
+
             //const char BACK_SLASH = '\\';
             //const char SLASH = '/';
             //const char DBL_QUOTE = '"';

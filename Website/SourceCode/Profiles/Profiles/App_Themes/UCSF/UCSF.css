@@ -41,6 +41,9 @@
     font-size: 0.9rem;
 }
 
+/* .researcherprofiles--institution-header--ucsf-modern-search-callout is an artifact. delete it later */
+
+.researcherprofiles--institution-header--ucsf-banner-text-callout a,
 .researcherprofiles--institution-header--ucsf-modern-search-callout a {
     color: var(--generic-link-color) !important;
 }

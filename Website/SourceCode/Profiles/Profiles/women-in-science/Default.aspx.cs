@@ -45,7 +45,7 @@ namespace Profiles.WomenInScience
         private void LoadAssets()
         {
             HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
-            body.Attributes.Add("class", "about");
+            body.Attributes.Add("class", "about researcherprofiles--full-width-static-page");
 
             HtmlLink Aboutcss = new HtmlLink();
             Aboutcss.Href = Brand.GetThemedDomain() + "/About/CSS/about.css";

@@ -122,18 +122,15 @@
                     </div>
                 </div>
                 <div class="researcherprofiles--institution-header">
-
-				
 					<div class="researcherprofiles--institution-header--site-logo">
 						<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_themes/UCSF/Images/ucsfProfilesLogo.png" alt="UCSF Profiles" /></a></h1>
+                        <asp:Panel ID="CelebratingWomenInScience" runat="server" Visible="false">
+                            <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="/women-in-science/">Celebrating <b>Women in Science</b></a>
+                        </asp:Panel>
                     </div>	
 					<div class="researcherprofiles--institution-header--ucsf-banner-text-callout">
-					  Celebrate <a href="/women-in-science/">women in science at UCSF</a>
-					  <br>
-					  Try the new <a href="https://profilesbeta.ucsf.edu/search/">modern search</a> for UCSF Profiles
+					  Try the new <a href="https://profilesbeta.ucsf.edu/search/">modern search</a>
 					</div>
-					
-					
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCSD" runat="server" SkinID="UCSD" Visible="false">
@@ -277,6 +274,16 @@
                 <div id="ProfilesNotification" visible="false" runat="server" style="margin-top: 8px; font-weight: bold;">
                     <asp:Literal runat="server" ID="litSystemNotice"></asp:Literal>
                 </div>
+                <asp:Panel ID="WomenInScienceBanner" runat="server" Visible="false">
+                    <div id="ucsf--women-in-science">
+                        <a href="/women-in-science/">
+                            <picture>
+                                <source media="(max-width: 599px)" srcset="<%=GetThemedDomain()%>/women-in-science/Images/ucsf-women-in-science-2022-narrow.jpg" type="image/jpeg" height="638" width="3072">
+                                <img src="<%=GetThemedDomain()%>/women-in-science/Images/ucsf-women-in-science-2022-wide.jpg" alt="UCSF Women in Science" type="image/jpeg" height="354" width="4096">
+                            </picture>
+                        </a>
+                    </div>
+                </asp:Panel>
                 <div class="profilesPage">
                     <button type="button" style="color: #000000;" onclick="javascript:topFunction();" id="rtnBtn" title="Go to top">Return to Top</button>
                     <div id="profilesMainRow" class="MainRow">

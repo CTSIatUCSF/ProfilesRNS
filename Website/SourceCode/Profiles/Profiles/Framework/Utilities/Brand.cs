@@ -246,6 +246,12 @@ namespace Profiles.Framework.Utilities
             return true;
         }
 
+        static public bool ShowWomenInScience()
+        {
+            Institution inst = Brand.GetCurrentBrand().GetInstitution();
+            return inst != null && "UCSF".Equals(inst.GetAbbreviation()) && Convert.ToBoolean(System.Configuration.ConfigurationSettings.AppSettings["WomenInScience"]);
+        }
+
         public Brand(string Theme, string BasePath, string GATrackingID, string PersonFilter, List<Institution> institutions)
         {
             this.Theme = Theme;

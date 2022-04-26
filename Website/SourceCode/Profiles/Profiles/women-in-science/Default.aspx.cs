@@ -31,6 +31,12 @@ namespace Profiles.WomenInScience
 
         public void Page_Load(object sender, EventArgs e)
         {
+            // If it is disabled, send them back to the search page
+            if (!Brand.ShowWomenInScience())
+            {
+                Response.Redirect(Brand.GetThemedDomain());
+                return;
+            }
             masterpage = (Framework.Template)base.Master;
             this.LoadAssets();
 

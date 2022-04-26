@@ -205,7 +205,7 @@
             <div class="custom-grant-row">
                 <b>Brief Description</b> (e.g. The goal of this study is...)<br />
                 <asp:TextBox ID="txtRoleDescription" runat="server" Columns="30" Width="748px" TextMode="MultiLine"
-                    TabIndex="7" Title="Role Description" />
+                    TabIndex="7" Title="Description" />
             </div>
             <div class="custom-grant-row">
                 <b>Your Role on Project</b> (e.g. Co-Investigator)<br />

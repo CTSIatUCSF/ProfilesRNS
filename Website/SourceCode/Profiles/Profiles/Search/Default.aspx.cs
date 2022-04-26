@@ -192,6 +192,8 @@ namespace Profiles.Search
                 UCSFjs.Attributes.Add("src", Brand.GetThemedDomain() + "/Search/JavaScript/UCSF.js");
                 Page.Header.Controls.Add(UCSFjs);
             }
+            // Women in Science
+            Page.Master.FindControl("WomenInScienceBanner").Visible = Brand.ShowWomenInScience();
         }
 
         //Need to process this at the page level for the framework data

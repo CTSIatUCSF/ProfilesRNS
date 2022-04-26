@@ -85,7 +85,7 @@ namespace Profiles.Profile.Modules.CustomViewResearcherRole
             if (fs.RoleLabel != string.Empty)
                 sb.Append("<br/>Role: " + fs.RoleLabel);
             if (fs.RoleDescription != string.Empty)
-                sb.Append("<br/>Role Description: " + fs.RoleDescription);
+                sb.Append("<br/>Description: " + fs.RoleDescription);
 
             sb.Append("</td></tr>");
 

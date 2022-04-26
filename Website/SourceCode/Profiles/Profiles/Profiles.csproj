@@ -634,6 +634,8 @@
     <Content Include="SiteMap.aspx" />
     <Content Include="trace.aspx" />
     <Content Include="women-in-science\Default.aspx" />
+    <Content Include="women-in-science\Images\ucsf-women-in-science-2022-narrow.jpg" />
+    <Content Include="women-in-science\Images\ucsf-women-in-science-2022-wide.jpg" />
     <Content Include="women-in-science\PresentationXML\WomenInScience.xml" />
     <None Include="Web.config">
       <SubType>Designer</SubType>

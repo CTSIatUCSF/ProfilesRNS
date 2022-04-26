@@ -34,19 +34,53 @@
     }
 }
 
-/* link to modern search, added Nov 2021 */
-.researcherprofiles--institution-header--ucsf-modern-search-callout {
-    color: var(--text-muted-color) !important;
+/* link to modern search at top right of header, added Nov 2021 */
+@media only screen and (max-width: 300px) {
+    .researcherprofiles--institution-header--ucsf-banner-text-callout {
+        display: none
+    }
+}
+
+.researcherprofiles--institution-header--ucsf-banner-text-callout {
     font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--text-muted-color) !important;
+}
+
+.researcherprofiles--institution-header--ucsf-banner-text-callout a {
+    color: var(--generic-link-color) !important;
+}
+
+/* women in science banner on home page */
+@media only screen and (max-width: 300px) {
+    #ctl00_WomenInScienceBanner {
+        display: none;
+    }
+}
+
+#ctl00_WomenInScienceBanner {
+    margin-top: 1rem;
+}
+
+#ctl00_WomenInScienceBanner #ucsf--women-in-science picture,
+#ctl00_WomenInScienceBanner #ucsf--women-in-science img {
+    width: 100%;
+    height: auto
+}
+
+/* link to women in science, a little bit of text underneath h1 logo, added Feb 2022. on every page other than home page. */
+#researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath {
+    color: var(--generic-link-color) !important;
+    display: block;
+    margin-top: 0.5rem;
     font-size: 0.9rem;
 }
 
-/* .researcherprofiles--institution-header--ucsf-modern-search-callout is an artifact. delete it later */
-
-.researcherprofiles--institution-header--ucsf-banner-text-callout a,
-.researcherprofiles--institution-header--ucsf-modern-search-callout a {
-    color: var(--generic-link-color) !important;
+/* ...but never show it on the home page */
+.researcherprofiles--home-page #researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath {
+    display: none !important;
 }
+
 
 /* temporarily disabling heroes for UCSF */
 #ctl00_ContentActive_rptActive_ctl00_ctl00_HeroNavbarPanel {

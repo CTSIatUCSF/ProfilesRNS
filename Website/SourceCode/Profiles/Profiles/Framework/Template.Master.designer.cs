@@ -94,6 +94,15 @@ namespace Profiles.Framework {
         protected global::System.Web.UI.WebControls.Panel MasterPageHeaderUCSF;
         
         /// <summary>
+        /// CelebratingWomenInScience control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel CelebratingWomenInScience;
+        
+        /// <summary>
         /// MasterPageHeaderUCSD control.
         /// </summary>
         /// <remarks>
@@ -209,6 +218,15 @@ namespace Profiles.Framework {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litSystemNotice;
+        
+        /// <summary>
+        /// WomenInScienceBanner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel WomenInScienceBanner;
         
         /// <summary>
         /// divContentLeft control.

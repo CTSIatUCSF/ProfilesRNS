@@ -4,6 +4,7 @@ INSERT [Profile.Module].[GenericRDF.Plugins] ([Name], [EnabledForPerson], [Enabl
 delete from [Ontology.].[ClassProperty] where Property = 'http://profiles.catalyst.harvard.edu/ontology/plugins#GlobalHealth';
 delete from [Ontology.].[PropertyGroupProperty] where PropertyURI = 'http://profiles.catalyst.harvard.edu/ontology/plugins#GlobalHealth';
 UPDATE [Profile.Module].[GenericRDF.Plugins] SET [PropertyGroupURI] = 'http://profiles.catalyst.harvard.edu/ontology/prns#PropertyGroupOverview' WHERE [Name] = 'GlobalHealthEquity';
+Update [Ontology.].[PropertyGroupProperty] set  [PropertyGroupURI] = 'http://profiles.catalyst.harvard.edu/ontology/prns#PropertyGroupOverview' WHERE PropertyURI = 'http://profiles.catalyst.harvard.edu/ontology/plugins#GlobalHealthEquity';
 EXEC [Profile.Module].[GenericRDF.AddUpdateOntology] @pluginName='GlobalHealthEquity'
 
 --- Add fake data to Eric

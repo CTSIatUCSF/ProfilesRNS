@@ -1048,7 +1048,7 @@ body.about #ctl00_ContentMain_rptMain_ctl00_ctl00_lblHTMLBlock {
     margin-right: 2rem;
 }
 
-/* …but don't apply previous rule on full-width "about"-ish pages */
+/* ...but don't apply previous rule on full-width "about"-ish pages */
 body.about.researcherprofiles--full-width-static-page #ctl00_ContentMain_rptMain_ctl00_ctl00_lblHTMLBlock {
     max-width: 100%;
     margin-left: 0;

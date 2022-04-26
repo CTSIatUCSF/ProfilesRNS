@@ -264,9 +264,12 @@ namespace Profiles.Framework
             {
  */               ProfilesNotification.Visible = false;
                 litSystemNotice.Visible = false;
- //           }
+            //           }
 
+            Page.Master.FindControl("CelebratingWomenInScience").Visible = Brand.ShowWomenInScience();
         }
+
+
         /// <summary>
         /// Draws the Tabs dispaly based on the presentation xml and the restful URL pattern.
         /// </summary>

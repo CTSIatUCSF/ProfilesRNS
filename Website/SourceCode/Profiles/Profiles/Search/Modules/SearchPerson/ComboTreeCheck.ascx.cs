@@ -228,7 +228,7 @@ namespace Profiles.Search.Modules.SearchPerson
             }
 
             if (!script.IsNullOrEmpty())
-                ScriptManager.RegisterStartupScript(this, GetType(), "runOnStaret" + ClientID, script, true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "runOnStart" + ClientID, script, true);
             
             
         }

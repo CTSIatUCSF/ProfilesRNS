@@ -312,6 +312,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 retval.Add("Pandemic response & preparedness");
                 retval.Add("Pharmacology");
                 retval.Add("Policy & standards of care");
+                retval.Add("Primary care");
                 retval.Add("Reproductive health");
                 retval.Add("Smoking & Tobacco");
                 retval.Add("Substance abuse");
@@ -603,12 +604,17 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 retval.Add("IGHS - Affiliate Program");
                 retval.Add("HEAL Initiative");
                 retval.Add("WHO Collaborating Center for Emergency, Critical & Operative Care");
+                retval.Add("WHO Collaborating Center on Tobacco Control");
                 retval.Add("Health & Human Rights Initiative");
                 retval.Add("Global Disaster Assistance Committee (GDAC)");
                 retval.Add("PRISE Center");
                 retval.Add("IGOT");
                 retval.Add("Center for Health Equity");
                 retval.Add("Center for Vulnerable Populations");
+                retval.Add("BALANCE (GloBAL Neurology, NeuroinfeCtious Diseases, and Health Equity)");
+                retval.Add("International Research Support Operations (IRSO)");
+                retval.Add("UCSF Center for Tuberculosis");
+
             }
             return retval;
         }

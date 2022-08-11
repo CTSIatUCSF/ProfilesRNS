@@ -356,6 +356,7 @@
     <Content Include="Edit\Modules\CustomEditGroupSettings\CustomEditGroupSettings.ascx" />
     <Content Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx" />
     <Content Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx" />
+    <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditMentoring.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditUCSFFeaturedVideos.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditGlobalHealthEquity.ascx" />
     <Content Include="Error\PresentationXML\HttpRequestValidationExceptionPresentation.xml" />
@@ -365,6 +366,7 @@
     <Content Include="Edit\Modules\CustomEditSocialMediaPlugIns\EditFeaturedVideos.ascx" />
     <Content Include="Edit\Modules\CustomEditSocialMediaPlugIns\EditTwitter.ascx" />
     <Content Include="Framework\Images\arrow-tealbg.gif" />
+    <Content Include="Framework\Images\banner.png" />
     <Content Include="Framework\Images\collapseRound.gif" />
     <Content Include="Framework\Images\connection.gif" />
     <Content Include="Framework\Images\expandRound.gif" />
@@ -378,6 +380,7 @@
     <Content Include="Framework\Images\arrowRight.png" />
     <Content Include="Framework\Images\blackMagnifyGlass.png" />
     <Content Include="Framework\Images\glyphicons-halflings.png" />
+    <Content Include="Framework\Images\icon_squareArrow.gif" />
     <Content Include="Framework\Images\info1.png" />
     <Content Include="Framework\Images\info4.png" />
     <Content Include="Framework\Images\link.gif" />
@@ -555,6 +558,8 @@
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx" />
     <Content Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\Mentoring.js" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\Mentoring.ascx" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\jquery.validate.min.js" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\UCSFFeaturedVideos.js" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\UCSFFeaturedVideos.ascx" />
@@ -641,6 +646,7 @@
     <Content Include="women-in-science\Images\ucsf-women-in-science-2022-narrow.jpg" />
     <Content Include="women-in-science\Images\ucsf-women-in-science-2022-wide.jpg" />
     <Content Include="women-in-science\PresentationXML\WomenInScience.xml" />
+    <None Include="Properties\PublishProfiles\FolderProfileDebug.pubxml" />
     <None Include="Web.config">
       <SubType>Designer</SubType>
     </None>
@@ -952,6 +958,13 @@
     </Compile>
     <Compile Include="Edit\Modules\CustomEditSocialMediaPlugIns\EditTwitter.ascx.designer.cs">
       <DependentUpon>EditTwitter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditMentoring.ascx.cs">
+      <DependentUpon>EditMentoring.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditMentoring.ascx.designer.cs">
+      <DependentUpon>EditMentoring.ascx</DependentUpon>
     </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditUCSFFeaturedVideos.ascx.cs">
       <DependentUpon>EditUCSFFeaturedVideos.ascx</DependentUpon>
@@ -1632,6 +1645,14 @@
     </Compile>
     <Compile Include="Profile\Modules\CustomViewUCSFPlugins\BaseUCSFModule.cs">
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\Video.cs" />
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\Mentoring.ascx.cs">
+      <DependentUpon>Mentoring.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\Mentoring.ascx.designer.cs">
+      <DependentUpon>Mentoring.ascx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\CustomViewUCSFPlugins\UCSFFeaturedVideos.ascx.cs">
       <DependentUpon>UCSFFeaturedVideos.ascx</DependentUpon>
@@ -2571,7 +2592,6 @@
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\MIT-LICENSE" />
     <None Include="Profile\Modules\NetworkRadial\scriptaculous\README.rdoc" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\PhotoHandler.ashx" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

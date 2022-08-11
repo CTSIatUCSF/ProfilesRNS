@@ -39,6 +39,7 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomEditSocialMediaPlugIns" FileName="EditFeaturedVideos.ascx" Enabled="false"/>
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditGlobalHealthEquity.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditUCSFFeaturedVideos.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditMentoring.ascx" Enabled="true"/>
 </ModuleList>
 
 

@@ -29,7 +29,7 @@
     <security:Options runat="server" ID="securityOptions"></security:Options>
 </asp:Panel>
 
-<p class="text-left">Supported video services include YouTube and Vimeo.
+<p class="text-left">Many video sources are now supported, if you see a preview then the source works.
 For questions about this section please <a href="mailto:profiles@ucsf.edu">contact us</a>.</p>
 
 <asp:Panel runat="server" ID="pnlAddEdit">
@@ -40,16 +40,17 @@ For questions about this section please <a href="mailto:profiles@ucsf.edu">conta
 </asp:Panel>
 <asp:Panel ID="pnlImportVideo" runat="server" CssClass="EditPanel" Visible="false">
     <div style="margin-bottom: 10px;">
-        Display videos from YouTube and Vimeo in a playlist on your profile. If you do not see a preview here after pasting in a link, that video service is currently not supported.
+        Display videos from various sources in a playlist on your profile. If you do not see a preview here after pasting in a link, that video service is currently not supported. 
+        * Leave the description blank to use the title from the video source.
     </div>
     <div style="padding-top: 3px;">
         <div style="margin-bottom: 5px;">
-            <div style="margin-bottom: 4px"><b>Description</b></div>
-            <asp:TextBox Width="400px" runat="server" MaxLength="100" ID="txtName"></asp:TextBox>
-        </div>
-        <div style="margin-bottom: 5px;">
             <div style="margin-bottom: 4px"><b>Video URL</b></div>
             <asp:TextBox Width="400px" runat="server" ID="txtURL"></asp:TextBox>
+        </div>
+        <div style="margin-bottom: 5px;">
+            <div style="margin-bottom: 4px"><b>Description *</b></div>
+            <asp:TextBox Width="400px" runat="server" MaxLength="100" ID="txtTitle"></asp:TextBox>
         </div>
         <div class="actionbuttons">
             <asp:LinkButton ID="btnSaveAndClose" runat="server" CausesValidation="False"
@@ -62,7 +63,7 @@ For questions about this section please <a href="mailto:profiles@ucsf.edu">conta
 </asp:Panel>
 <div class="editPage">
     <asp:GridView ID="GridViewVideos" runat="server" AutoGenerateColumns="False"
-        DataKeyNames="name, url" GridLines="Both"
+        DataKeyNames="title, url, thumbnail_url, html" GridLines="Both"
         OnRowCancelingEdit="GridViewVideos_RowCancelingEdit" OnRowDataBound="GridViewVideos_RowDataBound"
         OnRowDeleting="GridViewVideos_RowDeleting" OnRowEditing="GridViewVideos_RowEditing"
         OnRowUpdating="GridViewVideos_RowUpdating" OnRowUpdated="GridViewVideos_RowUpdated"
@@ -71,15 +72,17 @@ For questions about this section please <a href="mailto:profiles@ucsf.edu">conta
         <Columns>
             <asp:TemplateField HeaderText="Description" ItemStyle-CssClass="alignLeft" HeaderStyle-CssClass="alignLeft">
                 <EditItemTemplate>
-                    <asp:TextBox ID="txtVideoDescription" runat="server" MaxLength="400" Width="450px" Text='<%# Bind("Name") %>' />
+                    <asp:TextBox ID="txtVideoDescription" runat="server" MaxLength="400" Width="450px" Text='<%# Bind("Title") %>' />
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:Label ID="Label5" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
+                    <asp:Label ID="lblTitle" runat="server" Text='<%# Bind("Title") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Preview" HeaderStyle-CssClass="alignCenter" ItemStyle-CssClass="alignCenter">
                 <ItemTemplate>
-                    <asp:Image ID="videoThumbnail" runat="server" Height=75 Width=125 AlternateText='<%# Bind("Url") %>' ImageUrl="~/ORNG/Images/waiting.gif" />
+                    <!-- Flip the visibility of these to help with debugging -->
+                    <asp:Image ID="videoThumbnail" runat="server" Height=75 Width=125 AlternateText='<%# Bind("Url") %>' ImageUrl='<%# Bind("thumbnail_url") %>' Visible="true"/>
+                    <asp:Literal ID="litPreview" runat="server" Text='<%# Bind("html") %>' Visible="false"></asp:Literal>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderStyle-CssClass="alignCenterAction" HeaderText="Action" ItemStyle-CssClass="alignCenterAction">
@@ -126,16 +129,4 @@ For questions about this section please <a href="mailto:profiles@ucsf.edu">conta
         var id = FeaturedVideos.getVideoIdFromYouTubeUrl(s);
         $("#<%=hdnYouTubeId.ClientID%>").val(id);
     });
-
-    function addThumbnailToImage(clientId) {
-        // weird .net thing where it sometimes gets out of synch, but putting the URL in the image object fixes it 
-        FeaturedVideos.getVideoMetadata($("#" + clientId).attr("alt"), 75, 125, function (video_data) {
-            if (video_data.thumbnail_url) {
-                $("#" + clientId).attr("src", video_data.thumbnail_url);                
-            }
-            else if (video_data.provider_url) {
-                $("#" + clientId).attr("src", "https://s2.googleusercontent.com/s2/favicons?domain_url=" + encodeURIComponent(video_data.provider_url));                
-            }
-        });
-    };
 </script>

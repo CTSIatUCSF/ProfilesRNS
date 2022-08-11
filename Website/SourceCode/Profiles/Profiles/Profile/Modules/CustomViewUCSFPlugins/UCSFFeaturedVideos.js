@@ -4,20 +4,6 @@ FeaturedVideos.init = function (playlist) {
     FeaturedVideos.renderVideos(JSON.parse(playlist));
 };
 
-FeaturedVideos.isValidUrl = function (url) {
-    return validator.isURL(url);
-};
-
-FeaturedVideos.getDomainNameFromUrl = function (url) {
-    var a = document.createElement('a');
-    a.href = url;
-    var domain = a.hostname.toLowerCase();
-    if (domain.match(/^www\./)) {
-        domain = domain.substr(4);
-    }
-    return domain;
-};
-
 FeaturedVideos.getVideoIdFromYouTubeUrl = function (videoUrl) {
     var video_id;
     var exp = /http[s]?:\/\/(?:[^\.]+\.)*(?:youtube\.com\/(?:v\/|watch\?(?:.*?\&)?v=|embed\/)|youtu.be\/)([\w\-\_]+)/i
@@ -28,11 +14,17 @@ FeaturedVideos.getVideoIdFromYouTubeUrl = function (videoUrl) {
     return video_id;
 };
 
-FeaturedVideos.getVideoMetadata = function (url, max_height, max_width, callback) {
+FeaturedVideos.getVideoMetadata = function (video, max_height, max_width, callback) {
+    // if this is a newer one, we already have the html metadata. Check
+    if (video.html) {
+        callback(video);
+        return;
+    }
+
     var oEmbedURLBase = 'http://api.embed.ly/1/oembed'; // works great, but we need to pay for API key
     oEmbedURLBase = 'https://noembed.com/embed'; // works OK, but hobbyist project
 
-    var oembedURL = oEmbedURLBase + '?maxheight=' + max_height + '&maxwidth=' + max_width + '&url=' + encodeURIComponent(url);
+    var oembedURL = oEmbedURLBase + '?maxheight=' + max_height + '&maxwidth=' + max_width + '&url=' + encodeURIComponent(video.url);
     var req = $.ajax({
         url: oembedURL,
         dataType: "jsonp",
@@ -72,7 +64,7 @@ FeaturedVideos.renderVideos = function (videos) {
                 $('#video_navigator').append($('<div id="' + video_navigator_div_id + '"></div>'));
             }
 
-            FeaturedVideos.getVideoMetadata(video.url, max_height, max_width, function (video_data) {
+            FeaturedVideos.getVideoMetadata(video, max_height, max_width, function (video_data) {
                 if (!video_data.error_code && !video_data.error) {
 
                     // set video title to the provided label, otherwise use the native title

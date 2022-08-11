@@ -58,7 +58,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
         private void SecurityDisplayed(object sender, EventArgs e)
         {
-
             if (Session["pnlSecurityOptions.Visible"] == null)
             {
 
@@ -105,12 +104,14 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
                 if (this.Videos == null) { this.Videos = new List<Video>(); }
 
+                Video video = new Video { title = txtTitle.Text, url = url };
+                video.completeVideoMetadata(youTubeId);
                 // put at the top because it's newest
-                this.Videos.Insert(0, new Video { name = txtName.Text, url = url, youTubeId = youTubeId });
+                this.Videos.Insert(0, video);
 
                 foreach (Video v in this.Videos)
                 {
-                    search += " " + v.name;
+                    search += " " + v.title;
                 }
 
                 Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), search);
@@ -132,11 +133,10 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             phSecuritySettings.Visible = true;
             pnlAddEdit.Visible = true;
             Session["pnlImportVideo.Visible"] = null;
-            txtName.Text = string.Empty;
+            txtTitle.Text = string.Empty;
             txtURL.Text = string.Empty;
             this.data = string.Empty;
             this.Videos = null;
-
 
             this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.PlugInName);
 
@@ -154,6 +154,11 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             }
             else
             {
+                // ensure that each one has the needed metadata
+                foreach (Video v in videos)
+                {
+                    v.completeVideoMetadata();
+                }
                 divNoVideos.Visible = false;
                 GridViewVideos.Visible = true;
                 GridViewVideos.DataSource = videos;
@@ -162,13 +167,14 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 this.Videos = videos;
             }
         }
+
         private string SerializeJson()
         {
             string rtn = "";
-            //the first video was just added so the Vidoes list is empty
-            if (this.Videos.Count == 0 && txtURL.Text.Trim() != string.Empty && txtName.Text != string.Empty)
+            //the first video was just added so the videos list is empty
+            if (this.Videos.Count == 0 && txtURL.Text.Trim() != string.Empty)
             {
-                this.data = "[{\"name\":\"" + txtName.Text.Trim() + "\",\"url\":\"" + txtURL.Text.Trim() + "\",\"youTubeId\":\"" + txtURL.Text.Trim().Split('=')[1] + "\"}]";
+                this.data = "[{\"url\":\"" + "\"}]";
                 this.ReadJson();
             }
 
@@ -177,36 +183,12 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             return rtn.Replace("[]", "");  // make it empty if its empty json
         }
 
-
-
-
         #region "Grid"
         protected void GridViewVideos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            TextBox txtVideoDescription = null;
-            Image videoThumbnail = null;
-            e.Row.Cells[1].Attributes.Add("style", "width:200px;text-align:center;padding-top:7px;");
-
-
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                videoThumbnail = (Image)e.Row.Cells[1].FindControl("videoThumbnail");
-
-                //litPreview.Text = "<iframe width=\"125px\" height=\"75px\"  src=\"" + videostate.thumbnail_url + "\"></iframe>";
-
-                ScriptManager.RegisterStartupScript(this, this.GetType(), videoThumbnail.ClientID, "addThumbnailToImage('" + videoThumbnail.ClientID + "');", true);
-            }
-
-            if (e.Row.RowType == DataControlRowType.DataRow && (e.Row.RowState & DataControlRowState.Edit) == DataControlRowState.Edit)
-            {
-                Video videostate = (Video)e.Row.DataItem;
-
-                txtVideoDescription = (TextBox)e.Row.Cells[0].FindControl("txtVideoDescription");
-                txtVideoDescription.Text = videostate.name;
-
-               // litPreview.Text = "<iframe width=\"125px\" height=\"75px\" border=\"0px\"  src=\"" + videostate.thumbnail_url + "\"></iframe>";
-            }
+            //e.Row.Cells[1].Attributes.Add("style", "width:200px;text-align:center;padding-top:7px;");
         }
+
         protected void GridViewVideos_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GridViewVideos.EditIndex = e.NewEditIndex;
@@ -227,12 +209,12 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             string data = GridViewVideos.DataKeys[e.RowIndex].Values[1].ToString();
             var found = this.Videos.Find(f => f.url == data);
 
-            found.name = txtVideoDescription.Text;
+            found.title = txtVideoDescription.Text;
 
             string search = string.Empty;
             foreach (Video v in this.Videos)
             {
-                search += " " + v.name;
+                search += " " + v.title;
             }
             //this needs to be the json desz'd
             Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), search);
@@ -260,7 +242,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             string search = string.Empty;
             foreach (Video v in this.Videos)
             {
-                search += " " + v.name;
+                search += " " + v.title;
             }
             //this needs to be the json desz'd
             Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), search);
@@ -287,7 +269,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             string search = string.Empty;
             foreach (Video v in this.Videos)
             {
-                search += " " + v.name;
+                search += " " + v.title;
             }
             Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), search);
 
@@ -311,7 +293,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             string search = string.Empty;
             foreach (Video v in this.Videos)
             {
-                search += " " + v.name;
+                search += " " + v.title;
             }
             Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), search);
 
@@ -319,13 +301,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         }
         #endregion
         private List<Video> Videos { get; set; }
-    }
-
-    public class Video
-    {
-        public string name { get; set; }
-        public string url { get; set; }
-        public string youTubeId { get; set; }
     }
 
 }

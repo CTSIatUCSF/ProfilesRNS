@@ -13,14 +13,14 @@ INSERT [Profile.Module].[GenericRDF.Plugins] ([Name], [EnabledForPerson], [Enabl
 
 EXEC [Profile.Module].[GenericRDF.AddUpdateOntology] @pluginName='UCSFFeaturedVideos'
 
-
 -- Copy the data over, run this and execute results
-SELECT 'exec [Profile.Module].[GenericRDF.AddPluginToProfile] @SubjectID=' + cast(nodeid as varchar) + ', @PluginName=''UCSFFeaturedVideos'';' FROM [Profile.Module].[GenericRDF.Data] where Name = 'FeaturedVideos';
-
--- now run this
 INSERT [Profile.Module].[GenericRDF.Data] ([Name], [NodeID], [Data], [SearchableData]) 
 SELECT 'UCSFFeaturedVideos', [NodeID], REPLACE([Data], '"id"', '"youTubeId"'), [SearchableData] 
 FROM [Profile.Module].[GenericRDF.Data] WHERE [Name] = 'FeaturedVideos';
+
+-- now run this to add the new plugin to the profiles. Note that this needs to run AFTER the data has been added to the GenericRDF.Data table because
+-- this SP is how the data ends up in the RDF.
+SELECT 'exec [Profile.Module].[GenericRDF.AddPluginToProfile] @SubjectID=' + cast(nodeid as varchar) + ', @PluginName=''UCSFFeaturedVideos'';' FROM [Profile.Module].[GenericRDF.Data] where Name = 'UCSFFeaturedVideos';
 
 -- To change the grouping run the following
 --UPDATE [Profile.Module].[GenericRDF.Plugins] SET [PropertyGroupURI] = 'http://profiles.catalyst.harvard.edu/ontology/prns#PropertyGroupOverview' WHERE [Name] = 'UCSFFeaturedVideos';

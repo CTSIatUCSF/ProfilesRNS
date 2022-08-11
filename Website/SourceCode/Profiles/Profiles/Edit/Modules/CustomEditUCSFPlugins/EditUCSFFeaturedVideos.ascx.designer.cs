@@ -103,15 +103,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         protected global::System.Web.UI.WebControls.Panel pnlImportVideo;
         
         /// <summary>
-        /// txtName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtName;
-        
-        /// <summary>
         /// txtURL control.
         /// </summary>
         /// <remarks>
@@ -119,6 +110,15 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtURL;
+        
+        /// <summary>
+        /// txtTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTitle;
         
         /// <summary>
         /// btnSaveAndClose control.

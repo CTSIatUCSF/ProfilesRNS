@@ -25,3 +25,7 @@ SELECT 'exec [Profile.Module].[GenericRDF.AddPluginToProfile] @SubjectID=' + cas
 -- To change the grouping run the following
 --UPDATE [Profile.Module].[GenericRDF.Plugins] SET [PropertyGroupURI] = 'http://profiles.catalyst.harvard.edu/ontology/prns#PropertyGroupOverview' WHERE [Name] = 'UCSFFeaturedVideos';
 --Update [Ontology.].[PropertyGroupProperty] set  [PropertyGroupURI] = 'http://profiles.catalyst.harvard.edu/ontology/prns#PropertyGroupOverview' WHERE PropertyURI = 'http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos';
+
+
+-- 8/11/2022  Convert "name" to "title"
+UPDATE [Profile.Module].[GenericRDF.Data] SET [Data] = REPLACE([Data], '"name"', '"title"') WHERE [Name] = 'UCSFFeaturedVideos';

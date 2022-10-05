@@ -29,8 +29,9 @@
     <security:Options runat="server" ID="securityOptions"></security:Options>
 </asp:Panel>
 
-<p class="text-left">Many video sources are now supported, if you see a preview then the source works.
-For questions about this section please <a href="mailto:profiles@ucsf.edu">contact us</a>.</p>
+<p class="text-left"><b>YouTube</b>, <b>Vimeo</b>, <b>TedTalks</b> and many video types can be added in this section. 
+    Clickable previews will show on your profile page and people can view the videos there. 
+    For questions about this section please <a href="mailto:profiles@ucsf.edu">contact us</a>.</p>
 
 <asp:Panel runat="server" ID="pnlAddEdit">
     <div class="EditMenuItem">
@@ -40,8 +41,8 @@ For questions about this section please <a href="mailto:profiles@ucsf.edu">conta
 </asp:Panel>
 <asp:Panel ID="pnlImportVideo" runat="server" CssClass="EditPanel" Visible="false">
     <div style="margin-bottom: 10px;">
-        Display videos from various sources in a playlist on your profile. If you do not see a preview here after pasting in a link, that video service is currently not supported. 
-        * Leave the description blank to use the title from the video source.
+        Paste in the URL (web address) of the video. You can also add a Description or leave it blank to pull in the description from the hosting service. 
+        Then click the Save link to add the video. NOTE: If you do not see a preview here after saving, that video service is currently not supported.
     </div>
     <div style="padding-top: 3px;">
         <div style="margin-bottom: 5px;">
@@ -79,6 +80,9 @@ For questions about this section please <a href="mailto:profiles@ucsf.edu">conta
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Preview" HeaderStyle-CssClass="alignCenter" ItemStyle-CssClass="alignCenter">
+                <EditItemTemplate>
+                    <asp:TextBox ID="txtUrl" runat="server" MaxLength="400" Width="450px" Text='<%# Bind("Url") %>' />
+                </EditItemTemplate>
                 <ItemTemplate>
                     <!-- Flip the visibility of these to help with debugging -->
                     <asp:Image ID="videoThumbnail" runat="server" Height=75 Width=125 AlternateText='<%# Bind("Url") %>' ImageUrl='<%# Bind("thumbnail_url") %>' Visible="true"/>

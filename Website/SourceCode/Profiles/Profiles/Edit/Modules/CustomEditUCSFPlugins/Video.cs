@@ -1,8 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Web;
 
@@ -58,8 +57,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
         private static VideoMetadata getVideoMetadata(String url, int max_height, int max_width)
         {
-
-
             //String oEmbedURLBase = "https://noembed.com/embed";
             String oEmbedURLBase = "https://api.embed.rocks/api";
 
@@ -67,7 +64,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
             HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create(oembedURL);
             myReq.Accept = "application/json"; // "application/ld+json";
-            myReq.Headers.Add("x-api-key", "03a9de9e-6526-41b1-915c-1f6bdc6728b6"); 
+            myReq.Headers.Add("x-api-key", ConfigurationManager.AppSettings["EmbedRocksAPIKey"]);
 
             String jsonProfiles = "";
             using (StreamReader sr = new StreamReader(myReq.GetResponse().GetResponseStream()))

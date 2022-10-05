@@ -4,33 +4,27 @@ FeaturedVideos.init = function (playlist) {
     FeaturedVideos.renderVideos(JSON.parse(playlist));
 };
 
-FeaturedVideos.getVideoIdFromYouTubeUrl = function (videoUrl) {
-    var video_id;
-    var exp = /http[s]?:\/\/(?:[^\.]+\.)*(?:youtube\.com\/(?:v\/|watch\?(?:.*?\&)?v=|embed\/)|youtu.be\/)([\w\-\_]+)/i
-    var res = videoUrl.match(exp);
-    if (res) {
-        video_id = res[1];
-    }
-    return video_id;
-};
-
 FeaturedVideos.getVideoMetadata = function (video, max_height, max_width, callback) {
     // if this is a newer one, we already have the html metadata. Check
     if (video.html) {
-        callback(video);
-        return;
+        // need to let the document load first, so we do this.
+        $(window).on('load', function () {
+            callback(video);
+        });
+        //setTimeout(function() {callback(video);}, 10000);
     }
+    else {
+        var oEmbedURLBase = 'http://api.embed.ly/1/oembed'; // works great, but we need to pay for API key
+        oEmbedURLBase = 'https://noembed.com/embed'; // works OK, but hobbyist project
 
-    var oEmbedURLBase = 'http://api.embed.ly/1/oembed'; // works great, but we need to pay for API key
-    oEmbedURLBase = 'https://noembed.com/embed'; // works OK, but hobbyist project
-
-    var oembedURL = oEmbedURLBase + '?maxheight=' + max_height + '&maxwidth=' + max_width + '&url=' + encodeURIComponent(video.url);
-    var req = $.ajax({
-        url: oembedURL,
-        dataType: "jsonp",
-        timeout: 10000,
-        success: callback
-    });
+        var oembedURL = oEmbedURLBase + '?maxheight=' + max_height + '&maxwidth=' + max_width + '&url=' + encodeURIComponent(video.url);
+        var req = $.ajax({
+            url: oembedURL,
+            dataType: "jsonp",
+            timeout: 10000,
+            success: callback
+        });
+    }
 };
 
 // viewing
@@ -68,7 +62,7 @@ FeaturedVideos.renderVideos = function (videos) {
                 if (!video_data.error_code && !video_data.error) {
 
                     // set video title to the provided label, otherwise use the native title
-                    video_data.title = (video.name || video_data.title);
+                    video_data.title = (video.title || video_data.title);
 
                     // use normalized video URL, or fall back to original URL
                     video_data.url = (video_data.url || video.url);

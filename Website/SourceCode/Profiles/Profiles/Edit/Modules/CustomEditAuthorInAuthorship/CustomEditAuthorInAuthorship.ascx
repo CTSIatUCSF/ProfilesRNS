@@ -427,7 +427,7 @@
                                     CausesValidation="False" OnClick="deleteOne_Onclick" CommandName="Delete" AlternateText="delete"
                                     OnClientClick="Javascript:return confirm('Are you sure you want to delete this citation?');"></asp:ImageButton>
                             
-                                <asp:ImageButton ID="lnkEdit" runat="server" ImageUrl="~/Edit/Images/icon_blank.gif"
+                                <asp:ImageButton ID="lnkEdit" runat="server" ImageUrl="~/Edit/Images/Icon_Edit.gif"
                                     CausesValidation="False" CommandName="Select" AlternateText="edit" Enabled="false" Visible="false"></asp:ImageButton>
                             <asp:HiddenField ID="hdnMPID" runat="server" Value='<%# Bind("mpid") %>' />
                             <asp:HiddenField ID="hdnPMID" runat="server" Value='<%# Bind("pmid") %>' />

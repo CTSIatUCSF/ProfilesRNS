@@ -209,7 +209,21 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             string data = GridViewVideos.DataKeys[e.RowIndex].Values[1].ToString();
             var found = this.Videos.Find(f => f.url == data);
 
-            found.title = txtVideoDescription.Text;
+            // if they changed the URL or blanked out the title, grab new metadata
+            if (!found.url.Equals(txtURL.Text.Trim()) || String.IsNullOrEmpty(txtVideoDescription.Text.Trim()))
+            {
+                // new video
+                found.html = null;
+                found.title = null;
+                found.url = txtURL.Text.Trim();
+                found.completeVideoMetadata();
+            }
+
+            // if the user entered a title, use it
+            if (!String.IsNullOrEmpty(txtVideoDescription.Text.Trim()))
+            {
+                found.title = txtVideoDescription.Text.Trim();
+            }
 
             string search = string.Empty;
             foreach (Video v in this.Videos)

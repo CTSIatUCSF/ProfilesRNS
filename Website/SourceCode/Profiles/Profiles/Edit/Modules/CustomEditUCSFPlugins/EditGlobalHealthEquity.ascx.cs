@@ -601,7 +601,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 retval.Add("IGHS - Center for Global Health Diplomacy, Delivery & Economics");
                 retval.Add("IGHS - Center for Infectious and Parasitic Diseases");
                 retval.Add("IGHS - Center for Strategic Information and Public Health Practice");
-                retval.Add("IGHS - Affiliate Program");
+                retval.Add("Institute for Global Health Sciences");
                 retval.Add("HEAL Initiative");
                 retval.Add("WHO Collaborating Center for Emergency, Critical & Operative Care");
                 retval.Add("WHO Collaborating Center on Tobacco Control");

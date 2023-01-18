@@ -1,9 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SearchEverything.ascx.cs"
     Inherits="Profiles.Search.Modules.SearchEverything.SearchEverything" %>
 
-<style type="text/css">
-.profiles .profilesContentMain .pageTitle h2 { display: none; }
-</style>
 <script type="text/javascript">
 
     function submitEverythingSearch() {
@@ -20,10 +17,6 @@
             return;
         });
     }
-
-    $(document).ready(function () {
-	buildGadgetAds();
-    });    
 </script>
 
 <input type="hidden" id="classgroupuri" name="classgroupuri" value="" />
@@ -41,36 +34,21 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
+                <div>
                     <td colspan="3">
-                        <%-- Inline "margin-bottom:15px;" has been removed as it wasnt making a big enough improvement --%>
                         <div class="searchSection">
-                            <table width="100%" class='searchForm' onkeypress="JavaScript:runScript(event);">
-                                <tr>
-                                    <th>
-                                        Keywords
-                                    </th>
-                                    <td colspan="2" class="fieldOptions">
-                                        <asp:TextBox EnableViewState="false" runat="server" ID="searchfor" CssClass="inputText" title="Keywords" />
-                                    </td>
-                                    <%-- Inline style="padding-right:50px" removed due to lacklustre effect on style  --%>
-                                    <td>
-                                        <asp:CheckBox runat="server" ID="chkExactPhrase" text="&nbsp;Search for exact phrase"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                    </th>
-                                    <td colspan="2">
-                                        <div class="search-button-container">
-                                            <a href="JavaScript:submitEverythingSearch();" class="search-button">
-                                                <%--<img src="images/search.jpg" alt="submit search" style="border: 0px; position: relative; top: 9px;" />--%>
-                                                Search
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
+                            <fieldset class='searchForm' onkeypress="JavaScript:runScript(event);">
+                                <legend>Topic</legend>
+                                <div class="researcherprofiles--primary-search--search-form--topic-search-container">
+                                        <asp:TextBox EnableViewState="false" runat="server" ID="searchfor" CssClass="inputText" title="Topic" placeholder="e.g. HIV" />
+                                        <label><asp:CheckBox runat="server" ID="chkExactPhrase" text="&nbsp;Use exact phrase"/></label>
+                                </div>
+                                <div class="search-button-container">
+                                    <a href="JavaScript:submitEverythingSearch();" class="search-button">
+                                        Search
+                                    </a>
+                                </div>
+                            </fieldset>
                         </div>
                     </td>
                 </tr>

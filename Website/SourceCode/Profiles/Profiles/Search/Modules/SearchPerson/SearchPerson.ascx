@@ -140,13 +140,13 @@
                                         </th>
                                         <td class="fieldOptions">
                                             <asp:TextBox runat="server" ID="txtSearchFor" CssClass="inputText"></asp:TextBox>
-                                            <asp:CheckBox runat="server" ID="chkExactphrase" CssClass="unused" />
+                                            <asp:CheckBox runat="server" ID="chkExactphrase" />
                                         </td>
                                        <td align="center">
 					    <a href="JavaScript:search();" class="search-button">Search</a>
                                        </td>
-<!--  NOTE: checkboxes are hidden in css
                                             Search for exact phrase
+<!--  NOTE: checkboxes are hidden in css
                                     </tr>
                                     <tr>
                                         </tr>
@@ -220,10 +220,8 @@
                                     </th>
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litInstitution"></asp:Literal>
-                                        <asp:CheckBox runat="server" ID="institutionallexcept" CssClass="unused" />
-<!--
+                                        <asp:CheckBox runat="server" ID="institutionallexcept" />
                                         All <b>except</b> the one selected
--->
                                     </td>
                                 </tr>
                                 <tr runat="server" id="trDivision">
@@ -232,10 +230,8 @@
                                     </th>
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litDivision"></asp:Literal>
-                                        <asp:CheckBox runat="server" id="divisionallexcept" CssClass="unused" />
-<!--
+                                        <asp:CheckBox runat="server" id="divisionallexcept"/>
                                         All <b>except</b> the one selected
--->
                                     </td>
                                 </tr>
 
@@ -246,10 +242,8 @@
 										</th>
 										<td colspan="2">
 											<asp:Literal runat="server" ID="litDepartment"></asp:Literal>
-											<asp:CheckBox runat="server" ID="departmentallexcept" CssClass="unused" />
-<!--
+											<asp:CheckBox runat="server" ID="departmentallexcept" />
 											All <b>except</b> the one selected
--->
 										</td>
 									</tr>
 								</asp:Panel>

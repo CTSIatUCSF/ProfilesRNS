@@ -28,11 +28,15 @@
       </Module>
     </Panel>
     <Panel Name="Find People" Alias="people" Type="main" TabType="Default" TabSort="0">
-      <Module ID="SearchPerson">
+      <Module ID="ModernSearch">
       </Module>
     </Panel>
     <Panel Name="Find Everything" Alias="all" Type="main" TabType="Fixed" TabSort="1" >
       <Module ID="SearchEverything" />
+    </Panel>
+    <Panel Name="Advanced Search" Alias="advanced" Type="main" TabType="Fixed" TabSort="2">
+      <Module ID="AdvancedSearch">
+      </Module>
     </Panel>
     <!-- UCSF remove Most Viewed
     <Panel Type="passive" >

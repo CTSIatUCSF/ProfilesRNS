@@ -18,12 +18,24 @@ using System.Configuration;
 
 using Profiles.Framework.Utilities;
 using Profiles.Search.Utilities;
+using System.Data;
 
-
-namespace Profiles.Search.Modules.SearchPerson
+namespace Profiles.Search.Modules.AdvancedSearch
 {
-    public partial class SearchPerson : BaseModule
+    public partial class AdvancedSearch : BaseModule
     {
+
+        private static Dictionary<string, List<string>> brandedSections = new Dictionary<string, List<string>>();
+
+
+        static AdvancedSearch()
+        {
+            brandedSections.Add("Faculty Mentoring", new List<string>(new string[]{"UCSF", "UC Davis", "UCSD"}));
+            brandedSections.Add("Clinical Trials", new List<string>(new string[] { "UCSF", "UC Davis", "UCSD", "UCLA", "UCI"}));
+            brandedSections.Add("Student Projects", new List<string>(new string[] { "UCSF", "UC Davis"}));
+            brandedSections.Add("Academic Senate Committees", new List<string>(new string[] { "UCSF"}));
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // hate to hard code this, but not sure how else to do it now
@@ -34,8 +46,8 @@ namespace Profiles.Search.Modules.SearchPerson
         }
 
 
-        public SearchPerson() { }
-        public SearchPerson(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
+        public AdvancedSearch() { }
+        public AdvancedSearch(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
         {
             txtSearchFor.Attributes.Add("onkeypress", "JavaScript:runScript(event);");
             txtFname.Attributes.Add("onkeypress", "JavaScript:runScript(event);");
@@ -76,7 +88,8 @@ namespace Profiles.Search.Modules.SearchPerson
                 }
                 if (Convert.ToBoolean(ConfigurationSettings.AppSettings["ShowOtherOptions"]) == false)// || !String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
                 {
-                    trOtherOptions.Visible = false;
+                    trSections.Visible = false;
+                    trInterests.Visible = false;
                 }
 
             }
@@ -107,13 +120,7 @@ namespace Profiles.Search.Modules.SearchPerson
 
             SearchRequest = new XmlDocument();
 
-            ctcFirst.SearchRequest = new XmlDocument();
-
             SearchRequest.LoadXml(data.DecryptRequest(searchrequest));
-
-            ctcFirst.SearchRequest = this.SearchRequest;
-            
-
 
             if (SearchRequest.SelectSingleNode("SearchOptions/MatchOptions/SearchString") != null)
             {
@@ -125,10 +132,10 @@ namespace Profiles.Search.Modules.SearchPerson
                 switch (SearchRequest.SelectSingleNode("SearchOptions/MatchOptions/SearchString/@ExactMatch").Value)
                 {
                     case "true":
-                        chkExactphrase.Checked = true;
+                        //chkExactphrase.Checked = true;
                         break;
                     case "false":
-                        chkExactphrase.Checked = false;
+                        //chkExactphrase.Checked = false;
                         break;
                 }
             }
@@ -218,66 +225,13 @@ namespace Profiles.Search.Modules.SearchPerson
         private void BuildFacultyType()
         {
             Utilities.DataIO data = new Profiles.Search.Utilities.DataIO();
-
-            DropDownList ddl = new DropDownList();
-            ddl.ID = "ddlChkList";
-            ListItem lstItem = new ListItem();
-            ddl.Items.Insert(0, lstItem);
-            ddl.Attributes.Add("title", "faculty type");
-            ddl.Width = new Unit(250);
-            ddl.Height = new Unit(20);
-            ddl.Attributes.Add("onclick", "showdivonClick()");
-            ddl.Attributes.Add("onkeypress", "showdivonClick()");
-            CheckBoxList chkBxLst = new CheckBoxList();
-            chkBxLst.ID = "chkLstItem";
-            chkBxLst.Attributes.Add("onmouseover", "showdiv()");
-            chkBxLst.Attributes.Add("onfocus", "if ( event.keyCode == 13) showdiv()");
-            List<GenericListItem> dtListItem = data.GetFacultyRanks();
-            int rowNo = dtListItem.Count;
-            string lstValue = string.Empty;
-            string lstID = string.Empty;
-            string javascript = string.Empty;
-
-
-            litFacRankScript.Text = "<script>";
-            for (int i = 0; i < rowNo; i++)
+            foreach (GenericListItem dtListItem in data.GetFacultyRanks())
             {
-                lstValue = dtListItem[i].Text;
-                lstID = dtListItem[i].Value;
-                lstItem = new ListItem("<a href=\"javascript:void(0)\" id=\"alst\" style=\"text-decoration:none;color:Black; \" onclick=\"getSelectedItem(' " + lstValue + "','" + i + "','" + lstID + "','anchor');\">" + lstValue + "</a>", lstID);
-                lstItem.Attributes.Add("onclick", "getSelectedItem('" + lstValue + "','" + i + "','" + lstID + "','listItem');");
-
-                if (SearchRequest != null && !lstID.IsNullOrEmpty())
-                {
-                    if (SearchRequest.OuterXml.Contains(lstID))
-                    {                                        
-                        javascript += " javascript:getSelectedItem('" + lstValue + "','" + i + "','" + lstID + "','anchor');";
-                    }
-                }
-
-                chkBxLst.Items.Add(lstItem);
+                ListItem itmFacType = new ListItem();
+                itmFacType.Text = dtListItem.Text;
+                itmFacType.Value = dtListItem.Value;
+                cblResearcherType.Items.Add(itmFacType);
             }
-
-
-            litFacRankScript.Text += javascript + "</script>";
-
-
-
-            System.Web.UI.HtmlControls.HtmlGenericControl div = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
-            div.ID = "divChkList";
-            div.Controls.Add(chkBxLst);
-            div.Style.Add("background-color", "#ffffff");
-            div.Style.Add("position", "absolute");
-            div.Style.Add("fload", "left");
-            div.Style.Add("border", "black 1px solid");
-            div.Style.Add("width", "248px");
-            div.Style.Add("height", "180px");
-            div.Style.Add("overflow", "AUTO");
-            div.Style.Add("display", "none");
-            div.Style.Add("padding-top", "25px");
-            phDDLCHK.Controls.Add(ddl);
-            phDDLList.Controls.Add(div);
-
         }
 
         private void BuildFilters()
@@ -287,17 +241,44 @@ namespace Profiles.Search.Modules.SearchPerson
 
             System.Data.DataSet ds = data.GetPersonTypes();
 
-            ctcFirst.DataMasterName = "DataMasterName";
-            ctcFirst.DataDetailName = "DataDetailName";
+            // new. Note that this is "hard coded: for personTypeGroupId[1]=sections, personTypeGroupId[2]=interests
+            /***********  Uncomment if we want to NOT hard code one day
+            DataTable l_dtMaster = ds.Tables["DataMasterName"];
+            foreach (DataRow row in l_dtMaster.Rows)
+            {
+                string foo = row["personTypeGroupId"].ToString(); //1, 2
+                string bar = row["personTypeGroup"].ToString(); // the label
+            }
+            **********/
+            DataTable l_dtDetail = ds.Tables["DataDetailName"];
+            foreach (DataRow row in l_dtDetail.Rows)
+            {
+                Int32 group = (Int32)row["personTypeGroupId"];
+                string label = row["personTypeFlag"].ToString(); // Clinical Trials, etc.
 
-            ctcFirst.DataMasterIDField = "personTypeGroupId";
-            ctcFirst.DataMasterTextField = "personTypeGroup";
+                ListItem itmOption = new ListItem();
+                itmOption.Text = label;
+                itmOption.Value = label; 
 
-            ctcFirst.DataDetailIDField = "personTypeFlagId";
-            ctcFirst.DataDetailTextField = "personTypeFlag";
+                // ugly hard coded logic to skip certain sections for certain institutions
+                if (brandedSections.ContainsKey(label) && !Brand.GetCurrentBrand().IsMultiInstitutional() && !brandedSections[label].Contains(Brand.GetCurrentBrand().GetInstitution().GetAbbreviation()))
+                {
+                    continue;
+                }
 
-            ctcFirst.DataSource = ds;
-            ctcFirst.DataBind();
+                if (group == 1)
+                {
+                    cblSections.Items.Add(itmOption);
+                }
+                else if (group == 2)
+                {
+                    // only include gadgets that make sense for this brand
+                    if (Brand.GetCurrentBrand().IsApplicableForFilter(label))
+                    {
+                        cblInterests.Items.Add(itmOption);
+                    }
+                }
+            }
 
         }
 
@@ -306,8 +287,7 @@ namespace Profiles.Search.Modules.SearchPerson
             string lname = Request.Form[this.txtLname.UniqueID];
             string fname = Request.Form[this.txtFname.UniqueID];
             string searchfor = Request.Form[this.txtSearchFor.UniqueID];
-            string exactphrase = Request.Form[this.chkExactphrase.UniqueID];
-            string facrank = Request.Form[this.hidList.UniqueID];
+            string exactphrase = "false";// Request.Form[this.chkExactphrase.UniqueID];
 
             if (exactphrase == "on")
                 exactphrase = "true";
@@ -346,7 +326,10 @@ namespace Profiles.Search.Modules.SearchPerson
                 divisionallexcept = Request.Form[this.divisionallexcept.UniqueID];
             }
 
-            string otherfilters = Request.Form["hdnSelectedText"];
+            // new stuff by Eric
+            string facrankNew = GetCheckBoxListSelectedItems(Request, cblResearcherType);
+
+            string otherfilters = GetCheckBoxListSelectedItems(Request, cblSections) + GetCheckBoxListSelectedItems(Request, cblInterests);
             if (!String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
             {
                 otherfilters += "," + Brand.GetCurrentBrand().PersonFilter;
@@ -361,12 +344,24 @@ namespace Profiles.Search.Modules.SearchPerson
 
 
             data.SearchRequest(searchfor, exactphrase, fname, lname, institution, institutionallexcept,
-                department, departmentallexcept, division, divisionallexcept, classuri, "15", "0", "", "", otherfilters, facrank, true, ref searchrequest);
+                department, departmentallexcept, division, divisionallexcept, classuri, "15", "0", "", "", otherfilters, facrankNew, true, ref searchrequest);
 
             Response.Redirect(Brand.GetThemedDomain() + "/search/default.aspx?showcolumns=" + (Brand.GetCurrentBrand().IsMultiInstitutional() ? "9" : "10") +  "&searchtype=people&otherfilters=" + otherfilters + "&searchrequest=" + searchrequest, true);
 
+        }
 
-
+        private string GetCheckBoxListSelectedItems(System.Web.HttpRequest req, CheckBoxList cbl)
+        {
+            string retval = "";
+            int ndx = 0;
+            foreach (ListItem item in cbl.Items)
+            {
+                if ("on".Equals(req.Form[cbl.UniqueID + "$" + ndx++]))
+                {
+                    retval += "," + item.Text;
+                }
+            }
+            return retval;
         }
 
         private XmlDocument SearchRequest { get; set; }

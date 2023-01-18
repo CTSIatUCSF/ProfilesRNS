@@ -101,7 +101,7 @@ namespace Profiles.Search
                 this.LoadRDFSearchResults();
             }
 
-            this.LoadAssets(this.SearchType);
+            this.LoadAssets(this.SearchType, masterpage.Tab);
             masterpage.PresentationXML = this.PresentationXML;
 
 
@@ -136,13 +136,30 @@ namespace Profiles.Search
 
         }
 
-        private void LoadAssets(string type)
+        private void LoadAssets(string type, string tab)
         {
             HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
+            HtmlGenericControl contentMain = (HtmlGenericControl)Page.Master.FindControl("divProfilesContentMain");
+            // always add this one
+            contentMain.Attributes.Add("class", contentMain.Attributes["class"] + " researcherprofiles--primary-search-container");
             //body.Attributes.Add("class", "search"); Commented out 2/3/2021
             if (type == null || "searchform".Equals(type.ToLower()))
             {
+                // look at request path to see what tab and add class appropriately
                 body.Attributes.Add("class", "researcherprofiles--home-page");
+                
+                if ("all".Equals(tab))
+                {
+                    contentMain.Attributes.Add("class", contentMain.Attributes["class"] + " researcherprofiles--primary-search--find-everything-mode");
+                }
+                else if ("advanced".Equals(tab))
+                {
+                    contentMain.Attributes.Add("class", contentMain.Attributes["class"] + " researcherprofiles--primary-search--advanced-search-mode");
+                }
+                else
+                {
+                    contentMain.Attributes.Add("class", contentMain.Attributes["class"] + " researcherprofiles--primary-search--find-people-mode");
+                }
             }
             else
             {

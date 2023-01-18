@@ -33,22 +33,6 @@
 	<meta name="msvalidate.01" content="4E5209CC6688B86BBDD2FE074176C029" />
 	<meta name="msvalidate.01" content="0535E3191ABF67DFC9F7E03516F4B881" />
 
-    <asp:Panel ID="MasterPageFeedbackUSC" runat="server" SkinID="USC" Visible="false">
-    <script id="_webengage_script_tag" type="text/javascript">
-      var _weq = _weq || {};
-      _weq['webengage.licenseCode'] = 'd3a4a16b';
-      _weq['webengage.widgetVersion'] = "4.0";
-  
-      (function(d){
-        var _we = d.createElement('script');
-        _we.type = 'text/javascript';
-        _we.async = true;
-        _we.src = (d.location.protocol == 'https:' ? "https://ssl.widgets.webengage.com" : "http://cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-4.0.js";
-        var _sNode = d.getElementById('_webengage_script_tag');
-        _sNode.parentNode.insertBefore(_we, _sNode);
-      })(document);
-    </script>
-</asp:Panel>
 </head>
 <body id="bodyMaster" runat="server">
     <form runat="server" id="form1" enctype="multipart/form-data" method="post">
@@ -128,9 +112,6 @@
                             <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="/women-in-science/">Celebrating <b>Women in Science</b></a>
                         </asp:Panel>
                     </div>	
-					<div class="researcherprofiles--institution-header--ucsf-banner-text-callout">
-					  Try the new <a href="https://profilesbeta.ucsf.edu/search/">modern search</a>
-					</div>
                 </div>
             </asp:Panel>
             <asp:Panel ID="MasterPageHeaderUCSD" runat="server" SkinID="UCSD" Visible="false">
@@ -139,7 +120,7 @@
                         <ul>
 							<li><a target="_blank" href="http://ucsd.edu/">
 								<img src="<%=GetThemedDomain()%>/App_Themes/UCSD/Images/ucsdlogo.png" alt="UC San Diego" /></a></li>
-                            <li><a id="powered-by-ctsi" href="http://actri.ucsd.edu/Pages/default.aspx" target="_blank">Powered by Altman Clinical and Translational Research Institute</a></li>
+                            <li><a id="powered-by-ctsi" href="http://actri.ucsd.edu" target="_blank">Powered by Altman Clinical and Translational Research Institute</a></li>
                         </ul>
                     </div>
                 </div>
@@ -321,6 +302,160 @@
                                     </asp:Repeater>
                                 </asp:ContentPlaceHolder>
                             </div>
+							<asp:Panel ID="FeaturedItemsUCD" runat="server" SkinID="UCD" Visible="false">
+								<div class="researcherprofiles--home-page--featured-items-block"> 
+                                    <h6>With one click, see people who:</h6>
+                                    <div class="researcherprofiles--home-page--featured-items-block--grid">
+								       <div class="researcherprofiles--home-page--featured-items-block--item">
+									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-9064315.jpeg" alt="">
+									      </div>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Faculty%20Mentoring" class="researcherprofiles--util--stretched-link" target="">Mentor Faculty</a></p>
+								       </div>
+								       <div class="researcherprofiles--home-page--featured-items-block--item">
+									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4033145.jpeg" alt="">
+									      </div>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Student%20Projects" class="researcherprofiles--util--stretched-link" target="">Offer Student Projects</a></p>
+								       </div>
+								       <div class="researcherprofiles--home-page--featured-items-block--item">
+									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4989132.jpeg" alt="">
+									      </div>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Clinical%20Trials" class="researcherprofiles--util--stretched-link" target="">Run Clinical Trials</a></p>
+								       </div>
+                                    </div>
+	                                <p>See more options in the <a href='<%=GetThemedDomain()%>/search/advanced'>Advanced Search</a> tab</p>
+								</div> 
+							</asp:Panel>
+							<asp:Panel ID="FeaturedItemsUCLA" runat="server" SkinID="UCLA" Visible="false">
+								<div class="researcherprofiles--home-page--featured-items-block"> 
+                                    <h6>With one click, see people who:</h6>
+                                    <div class="researcherprofiles--home-page--featured-items-block--grid">
+								       <div class="researcherprofiles--home-page--featured-items-block--item">
+									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4989132.jpeg" alt="">
+									      </div>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Clinical%20Trials" class="researcherprofiles--util--stretched-link" target="">Run Clinical Trials</a></p>
+								       </div>
+    							    </div> 
+	                                <p>See more options in the <a href='<%=GetThemedDomain()%>/search/advanced'>Advanced Search</a> tab</p>
+								</div> 
+							</asp:Panel>
+							<asp:Panel ID="FeaturedItemsUCSD" runat="server" SkinID="UCSD" Visible="false">
+								<div class="researcherprofiles--home-page--featured-items-block"> 
+                                    <h6>With one click, see people who:</h6>
+                                    <div class="researcherprofiles--home-page--featured-items-block--grid">
+								       <div class="researcherprofiles--home-page--featured-items-block--item">
+									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-9064315.jpeg" alt="">
+									      </div>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Faculty%20Mentoring" class="researcherprofiles--util--stretched-link" target="">Mentor Faculty</a></p>
+								       </div>
+								       <div class="researcherprofiles--home-page--featured-items-block--item">
+									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4989132.jpeg" alt="">
+									      </div>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Clinical%20Trials" class="researcherprofiles--util--stretched-link" target="">Run Clinical Trials</a></p>
+								       </div>
+                                    </div>
+	                                <p>See more options in the <a href='<%=GetThemedDomain()%>/search/advanced'>Advanced Search</a> tab</p>
+                                </div>
+							</asp:Panel>
+							<asp:Panel ID="FeaturedItemsUCI" runat="server" SkinID="UCI" Visible="false">
+								<div class="researcherprofiles--home-page--featured-items-block"> 
+                                   <h6>With one click, see people who:</h6>
+                                   <div class="researcherprofiles--home-page--featured-items-block--grid">
+								       <div class="researcherprofiles--home-page--featured-items-block--item">
+									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4989132.jpeg" alt="">
+									      </div>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Clinical%20Trials" class="researcherprofiles--util--stretched-link" target="">Run Clinical Trials</a></p>
+								       </div>
+                                    </div>
+	                                <p>See more options in the <a href='<%=GetThemedDomain()%>/search/advanced'>Advanced Search</a> tab</p>
+								</div> 
+							</asp:Panel>
+							<asp:Panel ID="FeaturedItemsUCSF" runat="server" SkinID="UCSF" Visible="false">
+								<div class="researcherprofiles--home-page--featured-items-block"> 
+                                   <h6>With one click, see people who:</h6>
+                                   <div class="researcherprofiles--home-page--featured-items-block--grid">
+								       <div class="researcherprofiles--home-page--featured-items-block--item">
+									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-9064315.jpeg" alt="">
+									      </div>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Faculty%20Mentoring" class="researcherprofiles--util--stretched-link" target="">Mentor Faculty</a></p>
+								       </div>
+								       <div class="researcherprofiles--home-page--featured-items-block--item">
+									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4033145.jpeg" alt="">
+									      </div>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Student%20Projects" class="researcherprofiles--util--stretched-link" target="">Offer Student Projects</a></p>
+								       </div>
+								       <div class="researcherprofiles--home-page--featured-items-block--item">
+									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4989132.jpeg" alt="">
+									      </div>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Clinical%20Trials" class="researcherprofiles--util--stretched-link" target="">Run Clinical Trials</a></p>
+								       </div>
+								       <div class="researcherprofiles--home-page--featured-items-block--item">
+									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-3039036.jpeg" alt="">
+									      </div>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;searchfor=Global+Health+Equity&amp;exactphrase=true" class="researcherprofiles--util--stretched-link" target="">Work in Global Health Equity</a></p>
+								       </div>
+                                    </div>
+	                                <p>See more options in the <a href='<%=GetThemedDomain()%>/search/advanced'>Advanced Search</a> tab</p>
+								</div> 
+							</asp:Panel>
+							<asp:Panel ID="FeaturedItemsUC" runat="server" SkinID="UC" Visible="false">
+								<div class="researcherprofiles--home-page--featured-items-block"> 
+                                   <h6>With one click, see people who:</h6>
+                                   <div class="researcherprofiles--home-page--featured-items-block--grid">
+								       <div class="researcherprofiles--home-page--featured-items-block--item">
+									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4989132.jpeg" alt="">
+									      </div>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Clinical%20Trials%2CUC%20Health" class="researcherprofiles--util--stretched-link" target="">Run Clinical Trials</a></p>
+								       </div>
+                                    </div>
+	                                <p>See more options in the <a href='<%=GetThemedDomain()%>/search/advanced'>Advanced Search</a> tab</p>
+								</div> 
+							</asp:Panel>
+							<asp:Panel ID="FeaturedItemsUSC" runat="server" SkinID="USC" Visible="false">
+								<div class="researcherprofiles--home-page--featured-items-block"> 
+                                   <h6>With one click, see people who:</h6>
+                                   <div class="researcherprofiles--home-page--featured-items-block--grid">
+								       <div class="researcherprofiles--home-page--featured-items-block--item">
+									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-9064315.jpeg" alt="">
+									      </div>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Faculty%20Mentoring" class="researcherprofiles--util--stretched-link" target="">Mentor Faculty</a></p>
+								       </div>
+								       <div class="researcherprofiles--home-page--featured-items-block--item">
+									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4989132.jpeg" alt="">
+									      </div>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Clinical%20Trials" class="researcherprofiles--util--stretched-link" target="">Run Clinical Trials</a></p>
+								       </div>
+                                    </div>
+	                                <p>See more options in the <a href='<%=GetThemedDomain()%>/search/advanced'>Advanced Search</a> tab</p>
+								</div> 
+							</asp:Panel>
+							<asp:Panel ID="FeaturedItemsDefault" runat="server" SkinID="Default" Visible="false">
+								<div class="researcherprofiles--home-page--featured-items-block"> 
+                                   <h6>With one click, see people who:</h6>
+                                   <div class="researcherprofiles--home-page--featured-items-block--grid">
+								       <div class="researcherprofiles--home-page--featured-items-block--item">
+									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4989132.jpeg" alt="">
+									      </div>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Clinical%20Trials" class="researcherprofiles--util--stretched-link" target="">Run Clinical Trials</a></p>
+								       </div>
+                                    </div>
+	                                <p>See more options in the <a href='<%=GetThemedDomain()%>/search/advanced'>Advanced Search</a> tab</p>
+								</div> 
+							</asp:Panel>
                         </div>
                         <div class="profilesContentPassive">
                             <div class="panelPassive">
@@ -364,7 +499,7 @@
 					<div id="researcherprofiles--footer-collaboration">
 						<p>
 							UCSD Profiles is managed by the UC San Diego
-							<a href="https://actri.ucsd.edu/Pages/default.aspx" target="_blank">Altman Clinical and Translational Research Institute (ACTRI)</a>.<br />
+							<a href="https://actri.ucsd.edu" target="_blank">Altman Clinical and Translational Research Institute (ACTRI)</a>.<br />
 							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
 						</p>
 					</div>

@@ -1609,7 +1609,7 @@ body.about .share {
 
 /* heading at the beginning of the block */
 .researcherprofiles--home-page--featured-items-block h6 {
-    text-align: left;
+    text-align: center;
     font-weight: bold;
     font-size: 1.25rem;
     margin: 0 0 1rem 0;
@@ -1628,7 +1628,7 @@ body.about .share {
     position: relative;
     display: flex;
     flex-direction: column;
-    min-width: 0;
+    min-width: 3rem;
     word-wrap: break-word;
     background-color: var(--highlighted-panel-background-color);
     border: 1px solid var(--highlighted-panel-border-color);
@@ -1647,11 +1647,24 @@ body.about .share {
         display: flex;
         flex-flow: row wrap;
         gap: min(3%, 1rem);
+        justify-content: center;
     }
 
+    /* keep the image from getting too wide */
+    .researcherprofiles--home-page .researcherprofiles--home-page--featured-items-block--item {
+        max-width: max(25%, 8rem)
+    }
+
+    /* cap image height, make allowances when only 1 block */
     .researcherprofiles--home-page .researcherprofiles--home-page--featured-items-block--image-container {
         height: 5rem;
     }
+
+    .researcherprofiles--home-page .researcherprofiles--home-page--featured-items-block--item:only-of-type .researcherprofiles--home-page--featured-items-block--image-container {
+        height: 8rem;
+    }
+
+
 }
 
 /* image covers the entirety of the image block */

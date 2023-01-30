@@ -188,7 +188,7 @@ namespace Profiles.Login.Modules.MultiShibLogin
             else
             {
                 // final part of logout
-                url = ConfigurationManager.AppSettings["Shibboleth.LogoutURL"] + "?return=" + HttpUtility.UrlEncode(redirectto);
+                url = ConfigurationManager.AppSettings["Shibboleth.LogoutURL"];// + "?return=" + HttpUtility.UrlEncode(redirectto);
             }
 
             DebugLogging.Log("MultiShib building redirect to :" + url);

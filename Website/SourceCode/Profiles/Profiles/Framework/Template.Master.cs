@@ -653,6 +653,20 @@ namespace Profiles.Framework
             return Brand.GetThemedDomain();
         }
 
+        public string GetBrandedSearchTerm()
+        {
+
+            if (!String.IsNullOrEmpty(Brand.GetCurrentBrand().PersonFilter))
+            {
+                return "otherfilters=" + Brand.GetCurrentBrand().PersonFilter;
+            }
+            else if (!Brand.GetCurrentBrand().IsMultiInstitutional())
+            {
+                return "institution=" + Brand.GetCurrentBrand().GetInstitution().GetURI();
+            }
+            return "";
+        }
+
         #region "Public Properties"
         public XmlDocument PresentationXML
         {

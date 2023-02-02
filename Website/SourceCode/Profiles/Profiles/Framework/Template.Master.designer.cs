@@ -328,6 +328,78 @@ namespace Profiles.Framework {
         protected global::System.Web.UI.WebControls.Repeater rptMain;
         
         /// <summary>
+        /// FeaturedItemsUCD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel FeaturedItemsUCD;
+        
+        /// <summary>
+        /// FeaturedItemsUCLA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel FeaturedItemsUCLA;
+        
+        /// <summary>
+        /// FeaturedItemsUCSD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel FeaturedItemsUCSD;
+        
+        /// <summary>
+        /// FeaturedItemsUCI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel FeaturedItemsUCI;
+        
+        /// <summary>
+        /// FeaturedItemsUCSF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel FeaturedItemsUCSF;
+        
+        /// <summary>
+        /// FeaturedItemsUC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel FeaturedItemsUC;
+        
+        /// <summary>
+        /// FeaturedItemsUSC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel FeaturedItemsUSC;
+        
+        /// <summary>
+        /// FeaturedItemsDefault control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel FeaturedItemsDefault;
+        
+        /// <summary>
         /// ContentPassive control.
         /// </summary>
         /// <remarks>

@@ -11,7 +11,7 @@ Code licensed under a BSD License.
 For details, see: LICENSE.txt
 -->
 <ModuleList>
-  <Module ModulePath="Modules" NameSpace="SearchPerson" FileName="SearchPerson.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="SearchPerson" FileName="SearchPerson.ascx" Enabled="false"/>
   <Module ModulePath="Modules" NameSpace="PersonResults" FileName="PersonResults.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="SearchCriteria" FileName="SearchCriteria.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="SearchOptions" FileName="SearchOptions.ascx" Enabled="true"/>
@@ -21,4 +21,6 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="TopSearchPhrase" FileName="TopSearchPhrase.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="SearchConnection" FileName="SearchConnection.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="SearchEverything" FileName="SearchEverything.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="ModernSearch" FileName="ModernSearch.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="AdvancedSearch" FileName="AdvancedSearch.ascx" Enabled="true"/>
 </ModuleList>

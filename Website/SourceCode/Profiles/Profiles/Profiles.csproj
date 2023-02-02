@@ -640,6 +640,8 @@
     <Content Include="RobotsTxt.aspx" />
     <Content Include="Search\CSS\bootstrap-multiselect.css" />
     <Content Include="Search\JavaScript\UCSF.js" />
+    <Content Include="Search\Modules\ModernSearch\ModernSearch.ascx" />
+    <Content Include="Search\Modules\AdvancedSearch\AdvancedSearch.ascx" />
     <Content Include="SiteMap.aspx" />
     <Content Include="trace.aspx" />
     <Content Include="women-in-science\Default.aspx" />
@@ -2105,12 +2107,26 @@
       <DependentUpon>SearchProxies.ascx</DependentUpon>
     </Compile>
     <Compile Include="Proxy\Utilities\DataIO.cs" />
+    <Compile Include="Search\Modules\ModernSearch\ModernSearch.ascx.cs">
+      <DependentUpon>ModernSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search\Modules\ModernSearch\ModernSearch.ascx.designer.cs">
+      <DependentUpon>ModernSearch.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Search\Modules\SearchEverythingFacets\SearchEverythingFacets.ascx.cs">
       <DependentUpon>SearchEverythingFacets.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Search\Modules\SearchEverythingFacets\SearchEverythingFacets.ascx.designer.cs">
       <DependentUpon>SearchEverythingFacets.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Search\Modules\AdvancedSearch\AdvancedSearch.ascx.cs">
+      <DependentUpon>AdvancedSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search\Modules\AdvancedSearch\AdvancedSearch.ascx.designer.cs">
+      <DependentUpon>AdvancedSearch.ascx</DependentUpon>
     </Compile>
     <Compile Include="Search\Modules\SearchResults\SearchResults.ascx.cs">
       <DependentUpon>SearchResults.ascx</DependentUpon>

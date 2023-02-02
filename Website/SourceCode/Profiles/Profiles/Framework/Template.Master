@@ -44,22 +44,22 @@
                     <div class="researcherprofiles--branded-institutional-banner--menu">
                         <ul>
                             <li>
-                                <a href="https://www.ucdavis.edu/" target="_blank">UC Davis</a>
+                                <a href="https://profiles.ucdavis.edu/" target="_blank">UC Davis</a>
                             </li>
                             <li>
-                                <a title="University of California, Irvine" href="https://uci.edu" target="_blank">UCI</a>
+                                <a title="University of California, Irvine" href="https://profiles.icts.uci.edu" target="_blank">UCI</a>
                             </li>
                             <li>
-                                <a href="http://www.ucla.edu/" target="_blank">UCLA</a>
+                                <a href="https://profiles.ucla.edu/" target="_blank">UCLA</a>
                             </li>
                             <li>
-                                <a title="University of California, San Diego" href="http://ucsd.edu/" target="_blank">UCSD</a>
+                                <a title="University of California, San Diego" href="https://profiles.ucsd.edu/" target="_blank">UCSD</a>
                             </li>
                             <li>
-                                <a title="University of California, San Francisco" href="http://www.ucsf.edu/" target="_blank">UCSF</a>
+                                <a title="University of California, San Francisco" href="https://profiles.ucsf.edu/" target="_blank">UCSF</a>
                             </li>
 							<li>
-								<a title="University of Southern California" href="http://www.usc.edu/" target="_blank">USC</a>
+								<a title="University of Southern California" href="https://profiles.sc-ctsi.org/" target="_blank">USC</a>
 							</li>
                         </ul>
                     </div>
@@ -89,18 +89,18 @@
                     <div class="researcherprofiles--branded-institutional-banner--menu">
                         <ul>
                             <li class="first">
-                                <a title="University of California, San Francisco" href="http://www.ucsf.edu/" target="_blank">University of California, San Francisco</a>
+                                <a title="University of California, San Francisco" href="https://www.ucsf.edu/" target="_blank">University of California, San Francisco</a>
                             </li>
                         </ul>
                         <ul class="right">
                             <li>
-                                <a title="About UCSF" href="http://www.ucsf.edu/about" target="_blank">About UCSF</a>
+                                <a title="About UCSF" href="https://www.ucsf.edu/about" target="_blank">About UCSF</a>
                             </li>
                             <li>
-                                <a title="Search UCSF" href="http://www.ucsf.edu/ucsf/search" target="_blank">Search UCSF</a>
+                                <a title="Search UCSF" href="https://www.ucsf.edu/ucsf/search" target="_blank">Search UCSF</a>
                             </li>
                             <li>
-                                <a title="UCSF Medical Center" href="http://www.ucsfhealth.org/" target="_blank">UCSF Medical Center</a>
+                                <a title="UCSF Medical Center" href="https://www.ucsfhealth.org/" target="_blank">UCSF Medical Center</a>
                             </li>
                         </ul>
                     </div>
@@ -121,9 +121,9 @@
                 <div class="researcherprofiles--branded-institutional-banner">
                     <div class="researcherprofiles--branded-institutional-banner--menu">
                         <ul>
-							<li><a target="_blank" href="http://ucsd.edu/">
+							<li><a target="_blank" href="https://ucsd.edu/">
 								<img src="<%=GetThemedDomain()%>/App_Themes/UCSD/Images/ucsdlogo.png" alt="UC San Diego" /></a></li>
-                            <li><a id="powered-by-ctsi" href="http://actri.ucsd.edu/Pages/default.aspx" target="_blank">Powered by Altman Clinical and Translational Research Institute</a></li>
+                            <li><a id="powered-by-ctsi" href="https://actri.ucsd.edu/Pages/default.aspx" target="_blank">Powered by Altman Clinical and Translational Research Institute</a></li>
                         </ul>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                     <div class="researcherprofiles--branded-institutional-banner--menu">
                         <ul>
                             <li class="first">
-                                <a href="http://www.ucla.edu/" target="_blank">UCLA.edu</a>
+                                <a href="https://www.ucla.edu/" target="_blank">UCLA.edu</a>
                             </li>
 						</ul>
 					</div>
@@ -207,19 +207,19 @@
                     <div class="researcherprofiles--branded-institutional-banner--menu">
 						<ul>
 							<li class="first">
-								<a title="USC Home" href="http://www.usc.edu/" target="_blank">USC Home</a>
+								<a title="USC Home" href="https://www.usc.edu/" target="_blank">USC Home</a>
 							</li>
 							<li>
-								<a title="About USC" href="http://about.usc.edu/" target="_blank">About USC</a>
+								<a title="About USC" href="https://about.usc.edu/" target="_blank">About USC</a>
 							</li>
 							<li>
-								<a title="Keck Hospital of USC" href="http://www.keckmedicine.org/" target="_blank">Keck Hospital of USC</a>
+								<a title="Keck Hospital of USC" href="https://www.keckmedicine.org/" target="_blank">Keck Hospital of USC</a>
 							</li>
 							<li>
-								<a title="USC Norris Cancer Hospital" href="http://ccnt.hsc.usc.edu/" target="_blank">USC Norris Cancer Hospital</a>
+								<a title="USC Norris Cancer Hospital" href="https://ccnt.hsc.usc.edu/" target="_blank">USC Norris Cancer Hospital</a>
 							</li>
 							<li>
-								<a id="powered-by-ctsi" href="http://sc-ctsi.org/" target="_blank">Powered by SC CTSI</a>
+								<a id="powered-by-ctsi" href="https://sc-ctsi.org/" target="_blank">Powered by SC CTSI</a>
 							</li>
 						</ul>
                     </div>
@@ -326,7 +326,7 @@
 					<div id="researcherprofiles--footer-collaboration">
 						<p>
 							UCSF Profiles is managed by the UCSF 
-							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
+							<a href="https://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
 							part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
 							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). 
 							<br />This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
@@ -368,7 +368,7 @@
 					<div id="researcherprofiles--footer-collaboration">
 						<p>
 							UC Davis Profiles is managed by the UCSF 
-							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
+							<a href="https://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
 							part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
 							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). <br />
 							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
@@ -390,7 +390,7 @@
 					<div id="researcherprofiles--footer-collaboration">
 						<p>
 							UCI Profiles is managed by the UCSF 
-							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
+							<a href="https://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
 							part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
 							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). <br />
 							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
@@ -412,7 +412,7 @@
 					<div id="researcherprofiles--footer-collaboration">
 						<p>
 							UCLA Profiles is managed by the UCSF 
-							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
+							<a href="https://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
 							part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
 							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). <br />
 							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
@@ -434,7 +434,7 @@
 					<div id="researcherprofiles--footer-collaboration">
 						<p>
 							Research Profiles is managed by the UCSF 
-							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
+							<a href="https://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
 							part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
 							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). <br />
 							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
@@ -450,7 +450,7 @@
 					<div id="researcherprofiles--footer-collaboration">
 						<p>
 							UC Profiles is managed by the UCSF 
-							<a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
+							<a href="https://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>, 
 							part of the Clinical and Translational Science Award program funded by the National Center for Advancing 
 							Translational Sciences (Grant Number UL1 TR000004) at the National Institutes of Health (NIH). <br />
 							This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.
@@ -465,7 +465,7 @@
 				<asp:Panel ID="MasterPageFooterUSC" runat="server" SkinID="USC" Visible="false">
 					<div id="researcherprofiles--footer-combined-text-block">
 						<p>
-						NIH Funding Acknowledgment: Important - All publications resulting from the utilization of SC CTSI resources are required to credit the SC CTSI grant by including the <a href="http://sc-ctsi.org/index.php/home/NIH_acknowledgement">NIH funding acknowledgment</a> and must comply with the <a target="blank" href="http://publicaccess.nih.gov/">NIH Public Access Policy.</a>
+						NIH Funding Acknowledgment: Important - All publications resulting from the utilization of SC CTSI resources are required to credit the SC CTSI grant by including the <a href="https://sc-ctsi.org/index.php/home/NIH_acknowledgement">NIH funding acknowledgment</a> and must comply with the <a target="blank" href="https://publicaccess.nih.gov/">NIH Public Access Policy.</a>
 						</p>
 						<p>
 						This site is running Profiles RNS version <%=GetVersion()%> on <%=Environment.GetEnvironmentVariable("COMPUTERNAME")%>.

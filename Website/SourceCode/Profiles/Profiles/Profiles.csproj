@@ -388,6 +388,10 @@
     <Content Include="Framework\Images\orcid_16x16%281%29.gif" />
     <Content Include="Framework\Images\Orcid_Logo_rgb.png" />
     <Content Include="Framework\Images\Orcid_symbol_rgb.png" />
+    <Content Include="Framework\Images\pexels-photo-3039036.jpeg" />
+    <Content Include="Framework\Images\pexels-photo-4033145.jpeg" />
+    <Content Include="Framework\Images\pexels-photo-4989132.jpeg" />
+    <Content Include="Framework\Images\pexels-photo-9064315.jpeg" />
     <Content Include="Framework\Images\photodefault.jpg" />
     <Content Include="Framework\Images\ProfilesLogo.gif" />
     <Content Include="Framework\Images\search-icon.gif" />

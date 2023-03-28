@@ -169,9 +169,13 @@ namespace ProfilesSearchAPI.Utilities
             dbcommand.CommandTimeout = this.GetCommandTimeout();
 
             param[0] = new SqlParameter("@SessionID", session.SessionID);
+            param[0].Direction = ParameterDirection.Input;
+
             param[1] = session.UserID > 0 ? new SqlParameter("@UserID", session.UserID) : new SqlParameter("@UserID", DBNull.Value);
+            param[1].Direction = ParameterDirection.Input;
 
             param[2] = new SqlParameter("@LastUsedDate", DateTime.Now);
+            param[2].Direction = ParameterDirection.Input;
 
             param[3] = new SqlParameter("@SessionPersonNodeID", 0);
             param[3].Direction = ParameterDirection.Output;
@@ -187,6 +191,11 @@ namespace ProfilesSearchAPI.Utilities
             {
                 param[6] = new SqlParameter("@LogoutDate", session.LogoutDate.ToString());
             }
+            else
+            {
+                param[6] = new SqlParameter("@LogoutDate", DBNull.Value);
+            }
+            param[6].Direction = ParameterDirection.Input;
 
             dbcommand.Connection = dbconnection;
 
@@ -322,6 +331,7 @@ namespace ProfilesSearchAPI.Utilities
             }
             catch (Exception ex)
             {
+                Utilities.DebugLogging.Log(CmdText);
                 Utilities.DebugLogging.Log(ex.Message);
                 Utilities.DebugLogging.Log(ex.StackTrace);
             }
@@ -333,9 +343,9 @@ namespace ProfilesSearchAPI.Utilities
         {
             for (int i = 0; i < sqlParam.GetLength(0); i++)
             {
+                //Utilities.DebugLogging.Log("i = " + i + ", " + sqlParam[i]);
                 sqlcmd.Parameters.Add(sqlParam[i]);
                 sqlcmd.Parameters[i].Direction = sqlParam[i].Direction;
-                
             }
         }
 

@@ -120,7 +120,7 @@
                         <ul>
 							<li><a target="_blank" href="https://ucsd.edu/">
 								<img src="<%=GetThemedDomain()%>/App_Themes/UCSD/Images/ucsdlogo.png" alt="UC San Diego" /></a></li>
-                            <li><a id="powered-by-ctsi" href="http://actri.ucsd.edu" target="_blank">Powered by Altman Clinical and Translational Research Institute</a></li>
+                            <li><a id="powered-by-ctsi" href="https://actri.ucsd.edu" target="_blank">Powered by Altman Clinical and Translational Research Institute</a></li>
                         </ul>
                     </div>
                 </div>
@@ -308,19 +308,19 @@
                                     <div class="researcherprofiles--home-page--featured-items-block--grid">
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
-										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-9064315.jpeg" alt="">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-9064315.jpeg" alt="">
 									      </div>
-									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Faculty%20Mentoring" class="researcherprofiles--util--stretched-link" target="">Mentor Faculty</a></p>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;searchfor=Mentoring" class="researcherprofiles--util--stretched-link" target="">Mentor Faculty</a></p>
 								       </div>
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
-										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4033145.jpeg" alt="">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-4033145.jpeg" alt="">
 									      </div>
 									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Student%20Projects" class="researcherprofiles--util--stretched-link" target="">Offer Student Projects</a></p>
 								       </div>
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
-										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4989132.jpeg" alt="">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-4989132.jpeg" alt="">
 									      </div>
 									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Clinical%20Trials" class="researcherprofiles--util--stretched-link" target="">Run Clinical Trials</a></p>
 								       </div>
@@ -334,7 +334,7 @@
                                     <div class="researcherprofiles--home-page--featured-items-block--grid">
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
-										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4989132.jpeg" alt="">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-4989132.jpeg" alt="">
 									      </div>
 									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Clinical%20Trials" class="researcherprofiles--util--stretched-link" target="">Run Clinical Trials</a></p>
 								       </div>
@@ -348,13 +348,13 @@
                                     <div class="researcherprofiles--home-page--featured-items-block--grid">
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
-										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-9064315.jpeg" alt="">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-9064315.jpeg" alt="">
 									      </div>
 									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Faculty%20Mentoring" class="researcherprofiles--util--stretched-link" target="">Mentor Faculty</a></p>
 								       </div>
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
-										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4989132.jpeg" alt="">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-4989132.jpeg" alt="">
 									      </div>
 									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Clinical%20Trials" class="researcherprofiles--util--stretched-link" target="">Run Clinical Trials</a></p>
 								       </div>
@@ -368,7 +368,7 @@
                                    <div class="researcherprofiles--home-page--featured-items-block--grid">
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
-										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4989132.jpeg" alt="">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-4989132.jpeg" alt="">
 									      </div>
 									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Clinical%20Trials" class="researcherprofiles--util--stretched-link" target="">Run Clinical Trials</a></p>
 								       </div>
@@ -382,25 +382,25 @@
                                    <div class="researcherprofiles--home-page--featured-items-block--grid">
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
-										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-9064315.jpeg" alt="">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-9064315.jpeg" alt="">
 									      </div>
 									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Faculty%20Mentoring" class="researcherprofiles--util--stretched-link" target="">Mentor Faculty</a></p>
 								       </div>
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
-										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4033145.jpeg" alt="">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-4033145.jpeg" alt="">
 									      </div>
 									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Student%20Projects" class="researcherprofiles--util--stretched-link" target="">Offer Student Projects</a></p>
 								       </div>
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
-										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4989132.jpeg" alt="">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-4989132.jpeg" alt="">
 									      </div>
 									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Clinical%20Trials" class="researcherprofiles--util--stretched-link" target="">Run Clinical Trials</a></p>
 								       </div>
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
-										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-3039036.jpeg" alt="">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-3039036.jpeg" alt="">
 									      </div>
 									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;searchfor=Global+Health+Equity&amp;exactphrase=true" class="researcherprofiles--util--stretched-link" target="">Work in Global Health Equity</a></p>
 								       </div>
@@ -414,7 +414,7 @@
                                    <div class="researcherprofiles--home-page--featured-items-block--grid">
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
-										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4989132.jpeg" alt="">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-4989132.jpeg" alt="">
 									      </div>
 									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Clinical%20Trials%2CUC%20Health" class="researcherprofiles--util--stretched-link" target="">Run Clinical Trials</a></p>
 								       </div>
@@ -428,13 +428,13 @@
                                    <div class="researcherprofiles--home-page--featured-items-block--grid">
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
-										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-9064315.jpeg" alt="">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-9064315.jpeg" alt="">
 									      </div>
 									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Faculty%20Mentoring" class="researcherprofiles--util--stretched-link" target="">Mentor Faculty</a></p>
 								       </div>
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
-										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4989132.jpeg" alt="">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-4989132.jpeg" alt="">
 									      </div>
 									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Clinical%20Trials" class="researcherprofiles--util--stretched-link" target="">Run Clinical Trials</a></p>
 								       </div>
@@ -448,7 +448,7 @@
                                    <div class="researcherprofiles--home-page--featured-items-block--grid">
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
-										     <img class="researcherprofiles--home-page--featured-items-block--image" src="https://profilesbeta.ucsf.edu/search/assets/img/pexels/pexels-photo-4989132.jpeg" alt="">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-4989132.jpeg" alt="">
 									      </div>
 									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Clinical%20Trials" class="researcherprofiles--util--stretched-link" target="">Run Clinical Trials</a></p>
 								       </div>

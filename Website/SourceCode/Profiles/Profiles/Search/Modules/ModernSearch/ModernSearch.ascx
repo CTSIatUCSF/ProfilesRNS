@@ -32,7 +32,7 @@
 		var showcolumns = institution != '' ? '10' : '9'; 
 
         document.location.href = '<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&searchfor=' + keyword + '&exactphrase=false&institution=' + institution +
-            '&classuri=' + classuri + '&otherfilters=' + otherfilters + '&showcolumns=' + showcolumns + '&perpage=15&offset=0';
+            '&classuri=' + classuri + '&otherfilters=' + otherfilters + '&showcolumns=' + showcolumns + '&new=true&perpage=15&offset=0';
         return false;
     }
 

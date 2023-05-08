@@ -744,6 +744,7 @@ namespace Profiles.Framework
         {
             return Brand.GetThemedFile(Page, "Images/favicon.ico");
         }
+
         #endregion
 
     }

@@ -132,7 +132,8 @@ namespace Profiles.Framework.Modules.MainMenu
             //else
             //  litExportRDF.Visible = false;
 
-            /**** Turned off by UCSF for now
+            /**** Turned off by UCSF for now  
+             * Back ON in DEV **/
             if (sm.Session().UserID > 0)
             {
                 if (data.IsGroupAdmin(sm.Session().UserID))
@@ -141,7 +142,6 @@ namespace Profiles.Framework.Modules.MainMenu
                     groupListDivider.Visible = true;
                 }
             }
-            ****/
 
             string loginclass = string.Empty;
             if (sm.Session().UserID == 0)

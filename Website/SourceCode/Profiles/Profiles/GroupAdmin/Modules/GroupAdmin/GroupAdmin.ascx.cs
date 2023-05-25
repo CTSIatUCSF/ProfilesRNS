@@ -240,6 +240,17 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
                 Group proxy = (Group)e.Row.DataItem;
 
                 ImageButton lnkDelete = (ImageButton)e.Row.FindControl("lnkDelete");
+                // New code to support themes
+                DropDownList drpThemeEdit = (DropDownList)e.Row.FindControl("drpThemeEdit");
+                if (drpThemeEdit != null)
+                {
+                    foreach (String theme in Brand.GetAllThemes())
+                    {
+                        drpThemeEdit.Items.Add(new ListItem(theme, theme));
+                    }
+                    HiddenField thm = (HiddenField)e.Row.FindControl("hdnTheme");
+                    drpThemeEdit.Items.FindByValue(thm.Value).Selected = true;
+                }
             }
 
             e.Row.Cells[3].Attributes.Add("style", "width:50px");
@@ -250,7 +261,6 @@ namespace Profiles.GroupAdmin.Modules.GroupAdmin
             gvGroups.EditIndex = -1;
 
             fillGroupsGrid();
-
         }
 
         protected void gvGroups_RowEditing(object sender, GridViewEditEventArgs e)

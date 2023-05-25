@@ -138,6 +138,15 @@
                         NavigateUrl='<%# Bind("GroupURI") %>'></asp:HyperLink>
                 </ItemTemplate>
             </asp:TemplateField>
+            <asp:TemplateField HeaderStyle-CssClass="alignCenterAction" ItemStyle-CssClass="alignCenterAction" HeaderText="Theme">
+                <EditItemTemplate>
+                    <asp:DropDownList ID="drpThemeEdit" runat="server" Width="255px" AutoPostBack="false" />
+                    <asp:HiddenField ID="hdnTheme" runat="server" Value='<%# Bind("Theme") %>'></asp:HiddenField>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="lblTheme" runat="server" Text='<%# Bind("Theme") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField HeaderStyle-CssClass="alignCenterAction" ItemStyle-CssClass="alignCenterAction" HeaderText="Visibility">
                 <EditItemTemplate>
                     <asp:Label ID="lblVisibility" runat="server" Text='<%# Bind("ViewSecurityGroupName") %>'></asp:Label>

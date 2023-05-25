@@ -77,14 +77,14 @@ namespace Profiles.Edit.Modules.EditPropertyList
                     // plugins http://profiles.catalyst.harvard.edu/ontology/plugins!GlobalHealthEquity
                     else if (node.SelectSingleNode("@URI").Value.StartsWith("http://profiles.catalyst.harvard.edu/ontology/plugins"))
                     {
-                        if (!Institution.IsPluginAllowedFor(node.SelectSingleNode("@URI").Value.Substring("http://profiles.catalyst.harvard.edu/ontology/plugins".Length + 1), UCSFIDSet.ByNodeId[Subject].Institution) )
+                        if (!UCSFIDSet.IsPerson(Subject) || !Institution.IsPluginAllowedFor(node.SelectSingleNode("@URI").Value.Substring("http://profiles.catalyst.harvard.edu/ontology/plugins".Length + 1), UCSFIDSet.ByNodeId[Subject].Institution) )
                         {
                             continue;
                         }
                     }
 
                     // skip mailing address for UCLA
-                    if (node.SelectSingleNode("@URI").Value.StartsWith("http://vivoweb.org/ontology/core#mailingAddress") && UCSFIDSet.ByNodeId[Subject].Institution != null && "UCLA".Equals(UCSFIDSet.ByNodeId[Subject].Institution.GetAbbreviation()))
+                    if ((node.SelectSingleNode("@URI").Value.StartsWith("http://vivoweb.org/ontology/core#mailingAddress") && UCSFIDSet.IsPerson(Subject) && UCSFIDSet.ByNodeId[Subject].Institution != null && "UCLA".Equals(UCSFIDSet.ByNodeId[Subject].Institution.GetAbbreviation())))
                     {
                         continue;
                     }
@@ -137,8 +137,12 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 gli.Add(new GenericListItem(securityitem.SelectSingleNode("@Label").Value, securityitem.SelectSingleNode("@Description").Value));
             }
 
-            repPropertyGroups.DataSource = si;
-            repPropertyGroups.DataBind();
+            // because our our weird UCSF logic we need to skip ones that don't have any records
+            if (si.Count > 0)
+            {
+                repPropertyGroups.DataSource = si;
+                repPropertyGroups.DataBind();
+            }
 
             BuildSecurityKey(gli);
             if (!String.IsNullOrEmpty(ConfigurationSettings.AppSettings["HR_NameServiceURL"]))
@@ -160,7 +164,11 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 List<SecurityItem> si = (List<SecurityItem>)e.Item.DataItem;
                 grdSecurityGroups.DataSource = si;
                 grdSecurityGroups.DataBind();
-                grdSecurityGroups.HeaderRow.Cells[0].Text = "<b>Category</b>: " + si[0].ItemLabel;
+                // if added by UCSF due to our theme condititional plugins and gadgets (I hope)
+                if (si.Count > 0)
+                {
+                    grdSecurityGroups.HeaderRow.Cells[0].Text = "<b>Category</b>: " + si[0].ItemLabel;
+                }
             }
 
         }

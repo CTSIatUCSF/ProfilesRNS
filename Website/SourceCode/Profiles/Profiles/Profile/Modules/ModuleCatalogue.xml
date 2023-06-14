@@ -44,5 +44,6 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="GlobalHealthEquity.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="UCSFFeaturedVideos.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="Mentoring.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="SimilarPeopleSameInstitution" FileName="SimilarPeopleSameInstitution.ascx" Enabled="true"/>
 </ModuleList>
 

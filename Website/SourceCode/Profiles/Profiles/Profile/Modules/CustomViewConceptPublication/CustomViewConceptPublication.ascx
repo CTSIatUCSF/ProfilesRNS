@@ -3,8 +3,7 @@
 <div class="PropertyGroupItem"  style='margin-bottom: 10px;margin-top:-30px;'>
 	<div class="PropertyItemHeader">
 		<a href="javascript:toggleBlock('propertyitem','conceptPub')"> 
-			<img id='plusImage' runat='server' style="border: none; text-decoration: none !important" border="0" alt="expand / collapse" /></a>
-			<%=this.BrandName %> Publications
+			<img id='plusImage' runat='server' style="border: none; text-decoration: none !important" border="0" alt="expand / collapse" /></a> Publications
 	</div>
 	<div class="PropertyGroupData">
 		<div id="conceptPub" class='publicationList'>

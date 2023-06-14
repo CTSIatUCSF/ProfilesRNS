@@ -18,7 +18,7 @@
     <ItemTemplate>
         <li>
             <asp:HyperLink runat="server" ID="itemUrl"></asp:HyperLink>
-            <asp:Literal runat="server" ID="ucsfPersonItem"></asp:Literal>
+            <asp:Literal runat="server" ID="ucsfCustomItem"></asp:Literal>
         </li>
     </ItemTemplate>
     <FooterTemplate>
@@ -26,6 +26,7 @@
             </div>         
         			<div class="dblarrow">
                         <asp:HyperLink runat="server" ID="moreurl" Text="Explore" CssClass="prns-explore-btn"></asp:HyperLink>
+                        <asp:HyperLink runat="server" ID="moreurlInst" CssClass="prns-explore-btn" Visible="false"></asp:HyperLink>
                     </div>
         <div class="passiveSectionLine">_</div>
     </FooterTemplate>

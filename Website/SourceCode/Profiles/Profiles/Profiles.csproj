@@ -601,6 +601,10 @@
     <Content Include="Profile\Modules\NetworkClusterGroup\network_browser_force.swf" />
     <Content Include="Profile\Modules\NetworkCluster\JavaScript\networkClusterLayoutEngine.js" />
     <Content Include="Profile\Modules\NetworkCluster\JavaScript\watchdog.js" />
+    <Content Include="Profile\Modules\SimilarPeopleSameInstitution\SimilarPeopleSameInstitution.ascx" />
+    <Content Include="Profile\Modules\SimilarPeopleSameInstitution\NetworkList.xslt" />
+    <Content Include="Profile\Modules\SimilarPeopleSameInstitution\SortIntermediate.xslt" />
+    <Content Include="Profile\Modules\SimilarPeopleSameInstitution\SortIntermediateByWeight.xslt" />
     <Content Include="Profile\Modules\NetworkRadialFlash\crossdomain.xml" />
     <Content Include="Profile\Modules\NetworkRadialFlash\Default.aspx" />
     <Content Include="Profile\Modules\NetworkRadialFlash\Images\yui-loading.gif" />
@@ -1760,6 +1764,13 @@
     </Compile>
     <Compile Include="Profile\Modules\NetworkCluster\NetworkCluster.ascx.designer.cs">
       <DependentUpon>NetworkCluster.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\SimilarPeopleSameInstitution\SimilarPeopleSameInstitution.ascx.cs">
+      <DependentUpon>SimilarPeopleSameInstitution.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\SimilarPeopleSameInstitution\SimilarPeopleSameInstitution.ascx.designer.cs">
+      <DependentUpon>SimilarPeopleSameInstitution.ascx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\NetworkRadialFlash\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

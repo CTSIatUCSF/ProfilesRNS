@@ -41,7 +41,7 @@
 
 <div class="activeContainer researcherprofiles--primary-search--search-form--container" id="modernsearch">
     <div class="activeContainerTop">
-	Find <%=this.BrandName %> experts on…
+	Find <%= Profiles.Framework.Utilities.Brand.GetCurrentBrand().GetBrandName()%> experts on…
     </div>	
 	  <div class="activeContainerCenter">
 		<div class="researcherprofiles--primary-search--search-box--input-group" onkeypress="JavaScript:runScript(event);" class="searchForm" width="100%">

@@ -24,18 +24,6 @@ namespace Profiles.Search.Modules.ModernSearch
                 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Brand.GetCurrentBrand().GetInstitution() != null)
-            {
-                BrandName = Brand.GetCurrentBrand().GetInstitution().GetAbbreviation();
-            }
-            else if (Brand.GetCurrentBrand() != Brand.getDefault())
-            {
-                BrandName = Brand.GetCurrentBrand().Theme;
-            }
-            else
-            {
-                BrandName = "";
-            }
             DrawProfilesModule();       
         
         }
@@ -63,7 +51,5 @@ namespace Profiles.Search.Modules.ModernSearch
         {
                 return Brand.GetCurrentBrand().IsMultiInstitutional() ? Brand.GetCurrentBrand().PersonFilter : "";
         }
-
-        public string BrandName { get; set; }
     }
 }

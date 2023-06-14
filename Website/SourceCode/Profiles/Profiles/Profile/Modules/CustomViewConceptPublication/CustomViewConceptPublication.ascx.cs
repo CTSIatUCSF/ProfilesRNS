@@ -14,18 +14,6 @@ namespace Profiles.Profile.Modules
 		{
 			DrawProfilesModule();
 			ConceptName = this.BaseData.SelectSingleNode("rdf:RDF[1]/rdf:Description[1]/rdfs:label[1]", this.Namespaces).InnerText;
-            if (Brand.GetCurrentBrand().GetInstitution() != null)
-            {
-                BrandName = Brand.GetCurrentBrand().GetInstitution().GetAbbreviation();
-            }
-            else if (Brand.GetCurrentBrand() != Brand.getDefault())
-            {
-                BrandName = Brand.GetCurrentBrand().Theme;
-            }
-            else
-            {
-                BrandName = "";
-            }
         }
 
 		public CustomViewConceptPublication() : base() { }
@@ -40,7 +28,7 @@ namespace Profiles.Profile.Modules
 		{
 			var dataIO = new Profiles.Profile.Utilities.DataIO();
             // Get concept publication timeline
-            using (var reader = dataIO.GetGoogleTimeline(base.RDFTriple, "[Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]", Brand.GetCurrentBrand()))
+            using (var reader = dataIO.GetGoogleTimeline(base.RDFTriple, "[Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]"))
 			{
 				while (reader.Read())
 				{
@@ -114,6 +102,5 @@ namespace Profiles.Profile.Modules
 
 		public bool ShowOtherPub { get; set; }
 		public string ConceptName { get; set; }
-        public string BrandName { get; set; }
     }
 }

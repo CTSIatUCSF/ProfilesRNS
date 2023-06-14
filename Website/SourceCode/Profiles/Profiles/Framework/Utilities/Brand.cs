@@ -246,6 +246,22 @@ namespace Profiles.Framework.Utilities
             return true;
         }
 
+        public string GetBrandName()
+        {
+            if (GetInstitution() != null)
+            {
+               return GetInstitution().GetAbbreviation();
+            }
+            else if (this != Brand.getDefault())
+            {
+                return Theme;
+            }
+            else
+            {
+                return "";
+            }
+        }
+
         static public bool ShowWomenInScience()
         {
             Institution inst = Brand.GetCurrentBrand().GetInstitution();

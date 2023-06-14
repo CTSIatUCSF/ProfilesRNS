@@ -763,7 +763,7 @@ namespace Profiles.Profile.Utilities
 
         }
 
-        public SqlDataReader GetGoogleTimeline(RDFTriple request, string storedproc, Brand brand)
+        public SqlDataReader GetGoogleTimeline(RDFTriple request, string storedproc)
         {
             SessionManagement sm = new SessionManagement();
             string connstr = GetConnectionString();
@@ -776,10 +776,6 @@ namespace Profiles.Profile.Utilities
             dbcommand.CommandTimeout = base.GetCommandTimeout();
             // Add parameters
             dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
-            if (brand != null && !String.IsNullOrEmpty(brand.PersonFilter))
-                dbcommand.Parameters.Add(new SqlParameter("@PersonFilter", brand.PersonFilter));
-            if (brand != null && brand.GetInstitution() != null)
-                dbcommand.Parameters.Add(new SqlParameter("@InstitutionAbbreviation", brand.GetInstitution().GetAbbreviation()));
             // Return reader
             return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
         }
@@ -850,11 +846,6 @@ namespace Profiles.Profile.Utilities
             // Add parameters
             dbcommand.Parameters.Add(new SqlParameter("@NodeId", request.Subject));
             dbcommand.Parameters.Add(new SqlParameter("@ListType", "newest"));
-            Brand brand = Brand.GetCurrentBrand();
-            if (brand != null && !String.IsNullOrEmpty(brand.PersonFilter))
-                dbcommand.Parameters.Add(new SqlParameter("@PersonFilter", brand.PersonFilter));
-            if (brand != null && brand.GetInstitution() != null)
-                dbcommand.Parameters.Add(new SqlParameter("@InstitutionAbbreviation", brand.GetInstitution().GetAbbreviation()));
             // Return reader
             return dbcommand.ExecuteReader(CommandBehavior.CloseConnection);
         }
@@ -1246,6 +1237,14 @@ namespace Profiles.Profile.Utilities
             }
 
             return dbreader;
+        }
+
+        public SqlDataReader GetSimilarPeopleSameInstitution(Int64 nodeid)
+        {
+            String sql = "SELECT s.[SimilarPersonID], s.[Weight], s.[CoAuthor], s.[numberOfSubjectAreas], p.LastName, p.FirstName FROM [Profile.Cache].[Person.SimilarPersonSameInstitution] s " +
+                        "JOIN [Profile.Data].[Person] p on p.PersonID = s.SimilarPersonID " +
+                        "WHERE s.PersonID = " + UCSFIDSet.ByNodeId[nodeid].PersonId + " ORDER BY [Weight] DESC";
+            return this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
         }
 
 

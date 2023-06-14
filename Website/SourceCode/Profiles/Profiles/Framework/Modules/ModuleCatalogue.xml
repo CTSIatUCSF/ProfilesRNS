@@ -16,5 +16,4 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="HelloWorld" FileName="helloworld.ascx" Enabled="true"/>  
   <Module ModulePath="Modules" NameSpace="MainMenu" FileName="MainMenu.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="RDFLink" FileName="RDFLink.ascx" Enabled="true"/>
-
 </ModuleList>

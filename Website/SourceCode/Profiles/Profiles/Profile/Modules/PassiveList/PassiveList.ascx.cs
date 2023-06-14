@@ -6,6 +6,7 @@ using System.Xml.Xsl;
 
 using Profiles.Framework.Utilities;
 using System.Web.UI.WebControls;
+using System.Web;
 
 namespace Profiles.Profile.Modules.PassiveList
 {
@@ -45,6 +46,7 @@ namespace Profiles.Profile.Modules.PassiveList
             pl.MoreText = CustomParse.Parse(base.GetModuleParamString("MoreText"), base.BaseData, base.Namespaces);                       
             pl.MoreURL = CustomParse.Parse(base.GetModuleParamString("MoreURL"), base.BaseData, base.Namespaces).Replace("amp;","");
             string path = base.GetModuleParamString("ListNode");
+
             try
             {
                 XmlNodeList items = this.BaseData.SelectNodes(path, this.Namespaces);
@@ -112,14 +114,27 @@ namespace Profiles.Profile.Modules.PassiveList
                         moreurl.NavigateUrl = Brand.CleanURL(pl.MoreURL);
                     }
                     else
+                    {
                         moreurl.Visible = false;
+                    }
+                    // UCSF Hack for UC Davis
+                    if ("People".Equals(base.GetModuleParamString("InfoCaption")) && !Brand.GetCurrentBrand().IsMultiInstitutional())
+                    {
+                        if (pl.MoreURL.Trim() != string.Empty)
+                        {
+                            HyperLink moreurlInst = (HyperLink)e.Item.FindControl("moreurlInst");
+                            moreurlInst.NavigateUrl = Brand.CleanURL(pl.MoreURL) + "&institution=" + Brand.GetCurrentBrand().GetInstitution().GetURI();
+                            moreurlInst.Text = "@" + Brand.GetCurrentBrand().GetInstitution().GetAbbreviation();
+                            moreurlInst.Visible = true;
+                        }
+                    }
                     break;
 
                 default:
                     itemList il = (itemList)e.Item.DataItem;
 
                     HyperLink itemurl = (HyperLink)e.Item.FindControl("itemUrl");
-                    Literal ucsfPersonItem = (Literal)e.Item.FindControl("ucsfPersonItem");
+                    Literal ucsfCustomItem = (Literal)e.Item.FindControl("ucsfCustomItem");
 
                     // UCSF. Need to set HTML, not Text! May need to swap in a literal
                     string personUrl = Brand.CleanURL(il.ItemURL);
@@ -129,16 +144,25 @@ namespace Profiles.Profile.Modules.PassiveList
                         long nodeId = UCSFIDSet.ByPrettyURL[personUrl].NodeId;
                         Institution inst = UCSFIDSet.ByPrettyURL[personUrl].Institution;
 
-                        ucsfPersonItem.Text = "<a href = '" + personUrl + "'>" +
+                        ucsfCustomItem.Text = "<a href = '" + personUrl + "'>" +
                             "<div class='thumbnail'><img src = '" + Brand.GetByPrimaryInstituion(inst).BasePath +
                             "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + nodeId + "&Thumbnail=True&Width=15' width='15' height='30'/></div>" +
                             il.ItemURLText +
                             "<span class='researcherprofiles--institution-name-associated-with-researcher'>" + inst.GetAbbreviation() + "</span></a>";
                     }
+                    // UCSF. Considered this for UC Davis  but came up with different solution
+                    //else if ("Concepts".Equals(base.GetModuleParamString("InfoCaption"))  && !Brand.GetCurrentBrand().IsMultiInstitutional()) // UCSF hack to make UC Davis happy, and it is a good idea
+                    //{
+                    //    itemurl.Visible = false;
+                    //    String searchURL = Brand.GetThemedDomain() + "/search/default.aspx?searchtype=people&searchfor=" + HttpUtility.UrlEncode(il.ItemURLText) +
+                    //            "&exactphrase=true&institution=" + Brand.GetCurrentBrand().GetInstitution().GetURI() + "&showcolumns=10&new=true&perpage=15&offset=0";
+                    //    ucsfCustomItem.Text = "<a href = '" + il.ItemURL + "'>" + il.ItemURLText + "</a>" + "&nbsp;" +
+                    //        "<a href = '" + searchURL + "'>@" + Brand.GetCurrentBrand().GetInstitution().GetAbbreviation() + "</a>";
+                    //}
                     else
                     {
-                        ucsfPersonItem.Visible = false;
-                        itemurl.NavigateUrl = il.ItemURL;
+                        ucsfCustomItem.Visible = false;
+                        itemurl.NavigateUrl = Brand.CleanURL(il.ItemURL);  // go ahead and brand things like Concept pages, why not?
                         itemurl.Text = il.ItemURLText;
                     }
                     break;

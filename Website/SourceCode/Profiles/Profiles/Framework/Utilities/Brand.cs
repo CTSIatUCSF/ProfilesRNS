@@ -262,10 +262,11 @@ namespace Profiles.Framework.Utilities
             }
         }
 
-        static public bool ShowWomenInScience()
+        static public string GetCelebrating()
         {
+            // Only UCSF for now
             Institution inst = Brand.GetCurrentBrand().GetInstitution();
-            return inst != null && "UCSF".Equals(inst.GetAbbreviation()) && Convert.ToBoolean(System.Configuration.ConfigurationSettings.AppSettings["WomenInScience"]);
+            return inst != null && "UCSF".Equals(inst.GetAbbreviation()) ? ConfigurationManager.AppSettings["Celebrating"] : "";
         }
 
         public Brand(string Theme, string BasePath, string GATrackingID, string PersonFilter, List<Institution> institutions)

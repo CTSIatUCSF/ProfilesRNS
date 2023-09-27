@@ -68,6 +68,23 @@
     height: auto
 }
 
+/* latinx heritage banner on home page */
+@media only screen and (max-width: 300px) {
+    #ctl00_LatinxHeritageBanner {
+        display: none;
+    }
+}
+
+#ctl00_LatinxHeritageBanner {
+    margin-top: 1rem;
+}
+
+#ctl00_LatinxHeritageBanner #ucsf--latinx-heritage picture,
+#ctl00_LatinxHeritageBanner #ucsf--latinx-heritage img {
+    width: 100%;
+    height: auto
+}
+
 /* link to women in science, a little bit of text underneath h1 logo, added Feb 2022. on every page other than home page. */
 #researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath {
     color: var(--generic-link-color) !important;

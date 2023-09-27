@@ -111,6 +111,9 @@
                         <asp:Panel ID="CelebratingWomenInScience" runat="server" Visible="false">
                             <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="/women-in-science/">Celebrating <b>Women in Science</b></a>
                         </asp:Panel>
+                        <asp:Panel ID="CelebratingLatinxHeritage" runat="server" Visible="false">
+                           <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="https://mrc.ucsf.edu/events/latinx-heritage-month-2023" style="cursor: pointer;">Celebrating <b>Latinx Heritage</b></a>
+                        </asp:Panel>
                     </div>	
                 </div>
             </asp:Panel>
@@ -259,8 +262,18 @@
                     <div id="ucsf--women-in-science">
                         <a href="/women-in-science/">
                             <picture>
-                                <source media="(max-width: 599px)" srcset="<%=GetThemedDomain()%>/women-in-science/Images/ucsf-women-in-science-2022-narrow.jpg" type="image/jpeg" height="638" width="3072">
-                                <img src="<%=GetThemedDomain()%>/women-in-science/Images/ucsf-women-in-science-2022-wide.jpg" alt="UCSF Women in Science" type="image/jpeg" height="354" width="4096">
+                                <source media="(max-width: 599px)" srcset="<%=GetThemedDomain()%>/App_Themes/UCSF/Images/Celebrating/ucsf-women-in-science-2022-narrow.jpg" type="image/jpeg" height="638" width="3072">
+                                <img src="<%=GetThemedDomain()%>/App_Themes/UCSF/Images/Celebrating/ucsf-women-in-science-2022-wide.jpg" alt="UCSF Women in Science" type="image/jpeg" height="354" width="4096">
+                            </picture>
+                        </a>
+                    </div>
+                </asp:Panel>
+                <asp:Panel ID="LatinxHeritageBanner" runat="server" Visible="false">
+                    <div id="ucsf--latinx-heritage">
+                        <a href="https://mrc.ucsf.edu/events/latinx-heritage-month-2023" style="cursor: pointer;">
+                            <picture>
+                            <source media="(max-width: 599px)" srcset="<%=GetThemedDomain()%>/App_Themes/UCSF/Images/Celebrating/ucsf-latinx-heritage-2023-narrow.jpg" type="image/jpeg" height="398" width="2400">
+                            <img src="<%=GetThemedDomain()%>/App_Themes/UCSF/Images/Celebrating/ucsf-latinx-heritage-2023-wide.jpg" alt="Celebrate Latinx Heritage" type="image/jpeg" height="354" width="4096">
                             </picture>
                         </a>
                     </div>

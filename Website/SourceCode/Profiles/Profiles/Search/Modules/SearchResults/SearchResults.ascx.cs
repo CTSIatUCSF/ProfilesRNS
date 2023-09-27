@@ -247,9 +247,13 @@ namespace Profiles.Search.Modules.SearchResults
             {
                 showcolumns = Convert.ToInt16(Request.QueryString["showcolumns"]);
             }
-            else
+            else if (String.IsNullOrEmpty(institution))
             {
                 showcolumns = 1;
+            }
+            else // UCSF change to show headers other than institution since that was explicitly chosen
+            {
+                showcolumns = 10;
             }
 
 

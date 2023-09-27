@@ -32,7 +32,7 @@ namespace Profiles.WomenInScience
         public void Page_Load(object sender, EventArgs e)
         {
             // If it is disabled, send them back to the search page
-            if (!Brand.ShowWomenInScience())
+            if (!"WomenInScience".Equals(Brand.GetCelebrating()))
             {
                 Response.Redirect(Brand.GetThemedDomain());
                 return;

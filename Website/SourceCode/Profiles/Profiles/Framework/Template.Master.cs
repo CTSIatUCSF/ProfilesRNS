@@ -266,7 +266,11 @@ namespace Profiles.Framework
                 litSystemNotice.Visible = false;
             //           }
 
-            Page.Master.FindControl("CelebratingWomenInScience").Visible = Brand.ShowWomenInScience();
+            // WomenInScience or LatinxHistory
+            if (!String.IsNullOrEmpty(Brand.GetCelebrating()))
+            {
+                Page.Master.FindControl("Celebrating" + Brand.GetCelebrating()).Visible = true;
+            }
         }
 
 

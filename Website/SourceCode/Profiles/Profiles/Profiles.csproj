@@ -240,6 +240,8 @@
     <Content Include="App_Themes\UCSD\UCSD.css" />
     <Content Include="App_Themes\UCSD\UCSD.js" />
     <Content Include="App_Themes\UCSF\Images\backtotop.gif" />
+    <Content Include="App_Themes\UCSF\Images\Celebrating\ucsf-latinx-heritage-2023-narrow.jpg" />
+    <Content Include="App_Themes\UCSF\Images\Celebrating\ucsf-latinx-heritage-2023-wide.jpg" />
     <Content Include="App_Themes\UCSF\Images\clinicaltrials.png" />
     <Content Include="App_Themes\UCSF\Images\conceptsearch.jpg" />
     <Content Include="App_Themes\UCSF\Images\dashboard.png" />
@@ -653,8 +655,8 @@
     <Content Include="SiteMap.aspx" />
     <Content Include="trace.aspx" />
     <Content Include="women-in-science\Default.aspx" />
-    <Content Include="women-in-science\Images\ucsf-women-in-science-2022-narrow.jpg" />
-    <Content Include="women-in-science\Images\ucsf-women-in-science-2022-wide.jpg" />
+    <Content Include="App_Themes\UCSF\Images\Celebrating\ucsf-women-in-science-2022-narrow.jpg" />
+    <Content Include="App_Themes\UCSF\Images\Celebrating\ucsf-women-in-science-2022-wide.jpg" />
     <Content Include="women-in-science\PresentationXML\WomenInScience.xml" />
     <None Include="Properties\PublishProfiles\FolderProfileDebug.pubxml" />
     <None Include="Web.config">

@@ -81,6 +81,7 @@
                                 </a>
                             </h1>
                         </div>
+                        <div>Powered by <strong><a href="https://www.ucbraid.org/">UC BRAID</a><strong></strong></strong></div>
                     </div>
                 </div>
             </asp:Panel>
@@ -323,7 +324,7 @@
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
 										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-9064315.jpeg" alt="">
 									      </div>
-									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;searchfor=Mentoring" class="researcherprofiles--util--stretched-link" target="">Mentor Faculty</a></p>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;searchfor=Mentoring" class="researcherprofiles--util--stretched-link" target="">Mentor</a></p>
 								       </div>
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">

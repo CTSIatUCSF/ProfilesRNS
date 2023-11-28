@@ -134,10 +134,6 @@ namespace Profiles.Login.Modules.ShibLogin
             {
                 return UCSFIDSet.IsPerson(sm.Session().NodeID) ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/edit/" + sm.Session().NodeID : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.aspx";
             }
-            else if ("dashboard".Equals(redirectto.ToLower()))
-            {
-                return UCSFIDSet.IsPerson(sm.Session().NodeID) ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/ORNG/Dashboard.aspx?owner=" + sm.Session().PersonURI : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.aspx";
-            }
             else if (redirectto.ToLower().StartsWith("http")) // make sure it at least looks legit
             {
                 // use full part of query after the redirectto parameter because it might have 

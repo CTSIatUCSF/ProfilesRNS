@@ -33,8 +33,6 @@ ul li { padding-top: 10px; }
   </li>
   <li><strong>Discover Clinical Trials</strong> led by UCSF investigators.
   </li>
-  <li><strong>View Dashboard</strong> display of statistics about visits to your personal profile page.
-  </li>
   <li><strong>Explore External Co-Author</strong> networks to connect with experts at other institutions.
   </li>
   <li><strong>Showcase most important publications</strong> in their own section.
@@ -70,20 +68,6 @@ ul li { padding-top: 10px; }
 		</li>
       </ul>
 	  <img src="../App_Themes/UCSF/Images/clinicaltrials.png" alt="Clinical Trials for Chip Chambers" style="margin:10px 0 0 40px;border:1px solid #CCC;" class="screenshot" />
-  </li>
-  <li><strong>Dashboard of UCSF Profiles Page Statistics</strong> - sign in access only 
-      <ul>
-		<li>Compiles and presents statistics about visits to your personal profile page.
-		</li>
-		<li>Shows you how many visits, what organizations visit your page and when. 
-			<ul>
-				<li>Summary stats of by-month views for the past year, this month, best month, and cumulative views</li>
-				<li>Regional breakdown of visits for the last 30 days and past year</li>
-				<li>Views by internet service provider or company, last 30 days and past year</li>
-			</ul>
-		</li>
-	  </ul>
-	  <img src="../App_Themes/UCSF/Images/dashboard.png" alt="Dashboard" style="margin:10px 0 0 68px;border:1px solid #CCC;" class="screenshot" />
   </li>
   <li><strong>External Co-Authors</strong>
       <ul>

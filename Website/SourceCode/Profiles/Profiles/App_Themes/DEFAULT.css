@@ -238,7 +238,6 @@ html body #prns-nav ul.prns-main {
 
     /* hide some stuff in logged-in user menu */
     /* DREAM: every menu item should have a class */
-    #prns-usrnav .usermenu #dashboard,
     #prns-usrnav .usermenu #navMyLists,
     #prns-usrnav .usermenu #ListDivider,
     #prns-usrnav .usermenu a[href*="proxy"] {

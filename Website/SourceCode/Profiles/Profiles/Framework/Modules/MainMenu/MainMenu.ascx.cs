@@ -89,12 +89,6 @@ namespace Profiles.Framework.Modules.MainMenu
                 // litProxy.Text = "<li>Manage Proxies</li>"; This line of code makes on sense. Ask Nick about this.
                 litProxy.Text = "<li><a href='" + Brand.GetThemedDomain() + "/proxy/default.aspx?subject=" + sm.Session().NodeID.ToString() + "'>Manage Proxies</a></li>";
             }
-            // ORNG Dashboard (only show for UCSF and UCSD for now)
-            string[] dashboardInstitutions = { "UCSF", "UCSD" };
-            if (UCSFIDSet.IsPerson(sm.Session().NodeID) && userBrand.GetInstitution() != null && dashboardInstitutions.Contains(userBrand.GetInstitution().GetAbbreviation()))
-            {
-                litDashboard.Text = "<li id='dashboard'><a href='" + userBrand.BasePath + "/ORNG/Dashboard.aspx?owner=" + sm.Session().PersonURI + "'>Dashboard</a></li><li><div class='divider'></div></li>";
-            }
 
             if (base.BaseData.SelectSingleNode(".").OuterXml != string.Empty && !Root.AbsolutePath.ToLower().Contains("/search"))
             {

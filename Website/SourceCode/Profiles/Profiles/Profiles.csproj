@@ -244,7 +244,6 @@
     <Content Include="App_Themes\UCSF\Images\Celebrating\ucsf-latinx-heritage-2023-wide.jpg" />
     <Content Include="App_Themes\UCSF\Images\clinicaltrials.png" />
     <Content Include="App_Themes\UCSF\Images\conceptsearch.jpg" />
-    <Content Include="App_Themes\UCSF\Images\dashboard.png" />
     <Content Include="App_Themes\UCSF\Images\dei-champ_large.png" />
     <Content Include="App_Themes\UCSF\Images\detailstab.jpg" />
     <Content Include="App_Themes\UCSF\Images\extCoAuth.png" />
@@ -486,7 +485,6 @@
     <Content Include="ORCID\Utilities\ProfilesRNSDLL\DAL\SQLFiles\ClearTestDataFromProduction.txt" />
     <Content Include="ORCID\Utilities\ProfilesRNSDLL\DAL\SQLFiles\CreateStoredProcedures.txt" />
     <Content Include="ORCID\Utilities\ProfilesRNSDLL\DAL\SQLFiles\CreateTablesScript.txt" />
-    <Content Include="ORNG\Dashboard.aspx" />
     <Content Include="ORNG\Images\orng-asterisk.png" />
     <Content Include="ORNG\Images\orng.gif" />
     <Content Include="ORNG\Images\Search.png" />
@@ -510,7 +508,6 @@
     <Content Include="ORNG\Modules\Gadgets\Gadgets.ascx" />
     <Content Include="ORNG\Modules\ModuleCatalogue.xml" />
     <Content Include="ORNG\Modules\ViewPersonalGadget\ViewPersonalGadget.ascx" />
-    <Content Include="ORNG\PresentationXML\DashboardPresentation.xml" />
     <Content Include="ORNG\PresentationXML\GadgetDetailsPresentation.xml" />
     <Content Include="ORNG\PresentationXML\SandboxFormPresentation.xml" />
     <Content Include="packages\bootstrap.4.1.3\contentFiles\Content\bootstrap-grid.css" />
@@ -1516,13 +1513,6 @@
     <Compile Include="ORCID\Utilities\ProfilesRNSDLL\_CG\DAL\RDF.Security\Group.cs" />
     <Compile Include="ORCID\Utilities\ProfilesRNSDLL\_CG\DAL\RDF\Node.cs" />
     <Compile Include="ORCID\Utilities\ProfilesRNSDLL\_CG\DAL\RDF\Triple.cs" />
-    <Compile Include="ORNG\Dashboard.aspx.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ORNG\Dashboard.aspx.designer.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ORNG\JSONLD\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

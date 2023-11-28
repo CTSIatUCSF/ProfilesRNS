@@ -80,7 +80,6 @@
                 <li id="ListDivider">
                     <div class="divider"></div>
                 </li>
-                <asp:Literal runat="server" ID="litDashboard"></asp:Literal>
                 <li id="navMyLists">
                    <a href="#">My Person List (<span id="list-count">0</span>)</a>
                     <MyLists:Lists runat="server" ID="MyLists" Visible="false" />

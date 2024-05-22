@@ -144,7 +144,7 @@ namespace Profiles.ORNG.Utilities
             page = page.ToLower();
             bool show = false;
 
-            if (viewRequirements.ContainsKey(page))
+            if (viewRequirements.ContainsKey(page) && IsVisibleFor(UCSFIDSet.ByNodeId[OpenSocialManager.GetNodeID(ownerUri)].Institution))
             {
                 GadgetViewRequirements req = GetGadgetViewRequirements(page);
                 string visibility = req.GetVisiblity();

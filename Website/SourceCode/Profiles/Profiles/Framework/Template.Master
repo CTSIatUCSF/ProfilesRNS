@@ -115,6 +115,12 @@
                         <asp:Panel ID="CelebratingLatinxHeritage" runat="server" Visible="false">
                            <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="https://mrc.ucsf.edu/events/latinx-heritage-month-2023" style="cursor: pointer;">Celebrating <b>Latinx Heritage</b></a>
                         </asp:Panel>
+                        <asp:Panel ID="CelebratingBlackHistory" runat="server" Visible="false">
+                           <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="https://mrc.ucsf.edu/events/black-history-month-events" target="_blank" style="cursor: pointer;">Celebrating <b>Black History</b></a>
+                        </asp:Panel>
+                        <asp:Panel ID="CelebratingAAPIHeritage" runat="server" Visible="false">
+                           <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="https://aapicoalition.ucsf.edu/aanhpi-heritage-month-2024" target="_blank" style="cursor: pointer;">Celebrating <b>AANHPI Heritage</b></a>
+                        </asp:Panel>
                     </div>	
                 </div>
             </asp:Panel>
@@ -259,16 +265,6 @@
                 <div id="ProfilesNotification" visible="false" runat="server" style="margin-top: 8px; font-weight: bold;">
                     <asp:Literal runat="server" ID="litSystemNotice"></asp:Literal>
                 </div>
-                <asp:Panel ID="WomenInScienceBanner" runat="server" Visible="false">
-                    <div id="ucsf--women-in-science">
-                        <a href="/women-in-science/">
-                            <picture>
-                                <source media="(max-width: 599px)" srcset="<%=GetThemedDomain()%>/App_Themes/UCSF/Images/Celebrating/ucsf-women-in-science-2022-narrow.jpg" type="image/jpeg" height="638" width="3072">
-                                <img src="<%=GetThemedDomain()%>/App_Themes/UCSF/Images/Celebrating/ucsf-women-in-science-2022-wide.jpg" alt="UCSF Women in Science" type="image/jpeg" height="354" width="4096">
-                            </picture>
-                        </a>
-                    </div>
-                </asp:Panel>
                 <asp:Panel ID="LatinxHeritageBanner" runat="server" Visible="false">
                     <div id="ucsf--latinx-heritage">
                         <a href="https://mrc.ucsf.edu/events/latinx-heritage-month-2023" style="cursor: pointer;">
@@ -278,6 +274,22 @@
                             </picture>
                         </a>
                     </div>
+                </asp:Panel>
+                <asp:Panel ID="CelebratingBanner" runat="server" Visible="false">
+                    <figure class="researcherprofiles--featured-people-banner--container">
+                        <!-- This is a link to either the external URL, or the internal group landing page. -->
+                        <a href="https://aapicoalition.ucsf.edu/aanhpi-heritage-month-2024" class="researcherprofiles--featured-people-banner--link" target="_blank">
+                            <div class="researcherprofiles--featured-people-banner--row">
+                                <!-- Insert very short heading here. The shorter, the better. This should be a custom string, not just the name of the category of people. -->
+                                <figcaption>Celebrating AANHPI Heritage</figcaption>
+                                <!-- Insert between between ~4-12 headshot URLs here. Include the people's names in the alt text as shown. -->
+                                <!-- Because this is happening server-sidem you're welcome to randomize them. -->
+                                <!-- Because every image is loaded, even if not shown, we don't want to add so many that page load is slowed unnecessarily.  -->
+                                <asp:Literal runat="server" ID="litCelebratingBannerPhotos" />
+								<asp:HiddenField ID="hdnCelebratingNumberOfImages" runat="server" Value="12" />
+                            </div>
+                        </a>
+                    </figure>
                 </asp:Panel>
                 <div class="profilesPage">
                     <button type="button" style="color: #000000;" onclick="javascript:topFunction();" id="rtnBtn" title="Go to top">Return to Top</button>
@@ -398,13 +410,7 @@
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
 										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-9064315.jpeg" alt="">
 									      </div>
-									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Faculty%20Mentoring" class="researcherprofiles--util--stretched-link" target="">Mentor Faculty</a></p>
-								       </div>
-								       <div class="researcherprofiles--home-page--featured-items-block--item">
-									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
-										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-4033145.jpeg" alt="">
-									      </div>
-									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;otherfilters=Student%20Projects" class="researcherprofiles--util--stretched-link" target="">Offer Student Projects</a></p>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;searchFor=Mentoring+Faculty&amp;exactphrase=true" class="researcherprofiles--util--stretched-link" target="">Mentor Faculty</a></p>
 								       </div>
 								       <div class="researcherprofiles--home-page--featured-items-block--item">
 									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
@@ -417,6 +423,12 @@
 										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-3039036.jpeg" alt="">
 									      </div>
 									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;searchfor=Global+Health+Equity&amp;exactphrase=true" class="researcherprofiles--util--stretched-link" target="">Work in Global Health Equity</a></p>
+								       </div>
+								       <div class="researcherprofiles--home-page--featured-items-block--item">
+									      <div class="researcherprofiles--home-page--featured-items-block--image-container">
+										     <img class="researcherprofiles--home-page--featured-items-block--image" src="<%=GetThemedDomain()%>/Framework/Images/pexels-photo-4033145.jpeg" alt="">
+									      </div>
+									      <p class="researcherprofiles--home-page--featured-items-block--body"><a rel="nofollow" href="<%=GetThemedDomain()%>/search/default.aspx?searchtype=people&amp;classgroupuri=&amp;<%=GetBrandedSearchTerm()%>&amp;new=true&amp;classuri=http://xmlns.com/foaf/0.1/Person&amp;searchfor=Mentoring+%22UCSF+Students+Research+Projects%22&amp;exactphrase=true" class="researcherprofiles--util--stretched-link" target="">Offer Student Projects</a></p>
 								       </div>
                                     </div>
 	                                <p>See more options in the <a href='<%=GetThemedDomain()%>/search/advanced'>Advanced Search</a> tab</p>

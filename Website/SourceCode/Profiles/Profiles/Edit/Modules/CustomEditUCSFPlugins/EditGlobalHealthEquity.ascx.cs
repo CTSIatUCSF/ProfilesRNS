@@ -595,27 +595,29 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             }
             else if (type == GlobalHealthEquityType.Center)
             {
-                retval.Add("IGHS - Center for Pandemic Preparedness & Response");
-                retval.Add("IGHS - Center for Health Equity in Surgery & Anesthesia");
-                retval.Add("IGHS - Center for Global Maternal, Newborn & Child Health");
-                retval.Add("IGHS - Center for Global Health Diplomacy, Delivery & Economics");
-                retval.Add("IGHS - Center for Infectious and Parasitic Diseases");
-                retval.Add("IGHS - Center for Strategic Information and Public Health Practice");
-                retval.Add("Institute for Global Health Sciences");
-                retval.Add("HEAL Initiative");
-                retval.Add("WHO Collaborating Center for Emergency, Critical & Operative Care");
-                retval.Add("WHO Collaborating Center on Tobacco Control");
-                retval.Add("Health & Human Rights Initiative");
-                retval.Add("Global Disaster Assistance Committee (GDAC)");
-                retval.Add("PRISE Center");
-                retval.Add("IGOT");
+                retval.Add("BALANCE (GloBAL Neurology, NeuroinfeCtious Diseases, and Health Equity)");
                 retval.Add("Center for Health Equity");
                 retval.Add("Center for Vulnerable Populations");
-                retval.Add("BALANCE (GloBAL Neurology, NeuroinfeCtious Diseases, and Health Equity)");
+                retval.Add("Global Disaster Assistance Committee (GDAC)");
+                retval.Add("HEAL Initiative");
+                retval.Add("Health & Human Rights Initiative");
+                retval.Add("IGHS - Center for Global Health Diplomacy, Delivery & Economics");
+                retval.Add("IGHS - Center for Global Maternal, Newborn & Child Health");
+                retval.Add("IGHS - Center for Global Nursing");
+                retval.Add("IGHS - Center for Health Equity in Surgery & Anesthesia");
+                retval.Add("IGHS - Center for Infectious and Parasitic Diseases");
+                retval.Add("IGHS - Center for Pandemic Preparedness & Response");
+                retval.Add("IGHS - Center for Strategic Information and Public Health Practice");
+                retval.Add("IGOT");
+                retval.Add("Institute for Global Health Sciences");
                 retval.Add("International Research Support Operations (IRSO)");
+                retval.Add("PRISE Center");
                 retval.Add("UCSF Center for Tuberculosis");
-
+                retval.Add("WHO Collaborating Center for Emergency, Critical & Operative Care");
+                retval.Add("WHO Collaborating Center on Tobacco Control");
             }
+            // alphabatize
+            retval.Sort();
             return retval;
         }
 

@@ -102,7 +102,7 @@ namespace Profiles.Framework.Utilities
             }
             else if ("Mentoring".Equals(plugin))
             {
-                return "UC Davis".Equals(inst.GetAbbreviation());
+                return "UC Davis".Equals(inst.GetAbbreviation()) || "UCSF".Equals(inst.GetAbbreviation());
             }
             return true;
         }

@@ -7,12 +7,16 @@ using System.Xml;
 using System.Xml.Xsl;
 
 using Profiles.Framework.Utilities;
+using Profiles.ORCID.Utilities.ProfilesRNSDLL.DevelopmentBase.Helpers;
 using Profiles.ORNG.Utilities;
 
 namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
 {
+
     public partial class CustomViewPersonGeneralInfo : BaseModule
     {
+        public static String PRONOUNS_CACHE_KEY = "PronounsCache";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             DrawProfilesModule();
@@ -86,6 +90,15 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
                    }
             }
             args.AddParam("nodeid", "", Request.QueryString["Subject"]);
+
+            // UCSF Unfuddle 443 Pronouns
+            string pronouns = getPronouns(Convert.ToInt64(Request.QueryString["Subject"]));
+            if (!String.IsNullOrEmpty(pronouns))
+            {
+                args.AddParam("pronouns", "", pronouns);
+            }
+
+            // ADD ALL args before this line!!!
             litPersonalInfo.Text = XslHelper.TransformInMemory(Server.MapPath("~/Profile/Modules/CustomViewPersonGeneralInfo/CustomViewPersonGeneralInfo.xslt"), args, base.BaseData.OuterXml);
 
             if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/prns:mainImage/@rdf:resource", base.Namespaces) != null)
@@ -131,6 +144,27 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
             string emailPlain = reader[0].ToString();
             reader.Close();
             return emailPlain;
+        }
+
+        static internal string getPronouns(Int64 nodeid)
+        {
+            // see if it is a group
+            Dictionary<Int64, string> PronounsByNodeId = (Dictionary<long, string>)Framework.Utilities.Cache.FetchObject(PRONOUNS_CACHE_KEY);
+            if (PronounsByNodeId == null)
+            {
+                PronounsByNodeId = new Dictionary<long, string>();
+
+                Utilities.DataIO data = new Profiles.Profile.Utilities.DataIO();
+                SqlCommand cmd = new SqlCommand(" select n.Pronouns, u.nodeid from[UCSF.].[NameAdditions] n join[UCSF.].vwPerson u on u.InternalUserName = n.InternalUserName WHERE n.Pronouns is not null");
+                SqlDataReader reader = data.GetSQLDataReader(cmd);
+                while (reader.Read())
+                {
+                    PronounsByNodeId.Add(reader.GetInt64(reader.GetOrdinal("nodeid")), reader["Pronouns"].ToString());
+                }
+                reader.Close();
+                Framework.Utilities.Cache.Set(PRONOUNS_CACHE_KEY, PronounsByNodeId);
+            }
+            return PronounsByNodeId.ContainsKey(nodeid) ? PronounsByNodeId[nodeid] : null;
         }
     }
 

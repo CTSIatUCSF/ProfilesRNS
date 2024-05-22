@@ -16,16 +16,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         private string data = string.Empty;
         private MentoringData mData = new MentoringData();
 
-        private static string[] mentees = new string[] {"Undergraduate Students",
-                                                       "Graduate and Professional Students", 
-                                                       "Postdoctoral Scholars and Research Scientists",
-                                                       "Residents, Fellows, and House Officers",
-                                                       "Faculty"};
-
-        private static string[] types = new string[] {"Research",
-                                                       "Career Development Path",
-                                                       "Work/life balance"};
-
         public Mentoring() : base() { }
         public Mentoring(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
             : base(pagedata, moduleparams, pagenamespaces)
@@ -46,6 +36,34 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         protected void Page_Load(object sender, EventArgs e)
         {
             ReadJson();
+            string[] mentees = null;
+            string[] types = null; ;
+            if ("UC Davis".Equals(UCSFIDSet.ByNodeId[this.SubjectID].Institution.GetAbbreviation()))
+            {
+                mentees = new string[] {"Undergraduate Students",
+                                                       "Graduate and Professional Students",
+                                                       "Postdoctoral Scholars and Research Scientists",
+                                                       "Residents, Fellows, and House Officers",
+                                                       "Faculty"};
+                types = new string[] {"Research",
+                                                       "Career Development Path",
+                                                       "Work/life balance"};
+            }
+            else if ("UCSF".Equals(UCSFIDSet.ByNodeId[this.SubjectID].Institution.GetAbbreviation()))
+            {
+                mentees = new string[] {"UCSF Students",
+                                                       "Faculty",
+                                                       "Staff",
+                                                       "Residents and Fellows"};
+                types = new string[] {"Clinical Practice",
+                                                       "Education Career",
+                                                       "Research",
+                                                       "Research Projects",
+                                                       "Career Development",
+                                                       "Work/Life Balance",
+                                                       "Diversity, Equity, Inclusion and Belonging"};
+            }
+
             foreach (string s in mentees)
             {
                 ddlMentee.Items.Add(s);

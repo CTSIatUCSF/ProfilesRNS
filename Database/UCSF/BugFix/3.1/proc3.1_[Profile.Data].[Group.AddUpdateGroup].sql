@@ -95,6 +95,12 @@ BEGIN
 		SELECT @ViewSecurityGroup = ISNULL(@ViewSecurityGroup,@NodeID)
 		-- Make sure the group has a valid name
 		SELECT @GroupName = ISNULL(NULLIF(@GroupName,''),'New Group '+CAST(@ExistingGroupID AS VARCHAR(50)))
+		
+		DECLARE @GroupSettings BIGINT
+		SELECT @GroupSettings = _PropertyNode FROM [Ontology.].ClassProperty WHERE Class = 'http://xmlns.com/foaf/0.1/Group' and Property = 'http://profiles.catalyst.harvard.edu/ontology/prns#hasGroupSettings'
+		INSERT INTO [RDF.Security].NodeProperty (NodeID, Property, ViewSecurityGroup)
+		VALUES (@NodeID, @GroupSettings, @NodeID)
+				
 		-- Give all admins access to the group
 		EXEC [Profile.Data].[Group.UpdateSecurityMembership]
 	END

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProfilesBetaAPI", "ProfilesBetaAPI", "{EEB42F99-AF50-4BFD-9AE8-8F19F3230B6E}"
 EndProject
@@ -31,6 +31,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiles", "Profiles\Profiles.csproj", "{3558968D-7E06-4351-AEEE-74A6BC975A74}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfilesDataAPI", "..\ProfilesDataAPI\ProfilesDataAPI.csproj", "{74007227-DC84-4889-B980-9DA86D0058A1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3558968D-7E06-4351-AEEE-74A6BC975A74} = {3558968D-7E06-4351-AEEE-74A6BC975A74}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

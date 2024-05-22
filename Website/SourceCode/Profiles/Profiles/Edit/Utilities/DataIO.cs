@@ -25,6 +25,8 @@ using System.Configuration;
 
 
 using Profiles.Framework.Utilities;
+using System.Linq;
+using Profiles.ORNG.Utilities;
 
 namespace Profiles.Edit.Utilities
 {
@@ -2287,10 +2289,15 @@ namespace Profiles.Edit.Utilities
             if (personid == 0) return;
             SessionManagement sm = new SessionManagement();
 
+            // UCSF addition, get the group security
+            SqlDataReader reader = GetGroup(groupNodeID);
+            reader.Read();
+            string groupViewSecurityGroup = reader["ViewSecurityGroup"].ToString();
+            reader.Close();
 
-            EditActivityLog(getNodeIdFromPersonID(personid), "http://vivoweb.org/ontology/core#hasMemberRole", null, groupNodeID.ToString(), "");
+            EditActivityLog(getNodeIdFromPersonID(personid), "http://vivoweb.org/ontology/core#hasMemberRole", groupViewSecurityGroup, groupNodeID.ToString(), "");
 
-            EditActivityLog(groupNodeID, "http://vivoweb.org/ontology/core#contributingRole", null, userid.ToString(), "");
+            EditActivityLog(groupNodeID, "http://vivoweb.org/ontology/core#contributingRole", groupViewSecurityGroup, userid.ToString(), "");
             try
             {
 

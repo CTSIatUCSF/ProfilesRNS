@@ -11,8 +11,9 @@
   <xsl:param name="orcidimage"/>
   <xsl:param name="orcidimageguid"/>
   <xsl:param name="nodeid"/>
+  <xsl:param name="pronouns"/>
 
-  <xsl:template match="/">
+	<xsl:template match="/">
     <div class="content_two_columns">
       <table>
         <tbody>
@@ -162,6 +163,16 @@
         </xsl:choose>
       </xsl:otherwise>
     </xsl:choose>
+	<xsl:choose>
+        <xsl:when test="$pronouns!=''">
+	        <tr>
+		        <th>Pronouns</th>
+		        <td>
+			        <xsl:value-of select="$pronouns"/>
+		        </td>
+	        </tr>
+		</xsl:when>
+	</xsl:choose>	  
     <xsl:choose>
       <xsl:when test="$orcid!=''">
         <tr>

@@ -329,7 +329,7 @@ namespace Profiles.Framework.Utilities
             }
             catch (Exception ex)
             {//An error will kick in if this is an Application level request for the rest path data because a session does not exist. If no session exists
-                Framework.Utilities.DebugLogging.Log(connstr + " CONNECTION USED" + "\r\n");
+                Framework.Utilities.DebugLogging.Log("Exception in BOT determination! " + connstr + " CONNECTION USED" + "\r\n");
                 connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
             }
 
@@ -646,11 +646,11 @@ namespace Profiles.Framework.Utilities
         /// <param name="session">ref of Framework.Session object that stores the state of a Profiles user session</param>
         public void SessionCreate(ref Session session)
         {
-            SqlParameter[] param = new SqlParameter[3];
+            SqlParameter[] param = new SqlParameter[4];
             param[0] = new SqlParameter("@RequestIP", session.RequestIP);
             param[1] = new SqlParameter("@HostName", session.HostName);
             param[2] = new SqlParameter("@UserAgent", session.UserAgent);
-
+            param[3] = new SqlParameter("@IsBot", session.IsBot);
 
             using (SqlDataReader dbreader = GetSQLDataReader(GetDBCommand("","[User.Session].[CreateSession]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param)))
             {

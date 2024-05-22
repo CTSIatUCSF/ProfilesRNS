@@ -16,13 +16,18 @@ namespace Profiles.Framework.Utilities
 
         public static void Log(string msg)
         {
+            Log(msg, false);
+        }
+
+        public static void Log(string msg, bool force)
+        {
             //Each error that occurs will trigger this event.
             try
             {
                 string path = string.Empty;
 
 
-                if (LoggingIsEnabled())
+                if (force || LoggingIsEnabled())
                 {
                     if (ConfigurationSettings.AppSettings["DEBUG_PATH"] != null)
                     {

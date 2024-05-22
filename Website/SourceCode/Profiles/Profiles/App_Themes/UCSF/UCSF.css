@@ -10,14 +10,13 @@
     justify-content: space-between;
     align-items: center;
     align-content: space-between;
-
 }
 
-.researcherprofiles--branded-institutional-banner--menu>ul:last-of-type li {
-    display: inline;
-    float: left;
-    margin-right: 1rem;
-}
+    .researcherprofiles--branded-institutional-banner--menu > ul:last-of-type li {
+        display: inline;
+        float: left;
+        margin-right: 1rem;
+    }
 
 .researcherprofiles--branded-institutional-banner--menu {
     padding: 0.5rem 1rem;
@@ -47,45 +46,77 @@
     color: var(--text-muted-color) !important;
 }
 
-.researcherprofiles--institution-header--ucsf-banner-text-callout a {
-    color: var(--generic-link-color) !important;
-}
-
-/* women in science banner on home page */
-@media only screen and (max-width: 300px) {
-    #ctl00_WomenInScienceBanner {
-        display: none;
+    .researcherprofiles--institution-header--ucsf-banner-text-callout a {
+        color: var(--generic-link-color) !important;
     }
+
+/* ###################################################################### */
+/* FEATURED TOPIC OR PEOPLE AD BLOCK ON HOME PAGE                         */
+/* ###################################################################### */
+
+/* set overall banner size */
+#featured-people-banner-container,
+.researcherprofiles--featured-people-banner--container {
+    max-width: 968px;
+    width: 95%;
+    margin: 2rem auto auto auto;
+    border: 2px solid #ccc;
+    opacity: 0.9;
+    background: #f0f0f0;
 }
 
-#ctl00_WomenInScienceBanner {
-    margin-top: 1rem;
-}
-
-#ctl00_WomenInScienceBanner #ucsf--women-in-science picture,
-#ctl00_WomenInScienceBanner #ucsf--women-in-science img {
-    width: 100%;
-    height: auto
-}
-
-/* latinx heritage banner on home page */
-@media only screen and (max-width: 300px) {
-    #ctl00_LatinxHeritageBanner {
-        display: none;
+    #featured-people-banner-container:hover,
+    .researcherprofiles--featured-people-banner--container:hover {
+        opacity: 1;
+        border-color: #999;
+        box-shadow: 0.5rem 0.5rem 1rem #eee;
     }
+
+/* format the row of headshots */
+#featured-people-banner-row,
+.researcherprofiles--featured-people-banner--row {
+    display: flex;
+    /* Hide any overflow */
+    overflow: hidden;
+    /* Height of the banner */
+    height: 6rem;
+    /* Horizontally and vertically center the child elements */
+    justify-content: space-around;
+    align-items: center;
 }
 
-#ctl00_LatinxHeritageBanner {
-    margin-top: 1rem;
+    /* format individual headshots in the row */
+    #featured-people-banner-row img,
+    .researcherprofiles--featured-people-banner--row img {
+        height: 100%;
+        /* Prevents the images from shrinking or changing aspect ratio */
+        width: auto;
+        flex-shrink: 0;
+        object-fit: cover;
+        margin: 0;
+    }
+
+/* format the text under the images */
+#featured-people-banner-container figcaption,
+.researcherprofiles--featured-people-banner--container figcaption {
+    padding: 0.3rem 0.5rem;
+    text-align: center;
+    color: #0575FF;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    font-weight: 600;
+    /* between 1 to 2 rems, maxing out above 1024px */
+    /* via https://www.marcbacon.com/tools/clamp-calculator/ */
+    font-size: clamp(0.8rem, 0.575rem + 1.132vw, 1.3rem);
+    text-wrap: balance;
+    text-decoration: underline;
 }
 
-#ctl00_LatinxHeritageBanner #ucsf--latinx-heritage picture,
-#ctl00_LatinxHeritageBanner #ucsf--latinx-heritage img {
-    width: 100%;
-    height: auto
-}
+/* ###################################################################### */
+/* LITTLE LINE OF TEXT UNDER SITE LOGO, E.G. "Celebrating Black History"  */
+/* ###################################################################### */
 
-/* link to women in science, a little bit of text underneath h1 logo, added Feb 2022. on every page other than home page. */
+/* link to women in science or other celebrating content, a little bit of text underneath h1 logo, added Feb 2022. on every page other than home page. */
 #researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath {
     color: var(--generic-link-color) !important;
     display: block;
@@ -98,6 +129,36 @@
     display: none !important;
 }
 
+/* "celebrating..." banner on home page */
+@media only screen and (max-width: 300px) {
+
+    #ctl00_WomenInScienceBanner,
+    #ctl00_LatinxHeritageBanner,
+    #ctl00_CelebratingBanner {
+        display: none;
+    }
+}
+
+/* ###################################################################### */
+/* OLD HOME PAGE CELEBRATING BLOCK, CAN DELETE BY Q4 2024                 */
+/* ###################################################################### */
+
+
+#ctl00_WomenInScienceBanner,
+#ctl00_LatinxHeritageBanner,
+#ctl00_CelebratingBanner {
+    margin-top: 1rem;
+}
+
+    #ctl00_WomenInScienceBanner #ucsf--women-in-science picture,
+    #ctl00_WomenInScienceBanner #ucsf--women-in-science img,
+    #ctl00_LatinxHeritageBanner #ucsf--latinx-heritage picture,
+    #ctl00_LatinxHeritageBanner #ucsf--latinx-heritage img,
+    #ctl00_CelebratingBanner #ucsf--celebrating picture,
+    #ctl00_CelebratingBanner #ucsf--celebrating img {
+        width: 100%;
+        height: auto
+    }
 
 /* temporarily disabling heroes for UCSF */
 #ctl00_ContentActive_rptActive_ctl00_ctl00_HeroNavbarPanel {

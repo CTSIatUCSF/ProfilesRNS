@@ -8,6 +8,7 @@ using System.Xml;
 using System.Web.UI.HtmlControls;
 using Profiles.Framework.Utilities;
 using System.Configuration;
+using System.ComponentModel;
 
 namespace Profiles.Framework
 {
@@ -152,6 +153,35 @@ namespace Profiles.Framework
             ThemeCss.Attributes["media"] = "all";
             Page.Header.Controls.Add(ThemeCss);
 
+            if (!String.IsNullOrEmpty(Brand.GetCelebrating()))
+            {
+                // Sort of odd that this is generic and the other section isn't, but oh well
+                Control celebratingHeaderPanel = Page.Master.FindControl("Celebrating" + Brand.GetCelebrating());
+                if (celebratingHeaderPanel != null)
+                {
+                    // no need to show on the search page
+                    celebratingHeaderPanel.Visible = !Request.Path.ToLower().Contains("/search/");
+                }
+                CelebratingBanner.Visible = Request.Path.ToLower().Contains("/search/");
+
+                if (CelebratingBanner.Visible)
+                {
+                    HtmlGenericControl FeaturedJs = new HtmlGenericControl("script");
+                    FeaturedJs.Attributes.Add("type", "text/javascript");
+                    FeaturedJs.Attributes.Add("src", Brand.GetThemedDomain() + "/App_Themes/" + Page.Theme + "/FEATURED.js");
+                    Page.Header.Controls.Add(FeaturedJs);
+
+                    List<UCSFFeaturedPeople> people = UCSFFeaturedPeople.GetGroupMembersForBanner(Brand.GetCelebrating(), Int32.Parse(hdnCelebratingNumberOfImages.Value));
+                    string bannerImages = "";
+                    foreach (UCSFFeaturedPeople person in people)
+                    {
+                        bannerImages += "<img src=\"" + Brand.GetThemedDomain() + "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" +
+                            person.nodeId + "&Thumbnail=True \" alt=\"Photo of " + person.firstName + " " + person.lastName + "\">\r\n";
+                    }
+                    litCelebratingBannerPhotos.Text = bannerImages;
+                }
+            }
+
             // UCSF. To support lazy login
             String lazyShibLogin = Profiles.Login.ShibbolethSession.GetJavascriptSrc(Request);
             if (!String.IsNullOrEmpty(lazyShibLogin))
@@ -266,10 +296,11 @@ namespace Profiles.Framework
                 litSystemNotice.Visible = false;
             //           }
 
-            // WomenInScience or LatinxHistory
-            if (!String.IsNullOrEmpty(Brand.GetCelebrating()))
+            // Unfuddle 452. Turn off FeatuedItems unless we are on the Search page
+            Control featuredItems = Page.Master.FindControl("FeaturedItems" + Brand.GetCurrentBrand().Theme);
+            if (featuredItems != null) 
             {
-                Page.Master.FindControl("Celebrating" + Brand.GetCelebrating()).Visible = true;
+                featuredItems.Visible = Request.Path.ToLower().Contains("/search/");
             }
         }
 

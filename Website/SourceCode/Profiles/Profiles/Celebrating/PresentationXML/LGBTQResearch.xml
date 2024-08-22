@@ -1,0 +1,2151 @@
+﻿<Presentation PresentationClass="profile">
+  <PageOptions Columns="2"/>
+  <WindowName>UCSF Research Articles on LGBTQ Health</WindowName>  
+  <PageTitle>UCSF Research Articles on LGBTQ Health</PageTitle>
+  <PageBackLinkName></PageBackLinkName>
+  <PageBackLinkURL></PageBackLinkURL>
+  <PageDescription></PageDescription>  
+  <PanelList>
+    <Panel type="header"  />
+    <Panel type="page" />
+    <Panel Type="active">
+      <Module ID="MainMenu"/>
+    </Panel>
+    <Panel Type="main">
+      <Module ID="HTMLBlock">
+        <ParamList>
+          <Param Name="HTML">
+			  <!-- Eric, start copying here -->
+			  <style type='text/css'>
+				  /*<![CDATA[*/
+.list-of-featured-publications-and-their-authors.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    justify-content: center;
+    /* centers content in final row if needed */
+    gap: 1.25rem;
+    padding: 0 1.25rem;
+}
+
+.list-of-featured-publications-and-their-authors .article {
+    background-color: white;
+    border-radius: 0.625rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.list-of-featured-publications-and-their-authors .article-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.625rem;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.list-of-featured-publications-and-their-authors .article-title:hover {
+    text-decoration: underline;
+}
+
+.list-of-featured-publications-and-their-authors .author {
+    font-size: 0.9rem;
+    color: #555;
+    text-align: left;
+    padding-top: 0.5rem;
+}
+
+.list-of-featured-publications-and-their-authors .author img {
+    width: auto;
+    height: auto;
+    max-width: 4rem;
+    max-height: 6rem;
+    float: right;
+    margin-left: 0.625rem;
+}
+
+.list-of-featured-publications-and-their-authors .author div {
+    margin-bottom: 0.3125rem;
+}
+
+.list-of-featured-publications-and-their-authors.container::before {
+    content: none;
+}
+/*]]>*/
+			  </style>
+			  <div class='container list-of-featured-publications-and-their-authors'>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38739056' target='_blank'>
+						  “Mental Health Needs, Barriers, and Receipt of Care Among Transgender and Nonbinary Adolescents”
+						  <cite>(Journal of Adolescent Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/samira.soleimanpour'>Samira Soleimanpour, PhD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Institute for Health Policy Studies</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38719179' target='_blank'>
+						  “Screen use in transgender and gender-questioning adolescents: Findings from the Adolescent Brain Cognitive Development (ABCD) Study”
+						  <cite>(Annals of Epidemiology)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Jason Nagata' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=172763' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/jason.nagata'>Jason Nagata, MD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=Prevalence%20of%20anal%20HPV%20infection%20and%20anal%20HSIL%20among%20MSM%2050%20years%20and%20older%20living%20with%20or%20without%20HIV%20JAIDS%20Journal%20of%20Acquired%20Immune%20Deficiency%20Syndromes' target='_blank'>
+						  “Prevalence of anal HPV infection and anal HSIL among MSM 50 years and older living with or without HIV”
+						  <cite>(JAIDS Journal of Acquired Immune Deficiency Syndromes)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/alex.hernandez'>Alex Hernandez, MPH</a>
+						  </div>
+						  <div>Clinical Research Coordinator</div>
+						  <div>Neurology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38689419' target='_blank'>
+						  “Gender Is a Spectrum: Evaluating Current and Novel Ways to Inquire About Gender Identity in the Health Care Setting”
+						  <cite>(Annals of Plastic Surgery)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/esther.kim'>Esther Kim, MD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Surgery</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=Understanding%20the%20Social%20Drivers%20for%20LGBTQIA%2B%20Youth%20Suicide%20Child%20and%20Adolescent%20Psychiatric%20Clinics%20of%20North%20America' target='_blank'>
+						  “Understanding the Social Drivers for LGBTQIA+ Youth Suicide”
+						  <cite>(Child and Adolescent Psychiatric Clinics of North America)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Naomi Schapiro' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=172319' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/naomi.schapiro'>Naomi Schapiro, RN, PhD, PNP</a>
+						  </div>
+						  <div>Professor Emeritus</div>
+						  <div>Family Health Care Nursing</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38718463' target='_blank'>
+						  “Perceived discrimination and youth vaping: The role of intersectional identities”
+						  <cite>(Drug and Alcohol Dependence)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Benjamin Chaffee' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=182843' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/benjamin.chaffee'>Benjamin Chaffee, DDS, MPH, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Preventive &amp; Restor Dent Sci</div>
+						  <div>School of Dentistry</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38656217' target='_blank'>
+						  “Doxycycline as Postsexual Exposure Prophylaxis: Use, Acceptability, and Associated Sexual Health Behaviors Among a Multi-Site Sample of Clinical Trial Participants”
+						  <cite>(AIDS Patient Care and STDs)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/katerina.christopoulos'>Katerina Christopoulos, MD, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38582366' target='_blank'>
+						  “Biopsychosocial Assessments for Pubertal Suppression to Treat Adolescent Gender Dysphoria”
+						  <cite>(Journal of the American Academy of Child &amp; Adolescent Psychiatry)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/diane.ehrensaft'>Diane Ehrensaft, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38526638' target='_blank'>
+						  “Continuing Low Awareness and Use of Pre-exposure Prophylaxis (PrEP) for HIV among People Who Inject Drugs (PWID), San Francisco, 2022”
+						  <cite>(AIDS and Behavior)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Willi McFarland' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=182167' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/willi.mcfarland'>Willi McFarland, MD, PhD, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Epidemiology &amp; Biostatistics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38490174' target='_blank'>
+						  “Rigorous science demands support of transgender scientists”
+						  <cite>(Cell)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Zara Weinberg' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=86341837' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/zara.weinberg'>Zara Weinberg, PhD</a>
+						  </div>
+						  <div>Specialist</div>
+						  <div>Biochemistry and Biophysics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=Mental%20health%20treatment%20experiences%20among%20sexual%20and%20gender%20minority%20individuals%3A%20Trauma%20exposure%2C%20barriers%2C%20microaggressions%2C%20and%20treatment%20satisfaction%20Journal%20of%20Gay%20%26%20Lesbian%20Mental%20Health' target='_blank'>
+						  “Mental health treatment experiences among sexual and gender minority individuals: Trauma exposure, barriers, microaggressions, and treatment satisfaction”
+						  <cite>(Journal of Gay &amp; Lesbian Mental Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/james.dilley'>James Dilley, MD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38432411' target='_blank'>
+						  “Educational Guidelines on Sexual Orientation, Gender Identity and Expression and Sex Characteristics (SOGIESC) Biases in Medical Education”
+						  <cite>(American Journal of Obstetrics and Gynecology)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Sara Whetstone' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=189111' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/sara.whetstone'>Sara Whetstone, MD, MHS</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=Parental%20Gender%20Affirmation%20Model%3A%20A%20culturally%20informed%20framework%20SSM%20-%20Mental%20Health' target='_blank'>
+						  “Parental Gender Affirmation Model: A culturally informed framework”
+						  <cite>(SSM - Mental Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/anita.chaphekar'>Anita Chaphekar, DO</a>
+						  </div>
+						  <div>Clinical Fellow</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=Afternoon%20at%20the%20Museum%3A%20Psychosocial%20Wellbeing%20and%20Intergenerational%20Connectedness%20among%20LGBT%20Older%20Adults%20American%20Journal%20of%20Geriatric%20Psychiatry' target='_blank'>
+						  “Afternoon at the Museum: Psychosocial Wellbeing and Intergenerational Connectedness among LGBT Older Adults”
+						  <cite>(American Journal of Geriatric Psychiatry)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/peter.ureste'>Peter Ureste, MD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38332415' target='_blank'>
+						  “Decision regret, and other mental health outcomes, following fertility preservation in the transgender individual compared to the cisgender woman”
+						  <cite>(Journal of Assisted Reproduction and Genetics)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Evelyn Mok-Lin' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=186069' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/evelyn.mok-lin'>Evelyn Mok-Lin, MD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38305820' target='_blank'>
+						  “An Exploratory Analysis of Contributors to Cognitive Functioning Among Sexual and Gender Minority Individuals Who Had COVID-19”
+						  <cite>(Journal of Homosexuality)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Kimberly Lewis' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=164267050' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/kimberly.lewis'>Kimberly Lewis, PhD</a>
+						  </div>
+						  <div>Postdoctoral Scholar</div>
+						  <div>Physiological Nursing</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38301143' target='_blank'>
+						  “Examining Factors Associated with Cannabis Use Among Sexual and Gender Minority and Cisgender Heterosexual Emerging Adults in California”
+						  <cite>(LGBT Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Ryan Assaf' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=328148689' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/ryan.assaf'>Ryan Assaf, PhD, MPH</a>
+						  </div>
+						  <div>Postdoctoral Scholar</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38270352' target='_blank'>
+						  “End of selection criteria based on sexual orientation: An international symposium on alternatives to donation deferral”
+						  <cite>(Vox Sanguinis)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/michael.busch'>Michael Busch, MD, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Laboratory Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38259087' target='_blank'>
+						  “Genetic complexity alters drug susceptibility of asexual and gametocyte stages of Plasmodium falciparum to antimalarial candidates”
+						  <cite>(Antimicrobial Agents and Chemotherapy)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Bryan Greenhouse' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=174044' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/bryan.greenhouse'>Bryan Greenhouse, MD, MA</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38206680' target='_blank'>
+						  “Substance Use Over Time Among Sexual and Gender Minority People: Differences at the Intersection of Sex and Gender”
+						  <cite>(LGBT Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/gowri.sunder'>Gowri Sunder</a>
+						  </div>
+						  <div>Clinical Research Coordinator</div>
+						  <div>Community Health Systems</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=22%20Neuropsychological%20Outcomes%20Vary%20by%20Sex%20in%20Neurotoxicant%20Exposed%20Veterans%20with%20Gulf%20War%20Illness%20Journal%20of%20the%20International%20Neuropsychological%20Society' target='_blank'>
+						  “22 Neuropsychological Outcomes Vary by Sex in Neurotoxicant Exposed Veterans with Gulf War Illness”
+						  <cite>(Journal of the International Neuropsychological Society)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Linda Chao' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=189478' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/linda.chao'>Linda Chao, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Radiology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38112171' target='_blank'>
+						  “Limitations and Future Directions in Sex, Sexuality, and Gender Diverse Research in Neurology”
+						  <cite>(Annals of Neurology)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/lennox.byer'>Lennox Byer, MD</a>
+						  </div>
+						  <div>HS Asst Clinical Professor</div>
+						  <div>Neurology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38019515' target='_blank'>
+						  “Access to Reproductive Health Services Among People With Disabilities”
+						  <cite>(JAMA Network Open)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/antonia.biggs'>Antonia Biggs, PhD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37989820' target='_blank'>
+						  “Decreased Anogenital Gonorrhea and Chlamydia in Transgender and Gender Diverse Primary Care Patients Receiving Gender-Affirming Hormone Therapy”
+						  <cite>(Journal of General Internal Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Madeline Deutsch' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=198460' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/madeline.deutsch'>Madeline Deutsch, MD, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Family Community Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37999615' target='_blank'>
+						  “Geographic Mobility and HIV Care Engagement among People Living with HIV in Rural Kenya and Uganda”
+						  <cite>(Tropical Medicine and Infectious Disease)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Pamela Murnane' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=175086' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/pamela.murnane'>Pamela Murnane, PhD, MPH</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Epidemiology &amp; Biostatistics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37951596' target='_blank'>
+						  “Inflammatory Bowel Disease and the Risk of Anal Squamous Intraepithelial Lesions and Anal Cancer in Men Who Have Sex With Men”
+						  <cite>(Inflammatory Bowel Diseases)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/justin.field'>Justin Field, MD</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37926560' target='_blank'>
+						  “Social connectedness and adolescent suicide risk”
+						  <cite>(Journal of Child Psychology and Psychiatry)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/jacqueline.grupp-phelan'>Jacqueline Grupp-Phelan, MD, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Emergency Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=Clinicians%20Report%20Less%20Comfort%20in%20Provision%20of%20Medical%20Care%20to%20Nonbinary%20Transgender%20Youth%20Transgender%20Health' target='_blank'>
+						  “Clinicians Report Less Comfort in Provision of Medical Care to Nonbinary Transgender Youth”
+						  <cite>(Transgender Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Abby Cobb-Walch' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=46902826' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/abby.cobb-walch'>Abby Cobb-Walch, MD</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37822094' target='_blank'>
+						  “Advertising Patterns of internet-Based Male Sex Workers Who Have Sex With Men (MSMSW): The Association Between LGBTQIA+ Events and Advertising for Work During the 2022 Pride Season”
+						  <cite>(American Journal of Men&apos;s Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Kristopher Jackson' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=309798878' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/kristopher.jackson'>Kristopher Jackson, PhD</a>
+						  </div>
+						  <div>Postdoctoral Scholar</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37824036' target='_blank'>
+						  “Latent Class Analysis of Online Platforms for Partner-Seeking and Sexual Behaviors Among Men Who Have Sex with Men from Central Kentucky”
+						  <cite>(AIDS and Behavior)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Vira Pravosud' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=211709335' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/vira.pravosud'>Vira Pravosud, PhD</a>
+						  </div>
+						  <div>Postdoctoral Scholar</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=O16%20THE%20ASSOCIATION%20BETWEEN%20EXPERIENCES%20OF%20MEDICAL%20MISTRUST%20AND%20MISTREATMENT%20AND%20EVER%20CONSIDERING%20SELF-MANAGING%20AN%20ABORTION%20Contraception' target='_blank'>
+						  “O16 THE ASSOCIATION BETWEEN EXPERIENCES OF MEDICAL MISTRUST AND MISTREATMENT AND EVER CONSIDERING SELF-MANAGING AN ABORTION”
+						  <cite>(Contraception)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/shelly.kaller'>Shelly Kaller</a>
+						  </div>
+						  <div>senior research associate</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37792468' target='_blank'>
+						  “The Appa Health App for Youth Mental Health: Development and Usability Study”
+						  <cite>(JMIR Formative Research)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Alison Giovanelli' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=17246188' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/alison.giovanelli'>Alison Giovanelli, PhD</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=FRI675%20Higher%20FSH%20Level%20Is%20Associated%20With%20Increased%20Risk%20Of%20Incident%20Hip%20Fracture%20In%20Older%20Adults%2C%20Independent%20Of%20Sex%20Hormone%20Levels%20Journal%20of%20the%20Endocrine%20Society' target='_blank'>
+						  “FRI675 Higher FSH Level Is Associated With Increased Risk Of Incident Hip Fracture In Older Adults, Independent Of Sex Hormone Levels”
+						  <cite>(Journal of the Endocrine Society)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Anne Schafer' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=187764' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/anne.schafer'>Anne Schafer, MD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=42502%20Retrospective%20dual-centre%20review%20of%20319%20patients%20with%20Kaposi%20Sarcoma%3A%20Immunocompetent%20MSM%20an%20emerging%20clinical%20subset%20Journal%20of%20the%20American%20Academy%20of%20Dermatology' target='_blank'>
+						  “42502 Retrospective dual-centre review of 319 patients with Kaposi Sarcoma: Immunocompetent MSM an emerging clinical subset”
+						  <cite>(Journal of the American Academy of Dermatology)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Kieron Leslie' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=186186' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/kieron.leslie'>Kieron Leslie, MBBS</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Dermatology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=17%20Help%20wanted%3A%20identifying%20and%20addressing%20sexual%20distress%20in%20newly%20referred%20gynecologic%20oncology%20patients%20Gynecologic%20Oncology%20Reports' target='_blank'>
+						  “17 Help wanted: identifying and addressing sexual distress in newly referred gynecologic oncology patients”
+						  <cite>(Gynecologic Oncology Reports)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Tami Rowen' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=185973' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/tami.rowen'>Tami Rowen, MD, MS</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37779638' target='_blank'>
+						  “Young, Black/African American, and Latino communities are left behind despite legislative efforts in California to reduce HIV/STI disparities”
+						  <cite>(Frontiers in Reproductive Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Orlando Harris' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=194737' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/orlando.harris'>Orlando Harris, PhD, FNP, MPH</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Community Health Systems</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37654244' target='_blank'>
+						  “The status of person‐centered contraceptive care in the United States: Results from a nationally representative sample”
+						  <cite>(Perspectives on Sexual and Reproductive Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Christine Dehlendorf' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=190537' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/christine.dehlendorf'>Christine Dehlendorf, MD, MAS</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Family Community Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37641572' target='_blank'>
+						  “Endometriosis in the era of precision medicine and impact on sexual and reproductive health across the lifespan and in diverse populations”
+						  <cite>(The FASEB Journal)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Linda Giudice' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=189187' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/linda.giudice'>Linda Giudice, MD, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37608645' target='_blank'>
+						  “Increasing the meaningful involvement of women in HIV cure-related research: a qualitative interview study in the United States”
+						  <cite>(HIV Research &amp; Clinical Practice)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Morgan Philbin' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=357824150' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/morgan.philbin'>Morgan Philbin, PhD, MHS</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37584273' target='_blank'>
+						  “Changes in Inflammatory Cytokine Levels in Rectal Mucosa Associated With Neisseria gonorrheae and/or Chlamydia trachomatis Infection and Treatment Among Men Who Have Sex With Men in Lima, Peru”
+						  <cite>(The Journal of Infectious Diseases)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Catie Oldenburg' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=195613' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/cate.oldenburg'>Catie Oldenburg, ScD, MPH</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Proctor Foundation</div>
+						  <div>Chancellor/EVC/FAS</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37542130' target='_blank'>
+						  “Association between self-reported race and ethnicity and myositis-specific autoantibodies in a diverse cohort of patients with inflammatory myopathy”
+						  <cite>(Clinical Rheumatology)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Gabriela Schmajuk' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=176529' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/gabriela.schmajuk'>Gabriela Schmajuk, MD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37547378' target='_blank'>
+						  “Experiences of transgender and gender diverse patients in emergency psychiatric settings: A scoping review”
+						  <cite>(Journal of the American College of Emergency Physicians Open)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Matthew Hirschtritt' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=189559' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/matthew.hirschtritt'>Matthew Hirschtritt, MD, MPH</a>
+						  </div>
+						  <div>Assistant Clinical Professor</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37517809' target='_blank'>
+						  “‘Yourself in all your forms’: A grounded theory exploration of identity safety in medical students”
+						  <cite>(Medical Education)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Karen Hauer' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=173235' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/karen.hauer'>Karen Hauer, MD, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37516373' target='_blank'>
+						  “Bayesian inference of a spectral graph model for brain oscillations”
+						  <cite>(NeuroImage)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Fei Jiang' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=67763959' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/fei.jiang'>Fei Jiang, PhD, MS</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Epidemiology &amp; Biostatistics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37486337' target='_blank'>
+						  “Impact of HCV Testing and Treatment on HCV Transmission Among Men Who Have Sex With Men and Who Inject Drugs in San Francisco: A Modelling Analysis”
+						  <cite>(The Journal of Infectious Diseases)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Meghan Morris' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=174954' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/meghan.morris'>Meghan Morris, PhD, MPH</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Epidemiology &amp; Biostatistics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37454638' target='_blank'>
+						  “Internalizing the COVID-19 pandemic: Gendered differences in youth mental health”
+						  <cite>(Current Opinion in Psychology)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Alison Cohen' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=185097693' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/alison.cohen'>Alison Cohen, PhD, MPH</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Epidemiology &amp; Biostatistics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37389573' target='_blank'>
+						  “Sex-based Disparities in Access to Liver Transplantation for Waitlisted Patients With Model for End-stage Liver Disease Score of 40”
+						  <cite>(Annals of Surgery)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Nancy Ascher' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=184017' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/nancy.ascher'>Nancy Ascher, MD, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Surgery</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=Facial%20Masculinization%20Surgery%3A%20A%20Consolidated%20Approach%20FPSAM%20Video%20Journal' target='_blank'>
+						  “Facial Masculinization Surgery: A Consolidated Approach”
+						  <cite>(FPSAM Video Journal)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Rahul Seth' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=184529' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/rahul.seth'>Rahul Seth, MD</a>
+						  </div>
+						  <div>Associate Clinical Professor</div>
+						  <div>Otolaryngology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37279444' target='_blank'>
+						  “Do patients with Peyronie’s disease perceive penile curvature in adults and children differently than the general population?”
+						  <cite>(The Journal of Sexual Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Benjamin Breyer' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=188490' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/benjamin.breyer'>Benjamin Breyer, MD, MAS</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Urology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37285336' target='_blank'>
+						  “PrEP knowledge, acceptability, and implementation in Ghana: Perspectives of HIV service providers and MSM, trans women, and gender diverse individuals living with HIV”
+						  <cite>(PLOS Global Public Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/akua.gyamerah'>Akua Gyamerah, DrPH, MPH</a>
+						  </div>
+						  <div>Specialist</div>
+						  <div>Community Health Systems</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37265144' target='_blank'>
+						  “Religion/Spirituality and Prevalent Hypertension among Ethnic Cohorts in the Study on Stress, Spirituality, and Health.”
+						  <cite>(Annals of Behavioral Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Alka Kanaya' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=196343' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/alka.kanaya'>Alka Kanaya, MD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=0910%20Potential%20Role%20of%20Physicians%20in%20Addressing%20the%20Needs%20of%20Those%20At-Risk%20of%20a%20Neurodegenerative%20Disorder%20%E2%80%93%20A%20Pilot%20Survey%20Sleep' target='_blank'>
+						  “0910 Potential Role of Physicians in Addressing the Needs of Those At-Risk of a Neurodegenerative Disorder – A Pilot Survey”
+						  <cite>(Sleep)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/christine.walsh'>Christine Walsh, PhD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Neurology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37236319' target='_blank'>
+						  “Individual and Systems-Based Risk Factors for Diabetic Vitrectomy in an Urban Safety-Net Hospital”
+						  <cite>(Ophthalmology Retina)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Jay Stewart' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=190306' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/jay.stewart'>Jay Stewart, MD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Ophthalmology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37217694' target='_blank'>
+						  “Prostate cancer is not just a man’s concern — the use of PSA screening in transgender women”
+						  <cite>(Nature Reviews Urology)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Matthew Cooperberg' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=196045' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/matthew.cooperberg'>Matthew Cooperberg, MD, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Urology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37211215' target='_blank'>
+						  “Availability of information needed to evaluate algorithmic fairness — A systematic review of publicly accessible critical care databases”
+						  <cite>(Anaesthesia Critical Care &amp; Pain Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Tyler Law' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=186167' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/tyler.law'>Tyler Law, MD</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Anesthesia</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37194051' target='_blank'>
+						  “Mental health and substance use screening in HIV primary care before and during the early COVID-19 pandemic”
+						  <cite>(BMC Health Services Research)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Derek Satre' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=181365' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/derek.satre'>Derek Satre, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37155944' target='_blank'>
+						  “Structural Sexism and Cancer Care: The Effects on the Patient and Oncologist.”
+						  <cite>(American Society of Clinical Oncology Educational Book)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Bridget Keenan' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=182982' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/bridget.keenan'>Bridget Keenan, MD, PhD</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37141206' target='_blank'>
+						  “Barriers to and enablers of the HIV services continuum among gay and bisexual men worldwide: Findings from the Global Men’s Health and Rights Study”
+						  <cite>(PLOS ONE)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Glenn-Milo Santos' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=196968' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/glenn-milo.santos'>Glenn-Milo Santos, PhD, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Community Health Systems</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37119522' target='_blank'>
+						  “Prostate Cancer in Transgender Women in the Veterans Affairs Health System, 2000-2022”
+						  <cite>(JAMA)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Christi Butler' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=188825' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/christi.butler'>Christi Butler, MD</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Urology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37079185' target='_blank'>
+						  “Position Paper: SGIM Sex- and Gender-Based Women’s Health Core Competencies”
+						  <cite>(Journal of General Internal Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Eleanor Schwarz' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=213785480' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/eleanorbimla.schwarz'>Eleanor Schwarz, MD, MS</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=%E2%80%9CWe%27ve%20Got%20to%20Bring%20Information%20to%20Where%20People%20are%20Comfortable%E2%80%9D%3A%20Community-Based%20Advance%20Care%20Planning%20with%20the%20Black%20Community%20%28Sch403%29%20Journal%20of%20Pain%20and%20Symptom%20Management' target='_blank'>
+						  ““We&apos;ve Got to Bring Information to Where People are Comfortable”: Community-Based Advance Care Planning with the Black Community (Sch403)”
+						  <cite>(Journal of Pain and Symptom Management)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Sarah Nouri' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=179736' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/sarah.nouri'>Sarah Nouri, MD, MPH</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37043361' target='_blank'>
+						  “HIV Pre-Exposure Prophylaxis Use on a Global Scale Among Men Who Have Sex with Men: A Systematic Review and Meta-Analysis”
+						  <cite>(AIDS Patient Care and STDs)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/bruce.agins'>Bruce Agins, MD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Epidemiology &amp; Biostatistics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37150707' target='_blank'>
+						  “Urine cytology in patients with gender confirmation surgery and hormone therapy: evaluation of urine cytology performance in an underserved patient population”
+						  <cite>(Journal of the American Society of Cytopathology)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Cornelia Ding' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=51417560' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/chien-kuang.ding'>Cornelia Ding, MD, PhD</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Pathology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37018493' target='_blank'>
+						  “Postexposure Doxycycline to Prevent Bacterial Sexually Transmitted Infections”
+						  <cite>(New England Journal of Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Stephanie Cohen' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=187758' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/stephanie.cohen'>Stephanie Cohen, MD</a>
+						  </div>
+						  <div>Assistant Clinical Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37357303' target='_blank'>
+						  “Associations between Participant Characteristics and Participant Feedback about an Unsupervised Online Cognitive Assessment in a Research Registry”
+						  <cite>(The Journal of Prevention of Alzheimer&apos;s Disease)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Rachel Nosheny' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=194197' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/rachel.nosheny'>Rachel Nosheny, PhD</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36932369' target='_blank'>
+						  “Study protocol for an efficacy trial of the “PrEP for Health” intervention to increase HIV PrEP use among people who inject drugs”
+						  <cite>(BMC Public Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/christopher.bositis'>Christopher Bositis, MD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Family Community Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=Using%20social%20marketing%20strategies%20to%20develop%20and%20pretest%20PrEP%20education%20materials%20for%20transgender%20women%20Journal%20of%20Social%20Marketing' target='_blank'>
+						  “Using social marketing strategies to develop and pretest PrEP education materials for transgender women”
+						  <cite>(Journal of Social Marketing)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Luis Gutierrez-Mock' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=54084208' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/luis.gutierrez-mock'>Luis Gutierrez-Mock, MA, MPH</a>
+						  </div>
+						  <div>Project Director</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36931984' target='_blank'>
+						  “Prospective Determination of Normative Value of the Singing Voice Handicap Index-10 (SVHI-10)”
+						  <cite>(Journal of Voice)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Sarah Schneider' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=115858396' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/sarah.schneider'>Sarah Schneider</a>
+						  </div>
+						  <div>SPEECH PATHOLOGIST</div>
+						  <div>Otolaryngology</div>
+						  <div>Chancellor/EVC/FAS</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36931606' target='_blank'>
+						  “Cultural and Psychosocial Correlates of co-use among Black-White Biracial Adults”
+						  <cite>(Journal of Substance Use and Addiction Treatment)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Caravella McCuistian' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=120101691' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/caravella.mccuistian'>Caravella McCuistian, PhD, MA</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36913727' target='_blank'>
+						  “Brief Report: The Influence of the COVID-19 Pandemic on the Physical, Social, and Mental Health of Black and Latinx Young People With HIV in the United States”
+						  <cite>(JAIDS Journal of Acquired Immune Deficiency Syndromes)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of John Sauceda' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=186529' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/john.sauceda'>John Sauceda, PhD, MSc, MA</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36855189' target='_blank'>
+						  “Eating disorders in sexual minority adolescents and young adults: examining clinical characteristics and psychiatric co-morbidities in an inpatient medical setting”
+						  <cite>(Journal of Eating Disorders)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Amanda Downey' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=136220945' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/amanda.downey'>Amanda Downey, MD</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36828990' target='_blank'>
+						  “Weight Management Treatment Representations: A Novel Use of the Common Sense Model”
+						  <cite>(Journal of Clinical Psychology in Medical Settings)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Shira Maguen' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=174794' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/shira.maguen'>Shira Maguen, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37538076' target='_blank'>
+						  “Gender Disparities in Critical Care Procedure Training of Internal Medicine Residents”
+						  <cite>(ATS Scholar)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Jacqueline  DesJardin' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=198572' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/jacqueline.desjardin'>Jacqueline  DesJardin, MD</a>
+						  </div>
+						  <div>Clinical Fellow</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36728397' target='_blank'>
+						  “Impact of COVID-19 Response on the HIV Epidemic in Men Who Have Sex With Men in San Francisco County: The Importance of Rapid Return to Normalcy”
+						  <cite>(JAIDS Journal of Acquired Immune Deficiency Syndromes)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Wayne Steward' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=188611' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/wayne.steward'>Wayne Steward, PhD, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36705650' target='_blank'>
+						  “Allergic Contact Dermatitis in Sexual and Gender Minority Patients: Disparities and a Call to Action”
+						  <cite>(Dermatitis)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Howard Maibach' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=196183' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/howard.maibach'>Howard Maibach, MD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Dermatology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=Gender-affirming%20facial%20surgery%3A%20Anatomy%20and%20fundamentals%20of%20care%20Operative%20Techniques%20in%20Otolaryngology-Head%20and%20Neck%20Surgery' target='_blank'>
+						  “Gender-affirming facial surgery: Anatomy and fundamentals of care”
+						  <cite>(Operative Techniques in Otolaryngology-Head and Neck Surgery)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Tania Benjamin' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=55031964' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/tania.benjamin'>Tania Benjamin, MD</a>
+						  </div>
+						  <div>Resident</div>
+						  <div>Otolaryngology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=Abstract%20B084%3A%20The%20Florez%20Lab%20at%20Dana-Farber%20Cancer%20Institute%3A%20Improving%20the%20care%20of%20vulnerable%20populations%20and%20supporting%20trainees%20from%20underrepresented%20groups%20in%20medicine%20Cancer%20Epidemiology%20Biomarkers%20%26%20Prevention' target='_blank'>
+						  “Abstract B084: The Florez Lab at Dana-Farber Cancer Institute: Improving the care of vulnerable populations and supporting trainees from underrepresented groups in medicine”
+						  <cite>(Cancer Epidemiology Biomarkers &amp; Prevention)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Ana Velazquez Manana' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=12205961' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/ana.velazquezmanana'>Ana Velazquez Manana, MD</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36627577' target='_blank'>
+						  ““‘Oh gosh, why go?’ cause they are going to look at me and not hire”: intersectional experiences of black women navigating employment during pregnancy and parenting”
+						  <cite>(BMC Pregnancy and Childbirth)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Linda Franck' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=186521' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/linda.franck'>Linda Franck, RN, PhD, FAAN</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Family Health Care Nursing</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36581466' target='_blank'>
+						  “Cognitive and Functional Trajectories in Older Adults With Prediagnostic Parkinson Disease”
+						  <cite>(Neurology)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Kristine Yaffe' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=176713' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/kristine.yaffe'>Kristine Yaffe, MD</a>
+						  </div>
+						  <div>Professor of Psychiatry, Neurology and Epidemiology</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36580551' target='_blank'>
+						  “Objective Outcomes of Trichophytic Brow Lift and Hairline Advancement in Facial Feminization Surgery”
+						  <cite>(Facial Plastic Surgery &amp; Aesthetic Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Andrea Park' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=29702334' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/andrea.park'>Andrea Park, MD</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Otolaryngology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36564815' target='_blank'>
+						  “Transgender and other gender diverse adolescents with eating disorders requiring medical stabilization”
+						  <cite>(Journal of Eating Disorders)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/sara.buckelew'>Sara Buckelew, MD, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=MUSCLE%20MITOCHONDRIAL%20ENERGETICS%20ARE%20ASSOCIATED%20WITH%20GREATER%20MULTIMORBIDITY%20IN%20MEN%20Innovation%20in%20Aging' target='_blank'>
+						  “MUSCLE MITOCHONDRIAL ENERGETICS ARE ASSOCIATED WITH GREATER MULTIMORBIDITY IN MEN”
+						  <cite>(Innovation in Aging)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/peggy.cawthon'>Peggy Cawthon, PhD, MPH</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Epidemiology &amp; Biostatistics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=Cognitive%20and%20Functional%20Trajectories%20in%20Prediagnostic%20Parkinson%E2%80%99s%20Disease%20Alzheimer%27s%20%26%20Dementia' target='_blank'>
+						  “Cognitive and Functional Trajectories in Prediagnostic Parkinson’s Disease”
+						  <cite>(Alzheimer&apos;s &amp; Dementia)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Amber Bahorik' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=174655' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/amber.bahorik'>Amber Bahorik, PhD</a>
+						  </div>
+						  <div>Research Project Coordinator</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=Sex%20modifies%20the%20association%20between%20hippocampal%20blood%20flow%20and%20episodic%20memory%20in%20cognitively%20unimpaired%20individuals%20Alzheimer%27s%20%26%20Dementia' target='_blank'>
+						  “Sex modifies the association between hippocampal blood flow and episodic memory in cognitively unimpaired individuals”
+						  <cite>(Alzheimer&apos;s &amp; Dementia)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Kaitlin Casaletto' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=176415' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/kaitlin.casaletto'>Kaitlin Casaletto, PhD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Neurology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=Participant%20experience%20in%20a%20longitudinal%20online%20research%20registry%3A%20Associations%20between%20ethnocultural%20identity%2C%20educational%20attainment%2C%20and%20participant%20feedback%20in%20the%20Brain%20Health%20Registry%20Alzheimer%27s%20%26%20Dementia' target='_blank'>
+						  “Participant experience in a longitudinal online research registry: Associations between ethnocultural identity, educational attainment, and participant feedback in the Brain Health Registry”
+						  <cite>(Alzheimer&apos;s &amp; Dementia)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/chengshi.jin'>Chengshi Jin, PhD, MS</a>
+						  </div>
+						  <div>Specialist</div>
+						  <div>Epidemiology &amp; Biostatistics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36533546' target='_blank'>
+						  “Prevalence and correlates of alcohol‐induced blackout in a diverse sample of veterans”
+						  <cite>(Alcohol Clinical and Experimental Research)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Brian Borsari' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=196329' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/brian.borsari'>Brian Borsari, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36480216' target='_blank'>
+						  “Prevalence and correlates of methamphetamine use in transitional age youth experiencing homelessness or housing instability in San Francisco, CA”
+						  <cite>(Journal of Nursing Scholarship)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/adam.leonard'>Adam Leonard, MSN, MPH</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Community Health Systems</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36467119' target='_blank'>
+						  “Morphometric Analysis of Gender-affirming Breast Augmentation”
+						  <cite>(Plastic &amp; Reconstructive Surgery Global Open)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/nisha.parmeshwar'>Nisha Parmeshwar, MD</a>
+						  </div>
+						  <div>RESIDENT PHYSICIAN</div>
+						  <div>Surgery</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36435761' target='_blank'>
+						  “Prevalence and correlates of substance use and associations with HIV-related outcomes among trans women in the San Francisco Bay Area”
+						  <cite>(BMC Infectious Diseases)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Elaine Hsiang' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=135337673' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/elaine.hsiang'>Elaine Hsiang, MD</a>
+						  </div>
+						  <div>Resident</div>
+						  <div>Emergency Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36496321' target='_blank'>
+						  “Utility of genetic work-up for 46, XY patients with severe hypospadias”
+						  <cite>(Journal of Pediatric Urology)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Laurence Baskin' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=179497' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/laurence.baskin'>Laurence Baskin, MD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Urology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36509633' target='_blank'>
+						  “Sex Differences in the Relationship between Perceived Stress and Cognitive Trajectories”
+						  <cite>(American Journal of Geriatric Psychiatry)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/rowan.saloner'>Rowan Saloner, PhD</a>
+						  </div>
+						  <div>Asst Adjunct Professor</div>
+						  <div>Neurology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36457345' target='_blank'>
+						  “Policing sexuality: Sexual minority youth, police contact, and health inequity”
+						  <cite>(SSM - Population Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Gabriel Schwartz' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=137861027' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/gabriel.schwartz'>Gabriel Schwartz, PhD</a>
+						  </div>
+						  <div>Postdoctoral Scholar</div>
+						  <div>Institute for Health Policy Studies</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=P054Medication%20abortion%20via%20telemedicine%3A%20Interest%20among%20young%20people%20in%20texas%20and%20california%20Contraception' target='_blank'>
+						  “P054Medication abortion via telemedicine: Interest among young people in texas and california”
+						  <cite>(Contraception)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Cynthia Harper' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=174038' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/cynthia.harper'>Cynthia Harper, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=P022Growing%20national%20interest%20and%20support%20for%20advance%20provision%20and%20over-the-counter%20access%20to%20medication%20abortion%20Contraception' target='_blank'>
+						  “P022Growing national interest and support for advance provision and over-the-counter access to medication abortion”
+						  <cite>(Contraception)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/daniel.grossman'>Daniel Grossman, MD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36400279' target='_blank'>
+						  “Editorial: Racialized Trauma and Emotion Regulation in a Dysregulated World”
+						  <cite>(Journal of the American Academy of Child &amp; Adolescent Psychiatry)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Lisa Fortuna' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=93771621' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/lisa.fortuna'>Lisa Fortuna, MD, MPH</a>
+						  </div>
+						  <div>Prof of Clinical Psychiatry</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=LGBT%20STATUS%20AND%20DIFFERENCES%20IN%20SELF-REPORTED%20SATISFACTION%20WITH%20FERTILITY%20CLINICS%20AND%20DOCTORS%20Fertility%20and%20Sterility' target='_blank'>
+						  “LGBT STATUS AND DIFFERENCES IN SELF-REPORTED SATISFACTION WITH FERTILITY CLINICS AND DOCTORS”
+						  <cite>(Fertility and Sterility)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Victor Fujimoto' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=186214' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/victor.fujimoto'>Victor Fujimoto, MD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36792271' target='_blank'>
+						  “Updates in Transgender Breast Imaging”
+						  <cite>(Seminars in Ultrasound CT and MRI)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Jessica Hayward' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=189057' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/jessica.hayward'>Jessica Hayward, MD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Radiology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36318427' target='_blank'>
+						  “Mobility is Associated with Higher-risk Sexual Partnerships Among Both Men and Women in Co-resident Couples in Rural Kenya and Uganda: A Longitudinal Cohort Study”
+						  <cite>(AIDS and Behavior)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Carol Camlin' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=182062' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/carol.camlin'>Carol Camlin, PhD, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36225153' target='_blank'>
+						  “An evaluation of nine culturally tailored interventions designed to enhance engagement in HIV care among transgender women of colour in the United States”
+						  <cite>(Journal of the International AIDS Society)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/andres.maiorana'>Andres Maiorana, MPH</a>
+						  </div>
+						  <div>SPECIALIST</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36252348' target='_blank'>
+						  “Identifying correlates of suicide ideation during the COVID-19 pandemic: A cross-sectional analysis of 148 sociodemographic and pandemic-specific factors”
+						  <cite>(Journal of Psychiatric Research)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Emily Dolsen' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=207107159' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/emily.dolsen'>Emily Dolsen</a>
+						  </div>
+						  <div>Affiliate</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36210502' target='_blank'>
+						  “Gender-Affirming Facial Feminization Surgery at a Public, Safety-Net Hospital: A Single-Center Early Experience”
+						  <cite>(Journal of Craniofacial Surgery)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/andrew.weeks'>Andrew Weeks, MD, DDS</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Oral &amp; Maxillofacial Surgery</div>
+						  <div>School of Dentistry</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36224062' target='_blank'>
+						  “Comparing Substance Use and School-Based Stressors Among Black and Latinx Transgender Youth and Peers With Shared Minoritized Identities”
+						  <cite>(Journal of Adolescent Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Cherrie Boyer' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=180832' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/cherrie.boyer'>Cherrie Boyer, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36199074' target='_blank'>
+						  “Care across the gender spectrum: A transgender health curriculum in the Obstetrics and Gynecology clerkship”
+						  <cite>(BMC Medical Education)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/gaetan.pettigrew'>Gaetan Pettigrew, MD</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36194859' target='_blank'>
+						  “Using Simulation to Teach Learners in Health Care Behavioral Skills Related to Diversity, Equity, and Inclusion”
+						  <cite>(Simulation in Healthcare The Journal of the Society for Simulation in Healthcare)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Sandrijn Van Schaik' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=189316' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/sandrijn.vanschaik'>Sandrijn Van Schaik, MD, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36166228' target='_blank'>
+						  “Outcomes of Gene Panel Testing for Sensorineural Hearing Loss in a Diverse Patient Cohort”
+						  <cite>(JAMA Network Open)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Dylan Chan' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=183743' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/dylan.chan'>Dylan Chan, MD, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Otolaryngology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36112424' target='_blank'>
+						  “Gender Differences in National Institutes of Health Grant Submissions Before and During the COVID-19 Pandemic”
+						  <cite>(Journal of Women&apos;s Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Danielle Roubinov' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=175472' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/danielle.roubinov'>Danielle Roubinov, PhD</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36164391' target='_blank'>
+						  “Sleep disturbance and suicide risk among sexual and gender minority people”
+						  <cite>(Neurobiology of Stress)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Amy Byers' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=172620' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/amy.byers'>Amy Byers, PhD, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36225663' target='_blank'>
+						  “Cancer Risk Behaviors, Cancer Beliefs, and Health Information Seeking Among Under-Represented Populations in San Francisco: Differences by Sexual Orientation and Gender Identity”
+						  <cite>(Health Equity)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Robert Hiatt' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=196025' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/robert.hiatt'>Robert Hiatt, MD, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Epidemiology &amp; Biostatistics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36042086' target='_blank'>
+						  “Gender Differences in Guideline-Directed Medical Therapy for Cardiovascular Disease Among Young Veterans”
+						  <cite>(Journal of General Internal Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Sanket Dhruva' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=26744162' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/sanket.dhruva'>Sanket Dhruva, MD, MHS</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36006769' target='_blank'>
+						  “Prostate Cancer in Male-to-Female Transgender Individuals”
+						  <cite>(The American Journal of Surgical Pathology)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Jeff Simko' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=174863' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/jeff.simko'>Jeff Simko, MD, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Pathology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35943868' target='_blank'>
+						  “Pharmacokinetics of Emtricitabine/Tenofovir Disoproxil Fumarate Among Transgender Adolescents and Young Adults Without HIV Receiving Gender Affirming Hormones”
+						  <cite>(AIDS Research and Human Retroviruses)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Kathleen Mulligan' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=175079' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/kathleen.mulligan'>Kathleen Mulligan, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36016345' target='_blank'>
+						  “Female Genital Fibroblasts Diminish the In Vitro Efficacy of PrEP against HIV”
+						  <cite>(Viruses)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/ashley.george'>Ashley George, PhD</a>
+						  </div>
+						  <div>Postdoctoral Scholar</div>
+						  <div>Business Service Ctr</div>
+						  <div>Chancellor/EVC/FAS</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37601153' target='_blank'>
+						  “The General Surgery Residency Experience: A Multicenter Study of Differences in Wellbeing by Race/Ethnicity.”
+						  <cite>(Annals of Surgery Open)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Carter Lebares' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=185167' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/carter.lebares'>Carter Lebares, MD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Surgery</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35852477' target='_blank'>
+						  “Local Patterns in 2‐Year T1ρ and T2 Changes of Hip Cartilage Are Related to Sex and Functional Data: A Prospective Evaluation on Hip Osteoarthritis Participants”
+						  <cite>(Journal of Magnetic Resonance Imaging)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Valentina Pedoia' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=196561' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/valentina.pedoia'>Valentina Pedoia, PhD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Radiology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36458212' target='_blank'>
+						  “Healthcare Mistreatment, State-Level Policy Protections, and Healthcare Avoidance Among Gender Minority People”
+						  <cite>(Sexuality Research and Social Policy)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Elena Flowers' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=183079' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/elena.flowers'>Elena Flowers, PhD, RN</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Physiological Nursing</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35941040' target='_blank'>
+						  “Interpretation of Bone Mineral Density Z-Scores by Dual-Energy X-Ray Absorptiometry in Transgender and Gender Diverse Youth Prior to Gender-Affirming Medical Therapy”
+						  <cite>(Journal of Clinical Densitometry)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Ellen Fung' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=311314534' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/ellen.fung'>Ellen Fung, PhD, RD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35829969' target='_blank'>
+						  “Sexual Practice Changes Post-HIV Diagnosis Among Men Who Have Sex with Men in the United States: A Systematic Review and Meta-analysis”
+						  <cite>(AIDS and Behavior)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Mohsen Malekinejad' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=174419' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/mohsen.malekinejad'>Mohsen Malekinejad, MD, MPH, DrPH</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Epidemiology &amp; Biostatistics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35818894' target='_blank'>
+						  “The ethical imperative to reduce HIV stigma through community‐engaged, status‐neutral interventions designed with and for transgender women of colour in the United States”
+						  <cite>(Journal of the International AIDS Society)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Greg Rebchook' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=189331' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/greg.rebchook'>Greg Rebchook, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35799331' target='_blank'>
+						  “Youth perceptions and concerns about sexually transmissible infections versus pregnancy: a qualitative comparative study in California”
+						  <cite>(Sexual Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Claire Brindis' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=185366' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/claire.brindis'>Claire Brindis, DrPH</a>
+						  </div>
+						  <div>Distinguished Professor</div>
+						  <div>Institute for Health Policy Studies</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35750557' target='_blank'>
+						  “Trends in Inequities in the Treatment of and Outcomes for Women and Minorities with Myocardial Infarction”
+						  <cite>(Annals of Emergency Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/juancarlos.montoy'>Juan Carlos Montoy, MD, PhD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Emergency Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35679008' target='_blank'>
+						  “Sex and Gender Considerations in Episodic Migraine”
+						  <cite>(Current Pain and Headache Reports)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Sarah Ahmad' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=87362973' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/sarah.ahmad'>Sarah Ahmad, MD</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Neurology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35674879' target='_blank'>
+						  “Interventions Designed to Improve HIV Continuum of Care Outcomes for Persons with HIV in Contact with the Carceral System in the USA”
+						  <cite>(Current HIV/AIDS Reports)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of A. Clemenzi-Allen' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=185720' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/angelo.clemenzi-allen'>A. Clemenzi-Allen, MD</a>
+						  </div>
+						  <div>Assistant Clinical Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35658735' target='_blank'>
+						  “Impact of Sexual Assault Survivor Identity on Patient Care in the Emergency Department”
+						  <cite>(Journal of Interpersonal Violence)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/ramya.parameswaran'>Ramya Parameswaran, MD, PhD</a>
+						  </div>
+						  <div>Clinical Fellow</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35522087' target='_blank'>
+						  “The Pharmacology and Clinical Applications of Psychedelic Medicines Within Midwifery Practice”
+						  <cite>(Journal of Midwifery &amp; Women&apos;s Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Andrew Penn' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=176446' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/andrew.penn'>Andrew Penn, RN, MS, NP</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Community Health Systems</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35523675' target='_blank'>
+						  “E-cigarette disparities: Who are the targets?”
+						  <cite>(Current Problems in Pediatric and Adolescent Health Care)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Valerie Gribben' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=189365' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/valerie.gribben'>Valerie Gribben, MD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35486843' target='_blank'>
+						  “The Path to Academic Success: Perspectives of a LGBTQ+ Chairof Surgery”
+						  <cite>(The American Surgeon)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Julie Ann Sosa' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=188063' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/julieann.sosa'>Julie Ann Sosa, MD, MA, FACS</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Surgery</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36895316' target='_blank'>
+						  “Evidence of Spermatogenesis in the Presence of Hypothalamic Suppression and Low Testosterone in an Adolescent Transgender Female: A Case Report”
+						  <cite>(Transgender Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of James Smith' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=174754' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/james.smith'>James Smith, MD, MS</a>
+						  </div>
+						  <div>Professor in Residence</div>
+						  <div>Urology</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35651523' target='_blank'>
+						  “Development and implementation of a prescription opioid registry across diverse health systems”
+						  <cite>(JAMIA Open)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Cynthia Campbell' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=172138' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/cynthia.campbell'>Cynthia Campbell, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35467570' target='_blank'>
+						  “Management of Menstruation in Transgender and Gender Nonbinary Adolescents”
+						  <cite>(Clinical Obstetrics &amp; Gynecology)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Amy Autry' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=179112' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/amy.autry'>Amy Autry, MD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=477%20The%20Climate%20is%20Changing%2C%20Why%20Cant%20We%3F%20Faculty%20Perspectives%20on%20Education%20for%20Sustainable%20Healthcare%20in%20Health%20Education%20Journal%20of%20Clinical%20and%20Translational%20Science' target='_blank'>
+						  “477 The Climate is Changing, Why Cant We? Faculty Perspectives on Education for Sustainable Healthcare in Health Education”
+						  <cite>(Journal of Clinical and Translational Science)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Sheri Weiser' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=181696' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/sheri.weiser'>Sheri Weiser, MD, MPH, MA</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35435149' target='_blank'>
+						  “Persistent disparities in COVID-19-associated impacts on HIV prevention and care among a global sample of sexual and gender minority individuals”
+						  <cite>(Global Public Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Jerry John Nutor' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=55911294' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/jerry.nutor'>Jerry John Nutor, PhD, RN, MS</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Family Health Care Nursing</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35396161' target='_blank'>
+						  “Comparing Outpatient Opioids, High-Risk Prescribing, and Opioid Poisoning Between Transgender and Cisgender Veterans: A Cross-sectional Analysis”
+						  <cite>(American Journal of Preventive Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Colin Hubbard' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=227116085' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/colin.hubbard'>Colin Hubbard</a>
+						  </div>
+						  <div>Senior Statistical Scientist</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38624947' target='_blank'>
+						  “Flourishing as a guide to intervention: a national multicenter study of general surgery residents”
+						  <cite>(Global Surgical Education - Journal of the Association for Surgical Education)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Christy Boscardin' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=187575' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/christy.boscardin'>Christy Boscardin, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35987545' target='_blank'>
+						  “Disordered Eating and Body Dissatisfaction in Transgender and Gender-Expansive Adults: An Evaluation and Integration of the Gender Minority Stress and Resilience and Tripartite Influence Models”
+						  <cite>(Behavior Therapy)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Laura Muratore' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=503246187' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/laura.muratore'>Laura Muratore</a>
+						  </div>
+						  <div>Clinical Research Coordinator</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.google.com/search?q=A%20Health%20Equity%20Primer%3A%20Understanding%20and%20Addressing%20Inequities%20in%20Pediatric%20Orthopaedics%20Journal%20of%20the%20Pediatric%20Orthopaedic%20Society%20of%20North%20America' target='_blank'>
+						  “A Health Equity Primer: Understanding and Addressing Inequities in Pediatric Orthopaedics”
+						  <cite>(Journal of the Pediatric Orthopaedic Society of North America)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Coleen Sabatini' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=173091' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/coleen.sabatini'>Coleen Sabatini, MD, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Orthopaedic Surgery</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35084030' target='_blank'>
+						  “Superwoman Schema, Racial Identity, and Cellular Aging Among African American Women”
+						  <cite>(The Gerontologist)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Marilyn Thomas' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=56921747' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/marilyn.thomas'>Marilyn Thomas, PhD, MPH</a>
+						  </div>
+						  <div>Postdoctoral Scholar</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35022255' target='_blank'>
+						  “The evolving landscape of sex-based differences in lung cancer: a distinct disease in women”
+						  <cite>(European Respiratory Review)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/meera.ragavan'>Meera Ragavan, MD, MPH</a>
+						  </div>
+						  <div>Adjunct Instructor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35000522' target='_blank'>
+						  “The association between HIV disclosure, spousal testing and unprotected vaginal intercourse within marriage among HIV positive married MSM in China”
+						  <cite>(AIDS Care)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/teri.lindgren'>Teri Lindgren, PhD, RN, FAAN</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Community Health Systems</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/34993871' target='_blank'>
+						  “Warfarin Monitoring in Safety-Net Health Systems: Analysis by Race/Ethnicity and Language Preference”
+						  <cite>(Journal of General Internal Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Anjana Sharma' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=178810' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/anjana.sharma'>Anjana Sharma, MD, MAS</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Family Community Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35394432' target='_blank'>
+						  “Recruiting Black Men Who Have Sex With Men (MSM) Couples via Dating Apps: Pilot Study on Challenges and Successes”
+						  <cite>(JMIR Formative Research)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/cindy.kim'>Cindy Kim, MPH</a>
+						  </div>
+						  <div>Research Data Analyst</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+			  </div>
+		  </Param>
+        </ParamList>
+      </Module>
+      <Panel Type="passive"/>
+      <Panel type="footer" />
+    </Panel> 
+  </PanelList>
+</Presentation>

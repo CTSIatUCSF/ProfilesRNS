@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
 using Profiles.Profile.Modules;
 using System.Linq;
+using Newtonsoft.Json.Linq;
+using Profiles.Edit.Utilities;
 
 namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 {
@@ -74,6 +76,9 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             }
             base.InitUpDownArrows(ref GridViewMentoringInterests);
             upnlEditSection.Update();
+            imbAdvanceArrow.Visible = Advance.IsAdvanceEnabledFor(UCSFIDSet.ByNodeId[SubjectID].Institution);
+            btnCopyAdvanceMentoring.Visible = Advance.IsAdvanceEnabledFor(UCSFIDSet.ByNodeId[SubjectID].Institution);
+            litAdvanceMessage.Visible = Advance.IsAdvanceEnabledFor(UCSFIDSet.ByNodeId[SubjectID].Institution);
         }
 
         private void SecurityDisplayed(object sender, EventArgs e)
@@ -88,6 +93,29 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 pnlAddEditMentoring.Visible = false;
             }
 
+            upnlEditSection.Update();
+        }
+
+        protected void btnCopyAdvanceMentoring_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                string mentoring = Advance.getMentoringNarrativeFor(this.SubjectID);
+                if (!String.IsNullOrEmpty(mentoring))
+                {
+                    txtNarrative.Text = mentoring;
+                    litAdvanceMessage.Text = "Added Mentoring Summary from Advance CV. Be sure to click “Save Narrative” to save this change.";
+                }
+                else
+                {
+                    litAdvanceMessage.Text = "No Mentoring Summary was found in your Advance CV";
+                }
+            }
+            catch (Exception ex)
+            {
+                Framework.Utilities.DebugLogging.Log(ex.Message + ex.StackTrace);
+                litAdvanceMessage.Text = "Error accessing Advance for your profile.";
+            }
             upnlEditSection.Update();
         }
 

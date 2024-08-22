@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Edit.Modules.EditPropertyList {
-    
-    
-    public partial class EditPropertyList {
-        
+namespace Profiles.Edit.Modules.EditPropertyList
+{
+
+
+    public partial class EditPropertyList
+    {
+
         /// <summary>
         /// litBackLink control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Profiles.Edit.Modules.EditPropertyList {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litBackLink;
-        
+
         /// <summary>
         /// imgLock control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Profiles.Edit.Modules.EditPropertyList {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgLock;
-        
+
         /// <summary>
         /// hypEditHRDataLink control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Profiles.Edit.Modules.EditPropertyList {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hypEditHRDataLink;
-        
+
         /// <summary>
         /// pnlShowNameAndDegrees control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Profiles.Edit.Modules.EditPropertyList {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlShowNameAndDegrees;
-        
+
         /// <summary>
         /// repPropertyGroups control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Profiles.Edit.Modules.EditPropertyList {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater repPropertyGroups;
-        
+
         /// <summary>
         /// litSecurityKey control.
         /// </summary>
@@ -65,7 +67,16 @@ namespace Profiles.Edit.Modules.EditPropertyList {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litSecurityKey;
-        
+
+        /// <summary>
+        /// pnlAdvanceMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAdvanceMessage;
+
         /// <summary>
         /// litGadget control.
         /// </summary>

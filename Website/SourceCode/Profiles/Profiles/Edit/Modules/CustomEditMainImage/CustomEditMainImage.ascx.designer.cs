@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Edit.Modules.CustomEditMainImage {
-    
-    
-    public partial class CustomEditMainImage {
-        
+namespace Profiles.Edit.Modules.CustomEditMainImage
+{
+
+
+    public partial class CustomEditMainImage
+    {
+
         /// <summary>
         /// upnlEditSection control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Profiles.Edit.Modules.CustomEditMainImage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel upnlEditSection;
-        
+
         /// <summary>
         /// updateProgress control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Profiles.Edit.Modules.CustomEditMainImage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress updateProgress;
-        
+
         /// <summary>
         /// litBackLink control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Profiles.Edit.Modules.CustomEditMainImage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litBackLink;
-        
+
         /// <summary>
         /// pnlSecurityOptions control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Profiles.Edit.Modules.CustomEditMainImage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlSecurityOptions;
-        
+
         /// <summary>
         /// securityOptions control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Profiles.Edit.Modules.CustomEditMainImage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Profiles.Edit.Modules.SecurityOptions.SecurityOptions securityOptions;
-        
+
         /// <summary>
         /// phAddCustomPhoto control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Profiles.Edit.Modules.CustomEditMainImage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder phAddCustomPhoto;
-        
+
         /// <summary>
         /// aaa control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace Profiles.Edit.Modules.CustomEditMainImage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton aaa;
-        
+
         /// <summary>
         /// btnAddCustomPhoto control.
         /// </summary>
@@ -83,16 +85,7 @@ namespace Profiles.Edit.Modules.CustomEditMainImage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnAddCustomPhoto;
-        
-        /// <summary>
-        /// btnImgAddCustomPhoto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image btnImgAddCustomPhoto;
-        
+
         /// <summary>
         /// imgPhoto control.
         /// </summary>
@@ -101,7 +94,7 @@ namespace Profiles.Edit.Modules.CustomEditMainImage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgPhoto;
-        
+
         /// <summary>
         /// lblNoImage control.
         /// </summary>
@@ -110,7 +103,7 @@ namespace Profiles.Edit.Modules.CustomEditMainImage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblNoImage;
-        
+
         /// <summary>
         /// pnlUpload control.
         /// </summary>
@@ -119,7 +112,7 @@ namespace Profiles.Edit.Modules.CustomEditMainImage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlUpload;
-        
+
         /// <summary>
         /// AsyncFileUpload1 control.
         /// </summary>
@@ -128,7 +121,7 @@ namespace Profiles.Edit.Modules.CustomEditMainImage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.AsyncFileUpload AsyncFileUpload1;
-        
+
         /// <summary>
         /// spanUploading control.
         /// </summary>

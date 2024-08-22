@@ -105,7 +105,7 @@ namespace Profiles.Framework.Utilities
             {
                 while (reader.Read())
                 {
-                    BotUserAgents.Add(reader[0].ToString());
+                    BotUserAgents.Add(reader[0].ToString().ToLower());
                     Framework.Utilities.DebugLogging.Log("BOT Agent = " + reader[0]);
                 }
             }
@@ -117,7 +117,7 @@ namespace Profiles.Framework.Utilities
             {
                 foreach (string bot in BotUserAgents)
                 {
-                    if (new Regex(@"\A" + new Regex(@"\.|\$|\^|\{|\[|\(|\||\)|\*|\+|\?|\\").Replace(bot, ch => @"\" + ch).Replace('_', '.').Replace("%", ".*") + @"\z", RegexOptions.Singleline).IsMatch(userAgent))
+                    if (new Regex(@"\A" + new Regex(@"\.|\$|\^|\{|\[|\(|\||\)|\*|\+|\?|\\").Replace(bot, ch => @"\" + ch).Replace('_', '.').Replace("%", ".*") + @"\z", RegexOptions.Singleline).IsMatch(userAgent.ToLower()))
                     {
                         return true;
                     }

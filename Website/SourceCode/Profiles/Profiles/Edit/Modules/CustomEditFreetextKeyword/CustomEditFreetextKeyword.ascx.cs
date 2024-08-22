@@ -16,6 +16,8 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using Profiles.Framework.Utilities;
 using Profiles.Edit.Utilities;
+using Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
 {
@@ -24,6 +26,7 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
         Edit.Utilities.DataIO data;
         Profiles.Profile.Utilities.DataIO propdata;
 
+        private static string[] ADVANCE_REMOVE_STRINGS = { "&nbsp;" };
         protected void Page_Load(object sender, EventArgs e)
         {
             this.FillPropertyGrid(false);
@@ -31,7 +34,8 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
             {
                 Session["pnlInsertProperty.Visible"] = null;
             }
-
+            // this will turn it off for UCSF if it is disabled;
+            pnlCopyAdvanceKeywords.Visible &= Advance.IsAdvanceEnabled();
         }
 
         public CustomEditFreetextKeyword() { }
@@ -94,6 +98,39 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
             upnlEditSection.Update();
         }
 
+        protected void btnCopyAdvanceKeywords_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                List<string> keywords = Advance.getKeywordsFor(this.SubjectID);
+                if (keywords != null)
+                {
+                    keywords.RemoveAll(keyword => Array.IndexOf(ADVANCE_REMOVE_STRINGS, keyword) > -1);
+                    if (keywords.Count > 0)
+                    {
+                        // delete the old ones now. Note that trying to add an existing one causes the DB to throw an exception 
+                        btnDeleteAll_OnClick(null, null);
+                        foreach (string keyword in keywords)
+                        {
+                            data.AddLiteral(this.SubjectID, this.PredicateID, data.GetStoreNode(keyword), this.PropertyListXML);
+                        }
+                        this.FillPropertyGrid(true);
+                        upnlEditSection.Update();
+                        litAdvanceMessage.Text = "Added " + keywords.Count + " item" + (keywords.Count > 1 ? "s" : "") + " from Advance.";
+                    }
+                }
+                if (keywords == null || keywords.Count == 0)
+                {
+                    litAdvanceMessage.Text = "No Advance keywords found for your profile.";
+                }
+            }
+            catch (Exception ex)
+            {
+                Framework.Utilities.DebugLogging.Log(ex.Message + ex.StackTrace);
+                litAdvanceMessage.Text = "Error accessing Advance for your profile.";
+            }
+        }
+
         protected void btnDelAll_OnClick(object sender, EventArgs e)
         {
 
@@ -148,7 +185,7 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
             LiteralState literalstate = null;
             if (e.Row.RowType == DataControlRowType.Header)
             {
-                e.Row.Cells[0].Text = "Keyword";
+                e.Row.Cells[0].Text = "Interest";
             }
 
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -285,7 +322,7 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
 
         protected void btnDeleteAll_OnClick(object sender, EventArgs e)
         {
-            for(int i = 0; i < GridViewProperty.DataKeys.Count; i++)
+            for (int i = 0; i < GridViewProperty.DataKeys.Count; i++)
             {
                 string _object = GridViewProperty.DataKeys[i].Values[2].ToString();
 

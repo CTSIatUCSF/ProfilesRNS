@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Edit.Modules.CustomEditEmail {
-    
-    
-    public partial class CustomEditEmail {
-        
+namespace Profiles.Edit.Modules.CustomEditEmail
+{
+
+
+    public partial class CustomEditEmail
+    {
+
         /// <summary>
         /// upnlEditSection control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Profiles.Edit.Modules.CustomEditEmail {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel upnlEditSection;
-        
+
         /// <summary>
         /// updateProgress control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Profiles.Edit.Modules.CustomEditEmail {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress updateProgress;
-        
+
         /// <summary>
         /// litBackLink control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Profiles.Edit.Modules.CustomEditEmail {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litBackLink;
-        
+
         /// <summary>
         /// pnlSecurityOptions control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Profiles.Edit.Modules.CustomEditEmail {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlSecurityOptions;
-        
+
         /// <summary>
         /// securityOptions control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Profiles.Edit.Modules.CustomEditEmail {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Profiles.Edit.Modules.SecurityOptions.SecurityOptions securityOptions;
-        
+
         /// <summary>
         /// litEmailAddress control.
         /// </summary>
@@ -65,5 +67,14 @@ namespace Profiles.Edit.Modules.CustomEditEmail {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litEmailAddress;
+
+        /// <summary>
+        /// EditEmailUCSF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel EditEmailUCSF;
     }
 }

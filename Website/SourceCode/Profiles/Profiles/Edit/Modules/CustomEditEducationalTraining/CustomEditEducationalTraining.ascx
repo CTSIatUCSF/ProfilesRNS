@@ -61,6 +61,13 @@
             </div>
 
         </asp:Panel>
+        <asp:Panel runat="server" ID="pnlCopyAdvanceEducation" SkinID="UCSF" Visible="false">
+                <asp:ImageButton CssClass="EditMenuLinkImg" runat="server" OnClick="btnCopyAdvanceEducation_OnClick" ID="imbAdvanceArrow" AlternateText=" " 
+                    ImageUrl="~/Edit/Images/icon_squareArrow.gif" OnClientClick="Javascript:return confirm('Are you sure you want to import Educating and Training from Advance?');"/>
+                <asp:LinkButton ID="btnCopyAdvanceEducation" runat="server" OnClick="btnCopyAdvanceEducation_OnClick"
+                    OnClientClick="Javascript:return confirm('Are you sure you want to add your Education from your Advance CV?');">Add Education from Advance CV</asp:LinkButton>
+                <p class="text-left"><asp:Literal runat="server" ID="litAdvanceMessage" Text="Note: If you have set Prefs in Advance to share data with Profiles, this action will add Education information from your Advance CV to this page, where you can then edit or delete it. Once added, the data in Profiles is independent from your Advance CV. Edits you make here will not affect your Advance CV."/></p>
+        </asp:Panel>
         <div class="editPage">
             <asp:GridView ID="GridViewEducation" runat="server" AutoGenerateColumns="False" DataKeyNames="SubjectURI,Predicate, Object" GridLines="Both"
                 OnRowCancelingEdit="GridViewEducation_RowCancelingEdit" OnRowDataBound="GridViewEducation_RowDataBound"

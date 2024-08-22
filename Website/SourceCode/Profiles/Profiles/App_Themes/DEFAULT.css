@@ -1777,35 +1777,62 @@ body.about .share {
     margin-bottom: 1rem;
 }
 
-/* hide "Components" heading */
-.researcherprofiles--edit-page .panelMain h3 {
-    display: none;
+/* edit page is three zones: */
+/*    first zone is top header */
+/*    second zone is left column */
+/*    third zone is right column */
+.researcherprofiles--edit-sections-index-page .panelMain {
+    display: grid;
+    grid-template-rows: auto min-content 1fr;
+    grid-template-columns: 3fr 2fr;
+    grid-template-areas: "header-row header-row" "main-row-left main-row-right-top" "main-row-left main-row-right-bottom";
+    column-gap: 5vw;
+    row-gap: 1rem;
 }
 
-/* column with each content type to edit is on the left */
-.researcherprofiles--edit-page #profile-components {
-    float: left;
-    width: 55%;
+
+    /* heading goes at the top */
+    .researcherprofiles--edit-sections-index-page .panelMain > h2,
+    .researcherprofiles--edit-sections-index-page .panelMain > h3 {
+        grid-area: header-row;
+    }
+
+    /* but really, we should hide the "Components" heading */
+    .researcherprofiles--edit-sections-index-page .panelMain h3 {
+        display: none;
+    }
+
+/* the main edit content box is on the left */
+.researcherprofiles--edit-sections-index-page #profile-components {
+    grid-area: main-row-left;
 }
 
-/* column with info on visibility types is on the right, in a legend box */
-.researcherprofiles--edit-page #profile-visibility {
-    float: right;
-    max-width: 40%;
-    margin-left: 5%;
+/* the visibility explanations are on the right, at the top */
+.researcherprofiles--edit-sections-index-page #profile-visibility {
+    grid-area: main-row-right-top;
     border: 1px solid #ccc;
 }
 
+/* the explanation of icons, include the Advance message box, is on the right, at the bottom */
+.researcherprofiles--edit-page .researcherprofiles--edit-page--explanation-of-icons {
+    grid-area: main-row-right-bottom;
+}
+
+/* the Advance message box is center-aligned */
+.researcherprofiles--edit-sections-index-page .researcherprofiles--edit-page--explanation-of-icons p {
+    text-align: center;
+}
+
 /* remove extra borders around each table and table item */
-.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_repPropertyGroups"],
-.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_repPropertyGroups"] td {
+.researcherprofiles--edit-sections-index-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_repPropertyGroups"],
+.researcherprofiles--edit-sections-index-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_repPropertyGroups"] td {
     border: none !important;
 }
 
 /* make left column items look like one big table, and add nice borders underneath */
-.researcherprofiles--edit-page #profile-components tr,
-.researcherprofiles--edit-page #profile-components tr.evenRow,
-.researcherprofiles--edit-page #profile-components tr.oddRow {
+.researcherprofiles--edit-sections-index-page #profile-components tr,
+.researcherprofiles--edit-sections-index-page #profile-components tr.evenRow,
+.researcherprofiles--edit-sections-index-page #profile-components tr.oddRow {
     background-color: var(--page-background-color);
     border-top: none;
     border-bottom: 1px solid var(--striped-row-border-color) !important;
@@ -1815,91 +1842,89 @@ body.about .share {
 }
 
 /* put a little space between each row in left column */
-.researcherprofiles--edit-page #profile-components td {
+.researcherprofiles--edit-sections-index-page #profile-components td {
     padding: 0.5rem 0;
     vertical-align: top;
 }
 
 /* hide items counts, stars, ORNG indicators, and random returns in profile components column */
-.researcherprofiles--edit-page #profile-components br,
-.researcherprofiles--edit-page #profile-components .colItemCnt span,
-.researcherprofiles--edit-page #profile-components .colItemCnt span,
-.researcherprofiles--edit-page img[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_repPropertyGroups_ctl06_grdSecurityGroups_ctl"] {
+.researcherprofiles--edit-sections-index-page #profile-components br,
+.researcherprofiles--edit-sections-index-page #profile-components .colItemCnt span {
     display: none
 }
 
 /* lock icons align right */
-.researcherprofiles--edit-page #profile-components .colItemCnt {
+.researcherprofiles--edit-sections-index-page #profile-components .colItemCnt {
     text-align: right;
 }
 
 /* the whole namedegree/cls thing is TERRIBLE HTML, and should be burned to the ground */
 
 /* name/degree: "always public" is on the right */
-.researcherprofiles--edit-page #profile-components #namedegreerow #public {
+.researcherprofiles--edit-sections-index-page #profile-components #namedegreerow #public {
     float: right;
 }
 
     /* name/degree: space between lock icon and "always public" */
-    .researcherprofiles--edit-page #profile-components #namedegreerow #public img {
+    .researcherprofiles--edit-sections-index-page #profile-components #namedegreerow #public img {
         margin-right: 3rem;
     }
 
 /* name/degree: "Name and Degrees" looks like a link */
-.researcherprofiles--edit-page #profile-components #namedegree {
+.researcherprofiles--edit-sections-index-page #profile-components #namedegree {
     color: var(--generic-link-color);
     font-weight: bold;
 }
 
 /* keep "This info is..." text hidden */
-.researcherprofiles--edit-page #profile-components #cls {
+.researcherprofiles--edit-sections-index-page #profile-components #cls {
     display: none;
     font-size: 0.9em;
 }
 
 /* but show "This info is..." text on mouseover */
-.researcherprofiles--edit-page #profile-components #namedegreerow:hover #cls {
+.researcherprofiles--edit-sections-index-page #profile-components #namedegreerow:hover #cls {
     display: block;
     text-align: right;
     color: var(--alert-red-color);
 }
 
 /* "Always public" is visible, except on mouseover */
-.researcherprofiles--edit-page #profile-components #namedegreerow:hover #public {
+.researcherprofiles--edit-sections-index-page #profile-components #namedegreerow:hover #public {
     display: none
 }
 
 /* capitalize each profile component title */
-.researcherprofiles--edit-page #profile-components tr > td:first-child:first-letter {
+.researcherprofiles--edit-sections-index-page #profile-components tr > td:first-child:first-letter {
     text-transform: capitalize;
 }
 
 /* more visual weight on each profile component */
-.researcherprofiles--edit-page #profile-components a.listTableLink {
+.researcherprofiles--edit-sections-index-page #profile-components a.listTableLink {
     font-weight: bold;
 }
 
 /* less visual weight on public/private listing indicator */
-.researcherprofiles--edit-page #profile-components #namedegreerow #public,
-.researcherprofiles--edit-page .colSecurity {
+.researcherprofiles--edit-sections-index-page #profile-components #namedegreerow #public,
+.researcherprofiles--edit-sections-index-page .colSecurity {
     text-align: right;
     font-size: 0.9em;
     color: var(--text-muted-color);
 }
 
 /* a little space around visibility description items */
-.researcherprofiles--edit-page #profile-visibility td {
+.researcherprofiles--edit-sections-index-page #profile-visibility td {
     padding: 0.5rem;
     vertical-align: top;
 }
 
 /* hide ad for ORNG at the bottom, since ORNG is going away */
-.researcherprofiles--edit-page .orng-credit {
+.researcherprofiles--edit-sections-index-page .orng-credit {
     display: none;
 }
 
 /* hide column headings, but leave visible to screen readers */
-.researcherprofiles--edit-page .EditMenuTopRow {
+.researcherprofiles--edit-sections-index-page .EditMenuTopRow {
     display: none
 }
 

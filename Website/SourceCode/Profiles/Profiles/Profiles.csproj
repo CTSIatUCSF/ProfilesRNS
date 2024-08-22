@@ -323,6 +323,7 @@
     <Content Include="App_Themes\USC\PresentationXML\About\Help.xml" />
     <Content Include="App_Themes\USC\USC.css" />
     <Content Include="App_Themes\USC\USC.js" />
+    <Content Include="Celebrating\PresentationXML\LGBTQResearch.xml" />
     <Content Include="CustomAPI\Secure\ActivityLog.aspx" />
     <Content Include="CustomAPI\Secure\Default.aspx" />
     <Content Include="CustomAPI\v1\EasyJSONPlus.aspx" />
@@ -338,6 +339,7 @@
     <Content Include="DirectService.aspx" />
     <Content Include="DIRECT\JavaScript\UCSF.js" />
     <Content Include="Edit\CSS\Edit.css" />
+    <Content Include="Edit\Images\advance.ico" />
     <Content Include="Edit\Images\cal.png" />
     <Content Include="Edit\Images\icon_alert.gif" />
     <Content Include="Edit\Images\Icon_rounded_ArrowGrayDown.png" />
@@ -486,7 +488,6 @@
     <Content Include="ORCID\Utilities\ProfilesRNSDLL\DAL\SQLFiles\ClearTestDataFromProduction.txt" />
     <Content Include="ORCID\Utilities\ProfilesRNSDLL\DAL\SQLFiles\CreateStoredProcedures.txt" />
     <Content Include="ORCID\Utilities\ProfilesRNSDLL\DAL\SQLFiles\CreateTablesScript.txt" />
-    <Content Include="ORNG\Images\orng-asterisk.png" />
     <Content Include="ORNG\Images\orng.gif" />
     <Content Include="ORNG\Images\Search.png" />
     <Content Include="ORNG\Images\waiting.gif" />
@@ -652,10 +653,10 @@
     <Content Include="Search\Modules\AdvancedSearch\AdvancedSearch.ascx" />
     <Content Include="SiteMap.aspx" />
     <Content Include="trace.aspx" />
-    <Content Include="women-in-science\Default.aspx" />
+    <Content Include="Celebrating\Default.aspx" />
     <Content Include="App_Themes\UCSF\Images\Celebrating\ucsf-women-in-science-2022-narrow.jpg" />
     <Content Include="App_Themes\UCSF\Images\Celebrating\ucsf-women-in-science-2022-wide.jpg" />
-    <Content Include="women-in-science\PresentationXML\WomenInScience.xml" />
+    <Content Include="Celebrating\PresentationXML\WomenInScience.xml" />
     <None Include="Properties\PublishProfiles\FolderProfileDebug.pubxml" />
     <Content Include="rezaabbasi-asl.abbasiasl" />
     <None Include="Web.config">
@@ -1000,6 +1001,7 @@
     </Compile>
     <Compile Include="Edit\Modules\CustomEditWebsite\DataIO.cs" />
     <Compile Include="Edit\Modules\CustomEditWebsite\WebsiteState.cs" />
+    <Compile Include="Edit\Utilities\Advance.cs" />
     <Compile Include="Edit\Utilities\EducationalTrainingState.cs" />
     <Compile Include="Edit\Utilities\FundingState.cs" />
     <Compile Include="Edit\Utilities\GroupMemberState.cs" />
@@ -2303,11 +2305,11 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Search\Utilities\DataIO.cs" />
-    <Compile Include="women-in-science\Default.aspx.cs">
+    <Compile Include="Celebrating\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="women-in-science\Default.aspx.designer.cs">
+    <Compile Include="Celebrating\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Edit.Modules.CustomEditGroupSettings {
-    
-    
-    public partial class CustomEditGroupSettings {
-        
+namespace Profiles.Edit.Modules.CustomEditGroupSettings
+{
+
+
+    public partial class CustomEditGroupSettings
+    {
+
         /// <summary>
         /// litBackLink control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litBackLink;
-        
+
         /// <summary>
         /// upnlEditSection control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel upnlEditSection;
-        
+
         /// <summary>
         /// hiddenSubjectID control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hiddenSubjectID;
-        
+
         /// <summary>
         /// updateProgress control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress updateProgress;
-        
+
         /// <summary>
         /// phSecurityOptions control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel phSecurityOptions;
-        
+
         /// <summary>
         /// securityOptions control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Profiles.Edit.Modules.SecurityOptions.SecurityOptions securityOptions;
-        
+
         /// <summary>
         /// phEditProperty control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel phEditProperty;
-        
+
         /// <summary>
         /// imbAddArror control.
         /// </summary>
@@ -83,10 +85,17 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton imbAddArror;
-        
+
         /// <summary>
         /// btnEditProperty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnEditProperty;
+
+        /// <summary>
         /// RptrEditProperty control.
         /// </summary>
         /// <remarks>
@@ -94,7 +103,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater RptrEditProperty;
-        
+
         /// <summary>
         /// pnlInsertProperty control.
         /// </summary>
@@ -103,7 +112,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlInsertProperty;
-        
+
         /// <summary>
         /// txtEndDate control.
         /// </summary>
@@ -112,7 +121,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEndDate;
-        
+
         /// <summary>
         /// btnCalendar control.
         /// </summary>
@@ -121,7 +130,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton btnCalendar;
-        
+
         /// <summary>
         /// CalendarExtender1 control.
         /// </summary>
@@ -130,7 +139,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
-        
+
         /// <summary>
         /// btnUpdateDateSave control.
         /// </summary>
@@ -139,7 +148,7 @@ namespace Profiles.Edit.Modules.CustomEditGroupSettings {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnUpdateDateSave;
-        
+
         /// <summary>
         /// btnUpdateDateCancel control.
         /// </summary>

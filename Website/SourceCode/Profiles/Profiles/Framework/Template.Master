@@ -110,7 +110,7 @@
 					<div class="researcherprofiles--institution-header--site-logo">
 						<h1><a href="<%=GetThemedDomain()%>/"><img src="<%=GetThemedDomain()%>/App_themes/UCSF/Images/ucsfProfilesLogo.png" alt="UCSF Profiles" /></a></h1>
                         <asp:Panel ID="CelebratingWomenInScience" runat="server" Visible="false">
-                            <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="/women-in-science/">Celebrating <b>Women in Science</b></a>
+                            <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="/WomenInScience">Celebrating <b>Women in Science</b></a>
                         </asp:Panel>
                         <asp:Panel ID="CelebratingLatinxHeritage" runat="server" Visible="false">
                            <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="https://mrc.ucsf.edu/events/latinx-heritage-month-2023" style="cursor: pointer;">Celebrating <b>Latinx Heritage</b></a>
@@ -120,6 +120,9 @@
                         </asp:Panel>
                         <asp:Panel ID="CelebratingAAPIHeritage" runat="server" Visible="false">
                            <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="https://aapicoalition.ucsf.edu/aanhpi-heritage-month-2024" target="_blank" style="cursor: pointer;">Celebrating <b>AANHPI Heritage</b></a>
+                        </asp:Panel>
+                        <asp:Panel ID="CelebratingLGBTQResearch" runat="server" Visible="false">
+                           <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="/LGBTQResearch">Proud to Support <b>LGBTQ Health Research</b></a>
                         </asp:Panel>
                     </div>	
                 </div>
@@ -278,10 +281,10 @@
                 <asp:Panel ID="CelebratingBanner" runat="server" Visible="false">
                     <figure class="researcherprofiles--featured-people-banner--container">
                         <!-- This is a link to either the external URL, or the internal group landing page. -->
-                        <a href="https://aapicoalition.ucsf.edu/aanhpi-heritage-month-2024" class="researcherprofiles--featured-people-banner--link" target="_blank">
+                        <a href="/LGBTQResearch" class="researcherprofiles--featured-people-banner--link">
                             <div class="researcherprofiles--featured-people-banner--row">
                                 <!-- Insert very short heading here. The shorter, the better. This should be a custom string, not just the name of the category of people. -->
-                                <figcaption>Celebrating AANHPI Heritage</figcaption>
+                                <figcaption>Proud to Support LGBTQ Health Research</figcaption>
                                 <!-- Insert between between ~4-12 headshot URLs here. Include the people's names in the alt text as shown. -->
                                 <!-- Because this is happening server-sidem you're welcome to randomize them. -->
                                 <!-- Because every image is loaded, even if not shown, we don't want to add so many that page load is slowed unnecessarily.  -->

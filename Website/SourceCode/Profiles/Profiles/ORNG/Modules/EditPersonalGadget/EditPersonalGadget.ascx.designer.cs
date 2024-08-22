@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.ORNG.Modules.Gadgets {
-    
-    
-    public partial class EditPersonalGadget {
-        
+namespace Profiles.ORNG.Modules.Gadgets
+{
+
+
+    public partial class EditPersonalGadget
+    {
+
         /// <summary>
         /// upnlEditSection control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Profiles.ORNG.Modules.Gadgets {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel upnlEditSection;
-        
+
         /// <summary>
         /// updateProgress control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Profiles.ORNG.Modules.Gadgets {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress updateProgress;
-        
+
         /// <summary>
         /// litBackLink control.
         /// </summary>
@@ -38,16 +40,7 @@ namespace Profiles.ORNG.Modules.Gadgets {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litBackLink;
-        
-        /// <summary>
-        /// lnkOrng control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkOrng;
-        
+
         /// <summary>
         /// pnlSecurityOptions control.
         /// </summary>
@@ -56,7 +49,7 @@ namespace Profiles.ORNG.Modules.Gadgets {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlSecurityOptions;
-        
+
         /// <summary>
         /// securityOptions control.
         /// </summary>
@@ -65,7 +58,7 @@ namespace Profiles.ORNG.Modules.Gadgets {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Profiles.Edit.Modules.SecurityOptions.SecurityOptions securityOptions;
-        
+
         /// <summary>
         /// btnAddORNGApplication control.
         /// </summary>
@@ -74,7 +67,7 @@ namespace Profiles.ORNG.Modules.Gadgets {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnAddORNGApplication;
-        
+
         /// <summary>
         /// litAddORNGApplicationProperty control.
         /// </summary>
@@ -83,7 +76,7 @@ namespace Profiles.ORNG.Modules.Gadgets {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litAddORNGApplicationProperty;
-        
+
         /// <summary>
         /// lnkDelete control.
         /// </summary>
@@ -92,7 +85,7 @@ namespace Profiles.ORNG.Modules.Gadgets {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkDelete;
-        
+
         /// <summary>
         /// imgDelete control.
         /// </summary>
@@ -101,7 +94,7 @@ namespace Profiles.ORNG.Modules.Gadgets {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgDelete;
-        
+
         /// <summary>
         /// litDeleteORNGApplicationProperty control.
         /// </summary>
@@ -110,7 +103,7 @@ namespace Profiles.ORNG.Modules.Gadgets {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litDeleteORNGApplicationProperty;
-        
+
         /// <summary>
         /// litGadget control.
         /// </summary>

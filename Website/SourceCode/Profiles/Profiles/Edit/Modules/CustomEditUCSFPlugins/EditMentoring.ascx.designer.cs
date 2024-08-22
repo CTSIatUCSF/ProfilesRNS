@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
-    
-    
-    public partial class Mentoring {
-        
+namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
+{
+
+
+    public partial class Mentoring
+    {
+
         /// <summary>
         /// upnlEditSection control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel upnlEditSection;
-        
+
         /// <summary>
         /// updateProgress control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress updateProgress;
-        
+
         /// <summary>
         /// litBackLink control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litBackLink;
-        
+
         /// <summary>
         /// phSecuritySettings control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel phSecuritySettings;
-        
+
         /// <summary>
         /// securityOptions control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Profiles.Edit.Modules.SecurityOptions.SecurityOptions securityOptions;
-        
+
         /// <summary>
         /// pnlAddEditMentoring control.
         /// </summary>
@@ -65,7 +67,34 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlAddEditMentoring;
-        
+
+        /// <summary>
+        /// imbAdvanceArrow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imbAdvanceArrow;
+
+        /// <summary>
+        /// btnCopyAdvanceMentoring control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnCopyAdvanceMentoring;
+
+        /// <summary>
+        /// litAdvanceMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litAdvanceMessage;
+
         /// <summary>
         /// txtNarrative control.
         /// </summary>
@@ -74,7 +103,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNarrative;
-        
+
         /// <summary>
         /// btnSaveNarrative control.
         /// </summary>
@@ -83,7 +112,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnSaveNarrative;
-        
+
         /// <summary>
         /// btnCancel control.
         /// </summary>
@@ -92,7 +121,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnCancel;
-        
+
         /// <summary>
         /// imbAddArrowInterest control.
         /// </summary>
@@ -101,7 +130,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton imbAddArrowInterest;
-        
+
         /// <summary>
         /// btnAddEditEditInterest control.
         /// </summary>
@@ -110,7 +139,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnAddEditEditInterest;
-        
+
         /// <summary>
         /// pnlMentoringInterests control.
         /// </summary>
@@ -119,7 +148,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlMentoringInterests;
-        
+
         /// <summary>
         /// ddlMentee control.
         /// </summary>
@@ -128,7 +157,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMentee;
-        
+
         /// <summary>
         /// ddlType control.
         /// </summary>
@@ -137,7 +166,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlType;
-        
+
         /// <summary>
         /// btnInsertInterests control.
         /// </summary>
@@ -146,7 +175,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnInsertInterests;
-        
+
         /// <summary>
         /// btnSaveAndCloseInterests control.
         /// </summary>
@@ -155,7 +184,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnSaveAndCloseInterests;
-        
+
         /// <summary>
         /// btnCancelInterests control.
         /// </summary>
@@ -164,7 +193,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnCancelInterests;
-        
+
         /// <summary>
         /// lblRedundantEntry control.
         /// </summary>
@@ -173,7 +202,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblRedundantEntry;
-        
+
         /// <summary>
         /// GridViewMentoringInterests control.
         /// </summary>
@@ -182,7 +211,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewMentoringInterests;
-        
+
         /// <summary>
         /// divNoMentoring control.
         /// </summary>
@@ -191,7 +220,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNoMentoring;
-        
+
         /// <summary>
         /// lblNoGlobalHealthEquity control.
         /// </summary>

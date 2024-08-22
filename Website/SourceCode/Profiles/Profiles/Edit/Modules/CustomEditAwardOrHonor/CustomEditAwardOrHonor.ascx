@@ -5,10 +5,14 @@
     <ContentTemplate>   
         <asp:UpdateProgress ID="updateProgress" runat="server">
             <ProgressTemplate>
-                <div class="progress">
-                    <span><img alt="Loading..." src="../edit/images/loader.gif" width="400" height="213"/></span>
+                <div class="modalupdate">
+                    <div class="modalcenter">
+                        <img alt="Updating..." src="<%=Profiles.Framework.Utilities.Brand.GetThemedDomain()%>/edit/images/loader.gif" />
+                        <br />
+                        <i>Updating...</i>
+                    </div>
                 </div>
-            </ProgressTemplate>                        
+            </ProgressTemplate>                    
         </asp:UpdateProgress>
         <asp:HiddenField ID="hiddenSubjectID" runat="server" />
         
@@ -26,9 +30,16 @@
                         </asp:Panel>
                         <br />
                         <asp:Panel runat="server" ID="pnlEditAwards">
-                            <span class="dblarrow"></span>
+                            <asp:ImageButton CssClass="EditMenuLinkImg" runat="server" OnClick="btnEditAwards_OnClick" ID="imbAddArrow" AlternateText=" " ImageUrl="~/Edit/Images/icon_squareArrow.gif" />
 							<asp:LinkButton ID="btnEditAwards" runat="server" OnClick="btnEditAwards_OnClick" 
                                 CssClass="profileHypLinks"> Add award(s)</asp:LinkButton>
+                        </asp:Panel>
+                        <asp:Panel runat="server" ID="pnlCopyAdvanceAwards" SkinID="UCSF" Visible="false">
+                                <asp:ImageButton CssClass="EditMenuLinkImg" runat="server" OnClick="btnCopyAdvanceAwards_OnClick" ID="imbAdvanceArrow" AlternateText=" " 
+                                    ImageUrl="~/Edit/Images/icon_squareArrow.gif" OnClientClick="Javascript:return confirm('Are you sure you want to import Awards and Honors from Advance?');"/>
+                                <asp:LinkButton ID="btnCopyAdvanceAwards" runat="server" OnClick="btnCopyAdvanceAwards_OnClick"
+                                    OnClientClick="Javascript:return confirm('Are you sure you want to OVERWRITE with Honors and Awards from your Advance CV?');">Overwrite these entries with Honors and Awards from Advance CV</asp:LinkButton>
+                                <p class="text-left"><asp:Literal runat="server" ID="litAdvanceMessage" Text="Note: If you have set Prefs in Advance to share data with Profiles, this action overwrites the Awards and Honors on this page with the Honors and Awards from your Advance CV. Once brought over, the data is independent from your Advance CV. Edits you make here will not affect your Advance CV."/></p>
                         </asp:Panel>
                     </div>
                 </td>

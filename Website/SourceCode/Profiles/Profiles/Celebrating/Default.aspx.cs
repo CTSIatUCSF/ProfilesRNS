@@ -23,7 +23,7 @@ using System.Web.UI.HtmlControls;
 
 using Profiles.Framework.Utilities;
 
-namespace Profiles.WomenInScience
+namespace Profiles.Celebrating
 {
     public partial class Default : BrandedPage
     {
@@ -32,7 +32,8 @@ namespace Profiles.WomenInScience
         public void Page_Load(object sender, EventArgs e)
         {
             // If it is disabled, send them back to the search page
-            if (!"WomenInScience".Equals(Brand.GetCelebrating()))
+            // note that this is sort of hard coded in Global.asax.cs
+            if (String.IsNullOrEmpty(Brand.GetCelebrating()) || !Request.Path.ToLower().Contains(Brand.GetCelebrating().ToLower()))
             {
                 Response.Redirect(Brand.GetThemedDomain());
                 return;
@@ -43,7 +44,7 @@ namespace Profiles.WomenInScience
             masterpage.Tab = "";
             masterpage.RDFData = null;
             XmlDocument presentationxml = new XmlDocument();
-            presentationxml.LoadXml(XslHelper.GetThemedOrDefaultPresentationXML(Page, "WomenInScience.xml"));
+            presentationxml.LoadXml(XslHelper.GetThemedOrDefaultPresentationXML(Page, Brand.GetCelebrating() + ".xml"));
             masterpage.PresentationXML = presentationxml;
 
         }

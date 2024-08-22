@@ -6,7 +6,7 @@ CodeBehind="EditVisibilityOnly.ascx.cs" Inherits="Profiles.Edit.Modules.EditVisi
     <ContentTemplate>
         <asp:UpdateProgress ID="updateProgress" runat="server">
             <ProgressTemplate>
-                <div class="progress">
+                <div class="progress-spinner-loader">
                     <span><img alt="Loading..." src="../edit/images/loader.gif" width="400" height="213"/></span>
                 </div>
             </ProgressTemplate>

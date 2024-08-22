@@ -14,15 +14,14 @@
         <asp:HiddenField ID="hiddenSubjectID" runat="server" />
         <asp:UpdateProgress ID="updateProgress" runat="server">
             <ProgressTemplate>
-                <div class="progress">
-                    <span><img alt="Loading..." src="../edit/Images/loader.gif" width="400" height="213"/></span>
+                <div class= "progress-spinner-loader">
+                    <img alt="Loading..." src="<%=Profiles.Framework.Utilities.Brand.GetThemedDomain()%>/edit/images/loader.gif" width="400" height="213"/>
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>
         <table id="tblEditProperty" width="100%">
             <tr>
                 <td colspan='3'>
-                    <asp:Literal runat="server" ID="Literal1"></asp:Literal>                    
                 </td>
             </tr>
             <tr>
@@ -34,9 +33,14 @@
                         </asp:PlaceHolder>
                         <asp:PlaceHolder ID="phEditProperty" runat="server">
 							<asp:LinkButton ID="btnEditProperty" runat="server" OnClick="btnEditProperty_OnClick" 
-                                CssClass="profileHypLinks" AlternateText=" "> Add Keyword(s)</asp:LinkButton>
+                                CssClass="profileHypLinks" AlternateText=" "> Add Interest(s)</asp:LinkButton>
                             <br />
                         </asp:PlaceHolder>
+                        <asp:Panel runat="server" ID="pnlCopyAdvanceKeywords" SkinID="UCSF" Visible="false">
+                                <asp:LinkButton ID="btnCopyAdvanceKeywords" runat="server" OnClick="btnCopyAdvanceKeywords_OnClick"
+                                    OnClientClick="Javascript:return confirm('Are you sure you want to OVERWRITE with Keywords/Areas of Interest from your Advance CV?');">Overwrite these entries with Keywords/Areas of Interest from your Advance CV</asp:LinkButton>
+                                <p class="text-left"><asp:Literal runat="server" ID="litAdvanceMessage" Text="Note: If you have set Prefs in Advance to share data with Profiles, this action overwrites the Interests on this page with the Keywords/Areas of Interest from your Advance CV. Once brought over, the data is independent from your Advance CV. Edits you make here will not affect your Advance CV."/></p>
+                        </asp:Panel>
                         <asp:PlaceHolder ID="phDelAll" runat="server" Visible="false">
 							<asp:LinkButton ID="btnDelAll" runat="server" OnClick="btnDelAll_OnClick" 
                                 CssClass="profileHypLinks"> Delete All Keyword(s)</asp:LinkButton>

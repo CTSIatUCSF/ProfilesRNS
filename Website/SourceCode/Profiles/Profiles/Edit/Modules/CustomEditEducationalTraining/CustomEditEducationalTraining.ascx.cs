@@ -17,6 +17,8 @@ using System.Xml;
 
 using Profiles.Framework.Utilities;
 using Profiles.Edit.Utilities;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 
 namespace Profiles.Edit.Modules.CustomEditEducationalTraining
@@ -31,6 +33,9 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
             
             if (!IsPostBack)
                 Session["pnlInsertEducationalTraining.Visible"] = null;
+
+            // this will turn it off for UCSF if it is disabled;
+            pnlCopyAdvanceEducation.Visible &= Advance.IsAdvanceEnabled();
         }
 
         public CustomEditEducationalTraining() : base() { }
@@ -84,6 +89,9 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
 
             }
 
+            imbAdvanceArrow.Visible = Advance.IsAdvanceEnabledFor(UCSFIDSet.ByNodeId[SubjectID].Institution);
+            btnCopyAdvanceEducation.Visible = Advance.IsAdvanceEnabledFor(UCSFIDSet.ByNodeId[SubjectID].Institution);
+
             securityOptions.BubbleClick += SecurityDisplayed;
 
         }
@@ -126,6 +134,40 @@ namespace Profiles.Edit.Modules.CustomEditEducationalTraining
             }
             upnlEditSection.Update();
         }
+
+        protected void btnCopyAdvanceEducation_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                JToken itemsToken = Advance.getEducationFor(this.SubjectID);
+                int cnt = 0;
+                if (itemsToken != null)
+                {
+                    foreach (JToken item in itemsToken)
+                    {
+                        data.AddEducationalTraining(this.SubjectID, (string)item["institution"], "", (string)item["degree"], (string)item["endDate"], (string)item["major"], this.PropertyListXML);
+                        cnt++;
+                    }
+                }
+                if (cnt > 0)
+                {
+                    litAdvanceMessage.Text = "Added " + cnt + " item" + (cnt > 1 ? "s" : "") + " from Advance.";
+
+                }
+                else
+                {
+                    litAdvanceMessage.Text = "No Advance Education items found for your profile.";
+                }
+            }
+            catch (Exception ex)
+            {
+                Framework.Utilities.DebugLogging.Log(ex.Message + ex.StackTrace);
+                litAdvanceMessage.Text = "Error accessing Advance for your profile.";
+            }
+            this.FillEducationalTrainingGrid(true);
+            upnlEditSection.Update();
+        }
+
 
         protected void GridViewEducation_RowDataBound(object sender, GridViewRowEventArgs e)
         {

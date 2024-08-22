@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Edit.Modules.EditDataTypeProperty {
-    
-    
-    public partial class EditDataTypeProperty {
-        
+namespace Profiles.Edit.Modules.EditDataTypeProperty
+{
+
+
+    public partial class EditDataTypeProperty
+    {
+
         /// <summary>
         /// litBackLink control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litBackLink;
-        
+
         /// <summary>
         /// upnlEditSection control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel upnlEditSection;
-        
+
         /// <summary>
         /// hiddenSubjectID control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hiddenSubjectID;
-        
+
         /// <summary>
         /// updateProgress control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress updateProgress;
-        
+
         /// <summary>
         /// Literal1 control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal Literal1;
-        
+
         /// <summary>
         /// securityOptions control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Profiles.Edit.Modules.SecurityOptions.SecurityOptions securityOptions;
-        
+
         /// <summary>
         /// btnEditProperty control.
         /// </summary>
@@ -74,16 +76,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnEditProperty;
-        
-        /// <summary>
-        /// imbAddArror control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imbAddArror;
-        
+
         /// <summary>
         /// litEditProperty control.
         /// </summary>
@@ -92,7 +85,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litEditProperty;
-        
+
         /// <summary>
         /// RptrEditProperty control.
         /// </summary>
@@ -101,7 +94,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater RptrEditProperty;
-        
+
         /// <summary>
         /// pnlInsertProperty control.
         /// </summary>
@@ -110,7 +103,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlInsertProperty;
-        
+
         /// <summary>
         /// txtInsertLabel control.
         /// </summary>
@@ -119,7 +112,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtInsertLabel;
-        
+
         /// <summary>
         /// btnInsertProperty control.
         /// </summary>
@@ -128,7 +121,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnInsertProperty;
-        
+
         /// <summary>
         /// btnInsertProperty2 control.
         /// </summary>
@@ -137,7 +130,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnInsertProperty2;
-        
+
         /// <summary>
         /// btnInsertCancel control.
         /// </summary>
@@ -146,7 +139,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnInsertCancel;
-        
+
         /// <summary>
         /// GridViewProperty control.
         /// </summary>
@@ -155,7 +148,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewProperty;
-        
+
         /// <summary>
         /// lblNoItems control.
         /// </summary>

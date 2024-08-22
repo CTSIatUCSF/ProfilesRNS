@@ -7,9 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.WomenInScience {
-    
-    
-    public partial class Default {
+namespace Profiles.Celebrating
+{
+
+
+    public partial class Default
+    {
     }
 }

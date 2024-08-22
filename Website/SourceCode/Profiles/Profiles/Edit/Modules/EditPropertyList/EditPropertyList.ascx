@@ -46,7 +46,7 @@ Components:</h3>
                         <asp:Image runat="server" ID="imgBlank" Visible="false" ImageUrl="~/Edit/Images/icons_blank.gif" AlternateText=" " />
                         <asp:Label runat="server" ID="lblItems"></asp:Label>
                         <asp:Image runat="server" ID="imgLock" Visible="false" ImageUrl="~/Edit/Images/icons_lock.gif" AlternateText="locked" />
-                        <asp:Image runat="server" ID="imgOrng" Visible="false" ImageUrl="~/ORNG/Images/orng-asterisk.png" AlternateText="ORNG Gadget"/>
+                        <asp:Image runat="server" ID="imgAdvance" Visible="false" ImageUrl="~/Edit/Images/advance.ico" AlternateText="Advance section"/>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderStyle-HorizontalAlign="Center" 
@@ -84,11 +84,15 @@ Components:</h3>
               <div>
                 <asp:Literal runat="server" ID="litSecurityKey"></asp:Literal>
               </div>
+            </div>
         </td>
-     </td>
     </tr>
 </table>
-<p class="orng-credit"><img style="border-width:0px;" src="../ORNG/Images/orng-asterisk.png" /> Components developed by the UCSF <a href="http://www.orng.info/index.html" target="_blank">Open Research Networking Gadgets (ORNG)</a> initiative. Have an idea for a new component you would like to see? Or are you a Javascript software developer who would like to build one? <a href="http://www.orng.info/contact-us.html" target="_blank">Let us know!</a></p>
+<div class="researcherprofiles--edit-page--explanation-of-icons">
+<asp:Panel runat="server" ID="pnlAdvanceMessage" SkinID="UCSF" Visible="false">
+    <p class="advance-import"><img style="border-width:0px;" src="Images/advance.ico" /> These sections can import data from Advance.</p>
+</asp:Panel>
+</div>
 <!-- for testing -->
 <asp:Literal runat="server" ID="litGadget" Visible="false"/>
 

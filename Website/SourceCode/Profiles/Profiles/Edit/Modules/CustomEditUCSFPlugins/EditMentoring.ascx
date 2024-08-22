@@ -31,6 +31,11 @@
     <div style="padding-top: 3px;">
         <div style="margin-bottom: 5px;">
             <div style="margin-bottom: 4px"><b>Mentoring Narrative</b></div>
+            <asp:ImageButton CssClass="EditMenuLinkImg" runat="server" OnClick="btnCopyAdvanceMentoring_OnClick" ID="imbAdvanceArrow" AlternateText=" " 
+                ImageUrl="~/Edit/Images/icon_squareArrow.gif" OnClientClick="Javascript:return confirm('Are you sure you want to import Mentoring from Advance?');"/>
+            <asp:LinkButton ID="btnCopyAdvanceMentoring" runat="server" OnClick="btnCopyAdvanceMentoring_OnClick"
+                OnClientClick="Javascript:return confirm('Are you sure you want to OVERWRITE with Mentoring Summary from your Advance CV?');">Overwrite this narrative with the Mentoring Summary from Advance CV</asp:LinkButton>
+            <p class="text-left"><asp:Literal runat="server" ID="litAdvanceMessage" Text="Note: If you have set Prefs in Advance to share data with Profiles, this action overwrites the Mentor Narrative on this page. Once brought over, the data is independent from your Advance CV. Edits you make here will not affect your Advance CV."/></p>
             <asp:TextBox ID="txtNarrative" runat="server" TextMode="MultiLine" Rows="4" Width="550px"></asp:TextBox>
         </div>
         <div class="actionbuttons">
@@ -41,7 +46,7 @@
                     Text="Cancel" TabIndex="12" />
         </div>
     </div>
-
+    </p>
     <div class="EditMenuItem">
         <asp:ImageButton CssClass="EditMenuLinkImg" OnClick="btnAddEdit_OnClick" runat="server" ID="imbAddArrowInterest" AlternateText=" " ImageUrl="~/Edit/Images/icon_squareArrow.gif" />
         <asp:LinkButton ID="btnAddEditEditInterest" runat="server" OnClick="btnAddEdit_OnClick">Add new Mentoring Interest</asp:LinkButton>

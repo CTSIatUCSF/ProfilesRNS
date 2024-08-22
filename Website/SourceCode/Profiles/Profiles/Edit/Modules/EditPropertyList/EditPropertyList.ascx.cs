@@ -20,11 +20,18 @@ using System.Configuration;
 using Profiles.Framework.Utilities;
 using Profiles.ORNG.Utilities;
 using System.Data.SqlClient;
+using Profiles.Edit.Utilities;
+using System.Web.UI.HtmlControls;
 
 namespace Profiles.Edit.Modules.EditPropertyList
 {
     public partial class EditPropertyList : BaseModule
     {
+        static string[] ADVANCE_SECTIONS = { "http://vivoweb.org/ontology/core#educationalTraining",
+                                             "http://vivoweb.org/ontology/core#awardOrHonor",
+                                             "http://vivoweb.org/ontology/core#freetextKeyword",
+                                             "http://profiles.catalyst.harvard.edu/ontology/plugins#Mentoring"};
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             DrawProfilesModule();
@@ -39,6 +46,9 @@ namespace Profiles.Edit.Modules.EditPropertyList
 
         private void DrawProfilesModule()
         {
+            HtmlGenericControl body = (HtmlGenericControl)Page.Master.FindControl("bodyMaster");
+            body.Attributes.Add("class", body.Attributes["class"] + " researcherprofiles--edit-sections-index-page");
+
             List<GenericListItem> gli = new List<GenericListItem>();
             bool canedit = false;
             Profile.Utilities.DataIO data = new Profiles.Profile.Utilities.DataIO();
@@ -154,6 +164,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                     //http://ctripro.ucsd.edu/ProfilesCR/PersonalDataChangeRequest.php?id=" 
                 UCSFIDSet.ByNodeId[this.Subject].UserName;
             }
+            pnlAdvanceMessage.Visible = Advance.IsAdvanceEnabledFor(this.Subject);
         }
 
         protected void repPropertyGroups_OnItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -223,9 +234,11 @@ namespace Profiles.Edit.Modules.EditPropertyList
 
                 //ddl.Attributes.Add("onchange", "JavaScript:showstatus()");
                 hf.Value = si.ItemURI;
-                if (si.ItemURI.StartsWith(Profiles.ORNG.Utilities.OpenSocialManager.ORNG_ONTOLOGY_PREFIX))
+
+                // for UCSF people only, show Advance icon for certain sections
+                if (Advance.IsAdvanceEnabledFor(Subject))
                 {
-                    ((Control)e.Row.FindControl("imgOrng")).Visible = true ;
+                    ((Control)e.Row.FindControl("imgAdvance")).Visible = Array.IndexOf(ADVANCE_SECTIONS, si.ItemURI) >= 0;
                 }
 
 

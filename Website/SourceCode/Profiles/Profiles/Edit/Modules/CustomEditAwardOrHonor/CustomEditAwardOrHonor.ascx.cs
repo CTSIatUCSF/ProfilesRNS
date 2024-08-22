@@ -17,6 +17,7 @@ using System.Xml;
 
 using Profiles.Framework.Utilities;
 using Profiles.Edit.Utilities;
+using Newtonsoft.Json.Linq;
 
 
 namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
@@ -31,6 +32,10 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
             
             if (!IsPostBack)
                 Session["pnlInsertAward.Visible"] = null;
+
+            // this will turn it off for UCSF if it is disabled;
+            pnlCopyAdvanceAwards.Visible &= Advance.IsAdvanceEnabled();
+
         }
 
         public CustomEditAwardOrHonor() : base() { }
@@ -123,6 +128,47 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
             }
             upnlEditSection.Update();
         }
+
+        protected void btnCopyAdvanceAwards_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                JToken itemsToken = Advance.getHonorsAndAwards(this.SubjectID);
+                int cnt = 0;
+                int existing = GridViewAwards.Rows.Count;
+                if (itemsToken != null)
+                {
+                    foreach (JToken item in itemsToken)
+                    {
+                        data.AddAward(this.SubjectID, (string)item["honorName"], (string)item["honoringOrganization"], (string)item["year"], (string)item["year"], this.PropertyListXML);
+                        cnt++;
+                    }
+                }
+                if (cnt > 0)
+                {
+                    // delete existing ones but only if some were added
+                    for (int i = 0; i < existing; i++)
+                    {
+                        Int64 _object = Convert.ToInt64(GridViewAwards.DataKeys[i].Values[2].ToString());
+                        data.DeleteTriple(this.SubjectID, this.PredicateID, _object);
+                    }
+                    litAdvanceMessage.Text = "Added " + cnt + " item" + (cnt > 1 ? "s" : "") + " from Advance.";
+                    GridViewAwards.Visible = true;
+                }
+                else
+                {
+                    litAdvanceMessage.Text = "No Advance award and honor items found for your profile.";
+                }
+            }
+            catch (Exception ex)
+            {
+                Framework.Utilities.DebugLogging.Log(ex.Message + ex.StackTrace);
+                litAdvanceMessage.Text = "Error accessing Advance for your profile.";
+            }
+            this.FillAwardGrid(true);
+            upnlEditSection.Update();
+        }
+
 
         protected void GridViewAwards_RowDataBound(object sender, GridViewRowEventArgs e)
         {

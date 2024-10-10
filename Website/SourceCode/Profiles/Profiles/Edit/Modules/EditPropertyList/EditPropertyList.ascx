@@ -90,7 +90,10 @@ Components:</h3>
 </table>
 <div class="researcherprofiles--edit-page--explanation-of-icons">
 <asp:Panel runat="server" ID="pnlAdvanceMessage" SkinID="UCSF" Visible="false">
-    <p class="advance-import"><img style="border-width:0px;" src="Images/advance.ico" /> These sections can import data from Advance.</p>
+    <p><b>Do you have an Advance CV?</b></p>
+    <p><img style="border-width:0px;" src="Images/advance.ico" /> These sections can import data from your Advance CV.</p>
+    <p><asp:Hyperlink runat="server" ID="hypAdvanceEditLink" Text="Set data sharing preferences" ekVisible="true"/> in Advance before importing.</p>
+    <p>For more guidance, see <a target="_blank" href="https://ucsfonline.sharepoint.com/:w:/s/CTSIResearchTechnologyprogram/ER8jYF3yGkFHnhbFZn0lGRABbvoM9kqfagrZGJ7j9_qmOg?e=PQNkwg">the detailed instructions</a>.</p>
 </asp:Panel>
 </div>
 <!-- for testing -->

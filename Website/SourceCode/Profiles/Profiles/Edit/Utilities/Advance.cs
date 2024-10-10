@@ -33,7 +33,7 @@ namespace Profiles.Edit.Utilities
         }
         static public bool IsAdvanceEnabledFor(Int64 nodeid)
         {
-            return IsAdvanceEnabledFor(UCSFIDSet.ByNodeId[nodeid].Institution) && UCSFIDSet.IsPerson(nodeid);
+            return UCSFIDSet.IsPerson(nodeid) && IsAdvanceEnabledFor(UCSFIDSet.ByNodeId[nodeid].Institution);
         }
 
         public static JToken getEducationFor(Int64 nodeid)

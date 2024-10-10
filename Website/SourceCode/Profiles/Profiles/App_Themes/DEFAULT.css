@@ -9,20 +9,26 @@
     --generic-link-color: #0054c0;
     --generic-link-visited-color: #4a3696;
     --max-main-content-width: 980px;
+
     /* used for significant titles. default is UC blue */
     --heading-color: #1295d8;
+
     /* used for errors, alerts, etc. */
     --alert-red-color: rgb(172, 27, 48);
+
     /* used for table of contents, etc. */
     --highlighted-panel-background-color: #eee;
     --highlighted-panel-border-color: #ccc;
     --highlighted-panel-text-color: black;
+
     /* menus */
     --menu-background-color: #eee;
     --menu-important-text-color: #003;
     --menu-important-background-color: #cdd;
+
     /* used for blocks that may have white text on it, including in menubar */
     --very-dark-background-color: #052049;
+
     /* publication lists, etc. have alternating striped rows */
     --striped-row-border-color: #e0e0e0;
     --striped-row-colored-row-color: #f8f8f8;
@@ -55,34 +61,44 @@ body,
 #ctl00_divProfilesContentMain .basicInfo th {
     font-size: 1rem;
     line-height: 1.5;
+
 }
 
-    /* Bootstrap 5.0 native font stack */
-    body,
-    .profiles,
-    .profiles td,
-    .profiles th,
-    .profiles .profilesContentMain .basicInfo td,
-    .profiles .PropertyGroup,
-    .profiles .PropertyGroupData,
-    .profiles .PropertyGroupItem,
-    .profiles .PropertyItemHeader,
-    .profiles ul,
-    .profiles ol,
-    .searchForm th,
-    .topRow,
-    #ctl00_divProfilesContentMain .basicInfo td,
-    #ctl00_divProfilesContentMain .basicInfo th,
-    .profiles textarea,
-    .profiles select,
-    .profiles h2,
-    .profiles h3,
-    .profiles h4,
-    .profiles h5,
-    .profiles h6,
-    .profiles ol {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    }
+/* Bootstrap 5.0 native font stack */
+body,
+.profiles,
+.profiles td,
+.profiles th,
+.profiles .profilesContentMain .basicInfo td,
+.profiles .PropertyGroup,
+.profiles .PropertyGroupData,
+.profiles .PropertyGroupItem,
+.profiles .PropertyItemHeader,
+.profiles ul,
+.profiles ol,
+.searchForm th,
+.topRow,
+#ctl00_divProfilesContentMain .basicInfo td,
+#ctl00_divProfilesContentMain .basicInfo th,
+.profiles textarea,
+.profiles select,
+.profiles h2,
+.profiles h3,
+.profiles h4,
+.profiles h5,
+.profiles h6,
+.profiles ol {
+    font-family: system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue", Arial,
+        "Noto Sans",
+        "Liberation Sans",
+        sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
 
 /* set global font and background colors */
 body {
@@ -96,12 +112,12 @@ a,
     color: var(--generic-link-color);
 }
 
-    a:visited,
-    .profiles a:visited,
-    a:active,
-    .profiles a:active {
-        color: var(--generic-link-visited-color);
-    }
+a:visited,
+.profiles a:visited,
+a:active,
+.profiles a:active {
+    color: var(--generic-link-visited-color);
+}
 
 /* normalize heading colors */
 h2,
@@ -172,14 +188,14 @@ html body #prns-nav ul.prns-main {
         margin-right: auto;
     }
 
-        html body .profiles .profilesPage {
-            width: auto !important;
-        }
+    html body .profiles .profilesPage {
+        width: auto !important;
+    }
 
-        /* less horizontal space? make font size smaller in menus */
-        #prns-nav ul.prns-main li a {
-            font-size: 0.8rem;
-        }
+    /* less horizontal space? make font size smaller in menus */
+    #prns-nav ul.prns-main li a {
+        font-size: 0.8rem;
+    }
 
     /* don't be afraid of breaking long words if we need to prevent overflows */
     /* this is highly aggressive, and ideally shouldn't have to exist */
@@ -216,7 +232,7 @@ html body #prns-nav ul.prns-main {
     .prns-main .search,
     .prns-main #nav-search-in,
     .prns-main li a[href*="history"],
-    .prns-main li + li + li a[href*="/search/"] {
+    .prns-main li+li+li a[href*="/search/"] {
         display: none !important;
     }
 
@@ -244,6 +260,7 @@ html body #prns-nav ul.prns-main {
     .researcherprofiles--researcher-profile-page .profilesContentMain table.grants td {
         font-size: 0.9em !important;
     }
+
 }
 
 /* ############################################################################################ */
@@ -256,42 +273,42 @@ html body #prns-nav ul.prns-main {
     background-color: var(--very-dark-background-color);
 }
 
-    /* for every institution, which has only one ul */
-    .researcherprofiles--branded-institutional-banner--menu > ul:only-of-type {
-        padding: 0.5rem 1rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        align-content: space-between;
-    }
+/* for every institution, which has only one ul */
+.researcherprofiles--branded-institutional-banner--menu>ul:only-of-type {
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-between;
+}
 
-    .researcherprofiles--branded-institutional-banner--menu > ul li {
-        display: inline;
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-        max-height: 3rem;
-        overflow: hidden;
-    }
+.researcherprofiles--branded-institutional-banner--menu>ul li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    max-height: 3rem;
+    overflow: hidden;
+}
 
-    .researcherprofiles--branded-institutional-banner--menu ul {
-        margin: 0;
-    }
+.researcherprofiles--branded-institutional-banner--menu ul {
+    margin: 0;
+}
 
-        .researcherprofiles--branded-institutional-banner--menu ul li img {
-            max-height: 2.5rem;
-            max-width: 100%;
-        }
+.researcherprofiles--branded-institutional-banner--menu ul li img {
+    max-height: 2.5rem;
+    max-width: 100%;
+}
 
-        .researcherprofiles--branded-institutional-banner--menu ul li a {
-            text-decoration: none;
-            font-size: 1rem;
-            color: #fff;
-        }
+.researcherprofiles--branded-institutional-banner--menu ul li a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #fff;
+}
 
-            .researcherprofiles--branded-institutional-banner--menu ul li a:hover {
-                text-decoration: underline;
-            }
+.researcherprofiles--branded-institutional-banner--menu ul li a:hover {
+    text-decoration: underline;
+}
 
 /* ############################################################################################ */
 /* OUR INSTITUTION HEADER WITH NAME OF SITE, RIGHT BELOW TOP BRANDING HEADER
@@ -316,24 +333,24 @@ html body #prns-nav ul.prns-main {
     align-items: center;
 }
 
-    /* any links in this sections should be unobstrusive */
-    .researcherprofiles--institution-header a,
-    .researcherprofiles--institution-header a:hover,
-    .researcherprofiles--institution-header a:visited {
-        text-decoration: none;
-        color: var(--text-color);
-    }
+/* any links in this sections should be unobstrusive */
+.researcherprofiles--institution-header a,
+.researcherprofiles--institution-header a:hover,
+.researcherprofiles--institution-header a:visited {
+    text-decoration: none;
+    color: var(--text-color);
+}
 
 /* a smidgen of space around the branding/h1 section */
 .researcherprofiles--institution-header--site-logo {
     margin: 0 0.5rem;
 }
 
-    /* site name should be big */
-    .researcherprofiles--institution-header--site-logo h1 {
-        margin: 0;
-        font-size: 2rem;
-    }
+/* site name should be big */
+.researcherprofiles--institution-header--site-logo h1 {
+    margin: 0;
+    font-size: 2rem;
+}
 
 /* the tagline, if present (e.g. on UCSD), should be smaller and muted */
 .researcherprofiles--institution-header--tagline {
@@ -353,10 +370,10 @@ html body #prns-nav ul.prns-main {
     align-items: center;
 }
 
-    /* if the h1 has an image first, then put some space after the image */
-    .researcherprofiles--institution-header--site-logo h1 a img:first-child {
-        margin-right: 1rem;
-    }
+/* if the h1 has an image first, then put some space after the image */
+.researcherprofiles--institution-header--site-logo h1 a img:first-child {
+    margin-right: 1rem;
+}
 
 /* ############################################################################################ */
 /* INTERNAL INTRA-SITE NAVIGATION, MENU, LOGIN, ETC. */
@@ -369,52 +386,52 @@ html body #prns-nav ul.prns-main {
     width: 100%;
 }
 
-    /* 1. first, recolor the menus so they're dark on light */
+/* 1. first, recolor the menus so they're dark on light */
 
-    #prns-nav ul.prns-main,
-    #prns-nav ul.prns-main li,
-    #prns-nav ul.prns-main li a,
-    #prns-nav ul.prns-main li.landed a,
-    #prns-usrnav ul.usermenu,
-    #prns-usrnav ul.usermenu li,
-    #prns-usrnav ul.usermenu li a,
-    #prns-usrnav ul.usermenu li.landed a,
-    #prns-nav ul.usermenu li:hover > a,
-    #prns-nav ul.usermenu li.selected > a,
-    #prns-nav ul.usermenu li ul.drop li:hover,
-    #prns-nav ul.usermenu ul.drop a {
-        color: var(--text-color) !important;
-        background-color: var(--menu-background-color) !important;
-        //height: unset;
-    }
+#prns-nav ul.prns-main,
+#prns-nav ul.prns-main li,
+#prns-nav ul.prns-main li a,
+#prns-nav ul.prns-main li.landed a,
+#prns-usrnav ul.usermenu,
+#prns-usrnav ul.usermenu li,
+#prns-usrnav ul.usermenu li a,
+#prns-usrnav ul.usermenu li.landed a,
+#prns-nav ul.usermenu li:hover>a,
+#prns-nav ul.usermenu li.selected>a,
+#prns-nav ul.usermenu li ul.drop li:hover,
+#prns-nav ul.usermenu ul.drop a {
+    color: var(--text-color) !important;
+    background-color: var(--menu-background-color) !important;
+    //height: unset;
+}
 
 /* but background of user menu should be white */
 #prns-usrnav ul.usermenu {
     background-color: var(--page-background-color) !important;
 }
 
-    /* put borders between items that should have borders, and normalize height */
-    #prns-nav ul.prns-main li a,
-    #prns-nav ul.prns-main li.landed a,
-    #prns-usrnav ul.usermenu li a,
-    #prns-usrnav ul.usermenu li.landed a {
-        border: 1px solid var(--menu-important-background-color) !important;
-        border-collapse: collapse;
-        height: 100%;
-    }
+/* put borders between items that should have borders, and normalize height */
+#prns-nav ul.prns-main li a,
+#prns-nav ul.prns-main li.landed a,
+#prns-usrnav ul.usermenu li a,
+#prns-usrnav ul.usermenu li.landed a {
+    border: 1px solid var(--menu-important-background-color) !important;
+    border-collapse: collapse;
+    height: 100%;
+}
 
-        /* important/hovered/selected items should be in important color */
-        #prns-nav ul.prns-main li.landed a,
-        #prns-nav ul.prns-main li a:hover,
-        #prns-nav ul.prns-main li.landed a:hover,
-        #prns-nav ul.prns-main .drop li a:hover,
-        #prns-usrnav ul.usermenu li.landed a,
-        #prns-usrnav ul.usermenu li a:hover,
-        #prns-usrnav ul.usermenu li.landed a:hover,
-        #prns-usrnav ul.usermenu .drop li a:hover {
-            color: var(--menu-important-text-color) !important;
-            background-color: var(--menu-important-background-color) !important;
-        }
+/* important/hovered/selected items should be in important color */
+#prns-nav ul.prns-main li.landed a,
+#prns-nav ul.prns-main li a:hover,
+#prns-nav ul.prns-main li.landed a:hover,
+#prns-nav ul.prns-main .drop li a:hover,
+#prns-usrnav ul.usermenu li.landed a,
+#prns-usrnav ul.usermenu li a:hover,
+#prns-usrnav ul.usermenu li.landed a:hover,
+#prns-usrnav ul.usermenu .drop li a:hover {
+    color: var(--menu-important-text-color) !important;
+    background-color: var(--menu-important-background-color) !important;
+}
 
 /* "Login to edit your profile..." */
 #prns-usrnav .loginbar {
@@ -424,7 +441,7 @@ html body #prns-nav ul.prns-main {
 /* was asked to make background of user menu items white */
 #prns-usrnav ul.usermenu li a,
 #prns-usrnav ul.usermenu li.landed a,
-#prns-nav ul.usermenu li.selected > a {
+#prns-nav ul.usermenu li.selected>a {
     background-color: var(--page-background-color) !important;
     border: 1px solid var(--page-background-color) !important;
 }
@@ -440,34 +457,34 @@ html body #prns-nav ul.prns-main {
     justify-content: normal;
 }
 
-    #prns-usrnav ul.usermenu > li > a {
-        height: 100%;
-    }
+#prns-usrnav ul.usermenu>li>a {
+    height: 100%;
+}
 
-    /* undo all the stupid fixed pixel heights in the menu */
-    #prns-nav ul.prns-main,
-    #prns-nav ul.prns-main > li,
-    #prns-nav ul.prns-main > li a img,
-    #prns-usrnav ul.usermenu,
-    #prns-usrnav ul.usermenu > li,
-    #prns-usrnav ul.usermenu > li a img {
-        height: initial;
-    }
+/* undo all the stupid fixed pixel heights in the menu */
+#prns-nav ul.prns-main,
+#prns-nav ul.prns-main>li,
+#prns-nav ul.prns-main>li a img,
+#prns-usrnav ul.usermenu,
+#prns-usrnav ul.usermenu>li,
+#prns-usrnav ul.usermenu>li a img {
+    height: initial;
+}
 
-        /* 3. OK, we're finally done with setup and resets! now on to the main menu search inputs */
+/* 3. OK, we're finally done with setup and resets! now on to the main menu search inputs */
 
-        /* search input elements are vertically aligned, and have some extra padding */
-        #prns-nav ul.prns-main #nav-search-in,
-        #prns-nav ul.prns-main .search {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            padding-right: 1rem;
-        }
+/* search input elements are vertically aligned, and have some extra padding */
+#prns-nav ul.prns-main #nav-search-in,
+#prns-nav ul.prns-main .search {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-right: 1rem;
+}
 
-        #prns-nav ul.prns-main #nav-search-in {
-            padding-right: 0;
-        }
+#prns-nav ul.prns-main #nav-search-in {
+    padding-right: 0;
+}
 
 /* put all the unused space to the left of the Amazon-style pulldown */
 .prns-main #nav-search-in {
@@ -509,10 +526,10 @@ html body #prns-nav ul.prns-main {
     padding: 0 1rem 0 0;
 }
 
-    #prns-usrnav #menuthumb img {
-        max-height: 2em;
-        width: auto;
-    }
+#prns-usrnav #menuthumb img {
+    max-height: 2em;
+    width: auto;
+}
 
 /* ############################################################################################ */
 /* GLOBAL PAGE CONTENT
@@ -534,14 +551,14 @@ html body #prns-nav ul.prns-main {
     font-weight: normal;
 }
 
-    .dblarrow:before {
-        content: "> ";
-        font-weight: bold;
-        display: inline-block;
-        padding-right: 0.5rem;
-        font-size: 1rem;
-        color: #999;
-    }
+.dblarrow:before {
+    content: "> ";
+    font-weight: bold;
+    display: inline-block;
+    padding-right: 0.5rem;
+    font-size: 1rem;
+    color: #999;
+}
 
 /* name of institution, e.g. "UCSF", "USC", used on profile pages, profile network pages, and home page activity feed */
 .researcherprofiles--institution-name-associated-with-researcher {
@@ -568,22 +585,23 @@ html body #prns-nav ul.prns-main {
     /* border-top: 1px dashed var(--heading-color); */
     color: var(--heading-color);
     font-weight: bold;
+
 }
 
-    /* hide plus/minus after the more/less indicator, which we're going to replace */
-    .expand-collapse .more > span:last-child,
-    .accordion .more > span:last-child,
-    .expand-collapse .less > span:last-child,
-    .accordion .less > span:last-child {
-        display: none;
-    }
+/* hide plus/minus after the more/less indicator, which we're going to replace */
+.expand-collapse .more>span:last-child,
+.accordion .more>span:last-child,
+.expand-collapse .less>span:last-child,
+.accordion .less>span:last-child {
+    display: none;
+}
 
-    .expand-collapse .more:after,
-    .accordion .more:after {
-        /* arrow via https://unicode-table.com/en/sets/arrow-symbols/#up-arrows */
-        content: " \25BC";
-        font-size: 1.1em;
-    }
+.expand-collapse .more:after,
+.accordion .more:after {
+    /* arrow via https://unicode-table.com/en/sets/arrow-symbols/#up-arrows */
+    content: " \25BC";
+    font-size: 1.1em;
+}
 
 .expand-collapse .less:after,
 .accordion .less:after {
@@ -609,7 +627,7 @@ html body #prns-nav ul.prns-main {
 /* ############################################################################################ */
 
 /* containing table should be as small as possible, so things stay left */
-.researcherprofiles--researcher-profile-page .panelMain > table {
+.researcherprofiles--researcher-profile-page .panelMain>table {
     display: inline-block;
 }
 
@@ -621,7 +639,7 @@ html body #prns-nav ul.prns-main {
 }
 
 /* the left container that may or may not contain photo should be as small as needed */
-.researcherprofiles--researcher-profile-page .panelMain > table > tbody > tr > td:first-child {
+.researcherprofiles--researcher-profile-page .panelMain>table>tbody>tr>td:first-child {
     padding: 0 !important;
     margin: 0 !important;
     padding: 0 0 0 0 !important;
@@ -636,7 +654,7 @@ html body #prns-nav ul.prns-main {
 
 /* some required space below the photo and basicinfo blocks, if they exist */
 .researcherprofiles--researcher-profile-page img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto,
-.researcherprofiles--researcher-profile-page .basicInfo > table {
+.researcherprofiles--researcher-profile-page .basicInfo>table {
     margin-bottom: 2rem;
 }
 
@@ -670,11 +688,11 @@ html body #prns-nav ul.prns-main {
     text-align: right;
 }
 
-    /* set badge size */
-    .researcherprofiles--researcher-badge img {
-        width: 4rem;
-        height: auto;
-    }
+/* set badge size */
+.researcherprofiles--researcher-badge img {
+    width: 4rem;
+    height: auto;
+}
 
 /* ############################################################################################ */
 /* PROFILE PAGE: TABLE OF CONTENTS
@@ -689,24 +707,24 @@ html body #prns-nav ul.prns-main {
     text-align: left;
 }
 
-    /* reset random padding around ul */
-    .researcherprofiles--researcher-profile-page #toc ul {
-        padding: 0;
-    }
+/* reset random padding around ul */
+.researcherprofiles--researcher-profile-page #toc ul {
+    padding: 0;
+}
 
-        /* make the list horizontal, with standalone items */
-        .researcherprofiles--researcher-profile-page #toc ul li {
-            list-style-type: none;
-            display: inline-block;
-            white-space: nowrap;
-            padding: 0;
-            margin: 0.1rem 1em;
-        }
+/* make the list horizontal, with standalone items */
+.researcherprofiles--researcher-profile-page #toc ul li {
+    list-style-type: none;
+    display: inline-block;
+    white-space: nowrap;
+    padding: 0;
+    margin: 0.1rem 1em;
+}
 
-            /* the links colors are the same as the heading colors below */
-            .researcherprofiles--researcher-profile-page #toc ul li a {
-                color: var(--heading-color);
-            }
+/* the links colors are the same as the heading colors below */
+.researcherprofiles--researcher-profile-page #toc ul li a {
+    color: var(--heading-color);
+}
 
 /* ############################################################################################ */
 /* PROFILE PAGE: TABLE OF CONTENTS AND ASSOCIATED HEADINGS
@@ -747,10 +765,10 @@ html body #prns-nav ul.prns-main {
     pointer-events: none;
 }
 
-    /* hide the stupid expand icon graphic in section headings */
-    .researcherprofiles--researcher-profile-page .PropertyItemHeader img {
-        display: none;
-    }
+/* hide the stupid expand icon graphic in section headings */
+.researcherprofiles--researcher-profile-page .PropertyItemHeader img {
+    display: none;
+}
 
 /* a little space below each content section body */
 .researcherprofiles--researcher-profile-page .PropertyGroupData {
@@ -780,33 +798,33 @@ html body #prns-nav ul.prns-main {
     overflow-wrap: break-word;
 }
 
-    /* adding little borders between non-linky collapsible table rows */
-    /* It's quite hard to select the right tables. Ideally, we'd hand-list each one, but in this case, we need this funky selector to get awards/grants/education, but not in the news, websites, or pubs. */
-    .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible tr:not(.website-table),
-    .researcherprofiles--researcher-profile-page .profilesContentMain table.grants tr {
-        border-top: 2px solid var(--striped-row-border-color);
-    }
+/* adding little borders between non-linky collapsible table rows */
+/* It's quite hard to select the right tables. Ideally, we'd hand-list each one, but in this case, we need this funky selector to get awards/grants/education, but not in the news, websites, or pubs. */
+.researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible tr:not(.website-table),
+.researcherprofiles--researcher-profile-page .profilesContentMain table.grants tr {
+    border-top: 2px solid var(--striped-row-border-color);
+}
 
-        .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible tr:first-of-type,
-        .researcherprofiles--researcher-profile-page .profilesContentMain table.grants tr:first-of-type,
-        .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible tr.accordion {
-            border: none;
-        }
+.researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible tr:first-of-type,
+.researcherprofiles--researcher-profile-page .profilesContentMain table.grants tr:first-of-type,
+.researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible tr.accordion {
+    border: none;
+}
 
-    /* adding a little space between collapsible table items */
-    /* and cells are never too narrow */
-    .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible td,
-    .researcherprofiles--researcher-profile-page .profilesContentMain table.grants td {
-        padding: 0.2rem 0.5rem 0.2rem 0rem;
-        min-width: 5em;
-    }
+/* adding a little space between collapsible table items */
+/* and cells are never too narrow */
+.researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible td,
+.researcherprofiles--researcher-profile-page .profilesContentMain table.grants td {
+    padding: 0.2rem 0.5rem 0.2rem 0rem;
+    min-width: 5em;
+}
 
-        /* empty table cells can be as narrow as possible */
-        .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible td:empty,
-        .researcherprofiles--researcher-profile-page .profilesContentMain table.grants td:empty {
-            min-width: 0;
-            padding: 0;
-        }
+/* empty table cells can be as narrow as possible */
+.researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible td:empty,
+.researcherprofiles--researcher-profile-page .profilesContentMain table.grants td:empty {
+    min-width: 0;
+    padding: 0;
+}
 
 /* ############################################################################################ */
 /* PROFILE PAGE: GADGETS
@@ -841,12 +859,12 @@ html body #prns-nav ul.prns-main {
     max-width: 50em;
 }
 
-    /* shade every second line */
-    .researcherprofiles--researcher-profile-page .profilesContentMain .publications li:nth-child(even) {
-        background: var(--striped-row-colored-row-color);
-        border-top: 0.5px solid var(--striped-row-border-color);
-        border-bottom: 0.5px solid var(--striped-row-border-color);
-    }
+/* shade every second line */
+.researcherprofiles--researcher-profile-page .profilesContentMain .publications li:nth-child(even) {
+    background: var(--striped-row-colored-row-color);
+    border-top: 0.5px solid var(--striped-row-border-color);
+    border-bottom: 0.5px solid var(--striped-row-border-color);
+}
 
 /* normalize color of links to see visualizations */
 .researcherprofiles--researcher-profile-page .anchor-tab a.link-visualization {
@@ -872,10 +890,10 @@ html body #prns-nav ul.prns-main {
     mask-image: linear-gradient(180deg, #000 90%, transparent);
 }
 
-    .researcherprofiles--researcher-profile-page .overview.full {
-        max-height: none;
-        mask-image: none;
-    }
+.researcherprofiles--researcher-profile-page .overview.full {
+    max-height: none;
+    mask-image: none;
+}
 
 /* ############################################################################################ */
 /* PROFILE PAGE: WEBSITES
@@ -883,7 +901,7 @@ html body #prns-nav ul.prns-main {
 
 /* fix stupid hardcoded spacing around website entries */
 
-.researcherprofiles--researcher-profile-page tr.website-table > td {
+.researcherprofiles--researcher-profile-page tr.website-table>td {
     padding: 0.5rem;
 }
 
@@ -910,10 +928,10 @@ html body #prns-nav ul.prns-main {
     mask-image: linear-gradient(180deg, #000 90%, transparent);
 }
 
-    .researcherprofiles--researcher-profile-page .overview.full {
-        max-height: none;
-        mask-image: none;
-    }
+.researcherprofiles--researcher-profile-page .overview.full {
+    max-height: none;
+    mask-image: none;
+}
 
 /* ############################################################################################ */
 /* PROFILE PAGE: UCSF VIDEOS
@@ -949,34 +967,34 @@ html body #prns-nav ul.prns-main {
     overflow: auto;
 }
 
-    /* resize each entry in the video list, and act a little like a link */
-    .researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="video_navigator"] .video_option {
-        cursor: pointer;
-        padding: 0.5rem;
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: flex-start;
-    }
+/* resize each entry in the video list, and act a little like a link */
+.researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="video_navigator"] .video_option {
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+}
 
-        /* ...and break long captions if needed */
-        .researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="video_navigator"] .video_option figcaption {
-            overflow-wrap: break-word;
-        }
+/* ...and break long captions if needed */
+.researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="video_navigator"] .video_option figcaption {
+    overflow-wrap: break-word;
+}
 
-        /* video links light up on hover */
-        .researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="video_navigator"] .video_option:hover {
-            background-color: white;
-            text-decoration: underline;
-        }
+/* video links light up on hover */
+.researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="video_navigator"] .video_option:hover {
+    background-color: white;
+    text-decoration: underline;
+}
 
-        /* in each video list entry, the image is on the left and maxes out at 40% width */
-        .researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="video_navigator"] .video_option .video_thumbnail_wrapper img {
-            max-height: 100%;
-            max-width: 40%;
-            margin-right: 1rem;
-            object-fit: contain;
-            vertical-align: bottom;
-        }
+/* in each video list entry, the image is on the left and maxes out at 40% width */
+.researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="video_navigator"] .video_option .video_thumbnail_wrapper img {
+    max-height: 100%;
+    max-width: 40%;
+    margin-right: 1rem;
+    object-fit: contain;
+    vertical-align: bottom;
+}
 
 /* make the video iframe on the left hand side as wide as its container */
 .researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="current_video_container"] iframe {
@@ -1019,10 +1037,10 @@ html body #prns-nav ul.prns-main {
     padding: 0.5rem;
 }
 
-    /* selected video link is visually highlighted */
-    .researcherprofiles--researcher-profile-page .youtube .yt_list li:hover {
-        background: var(--menu-important-background-color);
-    }
+/* selected video link is visually highlighted */
+.researcherprofiles--researcher-profile-page .youtube .yt_list li:hover {
+    background: var(--menu-important-background-color);
+}
 
 /* ############################################################################################ */
 /* PROFILE PAGE RIGHT COLUMN PASSIVE NETWORKS */
@@ -1051,7 +1069,7 @@ html body #prns-nav ul.prns-main {
 
 /* if page is sufficiently wide, and there's only one passive column, make sure right column is at least ~20% of screen, and give it some room to breathe */
 @media only screen and (min-width: 60rem) and (min-width: 980px) {
-    .researcherprofiles--researcher-profile-or-network-page .profilesContentMain:first-child + .profilesContentPassive {
+    .researcherprofiles--researcher-profile-or-network-page .profilesContentMain:first-child+.profilesContentPassive {
         width: 25%;
         padding-left: 2.5rem !important;
     }
@@ -1074,11 +1092,11 @@ html body #prns-nav ul.prns-main {
     margin-top: 1rem !important;
 }
 
-    /* gray out description of where the network data came from */
-    .researcherprofiles--researcher-profile-or-network-page .passiveSectionHead .passiveSectionHeadDescription {
-        color: var(--text-muted-color) !important;
-        margin: 0.1rem 0 0.5rem 0 !important;
-    }
+/* gray out description of where the network data came from */
+.researcherprofiles--researcher-profile-or-network-page .passiveSectionHead .passiveSectionHeadDescription {
+    color: var(--text-muted-color) !important;
+    margin: 0.1rem 0 0.5rem 0 !important;
+}
 
 /* in people lists, indent text over a bit */
 .researcherprofiles--researcher-profile-or-network-page .profilesContentPassive .passiveSectionBody li {
@@ -1157,26 +1175,26 @@ body.about .aboutProfiles {
     margin: 2rem 0;
 }
 
-    body.about .aboutProfiles div {
-        text-align: center;
-        padding: 1rem;
-        flex: 1;
-    }
+body.about .aboutProfiles div {
+    text-align: center;
+    padding: 1rem;
+    flex: 1;
+}
 
-        body.about .aboutProfiles div.shaded {
-            background: #f2f2f2;
-        }
+body.about .aboutProfiles div.shaded {
+    background: #f2f2f2;
+}
 
-    body.about .aboutProfiles h2,
-    body.about .aboutProfiles h3 {
-        color: var(--heading-color);
-    }
+body.about .aboutProfiles h2,
+body.about .aboutProfiles h3 {
+    color: var(--heading-color);
+}
 
-    body.about .aboutProfiles img {
-        padding: 0.3rem;
-        max-height: 5rem;
-        max-width: 100%;
-    }
+body.about .aboutProfiles img {
+    padding: 0.3rem;
+    max-height: 5rem;
+    max-width: 100%;
+}
 
 body.about .center {
     text-align: center;
@@ -1233,10 +1251,10 @@ body.about .share {
     padding: 0 2rem !important;
 }
 
-    /* no right padding on search form if there's nothing after it */
-    .researcherprofiles--home-page .profilesContentMain:last-child {
-        padding-right: 0 !important;
-    }
+/* no right padding on search form if there's nothing after it */
+.researcherprofiles--home-page .profilesContentMain:last-child {
+    padding-right: 0 !important;
+}
 
 /* make the tabs a little smaller, for narrow responsive screens */
 /* and recolor them so the *selected* one is highlighted, not the unselected one */
@@ -1252,18 +1270,18 @@ body.about .share {
     font-size: 1rem;
 }
 
-    .researcherprofiles--home-page .content-main ul.tabmenu li.tab:not(.selected) {
-        border-bottom-style: solid;
-    }
+.researcherprofiles--home-page .content-main ul.tabmenu li.tab:not(.selected) {
+    border-bottom-style: solid;
+}
 
 /* reset sizes on all three search rows, including the heading */
-.researcherprofiles--home-page .profilesContentMain .tabContainer > .searchForm > table > tbody > tr > td > div {
+.researcherprofiles--home-page .profilesContentMain .tabContainer>.searchForm>table>tbody>tr>td>div {
     margin: 0;
     padding: 0;
 }
 
 /* try to visually merge the two search blocks, but not the heading */
-.researcherprofiles--home-page .profilesContentMain .tabContainer > .searchForm > table > tbody > tr:not(:first-child) > td > div {
+.researcherprofiles--home-page .profilesContentMain .tabContainer>.searchForm>table>tbody>tr:not(:first-child)>td>div {
     background: var(--highlighted-panel-background-color);
     margin: 0;
     padding: 0 2.5rem;
@@ -1272,12 +1290,12 @@ body.about .share {
     border-bottom: 0;
 }
 
-.researcherprofiles--home-page .profilesContentMain .tabContainer > .searchForm > table > tbody > tr:last-child > td > div {
+.researcherprofiles--home-page .profilesContentMain .tabContainer>.searchForm>table>tbody>tr:last-child>td>div {
     border-bottom: 1px solid var(--highlighted-panel-border-color);
     padding-bottom: 1rem;
 }
 
-.researcherprofiles--home-page .profilesContentMain .tabContainer > .searchForm > table > tbody > tr:nth-child(2) > td > div {
+.researcherprofiles--home-page .profilesContentMain .tabContainer>.searchForm>table>tbody>tr:nth-child(2)>td>div {
     padding-top: 1rem;
     border-top: 1px solid var(--highlighted-panel-border-color);
 }
@@ -1347,13 +1365,13 @@ body.about .share {
     white-space: nowrap;
 }
 
-    /* hover state for search button */
-    .researcherprofiles--home-page a.search-button:active,
-    .researcherprofiles--home-page a.search-button:hover,
-    .researcherprofiles--home-page a.search-button:visited {
-        color: #fff;
-        box-shadow: none;
-    }
+/* hover state for search button */
+.researcherprofiles--home-page a.search-button:active,
+.researcherprofiles--home-page a.search-button:hover,
+.researcherprofiles--home-page a.search-button:visited {
+    color: #fff;
+    box-shadow: none;
+}
 
 @media screen and (max-width: 600px) {
 
@@ -1383,10 +1401,10 @@ body.about .share {
     font-weight: normal;
 }
 
-    /* standalone label text is not selectable */
-    .researcherprofiles--primary-search-container label[for] {
-        user-select: none;
-    }
+/* standalone label text is not selectable */
+.researcherprofiles--primary-search-container label[for] {
+    user-select: none;
+}
 
 /* shorten and shrink search section/tab labels on small screens */
 @media only screen and (max-width: 980px) {
@@ -1412,24 +1430,24 @@ body.about .share {
         opacity: 1;
     }
 
-        /* and add new shorter labels */
-        .researcherprofiles--home-page .researcherprofiles--primary-search-container .tabmenu li.tab a[href$="/people"]:after,
-        .researcherprofiles--primary-search--find-people-mode li.tab.selected:after {
-            content: "People";
-            font-size: 0.8rem !important;
-        }
+    /* and add new shorter labels */
+    .researcherprofiles--home-page .researcherprofiles--primary-search-container .tabmenu li.tab a[href$="/people"]:after,
+    .researcherprofiles--primary-search--find-people-mode li.tab.selected:after {
+        content: "People";
+        font-size: 0.8rem !important;
+    }
 
-        .researcherprofiles--home-page .researcherprofiles--primary-search-container .tabmenu li.tab a[href$="/all"]:after,
-        .researcherprofiles--primary-search--find-everything-mode li.tab.selected:after {
-            content: "Papers";
-            font-size: 0.8rem !important;
-        }
+    .researcherprofiles--home-page .researcherprofiles--primary-search-container .tabmenu li.tab a[href$="/all"]:after,
+    .researcherprofiles--primary-search--find-everything-mode li.tab.selected:after {
+        content: "Papers";
+        font-size: 0.8rem !important;
+    }
 
-        .researcherprofiles--home-page .researcherprofiles--primary-search-container .tabmenu li.tab a[href$="/advanced"]:after,
-        .researcherprofiles--primary-search--advanced-search-mode li.tab.selected:after {
-            content: "Advanced";
-            font-size: 0.8rem !important;
-        }
+    .researcherprofiles--home-page .researcherprofiles--primary-search-container .tabmenu li.tab a[href$="/advanced"]:after,
+    .researcherprofiles--primary-search--advanced-search-mode li.tab.selected:after {
+        content: "Advanced";
+        font-size: 0.8rem !important;
+    }
 }
 
 
@@ -1498,12 +1516,12 @@ body.about .share {
     flex-basis: 20%;
 }
 
-    /* - search button to the right changes color on hover or click */
-    .researcherprofiles--home-page .researcherprofiles--primary-search--find-people-mode .researcherprofiles--primary-search--search-box--search-button:hover,
-    .researcherprofiles--home-page .researcherprofiles--primary-search--find-people-mode .researcherprofiles--primary-search--search-box--search-button:active,
-    .researcherprofiles--primary-search--find-people-mode .researcherprofiles--primary-search--search-box--search-button:focus {
-        filter: brightness(1.0);
-    }
+/* - search button to the right changes color on hover or click */
+.researcherprofiles--home-page .researcherprofiles--primary-search--find-people-mode .researcherprofiles--primary-search--search-box--search-button:hover,
+.researcherprofiles--home-page .researcherprofiles--primary-search--find-people-mode .researcherprofiles--primary-search--search-box--search-button:active,
+.researcherprofiles--primary-search--find-people-mode .researcherprofiles--primary-search--search-box--search-button:focus {
+    filter: brightness(1.0);
+}
 
 /* - the orange/etc. space below has a minimum height, to keep top and bottom even */
 .researcherprofiles--home-page .researcherprofiles--primary-search--find-people-mode .activeContainerBottom {
@@ -1518,12 +1536,12 @@ body.about .share {
     flex-wrap: wrap;
 }
 
-    /* normalize the three sections of the block (label, input, and search button) */
-    .researcherprofiles--home-page .researcherprofiles--primary-search--find-everything-mode fieldset > * {
-        width: auto;
-        margin: 0 1rem 0 0;
-        float: left;
-    }
+/* normalize the three sections of the block (label, input, and search button) */
+.researcherprofiles--home-page .researcherprofiles--primary-search--find-everything-mode fieldset>* {
+    width: auto;
+    margin: 0 1rem 0 0;
+    float: left;
+}
 
 /* Bootstrap customized the <legend>, so we normalize the font size */
 .researcherprofiles--home-page .researcherprofiles--primary-search--find-everything-mode legend {
@@ -1531,7 +1549,7 @@ body.about .share {
 }
 
 /* the search input and "use exact phrase" are on top of one another */
-.researcherprofiles--home-page .researcherprofiles--primary-search--find-everything-mode .researcherprofiles--primary-search--search-form--topic-search-container > * {
+.researcherprofiles--home-page .researcherprofiles--primary-search--find-everything-mode .researcherprofiles--primary-search--search-form--topic-search-container>* {
     display: block;
 }
 
@@ -1547,18 +1565,18 @@ body.about .share {
     border: none;
 }
 
-    /* - either school/department followed by researcher type? no border, and more spacing between */
-    .researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDepartment"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"],
-    .researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDivision"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"] {
-        border-top: none !important;
-    }
+/* - either school/department followed by researcher type? no border, and more spacing between */
+.researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDepartment"]+tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"],
+.researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDivision"]+tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"] {
+    border-top: none !important;
+}
 
-        .researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDepartment"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"] > th,
-        .researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDepartment"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"] > td,
-        .researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDivision"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"] > th,
-        .researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDivision"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"] > td {
-            padding-top: 1.5rem;
-        }
+.researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDepartment"]+tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"]>th,
+.researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDepartment"]+tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"]>td,
+.researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDivision"]+tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"]>th,
+.researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDivision"]+tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"]>td {
+    padding-top: 1.5rem;
+}
 
 /* - all table cells top-aligned */
 .researcherprofiles--primary-search--advanced-search-mode .searchSection th,
@@ -1598,7 +1616,7 @@ body.about .share {
 }
 
 /* final text floating below the row of items */
-.researcherprofiles--home-page .researcherprofiles--home-page--featured-items-block > p:last-child {
+.researcherprofiles--home-page .researcherprofiles--home-page--featured-items-block>p:last-child {
     text-align: center;
     font-style: italic;
     margin: 0 0 0 1rem;
@@ -1645,6 +1663,8 @@ body.about .share {
     .researcherprofiles--home-page .researcherprofiles--home-page--featured-items-block--item:only-of-type .researcherprofiles--home-page--featured-items-block--image-container {
         height: 8rem;
     }
+
+
 }
 
 /* image covers the entirety of the image block */
@@ -1679,11 +1699,11 @@ body.about .share {
     font-size: 0.8rem;
 }
 
-    .researcherprofiles--home-page .activeSectionBody .metrics div span {
-        /* Bootstrap 4.1 monospace font stack */
-        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-        margin-right: 0.4rem;
-    }
+.researcherprofiles--home-page .activeSectionBody .metrics div span {
+    /* Bootstrap 4.1 monospace font stack */
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    margin-right: 0.4rem;
+}
 
 .researcherprofiles--home-page .activeSectionBody .activities .act {
     margin-bottom: 10px;
@@ -1722,14 +1742,14 @@ body.about .share {
     border: none !important;
 }
 
-    /* hide first "most viewed" block and heading */
-    .researcherprofiles--home-page .panelPassive > .passiveSectionBody.topSearchPhrases:nth-child(3) {
-        display: none;
-    }
+/* hide first "most viewed" block and heading */
+.researcherprofiles--home-page .panelPassive>.passiveSectionBody.topSearchPhrases:nth-child(3) {
+    display: none;
+}
 
-    .researcherprofiles--home-page .panelPassive > .passiveSectionHead:nth-child(2) {
-        display: none;
-    }
+.researcherprofiles--home-page .panelPassive>.passiveSectionHead:nth-child(2) {
+    display: none;
+}
 
 /* ############################################################################################ */
 /* ACTIVITY HISTORY */
@@ -1743,35 +1763,35 @@ body.about .share {
     margin: 2rem;
 }
 
-    /* a little space around each block */
-    #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlActivities .actTemplate {
-        padding: 1rem;
-    }
+/* a little space around each block */
+#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlActivities .actTemplate {
+    padding: 1rem;
+}
 
-        /* stripe every second row */
-        #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlActivities .actTemplate:nth-of-type(even) {
-            background-color: var(--striped-row-colored-row-color);
-            border-color: var(--striped-row-border-color);
-            border-width: 1px 0;
-            border-style: solid;
-        }
+/* stripe every second row */
+#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlActivities .actTemplate:nth-of-type(even) {
+    background-color: var(--striped-row-colored-row-color);
+    border-color: var(--striped-row-border-color);
+    border-width: 1px 0;
+    border-style: solid;
+}
 
-    /* photo to the left */
-    #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlActivities .act-image {
-        float: left;
-        width: 6rem;
-    }
+/* photo to the left */
+#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlActivities .act-image {
+    float: left;
+    width: 6rem;
+}
 
-        #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlActivities .act-image img {
-            max-width: 75%;
-        }
+#ctl00_ContentMain_rptMain_ctl00_ctl00_pnlActivities .act-image img {
+    max-width: 75%;
+}
 
 /* ############################################################################################ */
 /* PROFILE EDITING: MAIN SCREEN WHERE YOU PICK AN AREA */
 /* ############################################################################################ */
 
 /* "Edit menu" is big and left-aligned */
-.researcherprofiles--edit-page .panelMain > h2 {
+.researcherprofiles--edit-page .panelMain>h2 {
     text-align: left;
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -1791,16 +1811,16 @@ body.about .share {
 }
 
 
-    /* heading goes at the top */
-    .researcherprofiles--edit-sections-index-page .panelMain > h2,
-    .researcherprofiles--edit-sections-index-page .panelMain > h3 {
-        grid-area: header-row;
-    }
+/* heading goes at the top */
+.researcherprofiles--edit-sections-index-page .panelMain>h2,
+.researcherprofiles--edit-sections-index-page .panelMain>h3 {
+    grid-area: header-row;
+}
 
-    /* but really, we should hide the "Components" heading */
-    .researcherprofiles--edit-sections-index-page .panelMain h3 {
-        display: none;
-    }
+/* but really, we should hide the "Components" heading */
+.researcherprofiles--edit-sections-index-page .panelMain h3 {
+    display: none;
+}
 
 /* the main edit content box is on the left */
 .researcherprofiles--edit-sections-index-page #profile-components {
@@ -1816,11 +1836,6 @@ body.about .share {
 /* the explanation of icons, include the Advance message box, is on the right, at the bottom */
 .researcherprofiles--edit-page .researcherprofiles--edit-page--explanation-of-icons {
     grid-area: main-row-right-bottom;
-}
-
-/* the Advance message box is center-aligned */
-.researcherprofiles--edit-sections-index-page .researcherprofiles--edit-page--explanation-of-icons p {
-    text-align: center;
 }
 
 /* remove extra borders around each table and table item */
@@ -1865,10 +1880,10 @@ body.about .share {
     float: right;
 }
 
-    /* name/degree: space between lock icon and "always public" */
-    .researcherprofiles--edit-sections-index-page #profile-components #namedegreerow #public img {
-        margin-right: 3rem;
-    }
+/* name/degree: space between lock icon and "always public" */
+.researcherprofiles--edit-sections-index-page #profile-components #namedegreerow #public img {
+    margin-right: 3rem;
+}
 
 /* name/degree: "Name and Degrees" looks like a link */
 .researcherprofiles--edit-sections-index-page #profile-components #namedegree {
@@ -1895,7 +1910,7 @@ body.about .share {
 }
 
 /* capitalize each profile component title */
-.researcherprofiles--edit-sections-index-page #profile-components tr > td:first-child:first-letter {
+.researcherprofiles--edit-sections-index-page #profile-components tr>td:first-child:first-letter {
     text-transform: capitalize;
 }
 
@@ -1962,6 +1977,7 @@ body.about .share {
     padding: 0.5rem;
     text-align: left;
     border: 1px solid var(--highlighted-panel-border-color);
+
 }
 
 /* edit buttons are squished, but can collapse if needed */
@@ -1999,24 +2015,24 @@ body.about .share {
     max-width: 75rem;
 }
 
-    /* each particular campus login option */
-    .login_container div {
-        text-align: center;
-        flex: 0 0 15rem;
-        margin: 1rem;
-        border: 6px solid #eee;
-    }
+/* each particular campus login option */
+.login_container div {
+    text-align: center;
+    flex: 0 0 15rem;
+    margin: 1rem;
+    border: 6px solid #eee;
+}
 
-    /* image size */
-    .login_container input[type=image] {
-        width: 11rem;
-        padding: 1rem;
-    }
+/* image size */
+.login_container input[type=image] {
+    width: 11rem;
+    padding: 1rem;
+}
 
-    /* big image size */
-    .login_container .plus-size input[type=image] {
-        width: 14rem;
-    }
+/* big image size */
+.login_container .plus-size input[type=image] {
+    width: 14rem;
+}
 
 /* ############################################################################################ */
 /* SEARCH RESULTS PAGE */
@@ -2027,11 +2043,11 @@ body.about .share {
     padding: 0 0.5rem;
 }
 
-    /* center the "Sort / Show  Click..." content within each of their respective containers */
-    .researcherprofiles--search-results-page .panelMain table:first-of-type tbody tr:first-child td[style] div {
-        float: none !important;
-        margin: 0 auto;
-    }
+/* center the "Sort / Show  Click..." content within each of their respective containers */
+.researcherprofiles--search-results-page .panelMain table:first-of-type tbody tr:first-child td[style] div {
+    float: none !important;
+    margin: 0 auto;
+}
 
 /* if the "Sort / Show  Click..." content is too close to each other, hide the "Why" text on small screens */
 @media only screen and (max-width: 30rem) {
@@ -2053,9 +2069,9 @@ body.about .share {
     font-weight: 700;
 }
 
-    #tblSearchResults th.alignCenter {
-        text-align: center;
-    }
+#tblSearchResults th.alignCenter {
+    text-align: center;
+}
 
 /*
 FYI, the selectors for the search results table are funky:
@@ -2075,22 +2091,22 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
     border-collapse: collapse;
 }
 
-    /* normalize colors of alternating rows */
-    .researcherprofiles--search-results-page .panelMain .listTable tr.evenRow {
-        background-color: var(--striped-row-colored-row-color);
-    }
+/* normalize colors of alternating rows */
+.researcherprofiles--search-results-page .panelMain .listTable tr.evenRow {
+    background-color: var(--striped-row-colored-row-color);
+}
 
-    /* color header and footer rows are a little different */
-    .researcherprofiles--search-results-page .panelMain .listTable tr:first-of-type,
-    .researcherprofiles--search-results-page .panelMain .listTable tr:first-of-type th,
-    .researcherprofiles--search-results-page .panelMain .listTablePagination {
-        background: #eed;
-    }
+/* color header and footer rows are a little different */
+.researcherprofiles--search-results-page .panelMain .listTable tr:first-of-type,
+.researcherprofiles--search-results-page .panelMain .listTable tr:first-of-type th,
+.researcherprofiles--search-results-page .panelMain .listTablePagination {
+    background: #eed;
+}
 
-        /* kill hardcoded pixel width */
-        .researcherprofiles--search-results-page .panelMain .listTablePagination td {
-            width: auto;
-        }
+/* kill hardcoded pixel width */
+.researcherprofiles--search-results-page .panelMain .listTablePagination td {
+    width: auto;
+}
 
 /* hide DIRECT link from search results page. Ask Brian for advice here. */
 /* DREAM: remove from upstream */
@@ -2134,17 +2150,17 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
     min-height: 100vh;
 }
 
-    /* now stick the footer to the very bottom of the container */
-    #page-container .researcherprofiles--footer {
-        position: -webkit-sticky !important;
-        position: sticky !important;
-        top: 100%;
-        margin-top: 1rem;
-        padding: 0.5rem;
-        border-top: 0.25rem solid #ccc;
-        font-size: x-small;
-        color: var(--text-muted-color);
-    }
+/* now stick the footer to the very bottom of the container */
+#page-container .researcherprofiles--footer {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border-top: 0.25rem solid #ccc;
+    font-size: x-small;
+    color: var(--text-muted-color);
+}
 
 /* it's ugly if long footer text blocks stretch all the way across, so dial it back */
 #researcherprofiles--footer-collaboration,

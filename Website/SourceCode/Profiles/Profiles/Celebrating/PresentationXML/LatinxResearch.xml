@@ -1,0 +1,812 @@
+﻿<Presentation PresentationClass="profile">
+  <PageOptions Columns="2"/>
+  <WindowName>UCSF Research Benefitting the Latinx Community</WindowName>  
+  <PageTitle>UCSF Research Benefitting the Latinx Community</PageTitle>
+  <PageBackLinkName></PageBackLinkName>
+  <PageBackLinkURL></PageBackLinkURL>
+  <PageDescription></PageDescription>  
+  <PanelList>
+    <Panel type="header"  />
+    <Panel type="page" />
+    <Panel Type="active">
+      <Module ID="MainMenu"/>
+    </Panel>
+    <Panel Type="main">
+      <Module ID="HTMLBlock">
+        <ParamList>
+          <Param Name="HTML">
+			  <!-- Eric, start copying here -->
+			  <style type='text/css'>
+				  /*<![CDATA[*/
+        .list-of-featured-publications-and-their-authors.container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+            justify-content: center; /* centers content in final row if needed */
+            gap: 1.25rem;
+            padding: 0 1.25rem;
+        }
+
+        .list-of-featured-publications-and-their-authors .article {
+            background-color: white;
+            border-radius: 0.625rem;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+            padding: 1.25rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .list-of-featured-publications-and-their-authors .article-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.625rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .list-of-featured-publications-and-their-authors .article-title:hover {
+            text-decoration: underline;
+        }
+
+        .list-of-featured-publications-and-their-authors .author {
+            font-size: 0.9rem;
+            color: #555;
+            text-align: left;
+            padding-top: 0.5rem;
+        }
+
+        .list-of-featured-publications-and-their-authors .author img {
+            width: auto;
+            height: auto;
+            max-width: 4rem;
+            max-height: 6rem;
+            float: right;
+            margin-left: 0.625rem;
+        }
+
+        .list-of-featured-publications-and-their-authors .author div {
+            margin-bottom: 0.3125rem;
+        }
+		
+		.list-of-featured-publications-and-their-authors.container::before {
+			display: none
+		}		
+/*]]>*/
+			  </style>
+			  <!-- @Eric, start copying the HTML below -->
+			  <div class='container list-of-featured-publications-and-their-authors'>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37610227' target='_blank'>
+						  “Toward Language Justice in Environmental Health Sciences in the United States: A Case for Spanish as a Language of Science”
+						  <cite>(Environmental Health Perspectives)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Jessica Trowbridge' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=35508704' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/jessica.trowbridge'>Jessica Trowbridge, PhD, MPH</a>
+						  </div>
+						  <div>Associate Researcher</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37730598' target='_blank'>
+						  ““Entre Nosotras:” a qualitative study of a peer-led PrEP project for transgender latinas”
+						  <cite>(BMC Health Services Research)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Sophia Zamudio-Haas' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=176762893' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/sophia.zamudio-haas'>Sophia Zamudio-Haas, DrPH, MSc</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37351533' target='_blank'>
+						  “Depression Symptoms, Perceived Stress, and Loneliness During the COVID-19 Pandemic Among Diverse US Racial-Ethnic Groups”
+						  <cite>(Health Equity)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Anita Stewart' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=183059' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/anita.stewart'>Anita Stewart, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Institute for Health &amp; Aging</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36729520' target='_blank'>
+						  “A Novel Multifamily Treatment Targeting Symptoms Related to Latinx Caregiver Deportation”
+						  <cite>(Psychological Trauma Theory Research Practice and Policy)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/peggy.tahir'>Peggy Tahir</a>
+						  </div>
+						  <div>Research &amp; Copyright Librarian</div>
+						  <div>Library</div>
+						  <div>Chancellor/EVC/FAS</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35801152' target='_blank'>
+						  “Traditional Healers as Health Care Providers for the Latine Community in the United States, a Systematic Review”
+						  <cite>(Health Equity)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Kala Mehta' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=189465' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/kala.mehta'>Kala Mehta, DSc, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Epidemiology &amp; Biostatistics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36422792' target='_blank'>
+						  “Social Needs and Acculturation as Predictors of Emotional Problems and Perceived Stress Among Latinx Mothers with Low Income”
+						  <cite>(Journal of Immigrant and Minority Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Laura Gottlieb' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=189840' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/laura.gottlieb'>Laura Gottlieb, MD, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Family Community Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36416664' target='_blank'>
+						  “Understanding the role of race in abortion stigma in the United States: a systematic scoping review”
+						  <cite>(Sexual and Reproductive Health Matters)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Katie Brown' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=181280' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/katie.brown'>Katie Brown, MD, MAS</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36978018' target='_blank'>
+						  “Association between primary Spanish language and quality of intrapartum care among Latina women: a secondary analysis of the Listening to Mothers in California survey”
+						  <cite>(BMC Pregnancy and Childbirth)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Andrea Jackson' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=175501' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/andrea.jackson'>Andrea Jackson, MD, MAS</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37978490' target='_blank'>
+						  “Psychometric assessment of the US person-centered prenatal and maternity care scales in a low-income predominantly Latinx population in California”
+						  <cite>(BMC Women&apos;s Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Patience Afulani' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=195549' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/patience.afulani'>Patience Afulani, PhD, MD, MPH</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36991364' target='_blank'>
+						  “Qualitative analysis of stakeholder perspectives on engaging Latinx patients in kidney-related research”
+						  <cite>(BMC Nephrology)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Cynthia Delgado' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=186872' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/cynthia.delgado'>Cynthia Delgado, MD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37934543' target='_blank'>
+						  “A Review of Community Health Worker Interventions for Latinx/o/a Individuals With Unhealthy Alcohol Use”
+						  <cite>(Journal of Addiction Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Marlene Martin' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=189172' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/marlene.martin'>Marlene Martin, MD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38585369' target='_blank'>
+						  “Forward and back is not enough: applying best practices for translation of pediatric sleep questionnaires”
+						  <cite>(Frontiers in Sleep)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/jeanne.tschann'>Jeanne Tschann, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38541294' target='_blank'>
+						  “A Co-Created Tool to Help Counter Health Misinformation for Spanish-Speaking Communities in the San Francisco Bay Area”
+						  <cite>(International Journal of Environmental Research and Public Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Emily Arnold' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=189421' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/emily.arnold'>Emily Arnold, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35225747' target='_blank'>
+						  “HIV Disclosure Practices to Family Among Mexican and Puerto Rican Sexual Minority Men with HIV in the Continental USA: Intersections of Sexual Orientation and HIV Stigma”
+						  <cite>(Journal of Homosexuality)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/andres.maiorana'>Andres Maiorana, MPH</a>
+						  </div>
+						  <div>SPECIALIST</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35033200' target='_blank'>
+						  “Epigenome-wide association study of lung function in Latino children and youth with asthma”
+						  <cite>(Clinical Epigenetics)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Jennifer Elhawary' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=153170785' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/jennifer.elhawary'>Jennifer Elhawary, MS</a>
+						  </div>
+						  <div>Research Data Analyst</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/39052125' target='_blank'>
+						  “Pilot Implementation of Guiando Buenas Decisiones, an Evidence-Based Parenting Program for Spanish-Speaking Families, in Pediatric Primary Care in a Large, U.S. Health System: A Qualitative Interview Study”
+						  <cite>(Journal of Prevention)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Stacy Sterling' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=429654190' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/stacy.sterling'>Stacy Sterling, DrPH, MSW</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35713396' target='_blank'>
+						  “Perceptions of and Knowledge Acquisition about Brain Health and Aging among Latin American Immigrants:A QualitativePaper”
+						  <cite>(Clinical Gerontologist)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Daniel Dohan' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=174268' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/dan.dohan'>Daniel Dohan, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Institute for Health Policy Studies</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35033507' target='_blank'>
+						  “Race- and Ethnicity-Based Spirometry Reference Equations Are They Accurate for Genetically Admixed Children?”
+						  <cite>(CHEST Journal)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Jonathan Witonsky' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=186485' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/jonathan.witonsky'>Jonathan Witonsky, MD, MAS</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36193827' target='_blank'>
+						  “Digital culturally tailored marketing for enrolling Latino participants in a web‐based registry: Baseline metrics from the Brain Health Registry”
+						  <cite>(Alzheimer&apos;s &amp; Dementia)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Rachel Nosheny' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=194197' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/rachel.nosheny'>Rachel Nosheny, PhD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37992854' target='_blank'>
+						  “Exploring Demographic and Clinical Characteristics of Racially and Ethnically Diverse Youth With Eating Disorders Using California Medicaid Claims Data”
+						  <cite>(Journal of the American Academy of Child &amp; Adolescent Psychiatry)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Joe Guydish' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=195905' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/joe.guydish'>Joe Guydish, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Institute for Health Policy Studies</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36991270' target='_blank'>
+						  “Financial strain, neighborhood cohesion, and health-related quality of life among rural and urban Spanish-speaking Latina breast cancer survivors”
+						  <cite>(Journal of Cancer Survivorship)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/jasmine.santoyo-olsson'>Jasmine Santoyo-Olsson</a>
+						  </div>
+						  <div>Postdoctoral Scholar</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36732714' target='_blank'>
+						  “Latina mothers’ perspectives on adverse experiences and protection of Latinx youth in an agricultural community”
+						  <cite>(BMC Public Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Marissa Raymond-Flesch' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=175037' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/marissa.raymond-flesch'>Marissa Raymond-Flesch, MD, MPH</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37231098' target='_blank'>
+						  “Gene expression in African Americans, Puerto Ricans and Mexican Americans reveals ancestry-specific patterns of genetic architecture”
+						  <cite>(Nature Genetics)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/elad.ziv'>Elad Ziv, MD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37670071' target='_blank'>
+						  “Validity Evidence for the Physician Oral Language Observation Matrix as a Measure of Medical Spanish Proficiency”
+						  <cite>(Journal of General Internal Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Steven Gregorich' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=173065' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/steven.gregorich'>Steven Gregorich, PhD</a>
+						  </div>
+						  <div>Professor Emeritus</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36260246' target='_blank'>
+						  “Latinx: Sí, Se Puede? A Reflection on the Terms Past, Present, and Future”
+						  <cite>(Journal of Urban Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Jose Gutierrez' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=357824138' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/jose.gutierrez'>Jose Gutierrez, PhD, MS</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Family Health Care Nursing</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35191045' target='_blank'>
+						  ““We could see our real selves:” The COVID‐19 syndemic and the transition to telehealth for a school‐based prevention program for newcomer Latinx immigrant youth”
+						  <cite>(Journal of Community Psychology)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of William Martinez' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=187236' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/william.martinez'>William Martinez, PhD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38032988' target='_blank'>
+						  “Definitions of successful aging among middle-aged Latinas residing in a rural agricultural community”
+						  <cite>(PLOS ONE)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Jacqueline Torres' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=182629' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/jacqueline.torres'>Jacqueline Torres, PhD, MA, MPH</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Epidemiology &amp; Biostatistics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38453472' target='_blank'>
+						  “Food insecurity is a risk factor for metabolic dysfunction‐associated steatotic liver disease in Latinx children”
+						  <cite>(Pediatric Obesity)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Janet Wojcicki' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=184762' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/janet.wojcicki'>Janet Wojcicki, PhD, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35980633' target='_blank'>
+						  “Equitability of Depression Screening After Implementation of General Adult Screening in Primary Care”
+						  <cite>(JAMA Network Open)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Leah Karliner' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=194426' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/leah.karliner'>Leah Karliner, MD, MAS</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36309228' target='_blank'>
+						  “Development of a Spanish-language drug facts label prototype for a combination mifepristone and misoprostol medication abortion product”
+						  <cite>(Contraception)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/antonia.biggs'>Antonia Biggs, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36534436' target='_blank'>
+						  “When Silence Feels Safer: Challenges and Successes of Delivering a School-Based Cognitive Behavioral Intervention to Central American Unaccompanied Immigrant Youth”
+						  <cite>(Psychological Trauma Theory Research Practice and Policy)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Naomi Schapiro' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=172319' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/naomi.schapiro'>Naomi Schapiro, RN, PhD, PNP</a>
+						  </div>
+						  <div>Professor Emeritus</div>
+						  <div>Family Health Care Nursing</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37933679' target='_blank'>
+						  “Assessing sleep behaviors in Latino children and adolescents: what is known, what are we missing, and how do we move forward?”
+						  <cite>(Current Opinion in Pediatrics)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/suzanna.martinez'>Suzanna Martinez, PhD, MS</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Epidemiology &amp; Biostatistics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38963074' target='_blank'>
+						  “Community-Derived Recommendations for Improving Gender Affirmation of Black and Latine Transgender/Nonbinary Youth”
+						  <cite>(Annals of Behavioral Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Stanley Vance' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=174272' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/stanley.vance'>Stanley Vance, JR., MD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37610390' target='_blank'>
+						  “Mental Health and Gender Affirmation of Black and Latine Transgender/Nonbinary Youth Compared to White Peers Prior to Hormone Initiation”
+						  <cite>(Journal of Adolescent Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/diane.ehrensaft'>Diane Ehrensaft, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36301834' target='_blank'>
+						  “Reproducibility and implementation of a rapid, community-based COVID-19 “test and respond” model in low-income, majority-Latino communities in Northern California”
+						  <cite>(PLOS ONE)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Gabriel Chamie' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=172794' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/gabriel.chamie'>Gabriel Chamie, MD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35616939' target='_blank'>
+						  “Integrating Rapid Diabetes Screening Into a Latinx Focused Community-Based Low-Barrier COVID-19 Testing Program”
+						  <cite>(JAMA Network Open)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Andrew Kerkhoff' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=175340' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/andrew.kerkhoff'>Andrew Kerkhoff, MD, PhD, MS</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35910673' target='_blank'>
+						  “Increasing engagement of Hispanics/Latinos in clinical trials on Alzheimer&apos;s disease and related dementias”
+						  <cite>(Alzheimer&apos;s &amp; Dementia: Translational Research &amp; Clinical Interventions)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Elena Portacolone' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=172690' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/elena.portacolone'>Elena Portacolone, PhD, MBA, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Institute for Health &amp; Aging</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35076297' target='_blank'>
+						  “Surrogate Decision Makers Need Better Preparation for Their Role: Advice from Experienced Surrogates”
+						  <cite>(Journal of Palliative Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Deborah Barnes' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=173985' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/deborah.barnes'>Deborah Barnes, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Psychiatry</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/35114821' target='_blank'>
+						  “Representation in Online Prostate Cancer Content Lacks Racial and Ethnic Diversity: Implications for Black and Latinx Men”
+						  <cite>(Journal of Urology)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Hala Borno' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=190353' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/hala.borno'>Hala Borno, MD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/39148749' target='_blank'>
+						  “Parents Experiences of Racism in the Neonatal Intensive Care Unit”
+						  <cite>(Journal of Patient Experience)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Linda Franck' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=186521' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/linda.franck'>Linda Franck, RN, PhD, FAAN</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Family Health Care Nursing</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36694235' target='_blank'>
+						  “Disparities in access to eating disorders treatment for publicly-insured youth and youth of color: a retrospective cohort study”
+						  <cite>(Journal of Eating Disorders)</cite>
+					  </a>
+					  <div class='author'>
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/sara.buckelew'>Sara Buckelew, MD, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37592364' target='_blank'>
+						  “Racial discrimination is associated with binge-eating disorder in early adolescents: a cross-sectional analysis”
+						  <cite>(Journal of Eating Disorders)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Jason Nagata' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=172763' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/jason.nagata'>Jason Nagata, MD</a>
+						  </div>
+						  <div>Associate Professor</div>
+						  <div>Pediatrics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36030609' target='_blank'>
+						  “The Association of Limited English Proficiency With Morbidity and Mortality After Trauma”
+						  <cite>(Journal of Surgical Research)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Maria Castro' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=303637302' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/maria.castro'>Maria Castro, MD</a>
+						  </div>
+						  <div>RESIDENT</div>
+						  <div>Surgery</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37729975' target='_blank'>
+						  “Maternal Adverse Childhood Experiences and Young Adult Latino Children&apos;s Mental Health”
+						  <cite>(American Journal of Preventive Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Natasha Borgen' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=138505412' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/natasha.borgen'>Natasha Borgen</a>
+						  </div>
+						  <div>Research Data Analyst 3</div>
+						  <div>Institute for Health Policy Studies</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36939097' target='_blank'>
+						  “A qualitative exploration of experiences accessing community and social services among pregnant low-income people of color during the COVID-19 pandemic”
+						  <cite>(Women&apos;s Health)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Miriam Kuppermann' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=182454' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/miriam.kuppermann'>Miriam Kuppermann, PhD, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Ob/Gyn, Reproductive Sciences</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/34853019' target='_blank'>
+						  “Asian American/Pacific Islander and Hispanic ethnic enclaves, neighborhood socioeconomic status, and hepatocellular carcinoma incidence in California: An update”
+						  <cite>(Cancer Epidemiology Biomarkers &amp; Prevention)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Mindy Hebert-Derouen' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=17742965' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/mindy.hebert-derouen'>Mindy Hebert-Derouen, PhD, MPH</a>
+						  </div>
+						  <div>Specialist</div>
+						  <div>Epidemiology &amp; Biostatistics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/36378633' target='_blank'>
+						  “Factors related to COVID-19 vaccine intention in Latino communities”
+						  <cite>(PLOS ONE)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Julene Johnson' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=180846' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/julene.johnson'>Julene Johnson, PhD</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Institute for Health &amp; Aging</div>
+						  <div>School of Nursing</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/38905924' target='_blank'>
+						  “The “disproportionate costs” of immigrant policy on the health of Latinx and Asian immigrants”
+						  <cite>(Social Science &amp; Medicine)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Michelle Nakphong' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=308694441' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/michelle.nakphong'>Michelle Nakphong, PhD</a>
+						  </div>
+						  <div>Assistant Professor</div>
+						  <div>Medicine</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+				  <div class='article'>
+					  <a class='article-title' href='https://www.ncbi.nlm.nih.gov/pubmed/37523378' target='_blank'>
+						  “The association between religiosity and resilience among young trans women”
+						  <cite>(PLOS ONE)</cite>
+					  </a>
+					  <div class='author'>
+						  <img alt='Photo of Willi McFarland' src='https://researcherprofiles.org/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=182167' target='_blank' />
+						  <div class='author-name'>
+							  <a href='https://profiles.ucsf.edu/willi.mcfarland'>Willi McFarland, MD, PhD, MPH</a>
+						  </div>
+						  <div>Professor</div>
+						  <div>Epidemiology &amp; Biostatistics</div>
+						  <div>School of Medicine</div>
+					  </div>
+				  </div>
+			  </div>
+		  </Param>
+        </ParamList>
+      </Module>
+      <Panel Type="passive"/>
+      <Panel type="footer" />
+    </Panel> 
+  </PanelList>
+</Presentation>

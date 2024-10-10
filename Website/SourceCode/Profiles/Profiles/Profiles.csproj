@@ -323,6 +323,7 @@
     <Content Include="App_Themes\USC\PresentationXML\About\Help.xml" />
     <Content Include="App_Themes\USC\USC.css" />
     <Content Include="App_Themes\USC\USC.js" />
+    <Content Include="Celebrating\PresentationXML\LatinxResearch.xml" />
     <Content Include="Celebrating\PresentationXML\LGBTQResearch.xml" />
     <Content Include="CustomAPI\Secure\ActivityLog.aspx" />
     <Content Include="CustomAPI\Secure\Default.aspx" />

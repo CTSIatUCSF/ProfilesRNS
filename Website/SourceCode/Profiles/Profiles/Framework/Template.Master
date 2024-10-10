@@ -112,8 +112,8 @@
                         <asp:Panel ID="CelebratingWomenInScience" runat="server" Visible="false">
                             <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="/WomenInScience">Celebrating <b>Women in Science</b></a>
                         </asp:Panel>
-                        <asp:Panel ID="CelebratingLatinxHeritage" runat="server" Visible="false">
-                           <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="https://mrc.ucsf.edu/events/latinx-heritage-month-2023" style="cursor: pointer;">Celebrating <b>Latinx Heritage</b></a>
+                        <asp:Panel ID="CelebratingLatinxResearch" runat="server" Visible="false">
+                           <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="/LatinxResearch" style="cursor: pointer;">Supporting <b>Latinx Health Research</b></a>
                         </asp:Panel>
                         <asp:Panel ID="CelebratingBlackHistory" runat="server" Visible="false">
                            <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="https://mrc.ucsf.edu/events/black-history-month-events" target="_blank" style="cursor: pointer;">Celebrating <b>Black History</b></a>
@@ -268,23 +268,13 @@
                 <div id="ProfilesNotification" visible="false" runat="server" style="margin-top: 8px; font-weight: bold;">
                     <asp:Literal runat="server" ID="litSystemNotice"></asp:Literal>
                 </div>
-                <asp:Panel ID="LatinxHeritageBanner" runat="server" Visible="false">
-                    <div id="ucsf--latinx-heritage">
-                        <a href="https://mrc.ucsf.edu/events/latinx-heritage-month-2023" style="cursor: pointer;">
-                            <picture>
-                            <source media="(max-width: 599px)" srcset="<%=GetThemedDomain()%>/App_Themes/UCSF/Images/Celebrating/ucsf-latinx-heritage-2023-narrow.jpg" type="image/jpeg" height="398" width="2400">
-                            <img src="<%=GetThemedDomain()%>/App_Themes/UCSF/Images/Celebrating/ucsf-latinx-heritage-2023-wide.jpg" alt="Celebrate Latinx Heritage" type="image/jpeg" height="354" width="4096">
-                            </picture>
-                        </a>
-                    </div>
-                </asp:Panel>
                 <asp:Panel ID="CelebratingBanner" runat="server" Visible="false">
                     <figure class="researcherprofiles--featured-people-banner--container">
                         <!-- This is a link to either the external URL, or the internal group landing page. -->
-                        <a href="/LGBTQResearch" class="researcherprofiles--featured-people-banner--link">
+                        <a href="/LatinxResearch" class="researcherprofiles--featured-people-banner--link">
                             <div class="researcherprofiles--featured-people-banner--row">
                                 <!-- Insert very short heading here. The shorter, the better. This should be a custom string, not just the name of the category of people. -->
-                                <figcaption>Proud to Support LGBTQ Health Research</figcaption>
+                                <figcaption>Supporting Latinx Health Research</figcaption>
                                 <!-- Insert between between ~4-12 headshot URLs here. Include the people's names in the alt text as shown. -->
                                 <!-- Because this is happening server-sidem you're welcome to randomize them. -->
                                 <!-- Because every image is loaded, even if not shown, we don't want to add so many that page load is slowed unnecessarily.  -->

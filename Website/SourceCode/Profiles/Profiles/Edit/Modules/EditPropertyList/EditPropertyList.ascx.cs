@@ -155,16 +155,26 @@ namespace Profiles.Edit.Modules.EditPropertyList
             }
 
             BuildSecurityKey(gli);
-            if (!String.IsNullOrEmpty(ConfigurationSettings.AppSettings["HR_NameServiceURL"]))
+            if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["HR_NameServiceURL"]))
             {
                 // only used by UCSD at the moment
                 // Why did we do this as a lite
                 hypEditHRDataLink.Visible = true;
-                hypEditHRDataLink.NavigateUrl = ConfigurationSettings.AppSettings["HR_NameServiceURL"] +
+                hypEditHRDataLink.NavigateUrl = ConfigurationManager.AppSettings["HR_NameServiceURL"] +
                     //http://ctripro.ucsd.edu/ProfilesCR/PersonalDataChangeRequest.php?id=" 
                 UCSFIDSet.ByNodeId[this.Subject].UserName;
             }
             pnlAdvanceMessage.Visible = Advance.IsAdvanceEnabledFor(this.Subject);
+            if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["Advance.EditLinkBase"]))
+            {
+                // add env=test when appropriate!
+                hypAdvanceEditLink.Visible = true;
+                hypAdvanceEditLink.NavigateUrl = ConfigurationManager.AppSettings["Advance.EditLinkBase"] + "?apiKey=" +
+                    ConfigurationManager.AppSettings["Advance.ClientID"] + 
+                    (ConfigurationManager.AppSettings["Advance.EditLinkBase"].IndexOf("_uat") > -1 ? "&env=test" : "") +
+                    "&redirectURI=" + System.Web.HttpUtility.UrlEncode(Brand.GetThemedDomain() + "/edit/" + this.Subject);
+                //"&redirectURI=" + System.Web.HttpUtility.UrlEncode(Brand.GetThemedDomain() + "/login/default.aspx?method=login&edit=true");
+            }
         }
 
         protected void repPropertyGroups_OnItemDataBound(object sender, RepeaterItemEventArgs e)

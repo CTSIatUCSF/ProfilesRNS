@@ -103,6 +103,7 @@ namespace Profiles
             routes.Add("SiteMap", new Route("sitemap.xml", new AspxHandler("~/SiteMap.aspx")));
             routes.Add("WomenInScience", new Route("WomenInScience", new AspxHandler("~/Celebrating/Default.aspx")));
             routes.Add("LGBTQResearch", new Route("LGBTQResearch", new AspxHandler("~/Celebrating/Default.aspx")));
+            routes.Add("LatinxResearch", new Route("LatinxResearch", new AspxHandler("~/Celebrating/Default.aspx")));
 
             foreach (string applicationName in UCSFIDSet.PrettyURLApplicationNames)
             {

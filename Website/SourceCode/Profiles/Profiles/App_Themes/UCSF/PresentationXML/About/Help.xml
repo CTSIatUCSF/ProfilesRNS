@@ -96,8 +96,10 @@ Researchers working on the same topics
   <li><a href="#view">Who can view UCSF Profiles?</a></li>
   <li><a href="#login">How do I sign in to UCSF Profiles?</a></li>
   <li><a href="#pubs">Why are there missing or incorrect publications in my profile? How can I correct this?</a></li>
+  <li><a href="#advance">Can I import information from my Advance CV into my UCSF Profiles page?</a></li>	
   <li><a href="#proxy">Can someone manage my profile page for me?</a></li>
   <li><a href="#manage">Who manages UCSF Profiles?</a></li>
+  <li><a href="#banners">What are the banners on UCSF Profiles? Who picks the groups and people shown?</a></li>	
 </ul>
 
 <h3 id="who">Who is listed in UCSF Profiles?</h3>
@@ -136,6 +138,15 @@ Researchers working on the same topics
   MEDLINE/PubMed, NIH Reporter, or clinicaltrials.gov, you can add them manually in the appropriate section, or in your Overview.</li>
 </ul>
 
+<h3 id="advance">Can I import information from my Advance CV into my UCSF Profiles page?</h3>
+<ul>
+	<li>
+		Yes, UCSF faculty who have an Advance CV can import certain sections to their UCSF Profiles page. 
+		<strong><a href="../login/default.aspx?method=login&amp;edit=true">Login</a></strong> to your UCSF Profiles page. 
+		Sections that allow import are tagged with a capital A in the list. <a href="https://ucsfonline.sharepoint.com/:w:/s/CTSIResearchTechnologyprogram/ER8jYF3yGkFHnhbFZn0lGRABbvoM9kqfagrZGJ7j9_qmOg?e=nYB0bp">Detailed instructions</a> are also available.
+	</li>	
+</ul>
+			  
 <h3 id="proxy">Can someone manage my profile page for me?</h3>
 <ul>
   <li>Yes. Proxies are people within Profiles who can edit other people's profiles on their behalf. For example, faculty can designate 
@@ -150,7 +161,14 @@ Researchers working on the same topics
   program of UCSF's <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>.</li>
 </ul>
 
-          </Param>
+<h3 id="banners">What are the banners on UCSF Profiles? Who picks the groups and people shown?</h3>
+<ul>
+	<li>
+		This feature celebrates and promotes diversity at UCSF – of both the people who work here and the ongoing research that affects various populations. We do our best to follow the UCSF Office of Diversity’s lead on the groups to feature. We choose people based on available resources and information i.e. We don’t have detailed demographic information on researchers, including sex, race, or other identity elements. Some do choose to self-disclose though, or their research is clearly focused on a certain population.
+		If you have questions or would like to suggest a group/celebratory month associated to research at UCSF, please email us at <strong><a href="mailto:profiles@ucsf.edu">profiles@ucsf.edu</a></strong>.
+	</li>
+</ul>
+		  </Param>
         </ParamList>
       </Module>
       <Panel Type="passive"/>

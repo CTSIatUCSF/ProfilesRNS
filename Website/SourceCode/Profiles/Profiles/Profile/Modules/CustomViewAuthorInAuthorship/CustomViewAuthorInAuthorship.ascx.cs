@@ -6,6 +6,7 @@ using System.Xml;
 using System.Web.UI.HtmlControls;
 
 using Profiles.Framework.Utilities;
+using System.Web;
 
 namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
 {
@@ -108,7 +109,7 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                     XmlNamespaceManager namespaces = xmlnamespace.LoadNamespaces(BaseData);
                     try
                     {
-                        lblPubTxt = findAndDecorateThisAuthor(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:firstName", this.Namespaces).InnerText.Substring(0, 1),
+                        lblPubTxt = findAndDecorateThisAuthor(base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:firstName", this.Namespaces).InnerText,
                                                               base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/foaf:lastName", this.Namespaces).InnerText,
                                                               lblPubTxt);
                     }
@@ -285,13 +286,25 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
         }
 
         // find a way to put the current author in bold to match what happens above in getAuthorList
-        private String findAndDecorateThisAuthor(string firstInitial, string lastName, string authors)
+        private String findAndDecorateThisAuthor(string firstName, string lastName, string authors)
         {
             try
             {
+                string firstInitial = firstName.Substring(0, 1);
                 foreach (string authorChunk in authors.Split(','))
                 {
                     string author = authorChunk.Trim();
+                    // if it's match with full first name such as with Hyelee Kim, then duh
+                    if (author.Replace(" ", "").ToLower().IndexOf(firstName.ToLower() + lastName.ToLower()) != -1)
+                    {
+                        return BoldOnlyOneAuthor(authors, author);
+                    }
+                    // also do first initial + lastName name
+                    else if (author.IndexOf(firstInitial + " " + lastName) == 0 || author.IndexOf(firstInitial + ". " + lastName) == 0)
+                    {
+                        return BoldOnlyOneAuthor(authors, author);
+                    }
+
                     // if this is a match, either as stand alone text or in an href
                     string[] lastNameOptions = { lastName + " ", " " + lastName }; // PubMed style, Dimensions style
                     foreach (string lastNamePlus in lastNameOptions)
@@ -304,13 +317,13 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                                 // this is the only match with first initial
                                 (author.IndexOf(lastNamePlus + firstInitial) == 0 && authors.IndexOf(lastNamePlus + firstInitial, authors.IndexOf(author) + author.Length) == -1))
                             {
-                                return authors.Replace(author, "<b>" + author + "</b>");
+                                return BoldOnlyOneAuthor(authors, author);
                             }
                         }
                         // Dimensions match
                         else if (author.IndexOf(lastNamePlus) > 0 && (authors.IndexOf(lastNamePlus, authors.IndexOf(author) + author.Length) == -1))
                         {
-                            return authors.Replace(author, "<b>" + author + "</b>");
+                            return BoldOnlyOneAuthor(authors, author);
                         }
                     }
                 }
@@ -320,6 +333,16 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                 Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
             }
             return authors;
+        }
+
+        // this will do the right thing if somehow there is more than one match
+        private string BoldOnlyOneAuthor(string authors, string author)
+        {
+            if (authors.IndexOf(author) == authors.LastIndexOf(author))
+            {
+                return authors.Replace(author, "<b>" + author + "</b>");
+            }
+            return (", " + authors).Replace(", " + author, ", <b>" + author + "</b>").Substring(2);
         }
 
         public class Publication

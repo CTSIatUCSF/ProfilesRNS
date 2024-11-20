@@ -18,6 +18,8 @@ using System.Xml;
 using Profiles.Framework.Utilities;
 using Profiles.Edit.Utilities;
 using Newtonsoft.Json.Linq;
+using Connects.Profiles.Service.DataContracts;
+using static Profiles.Edit.Modules.CustomEditAwardOrHonor.CustomEditAwardOrHonor;
 
 
 namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
@@ -129,22 +131,52 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
             upnlEditSection.Update();
         }
 
+        protected void btnSortAwards_OnClick(object sender, EventArgs e)
+        {
+            List<Award> awards = new List<Award>();
+            int existing = GridViewAwards.Rows.Count;
+            for (int i = 0; i < existing; i++)
+            {
+                // add existing award to list
+                awards.Add(new Award(((Label)GridViewAwards.Rows[i].FindControl("lblAwardName")).Text,
+                                     ((Label)GridViewAwards.Rows[i].FindControl("lblAwardInst")).Text,
+                                     ((Label)GridViewAwards.Rows[i].FindControl("lblYr1")).Text,
+                                     ((Label)GridViewAwards.Rows[i].FindControl("lblYr2")).Text));
+                // delete from DB
+                Int64 _object = Convert.ToInt64(GridViewAwards.DataKeys[i].Values[2].ToString());
+                data.DeleteTriple(this.SubjectID, this.PredicateID, _object);
+            }
+            //sort
+            awards.Sort((a, b) => b.CompareTo(a));
+            // add in sorted order
+            foreach (Award award in awards)
+            {
+                data.AddAward(this.SubjectID, award.honorName, award.honoringOrganization, award.startingYear, award.endingYear, this.PropertyListXML);
+            }
+            this.FillAwardGrid(true);
+            upnlEditSection.Update();
+        }
+
         protected void btnCopyAdvanceAwards_OnClick(object sender, EventArgs e)
         {
             try
             {
                 JToken itemsToken = Advance.getHonorsAndAwards(this.SubjectID);
-                int cnt = 0;
+                List<Award> awards = new List<Award>();
                 int existing = GridViewAwards.Rows.Count;
                 if (itemsToken != null)
                 {
                     foreach (JToken item in itemsToken)
                     {
-                        data.AddAward(this.SubjectID, (string)item["honorName"], (string)item["honoringOrganization"], (string)item["year"], (string)item["year"], this.PropertyListXML);
-                        cnt++;
+                        awards.Add(new Award((string)item["honorName"], (string)item["honoringOrganization"], (string)item["year"], (string)item["year"]));
+                    }
+                    awards.Sort((a, b) => b.CompareTo(a));
+                    foreach (Award award in awards)
+                    { 
+                        data.AddAward(this.SubjectID, award.honorName, award.honoringOrganization, award.startingYear, award.endingYear, this.PropertyListXML);
                     }
                 }
-                if (cnt > 0)
+                if (awards.Count > 0)
                 {
                     // delete existing ones but only if some were added
                     for (int i = 0; i < existing; i++)
@@ -152,7 +184,7 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
                         Int64 _object = Convert.ToInt64(GridViewAwards.DataKeys[i].Values[2].ToString());
                         data.DeleteTriple(this.SubjectID, this.PredicateID, _object);
                     }
-                    litAdvanceMessage.Text = "Added " + cnt + " item" + (cnt > 1 ? "s" : "") + " from Advance.";
+                    litAdvanceMessage.Text = "Added " + awards.Count + " item" + (awards.Count > 1 ? "s" : "") + " from Advance.";
                     GridViewAwards.Visible = true;
                 }
                 else
@@ -468,7 +500,28 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
         }
         #endregion
 
-        private Int64 SubjectID { get; set; }
+        public class Award : IComparable<Award>
+        {
+            public string honorName;
+            public string honoringOrganization;
+            public string startingYear;
+            public string endingYear;
+
+            public Award(String honorName, string honoringOrganization, string startingYear, string endingYear)            
+            {
+                this.honorName = honorName;
+                this.honoringOrganization = honoringOrganization;
+                this.startingYear = String.IsNullOrEmpty(startingYear) ? "" : startingYear.Trim();
+                this.endingYear = String.IsNullOrEmpty(endingYear) ? "" : endingYear.Trim();
+            }
+
+            public int CompareTo(Award other)
+            {
+                return this.startingYear.Equals(other.startingYear) ? this.endingYear.CompareTo(other.endingYear) : this.startingYear.CompareTo(other.startingYear);
+            }
+        }
+
+            private Int64 SubjectID { get; set; }
         private Int64 PredicateID { get; set; }
         private XmlDocument XMLData { get; set; }
         private XmlDocument PropertyListXML { get; set; }

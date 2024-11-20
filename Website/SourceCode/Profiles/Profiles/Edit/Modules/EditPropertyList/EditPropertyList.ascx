@@ -89,12 +89,15 @@ Components:</h3>
     </tr>
 </table>
 <div class="researcherprofiles--edit-page--explanation-of-icons">
-<asp:Panel runat="server" ID="pnlAdvanceMessage" SkinID="UCSF" Visible="false">
-    <p><b>Do you have an Advance CV?</b></p>
-    <p><img style="border-width:0px;" src="Images/advance.ico" /> These sections can import data from your Advance CV.</p>
-    <p><asp:Hyperlink runat="server" ID="hypAdvanceEditLink" Text="Set data sharing preferences" ekVisible="true"/> in Advance before importing.</p>
-    <p>For more guidance, see <a target="_blank" href="https://ucsfonline.sharepoint.com/:w:/s/CTSIResearchTechnologyprogram/ER8jYF3yGkFHnhbFZn0lGRABbvoM9kqfagrZGJ7j9_qmOg?e=PQNkwg">the detailed instructions</a>.</p>
-</asp:Panel>
+    <asp:Panel runat="server" ID="pnlAdvanceMessage" SkinID="UCSF" Visible="false">
+        <p><b>Do you have an Advance CV?</b></p>
+        <p>You can now import key parts of your Advance CV directly into your UCSF Profiles page. <i>Note:</i> You must be on the UCSF network or VPN.</p>
+        <ul>
+            <li><asp:Hyperlink runat="server" ID="hypAdvanceEditLink" Text="Set data sharing preferences" ekVisible="true"/> in Advance before importing. Be sure to choose "Select all Sections" and "Open Transfer" as your options.</li>
+            <li>Click any section with the <img style="border-width:0px;" src="Images/advance.ico" /> icon to import that information.</li>
+        </ul>
+        <p>For more guidance, see <a target="_blank" href="https://ucsfonline.sharepoint.com/:w:/s/CTSIResearchTechnologyprogram/ER8jYF3yGkFHnhbFZn0lGRABbvoM9kqfagrZGJ7j9_qmOg?e=PQNkwg">the detailed instructions</a>.</p>
+    </asp:Panel>
 </div>
 <!-- for testing -->
 <asp:Literal runat="server" ID="litGadget" Visible="false"/>

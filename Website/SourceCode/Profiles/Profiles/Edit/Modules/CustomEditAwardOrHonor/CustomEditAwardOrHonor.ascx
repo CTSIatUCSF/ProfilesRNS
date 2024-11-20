@@ -32,7 +32,7 @@
                         <asp:Panel runat="server" ID="pnlEditAwards">
                             <asp:ImageButton CssClass="EditMenuLinkImg" runat="server" OnClick="btnEditAwards_OnClick" ID="imbAddArrow" AlternateText=" " ImageUrl="~/Edit/Images/icon_squareArrow.gif" />
 							<asp:LinkButton ID="btnEditAwards" runat="server" OnClick="btnEditAwards_OnClick" 
-                                CssClass="profileHypLinks"> Add award(s)</asp:LinkButton>
+                                CssClass="profileHypLinks"> Add Award(s)</asp:LinkButton>
                         </asp:Panel>
                         <asp:Panel runat="server" ID="pnlCopyAdvanceAwards" SkinID="UCSF" Visible="false">
                                 <asp:ImageButton CssClass="EditMenuLinkImg" runat="server" OnClick="btnCopyAdvanceAwards_OnClick" ID="imbAdvanceArrow" AlternateText=" " 
@@ -40,6 +40,11 @@
                                 <asp:LinkButton ID="btnCopyAdvanceAwards" runat="server" OnClick="btnCopyAdvanceAwards_OnClick"
                                     OnClientClick="Javascript:return confirm('Are you sure you want to OVERWRITE with Honors and Awards from your Advance CV?');">Overwrite these entries with Honors and Awards from Advance CV</asp:LinkButton>
                                 <p class="text-left"><asp:Literal runat="server" ID="litAdvanceMessage" Text="Note: If you have set Prefs in Advance to share data with Profiles, this action overwrites the Awards and Honors on this page with the Honors and Awards from your Advance CV. Once brought over, the data is independent from your Advance CV. Edits you make here will not affect your Advance CV."/></p>
+                        </asp:Panel>
+                        <asp:Panel runat="server" ID="pnlSortAwards">
+                            <asp:ImageButton CssClass="EditMenuLinkImg" runat="server" OnClick="btnSortAwards_OnClick" ID="imbSortArrow" AlternateText=" " ImageUrl="~/Edit/Images/icon_squareArrow.gif" />
+							<asp:LinkButton ID="btnSortAwards" runat="server" OnClick="btnSortAwards_OnClick" 
+                                CssClass="profileHypLinks"> Sort all Awards</asp:LinkButton> by date, with newest at the top. 
                         </asp:Panel>
                     </div>
                 </td>
@@ -112,7 +117,7 @@
                                         <asp:TextBox ID="txtYr1" runat="server" MaxLength="4" Text='<%# Bind("StartDate") %>' title="Year of award"></asp:TextBox>
                                     </EditItemTemplate>
                                     <ItemTemplate>
-                                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("StartDate") %>'></asp:Label>
+                                        <asp:Label ID="lblYr1" runat="server" Text='<%# Bind("StartDate") %>'></asp:Label>
                                     </ItemTemplate>
                                     <ControlStyle Width="35px" />
                                     <HeaderStyle HorizontalAlign="Center" />
@@ -123,7 +128,7 @@
                                         <asp:TextBox ID="txtYr2" runat="server" MaxLength="4" Text='<%# Bind("EndDate") %>' title="Through year"></asp:TextBox>
                                     </EditItemTemplate>
                                     <ItemTemplate>
-                                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("EndDate") %>'></asp:Label>
+                                        <asp:Label ID="lblYr2" runat="server" Text='<%# Bind("EndDate") %>'></asp:Label>
                                     </ItemTemplate>
                                     <ControlStyle Width="35px" />
                                     <HeaderStyle HorizontalAlign="Center" />
@@ -134,7 +139,7 @@
                                         <asp:TextBox ID="txtAwardName" runat="server" MaxLength="100" Text='<%# Bind("Name") %>' title="Name"></asp:TextBox>
                                     </EditItemTemplate>
                                     <ItemTemplate>
-                                        <asp:Label ID="Label3" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
+                                        <asp:Label ID="lblAwardName" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle Wrap="true" />
                                 </asp:TemplateField>
@@ -144,7 +149,7 @@
                                         <asp:HiddenField runat="server" ID="hdURI" />
                                     </EditItemTemplate>
                                     <ItemTemplate>
-                                        <asp:Label ID="Label4" runat="server" Text='<%# Bind("Institution") %>'></asp:Label>
+                                        <asp:Label ID="lblAwardInst" runat="server" Text='<%# Bind("Institution") %>'></asp:Label>
                                         <asp:HiddenField runat="server" ID="hdURI" />
                                     </ItemTemplate>
                                     <ItemStyle Wrap="true" />

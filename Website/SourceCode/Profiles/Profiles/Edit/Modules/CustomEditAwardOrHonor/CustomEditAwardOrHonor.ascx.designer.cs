@@ -132,6 +132,33 @@ namespace Profiles.Edit.Modules.CustomEditAwardOrHonor
         protected global::System.Web.UI.WebControls.Literal litAdvanceMessage;
 
         /// <summary>
+        /// pnlSortAwards control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSortAwards;
+
+        /// <summary>
+        /// imbSortArrow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imbSortArrow;
+
+        /// <summary>
+        /// btnSortAwards control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSortAwards;
+
+        /// <summary>
         /// RptrEditAwards control.
         /// </summary>
         /// <remarks>

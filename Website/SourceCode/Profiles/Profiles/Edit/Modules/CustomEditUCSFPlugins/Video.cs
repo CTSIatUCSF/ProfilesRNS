@@ -29,6 +29,11 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             {
                 VideoMetadata v = Video.getVideoMetadata(url, 75, 125);
                 url = v.url; // get cleaned URL
+                // if we don't have the oembed data, throw a more meaningful exception  
+                if (v.oembed == null)
+                {
+                    throw new Exception("Embedded video data missing from video service");
+                }
                 title = String.IsNullOrEmpty(title) ? v.oembed.title : title;
                 thumbnail_url = v.oembed.thumbnail_url;
                 html = v.oembed.html;

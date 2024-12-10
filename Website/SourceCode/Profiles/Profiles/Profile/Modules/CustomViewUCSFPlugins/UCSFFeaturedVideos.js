@@ -4,6 +4,16 @@ FeaturedVideos.init = function (playlist) {
     FeaturedVideos.renderVideos(JSON.parse(playlist));
 };
 
+FeaturedVideos.getVideoIdFromYouTubeUrl = function (videoUrl) {
+    var video_id;
+    var exp = /http[s]?:\/\/(?:[^\.]+\.)*(?:youtube\.com\/(?:v\/|watch\?(?:.*?\&)?v=|embed\/)|youtu.be\/)([\w\-\_]+)/i
+    var res = videoUrl.match(exp);
+    if (res) {
+        video_id = res[1];
+    }
+    return video_id;
+};
+
 FeaturedVideos.getVideoMetadata = function (video, max_height, max_width, callback) {
     // if this is a newer one, we already have the html metadata. Check
     if (video.html) {

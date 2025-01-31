@@ -3,7 +3,11 @@ using System;
 using System.Configuration;
 using System.IO;
 using System.Net;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
+using HtmlAgilityPack;
+using System.Security.Policy;
 
 namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 {
@@ -14,71 +18,167 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         public string thumbnail_url { get; set; }
         public string html { get; set; }
         public string updated { get; set; } //DateTime.Now.ToString("yyyy-MM-dd");
+
         public void completeVideoMetadata()
         {
-            completeVideoMetadata(null);
-        }
-        public void completeVideoMetadata(string youTubeId)
-        {
-            // get metadata if needed
-            if (!String.IsNullOrEmpty(thumbnail_url) && !String.IsNullOrEmpty(html) && !String.IsNullOrEmpty(title))
+            if (string.IsNullOrEmpty(url))
             {
-                return;
+                throw new ArgumentException("URL cannot be null or empty.");
             }
-            else if (String.IsNullOrEmpty(youTubeId) || String.IsNullOrEmpty(title))
+            // Maybe don't process if the html and thumbnail_url is done. 
+            // Check that update does, however, reprocess everything.
+
+            Uri videoUri;
+            if (!Uri.TryCreate(url, UriKind.Absolute, out videoUri))
             {
-                VideoMetadata v = Video.getVideoMetadata(url, 75, 125);
-                url = v.url; // get cleaned URL
-                // if we don't have the oembed data, throw a more meaningful exception  
-                if (v.oembed == null)
+                throw new ArgumentException("Invalid URL format.");
+            }
+
+            string domain = videoUri.Host.ToLower();
+
+            if (domain.Contains("youtube.com") || domain.Contains("youtu.be"))
+            {
+                string videoId = ExtractYouTubeId(url);
+                if (!string.IsNullOrEmpty(videoId))
                 {
-                    throw new Exception("Embedded video data missing from video service");
+                    html = $"<iframe width='640' height='360' " +
+                           $"src='https://www.youtube.com/embed/{videoId}' " +
+                           $"frameborder='0' allowfullscreen></iframe>";
+                    thumbnail_url = $"https://img.youtube.com/vi/{videoId}/hqdefault.jpg";
                 }
-                title = String.IsNullOrEmpty(title) ? v.oembed.title : title;
-                thumbnail_url = v.oembed.thumbnail_url;
-                html = v.oembed.html;
-                updated = DateTime.Now.ToString("yyyy-MM-dd");
+            }
+            else if (domain.Contains("vimeo.com"))
+            {
+                string videoId = ExtractVimeoId(url);
+                if (!string.IsNullOrEmpty(videoId))
+                {
+                    html = $"<iframe width='640' height='360' " +
+                           $"src='https://player.vimeo.com/video/{videoId}' " +
+                           $"frameborder='0' allowfullscreen></iframe>";
+                    thumbnail_url = ScrapeOgImage(url);
+                }
+            }
+            else if (domain.Contains("ted.com"))
+            {
+                string talkName = ExtractTedTalkName(url);
+                if (!string.IsNullOrEmpty(talkName))
+                {
+                    html = $"<iframe width='640' height='360' " +
+                           $"src='https://embed.ted.com/talks/{talkName}' " +
+                           $"frameborder='0' allowfullscreen></iframe>";
+                    thumbnail_url = ScrapeOgImage(url) ?? GetGenericThumbnail();
+                }
+            }
+            else if (domain.Contains("instagram.com") && url.Contains("/reel/"))
+            {
+                string reelId = ExtractInstagramReelId(url);
+                if (!string.IsNullOrEmpty(reelId))
+                {
+                    html = $"<iframe width='640' height='360' " +
+                           $"src='https://www.instagram.com/reel/{reelId}/embed' " +
+                           $"frameborder='0' allowfullscreen></iframe>";
+                    thumbnail_url = ScrapeOgImage(url) ?? GetGenericThumbnail();
+                }
+            }
+            else if (domain.Contains("tiktok.com"))
+            {
+                string videoId = ExtractTikTokVideoId(url);
+                if (!string.IsNullOrEmpty(videoId))
+                {
+                    html = $"<iframe width='640' height='360' " +
+                           $"src='https://www.tiktok.com/embed/v2/{videoId}' " +
+                           $"frameborder='0' allowfullscreen></iframe>";
+                    thumbnail_url = ScrapeOgImage(url) ?? GetGenericThumbnail();
+                }
+            }
+            else if (domain.Contains("twitch.tv") || domain.Contains("clips.twitch.tv"))
+            {
+                string clipId = ExtractTwitchClipId(url);
+                if (!string.IsNullOrEmpty(clipId))
+                {
+                    html = $"<iframe width='640' height='360' " +
+                           $"src='https://clips.twitch.tv/embed?clip={clipId}&parent=example.com' " +
+                           $"frameborder='0' allowfullscreen></iframe>";
+                    thumbnail_url = $"https://clips-media-assets2.twitch.tv/{clipId}-preview.jpg";
+                }
+            }
+            else if (url.EndsWith(".mp4", StringComparison.OrdinalIgnoreCase) && videoUri.AbsolutePath.Split('/').Length > 1)
+            {
+                html = $"<video width='640' height='360' controls>" +
+                       $"<source src='{url}' type='video/mp4'>" +
+                       "Your browser does not support the video tag.</video>";
+                thumbnail_url = GetGenericThumbnail();
             }
             else
             {
-                url = "http://www.youtube.com/watch?v=" + youTubeId;
-                thumbnail_url = "https://img.youtube.com/vi/" + youTubeId + "/hqdefault.jpg";
-                html = "<iframe width=\"125px\" height=\"75px\"  src=\"https://www.youtube.com/embed/" + youTubeId + "?autoplay=0&rel=0\"></iframe>";
+                throw new NotSupportedException("Unsupported video platform.");
             }
+
+            updated = DateTime.Now.ToString("yyyy-MM-dd");
         }
 
-        public class VideoMetadata
+        private static string ExtractYouTubeId(string url)
         {
-            public string url { get; set; }
-            public Oembed oembed { get; set; }
+            var regex = new Regex(@"(?:youtu\.be/|youtube\.com/(?:watch\?v=|embed/|v/))([\w\-]+)");
+            var match = regex.Match(url);
+            return match.Success ? match.Groups[1].Value : null;
         }
 
-        public class Oembed
+        private static string ExtractVimeoId(string url)
         {
-            public string title { get; set; }
-            public string thumbnail_url { get; set; }
-            public string html { get; set; }
+            var regex = new Regex(@"vimeo\.com/(\d+)");
+            var match = regex.Match(url);
+            return match.Success ? match.Groups[1].Value : null;
         }
 
-        private static VideoMetadata getVideoMetadata(String url, int max_height, int max_width)
+        private static string ExtractTedTalkName(string url)
         {
-            //String oEmbedURLBase = "https://noembed.com/embed";
-            String oEmbedURLBase = "https://api.embed.rocks/api";
+            var regex = new Regex(@"ted\.com/talks/([\w\-]+)");
+            var match = regex.Match(url);
+            return match.Success ? match.Groups[1].Value : null;
+        }
 
-            String oembedURL = oEmbedURLBase + "?url=" + HttpUtility.UrlEncode(url) + "&include=oembed&skip=html&maxwidth=" + max_width;
+        private static string ExtractInstagramReelId(string url)
+        {
+            var regex = new Regex(@"/reel/([\w\-]+)/?");
+            var match = regex.Match(url);
+            return match.Success ? match.Groups[1].Value : null;
+        }
 
-            HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create(oembedURL);
-            myReq.Accept = "application/json"; // "application/ld+json";
-            myReq.Headers.Add("x-api-key", ConfigurationManager.AppSettings["EmbedRocksAPIKey"]);
+        private static string ExtractTikTokVideoId(string url)
+        {
+            var regex = new Regex(@"video/(\d+)");
+            var match = regex.Match(url);
+            return match.Success ? match.Groups[1].Value : null;
+        }
 
-            String jsonProfiles = "";
+        private static string ExtractTwitchClipId(string url)
+        {
+            var regex = new Regex(@"(?:/clip/|clips\.twitch\.tv/)([\w\-]+)");
+            var match = regex.Match(url);
+            return match.Success ? match.Groups[1].Value : null;
+        }
+
+        private string ScrapeOgImage(string videoUrl)
+        {
+            HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create(videoUrl);
+            String pageContent = "";
             using (StreamReader sr = new StreamReader(myReq.GetResponse().GetResponseStream()))
             {
-                jsonProfiles = sr.ReadToEnd();
+                pageContent = sr.ReadToEnd();
             }
 
-            return JsonConvert.DeserializeObject<VideoMetadata>(jsonProfiles);
+            HtmlDocument htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(pageContent);
+
+            // TODO. Note that this may return null, need to deal with appropriately
+            HtmlNode metaTag = htmlDocument.DocumentNode.SelectSingleNode("//meta[@property='og:image']");
+            return metaTag.GetAttributeValue("content", null);
         }
 
+        private string GetGenericThumbnail()
+        {
+            return "https://example.com/default-thumbnail.jpg";
+        }
     }
 }

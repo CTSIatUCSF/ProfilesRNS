@@ -11,7 +11,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 {
 
 
-    public partial class UCSFFeaturedVideos
+    public partial class Identity
     {
 
         /// <summary>
@@ -31,15 +31,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress updateProgress;
-
-        /// <summary>
-        /// hdnYouTubeId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnYouTubeId;
 
         /// <summary>
         /// litBackLink control.
@@ -69,120 +60,84 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         protected global::Profiles.Edit.Modules.SecurityOptions.SecurityOptions securityOptions;
 
         /// <summary>
-        /// pnlAddEdit control.
+        /// upnlEditIdentity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAddEdit;
+        protected global::System.Web.UI.UpdatePanel upnlEditIdentity;
 
         /// <summary>
-        /// imbAddArrow control.
+        /// cblRace control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imbAddArrow;
+        protected global::System.Web.UI.WebControls.CheckBoxList cblRace;
 
         /// <summary>
-        /// btnAddEditEdit control.
+        /// cblSexualOrientation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddEditEdit;
+        protected global::System.Web.UI.WebControls.CheckBoxList cblSexualOrientation;
 
         /// <summary>
-        /// pnlImportVideo control.
+        /// cblGenderIdentity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlImportVideo;
+        protected global::System.Web.UI.WebControls.CheckBoxList cblGenderIdentity;
 
         /// <summary>
-        /// txtURL control.
+        /// cblOther control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtURL;
+        protected global::System.Web.UI.WebControls.CheckBoxList cblOther;
 
         /// <summary>
-        /// txtTitle control.
+        /// txtNarrative control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTitle;
+        protected global::System.Web.UI.WebControls.TextBox txtNarrative;
 
         /// <summary>
-        /// btnSaveAndClose control.
+        /// btnSaveIdentity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSaveAndClose;
+        protected global::System.Web.UI.WebControls.LinkButton btnSaveIdentity;
 
         /// <summary>
-        /// btnCancel control.
+        /// btnCancelIdentity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCancel;
+        protected global::System.Web.UI.WebControls.LinkButton btnCancelIdentity;
 
         /// <summary>
-        /// divVideoError control.
+        /// btnDeleteIdentity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divVideoError;
-
-        /// <summary>
-        /// lblVideoError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVideoError;
-
-        /// <summary>
-        /// GridViewVideos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewVideos;
-
-        /// <summary>
-        /// divNoVideos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNoVideos;
-
-        /// <summary>
-        /// lblNoVideos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNoVideos;
+        protected global::System.Web.UI.WebControls.LinkButton btnDeleteIdentity;
     }
 }

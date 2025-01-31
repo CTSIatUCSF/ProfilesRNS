@@ -62,6 +62,9 @@
     <Reference Include="CsvHelper, Version=7.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.7.1.1\lib\net45\CsvHelper.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.71.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.71\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -92,6 +95,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.html" />
     <Content Include="503.html" />
     <Content Include="About\NoProfile.aspx" />
     <Content Include="About\AboutProfiles.aspx" />
@@ -361,6 +365,7 @@
     <Content Include="Edit\Modules\CustomEditGroupSettings\CustomEditGroupSettings.ascx" />
     <Content Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx" />
     <Content Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx" />
+    <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditIdentity.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditMentoring.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditUCSFFeaturedVideos.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditGlobalHealthEquity.ascx" />
@@ -564,6 +569,8 @@
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx" />
     <Content Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\Identity.ascx" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\Identity.js" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\Mentoring.js" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\Mentoring.ascx" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\jquery.validate.min.js" />
@@ -971,6 +978,13 @@
     </Compile>
     <Compile Include="Edit\Modules\CustomEditSocialMediaPlugIns\EditTwitter.ascx.designer.cs">
       <DependentUpon>EditTwitter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditIdentity.ascx.cs">
+      <DependentUpon>EditIdentity.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditIdentity.ascx.designer.cs">
+      <DependentUpon>EditIdentity.ascx</DependentUpon>
     </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditMentoring.ascx.cs">
       <DependentUpon>EditMentoring.ascx</DependentUpon>
@@ -1655,6 +1669,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\Video.cs" />
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\Identity.ascx.cs">
+      <DependentUpon>Identity.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\Identity.ascx.designer.cs">
+      <DependentUpon>Identity.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Profile\Modules\CustomViewUCSFPlugins\Mentoring.ascx.cs">
       <DependentUpon>Mentoring.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

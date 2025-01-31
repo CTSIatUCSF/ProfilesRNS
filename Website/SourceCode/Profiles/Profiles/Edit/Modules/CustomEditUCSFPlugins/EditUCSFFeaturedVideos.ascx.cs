@@ -94,29 +94,39 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
         protected void btnSaveAndClose_OnClick(object sender, EventArgs e)
         {
-            if (txtURL.Text.Trim() != string.Empty)
+            try
             {
-                string url = txtURL.Text.Trim();
-
-                string search = string.Empty;
-
-                string youTubeId = hdnYouTubeId.Value.Trim();
-
-                if (this.Videos == null) { this.Videos = new List<Video>(); }
-
-                Video video = new Video { title = txtTitle.Text, url = url };
-                video.completeVideoMetadata(youTubeId);
-                // put at the top because it's newest
-                this.Videos.Insert(0, video);
-
-                foreach (Video v in this.Videos)
+                if (txtURL.Text.Trim() != string.Empty)
                 {
-                    search += " " + v.title;
-                }
+                    string url = txtURL.Text.Trim();
 
-                Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), search);
+                    string search = string.Empty;
+
+                    //string youTubeId = hdnYouTubeId.Value.Trim();
+
+                    if (this.Videos == null) { this.Videos = new List<Video>(); }
+
+                    Video video = new Video { title = txtTitle.Text, url = url };
+                    video.completeVideoMetadata();
+
+                    // put at the top because it's newest
+                    this.Videos.Insert(0, video);
+
+                    foreach (Video v in this.Videos)
+                    {
+                        search += " " + v.title;
+                    }
+
+                    Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), search);
+                }
+                ResetDisplay();
             }
-            ResetDisplay();
+            catch (Exception ex)
+            {
+                Framework.Utilities.DebugLogging.Log(ex.Message + " " + ex.StackTrace);
+                divVideoError.Visible = true;
+            }
+
         }
 
         protected void btnDeleteCancel_OnClick(object sender, EventArgs e)
@@ -142,7 +152,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
             ReadJson();
             upnlEditSection.Update();
-
+            divVideoError.Visible = false;
         }
         private void ReadJson()
         {
@@ -157,7 +167,11 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 // ensure that each one has the needed metadata
                 foreach (Video v in videos)
                 {
-                    v.completeVideoMetadata();
+                    // the old school vidoes might be missing this
+                    if (String.IsNullOrEmpty(v.html) ||  String.IsNullOrEmpty(v.thumbnail_url))
+                    {
+                        v.completeVideoMetadata();
+                    }
                 }
                 divNoVideos.Visible = false;
                 GridViewVideos.Visible = true;
@@ -216,7 +230,16 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 found.html = null;
                 found.title = null;
                 found.url = txtURL.Text.Trim();
-                found.completeVideoMetadata();
+                try
+                {
+                    found.completeVideoMetadata();
+                }
+                catch (Exception ex)
+                {
+                    Framework.Utilities.DebugLogging.Log(ex.Message + " " + ex.StackTrace);
+                    divVideoError.Visible = true;
+                    return;
+                }
             }
 
             // if the user entered a title, use it

@@ -56,14 +56,16 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 mentees = new string[] {"UCSF Students",
                                                        "Faculty",
                                                        "Staff",
-                                                       "Residents and Fellows"};
+                                                       "Residents and Fellows",
+                                                       "SJV PRIME Students"};
                 types = new string[] {"Clinical Practice",
                                                        "Education Career",
                                                        "Research",
                                                        "Research Projects",
                                                        "Career Development",
                                                        "Work/Life Balance",
-                                                       "Diversity, Equity, Inclusion and Belonging"};
+                                                       "Diversity, Equity, Inclusion and Belonging",
+                                                       "Fresno-based Research Projects"};
             }
 
             foreach (string s in mentees)
@@ -213,7 +215,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             upnlEditSection.Update();
         }
 
-        private bool HasNoMentoringyData()
+        private bool HasNoMentoringData()
         {
             return mData == null || (String.IsNullOrEmpty(mData.narrative) && mData.mentoringInterests.Count == 0);
         }
@@ -226,7 +228,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 this.mData = new MentoringData();
             }
 
-            if (HasNoMentoringyData())
+            if (HasNoMentoringData())
             {
                 divNoMentoring.Visible = true;
                 GridViewMentoringInterests.Visible = false;
@@ -265,7 +267,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             //this needs to be the json desz'd
             Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), GetSearchData());
 
-            if (HasNoMentoringyData()) //they just deleted their last row
+            if (HasNoMentoringData()) //they just deleted their last row
             {
                 Profiles.Framework.Utilities.GenericRDFDataIO.RemovePluginData(this.PlugInName, this.SubjectID);
             }

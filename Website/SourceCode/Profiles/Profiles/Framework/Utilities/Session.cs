@@ -126,7 +126,7 @@ namespace Profiles.Framework.Utilities
             return false;
         }
         
-        //ZAP - I need some type of redreict in this class for when session has expired
+        //ZAP - I need some type of redirect in this class for when session has expired
         public SessionManagement() { }
 
         /// <summary>

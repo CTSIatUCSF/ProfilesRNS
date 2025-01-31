@@ -104,6 +104,10 @@ namespace Profiles.Framework.Utilities
             {
                 return "UC Davis".Equals(inst.GetAbbreviation()) || "UCSF".Equals(inst.GetAbbreviation());
             }
+            else if ("Identity".Equals(plugin))
+            {
+                return "UCSF".Equals(inst.GetAbbreviation());
+            }
             return true;
         }
 

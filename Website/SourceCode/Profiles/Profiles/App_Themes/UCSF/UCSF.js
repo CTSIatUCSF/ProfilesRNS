@@ -37,7 +37,7 @@
         $(".education:contains('Diversity, Equity and Inclusion Training')").addClass('dei-champ');
         $(".education:contains('Diversity, Equity, and Inclusion Training')").addClass('dei-champ');
         $(".education:contains('Diversity, Equity and Inclusion Champion Training')").addClass('dei-champ');
-        if ($('.dei-champ') && $('.dei-champ').length) $('.profilesContentMain').prepend('<div class="researcherprofiles--researcher-badge"><a href="https://meded.ucsf.edu/faculty-educators/faculty-development/diversity-equity-and-inclusion-champion-training" target="_blank"><img src="/App_Themes/UCSF/Images/dei-champ_large.png" height="50" width="50" alt="Diversity, Equity, and Inclusion Champion"></a></div>');
+        if ($('.dei-champ') && $('.dei-champ').length) $('.profilesContentMain').prepend('<div class="researcherprofiles--researcher-badge"><img src="/App_Themes/UCSF/Images/dei-champ_large.png" height="50" width="50" alt="Diversity, Equity, and Inclusion Champion"></div>');
     }	 
 
     /* Commented out by Eric on 6/23/2021 because this is now all in the c# code

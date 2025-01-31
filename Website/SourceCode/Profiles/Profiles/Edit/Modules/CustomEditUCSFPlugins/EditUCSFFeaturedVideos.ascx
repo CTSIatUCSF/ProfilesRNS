@@ -62,6 +62,11 @@
         </div>
     </div>
 </asp:Panel>
+<div class="editBody" style="text-align: left;" id="divVideoError" runat="server" visible="false">
+    <b>
+    <asp:Label runat="server" ID="lblVideoError" Text="Video not found or not supported for that URL."></asp:Label>
+    </b>
+</div>
 <div class="editPage">
     <asp:GridView ID="GridViewVideos" runat="server" AutoGenerateColumns="False"
         DataKeyNames="title, url, thumbnail_url, html" GridLines="Both"
@@ -121,8 +126,9 @@
         </Columns>
     </asp:GridView>
     <div class="editBody" style="text-align: left;" id="divNoVideos" runat="server">
-        <i></i>
+        <i>
         <asp:Label runat="server" ID="lblNoVideos" Text="No videos have been added to your playlist."></asp:Label>
+        </i>
     </div>
 </div>
 

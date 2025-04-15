@@ -30,7 +30,8 @@ namespace Profiles.Edit.Modules.EditPropertyList
         static string[] ADVANCE_SECTIONS = { "http://vivoweb.org/ontology/core#educationalTraining",
                                              "http://vivoweb.org/ontology/core#awardOrHonor",
                                              "http://vivoweb.org/ontology/core#freetextKeyword",
-                                             "http://profiles.catalyst.harvard.edu/ontology/plugins#Mentoring"};
+                                             "http://profiles.catalyst.harvard.edu/ontology/plugins#Mentoring",
+                                             "http://profiles.catalyst.harvard.edu/ontology/plugins#CommunityAndPublicService"};
         
         protected void Page_Load(object sender, EventArgs e)
         {

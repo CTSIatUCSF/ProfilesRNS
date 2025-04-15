@@ -36,15 +36,6 @@ namespace Profiles.Edit.Utilities
             return UCSFIDSet.IsPerson(nodeid) && IsAdvanceEnabledFor(UCSFIDSet.ByNodeId[nodeid].Institution);
         }
 
-        public static JToken getEducationFor(Int64 nodeid)
-        {
-            JObject advanceData = getAdvanceDataFor(nodeid);
-            if (advanceData.TryGetValue("educationList", out JToken educationToken) && educationToken is JObject educationObject && educationObject.TryGetValue("items", out JToken itemsToken))
-            {
-                return itemsToken;
-            }
-            return null;
-        }
         public static List<string> getKeywordsFor(Int64 nodeid)
         {
             JObject advanceData = getAdvanceDataFor(nodeid);
@@ -64,10 +55,23 @@ namespace Profiles.Edit.Utilities
             }
             return null;
         }
+        public static JToken getEducationFor(Int64 nodeid)
+        {
+            return getListItems("educationList", nodeid);
+        }
         public static JToken getHonorsAndAwards(Int64 nodeid)
         {
+            return getListItems("honorAwardList", nodeid);
+        }
+        public static JToken getPublicServiceFor(Int64 nodeid)
+        {
+            return getListItems("publicServiceList", nodeid);
+        }
+
+        private static JToken getListItems(string listName, Int64 nodeid)
+        {
             JObject advanceData = getAdvanceDataFor(nodeid);
-            if (advanceData.TryGetValue("honorAwardList", out JToken honorAwardToken) && honorAwardToken is JObject honorAwardItem && honorAwardItem.TryGetValue("items", out JToken itemsToken))
+            if (advanceData.TryGetValue(listName, out JToken outerToken) && outerToken is JObject itemsAndDesciption && itemsAndDesciption.TryGetValue("items", out JToken itemsToken))
             {
                 return itemsToken;
             }

@@ -1978,6 +1978,33 @@ body.about .share {
 }
 
 /* ############################################################################################ */
+/* PROFILE EDITING: IDENTITY */
+/* ############################################################################################ */
+
+.researcherprofiles--identity-edit--section-title {
+    font-weight: 700;
+    margin: 2rem 0 0.5rem 0;
+}
+
+.researcherprofiles--identity-edit--input-group ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 1rem;
+    margin-left: 1rem;
+}
+
+    .researcherprofiles--identity-edit--input-group ul li {
+        margin-right: 0.5rem;
+    }
+
+        .researcherprofiles--identity-edit--input-group ul li label {
+            font-weight: normal;
+            margin-left: 0.5rem;
+        }
+
+/* ############################################################################################ */
 /* LOGIN PAGE */
 /* /login/default.aspx?method=login */
 /* ############################################################################################ */

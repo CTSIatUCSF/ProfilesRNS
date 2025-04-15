@@ -15,6 +15,8 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
     {
         private string PlugInName = "UCSFFeaturedVideos";
         private string data = string.Empty;
+        private List<Video> Videos { get; set; }
+
 
         public UCSFFeaturedVideos() : base() { }
         public UCSFFeaturedVideos(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
@@ -337,7 +339,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             ResetDisplay();
         }
         #endregion
-        private List<Video> Videos { get; set; }
     }
 
 }

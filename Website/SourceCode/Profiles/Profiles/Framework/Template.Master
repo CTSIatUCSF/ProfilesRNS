@@ -271,10 +271,10 @@
                 <asp:Panel ID="CelebratingBanner" runat="server" Visible="false">
                     <figure class="researcherprofiles--featured-people-banner--container">
                         <!-- This is a link to either the external URL, or the internal group landing page. -->
-                        <a href="https://mrc.ucsf.edu/events/black-history-month-events" class="researcherprofiles--featured-people-banner--link">
+                        <a href="/WomenInScience" class="researcherprofiles--featured-people-banner--link">
                             <div class="researcherprofiles--featured-people-banner--row">
                                 <!-- Insert very short heading here. The shorter, the better. This should be a custom string, not just the name of the category of people. -->
-                                <figcaption>Celebrating Black History</figcaption>
+                                <figcaption>Celebrating <b>Women in Science</b></figcaption>
                                 <!-- Insert between between ~4-12 headshot URLs here. Include the people's names in the alt text as shown. -->
                                 <!-- Because this is happening server-sidem you're welcome to randomize them. -->
                                 <!-- Because every image is loaded, even if not shown, we don't want to add so many that page load is slowed unnecessarily.  -->

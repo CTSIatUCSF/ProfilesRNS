@@ -365,8 +365,10 @@
     <Content Include="Edit\Modules\CustomEditGroupSettings\CustomEditGroupSettings.ascx" />
     <Content Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx" />
     <Content Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx" />
+    <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditCommunityService.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditIdentity.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditMentoring.ascx" />
+    <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditCommunityAndPublicService.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditUCSFFeaturedVideos.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditGlobalHealthEquity.ascx" />
     <Content Include="Error\PresentationXML\HttpRequestValidationExceptionPresentation.xml" />
@@ -569,6 +571,8 @@
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx" />
     <Content Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\CommunityAndPublicService.ascx" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\CommunityAndPublicService.js" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\Identity.ascx" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\Identity.js" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\Mentoring.js" />
@@ -979,6 +983,13 @@
     <Compile Include="Edit\Modules\CustomEditSocialMediaPlugIns\EditTwitter.ascx.designer.cs">
       <DependentUpon>EditTwitter.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditCommunityService.ascx.cs">
+      <DependentUpon>EditCommunityService.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditCommunityService.ascx.designer.cs">
+      <DependentUpon>EditCommunityService.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditIdentity.ascx.cs">
       <DependentUpon>EditIdentity.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -992,6 +1003,13 @@
     </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditMentoring.ascx.designer.cs">
       <DependentUpon>EditMentoring.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditCommunityAndPublicService.ascx.cs">
+      <DependentUpon>EditCommunityAndPublicService.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditCommunityAndPublicService.ascx.designer.cs">
+      <DependentUpon>EditCommunityAndPublicService.ascx</DependentUpon>
     </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditUCSFFeaturedVideos.ascx.cs">
       <DependentUpon>EditUCSFFeaturedVideos.ascx</DependentUpon>
@@ -1035,6 +1053,7 @@
     <Compile Include="Framework\Modules\MainMenu\History.ascx.designer.cs">
       <DependentUpon>History.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Framework\Utilities\BotDetector.cs" />
     <Compile Include="Framework\Utilities\Brand.cs" />
     <Compile Include="Framework\Utilities\BrandedPage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -1669,6 +1688,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\Video.cs" />
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\CommunityAndPublicService.ascx.cs">
+      <DependentUpon>CommunityAndPublicService.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\CommunityAndPublicService.ascx.designer.cs">
+      <DependentUpon>CommunityAndPublicService.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Profile\Modules\CustomViewUCSFPlugins\Identity.ascx.cs">
       <DependentUpon>Identity.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

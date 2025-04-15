@@ -42,6 +42,7 @@
                 </div>
 
                 <header class="researcherprofiles--identity-edit--section-title">Sexual Orientation</header>
+                    <div class="researcherprofiles--identity-edit--input-group">
                     <asp:CheckBoxList ID="cblSexualOrientation" runat="server" RepeatLayout="UnorderedList" RepeatDirection="Vertical" Visible="true"/>
                 </div>
 

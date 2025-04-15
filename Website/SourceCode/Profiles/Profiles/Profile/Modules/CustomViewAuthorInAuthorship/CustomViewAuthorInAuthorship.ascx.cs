@@ -187,8 +187,8 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                         }
                         else
                         {
-                            citationText = "&nbsp;&nbsp;&nbsp;Mentions: <a href='https://www.ncbi.nlm.nih.gov/pmc/articles/pmid/" + pub.bibo_pmid +
-                                "/citedby/' target='_blank' class=\"PMC-citations\"><span class=\"PMC-citation-count\">" +
+                            citationText = "&nbsp;&nbsp;&nbsp;Mentions: <a href='https://pubmed.ncbi.nlm.nih.gov/?linkname=pubmed_pubmed_citedin&from_uid=" + pub.bibo_pmid +
+                                "' target='_blank' class=\"PMC-citations\"><span class=\"PMC-citation-count\">" +
                                 pub.PMCCitations + "</span></a>" + "<span id='spnHideOnNoAltmetric" + pub.bibo_pmid +
                                 "'>&nbsp;&nbsp;<span class='altmetric-embed' data-link-target='_blank' data-badge-popover='bottom' data-badge-type='4' data-hide-no-mentions='true' data-pmid='" +
                                 pub.bibo_pmid + "'></span></span>";

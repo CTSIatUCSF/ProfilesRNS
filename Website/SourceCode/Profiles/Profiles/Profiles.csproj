@@ -365,7 +365,6 @@
     <Content Include="Edit\Modules\CustomEditGroupSettings\CustomEditGroupSettings.ascx" />
     <Content Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx" />
     <Content Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx" />
-    <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditCommunityService.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditIdentity.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditMentoring.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditCommunityAndPublicService.ascx" />
@@ -982,13 +981,6 @@
     </Compile>
     <Compile Include="Edit\Modules\CustomEditSocialMediaPlugIns\EditTwitter.ascx.designer.cs">
       <DependentUpon>EditTwitter.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditCommunityService.ascx.cs">
-      <DependentUpon>EditCommunityService.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditCommunityService.ascx.designer.cs">
-      <DependentUpon>EditCommunityService.ascx</DependentUpon>
     </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditIdentity.ascx.cs">
       <DependentUpon>EditIdentity.ascx</DependentUpon>

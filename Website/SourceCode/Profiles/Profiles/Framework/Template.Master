@@ -118,8 +118,8 @@
                         <asp:Panel ID="CelebratingBlackHistory" runat="server" Visible="false">
                            <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="https://mrc.ucsf.edu/events/black-history-month-events" target="_blank" style="cursor: pointer;">Celebrating <b>Black History</b></a>
                         </asp:Panel>
-                        <asp:Panel ID="CelebratingAAPIHeritage" runat="server" Visible="false">
-                           <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="https://aapicoalition.ucsf.edu/aanhpi-heritage-month-2024" target="_blank" style="cursor: pointer;">Celebrating <b>AANHPI Heritage</b></a>
+                        <asp:Panel ID="CelebratingAANHPIHeritage" runat="server" Visible="false">
+                           <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="https://mrc.ucsf.edu/events/aanhpi-heritage-month#AANHPI-Events" target="_blank" style="cursor: pointer;">Celebrating <b>AANHPI Heritage</b></a>
                         </asp:Panel>
                         <asp:Panel ID="CelebratingLGBTQResearch" runat="server" Visible="false">
                            <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="/LGBTQResearch">Proud to Support <b>LGBTQ Health Research</b></a>
@@ -271,10 +271,10 @@
                 <asp:Panel ID="CelebratingBanner" runat="server" Visible="false">
                     <figure class="researcherprofiles--featured-people-banner--container">
                         <!-- This is a link to either the external URL, or the internal group landing page. -->
-                        <a href="/WomenInScience" class="researcherprofiles--featured-people-banner--link">
+                        <a href="https://mrc.ucsf.edu/events/aanhpi-heritage-month#AANHPI-Events" class="researcherprofiles--featured-people-banner--link">
                             <div class="researcherprofiles--featured-people-banner--row">
                                 <!-- Insert very short heading here. The shorter, the better. This should be a custom string, not just the name of the category of people. -->
-                                <figcaption>Celebrating <b>Women in Science</b></figcaption>
+                                <figcaption>Celebrating <b>AANHPI Heritage</b></figcaption>
                                 <!-- Insert between between ~4-12 headshot URLs here. Include the people's names in the alt text as shown. -->
                                 <!-- Because this is happening server-sidem you're welcome to randomize them. -->
                                 <!-- Because every image is loaded, even if not shown, we don't want to add so many that page load is slowed unnecessarily.  -->

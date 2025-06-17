@@ -47,7 +47,7 @@
         </asp:Panel>
         <asp:Panel ID="phDeletePub" runat="server">
 			<div style="padding-bottom: 10px;" class="dblarrow">
-                <asp:LinkButton ID="btnDeletePub" runat="server" OnClick="btnDeletePub_OnClick" Enabled="false">Delete Publication(s)</asp:LinkButton><asp:Literal runat="server" ID="btnDeleteGray" Visible="false" Text="Delete Publication(s)"></asp:Literal>
+                <asp:LinkButton ID="btnDeletePub" runat="server" OnClick="btnDeletePub_OnClick" Enabled="false">Options to delete Multiple Publications</asp:LinkButton><asp:Literal runat="server" ID="btnDeleteGray" Visible="false" Text="Options to delete Multiple Publications"></asp:Literal>
                 (Remove multiple publications from your profile.)
             </div>
         </asp:Panel>
@@ -366,13 +366,13 @@
             To delete a single publication, click the icon to the right of the citation.  To delete multiple publications, select one of the options below.  Note that you cannot undo this.
             <div class="actionbuttons">
                 <asp:LinkButton ID="btnDeletePubMedOnly" runat="server" CausesValidation="False"
-                    OnClick="btnDeletePubMedOnly_OnClick" Text="Delete only PubMed citations" OnClientClick="Javascript:return confirm('Are you sure you want to delete the PubMed citations?');" />
+                    OnClick="btnDeletePubMedOnly_OnClick" Text="Delete Entries Imported from PubMed" OnClientClick="Javascript:return confirm('Are you sure you want to delete the PubMed citations?');" />
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnDeleteCustomOnly" runat="server" CausesValidation="False"
-                                        OnClick="btnDeleteCustomOnly_OnClick" Text="Delete only custom citations" OnClientClick="Javascript:return confirm('Are you sure you want to delete the custom citations?');" />
+                                        OnClick="btnDeleteCustomOnly_OnClick" Text="Delete Manually added Entries" OnClientClick="Javascript:return confirm('Are you sure you want to delete the custom citations?');" />
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnDeleteAll" runat="server" CausesValidation="False" OnClick="btnDeleteAll_OnClick"
-                                        Text="Delete all citations" OnClientClick="Javascript:return confirm('Are you sure you want to delete all citations?');" />
+                                        Text="Delete All Entries" OnClientClick="Javascript:return confirm('Are you sure you want to delete all citations?');" />
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnDeletePubMedClose" runat="server" CausesValidation="False"
                                         OnClick="btnDeletePubMedClose_OnClick" Text="Cancel" />

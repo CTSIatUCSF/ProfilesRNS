@@ -649,13 +649,13 @@
                                 </div>
                                 <div style="padding: 10px 0px;">
                                     <asp:LinkButton ID="btnDeletePubMedOnly" runat="server" CausesValidation="False"
-                                        OnClick="btnDeletePubMedOnly_OnClick" Text="Delete only PubMed citations" OnClientClick="Javascript:return confirm('Are you sure you want to delete the PubMed citations?');"></asp:LinkButton>
+                                        OnClick="btnDeletePubMedOnly_OnClick" Text="Delete Entries Imported from PubMed" OnClientClick="Javascript:return confirm('Are you sure you want to delete the PubMed publications?');"></asp:LinkButton>
                                     &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnDeleteCustomOnly" runat="server" CausesValidation="False"
-                                        OnClick="btnDeleteCustomOnly_OnClick" Text="Delete only custom citations" OnClientClick="Javascript:return confirm('Are you sure you want to delete the Custom citations?');"></asp:LinkButton>
+                                        OnClick="btnDeleteCustomOnly_OnClick" Text="Delete Manually added Entries" OnClientClick="Javascript:return confirm('Are you sure you want to delete the custom publications?');"></asp:LinkButton>
                                     &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnDeleteAll" runat="server" CausesValidation="False" OnClick="btnDeleteAll_OnClick"
-                                        Text="Delete all citations" OnClientClick="Javascript:return confirm('Are you sure you want to delete all citations?');"></asp:LinkButton>
+                                        Text="Delete All Entries" OnClientClick="Javascript:return confirm('Are you sure you want to delete all publications?');"></asp:LinkButton>
                                     &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnDeletePubMedClose" runat="server" CausesValidation="False"
                                         OnClick="reset" Text="Close"></asp:LinkButton>

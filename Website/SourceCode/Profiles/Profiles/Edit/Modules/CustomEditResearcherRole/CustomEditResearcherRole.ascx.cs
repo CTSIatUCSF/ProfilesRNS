@@ -21,6 +21,9 @@ using System.IO;
 using Profiles.Framework.Utilities;
 using Profiles.Edit.Utilities;
 using System.Web.UI;
+using Newtonsoft.Json.Linq;
+using Profiles.ORCID.Utilities.ProfilesRNSDLL.DevelopmentBase.Helpers;
+using AjaxControlToolkit;
 
 namespace Profiles.Edit.Modules.CustomEditResearcherRole
 {
@@ -85,7 +88,8 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         #endregion
         public void InitUpDownArrows(ref GridView gv)
         {
-
+            // added by Eric Meeks at UCSF because this doesn't come CLOSE to working!
+            if (true) return;
 
             ImageButton ibLastUp = null;
         ImageButton ibLastUpGray = null;
@@ -171,9 +175,9 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         {
             if (IsPostBack)
             {
-                if (HttpContext.Current.Session["GRANTREQUEST"] != null && Session["ADD"].ToString() != "true")
+                if ((HttpContext.Current.Session["GRANTREQUEST"] != null || HttpContext.Current.Session["pnlAddAdvance.Visible"] != null) && Session["ADD"].ToString() != "true")
                 {
-                    grdGrantSearchResults.DataSource = LoadFunding(CallAPI());
+                    grdGrantSearchResults.DataSource = (Session["pnlAddAdvance.Visible"] != null) ? LoadGrantsFromAdvance(this._subject) : LoadFunding(CallAPI());
                     grdGrantSearchResults.DataBind();
                 }
 
@@ -183,6 +187,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             {
                 Session["pnlAddGrant.Visible"] = null;
                 Session["pnlAddCustomGrant.Visible"] = null;
+                Session["pnlAddAdvance.Visible"] = null;
                 Session["pnlDeleteGrant.Visible"] = null;
                 Session["pnlDisableDisambig.Visible"] = null;
             }
@@ -212,6 +217,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
                 btnImgDeleteGrant2.Visible = true;
                 btnDeleteNIHOnly.Enabled = false;
                 btnDeleteCustomOnly.Enabled = false;
+                btnDeleteAdvanceOnly.Enabled = false;
                 btnDeleteAll.Enabled = false;
                 btnDeleteGrantClose.Enabled = false;
 
@@ -259,9 +265,8 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
 
             pnlAddGrantResults.Visible = true;
             upnlEditSection.Update();
-
-
         }
+
         protected void LoadProjectYears()
         {
             ddlProjectYear.Items.Add(new ListItem("Any Year", "")); //Nothing Selected for value.
@@ -288,13 +293,46 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
 
             upnlEditSection.Update();
         }
+        protected void btnAddAdvance_OnClick(object sender, EventArgs e)
+        {
+            // clear this out
+            Session["GRANTREQUEST"] = null;
+            if (Session["pnlAddAdvance.Visible"] == null)
+            {
+                Session["pnlAddAdvance.Visible"] = true;
+
+                // do the actual add from Advance now
+                try
+                {
+                    grdGrantSearchResults.DataSource = LoadGrantsFromAdvance(this.SubjectID);
+                    grdGrantSearchResults.DataBind();
+                    updatePanelVisibility(openPanel.advance_results);
+                }
+                catch (Exception ex)
+                {
+                    // clear out the session variable otherwise it will error out on the postback
+                    Session["pnlAddAdvance.Visible"] = null;
+                    litAdvanceMessage.Text = ex.Message;// "Error accessing Advance for your profile.";
+                    litAdvanceMessage.Visible = true;
+                }
+                upnlEditSection.Update();
+            }
+            else
+            {
+                btnGrantClose_OnClick(sender, e);
+                Session["pnlAddAdvance.Visible"] = null;
+                updatePanelVisibility(openPanel.none);
+            }
+
+            upnlEditSection.Update();
+        }
         protected void btnClear_OnClick(object sender, EventArgs e)
         {
             ResetGrantSearch();
 //            btnImgAddGrant.ImageUrl = Brand.GetThemedDomain() + "/Framework/images/icon_squareDownArrow.gif";
             updatePanelVisibility(openPanel.nih);
             Session["pnlAddGrant.Visible"] = true;
-
+            
             upnlEditSection.Update();
         }
 
@@ -466,9 +504,11 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         /// </summary>        
         protected void btnGrantAddSelected_OnClick(object sender, EventArgs e)
         {
+            // added by UCSF
+            bool advanceGrants = (Session["pnlAddAdvance.Visible"] != null);
 
             Edit.Utilities.DataIO data = new Edit.Utilities.DataIO();
-            List<FundingState> funding = LoadFunding(CallAPI());
+            List<FundingState> funding = advanceGrants ? LoadGrantsFromAdvance(this.SubjectID) : LoadFunding(CallAPI());
 
 
             foreach (GridViewRow row in grdGrantSearchResults.Rows)
@@ -479,10 +519,13 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
 
                 if (cb.Checked)
                 {
-                    if (RoleTest(result.PrincipalInvestigatorName))
-                        result.RoleLabel = "Principal Investigator";
-                    else
-                        result.RoleLabel = "Co-Investigator";
+                    if (!advanceGrants)
+                    {
+                        if (RoleTest(result.PrincipalInvestigatorName))
+                            result.RoleLabel = "Principal Investigator";
+                        else
+                            result.RoleLabel = "Co-Investigator";
+                    }
 
                     result.FundingRoleID = Guid.NewGuid();
 
@@ -500,7 +543,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
                         PrincipalInvestigatorName = result.PrincipalInvestigatorName,
                         Abstract = result.Abstract,
                         AgreementLabel = result.AgreementLabel,
-                        Source = "NIH"
+                        Source = advanceGrants ? "Advance" : "NIH"
                     });
                 }
 
@@ -533,7 +576,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
                             PrincipalInvestigatorName = subresult.PrincipalInvestigatorName,
                             Abstract = subresult.Abstract,
                             AgreementLabel = subresult.AgreementLabel,
-                            Source = "NIH"
+                            Source = advanceGrants ? "Advance" : "NIH"
                         });
                     }
                 }
@@ -1015,26 +1058,20 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
 
         protected void btnDeleteNIHOnly_OnClick(object sender, EventArgs e)
         {
-            Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
-            FillResearchGrid(false);
-            List<FundingState> fs = (List<FundingState>)GridViewResearcherRole.DataSource;
-            foreach (FundingState row in fs)
-            {
-
-                if (row.Source == "NIH")
-                    data.DeleteFunding(row.FundingRoleID, _personId);
-            }
-
-            //after the batch is completed, call this method once,  same as publications.  All you need is the person ID.
-            data.FundingUpdateOnePerson(new FundingState { PersonID = this._personId });
-
-            FillResearchGrid(true);
-
-            upnlEditSection.Update();
-
+            deleteBySource("NIH");
         }
 
         protected void btnDeleteCustomOnly_OnClick(object sender, EventArgs e)
+        {
+            deleteBySource("Custom");
+        }
+
+        protected void btnDeleteAdvanceOnly_OnClick(object sender, EventArgs e)
+        {
+            deleteBySource("Advance");
+        }
+
+        protected void deleteBySource(String source) 
         {
             Utilities.DataIO data = new Profiles.Edit.Utilities.DataIO();
             FillResearchGrid(false);
@@ -1044,7 +1081,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             foreach (FundingState row in fs)
             {
 
-                if (row.Source != "NIH")
+                if (row.Source == source)
                     data.DeleteFunding(row.FundingRoleID, _personId);
             }
 
@@ -1057,7 +1094,6 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
             upnlEditSection.Update();
 
         }
-
 
         #endregion
 
@@ -1082,7 +1118,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
         }
 
 
-        protected enum openPanel { none, security, nih, nih_results, custom, delete, disambiguation}
+        protected enum openPanel { none, security, nih, nih_results, advance_results, custom, delete, disambiguation}
 
         protected void updatePanelVisibility(openPanel o)
         {
@@ -1091,6 +1127,7 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
                 phSecuritySettings.Visible = true;
                 phAddGrant.Visible = true;
                 phAddCustom.Visible = true;
+                phAddAdvance.Visible = true;
                 phDeleteGrant.Visible = true;
                 phDisableDisambig.Visible = true;
 
@@ -1105,11 +1142,12 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
                 phSecuritySettings.Visible = o == openPanel.security;
                 phAddGrant.Visible = o == openPanel.nih || o == openPanel.nih_results;
                 phAddCustom.Visible = o == openPanel.custom;
+                phAddAdvance.Visible = o == openPanel.advance_results;
                 phDeleteGrant.Visible = o == openPanel.delete;
                 phDisableDisambig.Visible = o == openPanel.disambiguation;
 
                 pnlAddGrant.Visible = o == openPanel.nih;
-                pnlAddGrantResults.Visible = o == openPanel.nih_results;
+                pnlAddGrantResults.Visible = o == openPanel.nih_results || o == openPanel.advance_results; ;
                 pnlAddCustomGrant.Visible = o == openPanel.custom;
                 pnlDeleteGrant.Visible = o == openPanel.delete;
                 pnlDisableDisambig.Visible = o == openPanel.disambiguation;
@@ -1276,6 +1314,37 @@ namespace Profiles.Edit.Modules.CustomEditResearcherRole
 
                 }
             }
+            return funding;
+        }
+
+        private List<FundingState> LoadGrantsFromAdvance(long subjectId)
+        {
+            List<FundingState> funding = new List<FundingState>();
+            for (int i = 0; i <=1; i++)
+            {
+                JToken itemsToken = i == 0 ? Advance.getPastAwardedGrantsFor(subjectId) : Advance.getCurrentAwardedGrantsFor(subjectId);
+                if (itemsToken != null)
+                {
+                    foreach (JToken item in itemsToken)
+                    {
+                        funding.Add(new FundingState
+                        {
+                            CoreProjectNum = (string)item["awardNumber"],
+                            FullFundingID = (string)item["awardNumber"],
+                            FundingID = (string)item["awardNumber"],
+                            RoleLabel = (string)item["awardRole"],
+                            GrantAwardedBy = (string)item["awardingAgency"],
+                            AgreementLabel = (string)item["projectTitle"],
+                            PrincipalInvestigatorName = (string)item["piLastName"],
+                            StartDate = (string)item["startDate"],
+                            EndDate = (string)item["endDate"],
+                            Abstract = (string)item["description"]
+
+                        });
+                    }
+                }
+            }
+
             return funding;
         }
 

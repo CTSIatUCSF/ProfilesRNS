@@ -27,11 +27,6 @@ namespace Profiles.Edit.Modules.EditPropertyList
 {
     public partial class EditPropertyList : BaseModule
     {
-        static string[] ADVANCE_SECTIONS = { "http://vivoweb.org/ontology/core#educationalTraining",
-                                             "http://vivoweb.org/ontology/core#awardOrHonor",
-                                             "http://vivoweb.org/ontology/core#freetextKeyword",
-                                             "http://profiles.catalyst.harvard.edu/ontology/plugins#Mentoring",
-                                             "http://profiles.catalyst.harvard.edu/ontology/plugins#CommunityAndPublicService"};
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -249,7 +244,7 @@ namespace Profiles.Edit.Modules.EditPropertyList
                 // for UCSF people only, show Advance icon for certain sections
                 if (Advance.IsAdvanceEnabledFor(Subject))
                 {
-                    ((Control)e.Row.FindControl("imgAdvance")).Visible = Array.IndexOf(ADVANCE_SECTIONS, si.ItemURI) >= 0;
+                    ((Control)e.Row.FindControl("imgAdvance")).Visible = Array.IndexOf(Advance.ADVANCE_SECTIONS, si.ItemURI) >= 0;
                 }
 
 

@@ -40,13 +40,20 @@
                 (<asp:Label runat="server" ID="lblDisambigStatus" />)
             </div>
         </asp:Panel>
+        <asp:Panel ID="phAddAdvance" runat="server">
+            <div class="EditMenuItem">
+                <asp:ImageButton ID="btnImgAddAdvance" CssClass="EditMenuLinkImg" runat="server" ImageUrl="~/Edit/Images/icon_squareArrow.gif" OnClick="btnAddAdvance_OnClick" AlternateText="Add Grants from Advance" />
+                <asp:LinkButton ID="btnAddAdvance" runat="server" OnClick="btnAddAdvance_OnClick">Add Funding Entries from Advance CV</asp:LinkButton>&nbsp;(Add current and past grants from Advance CV to this list.)                                
+                <p class="text-left"><asp:Literal runat="server" ID="litAdvanceMessage" Visible="false"/></p>
+            </div>
+        </asp:Panel>
         <asp:Panel ID="phDeleteGrant" runat="server">
             <div class="EditMenuItem">
                 <asp:Image runat="server" CssClass="EditMenuLinkImg" ID="btnImgDeleteGrant2" AlternateText=" " ImageUrl="~/Edit/Images/Icon_square_ArrowGray.png" Visible="false" />
                 <asp:ImageButton ID="btnImgDeleteGrant" runat="server" ImageUrl="~/Edit/Images/icon_squareArrow.gif"
                     OnClick="btnDeleteGrant_OnClick" AlternateText="Delete" CssClass="EditMenuLinkImg" />
-                <asp:LinkButton ID="btnDeleteGrant" runat="server" OnClick="btnDeleteGrant_OnClick">Delete All Funding</asp:LinkButton>
-                <asp:Literal ID="btnDeleteGrantGray" Visible="false" runat="server" Text="Delete All Funding" />&nbsp;(Remove multiple funding sources from your profile.)                               
+                <asp:LinkButton ID="btnDeleteGrant" runat="server" OnClick="btnDeleteGrant_OnClick">Options to Delete Multiple Entries</asp:LinkButton>
+                <asp:Literal ID="btnDeleteGrantGray" Visible="false" runat="server" Text="Options to Delete Multiple Entries" />&nbsp;(Remove multiple funding sources from your profile.)                               
             </div>
         </asp:Panel>
         <%--Start Add By Search--%>
@@ -232,14 +239,18 @@
             To delete a single grant, click the delete icon to the right of the funding information.  To delete multiple grants, select one of the options below.  Note that you cannot undo this.
             <div class="actionbuttons">
                 <asp:LinkButton ID="btnDeleteNIHOnly" runat="server" CausesValidation="False" OnClick="btnDeleteNIHOnly_OnClick"
-                    Text="Delete only NIH grants" OnClientClick="Javascript:return confirm('Are you sure you want to delete the NIH funding sources?');" />
+                    Text="Delete Grants Imported from NIH Data" OnClientClick="Javascript:return confirm('Are you sure you want to delete the NIH funding sources?');" />
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnDeleteCustomOnly" runat="server" CausesValidation="False"
-                                        OnClick="btnDeleteCustomOnly_OnClick" Text="Delete Only Custom Funding Sources"
+                                        OnClick="btnDeleteCustomOnly_OnClick" Text="Delete Custom Funding Sources"
                                         OnClientClick="Javascript:return confirm('Are you sure you want to delete the custom funding sources?');" />
                 &nbsp;&nbsp;|&nbsp;&nbsp;
+                                    <asp:LinkButton ID="btnDeleteAdvanceOnly" runat="server" CausesValidation="False"
+                                        OnClick="btnDeleteAdvanceOnly_OnClick" Text="Delete Grants Imported from Advance CV"
+                                        OnClientClick="Javascript:return confirm('Are you sure you want to delete the funding imported from Advance CV?');" />
+                &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnDeleteAll" runat="server" CausesValidation="False" OnClick="btnDeleteAll_OnClick"
-                                        Text="Delete All Funding" OnClientClick="Javascript:return confirm('Are you sure you want to delete all grants?');" />
+                                        Text="Delete All Grants" OnClientClick="Javascript:return confirm('Are you sure you want to delete all grants?');" />
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                                     <asp:LinkButton ID="btnDeleteGrantClose" runat="server" CausesValidation="False"
                                         OnClick="btnDeleteGrantClose_OnClick" Text="Cancel" />

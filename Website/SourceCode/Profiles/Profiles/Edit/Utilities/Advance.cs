@@ -12,11 +12,19 @@ using System.IO;
 using System.Text;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace Profiles.Edit.Utilities
 {
     public class Advance
     {
+        public static string[] ADVANCE_SECTIONS = { "http://vivoweb.org/ontology/core#educationalTraining",
+                                             "http://vivoweb.org/ontology/core#awardOrHonor",
+                                             "http://vivoweb.org/ontology/core#freetextKeyword",
+                                             "http://profiles.catalyst.harvard.edu/ontology/plugins#Mentoring",
+                                             "http://profiles.catalyst.harvard.edu/ontology/plugins#CommunityAndPublicService",
+                                             "http://vivoweb.org/ontology/core#hasResearcherRole"};
+
         private static char[] DELIMETERS = new char[] {',', '\n'};
 
         private string employeeID;
@@ -66,6 +74,14 @@ namespace Profiles.Edit.Utilities
         public static JToken getPublicServiceFor(Int64 nodeid)
         {
             return getListItems("publicServiceList", nodeid);
+        }
+        public static JToken getCurrentAwardedGrantsFor(Int64 nodeid)
+        {
+            return getListItems("researchAwardGrantCurrentList", nodeid);
+        }
+        public static JToken getPastAwardedGrantsFor(Int64 nodeid)
+        {
+            return getListItems("researchAwardGrantPastList", nodeid);
         }
 
         private static JToken getListItems(string listName, Int64 nodeid)
@@ -139,11 +155,18 @@ namespace Profiles.Edit.Utilities
             myRequest.Headers.Add("client_id", ConfigurationManager.AppSettings["Advance.ClientID"]);
             myRequest.Headers.Add("client_secret", ConfigurationManager.AppSettings["Advance.ClientSecret"]);
 
-            WebResponse myResponse = myRequest.GetResponse();
-            using (StreamReader sr = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8))
+            try
             {
-                String json = sr.ReadToEnd();
-                return JObject.Parse(json);
+                WebResponse myResponse = myRequest.GetResponse();
+                using (StreamReader sr = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8))
+                {
+                    String json = sr.ReadToEnd();
+                    return JObject.Parse(json);
+                }
+            }
+            catch (Exception ex)
+            {   // Eric Meeks. I know HTML in an exception is a BAD idea, maybe clean this up someday.
+                throw new Exception("<b style=\"color:red;\">Error connecting to Advance. This may be temporary, please try again and let the <a href=\"mailto:profiles@ucsf.edu\">profiles@ucsf.edu</a> team know if this problem continues.</b>", ex);
             }
         } 
 

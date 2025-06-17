@@ -127,7 +127,7 @@ namespace Profiles.Edit.Modules.CustomEditFreetextKeyword
             catch (Exception ex)
             {
                 Framework.Utilities.DebugLogging.Log(ex.Message + ex.StackTrace);
-                litAdvanceMessage.Text = "Error accessing Advance for your profile.";
+                litAdvanceMessage.Text = ex.Message;
             }
         }
 

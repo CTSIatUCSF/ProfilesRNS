@@ -103,7 +103,7 @@ namespace Profiles.DIRECT.Utilities
         public SqlDataReader DirectResultset()
         { 
             string sql = "select * from [Direct.].Sites with (NOLOCK) where isactive = 1 order by SortOrder";
-            SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
+            SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
 
         }
@@ -111,14 +111,14 @@ namespace Profiles.DIRECT.Utilities
         public SqlDataReader GetSitesOrderBySortOrder()
         {
             string sql = "select * from [Direct.].Sites with (NOLOCK) where isactive = 1 order by sortorder";
-            SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
+            SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }
 
         public SqlDataReader GetSitesOrderBySiteID()
         {
             string sql = "select SiteID, QueryURL, newid() FSID from [Direct.].Sites with (NOLOCK) where isactive = 1 order by SiteID; select count(siteid) from [Direct.].Sites  with (NOLOCK);";
-            SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
+            SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }
 
@@ -126,13 +126,13 @@ namespace Profiles.DIRECT.Utilities
         public SqlDataReader GetFsID(string FsID)
         {
             string sql = "select siteid, resultdetailsurl from [Direct.].LogOutgoing with (NOLOCK) where details = 0 and fsid = " + FsID;
-            SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
+            SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }
 
         public void AddLogIncoming(int details, string requestIP, string queryString)
         {
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlParameter[] param = new SqlParameter[3];
             try
@@ -161,7 +161,7 @@ namespace Profiles.DIRECT.Utilities
 
         public void AddLogOutgoing(string fsid, int siteID, int details)
         {
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlParameter[] param = new SqlParameter[3];
             try
@@ -189,7 +189,7 @@ namespace Profiles.DIRECT.Utilities
 
         public void UpdateLogOutgoing(string fsid, int responseState, int responseStatus, string resultText, string resultCount, string resultDetailsURL)
         {
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlParameter[] param = new SqlParameter[6];
             try
@@ -220,7 +220,7 @@ namespace Profiles.DIRECT.Utilities
 
         public void UpdateLogOutgoing(string fsid, int responseState)
         {
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString()  ;
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlParameter[] param = new SqlParameter[6];
             try

@@ -279,7 +279,7 @@
                                 <!-- Because this is happening server-sidem you're welcome to randomize them. -->
                                 <!-- Because every image is loaded, even if not shown, we don't want to add so many that page load is slowed unnecessarily.  -->
                                 <asp:Literal runat="server" ID="litCelebratingBannerPhotos" />
-								<asp:HiddenField ID="hdnCelebratingNumberOfImages" runat="server" Value="12" />
+								<asp:HiddenField ID="hdnCelebratingNumberOfImages" runat="server" Value="8" />
                             </div>
                         </a>
                     </figure>

@@ -78,7 +78,7 @@ namespace Profiles.Framework.Utilities
                 Framework.Utilities.Cache.AlterDependency(subject.ToString());
                 dbcommand.Connection = dbconnection;
                 dbcommand.ExecuteNonQuery();
-                dbcommand.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(dbcommand);
 
             }
             catch (Exception e)
@@ -105,7 +105,7 @@ namespace Profiles.Framework.Utilities
                 Framework.Utilities.Cache.AlterDependency(subject.ToString());
                 dbcommand.Connection = dbconnection;
                 dbcommand.ExecuteNonQuery();
-                dbcommand.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(dbcommand);
 
             }
             catch (Exception e)

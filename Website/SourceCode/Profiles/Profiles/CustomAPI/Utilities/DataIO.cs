@@ -78,7 +78,7 @@ namespace Profiles.CustomAPI.Utilities
         public string ProcessPMID(string PMID)
         {
             string sql = "select cast(x as varchar(max)) from [Profile.Data].[Publication.PubMed.AllXML] where pmid = '" + PMID + "';";
-            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+            using (SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null))
             {
                 if (sqldr.Read())
                 {
@@ -93,7 +93,7 @@ namespace Profiles.CustomAPI.Utilities
         {
             Int32 cnt = 0;
 
-            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+            using (SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null))
             {
                 if (sqldr.Read())
                 {
@@ -110,7 +110,7 @@ namespace Profiles.CustomAPI.Utilities
             string xmlstr = string.Empty;
             XmlDocument xmlrtn = new XmlDocument();
 
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
 
             sql.AppendLine(dateSQL);
@@ -146,7 +146,7 @@ namespace Profiles.CustomAPI.Utilities
 
             bool isactive = false;
 
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
 
             sql.AppendLine("select p.IsActive from [Profile.Data].Person p with(nolock) where p.personid = " + personid);
@@ -177,7 +177,7 @@ namespace Profiles.CustomAPI.Utilities
         {
             string retval = "";
             string sql = "select PMID from [Profile.Data].[Publication.Person.Exclude] WHERE PMID IS NOT NULL AND PersonID = " + personid;
-            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+            using (SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null))
             {
                 while (sqldr.Read())
                 {
@@ -191,7 +191,7 @@ namespace Profiles.CustomAPI.Utilities
         {
             List<int> pmids = new List<int>();
             string sql = "select PMID from [Profile.Data].[Publication.Person.Exclude] WHERE PMID IS NOT NULL AND PersonID = " + personid;
-            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+            using (SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null))
             {
                 while (sqldr.Read())
                 {
@@ -212,7 +212,7 @@ namespace Profiles.CustomAPI.Utilities
             Dictionary<string, object> publication = new Dictionary<string, object>();
             Dictionary<string, string> publicationSource = new Dictionary<string, string>();
             string sql = "select [EntityName], [Reference], [EntityDate], [PubYear], [URL] from [Profile.Data].[vwPublication.Entity.InformationResource] where PMID = " + pmid;
-            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+            using (SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null))
             {
                 publicationSource["PublicationSourceName"] = "PubMed";
                 publication["PublicationSource"] = publicationSource;

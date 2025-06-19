@@ -21,6 +21,7 @@ using System.Web.UI.HtmlControls;
 
 using Profiles.Framework.Utilities;
 using Profiles.Search.Utilities;
+using System.Net;
 
 namespace Profiles.Search
 {

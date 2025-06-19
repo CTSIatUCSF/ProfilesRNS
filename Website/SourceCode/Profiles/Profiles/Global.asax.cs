@@ -317,6 +317,7 @@ namespace Profiles
 
             HttpContext.Current.Items["Param0"] = HttpContext.Current.Items.Contains("Param2") ? "profile" : "display";
             HttpContext.Current.Items["Param1"] = UCSFIDSet.ByPrettyURL[prettyUrl].NodeId;
+            HttpContext.Current.Items["PrettyURLRouteHandler"] = "true";
 
             return BuildManager.CreateInstanceFromVirtualPath("~/REST.aspx", typeof(Page)) as IHttpHandler;
         }

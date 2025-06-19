@@ -57,7 +57,7 @@ namespace Profiles.Framework.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();

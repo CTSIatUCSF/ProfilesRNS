@@ -20,6 +20,8 @@ using System.Configuration;
 using System.Web;
 using System.Diagnostics;
 using System.Reflection;
+using Connects.Profiles.Service.DataContracts;
+using System.Web.SessionState;
 
 namespace Profiles.Framework.Utilities
 {
@@ -156,7 +158,8 @@ namespace Profiles.Framework.Utilities
                 param[12] = new SqlParameter("@useragent", useragent);
                 param[13] = new SqlParameter("@ContentType", contenttype);
 
-                using (SqlDataReader dbreader = GetSQLDataReader(GetDBCommand("", "[Framework.].[ResolveURL]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param)))
+                // this has to always use the RW database!
+                using (SqlDataReader dbreader = GetSQLDataReader(GetDBCommand(true, "[Framework.].[ResolveURL]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param)))
                 {
                     dbreader.Read();
 
@@ -189,7 +192,7 @@ namespace Profiles.Framework.Utilities
 
             string sql = "Select * from [Framework.].RestPath with(nolock) order by len(ApplicationName) desc";
 
-            SqlDataReader sqldr = this.GetSQLDataReader("", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
+            SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null);
 
             return sqldr;
         }
@@ -298,7 +301,7 @@ namespace Profiles.Framework.Utilities
                 Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
             }
 
-            dbcommand.Connection.Close();
+            Framework.Utilities.DataIO.SafeCloseConnection(dbcommand);
             if (param[1] != null)
                 accesscode = Convert.ToInt64(param[1].Value);
 
@@ -309,6 +312,11 @@ namespace Profiles.Framework.Utilities
 
         public string GetConnectionString()
         {
+            return GetConnectionString(false);
+        }
+
+        public string GetConnectionString(bool forceRWDatabase)
+        {
 
             //Need to test for IsBot in session
             string connstr = string.Empty;
@@ -317,7 +325,7 @@ namespace Profiles.Framework.Utilities
             {
                 if (this.Session != null)
                 {
-                    if (this.Session.IsBot)
+                    if (!forceRWDatabase && this.Session.IsBot)
                         connstr = ConfigurationManager.ConnectionStrings["ProfilesBOTDB"].ConnectionString;
                     else
                         connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
@@ -383,22 +391,19 @@ namespace Profiles.Framework.Utilities
 
 
         #region "DB SQL.NET Methods"
+        public SqlConnection GetDBConnection()
+        {
+            return GetDBConnection(false);
+        }
 
         /// <summary>
         /// returns sqlconnection object
         /// </summary>
         /// <param name="Connectionstring"></param>
         /// <returns></returns>
-        public SqlConnection GetDBConnection(string Connectionstring)
+        public SqlConnection GetDBConnection(bool forceRWDatabase)
         {
-            if (Connectionstring.CompareTo("") == 0)
-                Connectionstring = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
-            else
-            {
-                if (Connectionstring.Length < 25)
-                    Connectionstring = ConfigurationManager.ConnectionStrings[Connectionstring].ConnectionString;
-            }
-            SqlConnection dbsqlconnection = new SqlConnection(Connectionstring);
+            SqlConnection dbsqlconnection = new SqlConnection(GetConnectionString(forceRWDatabase));
             try
             {
                 dbsqlconnection.Open();
@@ -442,43 +447,18 @@ namespace Profiles.Framework.Utilities
 
         public SqlCommand GetDBCommand(String CmdText, CommandType CmdType, CommandBehavior CmdBehavior, SqlParameter[] sqlParam)
         {
+            return GetDBCommand(false, CmdText, CmdType, CmdBehavior, sqlParam);
 
-            SqlCommand sqlcmd = null;
-
-            try
-            {
-                string Connectionstring = this.GetConnectionString();
-                sqlcmd = new SqlCommand(CmdText, GetDBConnection(Connectionstring));
-                sqlcmd.CommandType = CmdType;
-                sqlcmd.CommandTimeout = GetCommandTimeout();
-                Framework.Utilities.DebugLogging.Log("CONNECTION STRING " + Connectionstring);
-                Framework.Utilities.DebugLogging.Log("COMMAND TEXT " + CmdText);
-                Framework.Utilities.DebugLogging.Log("COMMAND TYPE " + CmdType.ToString());
-                if (sqlParam != null)
-                    Framework.Utilities.DebugLogging.Log("NUMBER OF PARAMS " + sqlParam.Length);
-
-
-                if (sqlParam != null)
-                    AddSQLParameters(sqlcmd, sqlParam);
-
-
-            }
-            catch (Exception ex)
-            {
-                Framework.Utilities.DebugLogging.Log(ex.Message);
-                Framework.Utilities.DebugLogging.Log(ex.StackTrace);
-            }
-            return sqlcmd;
         }
 
-        public SqlCommand GetDBCommand(string SqlConnectionString, String CmdText, CommandType CmdType, CommandBehavior CmdBehavior, SqlParameter[] sqlParam)
+        public SqlCommand GetDBCommand(bool forceRWDatabase, String CmdText, CommandType CmdType, CommandBehavior CmdBehavior, SqlParameter[] sqlParam)
         {
 
             SqlCommand sqlcmd = null;
 
             try
             {
-                sqlcmd = new SqlCommand(CmdText, GetDBConnection(SqlConnectionString));
+                sqlcmd = new SqlCommand(CmdText, GetDBConnection(forceRWDatabase));
                 sqlcmd.CommandType = CmdType;
                 sqlcmd.CommandTimeout = GetCommandTimeout();
                 /********** Commented out by UCSF
@@ -505,7 +485,7 @@ namespace Profiles.Framework.Utilities
         public SqlCommand GetDBCommand(ref SqlConnection cn, String CmdText, CommandType CmdType, CommandBehavior CmdBehavior, SqlParameter[] sqlParam)
         {
 
-            cn = GetDBConnection("");
+            cn = GetDBConnection();
             SqlCommand sqlcmd = null;
 
             try
@@ -540,11 +520,11 @@ namespace Profiles.Framework.Utilities
 
                 if (sqlcmd.Connection == null)
                 {
-                    sqlcmd.Connection = this.GetDBConnection("");
+                    sqlcmd.Connection = this.GetDBConnection();
                 }
                 else if (sqlcmd.Connection.State == ConnectionState.Closed)
                 {
-                    sqlcmd.Connection = this.GetDBConnection("");
+                    sqlcmd.Connection = this.GetDBConnection();
                 }
 
                 sqldr = sqlcmd.ExecuteReader(CommandBehavior.CloseConnection);
@@ -562,17 +542,12 @@ namespace Profiles.Framework.Utilities
 
         public SqlDataReader GetSQLDataReader(String CmdText, CommandType CmdType, CommandBehavior CmdBehavior, SqlParameter[] sqlParam)
         {
-            return GetSQLDataReader("ProfilesDB", CmdText, CmdType, CmdBehavior, sqlParam);
-        }
-
-        public SqlDataReader GetSQLDataReader(string ConnectionString, String CmdText, CommandType CmdType, CommandBehavior CmdBehavior, SqlParameter[] sqlParam)
-        {
 
             SqlDataReader sqldr = null;
             try
             {
 
-                sqldr = this.GetSQLDataReader(this.GetDBCommand(ConnectionString, CmdText, CmdType, CmdBehavior, sqlParam));
+                sqldr = this.GetSQLDataReader(this.GetDBCommand(CmdText, CmdType, CmdBehavior, sqlParam));
 
 
             }
@@ -603,7 +578,7 @@ namespace Profiles.Framework.Utilities
         public void ExecuteSQLDataCommand(string sqltext)
         {
 
-            using (SqlConnection conn = GetDBConnection(""))
+            using (SqlConnection conn = GetDBConnection())
             {
                 SqlCommand sqlcmd = new SqlCommand(sqltext, conn);
                 sqlcmd.CommandType = CommandType.Text;
@@ -652,7 +627,7 @@ namespace Profiles.Framework.Utilities
             param[2] = new SqlParameter("@UserAgent", session.UserAgent);
             param[3] = new SqlParameter("@IsBot", session.IsBot);
 
-            using (SqlDataReader dbreader = GetSQLDataReader(GetDBCommand("","[User.Session].[CreateSession]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param)))
+            using (SqlDataReader dbreader = GetSQLDataReader(GetDBCommand(true, "[User.Session].[CreateSession]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param)))
             {
                 if (dbreader != null)
 
@@ -684,18 +659,13 @@ namespace Profiles.Framework.Utilities
         public void SessionUpdate(ref Session session)
         {
 
-            string connstr = this.GetConnectionString();
             SessionManagement sm = new SessionManagement();
-
-            SqlConnection dbconnection = new SqlConnection(connstr);
 
             SqlParameter[] param;
 
             param = new SqlParameter[8];
 
             SqlCommand dbcommand = new SqlCommand();
-
-            dbconnection.Open();
 
             dbcommand.CommandTimeout = this.GetCommandTimeout();
 
@@ -726,12 +696,10 @@ namespace Profiles.Framework.Utilities
                 param[7] = new SqlParameter("@LogoutDate", session.LogoutDate.ToString());
             }
 
-            dbcommand.Connection = dbconnection;
-
             try
             {
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                ExecuteSQLDataCommand(GetDBCommand(ref dbconnection, "[User.Session].[UpdateSession]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+                ExecuteSQLDataCommand(GetDBCommand(true, "[User.Session].[UpdateSession]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
             }
             catch (Exception ex) 
             {
@@ -740,7 +708,7 @@ namespace Profiles.Framework.Utilities
 
             try
             {
-                dbcommand.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(dbcommand);
                 if (param[1].Value != null && param[1].Value != DBNull.Value)
                 {
                     session.UserID = Convert.ToInt32(param[1].Value);
@@ -775,7 +743,7 @@ namespace Profiles.Framework.Utilities
         //cache the session state local so you can test if this is a bot or now for the different data connections.
         private Session Session
         {
-            get { return (Session)(HttpContext.Current.Session["PROFILES_SESSION"]); }
+            get { return (Session)(HttpContext.Current != null && HttpContext.Current.Session != null ? HttpContext.Current.Session["PROFILES_SESSION"] : null); }
             set { HttpContext.Current.Session["PROFILES_SESSION"] = value; }
         }
         #endregion
@@ -798,7 +766,7 @@ namespace Profiles.Framework.Utilities
                 else
                     param[2] = new SqlParameter("@Subject", subject);
 
-                dbreader = GetSQLDataReader(GetDBCommand("", "[user.account].[relationship.getrelationship]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
+                dbreader = GetSQLDataReader(GetDBCommand("[user.account].[relationship.getrelationship]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param));
 
             }
             catch (Exception ex)
@@ -828,7 +796,7 @@ namespace Profiles.Framework.Utilities
                 param[3] = new SqlParameter("@SetToExists", settoexists);
 
 
-                GetDBCommand("", "[user.account].[relationship.setrelationship]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param).ExecuteNonQuery();
+                GetDBCommand("[user.account].[relationship.setrelationship]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param).ExecuteNonQuery();
 
             }
             catch (Exception ex)
@@ -936,7 +904,7 @@ namespace Profiles.Framework.Utilities
             else
                 param.Add(new SqlParameter("@param2", DBNull.Value));
 
-            using (SqlCommand comm = GetDBCommand("", "[Framework.].[Log.AddActivity]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param.ToArray()))
+            using (SqlCommand comm = GetDBCommand("[Framework.].[Log.AddActivity]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param.ToArray()))
             {
                 ExecuteSQLDataCommand(comm);
             }
@@ -990,8 +958,7 @@ namespace Profiles.Framework.Utilities
             // add the default
             //new Brand(Brand.DefaultBrandName, Brand.GetSystemTheme(), null, GetRESTBasePath(), true);
 
-            using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
-                "select Theme, BasePath, GATrackingID, PersonFilter from [UCSF.].[Brand]", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+            using (SqlDataReader reader = GetDBCommand("select Theme, BasePath, GATrackingID, PersonFilter from [UCSF.].[Brand]", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
             {
                 while (reader.Read())
                 {
@@ -1003,8 +970,7 @@ namespace Profiles.Framework.Utilities
         private List<Institution> LoadInstitutionsForTheme(string theme)
         {
             List<Institution> institutions = new List<Institution>();
-            using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
-                "SELECT InstitutionAbbreviation FROM [UCSF.].[Theme2Institution] WHERE Theme = '" + theme + "'", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+            using (SqlDataReader reader = GetDBCommand("SELECT InstitutionAbbreviation FROM [UCSF.].[Theme2Institution] WHERE Theme = '" + theme + "'", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
             {
                 while (reader.Read())
                 {
@@ -1019,8 +985,7 @@ namespace Profiles.Framework.Utilities
         {
             string IDSetSQL = "select p.personid, p.nodeid, p.prettyurl, u.internalusername, p.InstitutionAbbreviation from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID";
 
-            using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
-                IDSetSQL, CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+            using (SqlDataReader reader = GetDBCommand(IDSetSQL, CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
             {
                 while (reader.Read())
                 {
@@ -1031,8 +996,7 @@ namespace Profiles.Framework.Utilities
 
         public void LoadInstitutions()
         {
-            using (SqlDataReader reader = GetDBCommand(ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString,
-                "EXEC [Profile.Data].[Organization.GetInstitutions]", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+            using (SqlDataReader reader = GetDBCommand("EXEC [Profile.Data].[Organization.GetInstitutions]", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
             {
                 while (reader.Read())
                 {
@@ -1040,13 +1004,30 @@ namespace Profiles.Framework.Utilities
                 }
             }
         }
-        
+
+
+        // added by UCSF
+        public static void SafeCloseConnection(SqlCommand comm)
+        {
+            try
+            {
+                if (comm.Connection != null)
+                {
+                    comm.Connection.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                throw new Exception(e.Message);
+            }
+        }
 
         #region "Groups"
         public bool IsGroupAdmin(int UserID)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlDataReader reader = null;

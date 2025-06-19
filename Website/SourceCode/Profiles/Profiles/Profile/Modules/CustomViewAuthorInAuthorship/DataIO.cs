@@ -39,7 +39,7 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
             {
                 try
                 {
-                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                    string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                     SqlConnection dbconnection = new SqlConnection(connstr);
                     SqlCommand dbcommand = new SqlCommand("[Profile.Module].[CustomViewAuthorInAuthorship.GetJournalHeadings]");
 
@@ -91,7 +91,7 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
             {
                 try
                 {
-                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                    string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                     SqlConnection dbconnection = new SqlConnection(connstr);
                     SqlCommand dbcommand = new SqlCommand("[Profile.Module].[CustomViewAuthorInAuthorship.GetJournalHeadings]");
 
@@ -151,7 +151,7 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
             //          {
             try
             {
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
                 SqlCommand dbcommand = new SqlCommand("[Profile.Module].[CustomViewAuthorInAuthorship.GetPub]");
 

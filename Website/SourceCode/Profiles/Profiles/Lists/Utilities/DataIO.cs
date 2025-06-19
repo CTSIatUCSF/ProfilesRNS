@@ -271,7 +271,7 @@ namespace Profiles.Lists.Utilities
                 }
 
 
-                if (dbcommand.Connection.State != ConnectionState.Closed) dbcommand.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(dbcommand);
 
             }
             catch (Exception e)

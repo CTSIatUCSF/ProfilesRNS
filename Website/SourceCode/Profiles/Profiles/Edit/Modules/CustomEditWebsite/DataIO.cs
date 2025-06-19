@@ -32,7 +32,7 @@ namespace Profiles.Edit.Modules.CustomEditWebsite
     {
         public List<WebsiteState> GetWebsiteData(Int64 NodeID, string Predicate)
         {
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             using (SqlConnection dbconnection = new SqlConnection(connstr))
             {
@@ -76,7 +76,7 @@ namespace Profiles.Edit.Modules.CustomEditWebsite
                 {
                     Framework.Utilities.Cache.AlterDependency(HttpContext.Current.Request.QueryString["subject"].ToString());
                 }
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -110,7 +110,7 @@ namespace Profiles.Edit.Modules.CustomEditWebsite
                 {
                     Framework.Utilities.Cache.AlterDependency(HttpContext.Current.Request.QueryString["subject"].ToString());
                 }
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -144,7 +144,7 @@ namespace Profiles.Edit.Modules.CustomEditWebsite
                 {
                     Framework.Utilities.Cache.AlterDependency(HttpContext.Current.Request.QueryString["subject"].ToString());
                 }
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString()  ;
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();

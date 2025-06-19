@@ -35,7 +35,7 @@ namespace Profiles.Edit.Utilities
         public int GetPersonID(Int64 nodeid)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             using (SqlConnection dbconnection = new SqlConnection(connstr))
             {
@@ -45,7 +45,7 @@ namespace Profiles.Edit.Utilities
                 {
                     dbconnection.Open();
                     //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                    using (SqlDataReader reader = GetDBCommand(connstr, "select i.internalid from  [RDF.Stage].internalnodemap i with(nolock) where i.nodeid = " + nodeid.ToString(), CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+                    using (SqlDataReader reader = GetDBCommand("select i.internalid from  [RDF.Stage].internalnodemap i with(nolock) where i.nodeid = " + nodeid.ToString(), CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -67,7 +67,7 @@ namespace Profiles.Edit.Utilities
         {
             SessionManagement sm = new SessionManagement();
 
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlCommand dbcommand = new SqlCommand("select nodeID from [RDF.Stage].[InternalNodeMap] where Class = 'http://xmlns.com/foaf/0.1/Person' and internalID = " + personID);
 
@@ -91,7 +91,7 @@ namespace Profiles.Edit.Utilities
         {
 
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -131,7 +131,7 @@ namespace Profiles.Edit.Utilities
         public void UpdateEntityOnePerson(int personid)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -147,7 +147,7 @@ namespace Profiles.Edit.Utilities
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
                 ExecuteSQLDataCommand(comm);
 
-                comm.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(comm);
 
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();
@@ -171,7 +171,7 @@ namespace Profiles.Edit.Utilities
         public void UpdateEntityOneGroup(int personid)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -187,7 +187,7 @@ namespace Profiles.Edit.Utilities
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
                 ExecuteSQLDataCommand(comm);
 
-                comm.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(comm);
 
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();
@@ -212,7 +212,7 @@ namespace Profiles.Edit.Utilities
         {
 
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -248,7 +248,7 @@ namespace Profiles.Edit.Utilities
         {
             ActivityLog(PropertyListXML, subjectID, "PMID", "" + pmid);
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -283,7 +283,7 @@ namespace Profiles.Edit.Utilities
         {
             ActivityLog(PropertyListXML, subjectID, "PMID", "" + pmid);
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -324,7 +324,7 @@ namespace Profiles.Edit.Utilities
             try
             {
                 SessionManagement sm = new SessionManagement();
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -340,7 +340,7 @@ namespace Profiles.Edit.Utilities
                 comm.CommandText = "[Profile.Data].[Publication.DeleteAllPublications]";
                 comm.ExecuteScalar();
 
-                comm.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(comm);
 
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();
@@ -364,7 +364,7 @@ namespace Profiles.Edit.Utilities
             param[0] = new SqlParameter("@PersonID", UCSFIDSet.ByNodeId[subjectID].PersonId);
             param[1] = new SqlParameter("@PubID", PubID);
 
-            using (SqlCommand comm = GetDBCommand("", "[Profile.Data].[Publication.ClaimOnePublication]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
+            using (SqlCommand comm = GetDBCommand("[Profile.Data].[Publication.ClaimOnePublication]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
             {
                 ExecuteSQLDataCommand(comm);
             }
@@ -380,7 +380,7 @@ namespace Profiles.Edit.Utilities
             try
             {
                 SessionManagement sm = new SessionManagement();
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -396,7 +396,7 @@ namespace Profiles.Edit.Utilities
                 comm.CommandText = "[Profile.Data].[Publication.Group.DeleteAllPublications]";
                 comm.ExecuteScalar();
 
-                comm.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(comm);
 
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();
@@ -421,7 +421,7 @@ namespace Profiles.Edit.Utilities
             try
             {
                 SessionManagement sm = new SessionManagement();
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -437,7 +437,7 @@ namespace Profiles.Edit.Utilities
                 comm.CommandText = "[Profile.Data].[Publication.DeleteOnePublication]";
                 comm.ExecuteScalar();
 
-                comm.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(comm );
 
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();
@@ -465,7 +465,7 @@ namespace Profiles.Edit.Utilities
             try
             {
                 SessionManagement sm = new SessionManagement();
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -481,7 +481,7 @@ namespace Profiles.Edit.Utilities
                 comm.CommandText = "[Profile.Data].[Publication.Group.DeleteOnePublication]";
                 comm.ExecuteScalar();
 
-                comm.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(comm);
 
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();
@@ -508,7 +508,7 @@ namespace Profiles.Edit.Utilities
             try
             {
                 SessionManagement sm = new SessionManagement();
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -524,7 +524,7 @@ namespace Profiles.Edit.Utilities
                 comm.CommandText = "[Profile.Data].[Publication.Group.MyPub.CopyExistingPublication]";
                 comm.ExecuteScalar();
 
-                comm.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(comm);
 
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();
@@ -551,7 +551,7 @@ namespace Profiles.Edit.Utilities
             try
             {
                 SessionManagement sm = new SessionManagement();
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -571,7 +571,7 @@ namespace Profiles.Edit.Utilities
                 comm.CommandText = "[Profile.Data].[Publication.MyPub.UpdatePublication]";
                 comm.ExecuteScalar();
 
-                comm.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(comm);
 
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();
@@ -595,7 +595,7 @@ namespace Profiles.Edit.Utilities
             try
             {
                 SessionManagement sm = new SessionManagement();
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -619,7 +619,7 @@ namespace Profiles.Edit.Utilities
                 comm.CommandText = "[Profile.Data].[Publication.MyPub.AddPublication]";
                 comm.ExecuteScalar();
 
-                comm.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(comm);
 
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();
@@ -646,7 +646,7 @@ namespace Profiles.Edit.Utilities
             try
             {
                 SessionManagement sm = new SessionManagement();
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -670,7 +670,7 @@ namespace Profiles.Edit.Utilities
                 comm.CommandText = "[Profile.Data].[Publication.Group.MyPub.AddPublication]";
                 comm.ExecuteScalar();
 
-                comm.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(comm);
 
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();
@@ -692,7 +692,7 @@ namespace Profiles.Edit.Utilities
         {
 
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlDataReader reader;
@@ -769,7 +769,7 @@ namespace Profiles.Edit.Utilities
         {
 
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlDataReader reader;
@@ -851,7 +851,7 @@ namespace Profiles.Edit.Utilities
         public SqlDataReader GetCustomPub(string mpid)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlDataReader reader;
@@ -878,7 +878,7 @@ namespace Profiles.Edit.Utilities
         public bool GetGroupPublicationOption(int groupID)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlDataReader reader;
@@ -917,7 +917,7 @@ namespace Profiles.Edit.Utilities
             SqlCommand comm = new SqlCommand();
             try
             {
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -945,7 +945,7 @@ namespace Profiles.Edit.Utilities
         {
             ActivityLog(PropertyListXML, subjectID);
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             image = this.ResizeImageFile(image, 150, 300);
 
@@ -965,10 +965,10 @@ namespace Profiles.Edit.Utilities
                     cmd.Parameters.Add("@Personid", SqlDbType.Int).Value = GetPersonID(subjectID);
                     cmd.Parameters.Add("@Photo", SqlDbType.VarBinary).Value = image;
                     cmd.ExecuteNonQuery();
-                    cmd.Connection.Close();
+                    Framework.Utilities.DataIO.SafeCloseConnection(cmd );
                 }
 
-                comm.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(comm);
 
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();
@@ -998,7 +998,7 @@ namespace Profiles.Edit.Utilities
             SqlCommand comm = new SqlCommand();
             try
             {
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -1087,7 +1087,7 @@ namespace Profiles.Edit.Utilities
         public bool DeleteTriple(Int64 subjectid, Int64 predicateid, Int64 objectid)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlCommand dbcommand = new SqlCommand();
@@ -1113,7 +1113,7 @@ namespace Profiles.Edit.Utilities
                 //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
                 ExecuteSQLDataCommand(comm);
 
-                comm.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(comm);
 
                 if (dbconnection.State == ConnectionState.Open)
                     dbconnection.Close();
@@ -1181,7 +1181,7 @@ namespace Profiles.Edit.Utilities
         {
 
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -1205,7 +1205,7 @@ namespace Profiles.Edit.Utilities
             //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
             ExecuteSQLDataCommand(comm);
 
-            comm.Connection.Close();
+            Framework.Utilities.DataIO.SafeCloseConnection(comm);
 
             if (dbconnection.State == ConnectionState.Open)
                 dbconnection.Close();
@@ -1458,7 +1458,7 @@ namespace Profiles.Edit.Utilities
         {
 
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -1505,7 +1505,7 @@ namespace Profiles.Edit.Utilities
                 ExecuteSQLDataCommand(comm);
 
 
-                comm.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(comm);
 
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();
@@ -1538,7 +1538,7 @@ namespace Profiles.Edit.Utilities
             }
 
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -1579,7 +1579,7 @@ namespace Profiles.Edit.Utilities
                 finally
                 {
                     SqlConnection.ClearPool(dbconnection);
-                    cmd.Connection.Close();
+                    Framework.Utilities.DataIO.SafeCloseConnection(cmd);
                     cmd.Dispose();
                 }
             }
@@ -1592,7 +1592,7 @@ namespace Profiles.Edit.Utilities
         private bool GetStoreTriple(StoreTripleRequest str)
         {
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -1632,12 +1632,12 @@ namespace Profiles.Edit.Utilities
                 param[str.Length - 1].DbType = DbType.Boolean;
                 param[str.Length - 1].Direction = ParameterDirection.Output;
 
-                using (var cmd = GetDBCommand("", "[RDF.].GetStoreTriple", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
+                using (var cmd = GetDBCommand("[RDF.].GetStoreTriple", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
                 {
 
                     //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
                     ExecuteSQLDataCommand(cmd);
-                    cmd.Connection.Close();
+                    Framework.Utilities.DataIO.SafeCloseConnection(cmd);
 
                 }
                 error = Convert.ToBoolean(param[str.Length - 1].Value);
@@ -1659,7 +1659,7 @@ namespace Profiles.Edit.Utilities
         {
             EditActivityLog(subjectid, predicateid, "" + securitygroup);
 
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlParameter[] param = new SqlParameter[3];
 
@@ -1682,7 +1682,7 @@ namespace Profiles.Edit.Utilities
                 ExecuteSQLDataCommand(comm);
 
 
-                comm.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(comm);
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();
             }
@@ -2128,7 +2128,7 @@ namespace Profiles.Edit.Utilities
         {
 
             SessionManagement sm = new SessionManagement();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -2180,7 +2180,7 @@ namespace Profiles.Edit.Utilities
                 ExecuteSQLDataCommand(comm);
 
 
-                comm.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(comm);
 
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();
@@ -2253,7 +2253,7 @@ namespace Profiles.Edit.Utilities
 
             try
             {
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -2301,7 +2301,7 @@ namespace Profiles.Edit.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -2333,7 +2333,7 @@ namespace Profiles.Edit.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -2364,7 +2364,7 @@ namespace Profiles.Edit.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -2396,7 +2396,7 @@ namespace Profiles.Edit.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -2427,7 +2427,7 @@ namespace Profiles.Edit.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -2460,7 +2460,7 @@ namespace Profiles.Edit.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -2493,7 +2493,7 @@ namespace Profiles.Edit.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -2526,7 +2526,7 @@ namespace Profiles.Edit.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -2559,7 +2559,7 @@ namespace Profiles.Edit.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -2603,7 +2603,7 @@ namespace Profiles.Edit.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();

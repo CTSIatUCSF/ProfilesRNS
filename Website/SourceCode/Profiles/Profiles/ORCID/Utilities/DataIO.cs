@@ -41,7 +41,7 @@ namespace Profiles.ORCID.Utilities
         {
             SessionManagement sm = new SessionManagement();
 
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlCommand dbcommand = new SqlCommand("SELECT UserID, InternalUserName FROM [User.Account].[User] WHERE (UserID = @userid)");
 
@@ -67,7 +67,7 @@ namespace Profiles.ORCID.Utilities
         {
             SessionManagement sm = new SessionManagement();
 
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlCommand dbcommand = new SqlCommand("SELECT UserID, InternalUserName FROM [User.Account].[User] WHERE (UserID = @userid)");
 
@@ -94,7 +94,7 @@ namespace Profiles.ORCID.Utilities
         {
             SessionManagement sm = new SessionManagement();
 
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlCommand dbcommand = new SqlCommand("select nodeID from [RDF.Stage].[InternalNodeMap] m join [Profile.Data].[Person] p on m.internalID= p.PersonID and Class = 'http://xmlns.com/foaf/0.1/Person' and p.internalusername = '" + internalUserName + "'");
 
@@ -120,7 +120,7 @@ namespace Profiles.ORCID.Utilities
         {
             SessionManagement sm = new SessionManagement();
 
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
             SqlConnection dbconnection = new SqlConnection(connstr);
             SqlCommand dbcommand = new SqlCommand("select nodeID from [RDF.Stage].[InternalNodeMap] where Class = 'http://xmlns.com/foaf/0.1/Person' and internalID = " + personID);
 

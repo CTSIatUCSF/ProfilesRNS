@@ -1244,7 +1244,7 @@ namespace Profiles.Profile.Utilities
             String sql = "SELECT s.[SimilarPersonID], s.[Weight], s.[CoAuthor], s.[numberOfSubjectAreas], p.LastName, p.FirstName FROM [Profile.Cache].[Person.SimilarPersonSameInstitution] s " +
                         "JOIN [Profile.Data].[Person] p on p.PersonID = s.SimilarPersonID " +
                         "WHERE s.PersonID = " + UCSFIDSet.ByNodeId[nodeid].PersonId + " ORDER BY [Weight] DESC";
-            return this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
+            return this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null);
         }
 
 
@@ -1254,7 +1254,7 @@ namespace Profiles.Profile.Utilities
         public Int32 GetPersonId(Int64 nodeid)
         {
             string sql = "select InternalID from [RDF.Stage].[InternalNodeMap] where Class = 'http://xmlns.com/foaf/0.1/Person' and nodeID = " + nodeid;
-            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+            using (SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null))
             {
                 if (sqldr.Read())
                 {
@@ -1267,7 +1267,7 @@ namespace Profiles.Profile.Utilities
         public string GetNodeType(Int64 nodeid)
         {
             string sql = "select InternalType from [RDF.Stage].[InternalNodeMap] where nodeID = " + nodeid;
-            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+            using (SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null))
             {
                 if (sqldr.Read())
                 {

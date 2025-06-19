@@ -204,7 +204,7 @@ namespace Profiles.Activity.Utilities
                                 "where p.IsActive=1 and (np.ViewSecurityGroup = -1 or (i.privacyCode = -1 and np.ViewSecurityGroup is null) or (i.privacyCode is null and np.ViewSecurityGroup is null))" +
                                 (lastActivityLogID != -1 ? (" and i.activityLogID " + (older ? "<" : ">") + lastActivityLogID) : "") +
                                 " order by i.activityLogID desc";
-                using (SqlDataReader reader = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+                using (SqlDataReader reader = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null))
                 {
                     while (reader.Read())
                     {
@@ -440,7 +440,7 @@ namespace Profiles.Activity.Utilities
             {
                 if (String.IsNullOrEmpty(cnt))
                 {
-                    using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+                    using (SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null))
                     {
                         if (sqldr.Read())
                         {
@@ -462,7 +462,7 @@ namespace Profiles.Activity.Utilities
         private string GetStringValue(string sql, string columnName)
         {
             string value = "";
-            using (SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null))
+            using (SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null))
             {
                 if (sqldr.Read())
                 {

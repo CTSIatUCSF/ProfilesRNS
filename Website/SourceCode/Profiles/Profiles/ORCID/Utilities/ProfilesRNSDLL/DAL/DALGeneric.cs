@@ -17,14 +17,14 @@ namespace Profiles.ORCID.Utilities.ProfilesRNSDLL.DAL
         {
             get
             {
-                return System.Configuration.ConfigurationManager.ConnectionStrings["ProfilesDB"].ToString();
+                return (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
             }
         }
         protected override string ConnectionStringQuery
         {
             get
             {
-                return System.Configuration.ConfigurationManager.ConnectionStrings["ProfilesDB"].ToString();
+                return (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
             }
         }
         protected override string ProviderName

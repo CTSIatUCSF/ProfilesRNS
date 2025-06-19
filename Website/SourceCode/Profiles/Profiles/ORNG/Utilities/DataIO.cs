@@ -22,21 +22,21 @@ namespace Profiles.ORNG.Utilities
         public SqlDataReader GetGadgetViewRequirements(int appId)
         {
             string sql = "select Page, [view], ChromeID, Visibility, DisplayOrder, OptParams from [ORNG.].[AppViews] where AppID = " + appId;
-            SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
+            SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }
 
         public SqlDataReader GetInstitutionalizedApps(int appId)
         {
             string sql = "select InstitutionAbbreviation, Url FROM [UCSF.ORNG].[InstitutionalizedApps] where AppID = " + appId;
-            SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
+            SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }
 
         public SqlDataReader GetGadgets()
         {
             string sql = "select a.AppID, a.Name, a.Url, f.PersonFilter, a.enabled from [ORNG.].[Apps] a LEFT OUTER JOIN [Profile.Data].[Person.Filter] f on a.PersonFilterID = f.PersonFilterID";
-            SqlDataReader sqldr = this.GetSQLDataReader("ProfilesDB", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
+            SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null);
             return sqldr;
         }
 
@@ -57,7 +57,7 @@ namespace Profiles.ORNG.Utilities
             param[0] = new SqlParameter("@SubjectURI", uri);
             param[1] = new SqlParameter("@AppID", appId);
 
-            using (SqlCommand comm = GetDBCommand("", "[ORNG.].[AddAppToAgent]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
+            using (SqlCommand comm = GetDBCommand("[ORNG.].[AddAppToAgent]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
             {
                 ExecuteSQLDataCommand(comm);
             }
@@ -70,7 +70,7 @@ namespace Profiles.ORNG.Utilities
             param[0] = new SqlParameter("@SubjectID", Subject);
             param[1] = new SqlParameter("@AppID", appId);
 
-            using (SqlCommand comm = GetDBCommand("", "[ORNG.].[AddAppToAgent]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
+            using (SqlCommand comm = GetDBCommand("[ORNG.].[AddAppToAgent]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
             {
                 ExecuteSQLDataCommand(comm);
             }
@@ -94,7 +94,7 @@ namespace Profiles.ORNG.Utilities
             param[1] = new SqlParameter("@AppID", appId);
             param[2] = new SqlParameter("@UserEdit", "1");
 
-            using (SqlCommand comm = GetDBCommand("", "[ORNG.].[RemoveAppFromAgent]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
+            using (SqlCommand comm = GetDBCommand("[ORNG.].[RemoveAppFromAgent]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
             {
                 ExecuteSQLDataCommand(comm);
             }
@@ -108,7 +108,7 @@ namespace Profiles.ORNG.Utilities
             param[1] = new SqlParameter("@AppID", appId);
             param[2] = new SqlParameter("@UserEdit", "1");
 
-            using (SqlCommand comm = GetDBCommand("", "[ORNG.].[RemoveAppFromAgent]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
+            using (SqlCommand comm = GetDBCommand("[ORNG.].[RemoveAppFromAgent]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
             {
                 ExecuteSQLDataCommand(comm);
             }

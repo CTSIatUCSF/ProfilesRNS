@@ -36,7 +36,7 @@ namespace Profiles.Login.Utilities
             try
             {
                 SessionManagement sm = new SessionManagement();
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
@@ -99,7 +99,7 @@ namespace Profiles.Login.Utilities
             try
             {
                 SessionManagement sm = new SessionManagement();
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
                 SqlConnection dbconnection = new SqlConnection(connstr);
 

@@ -9,7 +9,7 @@ namespace Profiles.CustomAPI.Secure
 {
     public partial class ActivityLog : BrandedPage
     {
-        private static string profilesdb = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+        private static string profilesdb = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
         protected void Page_Load(object sender, EventArgs e)
         {

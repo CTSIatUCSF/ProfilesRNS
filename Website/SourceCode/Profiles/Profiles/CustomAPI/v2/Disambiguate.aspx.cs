@@ -160,7 +160,7 @@ namespace Profiles.CustomAPI.v2
                     string sql = "select nodeid from [UCSF.].vwPerson where InstitutionAbbreviation = '" + inst.GetAbbreviation() + 
                         "' and FirstName = '" + name.Split(splitOn)[0] + "' and LastName = '" + name.Split(splitOn)[name.Split(splitOn).Length - 1] + "'";
                
-                    using (System.Data.SqlClient.SqlDataReader sqldr = data.GetSQLDataReader("ProfilesDB", sql, System.Data.CommandType.Text, System.Data.CommandBehavior.CloseConnection, null))
+                    using (System.Data.SqlClient.SqlDataReader sqldr = data.GetSQLDataReader(sql, System.Data.CommandType.Text, System.Data.CommandBehavior.CloseConnection, null))
                     {
                         if (sqldr.Read())
                         {

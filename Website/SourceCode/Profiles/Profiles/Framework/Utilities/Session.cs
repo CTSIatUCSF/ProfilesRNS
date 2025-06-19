@@ -269,7 +269,10 @@ namespace Profiles.Framework.Utilities
             DataIO dataio = new DataIO();
             Session session = this.Session();
             session.LogoutDate = DateTime.Now;
-            dataio.SessionUpdate(ref session);
+            if (!session.IsBot)
+            {
+                dataio.SessionUpdate(ref session);
+            }
 
             session = null;
             dataio = null;

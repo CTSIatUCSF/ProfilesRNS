@@ -12,6 +12,7 @@
 */
 using System;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Xml;
 
@@ -159,6 +160,15 @@ namespace Profiles
             //When a session has expired the Framework.Session.SessionLogout() method is called.
             SessionManagement sessionmanagement = new SessionManagement();
             Session session = sessionmanagement.Session();
+
+            if (session.IsBot && BotDetector.IsForbiddenToBots(HttpContext.Current))
+            {
+                // always log this
+                Framework.Utilities.DebugLogging.Log("This Bot is ignoring Robots.txt! " + session.RequestIP + ":" + session.UserAgent + ", " + HttpContext.Current.Request.Url.ToString(), true);
+                // let them through for now
+                //Response.StatusCode = Convert.ToInt16(HttpStatusCode.Forbidden);
+                //return;
+            }
 
             //UCSF for UC Wide Profiles
             string bestAcceptType = getBestAcceptType(HttpContext.Current.Request.AcceptTypes);

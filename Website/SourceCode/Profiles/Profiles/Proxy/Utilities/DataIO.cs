@@ -30,7 +30,7 @@ namespace Profiles.Proxy.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -63,7 +63,7 @@ namespace Profiles.Proxy.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -96,7 +96,7 @@ namespace Profiles.Proxy.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -128,7 +128,7 @@ namespace Profiles.Proxy.Utilities
 
             try
             {
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -169,7 +169,7 @@ namespace Profiles.Proxy.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -213,7 +213,7 @@ namespace Profiles.Proxy.Utilities
             try
             {
 
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();

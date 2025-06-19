@@ -120,7 +120,7 @@ namespace Profiles.Edit.Utilities
         {
             SessionManagement sm = new SessionManagement();
             DataIO data = new DataIO();
-            string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
             using (SqlConnection dbconnection = new SqlConnection(connstr))
             {
@@ -129,7 +129,7 @@ namespace Profiles.Edit.Utilities
                 {
                     dbconnection.Open();
                     //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
-                    using (SqlDataReader reader = data.GetDBCommand(connstr, "select i.internalusername from [import_ucsf].[dbo].[vw_person] i join [UCSF.].vwPerson p on SUBSTRING(i.internalusername, 3, 6) + '@ucsf.edu' = p.InternalUsername  where p.nodeid = " + nodeid.ToString(), CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+                    using (SqlDataReader reader = data.GetDBCommand("select i.internalusername from [import_ucsf].[dbo].[vw_person] i join [UCSF.].vwPerson p on SUBSTRING(i.internalusername, 3, 6) + '@ucsf.edu' = p.InternalUsername  where p.nodeid = " + nodeid.ToString(), CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
                     {
                         if (reader.Read())
                         {

@@ -36,7 +36,7 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource
             SqlCommand comm = new SqlCommand();
             try
             {
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
                 SqlConnection dbconnection = new SqlConnection(connstr);
 
                 dbconnection.Open();
@@ -91,7 +91,7 @@ namespace Profiles.Edit.Modules.CustomEditAssociatedInformationResource
                 comm.CommandText = "[Profile.Data].[Publication.Group.MyPub.UpdatePublication]";
                 comm.ExecuteScalar();
 
-                comm.Connection.Close();
+                Framework.Utilities.DataIO.SafeCloseConnection(comm);
 
                 if (dbconnection.State != ConnectionState.Closed)
                     dbconnection.Close();

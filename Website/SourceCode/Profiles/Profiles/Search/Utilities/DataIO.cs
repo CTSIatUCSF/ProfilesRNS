@@ -374,7 +374,7 @@ namespace Profiles.Search.Utilities
             {
                 try
                 {
-                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                    string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
                     using (SqlConnection dbconnection = new SqlConnection(connstr))
                     {
@@ -440,7 +440,7 @@ namespace Profiles.Search.Utilities
             {
                 try
                 {
-                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                    string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
                     using (SqlConnection dbconnection = new SqlConnection(connstr))
                     {
@@ -613,7 +613,7 @@ namespace Profiles.Search.Utilities
             SqlDataReader dbreader;
             try
             {
-                string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
                 SqlConnection dbconnection = new SqlConnection(connstr);
                 SqlCommand dbcommand = new SqlCommand();
@@ -696,7 +696,7 @@ namespace Profiles.Search.Utilities
                 {
 
                     string sql = "EXEC [Profile.Data].[Person.GetFilters]";
-                    SqlConnection conn = this.GetDBConnection("");
+                    SqlConnection conn = this.GetDBConnection();
                     da = new SqlDataAdapter(sql, conn);
 
                     da.Fill(ds, "Table");
@@ -738,7 +738,7 @@ namespace Profiles.Search.Utilities
             {
                 try
                 {
-                    string connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
+                    string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
 
                     using (SqlConnection dbconnection = new SqlConnection(connstr))
                     {
@@ -789,7 +789,7 @@ namespace Profiles.Search.Utilities
                 {
                     string sql = "EXEC [Profile.Data].[Person.GetFacultyRanks]";
 
-                    SqlDataReader sqldr = this.GetSQLDataReader("", sql, CommandType.Text, CommandBehavior.CloseConnection, null);
+                    SqlDataReader sqldr = this.GetSQLDataReader(sql, CommandType.Text, CommandBehavior.CloseConnection, null);
 
                     while (sqldr.Read())
                         ranks.Add(new GenericListItem(sqldr["FacultyRank"].ToString(), sqldr["URI"].ToString()));

@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using Profiles.Framework.Utilities;
+using System.Net;
 
 namespace Profiles.CustomAPI.Secure
 {
@@ -17,7 +18,7 @@ namespace Profiles.CustomAPI.Secure
             Response.ContentType = "text/plain";
             if (!data.IsAllowedSecureAccess(Request))
             {
-                Response.Write("Access Denied");
+                Response.StatusCode = Convert.ToInt16(HttpStatusCode.Forbidden);
                 return;
             }
             Institution institution = Brand.GetCurrentBrand().GetInstitution();

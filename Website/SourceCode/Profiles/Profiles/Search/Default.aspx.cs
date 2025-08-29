@@ -90,6 +90,12 @@ namespace Profiles.Search
                 Response.Redirect(Brand.GetThemedDomain() + "/search/default.aspx?searchtype=everything&searchfor=" + HttpUtility.UrlEncode(Request.Form["txtSearchFor"]) +
                     "&ClassGroupURI=" + HttpUtility.UrlEncode("http://profiles.catalyst.harvard.edu/ontology/prns!ClassGroupConcepts") + "&perpage=15&offset=");
             }
+            /*** else if ("whypeople".Equals(this.SearchType))
+            {
+                // EMERGENCY FIX
+                Response.StatusCode = Convert.ToInt16(HttpStatusCode.Forbidden);
+                Response.Redirect(Brand.GetThemedDomain());
+            } **/
             else
             {
                 if (Request.QueryString["tab"] != null)

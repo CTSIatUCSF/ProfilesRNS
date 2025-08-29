@@ -370,6 +370,9 @@
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditCommunityAndPublicService.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditUCSFFeaturedVideos.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditGlobalHealthEquity.ascx" />
+    <Content Include="Error\PresentationXML\ErrorPresentation.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Error\PresentationXML\HttpRequestValidationExceptionPresentation.xml" />
     <Content Include="favicon.ico" />
     <Content Include="Framework\Images\arrow-orgbg.gif" />
@@ -499,7 +502,7 @@
     <Content Include="ORNG\Images\Search.png" />
     <Content Include="ORNG\Images\waiting.gif" />
     <Content Include="ORNG\JavaScript\jsonldParser.js" />
-    <Content Include="ORNG\JavaScript\jsonld\jsonld.js" />
+    <Content Include="ORNG\JavaScript\jsonld\jsonld.min.js" />
     <Content Include="ORNG\JavaScript\orng.min.js" />
     <Content Include="ORNG\JavaScript\prettyprint.js" />
     <Content Include="ORNG\JSONLD\Default.aspx" />
@@ -1054,6 +1057,7 @@
       <DependentUpon>MyActiveNetwork.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Framework\Utilities\PartialDowntime.cs" />
     <Compile Include="Framework\Utilities\UCSFFeaturedPeople.cs" />
     <Compile Include="Framework\Utilities\Institution.cs" />
     <Compile Include="Framework\Utilities\UCSFIDSet.cs" />
@@ -2443,7 +2447,7 @@
     <Content Include="Error\Default.aspx" />
     <Content Include="Error\Modules\ErrorMessage\ErrorMessage.ascx" />
     <Content Include="Error\Modules\ModuleCatalogue.xml" />
-    <Content Include="Error\PresentationXML\ErrorPresentation.xml">
+    <Content Include="Error\PresentationXML\ErrorPartialDowntime.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Framework\CSS\jquery-ui-1.8.13.custom.css" />

@@ -22,6 +22,7 @@ using System.Diagnostics;
 using System.Reflection;
 using Connects.Profiles.Service.DataContracts;
 using System.Web.SessionState;
+using System.Runtime.Remoting.Contexts;
 
 namespace Profiles.Framework.Utilities
 {
@@ -315,6 +316,30 @@ namespace Profiles.Framework.Utilities
             return GetConnectionString(false);
         }
 
+        private bool OkToSendToBotDB()
+        {
+            string url = HttpContext.Current.Request.Url.ToString().ToLower();
+            if (this.Session.IsBot)
+            {
+                return true;
+            }
+            else if (PartialDowntime.IsPartialDowntimeNow())
+            {
+                return true;
+            }
+            // these next two are part of emergency patch to try and take load off of the db
+            // note that this will send real users to the bot db when they are true
+            else if ("true".Equals(HttpContext.Current.Items["PrettyURLRouteHandler"]))
+            {
+                return this.Session.UserID <= 0;
+            }
+            else if ("true".Equals(HttpContext.Current.Items["NewSession"]))
+            {
+                return !(url.Contains("/login") || url.Contains("/search/"));
+            }
+            return false;
+        }
+
         public string GetConnectionString(bool forceRWDatabase)
         {
 
@@ -325,7 +350,7 @@ namespace Profiles.Framework.Utilities
             {
                 if (this.Session != null)
                 {
-                    if (!forceRWDatabase && this.Session.IsBot)
+                    if (!forceRWDatabase && OkToSendToBotDB())
                         connstr = ConfigurationManager.ConnectionStrings["ProfilesBOTDB"].ConnectionString;
                     else
                         connstr = ConfigurationManager.ConnectionStrings["ProfilesDB"].ConnectionString;
@@ -1023,6 +1048,17 @@ namespace Profiles.Framework.Utilities
             }
         }
 
+        internal bool AreJobsRunning()
+        {
+            using (SqlDataReader reader = GetDBCommand(true, "SELECT count(*) FROM [Framework.].[Job] WHERE [Status] = 'PROCESSING'", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    return Convert.ToInt32(reader[0]) > 0;
+                }
+            }
+            return false;
+        }
         #region "Groups"
         public bool IsGroupAdmin(int UserID)
         {

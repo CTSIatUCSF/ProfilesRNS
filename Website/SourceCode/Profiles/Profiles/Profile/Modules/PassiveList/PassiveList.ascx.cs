@@ -112,6 +112,8 @@ namespace Profiles.Profile.Modules.PassiveList
                     if (pl.MoreURL.Trim() != string.Empty)
                     {
                         moreurl.NavigateUrl = Brand.CleanURL(pl.MoreURL);
+                        // for compliance
+                        moreurl.Attributes.Add("aria-label", "Explore " + pl.InfoCaption.ToLower());
                     }
                     else
                     {

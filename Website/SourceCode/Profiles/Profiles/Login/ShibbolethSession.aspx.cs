@@ -49,7 +49,6 @@ namespace Profiles.Login
                         Request["redirectto"])));
                 //}
                 Framework.Utilities.DebugLogging.Log("ShibbolethSession redirect:" + jsonresult["redirect"]);
-
             }
             else if ("True".Equals(Request["loggedIn"]) && !HasShibbolethSession(Request))
             {

@@ -46,7 +46,7 @@ namespace Profiles.Login
         {
             string presentationxml = string.Empty;
 
-            string presentationXMLfile = ConfigurationManager.AppSettings["Login.PresentationXML"].ToString().Trim();
+            string presentationXMLfile = PartialDowntime.IsPartialDowntimeNow() ? "DisabledLoginPresentation" : ConfigurationManager.AppSettings["Login.PresentationXML"].ToString().Trim();
             presentationxml = XslHelper.GetThemedOrDefaultPresentationXML(Page, presentationXMLfile + ".xml");
 
             this.PresentationXML = new XmlDocument();

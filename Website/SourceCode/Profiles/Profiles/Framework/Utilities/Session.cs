@@ -179,6 +179,8 @@ namespace Profiles.Framework.Utilities
 
             //Store the object in the current session of the user.
             HttpContext.Current.Session["PROFILES_SESSION"] = session;
+            // To help with routing traffic to BotDB
+            HttpContext.Current.Items["NewSession"] = "true";
         }
 
         /// <summary>

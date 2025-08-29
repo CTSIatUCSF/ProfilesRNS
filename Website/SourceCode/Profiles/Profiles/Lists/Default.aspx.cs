@@ -18,7 +18,7 @@ namespace Profiles.Lists
         {
             sm = new Framework.Utilities.SessionManagement();
 
-            if (sm.Session().UserID < 0 || sm.Session().UserID == 0)
+            if (sm.Session().UserID <= 0 )
                 Response.Redirect(Framework.Utilities.Brand.GetThemedDomain());
 
             masterpage = (Framework.Template)base.Master;

@@ -1,0 +1,24 @@
+﻿<Presentation PresentationClass="profile">
+  <PageOptions Columns="2"/>
+  <WindowName>Error</WindowName>
+  <PageTitle>Ooops. Something went wrong.</PageTitle>
+  <PageBackLinkName></PageBackLinkName>
+  <PageBackLinkURL></PageBackLinkURL>
+  <PageSubTitle></PageSubTitle>
+  <PageDescription>
+	  Note that some features such as search are disabled while we perform routine system maintenance. Please check back in a few hours. If it still happens, please let us know at <a href="mailto:profiles@ucsf.edu">profiles@ucsf.edu</a>.
+</PageDescription>
+  <PanelList>
+    <Panel type="header"  />
+    <Panel type="page" />
+    <Panel Type="active" />
+    <Panel Type="main" >
+      <Module ID="ErrorMessage">
+        <ParamList/>
+      </Module>      
+    </Panel>
+    <Panel Type="passive"/>
+    <Panel type="footer" />
+  </PanelList>
+</Presentation>
+

@@ -117,33 +117,45 @@ namespace Profiles.Login.Modules.ShibLogin
 
         public static string GetRedirectForAuthenticatedUser(string redirectto)
         {
+            // the nocache=true is for nginx
             Framework.Utilities.SessionManagement sm = new SessionManagement();
             if (String.IsNullOrEmpty(redirectto))
             {
-                return Brand.GetThemedDomain();
+                return Brand.GetThemedDomain() + "?nocache=true";
             }
             else if ("mypage".Equals(redirectto.ToLower()) )
             {
-                return UCSFIDSet.IsPerson(sm.Session().NodeID) ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/profile/" + sm.Session().NodeID : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.aspx";
+                return (UCSFIDSet.IsPerson(sm.Session().NodeID) ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/profile/" + sm.Session().NodeID : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.aspx") + "?nocache=true";
             }
             else if ("myproxies".Equals(redirectto.ToLower()))
             {
-                return UCSFIDSet.IsPerson(sm.Session().NodeID) ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/proxy/default.aspx?subject=" + sm.Session().NodeID : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.aspx";
+                return (UCSFIDSet.IsPerson(sm.Session().NodeID) ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/proxy/default.aspx?subject=" + sm.Session().NodeID : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.aspx") + "?nocache=true";
             }
             else if ("edit".Equals(redirectto.ToLower()))
             {
-                return UCSFIDSet.IsPerson(sm.Session().NodeID) ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/edit/" + sm.Session().NodeID : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.aspx";
+                return (UCSFIDSet.IsPerson(sm.Session().NodeID) ? Brand.GetForSubject(sm.Session().NodeID).BasePath + "/edit/" + sm.Session().NodeID : Brand.GetCurrentBrand().BasePath + "/About/NoProfile.asp") + "?nocache=true";
             }
             else if (redirectto.ToLower().StartsWith("http")) // make sure it at least looks legit
             {
                 // use full part of query after the redirectto parameter because it might have 
                 // LOG THIS!
-                return redirectto;
+                if (redirectto.Contains("nocache=true"))
+                {
+                    return redirectto;
+                }
+                else if (redirectto.IndexOf('?') == -1)
+                {
+                    return redirectto + "?nocache=true";
+                }
+                else
+                {
+                    return redirectto + "&nocache=true";
+                }
                 //Response.Redirect(Request.Url.Query.Substring(Request.Url.Query.IndexOf("redirectto=") + "redirectto=".Length));
             }
             else
             {
-                return Brand.GetThemedDomain();
+                return Brand.GetThemedDomain() + "?nocache=true";
             }
         }
 

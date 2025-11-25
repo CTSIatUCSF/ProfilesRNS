@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo {
-    
-    
-    public partial class CustomViewPersonGeneralInfo {
-        
+namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
+{
+
+
+    public partial class CustomViewPersonGeneralInfo
+    {
+
         /// <summary>
         /// imgPhoto control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgPhoto;
-        
+
         /// <summary>
         /// litPersonalInfo control.
         /// </summary>
@@ -29,16 +31,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litPersonalInfo;
-        
-        /// <summary>
-        /// litGadget control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litGadget;
-        
+
         /// <summary>
         /// pnlSandboxGadgets control.
         /// </summary>
@@ -47,7 +40,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlSandboxGadgets;
-        
+
         /// <summary>
         /// hlORNG control.
         /// </summary>
@@ -56,7 +49,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlORNG;
-        
+
         /// <summary>
         /// litSandboxGadgets control.
         /// </summary>

@@ -13,6 +13,12 @@ namespace Profiles.Framework.Modules.MainMenu
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // for nginx cache, skip this unless they are logged in
+            if (!(new SessionManagement()).Session().IsLoggedIn())
+            {
+                return;
+            }
+
             if (this.RDFData != null)
             {
                 uh = new UserHistory();
@@ -29,7 +35,12 @@ namespace Profiles.Framework.Modules.MainMenu
         
         private void DrawProfilesModule()
         {
-            
+            // for nginx cache, skip this unless they are logged in
+            if (!(new SessionManagement()).Session().IsLoggedIn())
+            {
+                return;
+            }
+
             int count = 0;
 
             int total = uh.GetItems().Count;
@@ -49,7 +60,11 @@ namespace Profiles.Framework.Modules.MainMenu
         }
         private void RecordHistory()
         {
-
+            // for nginx cache, skip this unless they are logged in
+            if (!(new SessionManagement()).Session().IsLoggedIn())
+            {
+                return;
+            }
 
             try
             {

@@ -43,6 +43,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 {
                     html = $"<iframe width='640' height='360' " +
                            $"src='https://www.youtube.com/embed/{videoId}' " +
+                           $"alt='{title}' " +
                            $"frameborder='0' allowfullscreen></iframe>";
                     thumbnail_url = $"https://img.youtube.com/vi/{videoId}/hqdefault.jpg";
                 }
@@ -54,6 +55,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 {
                     html = $"<iframe width='640' height='360' " +
                            $"src='https://player.vimeo.com/video/{videoId}' " +
+                           $"alt='{title}' " +
                            $"frameborder='0' allowfullscreen></iframe>";
                     thumbnail_url = ScrapeOgImage(url);
                 }
@@ -65,6 +67,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 {
                     html = $"<iframe width='640' height='360' " +
                            $"src='https://embed.ted.com/talks/{talkName}' " +
+                           $"alt='{title}' " +
                            $"frameborder='0' allowfullscreen></iframe>";
                     thumbnail_url = ScrapeOgImage(url) ?? GetGenericThumbnail();
                 }
@@ -76,6 +79,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 {
                     html = $"<iframe width='640' height='360' " +
                            $"src='https://www.instagram.com/reel/{reelId}/embed' " +
+                           $"alt='{title}' " +
                            $"frameborder='0' allowfullscreen></iframe>";
                     thumbnail_url = ScrapeOgImage(url) ?? GetGenericThumbnail();
                 }
@@ -87,6 +91,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 {
                     html = $"<iframe width='640' height='360' " +
                            $"src='https://www.tiktok.com/embed/v2/{videoId}' " +
+                           $"alt='{title}' " +
                            $"frameborder='0' allowfullscreen></iframe>";
                     thumbnail_url = ScrapeOgImage(url) ?? GetGenericThumbnail();
                 }
@@ -98,6 +103,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 {
                     html = $"<iframe width='640' height='360' " +
                            $"src='https://clips.twitch.tv/embed?clip={clipId}&parent=example.com' " +
+                           $"alt='{title}' " +
                            $"frameborder='0' allowfullscreen></iframe>";
                     thumbnail_url = $"https://clips-media-assets2.twitch.tv/{clipId}-preview.jpg";
                 }

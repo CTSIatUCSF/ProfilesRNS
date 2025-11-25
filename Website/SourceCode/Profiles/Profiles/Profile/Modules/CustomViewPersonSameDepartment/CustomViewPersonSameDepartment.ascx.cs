@@ -73,7 +73,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonSameDepartment
             if (litListItem != null)
                 litListItem.Text = "<li><a href='" + x.URI + "'>" + "<div class='thumbnail'><img src='" + Brand.GetThemedDomain() + 
                     //"/PhotoHandler.jpg?NodeID=" + x.NodeID + "' width='15' height='30'></img></div>" +
-                    "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + x.NodeID + "&Thumbnail=True&Width=15' width='15' height='30'></img></div>" + 
+                    "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + x.NodeID + "&Thumbnail=True&Width=15' width='15' height='30' alt=''></img></div>" + 
                     x.Name + "</a></li>";
 
             if (e.Item.ItemType == ListItemType.Footer)

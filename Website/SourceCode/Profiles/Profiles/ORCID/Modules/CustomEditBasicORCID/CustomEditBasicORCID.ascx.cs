@@ -166,6 +166,7 @@ namespace Profiles.ORCID.Modules.CustomEditBasicORCID
             TextBox txtLabel = (TextBox)GridViewProperty.Rows[e.RowIndex].FindControl("txtLabel");
 
             data.UpdateLiteral(this.SubjectID, this.PredicateID, data.GetStoreNode(hdLabel.Value), data.GetStoreNode(txtLabel.Text.Trim()), this.PropertyListXML);
+            Framework.Utilities.ExternalCache.ClearExternalCacheFor(this.SubjectID);
             GridViewProperty.EditIndex = -1;
             this.FillPropertyGrid(true);
             upnlEditSection.Update();

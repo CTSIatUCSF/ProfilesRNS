@@ -74,12 +74,15 @@ namespace Profiles.Login
 
         public static string GetJavascriptSrc(HttpRequest request)
         {        
+            // nginx inspired, adding check that this page was accessed by a redirect from a login
             if (String.IsNullOrEmpty(ConfigurationManager.AppSettings["Shibboleth.LoginURL"]) || Brand.GetCurrentBrand() == null 
-                || request.Path.Contains("/Error") || request.Path.ToLower().Contains("/login/") || request.Url.ToString().StartsWith(MultiShibLogin.GetListOfDomainsShibbolizedFirst()[0]))
+                || request.Path.Contains("/Error") || request.Path.ToLower().Contains("/login/") 
+                || request.Url.ToString().StartsWith(MultiShibLogin.GetListOfDomainsShibbolizedFirst()[0])
+                || !"true".Equals(request["nocache"]))
             {
                 return null;
             }
-            else
+            else 
             {
                 SessionManagement sm = new SessionManagement();
                 Session session = sm.Session();

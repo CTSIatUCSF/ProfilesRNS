@@ -860,25 +860,25 @@ namespace Profiles.Framework.Utilities
         public void SessionActivityLog()
         {
             Session session = new SessionManagement().Session();
-            Cache.AlterDependency(session.SessionID);
+            Cache.AlterDependency(session.SessionID, false);
             ActivityLog(0, session.PersonID, null, 0, null, null, null);
         }
 
         protected void EditActivityLog(long subjectID, string property, string privacyCode)
         {
-            Cache.AlterDependency(subjectID.ToString());
+            Cache.AlterDependency(subjectID.ToString(), false);
             ActivityLog(subjectID, 0, property, 0, privacyCode, null, null);
         }
 
         protected void EditActivityLog(long subjectID, long propertyID, string privacyCode)
         {
-            Cache.AlterDependency(subjectID.ToString());
+            Cache.AlterDependency(subjectID.ToString(), false);
             ActivityLog(subjectID, 0, null, propertyID, privacyCode, null, null);
         }
 
         protected void EditActivityLog(long subjectID, string property, string privacyCode, string param1, string param2)
         {
-            Cache.AlterDependency(subjectID.ToString());
+            Cache.AlterDependency(subjectID.ToString(), false);
             ActivityLog(subjectID, 0, property, 0, privacyCode, param1, param2);
         }
 
@@ -1008,7 +1008,7 @@ namespace Profiles.Framework.Utilities
         // Load all the ID's for people so we don't have to hit the DB all the time
         public void LoadUCSFIdSet()
         {
-            string IDSetSQL = "select p.personid, p.nodeid, p.prettyurl, u.internalusername, p.InstitutionAbbreviation from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID";
+            string IDSetSQL = "select p.personid, p.nodeid, p.prettyurl, u.internalusername, p.InstitutionAbbreviation from [UCSF.].vwPerson p join [User.Account].[User] u on p.UserID = u.UserID WHERE p.IsActive = 1";
 
             using (SqlDataReader reader = GetDBCommand(IDSetSQL, CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
             {
@@ -1059,6 +1059,21 @@ namespace Profiles.Framework.Utilities
             }
             return false;
         }
+
+        public Dictionary<string, string> GetPrettyURLRedirects()
+        {
+            Dictionary<string, string> prettyURLRedirects = new Dictionary<string, string>();
+
+            using (SqlDataReader reader = GetDBCommand("select PrettyURL, RedirectToURL FROM [UCSF.].[NameAdditions] WHERE RedirectToURL is not null", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    prettyURLRedirects.Add(reader[0].ToString(), reader[1].ToString());
+                }
+            }
+            return prettyURLRedirects;
+        }
+
         #region "Groups"
         public bool IsGroupAdmin(int UserID)
         {

@@ -20,6 +20,7 @@ using System.Diagnostics;
 
 using Profiles.Framework.Utilities;
 using System.Net;
+using System.Collections.Generic;
 
 namespace Profiles
 {
@@ -145,6 +146,14 @@ namespace Profiles
                     loop++;
                 }
             }
+
+            // add permanent redirects for less pretty URL's that got out there
+            foreach (KeyValuePair<string, string> prettyURLRedirect in (new Framework.Utilities.DataIO()).GetPrettyURLRedirects())
+            {
+                string[] uriparts = prettyURLRedirect.Key.Split('/');
+                routes.Add(prettyURLRedirect.Key, new Route(uriparts[uriparts.Length - 1], new PermanentRedirectPrettyURLRouteHandler(prettyURLRedirect.Value)));
+            }
+
         }
 
         //***************************************************************************************************************************************
@@ -308,6 +317,13 @@ namespace Profiles
             string url = HttpContext.Current.Request.Url.ToString().ToLower();
             string prettyUrl = url.Substring(0, url.IndexOf(applicationName)) + applicationName;
 
+            // this is possible because it might be from another domain
+            if (!UCSFIDSet.PrettyURLs.Contains(prettyUrl))
+            {
+                // this is cheap but it works. This will always properly throw a 404
+                return new PermanentRedirectPrettyURLHttpHandler("");
+            }
+
             //Loop each of the parts of the path and pack them into the current request context as 
             //parameters so they can be processed by the REST.aspx process
             foreach (var urlParm in requestContext.RouteData.Values)
@@ -323,4 +339,49 @@ namespace Profiles
         }
     }
 
+    // To redirect less pretty URLs that got out there to the better one
+    // Note that this will currently redirect across all domains, we need to fix that!
+    public class PermanentRedirectPrettyURLHttpHandler : IHttpHandler
+    {
+        private readonly string _newUrl;
+
+        public PermanentRedirectPrettyURLHttpHandler(string newUrl)
+        {
+            _newUrl = newUrl;
+        }
+
+        public void ProcessRequest(HttpContext context)
+        {
+            // make sure base matches, otherwise 404
+            if (Brand.GetByURL(context.Request.Url.AbsoluteUri) == Brand.GetByURL(_newUrl))
+            {
+                context.Response.RedirectPermanent(_newUrl);
+            }
+            else
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+            }
+        }
+
+        public bool IsReusable
+        {
+            get { return false; } // Typically, handlers for redirects are not reusable
+        }
+    }
+
+    public class PermanentRedirectPrettyURLRouteHandler : IRouteHandler
+    {
+
+        private string redirectTo;
+
+        public PermanentRedirectPrettyURLRouteHandler(string redirectTo)
+        {
+            this.redirectTo = redirectTo;
+        }
+
+        public IHttpHandler GetHttpHandler(RequestContext requestContext)
+        {
+            return new PermanentRedirectPrettyURLHttpHandler(redirectTo);
+        }
+    }
 }

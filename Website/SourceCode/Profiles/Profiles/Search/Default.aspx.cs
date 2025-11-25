@@ -153,7 +153,7 @@ namespace Profiles.Search
             if (type == null || "searchform".Equals(type.ToLower()))
             {
                 // look at request path to see what tab and add class appropriately
-                body.Attributes.Add("class", "researcherprofiles--home-page");
+                body.Attributes.Add("class", "researcherprofiles--home-page researcherprofiles--is-not-being-served-via-proxy-cache");
                 
                 if ("all".Equals(tab))
                 {

@@ -58,7 +58,7 @@ namespace Profiles.Profile.Modules
 							html.AppendFormat(@"
 								<li>
 								<div>{0}</div>
-								<div class='viewIn'>View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/{1}' target='_new'>PubMed</a></div>	
+								<div class='viewIn'>View in: <a href='https://www.ncbi.nlm.nih.gov/pubmed/{1}' target='_new'>PubMed</a></div>	
 								<div>Cited: {2}</div>						
 								</li>
 							",
@@ -70,7 +70,7 @@ namespace Profiles.Profile.Modules
 							html.AppendFormat(@"
 								<li>
 								<div>{0}</div>
-								<div class='viewIn'>View in: <a href='//www.ncbi.nlm.nih.gov/pubmed/{1}' target='_new'>PubMed</a></div>							
+								<div class='viewIn'>View in: <a href='https://www.ncbi.nlm.nih.gov/pubmed/{1}' target='_new'>PubMed</a></div>							
 								</li>
 							", 
 								reader["reference"].ToString(), 

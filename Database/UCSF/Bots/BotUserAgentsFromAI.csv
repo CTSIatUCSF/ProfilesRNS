@@ -1,0 +1,89 @@
+              ".*anirvan.*", // Anirvan's UCSF scripts
+              ".*bot.*", // General bot pattern
+              ".*crawl.*", // General crawler pattern
+              ".*spider.*", // General spider pattern
+              ".*CensysInspect.*", // Whatever
+              "^Owler.*", // Whatever
+              ".*acunetix.*", // Vulnerability scanner
+              ".*adscanner.*", // Ad scanner
+              ".*AhrefsBot.*", // SEO
+              "^Apache-HttpClient/.*", // Apache
+              ".*Applebot.*", // Apple
+              "^axios/.*", // axios
+              ".*Baiduspider.*", // Baidu
+              ".*BFAC.*", // Vulnerability scanner
+              ".*blackhat.*", // Malicious
+              ".*BLEXBot.*", // Web scraper
+              ".*Burp Suite.*", // Security scanner
+              ".*Bytespider.*", // Web scraper
+              ".*CCBot.*", // Web scraper
+              ".*CheckMarkNetwork.*", // Web scraper
+              "^commix/.*", // commix
+              "^curl/.*", // curl
+              ".*Dataprovider.*", // Web scraper
+              ".*Diffbot.*", // Web scraper
+              ".*dirbuster.*", // Security scanner
+              ".*DotBot.*", // Web scraper
+              "^Drupal\\b", // Drupal
+              ".*DuckDuckBot.*", // DuckDuckGo
+              ".*EasyJSON.*", // EasyJSON
+              ".*FacebookBot.*", // Facebook
+              ".*fimap.*", // Security scanner
+              ".*Google Favicon.*", // Google
+              ".*Google-InspectionTool.*", // Google
+              ".*Google-Read-Aloud.*", // Google
+              ".*Googlebot.*", // Google
+              ".*GoogleOther.*", // Google
+              ".*grabber.*", // Web scraper
+              ".*Hakai.*", // Security scanner
+              ".*HubSpot.*", // Marketing bot
+              ".*jaeles.*", // Security scanner
+              "^Java/.*", // Java
+              ".*JavaFX.*", // Java
+              ".*Jigsaw.*", // Java
+              ".*libwww-perl.*", // Perl
+              ".*linkcheck.*", // linkcheck
+              ".*LinkedInBot.*", // LinkedIn
+              ".*ltx71.*", // ltx71
+              ".*masscan.*", // Masscan
+              ".*Mediapartners-Google.*", // Google Ads
+              ".*MegaIndex.*", // Web scraper
+              ".*MJ12bot.*", // Web scraper
+              ".*MojeekBot.*", // Web scraper
+              ".*MTRobot.*", // Web scraper
+              ".*Nikto.*", // Security scanner
+              ".*nmap.*", // Security scanner
+              ".*Nutch.*", // Web crawler
+              ".*OpenVAS.*", // Security scanner
+              ".*PetalBot.*", // Petal
+              ".*Pinterestbot.*", // Pinterest
+              "^Postman.*", // Postman
+              "^Python.*", // Python
+              ".*Riddler.*", // Riddler
+              "^Ruby.*", // Ruby
+              ".*RyteBot.*", // Ryte
+              ".*scoutjet.*", // scoutjet
+              "^Scrapy.*", // Scrapy
+              ".*Search API", // Search API
+              ".*semanticbot.*", // Semantic
+              ".*SemrushBot.*", // Semrush
+              ".*SeznamBot.*", // Seznam
+              ".*Slurp.*", // Slurp
+              ".*SMTBot.*", // SMTBot
+              ".*Sogou Spider.*", // Sogou
+              ".*Sosospider.*", // Sosospider
+              ".*sqlmap.*", // sqlmap
+              ".*Telesphoreo.*", // Telesphoreo
+              ".*Twitterbot.*", // Twitterbot
+              ".*UptimeRobot.*", // UptimeRobot
+              ".*VelenPublicWebCrawler.*", // Velen
+              ".*w3af.*", // Security scanner
+              "^WordPress.*", // WordPress
+              ".*WPScan.*", // WPScan
+              ".*www-perl.*", // Perl
+              ".*Xenu Link Sleuth.*", // Xenu Link Sleuth
+              ".*Y!J-BRW.*", // Yahoo
+              ".*YandexBot.*", // Yandex
+              ".*YandexImages.*", // Yandex
+              ".*YetiBot.*", // Yeti
+              ".*ZoominfoBot.*", // Zoominfo

@@ -105,6 +105,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
             {
                 string imageurl = base.BaseData.SelectSingleNode("//rdf:RDF/rdf:Description[1]/prns:mainImage/@rdf:resource", base.Namespaces).Value;
                 imgPhoto.ImageUrl = imageurl + "&cachekey=" + Guid.NewGuid().ToString();
+                imgPhoto.AlternateText = "Photo of " + base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description[1]/prns:fullName", base.Namespaces).InnerText;
             }
             else
             {
@@ -155,7 +156,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonGeneralInfo
                 PronounsByNodeId = new Dictionary<long, string>();
 
                 Utilities.DataIO data = new Profiles.Profile.Utilities.DataIO();
-                SqlCommand cmd = new SqlCommand(" select n.Pronouns, u.nodeid from[UCSF.].[NameAdditions] n join[UCSF.].vwPerson u on u.InternalUserName = n.InternalUserName WHERE n.Pronouns is not null");
+                SqlCommand cmd = new SqlCommand("select n.Pronouns, u.nodeid from [UCSF.].[NameAdditions] n join[UCSF.].vwPerson u on u.InternalUserName = n.InternalUserName WHERE n.Pronouns is not null");
                 SqlDataReader reader = data.GetSQLDataReader(cmd);
                 while (reader.Read())
                 {

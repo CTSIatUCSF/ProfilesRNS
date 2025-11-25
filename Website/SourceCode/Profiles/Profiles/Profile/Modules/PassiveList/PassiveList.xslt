@@ -21,7 +21,7 @@
             <a href="{@ItemURL}">
               <xsl:if test="@NodeID">
                 <div class="thumbnail">
-                  <img src="{$root}/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeId={@NodeID}&amp;Thumbnail=True&amp;Width=15" width="15" height="30"/>
+                  <img src="{$root}/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeId={@NodeID}&amp;Thumbnail=True&amp;Width=15" width="15" height="30" alt=""/>
                 </div>
               </xsl:if>                
               <xsl:value-of select="@ItemURLText"/>

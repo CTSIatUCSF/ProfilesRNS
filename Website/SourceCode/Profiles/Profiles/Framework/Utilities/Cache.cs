@@ -11,11 +11,15 @@
   
 */
 using System;
-using System.Xml;
 using System.Configuration;
+using System.IO;
+using System.Net;
+using System.Security.Cryptography;
+using System.Security.Policy;
+using System.Timers;
 using System.Web;
 using System.Web.Caching;
-using System.Security.Cryptography;
+using System.Xml;
 
 
 namespace Profiles.Framework.Utilities
@@ -82,13 +86,13 @@ namespace Profiles.Framework.Utilities
             dependencyKey[0] = DEPENDENCY_PREFIX + nodeId.ToString();
 
             if (HttpRuntime.Cache[dependencyKey[0]] == null)
-                AlterDependency(nodeId.ToString());
+                AlterDependency(nodeId.ToString(), false); // UCSF added
 
             if (sessionID != null)
             {
                 dependencyKey[1] = DEPENDENCY_PREFIX + sessionID;
                 if (HttpRuntime.Cache[dependencyKey[1]] == null)
-                    AlterDependency(sessionID);
+                    AlterDependency(sessionID, false); // UCSF added
             }
             Set(key, data, defaultTimeout, new CacheDependency(null, dependencyKey));
         }
@@ -159,12 +163,20 @@ namespace Profiles.Framework.Utilities
 
         }
 
-
         static public void AlterDependency(string key)
         {
-            HttpRuntime.Cache.Insert(DEPENDENCY_PREFIX + key, Guid.NewGuid().ToString());
+            AlterDependency(key, true);
         }
 
+        // UCSF added 
+        static public void AlterDependency(string key, bool clearExternalCache)
+        {
+            if (clearExternalCache)
+            {
+                ExternalCache.ClearExternalCacheFor(key);
+            }
+            HttpRuntime.Cache.Insert(DEPENDENCY_PREFIX + key, Guid.NewGuid().ToString());
+        }
 
         /// <summary>
         /// Takes a string of plain text and then returns a MD5 hash value
@@ -186,7 +198,6 @@ namespace Profiles.Framework.Utilities
 
 
     }
-
 
 
 }

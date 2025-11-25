@@ -33,7 +33,6 @@ namespace Profiles.Search.Modules.AdvancedSearch
             brandedSections.Add("Faculty Mentoring", new List<string>(new string[]{"UCSF", "UC Davis", "UCSD"}));
             brandedSections.Add("Clinical Trials", new List<string>(new string[] { "UCSF", "UC Davis", "UCSD", "UCLA", "UCI"}));
             brandedSections.Add("Student Projects", new List<string>(new string[] { "UC Davis"}));
-            brandedSections.Add("Academic Senate Committees", new List<string>(new string[] { "UCSF"}));
         }
 
         protected void Page_Load(object sender, EventArgs e)

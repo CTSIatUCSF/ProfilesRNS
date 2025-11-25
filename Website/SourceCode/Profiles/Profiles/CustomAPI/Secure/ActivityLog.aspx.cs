@@ -1,9 +1,10 @@
-﻿using System;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Data;
-using CsvHelper;
+﻿using CsvHelper;
 using Profiles.Framework.Utilities;
+using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Globalization;
 
 namespace Profiles.CustomAPI.Secure
 {
@@ -35,7 +36,7 @@ namespace Profiles.CustomAPI.Secure
                 dbcommand.Parameters.Add(afterDate != null ? new SqlParameter("@afterDT", afterDate) : new SqlParameter("@afterDT", DBNull.Value));
                 using (SqlDataReader dbreader = dbcommand.ExecuteReader(CommandBehavior.CloseConnection))
                 {
-                    CsvWriter writer = new CsvWriter(Response.Output);
+                    CsvWriter writer = new CsvWriter(Response.Output, CultureInfo.InvariantCulture);
                     while (dbreader.Read())
                     {
                         writer.WriteField(dbreader.GetInt32(0));

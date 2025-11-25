@@ -77,6 +77,9 @@ namespace Profiles.Framework
                 {
                     divContentLeft.Visible = false;
                 }
+                // So the proxy knows
+                Response.Cookies.Add(new HttpCookie("X-Profiles-User-Is-Logged-In", (new SessionManagement()).Session().IsLoggedIn() ? "true" : "false"));
+                //Response.AppendHeader("X-Profiles-User-Is-Logged-In", (new SessionManagement()).Session().IsLoggedIn() ? "True" : "False");
             }
             catch (Exception ex)
             {

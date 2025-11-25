@@ -42,6 +42,7 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditMentoring.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditIdentity.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditCommunityAndPublicService.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditAcademicSenate.ascx" Enabled="true"/>
 </ModuleList>
 
 

@@ -16,7 +16,7 @@
             <br></br>
             <div class="viewIn">
               <span class="viewInLabel">View in: </span>
-              <a href="http://www.ncbi.nlm.nih.gov/pubmed/{bibo:pmid}" target="_blank">
+              <a href="https://www.ncbi.nlm.nih.gov/pubmed/{bibo:pmid}" target="_blank">
                 <xsl:value-of select="'PubMed'"/>
               </a>
             </div>

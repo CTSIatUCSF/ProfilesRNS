@@ -59,11 +59,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=3.5.51116.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL" />
-    <Reference Include="CsvHelper, Version=7.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
-      <HintPath>..\packages\CsvHelper.7.1.1\lib\net45\CsvHelper.dll</HintPath>
+    <Reference Include="CsvHelper, Version=33.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.33.1.0\lib\net48\CsvHelper.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.11.71.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.71\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.12.4.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.12.4\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.10, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.10\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.HashCode.6.0.0\lib\net462\Microsoft.Bcl.HashCode.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -71,15 +77,67 @@
       <HintPath>bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.ServiceModel">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Speech" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.6.3\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -366,6 +424,7 @@
     <Content Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx" />
     <Content Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditIdentity.ascx" />
+    <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditAcademicSenate.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditMentoring.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditCommunityAndPublicService.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditUCSFFeaturedVideos.ascx" />
@@ -573,10 +632,12 @@
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx" />
     <Content Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\AcademicSenate.js" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\CommunityAndPublicService.ascx" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\CommunityAndPublicService.js" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\Identity.ascx" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\Identity.js" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\AcademicSenate.ascx" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\Mentoring.js" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\Mentoring.ascx" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\jquery.validate.min.js" />
@@ -671,6 +732,7 @@
     <Content Include="App_Themes\UCSF\Images\Celebrating\ucsf-women-in-science-2022-narrow.jpg" />
     <Content Include="App_Themes\UCSF\Images\Celebrating\ucsf-women-in-science-2022-wide.jpg" />
     <Content Include="Celebrating\PresentationXML\WomenInScience.xml" />
+    <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfileDebug.pubxml" />
     <Content Include="rezaabbasi-asl.abbasiasl" />
     <None Include="Web.config">
@@ -992,6 +1054,13 @@
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditIdentity.ascx.designer.cs">
       <DependentUpon>EditIdentity.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditAcademicSenate.ascx.cs">
+      <DependentUpon>EditAcademicSenate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditAcademicSenate.ascx.designer.cs">
+      <DependentUpon>EditAcademicSenate.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditMentoring.ascx.cs">
       <DependentUpon>EditMentoring.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1057,6 +1126,7 @@
       <DependentUpon>MyActiveNetwork.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Framework\Utilities\ExternalCache.cs" />
     <Compile Include="Framework\Utilities\PartialDowntime.cs" />
     <Compile Include="Framework\Utilities\UCSFFeaturedPeople.cs" />
     <Compile Include="Framework\Utilities\Institution.cs" />
@@ -1697,6 +1767,13 @@
     </Compile>
     <Compile Include="Profile\Modules\CustomViewUCSFPlugins\Identity.ascx.designer.cs">
       <DependentUpon>Identity.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\AcademicSenate.ascx.cs">
+      <DependentUpon>AcademicSenate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\AcademicSenate.ascx.designer.cs">
+      <DependentUpon>AcademicSenate.ascx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\CustomViewUCSFPlugins\Mentoring.ascx.cs">
       <DependentUpon>Mentoring.ascx</DependentUpon>
@@ -2625,7 +2702,6 @@
     <None Include="ORCID\ORCIDPrivacySettingsandProfiles.pdf" />
     <Content Include="Profile\Modules\NetworkClusterFlash\NetworkClusterTemplate.Master" />
     <Content Include="Profile\Modules\CustomViewGroupGeneralInfo\GroupCompositePhotoHandler.ashx" />
-    <None Include="packages.config" />
     <Content Include="packages\bootstrap.4.1.3\bootstrap.4.1.3.nupkg" />
     <Content Include="packages\bootstrap.4.1.3\contentFiles\Content\bootstrap-grid.css.map" />
     <Content Include="packages\bootstrap.4.1.3\contentFiles\Content\bootstrap-grid.min.css.map" />

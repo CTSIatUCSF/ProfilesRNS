@@ -148,7 +148,7 @@ namespace Profiles.Profile.Modules.PassiveList
 
                         ucsfCustomItem.Text = "<a href = '" + personUrl + "'>" +
                             "<div class='thumbnail'><img src = '" + Brand.GetByPrimaryInstituion(inst).BasePath +
-                            "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + nodeId + "&Thumbnail=True&Width=15' width='15' height='30'/></div>" +
+                            "/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID=" + nodeId + "&Thumbnail=True&Width=15' width='15' height='30' alt=''/></div>" +
                             il.ItemURLText +
                             "<span class='researcherprofiles--institution-name-associated-with-researcher'>" + inst.GetAbbreviation() + "</span></a>";
                     }

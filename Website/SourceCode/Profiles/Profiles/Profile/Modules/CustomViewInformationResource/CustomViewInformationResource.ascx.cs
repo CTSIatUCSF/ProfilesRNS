@@ -73,7 +73,7 @@ namespace Profiles.Profile.Modules.CustomViewInformationResource
 
 
             if (base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/bibo:pmid", base.Namespaces) != null)
-                litPublication.Text = "<a href=\"http://www.ncbi.nlm.nih.gov/pubmed/" + base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/bibo:pmid", base.Namespaces).InnerText + "\"target=\"_blank\">PubMed</a>";
+                litPublication.Text = "<a href=\"https://www.ncbi.nlm.nih.gov/pubmed/" + base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/bibo:pmid", base.Namespaces).InnerText + "\"target=\"_blank\">PubMed</a>";
             else
                 divViewIn.Visible = false;
 

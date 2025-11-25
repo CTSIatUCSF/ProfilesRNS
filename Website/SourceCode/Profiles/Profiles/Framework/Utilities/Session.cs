@@ -11,6 +11,7 @@
   
 */
 using System;
+using System.Text;
 using System.Web;
 
 namespace Profiles.Framework.Utilities
@@ -123,22 +124,49 @@ namespace Profiles.Framework.Utilities
             HttpContext.Current.Session["PROFILES_SESSION"] = null;
             HttpContext.Current.Session.Abandon();
         }
+
+
+        public static string GetRequestHeadersAsString(HttpRequest request)
+        {
+            string headers = String.Empty;
+            foreach (var key in request.Headers.AllKeys)
+                headers += key + "=" + request.Headers[key] + Environment.NewLine;
+            return headers;
+        }
+
         // UCSF, from https://stackoverflow.com/questions/735350/how-to-get-a-users-client-ip-address-in-asp-net
         protected string GetIPAddress()
         {
             System.Web.HttpContext context = System.Web.HttpContext.Current;
-            string ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            string ipAddress = context.Request.Headers["X-Real-IP"];
 
+            // try a few others as needed
+            if (string.IsNullOrEmpty(ipAddress))
+            {
+                ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            }
+            if (string.IsNullOrEmpty(ipAddress))
+            {
+                ipAddress = context.Request.ServerVariables["REMOTE_ADDR"];
+            }
+
+            // if it is an array get the first one
             if (!string.IsNullOrEmpty(ipAddress))
             {
                 string[] addresses = ipAddress.Split(',');
                 if (addresses.Length != 0)
                 {
-                    return addresses[0];
+                    ipAddress = addresses[0];
                 }
             }
 
-            return context.Request.ServerVariables["REMOTE_ADDR"];
+            if ("52.137.191.165".Equals(ipAddress))
+            {
+                // log this!
+                DebugLogging.Log("Nginx IP found! All headers = " + GetRequestHeadersAsString(context.Request), true);
+                DebugLogging.Log("Nginx URL = " + context.Request.Url.AbsoluteUri, true);
+            }
+            return ipAddress;
         }
 
         /// <summary>

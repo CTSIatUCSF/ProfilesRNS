@@ -3,7 +3,7 @@
 <table>
     <tr>
         <td style="padding-right:30px;padding-top:10px;" align="right" valign="top">
-            <asp:Image itemprop="image" runat="server" ID="imgPhoto" />
+            <asp:Image itemprop="image" runat="server" ID="imgPhoto" AlternateText=""/>
         </td>
         <td>
             <asp:Literal runat="server" ID="litPersonalInfo"></asp:Literal>

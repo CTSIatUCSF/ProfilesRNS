@@ -1,6 +1,6 @@
 /* colors are from style guide at https://identity.ucsf.edu/print-digital/digital-colors */
 :root {
-    --heading-color: #F26D04;
+    --heading-color: #FA6E1E;	/* M3 Orange */
     --very-dark-background-color: #052049;
     --menu-important-background-color: #efded1;
 }
@@ -10,13 +10,14 @@
     justify-content: space-between;
     align-items: center;
     align-content: space-between;
+
 }
 
-    .researcherprofiles--branded-institutional-banner--menu > ul:last-of-type li {
-        display: inline;
-        float: left;
-        margin-right: 1rem;
-    }
+.researcherprofiles--branded-institutional-banner--menu>ul:last-of-type li {
+    display: inline;
+    float: left;
+    margin-right: 1rem;
+}
 
 .researcherprofiles--branded-institutional-banner--menu {
     padding: 0.5rem 1rem;
@@ -46,9 +47,9 @@
     color: var(--text-muted-color) !important;
 }
 
-    .researcherprofiles--institution-header--ucsf-banner-text-callout a {
-        color: var(--generic-link-color) !important;
-    }
+.researcherprofiles--institution-header--ucsf-banner-text-callout a {
+    color: var(--generic-link-color) !important;
+}
 
 /* ###################################################################### */
 /* FEATURED TOPIC OR PEOPLE AD BLOCK ON HOME PAGE                         */
@@ -65,12 +66,12 @@
     background: #f0f0f0;
 }
 
-    #featured-people-banner-container:hover,
-    .researcherprofiles--featured-people-banner--container:hover {
-        opacity: 1;
-        border-color: #999;
-        box-shadow: 0.5rem 0.5rem 1rem #eee;
-    }
+#featured-people-banner-container:hover,
+.researcherprofiles--featured-people-banner--container:hover {
+    opacity: 1;
+    border-color: #999;
+    box-shadow: 0.5rem 0.5rem 1rem #eee;
+}
 
 /* format the row of headshots */
 #featured-people-banner-row,
@@ -85,16 +86,16 @@
     align-items: center;
 }
 
-    /* format individual headshots in the row */
-    #featured-people-banner-row img,
-    .researcherprofiles--featured-people-banner--row img {
-        height: 100%;
-        /* Prevents the images from shrinking or changing aspect ratio */
-        width: auto;
-        flex-shrink: 0;
-        object-fit: cover;
-        margin: 0;
-    }
+/* format individual headshots in the row */
+#featured-people-banner-row img,
+.researcherprofiles--featured-people-banner--row img {
+    height: 100%;
+    /* Prevents the images from shrinking or changing aspect ratio */
+    width: auto;
+    flex-shrink: 0;
+    object-fit: cover;
+    margin: 0;
+}
 
 /* format the text under the images */
 #featured-people-banner-container figcaption,
@@ -150,15 +151,15 @@
     margin-top: 1rem;
 }
 
-    #ctl00_WomenInScienceBanner #ucsf--women-in-science picture,
-    #ctl00_WomenInScienceBanner #ucsf--women-in-science img,
-    #ctl00_LatinxHeritageBanner #ucsf--latinx-heritage picture,
-    #ctl00_LatinxHeritageBanner #ucsf--latinx-heritage img,
-    #ctl00_CelebratingBanner #ucsf--celebrating picture,
-    #ctl00_CelebratingBanner #ucsf--celebrating img {
-        width: 100%;
-        height: auto
-    }
+#ctl00_WomenInScienceBanner #ucsf--women-in-science picture,
+#ctl00_WomenInScienceBanner #ucsf--women-in-science img,
+#ctl00_LatinxHeritageBanner #ucsf--latinx-heritage picture,
+#ctl00_LatinxHeritageBanner #ucsf--latinx-heritage img,
+#ctl00_CelebratingBanner #ucsf--celebrating picture,
+#ctl00_CelebratingBanner #ucsf--celebrating img {
+    width: 100%;
+    height: auto
+}
 
 /* temporarily disabling heroes for UCSF */
 #ctl00_ContentActive_rptActive_ctl00_ctl00_HeroNavbarPanel {

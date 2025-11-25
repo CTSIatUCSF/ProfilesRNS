@@ -173,6 +173,7 @@ namespace Profiles.Edit.Modules.EditDataTypeProperty
             TextBox txtLabelGrid = (TextBox)GridViewProperty.Rows[e.RowIndex].FindControl("txtLabelGrid");
 
             data.UpdateLiteral(this.SubjectID, this.PredicateID, data.GetStoreNode(hdLabel.Value), data.GetStoreNode(txtLabelGrid.Text.Trim()), this.PropertyListXML);
+            Framework.Utilities.ExternalCache.ClearExternalCacheFor(this.SubjectID);
             GridViewProperty.EditIndex = -1;
             this.FillPropertyGrid(true);
             upnlEditSection.Update();

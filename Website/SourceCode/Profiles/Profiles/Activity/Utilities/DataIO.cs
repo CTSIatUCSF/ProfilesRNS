@@ -231,7 +231,7 @@ namespace Profiles.Activity.Utilities
                             string body = "";
                             if (param1 == "PMID" || param1 == "Add PMID")
                             {
-                                url = "http://www.ncbi.nlm.nih.gov/pubmed/" + param2;
+                                url = "https://www.ncbi.nlm.nih.gov/pubmed/" + param2;
                                 queryTitle = "SELECT JournalTitle FROM [Profile.Data].[Publication.PubMed.General] with(nolock) " +
                                                         "WHERE PMID = cast(" + param2 + " as int)";
                                 journalTitle = GetStringValue(queryTitle, "JournalTitle");

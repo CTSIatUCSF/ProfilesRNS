@@ -197,6 +197,7 @@ namespace Profiles.Framework.Modules.MainMenu
 
         protected void DrawSearchBar()
         {
+            searchTypeDropDown.Attributes.Add("aria-label", "Records to search");
             foreach (ListItem item in searchTypeDropDown.Items)
             {
                 // default everything search

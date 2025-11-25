@@ -137,7 +137,7 @@ namespace Profiles.Profile
             }
             else
             {
-                body.Attributes.Add("class", "researcherprofiles--researcher-profile-page researcherprofiles--researcher-profile-or-network-page");
+                body.Attributes.Add("class", "researcherprofiles--researcher-profile-page researcherprofiles--researcher-profile-or-network-page researcherprofiles--is-not-being-served-via-proxy-cache");
             }
 
             HtmlLink Displaycss = new HtmlLink();

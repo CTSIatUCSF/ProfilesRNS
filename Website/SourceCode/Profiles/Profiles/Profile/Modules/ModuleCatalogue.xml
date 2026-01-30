@@ -47,6 +47,7 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="Identity.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="CommunityAndPublicService.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="AcademicSenate.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="ClinicalTrials.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="SimilarPeopleSameInstitution" FileName="SimilarPeopleSameInstitution.ascx" Enabled="true"/>
 </ModuleList>
 

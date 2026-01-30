@@ -178,7 +178,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         private void ResetDisplay()
         {
             phSecuritySettings.Visible = true;
-            Session["pnlImportVideo.Visible"] = null;
+            Session["pnlImport" + this.PlugInName + ".Visible"] = null;
             pnlAddEdit.Visible = true;
             txtInstitution.Text = string.Empty;
             txtStartYear.Text = string.Empty;

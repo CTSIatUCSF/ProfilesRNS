@@ -62,7 +62,7 @@ ul li { padding-top: 10px; }
   </li>
   <li><strong>Clinical Trials</strong> 
       <ul>
-		<li>Data collected from <a href="https://clinicaltrials.gov/" target="_blank">ClincalTrials.gov</a>.
+		<li>Data collected from <a href="https://clinicaltrials.gov/" target="_blank">ClinicalTrials.gov</a>.
 		</li>
 		<li>Researchers can feature or hide individual trials.
 		</li>

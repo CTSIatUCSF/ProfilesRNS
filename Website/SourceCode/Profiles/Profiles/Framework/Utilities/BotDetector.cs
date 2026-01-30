@@ -15,11 +15,13 @@ namespace Profiles.Framework.Utilities
         private static int IPIsBot_CacheTimeoutSeconds;
         private static int IPIsBot_Threshold;
         private static string[] Disallowed = { "shindigorng", "sparql", "profile", "display", "login", "activity" };
+        private static List<string> WhiteListedUserAgents = null;
 
         static BotDetector()
         {
             IPIsBot_CacheTimeoutSeconds = Int32.Parse(ConfigurationManager.AppSettings["IPIsBot.CacheTimeoutSeconds"]);
             IPIsBot_Threshold = Int32.Parse(ConfigurationManager.AppSettings["IPIsBot.Threshold"]);
+            WhiteListedUserAgents = new List<String>(ConfigurationManager.AppSettings["UserAgentIsBot.WhiteList"].Split(','));
 
             using (SqlDataReader reader = new DataIO().GetSQLDataReader("select UserAgent from [User.Session].[Bot]", CommandType.Text, CommandBehavior.CloseConnection, null))
             {
@@ -48,7 +50,11 @@ namespace Profiles.Framework.Utilities
         /// returns True if it's a bot, False otherwise
         public static bool IsBot(Session session)
         {
-            if (UserAgentIsForBot(session.UserAgent))
+            if (IsWhiteListed(session.UserAgent))
+            {
+                return false;
+            }
+            else if (UserAgentIsForBot(session.UserAgent))
             {
                 return true; // Block empty user-agents
             }
@@ -98,5 +104,18 @@ namespace Profiles.Framework.Utilities
             }
             else return Array.Exists(Disallowed, delegate (string s) { return s.Equals(context.Items["Param0"].ToString(), StringComparison.InvariantCultureIgnoreCase); });
         }
+
+        private static bool IsWhiteListed(string UserAgent)
+        {
+            foreach (string s in WhiteListedUserAgents)
+            {
+                if (UserAgent.Contains(s))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }

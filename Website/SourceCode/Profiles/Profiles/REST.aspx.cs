@@ -164,19 +164,10 @@ namespace Profiles
             if (session.IsBot && BotDetector.IsForbiddenToBots(HttpContext.Current))
             {
                 // always log this
-                // let USC through but not the others
-                //Mozilla/5.0 (compatible) USCProfilesBot
-                if (!session.UserAgent.Contains("USCProfilesBot"))
-                {
-                    Framework.Utilities.DebugLogging.Log("This Bot is ignoring Robots.txt! " + session.RequestIP + ":" + session.UserAgent + ", " + HttpContext.Current.Request.Url.ToString(), true);
+                Framework.Utilities.DebugLogging.Log("This Bot is ignoring Robots.txt! " + session.RequestIP + ":" + session.UserAgent + ", " + HttpContext.Current.Request.Url.ToString(), true);
 
-                    Response.StatusCode = Convert.ToInt16(HttpStatusCode.Forbidden);
-                    return;
-                }
-                else
-                {
-                    Framework.Utilities.DebugLogging.Log("This Bot is ok to let in " + session.RequestIP + ":" + session.UserAgent + ", " + HttpContext.Current.Request.Url.ToString(), true);
-                }
+                Response.StatusCode = Convert.ToInt16(HttpStatusCode.Forbidden);
+                return;
             }
 
             //UCSF for UC Wide Profiles

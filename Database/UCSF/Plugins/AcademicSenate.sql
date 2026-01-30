@@ -54,7 +54,8 @@ BEGIN
   WHILE EXISTS (SELECT * FROM #temp)
   BEGIN
 	  BEGIN TRANSACTION
-	  --SELECT TOP 1 @nodeid=nodeid, @PluginData=[Data] FROM #temp 
+	  --Use the commented out one if STRING_AGG is not supported on the version of SQL Server this is on
+	  --SELECT TOP 1 @nodeid=nodeid, @PluginData=[Data], @SearchableData='Academic Senate Committee FROM #temp 
 	  SELECT TOP 1 @nodeid=nodeid, @PluginData=[Data], @SearchableData='Academic Senate Committee, ' + STRING_AGG(c.title, ', ')  FROM #temp 
 			cross apply 
 			openjson([Data], '$.committees') with (title nvarchar(500) '$.title') as c

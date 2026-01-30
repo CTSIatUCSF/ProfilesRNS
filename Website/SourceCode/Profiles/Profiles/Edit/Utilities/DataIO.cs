@@ -2916,6 +2916,52 @@ namespace Profiles.Edit.Utilities
 
         #endregion
 
+        #region ClinicalTrials
+        public String[] GetManualClinicalTrialsEdits(Int64 nodeid)
+        {
+            string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();
+
+            using (SqlConnection dbconnection = new SqlConnection(connstr))
+            {
+                String[] retval = new String[2];
+
+                try
+                {
+                    dbconnection.Open();
+                    //For Output Parameters you need to pass a connection object to the framework so you can close it before reading the output params value.
+                    using (SqlDataReader reader = GetDBCommand("select [Add], [Remove] FROM [UCSF.Import].[ClinicalTrialsEdits] where nodeid = " + nodeid.ToString(), CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            retval[0] = reader[0].ToString();
+                            retval[1] = reader[1].ToString();
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Framework.Utilities.DebugLogging.Log(e.Message + e.StackTrace);
+                    throw new Exception(e.Message);
+                }
+
+                return retval;
+            }
+        }
+
+        public void UpsertManualClinicalTrialsEdits(Int64 nodeid, List<string> add, List<string> remove)
+        {
+            SqlParameter[] param = new SqlParameter[3];
+
+            param[0] = new SqlParameter("@NodeID", nodeid);
+            param[1] = new SqlParameter("@Add", String.Join(",", add));
+            param[2] = new SqlParameter("@Remove", String.Join(",", remove));
+            using (SqlCommand comm = GetDBCommand("[UCSF.Import].[UpsertClinicalTrialsEdits]", CommandType.StoredProcedure, CommandBehavior.CloseConnection, param))
+            {
+                ExecuteSQLDataCommand(comm);
+            }
+        }
+        #endregion
+
         #region ActivityLog
 
         protected void ActivityLog(XmlDocument PropertyListXML, long subjectID)

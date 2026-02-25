@@ -119,7 +119,7 @@
                            <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="/LatinxResearch" style="cursor: pointer;">Supporting <b>Latinx Health Research</b></a>
                         </asp:Panel>
                         <asp:Panel ID="CelebratingBlackHistory" runat="server" Visible="false">
-                           <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="https://mrc.ucsf.edu/events/black-history-month-events" target="_blank" style="cursor: pointer;">Celebrating <b>Black History</b></a>
+                           <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="https://mrc.ucsf.edu/events/black-history-month-2026" target="_blank" style="cursor: pointer;">Celebrating <b>Black History</b></a>
                         </asp:Panel>
                         <asp:Panel ID="CelebratingAANHPIHeritage" runat="server" Visible="false">
                            <a id="researcherprofiles--institution-header--ucsf-site-logo-text-link-underneath" href="https://mrc.ucsf.edu/events/aanhpi-heritage-month#AANHPI-Events" target="_blank" style="cursor: pointer;">Celebrating <b>AANHPI Heritage</b></a>
@@ -231,7 +231,7 @@
 								<a title="Keck Hospital of USC" href="https://www.keckmedicine.org/" target="_blank">Keck Hospital of USC</a>
 							</li>
 							<li>
-								<a title="USC Norris Cancer Hospital" href="https://ccnt.hsc.usc.edu/" target="_blank">USC Norris Cancer Hospital</a>
+								<a title="USC Norris Cancer Hospital" href="https://uscnorriscancer.usc.edu/" target="_blank">USC Norris Cancer Hospital</a>
 							</li>
 							<li>
 								<a id="powered-by-ctsi" href="https://sc-ctsi.org/" target="_blank">Powered by SC CTSI</a>
@@ -277,10 +277,10 @@
                 <asp:Panel ID="CelebratingBanner" runat="server" Visible="false">
                     <figure class="researcherprofiles--featured-people-banner--container">
                         <!-- This is a link to either the external URL, or the internal group landing page. -->
-                        <a href="/LGBTQResearch" class="researcherprofiles--featured-people-banner--link">
+                        <a href="https://mrc.ucsf.edu/events/black-history-month-2026" target="_blank" class="researcherprofiles--featured-people-banner--link" >
                             <div class="researcherprofiles--featured-people-banner--row">
                                 <!-- Insert very short heading here. The shorter, the better. This should be a custom string, not just the name of the category of people. -->
-                                <figcaption>Proud to Support <b>LGBTQ Health Research</b></figcaption>
+                                <figcaption>Celebrating <b>Black History</b></figcaption>
                                 <!-- Insert between between ~4-12 headshot URLs here. Include the people's names in the alt text as shown. -->
                                 <!-- Because this is happening server-sidem you're welcome to randomize them. -->
                                 <!-- Because every image is loaded, even if not shown, we don't want to add so many that page load is slowed unnecessarily.  -->

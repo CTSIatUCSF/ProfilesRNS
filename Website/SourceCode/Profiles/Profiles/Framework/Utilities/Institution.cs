@@ -108,6 +108,10 @@ namespace Profiles.Framework.Utilities
             {
                 return "UCSF".Equals(inst.GetAbbreviation());
             }
+            else if ("CollaborationInterests".Equals(plugin))
+            {
+                return "UCSF".Equals(inst.GetAbbreviation());
+            }
             return true;
         }
 

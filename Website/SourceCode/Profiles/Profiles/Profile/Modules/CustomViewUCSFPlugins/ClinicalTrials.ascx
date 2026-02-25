@@ -2,11 +2,9 @@
     Inherits="Profiles.Profile.Modules.CustomViewUCSFPlugins.ClinicalTrials" %>
 <asp:Literal runat="server" ID="litjs"></asp:Literal>
 		
-<div id="clinical-trials">
-	<div class="clinical-trials-list" >
-		<table></table>
-	</div>
-	<div id="debug" style="display:none"></div>
+<div id="http://profiles.catalyst.harvard.edu/ontology/plugins#ClinicalTrials">
+  <div>
+    <table class="collapsible researcherprofiles--researcher-profile-page--clinical-trials--table">
+    </table>
+  </div>
 </div>
-
-<div class="clincialTrials"></div>			

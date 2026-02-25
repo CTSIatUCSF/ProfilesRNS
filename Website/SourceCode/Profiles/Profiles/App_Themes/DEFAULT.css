@@ -394,7 +394,6 @@ html body #prns-nav ul.prns-main {
     #prns-nav ul.usermenu ul.drop a {
         color: var(--text-color) !important;
         background-color: var(--menu-background-color) !important;
-        //height: unset;
     }
 
 /* but background of user menu should be white */
@@ -1034,6 +1033,40 @@ html body #prns-nav ul.prns-main {
     .researcherprofiles--researcher-profile-page .youtube .yt_list li:hover {
         background: var(--menu-important-background-color);
     }
+
+/* ############################################################################################ */
+/* PROFILE PAGE: COLLABORATION INTERESTS
+/* ############################################################################################ */
+
+/* the block of topics */
+.researcherprofiles--collaboration-interests--topics {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+/* individual topic labels */
+.researcherprofiles--collaboration-interests--topic {
+    line-height: 1;
+    padding: 0.75rem;
+    margin: 0.3rem 0.3rem 0.3rem 0;
+    border-radius: 2rem;
+    background-color: var(--highlighted-panel-background-color);
+    white-space: nowrap;
+}
+
+/* do we have labels and a narrative? line and space above narrative */
+.researcherprofiles--collaboration-interests--topics + .researcherprofiles--collaboration-interests--narrative {
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+
+/* last updated is smaller, muted */
+.researcherprofiles--collaboration-interests--last-updated {
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--text-muted-color);
+}
 
 /* ############################################################################################ */
 /* PROFILE PAGE RIGHT COLUMN PASSIVE NETWORKS */

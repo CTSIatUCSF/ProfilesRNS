@@ -10,7 +10,7 @@
   
   -- be sure to remove the filter!!!!
   DECLARE @FilterID int
-  SELECT @FilterID=PersonFilterID FROM [Profile.Data].[Person.Filter] WHERE PersonFilter = 'Academic Senate Committee Service'
+  SELECT @FilterID=PersonFilterID FROM [Profile.Data].[Person.Filter] WHERE PersonFilter = 'Academic Senate Committees'
   DELETE FROM [Profile.Data].[Person.FilterRelationship] WHERE PersonFilterid = @FilterID
   DELETE FROM [Profile.Data].[Person.Filter] WHERE PersonFilterid = @FilterID
 

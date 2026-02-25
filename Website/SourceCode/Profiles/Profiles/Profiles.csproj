@@ -424,6 +424,7 @@
     <Content Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx" />
     <Content Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditClinicalTrials.ascx" />
+    <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditCollaborationInterests.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditIdentity.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditAcademicSenate.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditMentoring.ascx" />
@@ -638,6 +639,8 @@
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\AcademicSenate.js" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\CommunityAndPublicService.ascx" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\CommunityAndPublicService.js" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\CollaborationInterests.ascx" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\CollaborationInterests.js" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\Identity.ascx" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\Identity.js" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\AcademicSenate.ascx" />
@@ -1056,6 +1059,13 @@
     </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditClinicalTrials.ascx.designer.cs">
       <DependentUpon>EditClinicalTrials.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditCollaborationInterests.ascx.cs">
+      <DependentUpon>EditCollaborationInterests.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditCollaborationInterests.ascx.designer.cs">
+      <DependentUpon>EditCollaborationInterests.ascx</DependentUpon>
     </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditIdentity.ascx.cs">
       <DependentUpon>EditIdentity.ascx</DependentUpon>
@@ -1777,6 +1787,13 @@
     </Compile>
     <Compile Include="Profile\Modules\CustomViewUCSFPlugins\CommunityAndPublicService.ascx.designer.cs">
       <DependentUpon>CommunityAndPublicService.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\CollaborationInterests.ascx.cs">
+      <DependentUpon>CollaborationInterests.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\CollaborationInterests.ascx.designer.cs">
+      <DependentUpon>CollaborationInterests.ascx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\CustomViewUCSFPlugins\Identity.ascx.cs">
       <DependentUpon>Identity.ascx</DependentUpon>

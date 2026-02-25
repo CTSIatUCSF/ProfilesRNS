@@ -27,9 +27,6 @@ namespace Profiles.Framework.Utilities
         public Session()
         {
             this.PersonURI = string.Empty;
-
-
-            this.UserAgent = HttpContext.Current.Request.UserAgent;
         }
         public string ListID { get; set; }
         public string ListSize { get; set; }
@@ -191,7 +188,7 @@ namespace Profiles.Framework.Utilities
 
             session.RequestIP = GetIPAddress();
             session.HostName = System.Net.Dns.GetHostName();
-            session.UserAgent = HttpContext.Current.Request.UserAgent;
+            session.UserAgent = String.IsNullOrEmpty(HttpContext.Current.Request.UserAgent) ? "" : HttpContext.Current.Request.UserAgent;
             session.IsBot = BotDetector.IsBot(session); 
 
             if (sessionid == string.Empty)

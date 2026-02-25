@@ -40,10 +40,11 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditGlobalHealthEquity.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditUCSFFeaturedVideos.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditMentoring.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditIdentity.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditIdentity.ascx" Enabled="false"/>
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditCommunityAndPublicService.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditAcademicSenate.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditClinicalTrials.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditClinicalTrials.ascx" Enabled="false"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditCollaborationInterests.ascx" Enabled="false"/>
 </ModuleList>
 
 

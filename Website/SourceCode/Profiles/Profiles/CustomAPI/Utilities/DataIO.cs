@@ -32,6 +32,12 @@ namespace Profiles.CustomAPI.Utilities
 
         static readonly string PERSON = "Person";
         static readonly string DISAMBIGUATION = "Disambiguation";
+        static List<string> allowedIds;
+
+        static DataIO()
+        {
+            allowedIds = new List<String>(ConfigurationManager.AppSettings["SecureAPIClientIDs"].Split(','));
+        }
 
         public UCSFIDSet GetPerson(HttpRequest request)
         {
@@ -61,7 +67,6 @@ namespace Profiles.CustomAPI.Utilities
 
         public bool IsAllowedSecureAccess(HttpRequest request)
         {
-            List<string> allowedIds = new List<String>(ConfigurationManager.AppSettings["SecureAPIClientIDs"].Split(','));
             string ClientID = request["ClientID"];
             return !String.IsNullOrEmpty(ClientID) && allowedIds.Contains(ClientID);                
         }

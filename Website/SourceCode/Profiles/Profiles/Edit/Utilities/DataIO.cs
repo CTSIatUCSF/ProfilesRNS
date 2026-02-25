@@ -2917,6 +2917,22 @@ namespace Profiles.Edit.Utilities
         #endregion
 
         #region ClinicalTrials
+        public String GetClinicalTrialAPI()
+        {
+            // add the default
+            //new Brand(Brand.DefaultBrandName, Brand.GetSystemTheme(), null, GetRESTBasePath(), true);
+
+            using (SqlDataReader reader = GetDBCommand("select url from [Profile.Import].[PRNSWebservice.Options] where job = 'UCSFGetClinicalTrials'", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    return reader[0].ToString();
+                }
+            }
+            // default to stage?
+            return "https://stage-api.researcherprofiles.org/ClinicalTrialsApi/api/clinicaltrial";
+        }
+
         public String[] GetManualClinicalTrialsEdits(Int64 nodeid)
         {
             string connstr = (new Profiles.Framework.Utilities.DataIO()).GetConnectionString();

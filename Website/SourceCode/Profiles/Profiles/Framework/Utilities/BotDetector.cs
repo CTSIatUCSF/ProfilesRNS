@@ -33,7 +33,7 @@ namespace Profiles.Framework.Utilities
             }
         }
 
-        public static bool UserAgentIsForBot(string UserAgent)
+        private static bool UserAgentIsForBot(string UserAgent)
         {
             if (string.IsNullOrWhiteSpace(UserAgent))
             {
@@ -50,7 +50,8 @@ namespace Profiles.Framework.Utilities
         /// returns True if it's a bot, False otherwise
         public static bool IsBot(Session session)
         {
-            if (IsWhiteListed(session.UserAgent))
+            // sort of ugly to grab the request this way, but oh well
+            if (IsWhiteListed(session.UserAgent) || (new Profiles.CustomAPI.Utilities.DataIO()).IsAllowedSecureAccess(HttpContext.Current.Request))
             {
                 return false;
             }

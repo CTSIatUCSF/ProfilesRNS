@@ -13,12 +13,17 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 {
     public partial class ClinicalTrials : BaseUCSFModule
     {
-        private string PlugInName = "ClinicalTrials";
+        private static string PlugInName = "ClinicalTrials";
+        private static string ClinicalTrialsAPI;
         // actually store added and deleted
         private List<ClinicalTrial> entries { get; set; }
         private List<string> manualAdds;
         private List<string> manualRemoves;
 
+        static ClinicalTrials()
+        {
+            ClinicalTrialsAPI = (new Profiles.Edit.Utilities.DataIO()).GetClinicalTrialAPI();
+        }
 
         public ClinicalTrials() : base() { }
         public ClinicalTrials(XmlDocument pagedata, List<ModuleParams> moduleparams, XmlNamespaceManager pagenamespaces)
@@ -71,7 +76,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
         protected void btnAddEdit_OnClick(object sender, EventArgs e)
         {
-            string SessionKey = "pnlImport" + this.PlugInName + ".Visible";
+            string SessionKey = "pnlImport" + PlugInName + ".Visible";
             if (Session[SessionKey] == null)
             {
                 pnlInsert.Visible = true;
@@ -129,7 +134,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         private void ResetDisplay()
         {
             phSecuritySettings.Visible = true;
-            Session["pnlImport" + this.PlugInName + ".Visible"] = null;
+            Session["pnlImport" + PlugInName + ".Visible"] = null;
             pnlAddEdit.Visible = true;
             txtNct.Text = string.Empty;
 
@@ -195,7 +200,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
             if (GridViewPlugin.Rows.Count == 1) //they just deleted their last row
             {
-                GenericRDFDataIO.RemovePluginData(this.PlugInName, this.SubjectID);
+                GenericRDFDataIO.RemovePluginData(PlugInName, this.SubjectID);
             }
             else
             {
@@ -222,7 +227,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             {
                 search += ", " + v.GetSearchTerm();
             }
-            GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, jsonFromApi, search);
+            GenericRDFDataIO.AddEditPluginData(PlugInName, this.SubjectID, jsonFromApi, search);
         }
 
         #endregion
@@ -231,7 +236,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         private String GetClinicalTrialsFromAPI()
         {
             // from API and also get manual ones from DB and stitch together. Return a sorted list?
-            String URL = "https://stage-api.researcherprofiles.org/ClinicalTrialsApi/api/clinicaltrial/?add=" + string.Join(",", manualAdds) +
+            String URL = ClinicalTrialsAPI + "/?add=" + string.Join(",", manualAdds) +
                 "&remove=" + string.Join(",", manualRemoves) + "&person_url=" + ConvertToProductionUrl(UCSFIDSet.ByNodeId[this.SubjectID].PrettyURL);
             HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create(URL);
             myReq.Accept = "application/json"; // "application/ld+json";

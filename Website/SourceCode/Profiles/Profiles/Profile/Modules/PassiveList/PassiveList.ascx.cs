@@ -109,6 +109,7 @@ namespace Profiles.Profile.Modules.PassiveList
                     break;
                 case ListItemType.Footer:
                     HyperLink moreurl = (HyperLink)e.Item.FindControl("moreurl");
+                    moreurl.Attributes["rel"] = "nofollow";
                     if (pl.MoreURL.Trim() != string.Empty)
                     {
                         moreurl.NavigateUrl = Brand.CleanURL(pl.MoreURL);
@@ -125,6 +126,7 @@ namespace Profiles.Profile.Modules.PassiveList
                         if (pl.MoreURL.Trim() != string.Empty)
                         {
                             HyperLink moreurlInst = (HyperLink)e.Item.FindControl("moreurlInst");
+                            moreurlInst.Attributes["rel"] = "nofollow";
                             moreurlInst.NavigateUrl = Brand.CleanURL(pl.MoreURL) + "&institution=" + Brand.GetCurrentBrand().GetInstitution().GetURI();
                             moreurlInst.Text = "@" + Brand.GetCurrentBrand().GetInstitution().GetAbbreviation();
                             moreurlInst.Visible = true;

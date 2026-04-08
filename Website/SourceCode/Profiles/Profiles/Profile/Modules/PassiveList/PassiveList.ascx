@@ -25,8 +25,8 @@
         </ul>
             </div>         
         			<div class="dblarrow">
-                        <asp:HyperLink runat="server" ID="moreurl" Text="Explore" CssClass="prns-explore-btn"></asp:HyperLink>
-                        <asp:HyperLink runat="server" ID="moreurlInst" CssClass="prns-explore-btn" Visible="false"></asp:HyperLink>
+                        <asp:HyperLink runat="server" ID="moreurl" Text="Explore" CssClass="prns-explore-btn" rel="nofollow"></asp:HyperLink>
+                        <asp:HyperLink runat="server" ID="moreurlInst" CssClass="prns-explore-btn" Visible="false" rel="nofollow"></asp:HyperLink>
                     </div>
         <div class="passiveSectionLine">_</div>
     </FooterTemplate>

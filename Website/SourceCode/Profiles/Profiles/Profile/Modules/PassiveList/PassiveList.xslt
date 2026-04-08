@@ -38,7 +38,7 @@
     </div>
     <xsl:if test ="@MoreURL!=''">
       <div class="passiveSectionBodyDetails editBody">
-        <a href="{@MoreURL}">
+        <a href="{@MoreURL}" rel="nofollow">
           <img alt=" " style="margin-right:5px;position:relative;top:1px;border:0"  src="{$root}/Framework/Images/icon_squareArrow.gif"  />
           <xsl:value-of select="@MoreText"/>
         </a>

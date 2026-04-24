@@ -1,0 +1,22 @@
+=== PROFILE START ===
+Name: Suneetha Dandala
+Department: General Medicine - Fresno
+Title: Associate Professor
+Profiles URL: https://profiles.ucsf.edu/suneetha.dandala
+
+Recent Publications:
+- Correcting for artifacts in complex aqueous solutions when using the pH-sensitive dye 2',7'-bis-(2-carboxyethyl)- 5-(and -6)carboxyfluorescein. (1999)
+- Cerebral blood flow SPECT with Tc-99m exametazine correlates in AIDS dementia complex stages. A preliminary report. (1991)
+
+Research Overview:
+Suneetha Dandala, MD
+Associate Clinical Professor of Medicine, UCSF
+
+Keywords and Clinical Areas:
+- Artifacts
+- Tomography, X-Ray Computed
+- Oximes
+- Fluorescent Dyes
+- Tomography, Emission-Computed, Single-Photon
+
+=== PROFILE END ===

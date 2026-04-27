@@ -38,6 +38,24 @@ Keywords and Clinical Areas:
 
 The tool does not generate manifests, JSON sidecars, or web-facing artifacts.
 
+## Building and Deploying
+
+This tool deploys as a single EXE. No installer, no ClickOnce, no Setup.exe.
+
+**Build:**
+
+```powershell
+msbuild CustomGptProfileExport.csproj /p:Configuration=Release
+```
+
+Or build it from within the main `Profiles.sln` in Visual Studio (Release configuration).
+
+**Deploy:**
+
+Copy `bin\Release\CustomGptProfileExport.exe` to the target machine and run it directly. That is the entire deployment. The machine needs .NET Framework 4.8 installed, which is standard on any modern Windows Server.
+
+The `App.config` ships default local connection string values. You do not need to copy it to production — use `--connection-string` at runtime instead (see below).
+
 ## Command Line
 
 Basic usage:

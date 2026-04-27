@@ -34,7 +34,7 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomEditGroupSettings" FileName="CustomEditGroupSettings.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomEditAssociatedInformationResource" FileName="CustomEditAssociatedInformationResource.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomEditWebsite" FileName="CustomEditWebsite.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="CustomEditSocialMediaPlugIns" FileName="EditFeaturedPresentations.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditSocialMediaPlugIns" FileName="EditFeaturedPresentations.ascx" Enabled="false"/>
   <Module ModulePath="Modules" NameSpace="CustomEditSocialMediaPlugIns" FileName="EditTwitter.ascx" Enabled="false"/>
   <Module ModulePath="Modules" NameSpace="CustomEditSocialMediaPlugIns" FileName="EditFeaturedVideos.ascx" Enabled="false"/>
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditGlobalHealthEquity.ascx" Enabled="true"/>
@@ -43,8 +43,8 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditIdentity.ascx" Enabled="false"/>
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditCommunityAndPublicService.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditAcademicSenate.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditClinicalTrials.ascx" Enabled="false"/>
-  <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditCollaborationInterests.ascx" Enabled="false"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditClinicalTrials.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditCollaborationInterests.ascx" Enabled="true"/>
 </ModuleList>
 
 

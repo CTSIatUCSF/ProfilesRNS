@@ -5,8 +5,6 @@ INSERT [Profile.Module].[GenericRDF.Plugins] ([Name], [EnabledForPerson], [Enabl
 EXEC [Profile.Module].[GenericRDF.AddUpdateOntology] @pluginName='ClinicalTrials' 
 GO
 
-CREATE SCHEMA [UCSF.Import]
-
 
 -- copy over ORNG data. Make sure AppID = 121!!!!
 -- to test
@@ -14,12 +12,12 @@ SELECT distinct a.NodeID, b.Keyname, b.[Value], c.Keyname, c.[Value] from [ORNG.
 	a.AppID = 121 and a.AppID = c.AppID and a.NodeID = c.NodeID where b.Keyname = 'clinical_trials_active' and c.Keyname = 'clinical_trials_deleted';
 
 -- to do
-INSERT INTO [UCSF.Import].[ClincalTrialsEdits] (NodeID, [Add], [Remove])
+INSERT INTO [UCSF.Import].[ClinicalTrialsEdits] (NodeID, [Add], [Remove])
 SELECT distinct a.NodeID, b.[Value],c.[Value] from [ORNG.].[AppData] a LEFT OUTER JOIN [ORNG.].[AppData] b on a.AppID = 121 and a.AppID = b.AppID and a.NodeID = b.NodeID LEFT OUTER JOIN [ORNG.].[AppData] c on 
 	a.AppID = 121 and a.AppID = c.AppID and a.NodeID = c.NodeID where b.Keyname = 'clinical_trials_active' and c.Keyname = 'clinical_trials_deleted';
 
 -- to check
-SELECT * FROM [ProfilesRNS_Dev].[UCSF.Import].[ClincalTrialsEdits]
+SELECT * FROM [UCSF.Import].[ClinicalTrialsEdits]
 
 -- remove gadget
   -- First remove ORNG gadget from everybody 
@@ -44,3 +42,24 @@ SELECT * FROM [ProfilesRNS_Dev].[UCSF.Import].[ClincalTrialsEdits]
 
  -- remove verify view from DB manually!!!
  delete from [ORNG.].[AppViews] where AppID = 121
+ 
+ 
+ -- Add job entry
+ INSERT INTO [Profile.Import].[PRNSWebservice.Options]
+           ([job]
+           ,[url]
+           ,[apiKey]
+           ,[logLevel]
+           ,[batchSize]
+           ,[options]
+           ,[GetPostDataProc]
+           ,[ImportDataProc])
+     VALUES
+           ('UCSFGetClinicalTrials'
+           ,'https://stage-api.researcherprofiles.org/ClinicalTrialsApi/api/clinicaltrial'
+           ,NULL
+           ,0
+           ,NULL
+           ,NULL
+           ,'[UCSF.Import].[GetProfilesURLsForClinicalTrials]'
+           ,'[UCSF.Import].[ImportClinicalTrials]')

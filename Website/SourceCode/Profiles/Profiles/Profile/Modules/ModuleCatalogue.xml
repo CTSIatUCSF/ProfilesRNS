@@ -38,7 +38,7 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomViewEagleI" FileName="CustomViewEagleI.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewResearcherRole" FileName="CustomViewResearcherRole.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewGroupGeneralInfo" FileName="CustomViewGroupGeneralInfo.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="CustomViewSocialMediaPlugins" FileName="FeaturedPresentations.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewSocialMediaPlugins" FileName="FeaturedPresentations.ascx" Enabled="false"/>
   <Module ModulePath="Modules" NameSpace="CustomViewSocialMediaPlugins" FileName="FeaturedVideos.ascx" Enabled="false"/>
   <Module ModulePath="Modules" NameSpace="CustomViewSocialMediaPlugins" FileName="Twitter.ascx" Enabled="false"/>
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="GlobalHealthEquity.ascx" Enabled="true"/>
@@ -47,8 +47,8 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="Identity.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="CommunityAndPublicService.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="AcademicSenate.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="ClinicalTrials.ascx" Enabled="false"/>
-  <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="CollaborationInterests.ascx" Enabled="false"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="ClinicalTrials.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="CollaborationInterests.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="SimilarPeopleSameInstitution" FileName="SimilarPeopleSameInstitution.ascx" Enabled="true"/>
 </ModuleList>
 

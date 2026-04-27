@@ -80,7 +80,7 @@ namespace Profiles.Profile.Modules.CustomViewPersonSameDepartment
             {
                 Literal litFooter = (Literal)e.Item.FindControl("litFooter");
                 //HyperLink moreurl = (HyperLink)e.Item.FindControl("moreurl");
-                litFooter.Text = "<a href='" + Brand.GetThemedDomain() + "/search/default.aspx?searchtype=people&searchfor=&SearchRequest=" + this.SearchRequest + "' class='dblarrow'>Search Department</a>";
+                litFooter.Text = "<a href='" + Brand.GetThemedDomain() + "/search/default.aspx?searchtype=people&searchfor=&SearchRequest=" + this.SearchRequest + "' class='dblarrow' rel='nofollow'>Search Department</a>";
             }
 
         }

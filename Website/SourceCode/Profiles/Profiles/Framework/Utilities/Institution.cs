@@ -112,6 +112,10 @@ namespace Profiles.Framework.Utilities
             {
                 return "UCSF".Equals(inst.GetAbbreviation());
             }
+            else if ("ClinicalTrials".Equals(plugin))
+            {
+                return !"USC".Equals(inst.GetAbbreviation());
+            }
             return true;
         }
 

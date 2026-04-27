@@ -55,10 +55,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         {
             upnlEditSection.Update();
         }
-        protected void btnAddEdit_OnClick(object sender, EventArgs e)
-        {
-            ResetDisplay();
-        }
 
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
@@ -79,22 +75,22 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             }
 
             GenericRDFDataIO.AddEditPluginData(PlugInName, this.SubjectID, this.SerializeJson(), ciData.GetSearchData());
-            ResetDisplay();
+            ResetDisplay(HasNoCollaborationInterestsData() ? "" : "Collaboration Interests has been added to your profile.");
         }
 
         protected void btnCancel_OnClick(object sender, EventArgs e)
         {
-            ResetDisplay();
+            ResetDisplay("");
         }
 
         protected void btnDelete_OnClick(object sender, EventArgs e)
         {
             //GenericRDFDataIO.RemovePluginData(PlugInName, this.SubjectID);
             GenericRDFDataIO.AddEditPluginData(PlugInName, this.SubjectID, "", "");
-            ResetDisplay();
+            ResetDisplay("Collaboration Interests has been removed from your profile.");
         }
 
-        private void ResetDisplay()
+        private void ResetDisplay(String message)
         {
             phSecuritySettings.Visible = true;
 
@@ -106,7 +102,8 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             this.ciData = null;
 
             string data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, PlugInName);
-            
+            lblMessage.Text = message;
+
             ReadJson(data);            
             upnlEditSection.Update();
             upnlEditCollaborationInterests.Update();
@@ -135,6 +132,12 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         {
             return JsonConvert.SerializeObject(this.ciData);
         }
+
+        protected void itmChanged(object sender, EventArgs e)
+        {
+            lblMessage.Text = "";
+        }
+
     }
 
 

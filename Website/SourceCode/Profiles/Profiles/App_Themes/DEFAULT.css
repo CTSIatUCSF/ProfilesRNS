@@ -2049,6 +2049,155 @@ body.about .share {
         }
 
 /* ############################################################################################ */
+/* PROFILE EDITING: COLLABORATION INTERESTS */
+/* ############################################################################################ */
+
+
+/* =====================================================
+   Collaboration Interests – Variable-Based Styling
+   ===================================================== */
+
+/* Container */
+.researcherprofiles--collaborationinterests-edit--container {
+    max-width: var(--max-main-content-width);
+    margin: 30px auto;
+    padding: 28px 32px;
+    background: var(--page-background-color);
+    border-radius: 10px;
+    color: var(--text-color);
+}
+
+/* Header */
+.researcherprofiles--collaborationinterests-edit--heading {
+    margin: 0 0 10px 0;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+.researcherprofiles--collaborationinterests-edit--intro {
+    color: var(--text-muted-color);
+    margin-bottom: 18px;
+    line-height: 1.6;
+}
+
+.researcherprofiles--collaborationinterests-edit--subhead {
+    margin-top: 20px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Option Rows */
+.researcherprofiles--collaborationinterests-edit--option-row {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--striped-row-border-color);
+}
+
+    .researcherprofiles--collaborationinterests-edit--option-row:last-child {
+        border-bottom: none;
+    }
+
+    /* Checkbox + Label */
+    .researcherprofiles--collaborationinterests-edit--option-row input[type="checkbox"] {
+        margin-right: 6px;
+        transform: translateY(1px);
+    }
+
+    .researcherprofiles--collaborationinterests-edit--option-row label {
+        font-weight: 600;
+        margin-bottom: 6px;
+        display: inline-block;
+        color: var(--text-color);
+    }
+
+/* Description */
+.researcherprofiles--collaborationinterests-edit--desc {
+    margin-left: 22px;
+    color: var(--text-muted-color);
+    line-height: 1.6;
+}
+
+    .researcherprofiles--collaborationinterests-edit--desc ul {
+        margin: 6px 0 10px 18px;
+    }
+
+    /* Links inside descriptions */
+    .researcherprofiles--collaborationinterests-edit--desc a {
+        color: var(--generic-link-color);
+    }
+
+        .researcherprofiles--collaborationinterests-edit--desc a:visited {
+            color: var(--generic-link-visited-color);
+        }
+
+/* Narrative Textarea */
+.researcherprofiles--collaborationinterests-edit--textarea {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--striped-row-border-color);
+    border-radius: 6px;
+    resize: vertical;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .researcherprofiles--collaborationinterests-edit--textarea:focus {
+        border-color: var(--heading-color);
+        box-shadow: 0 0 0 3px rgba(18, 149, 216, 0.15);
+        outline: none;
+    }
+
+/* Action Buttons Container */
+.researcherprofiles--collaborationinterests-edit--actions {
+    margin-top: 18px;
+}
+
+/* Base Button */
+.researcherprofiles--collaborationinterests-edit--btn {
+    display: inline-block;
+    margin-right: 12px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Save Button */
+.researcherprofiles--collaborationinterests-edit--btn-save {
+    background: var(--heading-color);
+}
+
+    /* Force correct text color in ALL states */
+    .researcherprofiles--collaborationinterests-edit--btn-save,
+    .researcherprofiles--collaborationinterests-edit--btn-save:link,
+    .researcherprofiles--collaborationinterests-edit--btn-save:visited,
+    .researcherprofiles--collaborationinterests-edit--btn-save:hover,
+    .researcherprofiles--collaborationinterests-edit--btn-save:active,
+    .researcherprofiles--collaborationinterests-edit--btn-save:focus {
+        color: #ffffff !important;
+        text-decoration: none;
+    }
+
+        .researcherprofiles--collaborationinterests-edit--btn-save:hover {
+            filter: brightness(0.9);
+        }
+
+/* Cancel */
+.researcherprofiles--collaborationinterests-edit--btn-cancel,
+.researcherprofiles--collaborationinterests-edit--btn-cancel:link,
+.researcherprofiles--collaborationinterests-edit--btn-cancel:visited {
+    color: var(--generic-link-color);
+}
+
+/* Delete */
+.researcherprofiles--collaborationinterests-edit--btn-delete,
+.researcherprofiles--collaborationinterests-edit--btn-delete:link,
+.researcherprofiles--collaborationinterests-edit--btn-delete:visited {
+    color: var(--alert-red-color);
+}
+
+
+/* ############################################################################################ */
 /* LOGIN PAGE */
 /* /login/default.aspx?method=login */
 /* ############################################################################################ */

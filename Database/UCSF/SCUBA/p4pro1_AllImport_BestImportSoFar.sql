@@ -102,6 +102,8 @@ select * from
 	where  	((IsActive IN ('A','W','L','P') and ppaf._EffectiveEndDate >= CAST(GetDate() AS DATE)			
 			) OR AffiliateStatus = 'A'
 		)
+		-- to recognize VCP, and note that the Description will be %VOL in all cases
+		--and  JobCode in ('002017','002037','002057','002077')
 		--and UCSFID='028713402'
 ) IAM
 left join (

@@ -52,8 +52,6 @@ Profile owners may add:
 <li>Interests</li>
 <li>Featured Publications</li>
 <li>Faculty Mentoring</li>
-<li>Student Projects</li>
-<li>Twitter and other feeds</li>
 <li>Videos</li>
 <li>Websites</li>
 <li>News Links</li>
@@ -84,4 +82,3 @@ Researchers working on the same topics
     </Panel> 
   </PanelList>
 </Presentation>
-

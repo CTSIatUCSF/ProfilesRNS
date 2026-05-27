@@ -38,6 +38,7 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomViewEagleI" FileName="CustomViewEagleI.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewResearcherRole" FileName="CustomViewResearcherRole.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewGroupGeneralInfo" FileName="CustomViewGroupGeneralInfo.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="SimilarPeopleSameInstitution" FileName="SimilarPeopleSameInstitution.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewSocialMediaPlugins" FileName="FeaturedPresentations.ascx" Enabled="false"/>
   <Module ModulePath="Modules" NameSpace="CustomViewSocialMediaPlugins" FileName="FeaturedVideos.ascx" Enabled="false"/>
   <Module ModulePath="Modules" NameSpace="CustomViewSocialMediaPlugins" FileName="Twitter.ascx" Enabled="false"/>
@@ -49,6 +50,6 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="AcademicSenate.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="ClinicalTrials.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="CollaborationInterests.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="SimilarPeopleSameInstitution" FileName="SimilarPeopleSameInstitution.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="RequiredScholarlyProjectMentor.ascx" Enabled="false"/>
 </ModuleList>
 

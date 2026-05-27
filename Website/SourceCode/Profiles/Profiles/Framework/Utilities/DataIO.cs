@@ -329,14 +329,14 @@ namespace Profiles.Framework.Utilities
             }
             // these next two are part of emergency patch to try and take load off of the db
             // note that this will send real users to the bot db when they are true
-            else if ("true".Equals(HttpContext.Current.Items["PrettyURLRouteHandler"]))
-            {
-                return this.Session.UserID <= 0;
-            }
-            else if ("true".Equals(HttpContext.Current.Items["NewSession"]))
-            {
-                return !(url.Contains("/login") || url.Contains("/search/"));
-            }
+            //else if ("true".Equals(HttpContext.Current.Items["PrettyURLRouteHandler"]))
+            //{
+            //    return this.Session.UserID <= 0;
+            //}
+            //else if ("true".Equals(HttpContext.Current.Items["NewSession"]))
+            //{
+            //    return !(url.Contains("/login") || url.Contains("/search/"));
+            //}
             return false;
         }
 

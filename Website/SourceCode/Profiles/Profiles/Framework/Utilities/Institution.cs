@@ -115,7 +115,11 @@ namespace Profiles.Framework.Utilities
             else if ("ClinicalTrials".Equals(plugin))
             {
                 return !"USC".Equals(inst.GetAbbreviation());
-            }
+            } 
+            else if ("RequiredScholarlyProjectMentor".Equals(plugin))
+            {
+                return "USC".Equals(inst.GetAbbreviation());
+            } 
             return true;
         }
 

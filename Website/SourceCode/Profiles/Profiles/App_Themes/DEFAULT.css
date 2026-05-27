@@ -297,8 +297,8 @@ html body #prns-nav ul.prns-main {
                 text-decoration: underline;
             }
 
-/* when on proxy, don't say the site is slow */
-.researcherprofiles--is-being-served-via-proxy-cache .researcherprofiles--emergency-site-slowdown-banner {
+/* now that site is on proxy, don't say the site is slow */
+.researcherprofiles--emergency-site-slowdown-banner {
     display: none;
 }
 
@@ -566,14 +566,14 @@ html body #prns-nav ul.prns-main {
 .expand-collapse .less,
 .accordion .less {
     margin: 0 auto auto auto !important;
-    padding-top: 0.3rem;
-    text-align: right;
+    padding-top: 0.5rem;
+    text-align: center;
     cursor: pointer;
 }
 
 .expand-collapse .more,
 .accordion .more {
-    /* border-top: 1px dashed var(--heading-color); */
+    border-top: 1px solid var(--striped-row-border-color);
     color: var(--heading-color);
     font-weight: bold;
 }
@@ -655,10 +655,17 @@ html body #prns-nav ul.prns-main {
     text-decoration: none;
 }
 
+/* in basic info, hide the ORCID logo */
+.researcherprofiles--researcher-profile-page .basicInfo img[src*="orcid_16x16"] {
+    display: none !important;
+}
+
 /* in basic info, make th headings like "Title", "School", etc. gray, with a little right space */
 .researcherprofiles--researcher-profile-page .basicInfo th {
     color: var(--text-muted-color);
     padding-right: 1rem;
+    text-transform: uppercase;
+    font-size: 0.8em;
 }
 
 /* but in basic info, hide th headings like "Title", "School", etc. on smaller screens */
@@ -688,7 +695,11 @@ html body #prns-nav ul.prns-main {
 /* PROFILE PAGE: TABLE OF CONTENTS
 /* ############################################################################################ */
 
-/* restyle the TOC box */
+/* restyle the TOC box; hide it entirely when JS hasn't populated it yet */
+.researcherprofiles--researcher-profile-page #toc:not(:has(li)) {
+    display: none;
+}
+
 .researcherprofiles--researcher-profile-page #toc {
     margin: 2rem 0;
     background-color: var(--highlighted-panel-background-color);
@@ -803,6 +814,12 @@ html body #prns-nav ul.prns-main {
             border: none;
         }
 
+    /* alternating row shading, but only for tables with 3+ rows and no website links */
+    .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible:has(tr:nth-child(3)):not(:has(.website-table)) tr:nth-child(even):not(.accordion),
+    .researcherprofiles--researcher-profile-page .profilesContentMain table.grants:has(tr:nth-child(3)) tr:nth-child(even) {
+        background-color: var(--striped-row-colored-row-color);
+    }
+
     /* adding a little space between collapsible table items */
     /* and cells are never too narrow */
     .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible td,
@@ -817,6 +834,59 @@ html body #prns-nav ul.prns-main {
             min-width: 0;
             padding: 0;
         }
+
+    /* ############################################################################################ */
+    /* PROFILE PAGE: RESEARCH ACTIVITIES / FUNDING
+/* ############################################################################################ */
+
+    /* left border on grants and collapsible tables (e.g. clinical trials) for visual consistency */
+    .researcherprofiles--researcher-profile-page .profilesContentMain table.grants tr td,
+    .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible tr:not(.accordion):not(.website-table) td:first-child {
+        border-left: 3px solid var(--highlighted-panel-border-color) !important;
+        padding-left: 0.75rem !important;
+    }
+
+    /* grant number link: slightly muted since it's supporting metadata */
+    .researcherprofiles--researcher-profile-page .profilesContentMain table.grants td span[style*="float:left"] a {
+        color: var(--text-muted-color);
+    }
+
+/* ############################################################################################ */
+/* PROFILE PAGE: ACADEMIC SENATE GADGET
+/* ############################################################################################ */
+
+/* senate committee table: match collapsible table row borders */
+.researcherprofiles--researcher-profile-page #senate-committees table tr {
+    border-top: 2px solid var(--striped-row-border-color);
+}
+
+    .researcherprofiles--researcher-profile-page #senate-committees table tr:first-of-type {
+        border-top: none;
+    }
+
+/* stripe rows for tables with 3+ rows */
+.researcherprofiles--researcher-profile-page #senate-committees table:has(tr:nth-child(3)) tr:nth-child(even) {
+    background-color: var(--striped-row-colored-row-color);
+}
+
+/* left border on first data column, skip header row */
+.researcherprofiles--researcher-profile-page #senate-committees table tr:not(:first-of-type) td:first-child {
+    border-left: 3px solid var(--highlighted-panel-border-color) !important;
+    padding-left: 0.75rem !important;
+}
+
+/* cell spacing to match collapsible tables */
+.researcherprofiles--researcher-profile-page #senate-committees table td,
+.researcherprofiles--researcher-profile-page #senate-committees table th {
+    padding: 0.2rem 0.5rem 0.2rem 0;
+    min-width: 5em;
+}
+
+/* make table full width */
+.researcherprofiles--researcher-profile-page #senate-committees table {
+    width: 100%;
+    border-collapse: collapse;
+}
 
 /* ############################################################################################ */
 /* PROFILE PAGE: GADGETS
@@ -839,6 +909,7 @@ html body #prns-nav ul.prns-main {
     font-weight: normal !important;
 }
 
+
 /* more spacing between each publication */
 .researcherprofiles--researcher-profile-page .profilesContentMain .publications li {
     border: none;
@@ -858,34 +929,84 @@ html body #prns-nav ul.prns-main {
         border-bottom: 0.5px solid var(--striped-row-border-color);
     }
 
+/* publication sort bar: give it a background so it reads as a control */
+.researcherprofiles--researcher-profile-page .profilesContentMain .publicationList .anchor-tab {
+    display: inline-block;
+    background-color: var(--highlighted-panel-background-color);
+    border: 1px solid var(--highlighted-panel-border-color);
+    padding: 0.4rem 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
 /* normalize color of links to see visualizations */
 .researcherprofiles--researcher-profile-page .anchor-tab a.link-visualization {
     color: var(--generic-link-color) !important;
 }
 
-/* ############################################################################################ */
-/* PROFILE PAGE: BIO / OVERVIEW
-/* ############################################################################################ */
-
-/* Long bios shouldn't be excessively wide */
-/* see https://ux.stackexchange.com/q/108801 and https://ux.stackexchange.com/q/3618 for explanation */
-.researcherprofiles--researcher-profile-page .overview {
-    max-width: 70em;
+/* "Altmetrics Details" disclosure element: muted to stay visually subordinate */
+.researcherprofiles--researcher-profile-page .profilesContentMain .publicationList details {
+    color: var(--text-muted-color);
+    margin-bottom: 0.25rem;
 }
 
-/* We need this to use the "show more" / "show less" */
-/* but it sucks that if JavaScript fails, this will just hide content */
-.researcherprofiles--researcher-profile-page .overview {
-    max-height: 20rem;
-    overflow: hidden;
-    /* fade out the bottom 10% to white */
-    mask-image: linear-gradient(180deg, #000 90%, transparent);
+/* article metrics row: inline-flex for badge baseline alignment, no gap (spacing via existing &nbsp;) */
+.researcherprofiles--researcher-profile-page .profilesContentMain .publications .article-metrics {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 0.25rem;
+    color: var(--text-muted-color);
+    white-space: nowrap;
 }
 
-    .researcherprofiles--researcher-profile-page .overview.full {
-        max-height: none;
-        mask-image: none;
+    /* links within metrics row stay full color */
+    .researcherprofiles--researcher-profile-page .profilesContentMain .publications .article-metrics a {
+        color: var(--generic-link-color);
     }
+
+        /* "View in:" text node and first link are flush due to inline-flex collapsing whitespace */
+        .researcherprofiles--researcher-profile-page .profilesContentMain .publications .article-metrics a:first-of-type {
+            margin-left: 0.25em;
+        }
+
+/* fix Altmetric embed image: their script injects display:block, pulling it out of line flow */
+.researcherprofiles--researcher-profile-page .profilesContentMain .publications .altmetric-embed img {
+    display: inline-block !important;
+    vertical-align: middle !important;
+}
+
+/* Fields/Translation tags: rounded corners to match pill language elsewhere on the page */
+.researcherprofiles--researcher-profile-page .profilesContentMain .publications .publication-filter {
+    border-radius: 0.25rem !important;
+}
+
+/* ############################################################################################ */
+/* PROFILE PAGE: KEYWORDS
+/* ############################################################################################ */
+
+/* hide commas between keyword links — container is .interests, commas are bare text nodes */
+.researcherprofiles--researcher-profile-page .interests {
+    font-size: 0;
+    color: transparent;
+}
+
+    /* style each keyword as a pill, restoring font size and color */
+    .researcherprofiles--researcher-profile-page .interests a {
+        display: inline-block;
+        font-size: 1rem;
+        color: var(--generic-link-color);
+        line-height: 1.3;
+        padding: 0.25rem 0.6rem;
+        margin: 0.2rem 0.2rem 0.2rem 0;
+        border-radius: 3px;
+        background-color: var(--striped-row-colored-row-color);
+        border: 1px solid var(--striped-row-border-color);
+        text-decoration: none;
+    }
+
+        .researcherprofiles--researcher-profile-page .interests a:hover {
+            background-color: var(--striped-row-border-color);
+            text-decoration: none;
+        }
 
 /* ############################################################################################ */
 /* PROFILE PAGE: WEBSITES
@@ -909,6 +1030,7 @@ html body #prns-nav ul.prns-main {
 /* see https://ux.stackexchange.com/q/108801 and https://ux.stackexchange.com/q/3618 for explanation */
 .researcherprofiles--researcher-profile-page .overview {
     max-width: 70em;
+    line-height: 1.7;
 }
 
 /* We need this to use the "show more" / "show less" */
@@ -2354,17 +2476,29 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
     min-height: 100vh;
 }
 
-    /* now stick the footer to the very bottom of the container */
-    #page-container .researcherprofiles--footer {
-        position: -webkit-sticky !important;
-        position: sticky !important;
-        top: 100%;
-        margin-top: 1rem;
-        padding: 0.5rem;
-        border-top: 0.25rem solid #ccc;
-        font-size: x-small;
-        color: var(--text-muted-color);
-    }
+/* "Return to Top" button: override inline color and give it site styling */
+#rtnBtn {
+    color: var(--generic-link-color) !important;
+    background-color: var(--highlighted-panel-background-color);
+    border: 1px solid var(--highlighted-panel-border-color);
+    border-radius: 0.25rem;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+/* now stick the footer to the very bottom of the container */
+#page-container .researcherprofiles--footer {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border-top: 0.25rem solid #ccc;
+    font-size: x-small;
+    color: var(--text-muted-color);
+}
 
 /* it's ugly if long footer text blocks stretch all the way across, so dial it back */
 #researcherprofiles--footer-collaboration,

@@ -387,6 +387,7 @@
     <Content Include="App_Themes\USC\USC.js" />
     <Content Include="Celebrating\PresentationXML\LatinxResearch.xml" />
     <Content Include="Celebrating\PresentationXML\LGBTQResearch.xml" />
+    <Content Include="CustomAPI\Secure\OAuthProxy.aspx" />
     <Content Include="CustomAPI\Secure\ActivityLog.aspx" />
     <Content Include="CustomAPI\Secure\Default.aspx" />
     <Content Include="CustomAPI\v1\EasyJSONPlus.aspx" />
@@ -425,6 +426,7 @@
     <Content Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditClinicalTrials.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditCollaborationInterests.ascx" />
+    <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditRequiredScholarlyProjectMentor.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditIdentity.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditAcademicSenate.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditMentoring.ascx" />
@@ -634,6 +636,7 @@
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx" />
     <Content Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\RequiredScholarlyProjectMentor.ascx" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\ClinicalTrials.js" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\ClinicalTrials.ascx" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\AcademicSenate.js" />
@@ -882,6 +885,13 @@
     </Compile>
     <Compile Include="Activity\Utilities\Activity.cs" />
     <Compile Include="Activity\Utilities\DataIO.cs" />
+    <Compile Include="CustomAPI\Secure\OAuthProxy.aspx.cs">
+      <DependentUpon>OAuthProxy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\Secure\OAuthProxy.aspx.designer.cs">
+      <DependentUpon>OAuthProxy.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CustomAPI\Secure\ActivityLog.aspx.cs">
       <DependentUpon>ActivityLog.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1066,6 +1076,13 @@
     </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditCollaborationInterests.ascx.designer.cs">
       <DependentUpon>EditCollaborationInterests.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditRequiredScholarlyProjectMentor.ascx.cs">
+      <DependentUpon>EditRequiredScholarlyProjectMentor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditRequiredScholarlyProjectMentor.ascx.designer.cs">
+      <DependentUpon>EditRequiredScholarlyProjectMentor.ascx</DependentUpon>
     </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditIdentity.ascx.cs">
       <DependentUpon>EditIdentity.ascx</DependentUpon>
@@ -1769,6 +1786,13 @@
     </Compile>
     <Compile Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx.designer.cs">
       <DependentUpon>CustomViewResearcherRole.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\RequiredScholarlyProjectMentor.ascx.cs">
+      <DependentUpon>RequiredScholarlyProjectMentor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\RequiredScholarlyProjectMentor.ascx.designer.cs">
+      <DependentUpon>RequiredScholarlyProjectMentor.ascx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\CustomViewUCSFPlugins\ClinicalTrials.ascx.cs">
       <DependentUpon>ClinicalTrials.ascx</DependentUpon>

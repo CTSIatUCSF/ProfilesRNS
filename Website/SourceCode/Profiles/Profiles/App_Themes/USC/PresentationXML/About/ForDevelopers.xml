@@ -27,7 +27,7 @@ $('#suckerfishmenu li#data a').addClass('active');
 <ul >
   <li>Data on 3,200+ USC faculty, postdoctoral scholars, and clinical research coordinators in the health sciences – <em>Updated daily</em></li>
   <li>Data on over 62,000 USC publications listed on PubMed – <em>Updated weekly</em></li>
-  <li>Data on 350+ clinical trials – updated daily (<a href="http://scctsi.github.io/clinicaltrials-datasource/" title="Find on GitHub">USC Clinical Trials REST API</a>)</li>
+  <li>Data on 350+ clinical trials – updated daily (USC Clinical Trials REST API)</li>
   <li>Manually entered data (e.g., photos, research overview descriptions) - <em>Updated either immediately, or daily</em></li>
 </ul>
 
@@ -64,4 +64,3 @@ $('#suckerfishmenu li#data a').addClass('active');
     </Panel> 
   </PanelList>
 </Presentation>
-

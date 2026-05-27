@@ -30,13 +30,12 @@ $('#suckerfishmenu li#contact a').addClass('active');
   <li><a href="#datasources">What are the sources of data for USC Health Sciences Profiles?</a></li>
   <li><a href="#network">What are the lists of networks on the right side of my profile?</a></li>
   <li><a href="#missing">Why are there missing or incorrect publications in my profile? How can I correct this?</a></li>
-  <li><a href="trials">Why are there missing or incorrect clinical studies in my profile? How can I correct this?</a></li>
+  <li><a href="#trials">Why are there missing or incorrect clinical studies in my profile? How can I correct this?</a></li>
   <li><a href="#update">How frequently are the data in USC Health Sciences Profiles updated?</a></li>
 <!--  <li><a href="#keyword">Can I add/edit research, career and academic interests?</a></li> -->
   <li><a href="#mynetwork">Can I edit my co-authors or similar people lists?</a></li>
 <!--  <li><a href="#learn">How can I learn more about USC Health Sciences Profiles?</a></li> -->
   <li><a href="#ideas">Where should I send my ideas on how to improve the tool?</a></li>
-  <li><a href="#sysreq">What are the system requirements for using USC Health Sciences Profiles?</a></li>
   <li><a href="#manage">Who manages USC Health Sciences Profiles?</a></li>
 </ul>
 
@@ -71,7 +70,6 @@ $('#suckerfishmenu li#contact a').addClass('active');
 <p>Click the <strong>Login/Edit My Profile</strong> link on any profile page. Then enter your USC Net ID username and password.</p>
 <ul>
   <li>If you have never used your USC Net ID account, or for password support: go to <a href="https://mypassword.usc.edu/" title="Go to the USC Mypassword website" target="_blank">https://mypassword.usc.edu/</a> or call USC ITS at (213) 740-5555.</li> 
-  <li><a href="http://www.usc.edu/its/accounts/password" title="Go to the USC ITS website" target="_blank">Learn more about your USC Net ID</a></li>
 </ul>
 
 <h3 id="why">Why should I login to USC Health Sciences Profiles?</h3>
@@ -161,18 +159,6 @@ $('#suckerfishmenu li#contact a').addClass('active');
   <li><a href="mailto:profiles@sc-ctsi.org">Contact us</a> and share your comments, feedback, success stories on how Profiles helped you.</li>
 </ul>
 
-<h3 id="sysreq">What are the system requirements for using USC Health Sciences Profiles?</h3>
-<ul>
-  <li>USC Health Sciences Profiles works best using any of the following web browsers:
-    <ul>
-      <li>Internet Explorer 8 or later</li>
-      <li>Firefox 12 or later</li>
-      <li>Chrome</li>
-      <li>Safari 5 or later</li>
-    </ul></li>
-  <li>If you are using an older browser or a browser not listed above, you may experience some errors in functionality.</li>
-</ul>
-
 <h3 id="manage">Who manages USC Health Sciences Profiles?</h3>
 <p>USC Health Sciences Profiles is managed by the Southern California <a href="http://sc-ctsi.org/" target="_blank">Clinical and Translational Science Institute (SC CTSI)</a> at USC and CHLA.</p>
 
@@ -185,4 +171,3 @@ $('#suckerfishmenu li#contact a').addClass('active');
     </Panel> 
   </PanelList>
 </Presentation>
-

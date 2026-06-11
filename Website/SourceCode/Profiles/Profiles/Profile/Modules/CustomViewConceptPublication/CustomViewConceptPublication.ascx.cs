@@ -27,17 +27,9 @@ namespace Profiles.Profile.Modules
 		public void DrawProfilesModule()
 		{
 			var dataIO = new Profiles.Profile.Utilities.DataIO();
-            // Get concept publication timeline
-            using (var reader = dataIO.GetGoogleTimeline(base.RDFTriple, "[Profile.Module].[NetworkAuthorshipTimeline.Concept.GetData]"))
-			{
-				while (reader.Read())
-				{
-					timeline.Src = reader["gc"].ToString();
-                    timeline.Alt = reader["alt"].ToString();
-                    litTimelineTable.Text = reader["asText"].ToString();
-				}
-				reader.Close();
-			}
+            // Google Image Charts is no longer available. Hide the timeline until
+            // the concept publication timeline is replaced with a local chart renderer.
+            timeline.Visible = false;
             /* Reader returns multiple result sets in the following order
 			 * 1) Cited publications
 			 * 2) Newest publication

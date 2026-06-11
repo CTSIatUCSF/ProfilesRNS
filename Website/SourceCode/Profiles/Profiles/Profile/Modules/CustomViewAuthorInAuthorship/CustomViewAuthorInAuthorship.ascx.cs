@@ -56,24 +56,12 @@ namespace Profiles.Profile.Modules.CustomViewAuthorInAuthorship
                 rpPublication.DataBind();
             }
 
-            // Get timeline bar chart
-            string storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Person.GetData]";
-            if (type == Utilities.DataIO.ClassType.Group) storedproc = "[Profile.Module].[NetworkAuthorshipTimeline.Group.GetData]";
-            using (SqlDataReader reader = data.GetGoogleTimeline(base.RDFTriple, storedproc))
-            {
-                while (reader.Read())
-                {
-                    timelineBar.Src = reader["gc"].ToString();
-                    timelineBar.Alt = reader["alt"].ToString();
-                    litTimelineTable.Text = reader["asText"].ToString();
-                }
-                reader.Close();
-            }
-
-            if (timelineBar.Src == "")
-            {
-                timelineBar.Visible = false;
-            }
+            // Google Image Charts is no longer available. Hide the timeline tab until
+            // the publication timeline is replaced with a local chart renderer.
+            timelineBar.Visible = false;
+            Page.ClientScript.RegisterStartupScript(GetType(), "HidePublicationTimelineTab",
+                "var t=document.getElementById('aTimeline');if(t){var p=t.previousSibling;while(p&&p.nodeType!==3){p=p.previousSibling;}if(p){p.nodeValue='';}t.style.display='none';}",
+                true);
 
 
             // Login link

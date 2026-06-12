@@ -22,3 +22,4 @@ END
 GO
 
 
+GRANT EXECUTE ON [UCSF.Import].[UpsertClinicalTrialsEdits] TO App_Profiles10

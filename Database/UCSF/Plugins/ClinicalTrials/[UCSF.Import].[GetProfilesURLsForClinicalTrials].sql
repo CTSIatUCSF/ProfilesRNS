@@ -29,6 +29,6 @@ END
 
 GO
 
-
+GRANT EXECUTE ON [UCSF.Import].[GetProfilesURLsForClinicalTrials] TO App_Profiles10
 --exec [UCSF.Import].[GetProfilesURLsForClinicalTrials] @Job='UCSFGetClinicalTrials', @BatchID=null;
 

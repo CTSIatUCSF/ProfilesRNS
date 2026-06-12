@@ -189,7 +189,7 @@ namespace Profiles.Framework.Utilities
             session.RequestIP = GetIPAddress();
             session.HostName = System.Net.Dns.GetHostName();
             session.UserAgent = String.IsNullOrEmpty(HttpContext.Current.Request.UserAgent) ? "" : HttpContext.Current.Request.UserAgent;
-            session.IsBot = BotDetector.IsBot(session); 
+            session.IsBot = BotDetector.IsExternalBot(session, HttpContext.Current.Request); 
 
             if (sessionid == string.Empty)
                 dataio.SessionCreate(ref session);

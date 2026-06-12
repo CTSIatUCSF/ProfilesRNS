@@ -46,18 +46,21 @@ namespace Profiles.Framework.Utilities
             return false;
         }
 
-        /// Checks if the given user-agent belongs to a bot.
-        /// returns True if it's a bot, False otherwise
-        public static bool IsBot(Session session)
+        /// Checks if the given user-agent belongs to a bot that isn't one of ours
+        /// returns True if it's a bot, false if it's a browser or one of our own bots
+        public static bool IsExternalBot(Session session, HttpRequest request)
         {
-            // sort of ugly to grab the request this way, but oh well
-            if (IsWhiteListed(session.UserAgent) || (new Profiles.CustomAPI.Utilities.DataIO()).IsAllowedSecureAccess(HttpContext.Current.Request))
+            if (IsWhiteListed(session.UserAgent) || (new Profiles.CustomAPI.Utilities.DataIO()).IsAllowedSecureAccess(request))
             {
                 return false;
             }
             else if (UserAgentIsForBot(session.UserAgent))
             {
                 return true; // Block empty user-agents
+            }
+            else if ("1".Equals(request.Headers["X-Is-Bot-Or-Suspicious"]))
+            {
+                return true; // Nginx cache thinks it's a bot
             }
             // If the useragent doesn't indicate it's a bot check the traffic volume because maybe it's a bot anyway
             else if (IPIsBot_CacheTimeoutSeconds > 0 && !String.IsNullOrEmpty(session.RequestIP))

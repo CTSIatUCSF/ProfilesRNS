@@ -169,7 +169,7 @@ left join (
 			--and per.UCSFID='028713402'
 ) TEL on TEL.telID=IAM.UCSFID
 
-where GlobalRelease=1 
+where GlobalRelease=1 --and LegalLastName = 'Klonoff'
 ) sc
 order by PRIMARY_TITLE
 --LegalLastName, 

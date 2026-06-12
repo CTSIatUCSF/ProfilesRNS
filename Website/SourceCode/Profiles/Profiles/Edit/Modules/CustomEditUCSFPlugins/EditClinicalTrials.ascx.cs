@@ -221,7 +221,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             (new Profiles.Edit.Utilities.DataIO()).UpsertManualClinicalTrialsEdits(this.SubjectID, manualAdds, manualRemoves);
 
             // now add the plugin JSON
-            string search = "Clinical Trials";
+            string search = "HasClinicalTrials, Clinical Trials";
             
             foreach (ClinicalTrial v in this.entries)
             {

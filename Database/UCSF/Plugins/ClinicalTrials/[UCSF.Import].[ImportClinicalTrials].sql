@@ -32,7 +32,7 @@ BEGIN
 			  ELSE
 			  BEGIN
 				  --SET @SearchableData='Clinical Trials'
-			     SELECT @SearchableData='Clinical Trials' + ', ' + STRING_AGG(cast(id as nvarchar(max)) + ', ' + title, ', ') FROM openjson(@Data, '$') with (id nvarchar(50) '$.Id', title nvarchar(500) '$.Title')
+			     SELECT @SearchableData='HasClinicalTrials, Clinical Trials' + ', ' + STRING_AGG(cast(id as nvarchar(max)) + ', ' + title, ', ') FROM openjson(@Data, '$') with (id nvarchar(50) '$.Id', title nvarchar(500) '$.Title')
 			  END
 
 	  		  EXEC [Profile.Module].[GenericRDF.AddEditPluginData] @Name='ClinicalTrials', @NodeID=@NodeID, @Data=@Data, @SearchableData=@SearchableData
@@ -55,5 +55,6 @@ END
 
 GO
 
+GRANT EXECUTE ON [UCSF.Import].[ImportClinicalTrials] TO App_Profiles10
 
 --30021514

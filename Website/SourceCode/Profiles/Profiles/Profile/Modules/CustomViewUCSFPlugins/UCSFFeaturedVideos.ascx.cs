@@ -2,6 +2,7 @@
 using Profiles.Framework.Utilities;
 using System.Xml;
 using System.Collections.Generic;
+using System.Web;
 using System.Web.UI.HtmlControls;
 
 namespace Profiles.Profile.Modules.CustomViewUCSFPlugins
@@ -42,7 +43,7 @@ namespace Profiles.Profile.Modules.CustomViewUCSFPlugins
             //litjs.Text = base.SocialMediaInit(this.PlugInName);
             //TODO Obviously change this 
             //litjs.Text = base.jsStart + "FeaturedVideos.init('" + Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, "UCSFFeaturedVideos").Replace("'", "\\'") + "'); " + base.jsEnd;
-            litjs.Text = base.jsStart + "FeaturedVideos.init('" + Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, "UCSFFeaturedVideos").Replace("\\", "\\\\").Replace("'", "\\'") + "'); " + base.jsEnd;
+            litjs.Text = base.jsStart + "FeaturedVideos.init('" + HttpUtility.JavaScriptStringEncode(Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, "UCSFFeaturedVideos")) + "'); " + base.jsEnd;
 
 
             HtmlLink Displaycss = new HtmlLink();

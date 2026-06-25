@@ -50,6 +50,6 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="AcademicSenate.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="ClinicalTrials.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="CollaborationInterests.ascx" Enabled="true"/>
-  <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="RequiredScholarlyProjectMentor.ascx" Enabled="false"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="RequiredScholarlyProjectMentor.ascx" Enabled="true"/>
 </ModuleList>
 

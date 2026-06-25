@@ -58,7 +58,9 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
         protected void btnDelete_OnClick(object sender, EventArgs e)
         {
-            GenericRDFDataIO.RemovePluginData(this.PlugInName, this.SubjectID);
+            //GenericRDFDataIO.RemovePluginData(this.PlugInName, this.SubjectID);
+            // the one below clears the data and removes the connection
+            GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, String.Empty, String.Empty);
             // should we also need to reset the data to blank strings? Above seems to just orphan the data
             ResetDisplay(false);
         }

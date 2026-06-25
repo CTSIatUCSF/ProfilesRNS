@@ -909,7 +909,6 @@ html body #prns-nav ul.prns-main {
     font-weight: normal !important;
 }
 
-
 /* more spacing between each publication */
 .researcherprofiles--researcher-profile-page .profilesContentMain .publications li {
     border: none;
@@ -921,6 +920,11 @@ html body #prns-nav ul.prns-main {
 .researcherprofiles--researcher-profile-page .profilesContentMain .publications li {
     max-width: 50em;
 }
+
+    /* the long list of co-authors is less important than title */
+    .researcherprofiles--researcher-profile-page .profilesContentMain .publications li span[id^="ctl01_rpPublication_ctl"][id$="_lblPublicationIDs"] {
+        color: var(--text-muted-color);
+    }
 
     /* shade every second line */
     .researcherprofiles--researcher-profile-page .profilesContentMain .publications li:nth-child(even) {
@@ -1012,10 +1016,52 @@ html body #prns-nav ul.prns-main {
 /* PROFILE PAGE: WEBSITES
 /* ############################################################################################ */
 
-/* fix stupid hardcoded spacing around website entries */
+/* make website/media link rows read like a list instead of a raw table */
+.researcherprofiles--researcher-profile-page #view_links_table table.collapsible {
+    width: 100% !important;
+    table-layout: auto;
+    border-collapse: collapse;
+}
 
-.researcherprofiles--researcher-profile-page tr.website-table > td {
-    padding: 0.5rem;
+.researcherprofiles--researcher-profile-page #view_links_table tr.website-table > td {
+    background-color: transparent;
+    border-bottom: none;
+    padding: 0.45rem 0;
+    vertical-align: top;
+}
+
+    .researcherprofiles--researcher-profile-page #view_links_table tr.website-table > td:first-child {
+        width: 24px !important;
+        min-width: 24px !important;
+        max-width: 24px !important;
+        padding-right: 0.1rem;
+        white-space: nowrap;
+    }
+
+    .researcherprofiles--researcher-profile-page #view_links_table tr.website-table > td:last-child {
+        padding-left: 0;
+        line-height: 1.35;
+        color: var(--text-muted-color) !important;
+        font-size: 0.95rem;
+        width: auto;
+    }
+
+.researcherprofiles--researcher-profile-page #view_links_table tr.website-table:hover > td {
+    background-color: transparent;
+}
+
+.researcherprofiles--researcher-profile-page #view_links_table tr.website-table img {
+    width: 16px;
+    height: 16px;
+    display: block;
+    object-fit: contain;
+    margin-top: 0.2rem;
+}
+
+.researcherprofiles--researcher-profile-page #view_links_table tr.website-table td:last-child a {
+    display: inline;
+    font-weight: normal;
+    color: var(--generic-link-color);
 }
 
 .researcherprofiles--researcher-profile-page #view_links_table {
@@ -1116,7 +1162,6 @@ html body #prns-nav ul.prns-main {
     height: 100%;
     border: 1px solid var(--highlighted-panel-border-color);
 }
-
 
 /* ############################################################################################ */
 /* PROFILE PAGE: VIDEOS
@@ -1543,7 +1588,6 @@ body.about .share {
     display: none;
 }
 
-
 /* labels have normal weight */
 .researcherprofiles--primary-search-container label {
     font-weight: normal;
@@ -1597,7 +1641,6 @@ body.about .share {
             font-size: 0.8rem !important;
         }
 }
-
 
 /* some space to the right of all checkboxes */
 .researcherprofiles--primary-search-container .searchForm input[type="checkbox"] {
@@ -1956,7 +1999,6 @@ body.about .share {
     row-gap: 1rem;
 }
 
-
     /* heading goes at the top */
     .researcherprofiles--edit-sections-index-page .panelMain > h2,
     .researcherprofiles--edit-sections-index-page .panelMain > h3 {
@@ -1981,7 +2023,9 @@ body.about .share {
 /* the visibility explanations are on the right, at the bottom */
 .researcherprofiles--edit-sections-index-page #profile-visibility {
     grid-area: main-row-right-bottom;
-    border: 1px solid #ccc;
+    border: 1px solid var(--highlighted-panel-border-color);
+    background-color: var(--striped-row-colored-row-color);
+    padding: 1rem;
 }
 
 /* remove extra borders around each table and table item */
@@ -2002,12 +2046,30 @@ body.about .share {
     border-collapse: collapse;
 }
 
+    /* make clickable rows feel interactive */
+    .researcherprofiles--edit-sections-index-page #profile-components tr[onclick]:hover,
+    .researcherprofiles--edit-sections-index-page #profile-components tr[tabindex]:focus {
+        background-color: var(--striped-row-colored-row-color);
+        cursor: pointer;
+        outline: 2px solid transparent;
+    }
+
+        .researcherprofiles--edit-sections-index-page #profile-components tr[onclick]:hover a.listTableLink,
+        .researcherprofiles--edit-sections-index-page #profile-components tr[tabindex]:focus a.listTableLink {
+            text-decoration-style: solid;
+        }
+
 /* put a little space between each row in left column */
 .researcherprofiles--edit-sections-index-page #profile-components td {
     padding: 0.5rem 0;
     vertical-align: top;
 }
 
+    .researcherprofiles--edit-sections-index-page #profile-components td:first-child {
+        width: auto !important;
+    }
+
+/* reserve a stable icon lane so section names and privacy labels can align */
 /* hide items counts, stars, ORNG indicators, and random returns in profile components column */
 .researcherprofiles--edit-sections-index-page #profile-components br,
 .researcherprofiles--edit-sections-index-page #profile-components .colItemCnt span {
@@ -2016,19 +2078,28 @@ body.about .share {
 
 /* lock icons align right */
 .researcherprofiles--edit-sections-index-page #profile-components .colItemCnt {
-    text-align: right;
+    width: 3.5rem !important;
+    text-align: center;
+    white-space: nowrap;
 }
 
 /* the whole namedegree/cls thing is TERRIBLE HTML, and should be burned to the ground */
 
-/* name/degree: "always public" is on the right */
+/* name/degree row uses colspan, so fake the usual icon/privacy lanes with a small grid */
 .researcherprofiles--edit-sections-index-page #profile-components #namedegreerow #public {
+    display: grid;
+    grid-template-columns: 3.5rem 7rem;
+    align-items: center;
     float: right;
+    width: 10.5rem !important;
+    text-align: right;
+    white-space: nowrap;
 }
 
     /* name/degree: space between lock icon and "always public" */
     .researcherprofiles--edit-sections-index-page #profile-components #namedegreerow #public img {
-        margin-right: 3rem;
+        justify-self: center;
+        margin-right: 0;
     }
 
 /* name/degree: "Name and Degrees" looks like a link */
@@ -2066,16 +2137,26 @@ body.about .share {
 }
 
 /* less visual weight on public/private listing indicator */
-.researcherprofiles--edit-sections-index-page #profile-components #namedegreerow #public,
 .researcherprofiles--edit-sections-index-page .colSecurity {
+    width: 7rem !important;
     text-align: right;
+    font-size: 0.9em;
+    color: var(--text-muted-color);
+    white-space: nowrap;
+}
+
+.researcherprofiles--edit-sections-index-page #profile-components #namedegreerow #public {
     font-size: 0.9em;
     color: var(--text-muted-color);
 }
 
 /* a little space around visibility description items */
+.researcherprofiles--edit-sections-index-page #profile-visibility table {
+    width: 100%;
+}
+
 .researcherprofiles--edit-sections-index-page #profile-visibility td {
-    padding: 0.5rem;
+    padding: 0.35rem 0.5rem;
     vertical-align: top;
 }
 
@@ -2087,6 +2168,37 @@ body.about .share {
 /* hide column headings, but leave visible to screen readers */
 .researcherprofiles--edit-sections-index-page .EditMenuTopRow {
     display: none
+}
+
+@media only screen and (max-width: 980px) {
+
+    /* on edit index pages, stack the menu and help panels */
+    .researcherprofiles--edit-sections-index-page .panelMain {
+        display: block;
+    }
+
+    .researcherprofiles--edit-page .researcherprofiles--edit-page--explanation-of-icons,
+    .researcherprofiles--edit-sections-index-page #profile-visibility {
+        margin-top: 1.5rem;
+    }
+
+    .researcherprofiles--edit-sections-index-page #profile-components .colSecurity {
+        width: 5.5rem !important;
+    }
+
+    .researcherprofiles--edit-sections-index-page #profile-components #namedegreerow #public {
+        grid-template-columns: 3.5rem 5.5rem;
+        width: 9rem !important;
+    }
+
+    .researcherprofiles--edit-sections-index-page #profile-visibility {
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+        .researcherprofiles--edit-sections-index-page #profile-visibility td:first-child {
+            width: 7rem;
+        }
 }
 
 /* ############################################################################################ */
@@ -2173,7 +2285,6 @@ body.about .share {
 /* ############################################################################################ */
 /* PROFILE EDITING: COLLABORATION INTERESTS */
 /* ############################################################################################ */
-
 
 /* =====================================================
    Collaboration Interests – Variable-Based Styling
@@ -2318,7 +2429,6 @@ body.about .share {
     color: var(--alert-red-color);
 }
 
-
 /* ############################################################################################ */
 /* LOGIN PAGE */
 /* /login/default.aspx?method=login */
@@ -2378,10 +2488,24 @@ body.about .share {
 }
 
 /* the main search results table was hard-coded to 720px */
-.researcherprofiles--search-results-page .panelMain #tblSearchResults {
-    width: 100%;
+.researcherprofiles--search-results-page .profilesContentMain,
+.researcherprofiles--search-results-page .profilesMaxWidth,
+.researcherprofiles--search-results-page .panelMain {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0;
+    width: 100% !important;
 }
 
+/* restore some breathing room from the passive right rail after widening the main column */
+.researcherprofiles--search-results-page .profilesContentMain {
+    padding-right: 1.5rem;
+}
+
+.researcherprofiles--search-results-page .panelMain #tblSearchResults {
+    width: 100% !important;
+    max-width: 100%;
+}
 
 /* what are these??? are they needed? */
 #tblSearchResults th,
@@ -2412,22 +2536,159 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
     border-collapse: collapse;
 }
 
+/* legacy search results float this wrapper, which prevents responsive width constraints from working */
+.researcherprofiles--search-results-page .panelMain .listTable {
+    box-sizing: border-box;
+    float: none !important;
+    width: 100% !important;
+    max-width: 100%;
+}
+
+    /* the inner table also ships with fixed widths, so constrain both layers */
+    .researcherprofiles--search-results-page .panelMain .listTable table {
+        box-sizing: border-box;
+        max-width: 100%;
+        width: 100% !important;
+    }
+
     /* normalize colors of alternating rows */
     .researcherprofiles--search-results-page .panelMain .listTable tr.evenRow {
         background-color: var(--striped-row-colored-row-color);
     }
 
-    /* color header and footer rows are a little different */
-    .researcherprofiles--search-results-page .panelMain .listTable tr:first-of-type,
-    .researcherprofiles--search-results-page .panelMain .listTable tr:first-of-type th,
-    .researcherprofiles--search-results-page .panelMain .listTablePagination {
-        background: #eed;
+.researcherprofiles--search-results-page .panelMain #tblSearchResults tr:not(:first-child):hover {
+    background-color: var(--highlighted-panel-background-color);
+}
+
+.researcherprofiles--search-results-page .panelMain #tblSearchResults td[onclick] {
+    cursor: pointer;
+}
+
+.researcherprofiles--search-results-page .panelMain #tblSearchResults td.linky {
+    color: var(--generic-link-color);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-thickness: 0.1px;
+    text-decoration-style: dotted;
+}
+
+/* people-search results need extra room for long names; generic 3-column results do not */
+.researcherprofiles--search-results-page .panelMain #tblSearchResults:has(tr:first-child th:nth-child(4):last-child) th:first-child,
+.researcherprofiles--search-results-page .panelMain #tblSearchResults:has(tr:first-child th:nth-child(4):last-child) td:first-child {
+    white-space: nowrap;
+    width: 24rem;
+}
+
+/* tighten row height without disturbing the legacy border model */
+.researcherprofiles--search-results-page .panelMain #tblSearchResults td {
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+}
+
+.researcherprofiles--search-results-page .panelMain #tblSearchResults th {
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+}
+
+.researcherprofiles--search-results-page .panelMain #tblSearchResults tr:hover td.linky {
+    text-decoration-style: solid;
+}
+
+/* only the compact 3-column search-results variant has a low-signal middle "Type" column */
+.researcherprofiles--search-results-page .panelMain #tblSearchResults:has(tr:first-child th:nth-child(3):last-child) th:nth-child(2),
+.researcherprofiles--search-results-page .panelMain #tblSearchResults:has(tr:first-child th:nth-child(3):last-child) td:nth-child(2) {
+    color: var(--text-muted-color);
+    text-align: center;
+}
+
+/* "Why" stays in the last column across the different search-results table variants */
+.researcherprofiles--search-results-page .panelMain #tblSearchResults th:last-child,
+.researcherprofiles--search-results-page .panelMain #tblSearchResults td:last-child {
+    text-align: center;
+}
+
+    .researcherprofiles--search-results-page .panelMain #tblSearchResults td:last-child a {
+        color: var(--generic-link-color);
+        font-size: 0.92rem;
     }
 
-        /* kill hardcoded pixel width */
-        .researcherprofiles--search-results-page .panelMain .listTablePagination td {
-            width: auto;
-        }
+/* color header and footer rows are a little different */
+.researcherprofiles--search-results-page .panelMain .listTable tr:first-of-type,
+.researcherprofiles--search-results-page .panelMain .listTable tr:first-of-type th,
+.researcherprofiles--search-results-page .panelMain .listTablePagination {
+    background: #eed;
+}
+
+    /* kill hardcoded pixel width */
+    .researcherprofiles--search-results-page .panelMain .listTablePagination td {
+        width: auto;
+    }
+
+/* pagination wrapper is floated in legacy CSS too, so clear it alongside the main table */
+.researcherprofiles--search-results-page .panelMain .listTablePagination {
+    box-sizing: border-box;
+    float: none !important;
+    width: 100% !important;
+}
+
+/* align the passive rail with the results table, not the page title */
+.researcherprofiles--search-results-page .profilesContentPassive .panelPassive {
+    background-color: var(--striped-row-colored-row-color);
+    border: 1px solid var(--highlighted-panel-border-color);
+    margin-top: 3rem;
+    padding: 1rem;
+}
+
+.researcherprofiles--search-results-page .profilesContentPassive .passiveSectionHead {
+    margin-top: 0.5rem;
+    margin-bottom: 0.45rem;
+}
+
+.researcherprofiles--search-results-page .profilesContentPassive .passiveSectionBody ul {
+    margin: 0.2rem 0;
+    padding-left: 0;
+}
+
+.researcherprofiles--search-results-page .profilesContentPassive .passiveSectionBody li {
+    list-style-type: none;
+}
+
+.researcherprofiles--search-results-page .profilesContentPassive .passiveSectionBody li,
+.researcherprofiles--search-results-page .profilesContentPassive .panelPassive > div:last-child {
+    color: var(--text-muted-color);
+}
+
+.researcherprofiles--search-results-page .profilesContentPassive .passiveSectionBody a {
+    color: var(--generic-link-color);
+}
+
+.researcherprofiles--search-results-page .profilesContentPassive #filters {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--highlighted-panel-border-color);
+}
+
+/* drop the trailing "Why" column first on narrow screens, and then let long names wrap again */
+@media only screen and (max-width: 760px) {
+
+    .researcherprofiles--search-results-page .panelMain #tblSearchResults th:last-child,
+    .researcherprofiles--search-results-page .panelMain #tblSearchResults td:last-child {
+        display: none;
+    }
+
+    .researcherprofiles--search-results-page .panelMain #tblSearchResults:has(tr:first-child th:nth-child(4):last-child) th:first-child,
+    .researcherprofiles--search-results-page .panelMain #tblSearchResults:has(tr:first-child th:nth-child(4):last-child) td:first-child {
+        white-space: normal;
+        width: auto;
+    }
+
+    .researcherprofiles--search-results-page .profilesContentMain {
+        padding-right: 0;
+    }
+
+    .researcherprofiles--search-results-page .profilesContentPassive .panelPassive {
+        margin-top: 0;
+    }
+}
 
 /* hide DIRECT link from search results page. Ask Brian for advice here. */
 /* DREAM: remove from upstream */
@@ -2485,7 +2746,7 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
     font-size: 0.85rem;
     padding: 0.4rem 0.75rem;
     cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 /* now stick the footer to the very bottom of the container */

@@ -7,13 +7,13 @@
   DTS:CreatorName="MED\KH92"
   DTS:DTSID="{F41275D7-E09A-498B-8137-A5B911F4747C}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
   DTS:LocaleID="1033"
   DTS:MaxErrorCount="100"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="389"
-  DTS:VersionGUID="{E545038B-FFB3-46BA-B85C-DF3F1209A2C2}">
+  DTS:VersionBuild="390"
+  DTS:VersionGUID="{313ADDA0-69D3-4651-992C-2C5915EA430F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -331,7 +331,7 @@
           <DTS:ObjectData>
             <ScriptProject
               Name="ScriptTask_50b00a323bc749db93a308f0425f4835"
-              VSTAMajorVersion="14"
+              VSTAMajorVersion="16"
               VSTAMinorVersion="0"
               Language="VisualBasic"
               ReadOnlyVariables="PostData,PRNSWebService,HttpMethod"
@@ -578,8 +578,9 @@ Imports System.Runtime.InteropServices
     <OptionStrict>Off</OptionStrict>
     <OptionInfer>On</OptionInfer>
     <ProjectGuid>{3B7D9A1C-503B-4000-8C5B-B25B8DA6AFB5}</ProjectGuid>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <TargetFrameworkProfile></TargetFrameworkProfile>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
   </PropertyGroup>
   <!-- This section defines properties that are set when the "Debug" configuration is
        selected.
@@ -600,7 +601,7 @@ Imports System.Runtime.InteropServices
     <OutputPath>bin\</OutputPath>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355</NoWarn>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355</NoWarn>
   </PropertyGroup>
   <!-- This section defines properties that are set when the "Release" configuration is
        selected.
@@ -621,7 +622,7 @@ Imports System.Runtime.InteropServices
     <OutputPath>bin\</OutputPath>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355</NoWarn>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355</NoWarn>
   </PropertyGroup>
   <!-- This section enables pre- and post-build steps. However,
        it is recommended that MSBuild tasks be used instead of these properties.
@@ -636,8 +637,8 @@ Imports System.Runtime.InteropServices
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=13.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=13.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=16.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=16.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
   </ItemGroup>
   <!-- Visual Basic supports Importing namespaces (equivalent to using statements in C#).-->
   <ItemGroup>
@@ -701,7 +702,7 @@ Imports System.Runtime.InteropServices
         <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="vb" TemplatesPath="" DebugInfoExeName="" />
         <Host Name="SSIS_ScriptTask" />
         <ProjectClient>
-          <HostIdentifier>SSIS_ST130</HostIdentifier>
+          <HostIdentifier>SSIS_ST160</HostIdentifier>
         </ProjectClient>
       </FlavorProperties>
     </VisualStudio>
@@ -711,21 +712,21 @@ Imports System.Runtime.InteropServices
                 Name="Project"
                 Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
-	<msb:PropertyGroup>
-		<msb:CodeName>scripttask_50b00a323bc749db93a308f0425f4835</msb:CodeName>
-		<msb:Language>msBuild</msb:Language>
-		<msb:DisplayName>scripttask_50b00a323bc749db93a308f0425f4835</msb:DisplayName>
-		<msb:ProjectId>{33D9E3C8-16BD-4241-9E89-6456302E5B0D}</msb:ProjectId>
-	</msb:PropertyGroup>
-	<msb:ItemGroup>
-		<msb:Project Include="scripttask_50b00a323bc749db93a308f0425f4835.vbproj"/>
-		<msb:File Include="My Project\AssemblyInfo.vb"/>
-		<msb:File Include="ScriptMain.vb"/>
-		<msb:File Include="My Project\Resources.resx"/>
-		<msb:File Include="My Project\Resources.Designer.vb"/>
-		<msb:File Include="My Project\Settings.settings"/>
-		<msb:File Include="My Project\Settings.Designer.vb"/>
-	</msb:ItemGroup>
+  <msb:PropertyGroup>
+    <msb:CodeName>scripttask_50b00a323bc749db93a308f0425f4835</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>scripttask_50b00a323bc749db93a308f0425f4835</msb:DisplayName>
+    <msb:ProjectId>{5FD0B5BA-2400-4817-800A-617A2A02915C}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="scripttask_50b00a323bc749db93a308f0425f4835.vbproj" />
+    <msb:File Include="My Project\AssemblyInfo.vb" />
+    <msb:File Include="ScriptMain.vb" />
+    <msb:File Include="My Project\Resources.resx" />
+    <msb:File Include="My Project\Resources.Designer.vb" />
+    <msb:File Include="My Project\Settings.settings" />
+    <msb:File Include="My Project\Settings.Designer.vb" />
+  </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
                 Name="My Project\Resources.resx"
@@ -912,7 +913,7 @@ End Namespace]]></ProjectItem>
               <BinaryItem
                 Name="ScriptTask_50b00a323bc749db93a308f0425f4835.vbproj.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDADz7S14AAAAAAAAAAOAAIiALAVAAACIAAAAIAAAAAAAAZkAA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDACV6PWoAAAAAAAAAAOAAIiALAVAAACIAAAAIAAAAAAAAZkAA
 AAAgAAAAYAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACgAAAAAgAAAAAAAAMAYIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAABRAAABPAAAAAGAAAMgEAAAAAAAAAAAAAAAAAAAA
 AAAAAIAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -984,8 +985,8 @@ UwNgAosApQGAAoMAUwOAAosApQGgAosApQHAAosApQHgAosApQHgAoMAUwMAA4sApQEgA4sApQEg
 A4MAUwNvAEkBXAEEAAEABQAFAAYABwAJAAgAAADOBx4CAACxBiMCAAC0BygCAABjCC0CAACIBzIC
 AADRATcCAADeBDwCAADrAEECAgAEAAMAAgAFAAUAAgAGAAcAAgAHAAkAAgAJAAsAAgAKAA0AAQAL
 AA0AAgAOAA8AAgAYABEALgA1ADwAQwBOAWEBcAF3AQSAAAABAAAAAAAAAAAAAAAAADsFAAAEAAAA
-AAAAAAAAAACFAakAAAAAAAQAAAAAAAAAAAAAAIUBawYAAAAACgAAAAAAAAAAAAAAjgGyAAAAAAAN
-AAAAAAAAAAAAAACXAW4FAAAAAA0AAAAAAAAAAAAAAJcBTQAAAAAAAAAAAAEAAABcCQAACAAEAAkA
+AAAAAAAAAACFAakAAAAAAAQAAAAAAAAAAAAAAIUBawYAAAAACgAAAAAAAAAAAAAAjgGyAAAAAAAQ
+AAAAAAAAAAAAAACXAW4FAAAAABAAAAAAAAAAAAAAAJcBTQAAAAAAAAAAAAEAAABcCQAACAAEAAkA
 BAAKAAcAAAAQABIAbAAAABAAKwBsAAAAAAAtAGwAoQBXAaEAegEAAABDb250ZXh0VmFsdWVgMQBU
 aHJlYWRTYWZlT2JqZWN0UHJvdmlkZXJgMQBJbnQzMgBnZXRfVVRGOAA8TW9kdWxlPgBTeXN0ZW0u
 SU8ATWljcm9zb2Z0LlNxbFNlcnZlci5NYW5hZ2VkRFRTAFQARGlzcG9zZV9fSW5zdGFuY2VfXwBD
@@ -1041,7 +1042,7 @@ AG8AZABlAAAVQQBwAGkAUgBlAHMAdQBsAHQAcwAAN1MAYwByAGkAcAB0ACAASQBuAGkAdABpAGwA
 YQBpAHoAYQB0AGkAbwBuACAAVgBhAGwAdQBlAAABAB1QAFIATgBTAFcAZQBiAFMAZQByAHYAaQBj
 AGUAABVIAHQAdABwAE0AZQB0AGgAbwBkAAAJUABPAFMAVAAAEVAAbwBzAHQARABhAHQAYQAAEXQA
 ZQB4AHQALwB4AG0AbAAAB0cARQBUAAALdQB0AGYALQA4AAETRQByAHIAbwByAFQAZQB4AHQAAAAA
-AGrTjhU0pW9AghAgXeihfv0ABCABAQgDIAABBSABARERBCABAQ4EIAEBAgUgAgEODgUgAQERRQcg
+ACYu/xzkVndJsxXfQ2EuG6kABCABAQgDIAABBSABARERBCABAQ4EIAEBAgUgAgEODgUgAQERRQcg
 BAEODg4OBhUSJAESDAYVEiQBEggGFRIkARJlBhUSJAESIAQgABMABwABEm0RgLUFIAASgLkHIAIB
 DhKAuQQAARwcBAABARw2BxcSgJUODhKAmRKAnQ4dBRKAoRKAmRKAoRKApR0DCA4SgKkSgJkSgKES
 gKUdAwgOEoCtEoCtBSAAEoDFBSAAEoDJBiABEoDNHAQgAQEcAyAAHAMgAA4GAAESgNUOBCABAg4F
@@ -1055,8 +1056,8 @@ CAASZQQIABIgBAgAEnkECAASfQQIABIYBCgAEwAIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNl
 cHRpb25UaHJvd3MBCAEAAgAAAAAANwEAMlNjcmlwdFRhc2tfNTBiMDBhMzIzYmM3NDlkYjkzYTMw
 OGYwNDI1ZjQ4MzUudmJwcm9qAAAFAQAAAAAWAQARQ29weXJpZ2h0IEAgIDIwMTEAAAUBAAEAACkB
 ACQwNWFlMTdjZC1kZDg1LTQwYTItYTUwMi0wYTdiODFlNjU2ODkAAAwBAAcxLjAuMC4wAABJAQAa
-Lk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjYBAFQOFEZyYW1ld29ya0Rpc3BsYXlOYW1lEi5ORVQg
-RnJhbWV3b3JrIDQuNggBAAEAAAAAABgBAApNeVRlbXBsYXRlCDExLjAuMC4wAABhAQA0U3lzdGVt
+Lk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjcBAFQOFEZyYW1ld29ya0Rpc3BsYXlOYW1lEi5ORVQg
+RnJhbWV3b3JrIDQuNwgBAAEAAAAAABgBAApNeVRlbXBsYXRlCDExLjAuMC4wAABhAQA0U3lzdGVt
 LldlYi5TZXJ2aWNlcy5Qcm90b2NvbHMuU29hcEh0dHBDbGllbnRQcm90b2NvbBJDcmVhdGVfX0lu
 c3RhbmNlX18TRGlzcG9zZV9fSW5zdGFuY2VfXwAAABABAAtNeS5Db21wdXRlcgAAEwEADk15LkFw
 cGxpY2F0aW9uAAAMAQAHTXkuVXNlcgAAEwEADk15LldlYlNlcnZpY2VzAAAAAAC0AAAAzsrvvgEA
@@ -1458,7 +1459,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               <DTS:ObjectData>
                 <ScriptProject
                   Name="ScriptTask_9623aa03e29f483aae13647b19db830b"
-                  VSTAMajorVersion="14"
+                  VSTAMajorVersion="16"
                   VSTAMinorVersion="0"
                   Language="VisualBasic"
                   ReadOnlyVariables="System::ErrorDescription"
@@ -1542,8 +1543,9 @@ End Class]]></ProjectItem>
     <OptionStrict>Off</OptionStrict>
     <OptionInfer>On</OptionInfer>
     <ProjectGuid>{60FE75C2-58B5-45BA-8419-B38F7D3D0D77}</ProjectGuid>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <TargetFrameworkProfile></TargetFrameworkProfile>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
   </PropertyGroup>
   <!-- This section defines properties that are set when the "Debug" configuration is
        selected.
@@ -1564,7 +1566,7 @@ End Class]]></ProjectItem>
     <OutputPath>bin\</OutputPath>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355</NoWarn>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355</NoWarn>
   </PropertyGroup>
   <!-- This section defines properties that are set when the "Release" configuration is
        selected.
@@ -1585,7 +1587,7 @@ End Class]]></ProjectItem>
     <OutputPath>bin\</OutputPath>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355</NoWarn>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355,42353,42354,42355</NoWarn>
   </PropertyGroup>
   <!-- This section enables pre- and post-build steps. However,
        it is recommended that MSBuild tasks be used instead of these properties.
@@ -1600,8 +1602,8 @@ End Class]]></ProjectItem>
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=13.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=13.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=16.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=16.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
   </ItemGroup>
   <!-- Visual Basic supports Importing namespaces (equivalent to using statements in C#).-->
   <ItemGroup>
@@ -1665,7 +1667,7 @@ End Class]]></ProjectItem>
         <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="vb" TemplatesPath="" DebugInfoExeName="" />
         <Host Name="SSIS_ScriptTask" />
         <ProjectClient>
-          <HostIdentifier>SSIS_ST130</HostIdentifier>
+          <HostIdentifier>SSIS_ST160</HostIdentifier>
         </ProjectClient>
       </FlavorProperties>
     </VisualStudio>
@@ -1715,21 +1717,21 @@ End Class]]></ProjectItem>
                     Name="Project"
                     Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
 <c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
-	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
-		<msb:CodeName>scripttask_9623aa03e29f483aae13647b19db830b</msb:CodeName>
-		<msb:DisplayName>scripttask_9623aa03e29f483aae13647b19db830b</msb:DisplayName>
-		<msb:ProjectId>{7CDB107E-9934-4258-A1CE-69E9FCCEA487}</msb:ProjectId>
-	</msb:PropertyGroup>
-	<msb:ItemGroup>
-		<msb:Project Include="scripttask_9623aa03e29f483aae13647b19db830b.vbproj"/>
-		<msb:File Include="My Project\AssemblyInfo.vb"/>
-		<msb:File Include="My Project\Resources.resx"/>
-		<msb:File Include="ScriptMain.vb"/>
-		<msb:File Include="My Project\Resources.Designer.vb"/>
-		<msb:File Include="My Project\Settings.settings"/>
-		<msb:File Include="My Project\Settings.Designer.vb"/>
-	</msb:ItemGroup>
+  <msb:PropertyGroup>
+    <msb:CodeName>scripttask_9623aa03e29f483aae13647b19db830b</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>scripttask_9623aa03e29f483aae13647b19db830b</msb:DisplayName>
+    <msb:ProjectId>{8AA92E86-5ACD-4181-8D70-5031DF08422D}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="scripttask_9623aa03e29f483aae13647b19db830b.vbproj" />
+    <msb:File Include="My Project\AssemblyInfo.vb" />
+    <msb:File Include="ScriptMain.vb" />
+    <msb:File Include="My Project\Resources.resx" />
+    <msb:File Include="My Project\Resources.Designer.vb" />
+    <msb:File Include="My Project\Settings.settings" />
+    <msb:File Include="My Project\Settings.Designer.vb" />
+  </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
                   <ProjectItem
                     Name="My Project\Resources.resx"
@@ -1954,7 +1956,7 @@ End Namespace]]></ProjectItem>
                   <BinaryItem
                     Name="ScriptTask_9623aa03e29f483aae13647b19db830b.vbproj.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAErLRV4AAAAAAAAAAOAAIiALAVAAABoAAAAIAAAAAAAApjgA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDACp6PWoAAAAAAAAAAOAAIiALAVAAABoAAAAIAAAAAAAApjgA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
 ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAFQ4AABPAAAAAEAAAMgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2006,7 +2008,7 @@ AVsAAgIgAoMApgIgAosA9ABAAoMApgJAAosA9ABgAoMApgJgAosA9ACAAoMApgKAAosA9ACgAosA
 AAAAqQZxAQAAqwV2AQAAjwZ7AQAAHAeAAQAAYwaFAQAAUAGKAQAAGQSPAQAAtgCUAQIABAADAAIA
 BQAFAAIABgAHAAIABwAJAAIACQALAAIACgANAAEACwANAAIADgAPAAIAGAARAC4ANQA8AEMAnQCw
 AL8AxgAEgAAAAQAAAAAAAAAAAAAAAABYBAAABAAAAAAAAAAAAAAA1ACEAAAAAAAEAAAAAAAAAAAA
-AADUAGUFAAAAAAoAAAAAAAAAAAAAAN0AjQAAAAAADQAAAAAAAAAAAAAA5gCLBAAAAAANAAAAAAAA
+AADUAGUFAAAAAAoAAAAAAAAAAAAAAN0AjQAAAAAAEAAAAAAAAAAAAAAA5gCLBAAAAAAQAAAAAAAA
 AAAAAADmADQAAAAAAAAAAAABAAAAFQgAAAgABAAJAAQACgAHAAAAEAASAFMAAAAQACsAUwAAAAAA
 LQBTAGkApgBpAMkAAAAAAABDb250ZXh0VmFsdWVgMQBUaHJlYWRTYWZlT2JqZWN0UHJvdmlkZXJg
 MQA8TW9kdWxlPgBNaWNyb3NvZnQuU3FsU2VydmVyLk1hbmFnZWREVFMAVABEaXNwb3NlX19JbnN0
@@ -2051,7 +2053,7 @@ c3MAZ2V0X0R0cwBTY3JpcHRSZXN1bHRzAG1fU3luY09iamVjdABNeVByb2plY3QARXhpdABzZXRf
 VGFza1Jlc3VsdABtX0NvbnRleHQAU2NyaXB0VGFza185NjIzYWEwM2UyOWY0ODNhYWUxMzY0N2Ix
 OWRiODMwYi52YnByb2ouTXkAZ2V0X0Fzc2VtYmx5AAAxTQB5AC4AUgBlAHMAbwB1AHIAYwBlAHMA
 LgBNAHkAUgBlAHMAbwB1AHIAYwBlAHMAAAtFAHIAcgBvAHIAACFFAHIAcgBvAHIARABlAHMAYwBy
-AGkAcAB0AGkAbwBuAAAAAAAOvrXn32PSTqvBHbFjqpFnAAQgAQEIAyAAAQUgAQEREQQgAQEOBCAB
+AGkAcAB0AGkAbwBuAAAAAAB3JbTFAgj/QJmMK6rLQVSOAAQgAQEIAyAAAQUgAQEREQQgAQEOBCAB
 AQIFIAIBDg4FIAEBEUUHIAQBDg4ODgYVEiQBEgwGFRIkARIIBhUSJAESZQYVEiQBEiAEIAATAAcA
 ARJtEYCZBSAAEoCdByACAQ4SgJ0EAAEcHAQAAQEcBSAAEoCpBSAAEoCtBiABEoCxHAMgABwDIAAO
 BCABARwEIAECHAMgAAgEBwEeAAIeAAUQAQAeAAQKAR4ABAcBEwAGFRIkARMABwYVEnEBEwAGFRJx
@@ -2062,8 +2064,8 @@ EB4ABAgAEgwECAASCAQIABJlBAgAEiAECAASeQQIABJ9BAgAEhgEKAATAAgBAAgAAAAAAB4BAAEA
 VAIWV3JhcE5vbkV4Y2VwdGlvblRocm93cwEIAQACAAAAAAA3AQAyU2NyaXB0VGFza185NjIzYWEw
 M2UyOWY0ODNhYWUxMzY0N2IxOWRiODMwYi52YnByb2oAAAUBAAAAABYBABFDb3B5cmlnaHQgQCAg
 MjAxMQAABQEAAQAAKQEAJDFkZjk0M2UzLTI0MjgtNGUxMy04MjlhLWI4NjA1MDU1NWJjZgAADAEA
-BzEuMC4wLjAAAEkBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuNgEAVA4URnJhbWV3b3JrRGlz
-cGxheU5hbWUSLk5FVCBGcmFtZXdvcmsgNC42CAEAAQAAAAAAGAEACk15VGVtcGxhdGUIMTEuMC4w
+BzEuMC4wLjAAAEkBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuNwEAVA4URnJhbWV3b3JrRGlz
+cGxheU5hbWUSLk5FVCBGcmFtZXdvcmsgNC43CAEAAQAAAAAAGAEACk15VGVtcGxhdGUIMTEuMC4w
 LjAAAGEBADRTeXN0ZW0uV2ViLlNlcnZpY2VzLlByb3RvY29scy5Tb2FwSHR0cENsaWVudFByb3Rv
 Y29sEkNyZWF0ZV9fSW5zdGFuY2VfXxNEaXNwb3NlX19JbnN0YW5jZV9fAAAAEAEAC015LkNvbXB1
 dGVyAAATAQAOTXkuQXBwbGljYXRpb24AAAwBAAdNeS5Vc2VyAAATAQAOTXkuV2ViU2VydmljZXMA
@@ -2220,6 +2222,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="155,42"
+          Id="Package\Check for Errors"
+          TopLeft="190,672" />
+        <NodeLayout
           Size="178,42"
           Id="Package\Foreach Row Call PRNS WebService\Call PRNS Webservice"
           TopLeft="112.716981132075,155.528301886792" />
@@ -2268,7 +2274,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2302,7 +2310,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2336,7 +2346,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2364,7 +2376,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2442,7 +2456,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
         <ContainerLayout
           HeaderHeight="43.924528301886795"
           IsExpanded="True"
-          PanelSize="549,505"
+          PanelSize="549,505.075471698114"
           Size="549,549"
           Id="Package\Foreach Row Call PRNS WebService"
           TopLeft="4.5,68.5943396226415" />
@@ -2450,38 +2464,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
           Size="164,42"
           Id="Package\Get API Post Data"
           TopLeft="162.594339622641,7.5" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="162.594339622641,28.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="116.405660377359,40.0943396226415"
-              Start="0,0"
-              End="116.405660377359,32.5943396226415">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="112.405660377359,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="112.405660377359,0"
-                    Point2="116.405660377359,0"
-                    Point3="116.405660377359,4" />
-                  <mssgle:LineSegment
-                    End="116.405660377359,32.5943396226415" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="155,42"
-          Id="Package\Check for Errors"
-          TopLeft="190,672" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="279,617.594339622641">
@@ -2513,7 +2495,39 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="162.594339622641,28.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="116.405660377359,40.0943396226415"
+              Start="0,0"
+              End="116.405660377359,32.5943396226415">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="112.405660377359,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="112.405660377359,0"
+                    Point2="116.405660377359,0"
+                    Point3="116.405660377359,4" />
+                  <mssgle:LineSegment
+                    End="116.405660377359,32.5943396226415" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

@@ -109,12 +109,13 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
         private void SaveManualAdd()
         {
-            if (txtNct.Text != "")
+            String nctNumber = txtNct.Text.Trim();
+            if (nctNumber != "")
             {
                 // if it was in the manual remove list, just take it away from that list
-                if (!manualRemoves.Remove(txtNct.Text) && !manualAdds.Contains(txtNct.Text))
+                if (!manualRemoves.Remove(nctNumber) && !manualAdds.Contains(nctNumber))
                 {
-                    manualAdds.Add(txtNct.Text);
+                    manualAdds.Add(nctNumber);
                 }
                 // call API
                 SaveData();

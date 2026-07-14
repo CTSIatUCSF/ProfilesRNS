@@ -80,7 +80,7 @@ $('.profiles .profilesContentMain .pageTitle h2').hide();
       <li><a href="#contents-speed">How often is information updated?</a></li>
     </ul>
   </li>
-  <li><a href="#manage">Managing UCSF Profiles</a></li>
+  <li><a href="#who-runs">Who runs UCSF Profiles?</a></li>
 </ul>
 <h2 style="clear:left; padding-top:20px;" id="what">What is UCSF Profiles?</h2>
 <p>UCSF Profiles is a searchable directory of people and expertise at the University of California, San Francisco (UCSF). It helps people learn about the work being done across UCSF and connect with the people doing it.</p>
@@ -184,7 +184,7 @@ $('.profiles .profilesContentMain .pageTitle h2').hide();
   <li>Different types of information are updated on different schedules, and changes may take some time to appear in Profiles.</li>
 </ul>
 
-<h2 id="manage">Managing UCSF Profiles</h2>
+<h2 id="who-runs">Who runs UCSF Profiles?</h2>
 <ul>
   <li>UCSF Profiles is managed by the <a href="https://ctsi.ucsf.edu/about-us/team/informatics-research-technology" target="_blank">Informatics and Research Technology</a> program of UCSF&apos;s <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>.</li>
 </ul>

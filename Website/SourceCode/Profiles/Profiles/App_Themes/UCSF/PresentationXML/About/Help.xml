@@ -38,12 +38,11 @@ $('.profiles .profilesContentMain .pageTitle h2').hide();
 	 
 	  <div class="content-block">
 		<h2 style="font-size:30px">Contact Us</h2>
-		<p>Please <a href="mailto:profiles@ucsf.edu">share your feedback</a> about how to improve
-		   UCSF Profiles, and let us know whether UCSF Profiles has enabled your research in any way.
-		   Your success stories are important to enable the continued support and expansion of this
-		   important tool.
+		<p>Please share your feedback about how to improve UCSF Profiles, and let us know whether UCSF
+		Profiles has enabled your research in any way. Your success stories are important to enable
+		the continued support and expansion of this important tool.
 		</p>
-		<p><strong>Email us at <a href="mailto:profiles@ucsf.edu">profiles@ucsf.edu</a></strong></p>
+		<p><strong>Email us at <strong>profiles&commat;ucsf.edu</strong></p>
 	  </div>
   </div>
 

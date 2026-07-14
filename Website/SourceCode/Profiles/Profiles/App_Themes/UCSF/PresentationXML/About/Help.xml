@@ -33,7 +33,7 @@ $('.profiles .profilesContentMain .pageTitle h2').hide();
 		</p>
 		<p><strong>Name, Degrees, Mailing Address, and Email Address</strong>: Your data comes from the UCSF HR system, and you can't edit it here. Please contact your HR representative to update your HR record and privacy settings. 
 		</p>
-		<p><strong><a href="#faq" class="dblarrow">Frequently Asked Questions</a></strong></p>
+		<p><strong><a href="#overview" class="dblarrow">On this page</a></strong></p>
 	  </div>
 	 
 	  <div class="content-block">
@@ -47,140 +47,146 @@ $('.profiles .profilesContentMain .pageTitle h2').hide();
 	  </div>
   </div>
 
-<h2 style="clear:left; padding-top:20px;">Researcher Information</h2>
-<p>Your profile page shows data drawn from external sources, and may also display 
-custom content you add. <a href="../kirsten.bibbins-domingo">See an example of 
-an enhanced profile page.</a></p> 
-<p>UCSF Profiles helps people learn about the work being done across UCSF and connect with the people doing it.</p>
-
-<table width="940">
-<tr>
-<td valign="top">
-<p>Name, degrees, and contact information are imported from campus systems.</p>
-<p>Profile owners may add:</p>
+<h2 id="overview" class="about">Contents</h2>
 <ul>
-<li>Photo</li>
-<li>ORCID ID</li>
-<li>Overview (i.e. bio)</li>
-<li>Education and Training</li>
-<li>Awards and Honors</li>
-<li>Featured Publications</li>
-<li>Research Activities and Funding (i.e. grants)</li>
-<li>Clinical Trials</li>
-<li>Collaboration Interests</li>
-<li>Webpage</li>
-<li>Featured Videos</li>
-<li>Media Links</li>
-<li>Global Health Equity</li>
-<li>Mentoring</li>
-<li>Community and Public Service</li>
-<li>Academic Senate</li>
-<li>Publications</li>
+  <li><a href="#using">Using Profiles</a>
+    <ul>
+      <li><a href="#using-view">Who can view UCSF Profiles?</a></li>
+      <li><a href="#using-search">How do I search Profiles?</a></li>
+    </ul>
+  </li>
+  <li><a href="#getting">Getting a UCSF Profiles page</a>
+    <ul>
+      <li><a href="#getting-who">Who is listed in UCSF Profiles?</a></li>
+      <li><a href="#getting-request">How do I request a UCSF Profiles page?</a></li>
+    </ul>
+  </li>
+  <li><a href="#editing">Editing a profile</a>
+    <ul>
+      <li><a href="#editing-login">How do I edit my UCSF Profiles page?</a></li>
+      <li><a href="#editing-whyupdate">Why should I update my profile?</a></li>
+      <li><a href="#editing-whatcanadd">What can I add to my profile?</a></li>
+      <li><a href="#editing-email">How do I show my email address?</a></li>
+      <li><a href="#editing-expertise">How are expertise areas chosen?</a></li>
+      <li><a href="#editing-advance">Can I import information from my Advance CV into my UCSF Profiles page?</a></li>
+      <li><a href="#editing-proxy">How do I manage someone else's profile?</a></li>
+    </ul>
+  </li>
+  <li><a href="#contents">Profile contents</a>
+    <ul>
+      <li><a href="#contents-sourceinfo">What information is imported from UCSF systems?</a></li>
+      <li><a href="#contents-pubs">Why are there missing or incorrect publications in my profile?</a></li>
+      <li><a href="#contents-sources">Where do publications, grants, or trials come from?</a></li>
+      <li><a href="#contents-speed">How often is information updated?</a></li>
+    </ul>
+  </li>
+  <li><a href="#manage">Managing UCSF Profiles</a></li>
 </ul>
-<p>Federal grants are imported from NIH ExPORTER. You can add more grants yourself.</p>
-<p>Articles listed in PubMed are imported automatically. You can add more articles yourself.</p>
-</td>
-<td valign="top"><img src="images/profilesnapshot.png" width="600" alt="" /></td>
-<td valign="top">
-<p>Networks are generated from research available in PubMed.</p>
-<p>Research concepts/topics based on PubMed MeSH terms</p>
-<p>Co-authors from the same institution</p>
-<p>Co-authors from external institutions</p>
-<p>Researchers working on the same topics</p>
-</td>
-</tr>
-</table>
-<p>Many researchers also have Clinical Trials information based on trials listed in clinicaltrials.gov.</p>
-
-<h2 id="faq" class="about">Frequently Asked Questions</h2>
-<ul> 
-  <li><a href="#who">Who is listed in UCSF Profiles?</a></li>
-  <li><a href="#get">How do I get a UCSF Profiles page?</a></li>
-  <li><a href="#login">How do I login to UCSF Profiles?</a></li>
-  <li><a href="#view">Who can view UCSF Profiles?</a></li>
-  <li><a href="#update">Why should I update my profile?</a></li>
-  <li><a href="#email">How do I show my email address?</a></li>
-  <li><a href="#pubs">Why are there missing or incorrect publications in my profile? How can I correct this?</a></li>
-  <li><a href="#advance">Can I import information from my Advance CV into my UCSF Profiles page?</a></li>	
-  <li><a href="#proxy">How do I manage someone else's profile?</a></li>
-  <li><a href="#manage">Who manages UCSF Profiles?</a></li>
-</ul>
-
-<h3 id="who">Who is listed in UCSF Profiles?</h3>
-
+<h2 style="clear:left; padding-top:20px;" id="what">What is UCSF Profiles?</h2>
+<p>UCSF Profiles is a searchable directory of people and expertise at the University of California, San Francisco (UCSF). It helps people learn about the work being done across UCSF and connect with the people doing it.</p>
+<p><a href="https://profiles.ucsf.edu/kirsten.bibbins-domingo">See an example of an enhanced profile page.</a></p>
+<h2 id="using">Using Profiles</h2>
+<h3 id="using-view">Who can view UCSF Profiles?</h3>
 <ul>
-  <li>UCSF Profiles was created for research networking and finding expertise, so we initially focused on adding UCSF faculty members, researchers 
-  with academic leadership appointments, and non-faculty academic researchers.</li>
-  <li>We are happy to include research staff and other individuals in the UCSF community, on request and if possible. 
-  Send requests, with full name and employee ID, to <a href="mailto:profiles@ucsf.edu">profiles@ucsf.edu</a>.</li>
+  <li>UCSF Profiles is public and available to both the general public and the UCSF community.</li>
 </ul>
 
-<h3 id="get">How do I get a UCSF Profiles page?</h3>
+<h3 id="using-search">How do I search Profiles?</h3>
+<ul>
+  <li><a href="/">Use the search tools</a> in UCSF Profiles to search by someone&apos;s name, a specific disease or health condition, a research area, or a method or technique.</li>
+  <li>You can also browse Profiles. When you&apos;re looking at someone&apos;s page, you can click on their co-authors, similar researchers, or research topics to find exactly who you&apos;re looking for.</li>
+</ul>
+
+<h2 id="getting">Getting a UCSF Profiles page</h2>
+<h3 id="getting-who">Who is listed in UCSF Profiles?</h3>
+<ul>
+  <li>UCSF Profiles was created for research networking and finding expertise, so we focus on including UCSF faculty members, researchers with academic leadership appointments, and non-faculty academic researchers.</li>
+  <li>We are happy to include research staff and other individuals in the UCSF community, on request and if possible. Send requests, with full name and employee ID, to <a href="mailto:profiles@ucsf.edu">profiles@ucsf.edu</a>.</li>
+</ul>
+<h3 id="getting-request">How do I request a UCSF Profiles page?</h3>
 <ul>
   <li>If you think you should have a UCSF Profiles page, email <a href="mailto:profiles@ucsf.edu">profiles@ucsf.edu</a> with your full name, UCSF department or affiliation, and employee ID if available.</li>
   <li>We will review your request and let you know whether you are eligible.</li>
 </ul>
 
-<h3 id="login">How do I login to UCSF Profiles?</h3>
+<h2 id="editing">Editing a profile</h2>
+<h3 id="editing-login">How do I edit my UCSF Profiles page?</h3>
 <ul>
-  <li>Click the <strong><a href="../login/default.aspx?method=login&amp;edit=true">Login</a></strong> link on any UCSF Profiles page. 
-  Then enter your MyAccess username and password.</li>
-  <li>If you have never used your MyAccess account, or for password support, go to 
-  <a href="https://myaccess.ucsf.edu/" title="Go to the UCSF ITS website" target="_blank">https://myaccess.ucsf.edu/</a> 
-  or contact your Home Departmental Administrator.</li> 
+  <li>Click the <strong><a href="../login/default.aspx?method=login&amp;edit=true">Login</a></strong> link on any UCSF Profiles page. Then enter your MyAccess username and password.</li>
+  <li>If you have never used your MyAccess account, or for password support, go to <a href="https://myaccess.ucsf.edu/" title="Go to the UCSF ITS website" target="_blank">https://myaccess.ucsf.edu/</a> or contact your Home Departmental Administrator.</li>
 </ul>
-
-<h3 id="view">Who can view UCSF Profiles?</h3>
-<ul>
-  <li>UCSF Profiles is searchable on the web and can be viewed by the general public as well as the UCSF community.</li>
-</ul>
-
-<h3 id="update">Why should I update my profile?</h3>
+<h3 id="editing-whyupdate">Why should I update my profile?</h3>
 <ul>
   <li>A complete profile helps people understand who you are and what you do.</li>
   <li>People may find your profile when they are looking for a collaborator, mentor, subject matter expert, speaker, research or community partner, or someone to interview for a news story.</li>
-  <li>Adding a photo, overview, keywords, and other information can make it easier for people to find and learn about your work.</li>
+  <li>Adding information like a photo, overview/bio, publications, and keywords can make it easier for people to find and learn about your work.</li>
+</ul>
+<h3 id="editing-whatcanadd">What can I add to my profile?</h3>
+<ul>
+  <li>Photo</li>
+  <li>ORCID ID</li>
+  <li>Overview (i.e. bio)</li>
+  <li>Keywords</li>
+  <li>Education and Training</li>
+  <li>Awards and Honors</li>
+  <li>Featured Publications</li>
+  <li>Research Activities and Funding (i.e. grants)</li>
+  <li>Clinical Trials</li>
+  <li>Collaboration Interests</li>
+  <li>Webpage</li>
+  <li>Featured Videos</li>
+  <li>Media Links</li>
+  <li>Global Health Equity</li>
+  <li>Mentoring</li>
+  <li>Community and Public Service</li>
+  <li>Academic Senate</li>
+  <li>Publications</li>
+</ul>
+<h3 id="editing-email">How do I show my email address?</h3>
+<ul>
+  <li>Your email address is managed in campus systems and is not edited in UCSF Profiles. If it is not showing correctly, contact your HR representative or campus department for help updating your record. Most people&apos;s email addresses are hidden by default.</li>
+</ul>
+<h3 id="editing-expertise">How are expertise areas chosen?</h3>
+<ul>
+  <li>Profiles looks at publications, grants, bios, keywords, and other information associated with a profile to identify topics and areas of expertise.</li>
+  <li>Search results are generated automatically and may change over time as new information is added.</li>
+</ul>
+<h3 id="editing-advance">Can I import information from my Advance CV into my UCSF Profiles page?</h3>
+<ul>
+	<li>Yes, UCSF faculty who have an <a href="https://facultyacademicaffairs.ucsf.edu/online-systems/Advance">Advance CV</a> can import certain sections to their UCSF Profiles page, without needing to copy/paste content. <strong><a href="../login/default.aspx?method=login&amp;edit=true">Login</a></strong> to your UCSF Profiles page. Sections that allow import are tagged with a capital A in the list. <a href="https://ucsfonline.sharepoint.com/:w:/s/CTSIResearchTechnologyprogram/ER8jYF3yGkFHnhbFZn0lGRABbvoM9kqfagrZGJ7j9_qmOg?e=nYB0bp">Detailed instructions</a> are also available.</li>
+</ul>
+<h3 id="editing-proxy">How do I manage someone else's profile?</h3>
+<ul>
+  <li>Proxies are people within Profiles who can edit other people's profiles on their behalf. For example, faculty can designate their assistants as proxies to edit their profiles. If you have a profile, then one or more proxies might be assigned to you automatically by your department or unit. You also have the option of designating your own proxies by logging in and going to Manage Proxies in the edit menu. Proxies do not need to have profile pages themselves.</li>
 </ul>
 
-<h3 id="email">How do I show my email address?</h3>
+<h2 id="contents">Profile contents</h2>
+<h3 id="contents-sourceinfo">What information is imported from UCSF systems?</h3>
 <ul>
-  <li>Your email address is managed in campus systems and is not edited in UCSF Profiles. If it is not showing correctly, contact your HR representative or campus department for help updating your record.</li>
+  <li>Name, degrees, and contact information are imported from official campus systems.</li>
+  <li><strong>NOTE</strong>: If you would like to add publications, grants, clinical trials or other examples of your scholarly activity that are not in MEDLINE/PubMed, NIH Reporter, or clinicaltrials.gov, you can add them manually in the appropriate section, or in your Overview.</li>
+</ul>
+<h3 id="contents-pubs">Why are there missing or incorrect publications in my profile?</h3>
+<ul>
+  <li>UCSF Profiles uses a complex mix of names, institution, and publication information to find your publications in PubMed&apos;s repository. Unfortunately, there is no easy way to match all articles in PubMed to Profiles authors with complete precision and accuracy.</li>
+  <li>People who have common names, who published under multiple names or whose articles were written while at other institutions are most likely to have incomplete publication lists.</li>
+  <li>You can make corrections by searching PubMed from within Profiles to add, edit or delete publications. By curating publications manually, you are helping UCSF Profiles to identify which concepts and co-authors are correctly associated with your profile, thereby increasing the likelihood of finding the right publications on subsequent attempts.</li>
+</ul>
+<h3 id="contents-sources">Where do publications, grants, or trials come from?</h3>
+<ul>
+  <li>Federal grants are imported from NIH ExPORTER. You can add more grants yourself.</li>
+  <li>Articles listed in PubMed are imported automatically. You can add more articles yourself.</li>
+  <li>Many researchers also have Clinical Trials information based on trials listed in clinicaltrials.gov.</li>
+  <li>If you&apos;re missing something, or if there&apos;s an error, you can make the change anytime by logging in.</li>
+</ul>
+<h3 id="contents-speed">How often is information updated?</h3>
+<ul>
+  <li>Different types of information are updated on different schedules, and changes may take some time to appear in Profiles.</li>
 </ul>
 
-<h3 id="pubs">Why are there missing or incorrect publications in my profile? How can I correct this?</h3> 
+<h2 id="manage">Managing UCSF Profiles</h2>
 <ul>
-  <li>UCSF Profiles uses a complex mix of names, institution, and publication information to find your publications in PubMed's repository. 
-  Unfortunately, there is no easy way to match all articles in PubMed to Profiles authors with complete precision and accuracy.</li>
-  <li>People who have common names, who published under multiple names or whose articles were written while at other institutions 
-  are most likely to have incomplete publication lists. </li>
-  <li>You can make corrections by searching PubMed from within Profiles to add, edit or delete publications. By curating publications 
-  manually, you are helping UCSF Profiles to identify which concepts and co-authors are correctly associated with your profile, 
-  thereby increasing the likelihood of finding the right publications on subsequent attempts. </li>
-  <li><strong>NOTE</strong>: If you would like to add publications, grants, clinical trials or other examples of your scholarly activity that are not in 
-  MEDLINE/PubMed, NIH Reporter, or clinicaltrials.gov, you can add them manually in the appropriate section, or in your Overview.</li>
-</ul>
-
-<h3 id="advance">Can I import information from my Advance CV into my UCSF Profiles page?</h3>
-<ul>
-	<li>
-			Yes, UCSF faculty who have an Advance CV can import certain sections to their UCSF Profiles page. 
-			<strong><a href="../login/default.aspx?method=login&amp;edit=true">Login</a></strong> to your UCSF Profiles page. 
-			Sections that allow import are tagged with a capital A in the list. <a href="https://ucsfonline.sharepoint.com/:w:/s/CTSIResearchTechnologyprogram/ER8jYF3yGkFHnhbFZn0lGRABbvoM9kqfagrZGJ7j9_qmOg?e=nYB0bp">Detailed instructions</a> are also available.
-	</li>	
-</ul>
-			  
-<h3 id="proxy">How do I manage someone else's profile?</h3>
-<ul>
-  <li>Proxies are people within Profiles who can edit other people's profiles on their behalf. For example, faculty can designate 
-  their assistants as proxies to edit their profiles. If you have a profile, then one or more proxies might be assigned to you automatically 
-  by your department or institution. You also have the option of designating your own proxies by signing in and going to Manage Proxies in 
-  the edit menu. Proxies do not need to have profile pages themselves.</li>
-</ul>
-
-<h3 id="manage">Who manages UCSF Profiles?</h3>
-<ul>
-  <li>UCSF Profiles is managed by the <a href="https://ctsi.ucsf.edu/about-us/team/informatics-research-technology" target="_blank">Informatics and Research Technology</a> 
-  program of UCSF's <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>.</li>
+  <li>UCSF Profiles is managed by the <a href="https://ctsi.ucsf.edu/about-us/team/informatics-research-technology" target="_blank">Informatics and Research Technology</a> program of UCSF&apos;s <a href="http://ctsi.ucsf.edu" target="_blank">Clinical and Translational Science Institute (CTSI)</a>.</li>
 </ul>
 		  </Param>
         </ParamList>

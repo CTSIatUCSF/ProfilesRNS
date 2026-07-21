@@ -42,7 +42,7 @@ $('.profiles .profilesContentMain .pageTitle h2').hide();
 		Profiles has enabled your research in any way. Your success stories are important to enable
 		the continued support and expansion of this important tool.
 		</p>
-		<p><strong>Email us at <strong>profiles&commat;ucsf.edu</strong></p>
+		<p>Email us at <strong>profiles&#64;ucsf.edu</strong></p>
 	  </div>
   </div>
 

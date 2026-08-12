@@ -51,5 +51,7 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="ClinicalTrials.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="CollaborationInterests.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="RequiredScholarlyProjectMentor.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="USCMentoring.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomViewUCSFPlugins" FileName="UCSDFacultyMentoring.ascx" Enabled="false"/>
 </ModuleList>
 

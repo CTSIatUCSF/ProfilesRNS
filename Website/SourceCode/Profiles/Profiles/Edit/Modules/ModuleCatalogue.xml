@@ -46,6 +46,8 @@ For details, see: LICENSE.txt
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditClinicalTrials.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditCollaborationInterests.ascx" Enabled="true"/>
   <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditRequiredScholarlyProjectMentor.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditUSCMentoring.ascx" Enabled="true"/>
+  <Module ModulePath="Modules" NameSpace="CustomEditUCSFPlugIns" FileName="EditUCSDFacultyMentoring.ascx" Enabled="false"/>
 </ModuleList>
 
 

@@ -1064,7 +1064,7 @@ namespace Profiles.Framework.Utilities
         {
             Dictionary<string, string> prettyURLRedirects = new Dictionary<string, string>();
 
-            using (SqlDataReader reader = GetDBCommand("select PrettyURL, RedirectToURL FROM [UCSF.].[NameAdditions] WHERE RedirectToURL is not null", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
+            using (SqlDataReader reader = GetDBCommand("select PrettyURL, RedirectToURL FROM [UCSF.].[NameAdditions] WHERE RedirectToURL is not null AND PrettyURL is not null", CommandType.Text, CommandBehavior.CloseConnection, null).ExecuteReader())
             {
                 while (reader.Read())
                 {

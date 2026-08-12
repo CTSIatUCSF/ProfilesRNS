@@ -222,12 +222,12 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNoMentoring;
 
         /// <summary>
-        /// lblNoGlobalHealthEquity control.
+        /// lblNoMentoring control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNoGlobalHealthEquity;
+        protected global::System.Web.UI.WebControls.Label lblNoMentoring;
     }
 }

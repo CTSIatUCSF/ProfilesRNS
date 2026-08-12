@@ -119,7 +119,15 @@ namespace Profiles.Framework.Utilities
             else if ("RequiredScholarlyProjectMentor".Equals(plugin))
             {
                 return "USC".Equals(inst.GetAbbreviation());
-            } 
+            }
+            else if ("USCMentoring".Equals(plugin))
+            {
+                return "USC".Equals(inst.GetAbbreviation());
+            }
+            else if ("UCSDFacultyMentoring".Equals(plugin))
+            {
+                return "UCSD".Equals(inst.GetAbbreviation());
+            }
             return true;
         }
 

@@ -105,7 +105,6 @@ namespace Profiles
             routes.Add("WomenInScience", new Route("WomenInScience", new AspxHandler("~/Celebrating/Default.aspx")));
             routes.Add("LGBTQResearch", new Route("LGBTQResearch", new AspxHandler("~/Celebrating/Default.aspx")));
             routes.Add("LatinxResearch", new Route("LatinxResearch", new AspxHandler("~/Celebrating/Default.aspx")));
-
             foreach (string applicationName in UCSFIDSet.PrettyURLApplicationNames)
             {
                 PrettyURLRouteHandler purh = new PrettyURLRouteHandler(applicationName);
@@ -202,7 +201,7 @@ namespace Profiles
                     if (Server.GetLastError().GetBaseException() is System.Web.HttpRequestValidationException)
                     {
                         HttpContext.Current.Session.Add("GLOBAL_ERROR", "HttpRequestValidationException");
-                        Response.Redirect("~/Error/default.aspx", true);  
+                        Response.Redirect("~/Error/Default.aspx", true);  
                         return;
                     }   
                 }
@@ -244,7 +243,7 @@ namespace Profiles
                 Framework.Utilities.DebugLogging.Log(ex.Message + " ++ " + ex.StackTrace);
                 
             }
-            Response.Redirect("~/Error/default.aspx", true);      
+            Response.Redirect("~/Error/Default.aspx", true);      
         }
     }
 

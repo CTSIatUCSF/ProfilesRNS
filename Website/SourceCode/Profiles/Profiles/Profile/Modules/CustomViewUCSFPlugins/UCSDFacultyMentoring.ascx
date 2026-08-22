@@ -3,19 +3,20 @@
 <asp:Literal runat="server" ID="litjs"></asp:Literal>
 
 <section class="researcherprofiles--ucsdfacultymentoring">
- 
-  <p class="researcherprofiles--ucsdfacultymentoring--last-updated" style="display:none">
-  </p> 
-   
-  Available to Mentor:  
-  <div class="researcherprofiles--ucsdfacultymentoring--availabletomentor" style="display:none">
-  </div>
- 
-  Contact for Mentoring:  
-  <div class="researcherprofiles--ucsdfacultymentoring--contactformentoring" style="display:none">
+
+  <div class="researcherprofiles--ucsdfacultymentoring--narrative" style="display:none"></div>
+
+  <div class="researcherprofiles--ucsdfacultymentoring--available-section" style="display:none">
+    <p class="researcherprofiles--ucsdfacultymentoring--section-label">Available to Mentor</p>
+    <ul class="researcherprofiles--ucsdfacultymentoring--availabletomentor"></ul>
   </div>
 
-  <p class="researcherprofiles--ucsdfacultymentoring--narrative" style="display:none">
-  </p>
+  <div class="researcherprofiles--ucsdfacultymentoring--contact-section" style="display:none">
+    <p class="researcherprofiles--ucsdfacultymentoring--section-label">How to Contact</p>
+    <div class="researcherprofiles--ucsdfacultymentoring--contactformentoring"></div>
+    <p class="researcherprofiles--ucsdfacultymentoring--assistant-details" style="display:none"></p>
+  </div>
+
+  <p class="researcherprofiles--ucsdfacultymentoring--last-updated" style="display:none"></p>
 
 </section>

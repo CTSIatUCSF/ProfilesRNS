@@ -74,7 +74,7 @@
                 <!-- Postdoctoral Trainees -->
                 <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
                     <asp:CheckBox ID="cbPostdoctoralTrainees" runat="server" OnCheckedChanged="itmChanged"
-                        Text=" Postdoctoral Trainees" />
+                        Text="Postdoctoral Trainees" />
                 </div>
 
                 <!-- Graduate Students -->
@@ -86,7 +86,7 @@
                 <!-- Medical and Pharmacy Students -->
                 <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
                     <asp:CheckBox ID="cbMecicalAndPharmacyStudents" runat="server" OnCheckedChanged="itmChanged"
-                        Text=" Medical and Pharmacy Students" />
+                        Text="Medical and Pharmacy Students" />
                 </div>
 
                 <!-- Undergraduate Students -->

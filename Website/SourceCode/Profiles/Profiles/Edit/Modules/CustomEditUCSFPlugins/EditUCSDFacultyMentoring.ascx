@@ -1,4 +1,4 @@
-﻿﻿<%@ Control Language="C#" AutoEventWireup="true" 
+<%@ Control Language="C#" AutoEventWireup="true"
     CodeBehind="EditCollaborationInterests.ascx.cs"
     Inherits="Profiles.Edit.Modules.CustomEditUCSFPlugIns.EditUCSDFacultyMentoring" %>
 <%@ Register TagName="Options" TagPrefix="security" Src="~/Edit/Modules/SecurityOptions/SecurityOptions.ascx" %>
@@ -35,121 +35,135 @@
                 Faculty Mentoring
             </h2>
 
-            <p class="researcherprofiles--ucsdfacultymentoring-edit--intro">
-	            <h3>Add Faculty Mentoring to Your Profile</h3>
-	
-		        <!-- Add details about your availability to mentor. -->
-		        <a href="https://medschool.ucsd.edu/vchs/faculty-academics/faculty-affairs/faculty-development/Pages/Faculty-Mentor-Training-Program-.aspx" target="_blank">Learn about Mentoring at UCSD</a> 
-			
-    			Be sure to <b>SAVE</b> your work below.</span>
-		
-		    <div class="updated" style="float:right; display:block; text-align:left; padding-right:10px; font-size: 10px;">
-			    Last Updated: <span id="last_updated" style="font-size: 10px;"></span>
-		    </div>
-
-            <p class="researcherprofiles--ucsdfacultymentoring-edit--last-updated">
-                Last Updated: <asp:Literal ID="litLastUpdated" runat="server" />
-            </p>
+            <div class="researcherprofiles--ucsdfacultymentoring-edit--intro">
+                <h3>Add Faculty Mentoring to Your Profile</h3>
+                <a href="https://medschool.ucsd.edu/vchs/faculty-academics/faculty-affairs/faculty-development/Pages/Faculty-Mentor-Training-Program-.aspx" target="_blank">Learn about Mentoring at UCSD</a>
+                — Be sure to <b>save</b> your work.
+            </div>
         </div>
 
         <section class="researcherprofiles--ucsdfacultymentoring-edit--section">
             <div class="researcherprofiles--ucsdfacultymentoring-edit--available-group">
 
                 <p class="researcherprofiles--ucsdfacultymentoring-edit--subhead">
-                    <strong>Available to Mentor:</strong> (check all that apply)
+                    <strong>Available to Mentor</strong> (check all that apply)
                 </p>
 
-                <!-- Junior Faculty -->
-                <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
-                    <asp:CheckBox ID="cbJuniorFaculty" runat="server" OnCheckedChanged="itmChanged"
-                        Text="Junior Faculty" />
-                </div>
-
-                <!-- Medical Fellows -->
-                <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
-                    <asp:CheckBox ID="cbMedicalFellows" runat="server" OnCheckedChanged="itmChanged"
-                        Text="Medical Fellows" />
-                </div>
-
-                <!-- Postdoctoral Trainees -->
-                <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
-                    <asp:CheckBox ID="cbPostdoctoralTrainees" runat="server" OnCheckedChanged="itmChanged"
-                        Text=" Postdoctoral Trainees" />
-                </div>
-
-                <!-- Graduate Students -->
-                <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
-                    <asp:CheckBox ID="cbGraduateStudents" runat="server" OnCheckedChanged="itmChanged"
-                        Text="Graduate Students" />
-                </div>
-
-                <!-- Medical and Pharmacy Students -->
-                <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
-                    <asp:CheckBox ID="cbMecicalAndPharmacyStudents" runat="server" OnCheckedChanged="itmChanged"
-                        Text=" Medical and Pharmacy Students" />
-                </div>
-
-                <!-- Undergraduate Students -->
-                <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
-                    <asp:CheckBox ID="cbUndergraduateStudents" runat="server" OnCheckedChanged="itmChanged"
-                        Text="Undergraduate Students" />
+                <div class="researcherprofiles--ucsdfacultymentoring-edit--checkbox-group">
+                    <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
+                        <asp:CheckBox ID="cbJuniorFaculty" runat="server" OnCheckedChanged="itmChanged"
+                            Text="Junior Faculty" />
+                    </div>
+                    <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
+                        <asp:CheckBox ID="cbMedicalFellows" runat="server" OnCheckedChanged="itmChanged"
+                            Text="Medical Fellows" />
+                    </div>
+                    <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
+                        <asp:CheckBox ID="cbPostdoctoralTrainees" runat="server" OnCheckedChanged="itmChanged"
+                            Text="Postdoctoral Trainees" />
+                    </div>
+                    <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
+                        <asp:CheckBox ID="cbGraduateStudents" runat="server" OnCheckedChanged="itmChanged"
+                            Text="Graduate Students" />
+                    </div>
+                    <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
+                        <asp:CheckBox ID="cbMecicalAndPharmacyStudents" runat="server" OnCheckedChanged="itmChanged"
+                            Text="Medical and Pharmacy Students" />
+                    </div>
+                    <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
+                        <asp:CheckBox ID="cbUndergraduateStudents" runat="server" OnCheckedChanged="itmChanged"
+                            Text="Undergraduate Students" />
+                    </div>
                 </div>
             </div>
 
             <div class="researcherprofiles--ucsdfacultymentoring-edit--contact-group">
                 <p class="researcherprofiles--ucsdfacultymentoring-edit--subhead">
-                    <strong>My Contact Preference:</strong> 
+                    <strong>How to contact me</strong> (check all that apply)
                 </p>
-                <!-- email -->
-                <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
-                    <asp:CheckBox ID="cbEmail" runat="server" OnCheckedChanged="itmChanged"
-                        Text="Email" />
+
+                <div class="researcherprofiles--ucsdfacultymentoring-edit--checkbox-group">
+                    <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
+                        <asp:CheckBox ID="cbEmail" runat="server" OnCheckedChanged="itmChanged"
+                            Text="Email" />
+                    </div>
+                    <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
+                        <asp:CheckBox ID="cbPhone" runat="server" OnCheckedChanged="itmChanged"
+                            Text="Phone" />
+                    </div>
+                    <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
+                        <asp:CheckBox ID="cbAssistant" runat="server" OnCheckedChanged="itmChanged"
+                            Text="Via my assistant"
+                            aria-expanded="false"
+                            aria-controls="assistantFields" />
+                        <span class="researcherprofiles--ucsdfacultymentoring-edit--option-hint">— check to add their contact details</span>
+                    </div>
                 </div>
 
-                <!-- phone -->
-                <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
-                    <asp:CheckBox ID="cbPhone" runat="server" OnCheckedChanged="itmChanged"
-                        Text="Phone" />
-                </div>
-
-                <!-- Assistant -->
-                <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
-                    <asp:CheckBox ID="cbAssistant" runat="server" OnCheckedChanged="itmChanged"
-                        Text="Assistant" />
-
+                <div class="researcherprofiles--ucsdfacultymentoring-edit--assistant-fields" id="assistantFields">
                     <p class="researcherprofiles--ucsdfacultymentoring-edit--subhead">
-                        Assistant Details (if Assitant selected above) 
+                        Assistant contact details
                     </p>
-                    Name: <asp:TextBox ID="txtAssistantName" runat="server" OnTextChanged="itmChanged" CssClass="researcherprofiles--ucsdfacultymentoring-edit--textarea"></asp:TextBox>
-                    Email: <asp:TextBox ID="txtAssistantEmail" runat="server" OnTextChanged="itmChanged" CssClass="researcherprofiles--ucsdfacultymentoring-edit--textarea"></asp:TextBox>
-                    Phone: <asp:TextBox ID="txtAssistantPhone" runat="server" OnTextChanged="itmChanged" CssClass="researcherprofiles--ucsdfacultymentoring-edit--textarea"></asp:TextBox>
+                    <div class="researcherprofiles--ucsdfacultymentoring-edit--assistant-field-row">
+                        <label class="researcherprofiles--ucsdfacultymentoring-edit--assistant-field">
+                            <span class="researcherprofiles--ucsdfacultymentoring-edit--assistant-field-label">Name</span>
+                            <asp:TextBox ID="txtAssistantName" runat="server" OnTextChanged="itmChanged" CssClass="researcherprofiles--ucsdfacultymentoring-edit--text-input"></asp:TextBox>
+                        </label>
+                        <label class="researcherprofiles--ucsdfacultymentoring-edit--assistant-field">
+                            <span class="researcherprofiles--ucsdfacultymentoring-edit--assistant-field-label">Email</span>
+                            <asp:TextBox ID="txtAssistantEmail" runat="server" OnTextChanged="itmChanged" CssClass="researcherprofiles--ucsdfacultymentoring-edit--text-input"></asp:TextBox>
+                        </label>
+                        <label class="researcherprofiles--ucsdfacultymentoring-edit--assistant-field">
+                            <span class="researcherprofiles--ucsdfacultymentoring-edit--assistant-field-label">Phone</span>
+                            <asp:TextBox ID="txtAssistantPhone" runat="server" OnTextChanged="itmChanged" CssClass="researcherprofiles--ucsdfacultymentoring-edit--text-input"></asp:TextBox>
+                        </label>
+                    </div>
                 </div>
-
             </div>
 
-            <div class="researcherprofiles--ucsdfacultymentoring-edit--contact-group">
+            <div class="researcherprofiles--ucsdfacultymentoring-edit--narrative-group">
                 <p class="researcherprofiles--ucsdfacultymentoring-edit--subhead">
-                    <strong>Mentoring Narrative:</strong> 
+                    <strong>Mentoring Narrative</strong> <span class="researcherprofiles--ucsdfacultymentoring-edit--optional">(optional)</span>
                 </p>
-                <asp:TextBox ID="txtNarrative" runat="server" TextMode="MultiLine" Rows="4" OnTextChanged="itmChanged" CssClass="researcherprofiles--ucsdfacultymentoring-edit--textarea"></asp:TextBox>
+                <asp:TextBox ID="txtNarrative" runat="server" TextMode="MultiLine" Rows="4" OnTextChanged="itmChanged"
+                    CssClass="researcherprofiles--ucsdfacultymentoring-edit--textarea"
+                    placeholder="Describe your mentoring philosophy, areas of expertise, and what you are looking for in a mentee."></asp:TextBox>
             </div>
-
 
             <div class="researcherprofiles--ucsdfacultymentoring-edit--actions">
-
-                <asp:LinkButton ID="btnSaveUCSDFacultMentoring" runat="server" Text="Save" CssClass="researcherprofiles--ucsdfacultymentoring-edit--btn researcherprofiles--ucsdfacultymentoring-edit--btn-save" OnClick="btnSave_OnClick" TabIndex="11" />
-
-                <asp:LinkButton ID="btnCancelUCSDFacultMentoring" runat="server" Text="Cancel" CssClass="researcherprofiles--ucsdfacultymentoring-edit--btn researcherprofiles--ucsdfacultymentoring-edit--btn-cancel" OnClick="btnCancel_OnClick" TabIndex="12" />
-
-                <asp:LinkButton ID="btnDeleteUCSDFacultMentoring" runat="server" Text="Delete" CssClass="researcherprofiles--ucsdfacultymentoring-edit--btn researcherprofiles--ucsdfacultymentoring-edit--btn-delete" OnClick="btnDelete_OnClick" TabIndex="13" />
-
+                <asp:LinkButton ID="btnSaveUCSDFacultMentoring" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btnSave_OnClick" TabIndex="11" />
+                <asp:LinkButton ID="btnCancelUCSDFacultMentoring" runat="server" Text="Cancel" CssClass="btn btn-default" OnClick="btnCancel_OnClick" TabIndex="12" />
+                <asp:LinkButton ID="btnDeleteUCSDFacultMentoring" runat="server" Text="Delete" CssClass="btn btn-danger" OnClick="btnDelete_OnClick" TabIndex="13" />
+                <p class="researcherprofiles--ucsdfacultymentoring-edit--last-updated">
+                    Last Updated: <asp:Literal ID="litLastUpdated" runat="server" />
+                </p>
             </div>
+
             <div class="editBody" style="text-align: left;" id="divMessage" runat="server">
-                <i>
-                <asp:Label runat="server" ID="lblMessage" ></asp:Label>
-                </i>
+                <i><asp:Label runat="server" ID="lblMessage"></asp:Label></i>
             </div>
         </section>
+
+        <script type="text/javascript">
+            (function () {
+                function syncAssistantFields() {
+                    var cb = document.getElementById('<%= cbAssistant.ClientID %>');
+                    var fields = document.getElementById('assistantFields');
+                    if (cb && fields) {
+                        var open = cb.checked;
+                        fields.style.display = open ? '' : 'none';
+                        cb.setAttribute('aria-expanded', open ? 'true' : 'false');
+                        cb.onchange = syncAssistantFields;
+                    }
+                }
+                // Sys.Application.add_load fires on both initial page load and after every UpdatePanel async refresh
+                if (typeof Sys !== 'undefined') {
+                    Sys.Application.add_load(syncAssistantFields);
+                } else {
+                    document.addEventListener('DOMContentLoaded', syncAssistantFields);
+                }
+            })();
+        </script>
 
     </ContentTemplate>
 </asp:UpdatePanel>

@@ -139,8 +139,9 @@
                 </p>
             </div>
 
-            <div class="editBody" style="text-align: left;" id="divMessage" runat="server">
-                <i><asp:Label runat="server" ID="lblMessage"></asp:Label></i>
+            <div class="researcherprofiles--ucsdfacultymentoring-edit--message" id="divMessage" runat="server"
+                 role="status" aria-live="polite" aria-atomic="true">
+                <asp:Label runat="server" ID="lblMessage"></asp:Label>
             </div>
         </section>
 

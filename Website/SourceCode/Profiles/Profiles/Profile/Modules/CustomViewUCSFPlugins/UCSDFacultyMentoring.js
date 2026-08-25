@@ -24,23 +24,22 @@ UCSDFacultyMentoring.render = function (data) {
 
         if (data.contactPreferences && data.contactPreferences.length > 0) {
             let html = '';
-            let assistantParts = [];
             for (const pref of data.contactPreferences) {
                 if (pref === 'Assistant') {
-                    html += '<span class="researcherprofiles--ucsdfacultymentoring--contactformentoring--item">Via my assistant</span>';
-                    if (data.assistantName && data.assistantName.trim().length > 0) assistantParts.push(data.assistantName.trim());
-                    if (data.assistantEmail && data.assistantEmail.trim().length > 0) assistantParts.push(data.assistantEmail.trim());
-                    if (data.assistantPhone && data.assistantPhone.trim().length > 0) assistantParts.push(data.assistantPhone.trim());
+                    let parts = [];
+                    if (data.assistantName && data.assistantName.trim().length > 0) parts.push(data.assistantName.trim());
+                    if (data.assistantEmail && data.assistantEmail.trim().length > 0) parts.push(data.assistantEmail.trim());
+                    if (data.assistantPhone && data.assistantPhone.trim().length > 0) parts.push(data.assistantPhone.trim());
+                    html += '<li class="researcherprofiles--ucsdfacultymentoring--contactformentoring--item">Via my assistant';
+                    if (parts.length > 0) {
+                        html += '<span class="researcherprofiles--ucsdfacultymentoring--assistant-details"><span class="sr-only">Assistant: </span>' + parts.join(' · ') + '</span>';
+                    }
+                    html += '</li>';
                 } else {
-                    html += '<span class="researcherprofiles--ucsdfacultymentoring--contactformentoring--item">' + pref + '</span>';
+                    html += '<li class="researcherprofiles--ucsdfacultymentoring--contactformentoring--item">' + pref + '</li>';
                 }
             }
             $('.researcherprofiles--ucsdfacultymentoring--contactformentoring').html(html);
-            if (assistantParts.length > 0) {
-                $('.researcherprofiles--ucsdfacultymentoring--assistant-details')
-                    .html('Assistant: ' + assistantParts.join(' · '))
-                    .show();
-            }
             $('.researcherprofiles--ucsdfacultymentoring--contact-section').show();
         }
 

@@ -157,7 +157,9 @@
                         cb.onchange = syncAssistantFields;
                     }
                 }
-                // Sys.Application.add_load fires on both initial page load and after every UpdatePanel async refresh
+                // default.aspx calls window.EndRequestHandler directly after each UpdatePanel postback
+                window.EndRequestHandler = syncAssistantFields;
+                // Sys.Application.add_load also covers initial page load and async refreshes
                 if (typeof Sys !== 'undefined') {
                     Sys.Application.add_load(syncAssistantFields);
                 } else {

@@ -139,7 +139,7 @@
                 </p>
             </div>
 
-            <div class="researcherprofiles--ucsdfacultymentoring-edit--message" id="divMessage" runat="server"
+            <div class="editBody researcherprofiles--ucsdfacultymentoring-edit--message" id="divMessage" runat="server"
                  role="status" aria-live="polite" aria-atomic="true">
                 <asp:Label runat="server" ID="lblMessage"></asp:Label>
             </div>

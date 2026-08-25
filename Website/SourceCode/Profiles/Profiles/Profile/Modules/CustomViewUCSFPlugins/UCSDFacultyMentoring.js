@@ -32,7 +32,7 @@ UCSDFacultyMentoring.render = function (data) {
                     if (data.assistantPhone && data.assistantPhone.trim().length > 0) parts.push(data.assistantPhone.trim());
                     html += '<li class="researcherprofiles--ucsdfacultymentoring--contactformentoring--item">Via my assistant';
                     if (parts.length > 0) {
-                        html += '<span class="researcherprofiles--ucsdfacultymentoring--assistant-details">' + parts.join(' · ') + '</span>';
+                        html += '<span class="researcherprofiles--ucsdfacultymentoring--assistant-details"><span class="sr-only">Assistant: </span>' + parts.join(' · ') + '</span>';
                     }
                     html += '</li>';
                 } else {

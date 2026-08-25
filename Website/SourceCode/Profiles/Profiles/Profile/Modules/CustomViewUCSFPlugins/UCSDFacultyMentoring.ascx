@@ -13,8 +13,7 @@
 
   <div class="researcherprofiles--ucsdfacultymentoring--contact-section" style="display:none">
     <p class="researcherprofiles--ucsdfacultymentoring--section-label">How to Contact</p>
-    <div class="researcherprofiles--ucsdfacultymentoring--contactformentoring"></div>
-    <p class="researcherprofiles--ucsdfacultymentoring--assistant-details" style="display:none"></p>
+    <ul class="researcherprofiles--ucsdfacultymentoring--contactformentoring"></ul>
   </div>
 
   <p class="researcherprofiles--ucsdfacultymentoring--last-updated" style="display:none"></p>

@@ -69,15 +69,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         protected global::System.Web.UI.UpdatePanel upnlEditUCSDFacultyMentoring;
 
         /// <summary>
-        /// litLastUpdated control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litLastUpdated;
-
-        /// <summary>
         /// cbJuniorFaculty control.
         /// </summary>
         /// <remarks>
@@ -220,6 +211,15 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnDeleteUCSDFacultMentoring;
+
+        /// <summary>
+        /// litLastUpdated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litLastUpdated;
 
         /// <summary>
         /// divMessage control.

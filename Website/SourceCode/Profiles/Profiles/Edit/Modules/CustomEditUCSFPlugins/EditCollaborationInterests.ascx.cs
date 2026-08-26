@@ -94,8 +94,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         {
             phSecuritySettings.Visible = true;
 
-            Session["pnlIdentity.Visible"] = null;
-
             // is this necessary?
             txtNarrative.Text = string.Empty;
 

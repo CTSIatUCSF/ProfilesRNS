@@ -11,7 +11,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 {
 
 
-    public partial class EditUCSDFacultyMentoring
+    public partial class EditCollaborationInterests
     {
 
         /// <summary>
@@ -60,121 +60,94 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         protected global::Profiles.Edit.Modules.SecurityOptions.SecurityOptions securityOptions;
 
         /// <summary>
-        /// upnlEditUCSDFacultyMentoring control.
+        /// upnlEditCollaborationInterests control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upnlEditUCSDFacultyMentoring;
+        protected global::System.Web.UI.UpdatePanel upnlEditCollaborationInterests;
 
         /// <summary>
-        /// cbJuniorFaculty control.
+        /// litLastUpdated control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbJuniorFaculty;
+        protected global::System.Web.UI.WebControls.Literal litLastUpdated;
 
         /// <summary>
-        /// cbMedicalFellows control.
+        /// cbAcademicCollaboration control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbMedicalFellows;
+        protected global::System.Web.UI.WebControls.CheckBox cbAcademicCollaboration;
 
         /// <summary>
-        /// cbPostdoctoralTrainees control.
+        /// cbAcademicSenateCommitteeService control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbPostdoctoralTrainees;
+        protected global::System.Web.UI.WebControls.CheckBox cbAcademicSenateCommitteeService;
 
         /// <summary>
-        /// cbGraduateStudents control.
+        /// cbMultiyearClinicalResearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbGraduateStudents;
+        protected global::System.Web.UI.WebControls.CheckBox cbMultiyearClinicalResearch;
 
         /// <summary>
-        /// cbMecicalAndPharmacyStudents control.
+        /// cbCommunityandPartnerOrganizations control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbMecicalAndPharmacyStudents;
+        protected global::System.Web.UI.WebControls.CheckBox cbCommunityandPartnerOrganizations;
 
         /// <summary>
-        /// cbUndergraduateStudents control.
+        /// cbCompainesandEntrepreuners control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbUndergraduateStudents;
+        protected global::System.Web.UI.WebControls.CheckBox cbCompainesandEntrepreuners;
 
         /// <summary>
-        /// cbEmail control.
+        /// cbPolicyChange control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbEmail;
+        protected global::System.Web.UI.WebControls.CheckBox cbPolicyChange;
 
         /// <summary>
-        /// cbPhone control.
+        /// cbPress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbPhone;
+        protected global::System.Web.UI.WebControls.CheckBox cbPress;
 
         /// <summary>
-        /// cbAssistant control.
+        /// cbProspectiveDonors control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAssistant;
-
-        /// <summary>
-        /// txtAssistantName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAssistantName;
-
-        /// <summary>
-        /// txtAssistantEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAssistantEmail;
-
-        /// <summary>
-        /// txtAssistantPhone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAssistantPhone;
+        protected global::System.Web.UI.WebControls.CheckBox cbProspectiveDonors;
 
         /// <summary>
         /// txtNarrative control.
@@ -186,40 +159,31 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         protected global::System.Web.UI.WebControls.TextBox txtNarrative;
 
         /// <summary>
-        /// btnSaveUCSDFacultMentoring control.
+        /// btnSaveCollaborationInterests control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSaveUCSDFacultMentoring;
+        protected global::System.Web.UI.WebControls.LinkButton btnSaveCollaborationInterests;
 
         /// <summary>
-        /// btnCancelUCSDFacultMentoring control.
+        /// btnCancelCollaborationInterests control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCancelUCSDFacultMentoring;
+        protected global::System.Web.UI.WebControls.LinkButton btnCancelCollaborationInterests;
 
         /// <summary>
-        /// btnDeleteUCSDFacultMentoring control.
+        /// btnDeleteCollaborationInterests control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnDeleteUCSDFacultMentoring;
-
-        /// <summary>
-        /// litLastUpdated control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litLastUpdated;
+        protected global::System.Web.UI.WebControls.LinkButton btnDeleteCollaborationInterests;
 
         /// <summary>
         /// divMessage control.

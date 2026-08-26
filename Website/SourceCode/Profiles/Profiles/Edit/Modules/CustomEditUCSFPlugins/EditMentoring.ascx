@@ -119,8 +119,7 @@
 
 
     <div class="editBody" style="text-align: left;" id="divNoMentoring" runat="server">
-        <i></i>
-        <asp:Label runat="server" ID="lblNoGlobalHealthEquity" Text="No mentoring information has been addded to your profile"></asp:Label>
+        <asp:Label runat="server" ID="lblNoMentoring" Text="No mentoring information has been addded to your profile"></asp:Label>
     </div>
 </div>
 

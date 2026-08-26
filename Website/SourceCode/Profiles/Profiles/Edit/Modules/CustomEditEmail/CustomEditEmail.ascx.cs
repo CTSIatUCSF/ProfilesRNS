@@ -40,7 +40,16 @@ namespace Profiles.Edit.Modules.CustomEditEmail
             base.BaseData = pagedata;
 
             data = new Profiles.Edit.Utilities.DataIO();
-            this.Email = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:email", base.Namespaces).InnerText;
+            try
+            {
+                this.Email = base.BaseData.SelectSingleNode("rdf:RDF/rdf:Description/vivo:email", base.Namespaces).InnerText;
+            }
+            catch (Exception ex)
+            {
+                this.Email = "No email found for your profile." +
+                    ("UCSF".Equals(Brand.GetCurrentBrand().GetBrandName()) ? " Please go to <a href='https://directory.ucsf.edu' target='_blank'>directory.ucsf.edu</a> to set your email visibility to Public if you would like to make it available to Profiles."
+                    : "");
+            }
 
 
             Profiles.Profile.Utilities.DataIO propdata = new Profiles.Profile.Utilities.DataIO();

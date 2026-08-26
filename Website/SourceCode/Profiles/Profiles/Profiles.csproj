@@ -65,8 +65,8 @@
     <Reference Include="HtmlAgilityPack, Version=1.12.4.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.12.4\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.10, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.10\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=10.0.0.10, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.10.0.10\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.HashCode, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.HashCode.6.0.0\lib\net462\Microsoft.Bcl.HashCode.dll</HintPath>
@@ -102,8 +102,8 @@
     <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
@@ -112,7 +112,7 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
@@ -126,8 +126,8 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
@@ -425,7 +425,9 @@
     <Content Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx" />
     <Content Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditClinicalTrials.ascx" />
+    <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditUCSDFacultyMentoring.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditCollaborationInterests.ascx" />
+    <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditUSCMentoring.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditRequiredScholarlyProjectMentor.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditIdentity.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditAcademicSenate.ascx" />
@@ -636,6 +638,10 @@
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx" />
     <Content Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\UCSDFacultyMentoring.js" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\UCSDFacultyMentoring.ascx" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\USCMentoring.js" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\USCMentoring.ascx" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\RequiredScholarlyProjectMentor.ascx" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\ClinicalTrials.js" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\ClinicalTrials.ascx" />
@@ -1070,12 +1076,26 @@
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditClinicalTrials.ascx.designer.cs">
       <DependentUpon>EditClinicalTrials.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditUCSDFacultyMentoring.ascx.cs">
+      <DependentUpon>EditUCSDFacultyMentoring.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditUCSDFacultyMentoring.ascx.designer.cs">
+      <DependentUpon>EditUCSDFacultyMentoring.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditCollaborationInterests.ascx.cs">
       <DependentUpon>EditCollaborationInterests.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditCollaborationInterests.ascx.designer.cs">
       <DependentUpon>EditCollaborationInterests.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditUSCMentoring.ascx.cs">
+      <DependentUpon>EditUSCMentoring.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditUSCMentoring.ascx.designer.cs">
+      <DependentUpon>EditUSCMentoring.ascx</DependentUpon>
     </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditRequiredScholarlyProjectMentor.ascx.cs">
       <DependentUpon>EditRequiredScholarlyProjectMentor.ascx</DependentUpon>
@@ -1786,6 +1806,20 @@
     </Compile>
     <Compile Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx.designer.cs">
       <DependentUpon>CustomViewResearcherRole.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\UCSDFacultyMentoring.ascx.cs">
+      <DependentUpon>UCSDFacultyMentoring.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\UCSDFacultyMentoring.ascx.designer.cs">
+      <DependentUpon>UCSDFacultyMentoring.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\USCMentoring.ascx.cs">
+      <DependentUpon>USCMentoring.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\USCMentoring.ascx.designer.cs">
+      <DependentUpon>USCMentoring.ascx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\CustomViewUCSFPlugins\RequiredScholarlyProjectMentor.ascx.cs">
       <DependentUpon>RequiredScholarlyProjectMentor.ascx</DependentUpon>

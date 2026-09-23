@@ -14,7 +14,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 {
     public partial class Mentoring : BaseUCSFModule
     {
-        private string PlugInName = "Mentoring";
         private string data = string.Empty;
         private MentoringData mData = new MentoringData();
 
@@ -31,9 +30,13 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             securityOptions.SecurityGroups.LoadXml(base.PresentationXML.DocumentElement.LastChild.OuterXml);
             securityOptions.BubbleClick += SecurityDisplayed;
 
-            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.PlugInName);
+            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.GetPluginName());
 
             litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+        }
+        protected override string GetPluginName()
+        {
+            return "Mentoring";
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -157,7 +160,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         protected void btnSaveNarrative_OnClick(object sender, EventArgs e)
         {
             mData.narrative = txtNarrative.Text.Trim();
-            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), GetSearchData());
+            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), GetSearchData());
             ResetDisplay();
         }
 
@@ -179,7 +182,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 else
                 {
                     mData.mentoringInterests.Add(interest);
-                    Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), GetSearchData());
+                    Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), GetSearchData());
                     ResetDisplay();
                 }
             }
@@ -209,7 +212,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             this.data = string.Empty;
             this.mData = null;
 
-            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.PlugInName);
+            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.GetPluginName());
             
             ReadJson();            
             upnlEditSection.Update();
@@ -253,7 +256,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
         private string GetSearchData()
         {
-            string search = "Mentoring " + mData.narrative;
+            string search = GetBaseSearchData() + ", Mentoring " + mData.narrative;
             foreach (MentoringInterest v in this.mData.mentoringInterests)
             {
                 search += " " + v.mentee + " " + v.type;
@@ -265,11 +268,11 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             this.mData.mentoringInterests.RemoveAt(e.RowIndex);
 
             //this needs to be the json desz'd
-            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), GetSearchData());
+            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), GetSearchData());
 
             if (HasNoMentoringData()) //they just deleted their last row
             {
-                Profiles.Framework.Utilities.GenericRDFDataIO.RemovePluginData(this.PlugInName, this.SubjectID);
+                Profiles.Framework.Utilities.GenericRDFDataIO.RemovePluginData(this.GetPluginName(), this.SubjectID);
             }
 
             ResetDisplay();
@@ -290,7 +293,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             this.mData.mentoringInterests.RemoveAt(oldIndex);
             this.mData.mentoringInterests.Insert(newIndex, item);
 
-            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), GetSearchData());
+            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), GetSearchData());
 
             SerializeJson();
             ResetDisplay();
@@ -309,7 +312,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
             this.mData.mentoringInterests.RemoveAt(oldIndex);
             this.mData.mentoringInterests.Insert(newIndex, item);
-            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), GetSearchData());
+            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), GetSearchData());
 
             ResetDisplay();
         }

@@ -1,10 +1,10 @@
-/* pretty-printed with https://beautifier.io/ */
+/* pretty-printed with prettier */
 
 /* global variables for all our hosted sites */
 :root {
     /* all these colors need to have sufficient contrast of text on background */
     --text-color: #111;
-    --text-muted-color: #6E6E6E;
+    --text-muted-color: #6e6e6e;
     --page-background-color: #fff;
     --generic-link-color: #0054c0;
     --generic-link-visited-color: #4a3696;
@@ -34,7 +34,7 @@
 
 /* set the global font size */
 html {
-    font-size: 14px
+    font-size: 14px;
 }
 
 /* now use that global font size everywhere where font sizes are hard-coded */
@@ -107,6 +107,24 @@ a,
         color: var(--generic-link-visited-color);
     }
 
+    /* Bootstrap .btn links: our global link rules outspecific Bootstrap's button color rules,
+   so we restore Bootstrap's intended text colors and kill the underline here */
+    a:is(.btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger),
+    a:is(.btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger):link,
+    a:is(.btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger):visited {
+        color: #fff;
+        /* matches Bootstrap 3 colored button text */
+        text-decoration: none;
+    }
+
+    a.btn-default,
+    a.btn-default:link,
+    a.btn-default:visited {
+        color: #333;
+        /* matches Bootstrap 3 .btn-default text */
+        text-decoration: none;
+    }
+
 /* normalize heading colors */
 h2,
 .profiles .profilesContentMain .pageTitle h2,
@@ -161,7 +179,6 @@ html body #prns-nav ul.prns-main {
 /* ############################################################################################ */
 
 @media only screen and (max-width: 980px) {
-
     /* window is limited to screen width, and kill all the pixel widths */
     :root {
         --max-main-content-width: 98vw;
@@ -206,12 +223,12 @@ html body #prns-nav ul.prns-main {
 
     /* at top, make site logo smaller */
     .researcherprofiles--institution-header--site-logo h1 {
-        font-size: 1rem
+        font-size: 1rem;
     }
 
     /* TODO: make sure this actually works across multiple sites */
     html body .researcherprofiles--institution-header--site-logo h1 a img {
-        max-height: 2rem !important
+        max-height: 2rem !important;
     }
 
     /* hide search bar, history, other sites in menu */
@@ -234,18 +251,28 @@ html body #prns-nav ul.prns-main {
     }
 
     /* in profile pages top basic info block, save space by making photo smaller, and hide headings */
-    .researcherprofiles--researcher-profile-page img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto {
-        max-width: 25vw
+    .researcherprofiles--researcher-profile-page
+    img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto {
+        max-width: 25vw;
     }
 
     /* in publication lists, hide busy/wordy article metrics */
-    .researcherprofiles--researcher-profile-page .profilesContentMain .publications .article-metrics {
-        display: none
+    .researcherprofiles--researcher-profile-page
+    .profilesContentMain
+    .publications
+    .article-metrics {
+        display: none;
     }
 
     /* table text is a smidgen smaller */
-    .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible td,
-    .researcherprofiles--researcher-profile-page .profilesContentMain table.grants td {
+    .researcherprofiles--researcher-profile-page
+    .profilesContentMain
+    table.collapsible
+    td,
+    .researcherprofiles--researcher-profile-page
+    .profilesContentMain
+    table.grants
+    td {
         font-size: 0.9em !important;
     }
 }
@@ -501,7 +528,7 @@ html body #prns-nav ul.prns-main {
 /* remove the magnifying glass image in the search box and the search type dropdown */
 #prns-nav li.search img,
 #prns-nav #search-drop {
-    display: none
+    display: none;
 }
 
 /* 4. Now we make tweaks to the user menu */
@@ -609,7 +636,7 @@ html body #prns-nav ul.prns-main {
     bottom: 0;
     left: 0;
     z-index: 1;
-    content: ""
+    content: "";
 }
 
 /* ############################################################################################ */
@@ -629,7 +656,8 @@ html body #prns-nav ul.prns-main {
 }
 
 /* the left container that may or may not contain photo should be as small as needed */
-.researcherprofiles--researcher-profile-page .panelMain > table > tbody > tr > td:first-child {
+.researcherprofiles--researcher-profile-page
+.panelMain > table > tbody > tr > td:first-child {
     padding: 0 !important;
     margin: 0 !important;
     padding: 0 0 0 0 !important;
@@ -637,13 +665,15 @@ html body #prns-nav ul.prns-main {
 }
 
 /* photo size is always 150px. wish we could make this bigger! */
-.researcherprofiles--researcher-profile-page img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto {
+.researcherprofiles--researcher-profile-page
+img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto {
     width: 150px;
     margin-right: 2rem;
 }
 
 /* some required space below the photo and basicinfo blocks, if they exist */
-.researcherprofiles--researcher-profile-page img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto,
+.researcherprofiles--researcher-profile-page
+img#ctl00_ContentMain_rptMain_ctl00_ctl00_imgPhoto,
 .researcherprofiles--researcher-profile-page .basicInfo > table {
     margin-bottom: 2rem;
 }
@@ -656,7 +686,9 @@ html body #prns-nav ul.prns-main {
 }
 
 /* in basic info, hide the ORCID logo */
-.researcherprofiles--researcher-profile-page .basicInfo img[src*="orcid_16x16"] {
+.researcherprofiles--researcher-profile-page
+.basicInfo
+img[src*="orcid_16x16"] {
     display: none !important;
 }
 
@@ -736,7 +768,7 @@ html body #prns-nav ul.prns-main {
 
 .researcherprofiles--researcher-profile-page #toc,
 .researcherprofiles--researcher-profile-page .toc-item {
-    text-transform: capitalize
+    text-transform: capitalize;
 }
 
 /* ############################################################################################ */
@@ -751,7 +783,7 @@ html body #prns-nav ul.prns-main {
 }
 
 .researcherprofiles--researcher-profile-page .PropertyGroupItem {
-    border: none !important
+    border: none !important;
 }
 
 /* section headings are bigger, recolored, and unclickable */
@@ -794,7 +826,9 @@ html body #prns-nav ul.prns-main {
 /* DREAM: remove fixed pixel widths */
 
 /* collapsible tables have a stupid pixel width, stretching out */
-.researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible,
+.researcherprofiles--researcher-profile-page
+.profilesContentMain
+table.collapsible,
 .researcherprofiles--researcher-profile-page .profilesContentMain table.grants {
     width: 100% !important;
     border: none;
@@ -803,34 +837,67 @@ html body #prns-nav ul.prns-main {
 
     /* adding little borders between non-linky collapsible table rows */
     /* It's quite hard to select the right tables. Ideally, we'd hand-list each one, but in this case, we need this funky selector to get awards/grants/education, but not in the news, websites, or pubs. */
-    .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible tr:not(.website-table),
-    .researcherprofiles--researcher-profile-page .profilesContentMain table.grants tr {
+    .researcherprofiles--researcher-profile-page
+    .profilesContentMain
+    table.collapsible
+    tr:not(.website-table),
+    .researcherprofiles--researcher-profile-page
+    .profilesContentMain
+    table.grants
+    tr {
         border-top: 2px solid var(--striped-row-border-color);
     }
 
-        .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible tr:first-of-type,
-        .researcherprofiles--researcher-profile-page .profilesContentMain table.grants tr:first-of-type,
-        .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible tr.accordion {
+        .researcherprofiles--researcher-profile-page
+        .profilesContentMain
+        table.collapsible
+        tr:first-of-type,
+        .researcherprofiles--researcher-profile-page
+        .profilesContentMain
+        table.grants
+        tr:first-of-type,
+        .researcherprofiles--researcher-profile-page
+        .profilesContentMain
+        table.collapsible
+        tr.accordion {
             border: none;
         }
 
     /* alternating row shading, but only for tables with 3+ rows and no website links */
-    .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible:has(tr:nth-child(3)):not(:has(.website-table)) tr:nth-child(even):not(.accordion),
-    .researcherprofiles--researcher-profile-page .profilesContentMain table.grants:has(tr:nth-child(3)) tr:nth-child(even) {
+    .researcherprofiles--researcher-profile-page
+    .profilesContentMain
+    table.collapsible:has(tr:nth-child(3)):not(:has(.website-table))
+    tr:nth-child(even):not(.accordion),
+    .researcherprofiles--researcher-profile-page
+    .profilesContentMain
+    table.grants:has(tr:nth-child(3))
+    tr:nth-child(even) {
         background-color: var(--striped-row-colored-row-color);
     }
 
     /* adding a little space between collapsible table items */
     /* and cells are never too narrow */
-    .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible td,
-    .researcherprofiles--researcher-profile-page .profilesContentMain table.grants td {
+    .researcherprofiles--researcher-profile-page
+    .profilesContentMain
+    table.collapsible
+    td,
+    .researcherprofiles--researcher-profile-page
+    .profilesContentMain
+    table.grants
+    td {
         padding: 0.2rem 0.5rem 0.2rem 0rem;
         min-width: 5em;
     }
 
         /* empty table cells can be as narrow as possible */
-        .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible td:empty,
-        .researcherprofiles--researcher-profile-page .profilesContentMain table.grants td:empty {
+        .researcherprofiles--researcher-profile-page
+        .profilesContentMain
+        table.collapsible
+        td:empty,
+        .researcherprofiles--researcher-profile-page
+        .profilesContentMain
+        table.grants
+        td:empty {
             min-width: 0;
             padding: 0;
         }
@@ -840,14 +907,27 @@ html body #prns-nav ul.prns-main {
 /* ############################################################################################ */
 
     /* left border on grants and collapsible tables (e.g. clinical trials) for visual consistency */
-    .researcherprofiles--researcher-profile-page .profilesContentMain table.grants tr td,
-    .researcherprofiles--researcher-profile-page .profilesContentMain table.collapsible tr:not(.accordion):not(.website-table) td:first-child {
+    .researcherprofiles--researcher-profile-page
+    .profilesContentMain
+    table.grants
+    tr
+    td,
+    .researcherprofiles--researcher-profile-page
+    .profilesContentMain
+    table.collapsible
+    tr:not(.accordion):not(.website-table)
+    td:first-child {
         border-left: 3px solid var(--highlighted-panel-border-color) !important;
         padding-left: 0.75rem !important;
     }
 
     /* grant number link: slightly muted since it's supporting metadata */
-    .researcherprofiles--researcher-profile-page .profilesContentMain table.grants td span[style*="float:left"] a {
+    .researcherprofiles--researcher-profile-page
+    .profilesContentMain
+    table.grants
+    td
+    span[style*="float:left"]
+    a {
         color: var(--text-muted-color);
     }
 
@@ -860,17 +940,27 @@ html body #prns-nav ul.prns-main {
     border-top: 2px solid var(--striped-row-border-color);
 }
 
-    .researcherprofiles--researcher-profile-page #senate-committees table tr:first-of-type {
+    .researcherprofiles--researcher-profile-page
+    #senate-committees
+    table
+    tr:first-of-type {
         border-top: none;
     }
 
 /* stripe rows for tables with 3+ rows */
-.researcherprofiles--researcher-profile-page #senate-committees table:has(tr:nth-child(3)) tr:nth-child(even) {
+.researcherprofiles--researcher-profile-page
+#senate-committees
+table:has(tr:nth-child(3))
+tr:nth-child(even) {
     background-color: var(--striped-row-colored-row-color);
 }
 
 /* left border on first data column, skip header row */
-.researcherprofiles--researcher-profile-page #senate-committees table tr:not(:first-of-type) td:first-child {
+.researcherprofiles--researcher-profile-page
+#senate-committees
+table
+tr:not(:first-of-type)
+td:first-child {
     border-left: 3px solid var(--highlighted-panel-border-color) !important;
     padding-left: 0.75rem !important;
 }
@@ -904,37 +994,65 @@ html body #prns-nav ul.prns-main {
 /* ############################################################################################ */
 
 /* clean up explanation of where publications are derived, at top of pubs list */
-.researcherprofiles--researcher-profile-page .profilesContentMain .publicationList #ctl01_divPubHeaderText {
+.researcherprofiles--researcher-profile-page
+.profilesContentMain
+.publicationList
+#ctl01_divPubHeaderText {
     color: var(--text-muted-color) !important;
     font-weight: normal !important;
 }
 
 /* more spacing between each publication */
-.researcherprofiles--researcher-profile-page .profilesContentMain .publications li {
+.researcherprofiles--researcher-profile-page
+.profilesContentMain
+.publications
+li {
     border: none;
     padding: 0.65rem;
     margin: 0;
 }
 
 /* at some point in time, publication names are too long to make sense of */
-.researcherprofiles--researcher-profile-page .profilesContentMain .publications li {
+.researcherprofiles--researcher-profile-page
+.profilesContentMain
+.publications
+li {
     max-width: 50em;
 }
 
+    /* the article title is a smidgen bolder */
+    .researcherprofiles--researcher-profile-page
+    .profilesContentMain
+    .publications
+    li
+    span[id^="ctl01_rpPublication_ctl"][id$="_lblPublication"] {
+        font-weight: 450;
+    }
+
     /* the long list of co-authors is less important than title */
-    .researcherprofiles--researcher-profile-page .profilesContentMain .publications li span[id^="ctl01_rpPublication_ctl"][id$="_lblPublicationIDs"] {
+    .researcherprofiles--researcher-profile-page
+    .profilesContentMain
+    .publications
+    li
+    span[id^="ctl01_rpPublication_ctl"][id$="_lblPublicationIDs"] {
         color: var(--text-muted-color);
     }
 
     /* shade every second line */
-    .researcherprofiles--researcher-profile-page .profilesContentMain .publications li:nth-child(even) {
+    .researcherprofiles--researcher-profile-page
+    .profilesContentMain
+    .publications
+    li:nth-child(even) {
         background: var(--striped-row-colored-row-color);
         border-top: 0.5px solid var(--striped-row-border-color);
         border-bottom: 0.5px solid var(--striped-row-border-color);
     }
 
 /* publication sort bar: give it a background so it reads as a control */
-.researcherprofiles--researcher-profile-page .profilesContentMain .publicationList .anchor-tab {
+.researcherprofiles--researcher-profile-page
+.profilesContentMain
+.publicationList
+.anchor-tab {
     display: inline-block;
     background-color: var(--highlighted-panel-background-color);
     border: 1px solid var(--highlighted-panel-border-color);
@@ -948,13 +1066,19 @@ html body #prns-nav ul.prns-main {
 }
 
 /* "Altmetrics Details" disclosure element: muted to stay visually subordinate */
-.researcherprofiles--researcher-profile-page .profilesContentMain .publicationList details {
+.researcherprofiles--researcher-profile-page
+.profilesContentMain
+.publicationList
+details {
     color: var(--text-muted-color);
     margin-bottom: 0.25rem;
 }
 
 /* article metrics row: inline-flex for badge baseline alignment, no gap (spacing via existing &nbsp;) */
-.researcherprofiles--researcher-profile-page .profilesContentMain .publications .article-metrics {
+.researcherprofiles--researcher-profile-page
+.profilesContentMain
+.publications
+.article-metrics {
     display: inline-flex;
     align-items: center;
     margin-top: 0.25rem;
@@ -963,23 +1087,38 @@ html body #prns-nav ul.prns-main {
 }
 
     /* links within metrics row stay full color */
-    .researcherprofiles--researcher-profile-page .profilesContentMain .publications .article-metrics a {
+    .researcherprofiles--researcher-profile-page
+    .profilesContentMain
+    .publications
+    .article-metrics
+    a {
         color: var(--generic-link-color);
     }
 
         /* "View in:" text node and first link are flush due to inline-flex collapsing whitespace */
-        .researcherprofiles--researcher-profile-page .profilesContentMain .publications .article-metrics a:first-of-type {
+        .researcherprofiles--researcher-profile-page
+        .profilesContentMain
+        .publications
+        .article-metrics
+        a:first-of-type {
             margin-left: 0.25em;
         }
 
 /* fix Altmetric embed image: their script injects display:block, pulling it out of line flow */
-.researcherprofiles--researcher-profile-page .profilesContentMain .publications .altmetric-embed img {
+.researcherprofiles--researcher-profile-page
+.profilesContentMain
+.publications
+.altmetric-embed
+img {
     display: inline-block !important;
     vertical-align: middle !important;
 }
 
 /* Fields/Translation tags: rounded corners to match pill language elsewhere on the page */
-.researcherprofiles--researcher-profile-page .profilesContentMain .publications .publication-filter {
+.researcherprofiles--researcher-profile-page
+.profilesContentMain
+.publications
+.publication-filter {
     border-radius: 0.25rem !important;
 }
 
@@ -1017,20 +1156,26 @@ html body #prns-nav ul.prns-main {
 /* ############################################################################################ */
 
 /* make website/media link rows read like a list instead of a raw table */
-.researcherprofiles--researcher-profile-page #view_links_table table.collapsible {
+.researcherprofiles--researcher-profile-page
+#view_links_table
+table.collapsible {
     width: 100% !important;
     table-layout: auto;
     border-collapse: collapse;
 }
 
-.researcherprofiles--researcher-profile-page #view_links_table tr.website-table > td {
+.researcherprofiles--researcher-profile-page
+#view_links_table
+tr.website-table > td {
     background-color: transparent;
     border-bottom: none;
     padding: 0.45rem 0;
     vertical-align: top;
 }
 
-    .researcherprofiles--researcher-profile-page #view_links_table tr.website-table > td:first-child {
+    .researcherprofiles--researcher-profile-page
+    #view_links_table
+    tr.website-table > td:first-child {
         width: 24px !important;
         min-width: 24px !important;
         max-width: 24px !important;
@@ -1038,7 +1183,9 @@ html body #prns-nav ul.prns-main {
         white-space: nowrap;
     }
 
-    .researcherprofiles--researcher-profile-page #view_links_table tr.website-table > td:last-child {
+    .researcherprofiles--researcher-profile-page
+    #view_links_table
+    tr.website-table > td:last-child {
         padding-left: 0;
         line-height: 1.35;
         color: var(--text-muted-color) !important;
@@ -1046,11 +1193,16 @@ html body #prns-nav ul.prns-main {
         width: auto;
     }
 
-.researcherprofiles--researcher-profile-page #view_links_table tr.website-table:hover > td {
+.researcherprofiles--researcher-profile-page
+#view_links_table
+tr.website-table:hover > td {
     background-color: transparent;
 }
 
-.researcherprofiles--researcher-profile-page #view_links_table tr.website-table img {
+.researcherprofiles--researcher-profile-page
+#view_links_table
+tr.website-table
+img {
     width: 16px;
     height: 16px;
     display: block;
@@ -1058,7 +1210,11 @@ html body #prns-nav ul.prns-main {
     margin-top: 0.2rem;
 }
 
-.researcherprofiles--researcher-profile-page #view_links_table tr.website-table td:last-child a {
+.researcherprofiles--researcher-profile-page
+#view_links_table
+tr.website-table
+td:last-child
+a {
     display: inline;
     font-weight: normal;
     color: var(--generic-link-color);
@@ -1098,7 +1254,9 @@ html body #prns-nav ul.prns-main {
 /* ############################################################################################ */
 
 /* parent container will have two children */
-.researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="videos"] {
+.researcherprofiles--researcher-profile-page
+div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"]
+div[id="videos"] {
     width: 100%;
     height: 25rem;
     display: flex;
@@ -1110,14 +1268,18 @@ html body #prns-nav ul.prns-main {
 }
 
 /* position the video container on the left, taking up 2/3rds of the space */
-.researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="current_video_container"] {
+.researcherprofiles--researcher-profile-page
+div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"]
+div[id="current_video_container"] {
     flex: 1 1 60%;
     order: 1;
     margin-right: 1rem;
 }
 
 /* position the videos list on the right, taking up 1/3rds of the space */
-.researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="video_navigator"] {
+.researcherprofiles--researcher-profile-page
+div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"]
+div[id="video_navigator"] {
     order: 2;
     flex: 1 0 30%;
     background: var(--highlighted-panel-background-color);
@@ -1128,7 +1290,10 @@ html body #prns-nav ul.prns-main {
 }
 
     /* resize each entry in the video list, and act a little like a link */
-    .researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="video_navigator"] .video_option {
+    .researcherprofiles--researcher-profile-page
+    div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"]
+    div[id="video_navigator"]
+    .video_option {
         cursor: pointer;
         padding: 0.5rem;
         margin-bottom: 1rem;
@@ -1137,18 +1302,30 @@ html body #prns-nav ul.prns-main {
     }
 
         /* ...and break long captions if needed */
-        .researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="video_navigator"] .video_option figcaption {
+        .researcherprofiles--researcher-profile-page
+        div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"]
+        div[id="video_navigator"]
+        .video_option
+        figcaption {
             overflow-wrap: break-word;
         }
 
         /* video links light up on hover */
-        .researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="video_navigator"] .video_option:hover {
+        .researcherprofiles--researcher-profile-page
+        div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"]
+        div[id="video_navigator"]
+        .video_option:hover {
             background-color: white;
             text-decoration: underline;
         }
 
         /* in each video list entry, the image is on the left and maxes out at 40% width */
-        .researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="video_navigator"] .video_option .video_thumbnail_wrapper img {
+        .researcherprofiles--researcher-profile-page
+        div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"]
+        div[id="video_navigator"]
+        .video_option
+        .video_thumbnail_wrapper
+        img {
             max-height: 100%;
             max-width: 40%;
             margin-right: 1rem;
@@ -1157,7 +1334,10 @@ html body #prns-nav ul.prns-main {
         }
 
 /* make the video iframe on the left hand side as wide as its container */
-.researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"] div[id="current_video_container"] iframe {
+.researcherprofiles--researcher-profile-page
+div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#UCSFFeaturedVideos"]
+div[id="current_video_container"]
+iframe {
     width: 100%;
     height: 100%;
     border: 1px solid var(--highlighted-panel-border-color);
@@ -1176,13 +1356,18 @@ html body #prns-nav ul.prns-main {
 }
 
 /* YouTube iframe takes up the whole left side */
-.researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#FeaturedVideos"] .yt_div iframe.yt_player {
+.researcherprofiles--researcher-profile-page
+div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#FeaturedVideos"]
+.yt_div
+iframe.yt_player {
     max-height: 100%;
     max-width: 100%;
 }
 
 /* make list of videos pretty and scrollable */
-.researcherprofiles--researcher-profile-page div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#FeaturedVideos"] .yt_list {
+.researcherprofiles--researcher-profile-page
+div[id="http://profiles.catalyst.harvard.edu/ontology/plugins#FeaturedVideos"]
+.yt_list {
     height: 100%;
     overflow: auto;
     background: var(--menu-background-color);
@@ -1242,7 +1427,9 @@ html body #prns-nav ul.prns-main {
 /* reset the highly styled Explore buttons, and make them look like links */
 /* TODO: figure out why not all the explore links are wrapped in this class and dblarrow */
 .researcherprofiles--researcher-profile-or-network-page .prns-explore-btn,
-.researcherprofiles--researcher-profile-or-network-page .profilesContentPassive .dblarrow {
+.researcherprofiles--researcher-profile-or-network-page
+.profilesContentPassive
+.dblarrow {
     display: inline;
     color: var(--generic-link-color) !important;
     background-color: revert !important;
@@ -1252,8 +1439,13 @@ html body #prns-nav ul.prns-main {
 }
 
 .researcherprofiles--researcher-profile-or-network-page .profilesContentPassive,
-.researcherprofiles--researcher-profile-or-network-page .profilesContentPassive .panelPassive,
-.researcherprofiles--researcher-profile-or-network-page .profilesContentPassive .panelPassive .passive-header {
+.researcherprofiles--researcher-profile-or-network-page
+.profilesContentPassive
+.panelPassive,
+.researcherprofiles--researcher-profile-or-network-page
+.profilesContentPassive
+.panelPassive
+.passive-header {
     margin-top: 0 !important;
     padding-top: 0 !important;
     background: white !important;
@@ -1262,7 +1454,8 @@ html body #prns-nav ul.prns-main {
 
 /* if page is sufficiently wide, and there's only one passive column, make sure right column is at least ~20% of screen, and give it some room to breathe */
 @media only screen and (min-width: 60rem) and (min-width: 980px) {
-    .researcherprofiles--researcher-profile-or-network-page .profilesContentMain:first-child + .profilesContentPassive {
+    .researcherprofiles--researcher-profile-or-network-page
+    .profilesContentMain:first-child + .profilesContentPassive {
         width: 25%;
         padding-left: 2.5rem !important;
     }
@@ -1286,19 +1479,27 @@ html body #prns-nav ul.prns-main {
 }
 
     /* gray out description of where the network data came from */
-    .researcherprofiles--researcher-profile-or-network-page .passiveSectionHead .passiveSectionHeadDescription {
+    .researcherprofiles--researcher-profile-or-network-page
+    .passiveSectionHead
+    .passiveSectionHeadDescription {
         color: var(--text-muted-color) !important;
         margin: 0.1rem 0 0.5rem 0 !important;
     }
 
 /* in people lists, indent text over a bit */
-.researcherprofiles--researcher-profile-or-network-page .profilesContentPassive .passiveSectionBody li {
+.researcherprofiles--researcher-profile-or-network-page
+.profilesContentPassive
+.passiveSectionBody
+li {
     text-indent: -2rem;
     padding-left: 2rem;
 }
 
 /* headshot photo container */
-.researcherprofiles--researcher-profile-or-network-page .profilesContentPassive a .thumbnail {
+.researcherprofiles--researcher-profile-or-network-page
+.profilesContentPassive
+a
+.thumbnail {
     display: inline-block;
     height: 1rem;
     width: 1.3rem;
@@ -1331,10 +1532,17 @@ body.about #ctl00_ContentMain_rptMain_ctl00_ctl00_lblHTMLBlock {
 }
 
 /* ...but don't apply previous rule on full-width "about"-ish pages */
-body.about.researcherprofiles--full-width-static-page #ctl00_ContentMain_rptMain_ctl00_ctl00_lblHTMLBlock {
+body.about.researcherprofiles--full-width-static-page
+#ctl00_ContentMain_rptMain_ctl00_ctl00_lblHTMLBlock {
     max-width: 100%;
     margin-left: 0;
     margin-right: 0;
+}
+
+/* this attempts to overrides dorky styles in profiles.css. I have no idea why this wasn't left as is */
+body.about h2 {
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 /* this attempts to overrides dorky styles in profiles.css. I have no idea why this wasn't left as is */
@@ -1468,13 +1676,17 @@ body.about .share {
     }
 
 /* reset sizes on all three search rows, including the heading */
-.researcherprofiles--home-page .profilesContentMain .tabContainer > .searchForm > table > tbody > tr > td > div {
+.researcherprofiles--home-page
+.profilesContentMain
+.tabContainer > .searchForm > table > tbody > tr > td > div {
     margin: 0;
     padding: 0;
 }
 
 /* try to visually merge the two search blocks, but not the heading */
-.researcherprofiles--home-page .profilesContentMain .tabContainer > .searchForm > table > tbody > tr:not(:first-child) > td > div {
+.researcherprofiles--home-page
+.profilesContentMain
+.tabContainer > .searchForm > table > tbody > tr:not(:first-child) > td > div {
     background: var(--highlighted-panel-background-color);
     margin: 0;
     padding: 0 2.5rem;
@@ -1483,18 +1695,28 @@ body.about .share {
     border-bottom: 0;
 }
 
-.researcherprofiles--home-page .profilesContentMain .tabContainer > .searchForm > table > tbody > tr:last-child > td > div {
+.researcherprofiles--home-page
+.profilesContentMain
+.tabContainer > .searchForm > table > tbody > tr:last-child > td > div {
     border-bottom: 1px solid var(--highlighted-panel-border-color);
     padding-bottom: 1rem;
 }
 
-.researcherprofiles--home-page .profilesContentMain .tabContainer > .searchForm > table > tbody > tr:nth-child(2) > td > div {
+.researcherprofiles--home-page
+.profilesContentMain
+.tabContainer > .searchForm > table > tbody > tr:nth-child(2) > td > div {
     padding-top: 1rem;
     border-top: 1px solid var(--highlighted-panel-border-color);
 }
 
 /* big "Find people..." text at top of search box */
-.researcherprofiles--home-page .profilesContentMain .tabContainer .searchForm table td .header {
+.researcherprofiles--home-page
+.profilesContentMain
+.tabContainer
+.searchForm
+table
+td
+.header {
     color: var(--heading-color);
     font-size: 1.8rem;
     font-weight: bold;
@@ -1531,7 +1753,6 @@ body.about .share {
 }
 
 @media only screen and (min-width: 981px) {
-
     .researcherprofiles--home-page .searchForm td select,
     .researcherprofiles--home-page .searchForm td select[style],
     .researcherprofiles--home-page .searchForm td input.inputText {
@@ -1567,7 +1788,6 @@ body.about .share {
     }
 
 @media screen and (max-width: 600px) {
-
     .researcherprofiles--home-page .searchForm .searchSection th,
     .researcherprofiles--home-page .searchForm .searchSection td {
         display: block;
@@ -1584,7 +1804,8 @@ body.about .share {
 
 /* hide DIRECT search link under search form */
 /* DREAM: remove from upstream */
-.researcherprofiles--home-page #ctl00_ContentMain_rptMain_ctl00_ctl00_DirectSearchUCSF {
+.researcherprofiles--home-page
+#ctl00_ContentMain_rptMain_ctl00_ctl00_DirectSearchUCSF {
     display: none;
 }
 
@@ -1600,64 +1821,105 @@ body.about .share {
 
 /* shorten and shrink search section/tab labels on small screens */
 @media only screen and (max-width: 980px) {
-
     /* width of tab menu helps determine width of search box content, so we don't want it unnecessarily narrow */
     .researcherprofiles--home-page .tabmenu {
-        width: clamp(20rem, 80vw, 100vw)
+        width: clamp(20rem, 80vw, 100vw);
     }
 
     /* font size is smaller */
-    .researcherprofiles--home-page .researcherprofiles--primary-search-container .tabmenu li.tab a:after {
+    .researcherprofiles--home-page
+    .researcherprofiles--primary-search-container
+    .tabmenu
+    li.tab
+    a:after {
         font-size: 0.8rem;
     }
 
     /* hide main labels */
-    .researcherprofiles--home-page .researcherprofiles--primary-search-container .tabmenu li.tab a[href$="/people"],
-    .researcherprofiles--home-page .researcherprofiles--primary-search-container .tabmenu li.tab a[href$="/all"],
-    .researcherprofiles--home-page .researcherprofiles--primary-search-container .tabmenu li.tab a[href$="/advanced"],
-    .researcherprofiles--home-page .researcherprofiles--primary-search--find-people-mode li.tab.selected,
-    .researcherprofiles--home-page .researcherprofiles--primary-search--find-everything-mode li.tab.selected,
-    .researcherprofiles--home-page .researcherprofiles--primary-search--advanced-search-mode li.tab.selected {
+    .researcherprofiles--home-page
+    .researcherprofiles--primary-search-container
+    .tabmenu
+    li.tab
+    a[href$="/people"],
+    .researcherprofiles--home-page
+    .researcherprofiles--primary-search-container
+    .tabmenu
+    li.tab
+    a[href$="/all"],
+    .researcherprofiles--home-page
+    .researcherprofiles--primary-search-container
+    .tabmenu
+    li.tab
+    a[href$="/advanced"],
+    .researcherprofiles--home-page
+    .researcherprofiles--primary-search--find-people-mode
+    li.tab.selected,
+    .researcherprofiles--home-page
+    .researcherprofiles--primary-search--find-everything-mode
+    li.tab.selected,
+    .researcherprofiles--home-page
+    .researcherprofiles--primary-search--advanced-search-mode
+    li.tab.selected {
         font-size: 0;
         opacity: 1;
     }
 
         /* and add new shorter labels */
-        .researcherprofiles--home-page .researcherprofiles--primary-search-container .tabmenu li.tab a[href$="/people"]:after,
+        .researcherprofiles--home-page
+        .researcherprofiles--primary-search-container
+        .tabmenu
+        li.tab
+        a[href$="/people"]:after,
         .researcherprofiles--primary-search--find-people-mode li.tab.selected:after {
             content: "People";
             font-size: 0.8rem !important;
         }
 
-        .researcherprofiles--home-page .researcherprofiles--primary-search-container .tabmenu li.tab a[href$="/all"]:after,
-        .researcherprofiles--primary-search--find-everything-mode li.tab.selected:after {
+        .researcherprofiles--home-page
+        .researcherprofiles--primary-search-container
+        .tabmenu
+        li.tab
+        a[href$="/all"]:after,
+        .researcherprofiles--primary-search--find-everything-mode
+        li.tab.selected:after {
             content: "Papers";
             font-size: 0.8rem !important;
         }
 
-        .researcherprofiles--home-page .researcherprofiles--primary-search-container .tabmenu li.tab a[href$="/advanced"]:after,
-        .researcherprofiles--primary-search--advanced-search-mode li.tab.selected:after {
+        .researcherprofiles--home-page
+        .researcherprofiles--primary-search-container
+        .tabmenu
+        li.tab
+        a[href$="/advanced"]:after,
+        .researcherprofiles--primary-search--advanced-search-mode
+        li.tab.selected:after {
             content: "Advanced";
             font-size: 0.8rem !important;
         }
 }
 
 /* some space to the right of all checkboxes */
-.researcherprofiles--primary-search-container .searchForm input[type="checkbox"] {
+.researcherprofiles--primary-search-container
+.searchForm
+input[type="checkbox"] {
     margin-right: 0.3rem;
 }
 
 /* SEARCH BOX SECTION: "FIND PEOPLE" SEARCH TAB */
 
 /* - main search block is orange, or similar heading color */
-.researcherprofiles--home-page .researcherprofiles--primary-search--find-people-mode .panelMain {
+.researcherprofiles--home-page
+.researcherprofiles--primary-search--find-people-mode
+.panelMain {
     background: var(--heading-color);
     padding: 1.5rem;
     border-radius: 0.5rem;
 }
 
 /* - the "Find experts on..." heading is big, white */
-.researcherprofiles--home-page .researcherprofiles--primary-search--find-people-mode .activeContainerTop {
+.researcherprofiles--home-page
+.researcherprofiles--primary-search--find-people-mode
+.activeContainerTop {
     color: white !important;
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
@@ -1665,7 +1927,8 @@ body.about .share {
 }
 
 /* - search input row is flex container */
-.researcherprofiles--home-page .researcherprofiles--primary-search--search-box--input-group {
+.researcherprofiles--home-page
+.researcherprofiles--primary-search--search-box--input-group {
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -1673,7 +1936,9 @@ body.about .share {
 }
 
 /* - search input box on the left is near full width, and has big text */
-.researcherprofiles--home-page .researcherprofiles--primary-search--find-people-mode #txtKeyword {
+.researcherprofiles--home-page
+.researcherprofiles--primary-search--find-people-mode
+#txtKeyword {
     display: inline-block;
     font-size: 1rem;
     min-height: 3rem;
@@ -1685,7 +1950,9 @@ body.about .share {
 }
 
 /* - search button to the right is smaller, and doesn't shrink or grow with screen size */
-.researcherprofiles--home-page .researcherprofiles--primary-search--find-people-mode .researcherprofiles--primary-search--search-box--search-button {
+.researcherprofiles--home-page
+.researcherprofiles--primary-search--find-people-mode
+.researcherprofiles--primary-search--search-box--search-button {
     display: inline-block;
     border-color: var(--generic-link-color);
     background-color: var(--generic-link-color);
@@ -1708,64 +1975,88 @@ body.about .share {
 }
 
     /* - search button to the right changes color on hover or click */
-    .researcherprofiles--home-page .researcherprofiles--primary-search--find-people-mode .researcherprofiles--primary-search--search-box--search-button:hover,
-    .researcherprofiles--home-page .researcherprofiles--primary-search--find-people-mode .researcherprofiles--primary-search--search-box--search-button:active,
-    .researcherprofiles--primary-search--find-people-mode .researcherprofiles--primary-search--search-box--search-button:focus {
-        filter: brightness(1.0);
+    .researcherprofiles--home-page
+    .researcherprofiles--primary-search--find-people-mode
+    .researcherprofiles--primary-search--search-box--search-button:hover,
+    .researcherprofiles--home-page
+    .researcherprofiles--primary-search--find-people-mode
+    .researcherprofiles--primary-search--search-box--search-button:active,
+    .researcherprofiles--primary-search--find-people-mode
+    .researcherprofiles--primary-search--search-box--search-button:focus {
+        filter: brightness(1);
     }
 
 /* - the orange/etc. space below has a minimum height, to keep top and bottom even */
-.researcherprofiles--home-page .researcherprofiles--primary-search--find-people-mode .activeContainerBottom {
+.researcherprofiles--home-page
+.researcherprofiles--primary-search--find-people-mode
+.activeContainerBottom {
     min-height: 0.5rem;
 }
 
 /* SEARCH BOX SECTION: "FIND EVERYTHING" SEARCH TAB */
 
 /* the three sections of the block (label, input, and search button) are in a row, but can wrap if needed */
-.researcherprofiles--home-page .researcherprofiles--primary-search--find-everything-mode fieldset {
+.researcherprofiles--home-page
+.researcherprofiles--primary-search--find-everything-mode
+fieldset {
     display: flex;
     flex-wrap: wrap;
 }
 
     /* normalize the three sections of the block (label, input, and search button) */
-    .researcherprofiles--home-page .researcherprofiles--primary-search--find-everything-mode fieldset > * {
+    .researcherprofiles--home-page
+    .researcherprofiles--primary-search--find-everything-mode
+    fieldset > * {
         width: auto;
         margin: 0 1rem 0 0;
         float: left;
     }
 
 /* Bootstrap customized the <legend>, so we normalize the font size */
-.researcherprofiles--home-page .researcherprofiles--primary-search--find-everything-mode legend {
+.researcherprofiles--home-page
+.researcherprofiles--primary-search--find-everything-mode
+legend {
     font-size: 1rem;
 }
 
 /* the search input and "use exact phrase" are on top of one another */
-.researcherprofiles--home-page .researcherprofiles--primary-search--find-everything-mode .researcherprofiles--primary-search--search-form--topic-search-container > * {
+.researcherprofiles--home-page
+.researcherprofiles--primary-search--find-everything-mode
+.researcherprofiles--primary-search--search-form--topic-search-container > * {
     display: block;
 }
 
 /* SEARCH BOX SECTION: "ADVANCED" SEARCH TAB */
 
 /* - add lines above all new checkbox rows, but not school/department */
-.researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_tr"] {
-    border-top: 1px solid var(--highlighted-panel-border-color)
+.researcherprofiles--primary-search--advanced-search-mode
+tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_tr"] {
+    border-top: 1px solid var(--highlighted-panel-border-color);
 }
 
-.researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDivision"],
-.researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDepartment"] {
+.researcherprofiles--primary-search--advanced-search-mode
+tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDivision"],
+.researcherprofiles--primary-search--advanced-search-mode
+tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDepartment"] {
     border: none;
 }
 
     /* - either school/department followed by researcher type? no border, and more spacing between */
-    .researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDepartment"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"],
-    .researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDivision"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"] {
+    .researcherprofiles--primary-search--advanced-search-mode
+    tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDepartment"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"],
+    .researcherprofiles--primary-search--advanced-search-mode
+    tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDivision"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"] {
         border-top: none !important;
     }
 
-        .researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDepartment"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"] > th,
-        .researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDepartment"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"] > td,
-        .researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDivision"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"] > th,
-        .researcherprofiles--primary-search--advanced-search-mode tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDivision"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"] > td {
+        .researcherprofiles--primary-search--advanced-search-mode
+        tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDepartment"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"] > th,
+        .researcherprofiles--primary-search--advanced-search-mode
+        tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDepartment"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"] > td,
+        .researcherprofiles--primary-search--advanced-search-mode
+        tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDivision"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"] > th,
+        .researcherprofiles--primary-search--advanced-search-mode
+        tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trDivision"] + tr[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_trFacultyType"] > td {
             padding-top: 1.5rem;
         }
 
@@ -1776,7 +2067,10 @@ body.about .share {
 }
 
 /* - exact phrase label stands alone */
-.researcherprofiles--primary-search--advanced-search-mode .searchForm .fieldOptions label {
+.researcherprofiles--primary-search--advanced-search-mode
+.searchForm
+.fieldOptions
+label {
     display: block;
 }
 
@@ -1789,12 +2083,16 @@ body.about .share {
     display: none;
 }
 
-.researcherprofiles--home-page .researcherprofiles--primary-search--find-people-mode .researcherprofiles--home-page--featured-items-block {
+.researcherprofiles--home-page
+.researcherprofiles--primary-search--find-people-mode
+.researcherprofiles--home-page--featured-items-block {
     display: block;
 }
 
 /* show below search box on "find people" screen */
-.researcherprofiles--home-page .researcherprofiles--primary-search--find-people-mode .researcherprofiles--home-page--featured-items-block {
+.researcherprofiles--home-page
+.researcherprofiles--primary-search--find-people-mode
+.researcherprofiles--home-page--featured-items-block {
     margin-top: 5rem;
 }
 
@@ -1807,14 +2105,16 @@ body.about .share {
 }
 
 /* final text floating below the row of items */
-.researcherprofiles--home-page .researcherprofiles--home-page--featured-items-block > p:last-child {
+.researcherprofiles--home-page
+.researcherprofiles--home-page--featured-items-block > p:last-child {
     text-align: center;
     font-style: italic;
     margin: 0 0 0 1rem;
 }
 
 /* style each row item */
-.researcherprofiles--home-page .researcherprofiles--home-page--featured-items-block--item {
+.researcherprofiles--home-page
+.researcherprofiles--home-page--featured-items-block--item {
     flex: 1 0 0%;
     position: relative;
     display: flex;
@@ -1828,13 +2128,16 @@ body.about .share {
 }
 
 /* limit height of image */
-.researcherprofiles--home-page .researcherprofiles--home-page--featured-items-block--image-container {
+.researcherprofiles--home-page
+.researcherprofiles--home-page--featured-items-block--image-container {
     height: 10rem;
 }
 
 /* horizontal row with shorter images when possible, vertical column with taller images otherwise */
 @media (min-width: 40rem) {
-    .researcherprofiles--home-page .researcherprofiles--primary-search--find-people-mode .researcherprofiles--home-page--featured-items-block--grid {
+    .researcherprofiles--home-page
+    .researcherprofiles--primary-search--find-people-mode
+    .researcherprofiles--home-page--featured-items-block--grid {
         display: flex;
         flex-flow: row wrap;
         gap: min(3%, 1rem);
@@ -1842,22 +2145,27 @@ body.about .share {
     }
 
     /* keep the image from getting too wide */
-    .researcherprofiles--home-page .researcherprofiles--home-page--featured-items-block--item {
-        max-width: max(25%, 8rem)
+    .researcherprofiles--home-page
+    .researcherprofiles--home-page--featured-items-block--item {
+        max-width: max(25%, 8rem);
     }
 
     /* cap image height, make allowances when only 1 block */
-    .researcherprofiles--home-page .researcherprofiles--home-page--featured-items-block--image-container {
+    .researcherprofiles--home-page
+    .researcherprofiles--home-page--featured-items-block--image-container {
         height: 5rem;
     }
 
-    .researcherprofiles--home-page .researcherprofiles--home-page--featured-items-block--item:only-of-type .researcherprofiles--home-page--featured-items-block--image-container {
+    .researcherprofiles--home-page
+    .researcherprofiles--home-page--featured-items-block--item:only-of-type
+    .researcherprofiles--home-page--featured-items-block--image-container {
         height: 8rem;
     }
 }
 
 /* image covers the entirety of the image block */
-.researcherprofiles--home-page .researcherprofiles--home-page--featured-items-block--image {
+.researcherprofiles--home-page
+.researcherprofiles--home-page--featured-items-block--image {
     object-fit: cover;
     height: 100%;
     width: 100%;
@@ -1865,12 +2173,15 @@ body.about .share {
 }
 
 /* mildly lower image opacity, until we hover */
-.researcherprofiles--home-page .researcherprofiles--home-page--featured-items-block--item:not(:hover) .researcherprofiles--home-page--featured-items-block--image {
+.researcherprofiles--home-page
+.researcherprofiles--home-page--featured-items-block--item:not(:hover)
+.researcherprofiles--home-page--featured-items-block--image {
     opacity: 0.8;
 }
 
 /* some space above link text */
-.researcherprofiles--home-page .researcherprofiles--home-page--featured-items-block--body {
+.researcherprofiles--home-page
+.researcherprofiles--home-page--featured-items-block--body {
     margin-top: 0.5rem;
 }
 
@@ -1878,10 +2189,14 @@ body.about .share {
 /* HOME PAGE: NETWORK UPDATES IN LEFT COLUMN */
 /* ############################################################################################ */
 
-.researcherprofiles--home-page .activeSectionBody .activities .act-heading span {
+.researcherprofiles--home-page
+.activeSectionBody
+.activities
+.act-heading
+span {
     display: block;
     color: var(--text-muted-color);
-    font-weight: normal
+    font-weight: normal;
 }
 
 .researcherprofiles--home-page .activeSectionBody .metrics {
@@ -1932,11 +2247,13 @@ body.about .share {
 }
 
     /* hide first "most viewed" block and heading */
-    .researcherprofiles--home-page .panelPassive > .passiveSectionBody.topSearchPhrases:nth-child(3) {
+    .researcherprofiles--home-page
+    .panelPassive > .passiveSectionBody.topSearchPhrases:nth-child(3) {
         display: none;
     }
 
-    .researcherprofiles--home-page .panelPassive > .passiveSectionHead:nth-child(2) {
+    .researcherprofiles--home-page
+    .panelPassive > .passiveSectionHead:nth-child(2) {
         display: none;
     }
 
@@ -1958,7 +2275,8 @@ body.about .share {
     }
 
         /* stripe every second row */
-        #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlActivities .actTemplate:nth-of-type(even) {
+        #ctl00_ContentMain_rptMain_ctl00_ctl00_pnlActivities
+        .actTemplate:nth-of-type(even) {
             background-color: var(--striped-row-colored-row-color);
             border-color: var(--striped-row-border-color);
             border-width: 1px 0;
@@ -2016,7 +2334,8 @@ body.about .share {
 }
 
 /* the explanation of icons, include the Advance message box, is on the right, at the top */
-.researcherprofiles--edit-page .researcherprofiles--edit-page--explanation-of-icons {
+.researcherprofiles--edit-page
+.researcherprofiles--edit-page--explanation-of-icons {
     grid-area: main-row-right-top;
 }
 
@@ -2029,8 +2348,11 @@ body.about .share {
 }
 
 /* remove extra borders around each table and table item */
-.researcherprofiles--edit-sections-index-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_repPropertyGroups"],
-.researcherprofiles--edit-sections-index-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_repPropertyGroups"] td {
+.researcherprofiles--edit-sections-index-page
+table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_repPropertyGroups"],
+.researcherprofiles--edit-sections-index-page
+table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_repPropertyGroups"]
+td {
     border: none !important;
 }
 
@@ -2047,15 +2369,25 @@ body.about .share {
 }
 
     /* make clickable rows feel interactive */
-    .researcherprofiles--edit-sections-index-page #profile-components tr[onclick]:hover,
-    .researcherprofiles--edit-sections-index-page #profile-components tr[tabindex]:focus {
+    .researcherprofiles--edit-sections-index-page
+    #profile-components
+    tr[onclick]:hover,
+    .researcherprofiles--edit-sections-index-page
+    #profile-components
+    tr[tabindex]:focus {
         background-color: var(--striped-row-colored-row-color);
         cursor: pointer;
         outline: 2px solid transparent;
     }
 
-        .researcherprofiles--edit-sections-index-page #profile-components tr[onclick]:hover a.listTableLink,
-        .researcherprofiles--edit-sections-index-page #profile-components tr[tabindex]:focus a.listTableLink {
+        .researcherprofiles--edit-sections-index-page
+        #profile-components
+        tr[onclick]:hover
+        a.listTableLink,
+        .researcherprofiles--edit-sections-index-page
+        #profile-components
+        tr[tabindex]:focus
+        a.listTableLink {
             text-decoration-style: solid;
         }
 
@@ -2065,15 +2397,20 @@ body.about .share {
     vertical-align: top;
 }
 
-    .researcherprofiles--edit-sections-index-page #profile-components td:first-child {
+    .researcherprofiles--edit-sections-index-page
+    #profile-components
+    td:first-child {
         width: auto !important;
     }
 
 /* reserve a stable icon lane so section names and privacy labels can align */
 /* hide items counts, stars, ORNG indicators, and random returns in profile components column */
 .researcherprofiles--edit-sections-index-page #profile-components br,
-.researcherprofiles--edit-sections-index-page #profile-components .colItemCnt span {
-    display: none
+.researcherprofiles--edit-sections-index-page
+#profile-components
+.colItemCnt
+span {
+    display: none;
 }
 
 /* lock icons align right */
@@ -2086,7 +2423,10 @@ body.about .share {
 /* the whole namedegree/cls thing is TERRIBLE HTML, and should be burned to the ground */
 
 /* name/degree row uses colspan, so fake the usual icon/privacy lanes with a small grid */
-.researcherprofiles--edit-sections-index-page #profile-components #namedegreerow #public {
+.researcherprofiles--edit-sections-index-page
+#profile-components
+#namedegreerow
+#public {
     display: grid;
     grid-template-columns: 3.5rem 7rem;
     align-items: center;
@@ -2097,7 +2437,11 @@ body.about .share {
 }
 
     /* name/degree: space between lock icon and "always public" */
-    .researcherprofiles--edit-sections-index-page #profile-components #namedegreerow #public img {
+    .researcherprofiles--edit-sections-index-page
+    #profile-components
+    #namedegreerow
+    #public
+    img {
         justify-self: center;
         margin-right: 0;
     }
@@ -2115,24 +2459,34 @@ body.about .share {
 }
 
 /* but show "This info is..." text on mouseover */
-.researcherprofiles--edit-sections-index-page #profile-components #namedegreerow:hover #cls {
+.researcherprofiles--edit-sections-index-page
+#profile-components
+#namedegreerow:hover
+#cls {
     display: block;
     text-align: right;
     color: var(--alert-red-color);
 }
 
 /* "Always public" is visible, except on mouseover */
-.researcherprofiles--edit-sections-index-page #profile-components #namedegreerow:hover #public {
-    display: none
+.researcherprofiles--edit-sections-index-page
+#profile-components
+#namedegreerow:hover
+#public {
+    display: none;
 }
 
 /* capitalize each profile component title */
-.researcherprofiles--edit-sections-index-page #profile-components tr > td:first-child:first-letter {
+.researcherprofiles--edit-sections-index-page
+#profile-components
+tr > td:first-child:first-letter {
     text-transform: capitalize;
 }
 
 /* more visual weight on each profile component */
-.researcherprofiles--edit-sections-index-page #profile-components a.listTableLink {
+.researcherprofiles--edit-sections-index-page
+#profile-components
+a.listTableLink {
     font-weight: bold;
 }
 
@@ -2145,7 +2499,10 @@ body.about .share {
     white-space: nowrap;
 }
 
-.researcherprofiles--edit-sections-index-page #profile-components #namedegreerow #public {
+.researcherprofiles--edit-sections-index-page
+#profile-components
+#namedegreerow
+#public {
     font-size: 0.9em;
     color: var(--text-muted-color);
 }
@@ -2167,26 +2524,31 @@ body.about .share {
 
 /* hide column headings, but leave visible to screen readers */
 .researcherprofiles--edit-sections-index-page .EditMenuTopRow {
-    display: none
+    display: none;
 }
 
 @media only screen and (max-width: 980px) {
-
     /* on edit index pages, stack the menu and help panels */
     .researcherprofiles--edit-sections-index-page .panelMain {
         display: block;
     }
 
-    .researcherprofiles--edit-page .researcherprofiles--edit-page--explanation-of-icons,
+    .researcherprofiles--edit-page
+    .researcherprofiles--edit-page--explanation-of-icons,
     .researcherprofiles--edit-sections-index-page #profile-visibility {
         margin-top: 1.5rem;
     }
 
-    .researcherprofiles--edit-sections-index-page #profile-components .colSecurity {
+    .researcherprofiles--edit-sections-index-page
+    #profile-components
+    .colSecurity {
         width: 5.5rem !important;
     }
 
-    .researcherprofiles--edit-sections-index-page #profile-components #namedegreerow #public {
+    .researcherprofiles--edit-sections-index-page
+    #profile-components
+    #namedegreerow
+    #public {
         grid-template-columns: 3.5rem 5.5rem;
         width: 9rem !important;
     }
@@ -2196,7 +2558,9 @@ body.about .share {
         width: 100%;
     }
 
-        .researcherprofiles--edit-sections-index-page #profile-visibility td:first-child {
+        .researcherprofiles--edit-sections-index-page
+        #profile-visibility
+        td:first-child {
             width: 7rem;
         }
 }
@@ -2216,7 +2580,8 @@ body.about .share {
 }
 
 /* a little space above every grid (e.g. education and training) */
-.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridView"] {
+.researcherprofiles--edit-page
+table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridView"] {
     margin-top: 1rem;
 }
 
@@ -2230,8 +2595,12 @@ body.about .share {
 }
 
 /* each body row in a grid has nice spacing */
-.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridView"] td,
-.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridView"] th {
+.researcherprofiles--edit-page
+table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridView"]
+td,
+.researcherprofiles--edit-page
+table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridView"]
+th {
     padding: 0.5rem;
     text-align: left;
     border: 1px solid var(--highlighted-panel-border-color);
@@ -2251,7 +2620,9 @@ body.about .share {
 
 /* in the global health equity gadget, every table's action button column should be 25% of the width */
 
-.researcherprofiles--edit-page table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridViewGlobalHealth"] .alignCenterAction {
+.researcherprofiles--edit-page
+table[id^="ctl00_ContentMain_rptMain_ctl00_ctl00_ctl00_GridViewGlobalHealth"]
+.alignCenterAction {
     width: 25%;
 }
 
@@ -2331,7 +2702,8 @@ body.about .share {
     }
 
     /* Checkbox + Label */
-    .researcherprofiles--collaborationinterests-edit--option-row input[type="checkbox"] {
+    .researcherprofiles--collaborationinterests-edit--option-row
+    input[type="checkbox"] {
         margin-right: 6px;
         transform: translateY(1px);
     }
@@ -2377,6 +2749,7 @@ body.about .share {
     .researcherprofiles--collaborationinterests-edit--textarea:focus {
         border-color: var(--heading-color);
         box-shadow: 0 0 0 3px rgba(18, 149, 216, 0.15);
+        /* --heading-color at 15% opacity */
         outline: none;
     }
 
@@ -2455,13 +2828,13 @@ body.about .share {
     }
 
     /* image size */
-    .login_container input[type=image] {
+    .login_container input[type="image"] {
         width: 11rem;
         padding: 1rem;
     }
 
     /* big image size */
-    .login_container .plus-size input[type=image] {
+    .login_container .plus-size input[type="image"] {
         width: 14rem;
     }
 
@@ -2470,19 +2843,36 @@ body.about .share {
 /* ############################################################################################ */
 
 /* "Sort / Show  Click..." content is too close to each other, because it's hard-coded 33% per td */
-.researcherprofiles--search-results-page .panelMain table:first-of-type tbody tr:first-child td[style] {
+.researcherprofiles--search-results-page
+.panelMain
+table:first-of-type
+tbody
+tr:first-child
+td[style] {
     padding: 0 0.5rem;
 }
 
     /* center the "Sort / Show  Click..." content within each of their respective containers */
-    .researcherprofiles--search-results-page .panelMain table:first-of-type tbody tr:first-child td[style] div {
+    .researcherprofiles--search-results-page
+    .panelMain
+    table:first-of-type
+    tbody
+    tr:first-child
+    td[style]
+    div {
         float: none !important;
         margin: 0 auto;
     }
 
 /* if the "Sort / Show  Click..." content is too close to each other, hide the "Why" text on small screens */
 @media only screen and (max-width: 30rem) {
-    .researcherprofiles--search-results-page .panelMain table:first-of-type tbody tr:first-child td[style] #why {
+    .researcherprofiles--search-results-page
+    .panelMain
+    table:first-of-type
+    tbody
+    tr:first-child
+    td[style]
+    #why {
         display: none;
     }
 }
@@ -2556,11 +2946,17 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
         background-color: var(--striped-row-colored-row-color);
     }
 
-.researcherprofiles--search-results-page .panelMain #tblSearchResults tr:not(:first-child):hover {
+.researcherprofiles--search-results-page
+.panelMain
+#tblSearchResults
+tr:not(:first-child):hover {
     background-color: var(--highlighted-panel-background-color);
 }
 
-.researcherprofiles--search-results-page .panelMain #tblSearchResults td[onclick] {
+.researcherprofiles--search-results-page
+.panelMain
+#tblSearchResults
+td[onclick] {
     cursor: pointer;
 }
 
@@ -2573,8 +2969,14 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
 }
 
 /* people-search results need extra room for long names; generic 3-column results do not */
-.researcherprofiles--search-results-page .panelMain #tblSearchResults:has(tr:first-child th:nth-child(4):last-child) th:first-child,
-.researcherprofiles--search-results-page .panelMain #tblSearchResults:has(tr:first-child th:nth-child(4):last-child) td:first-child {
+.researcherprofiles--search-results-page
+.panelMain
+#tblSearchResults:has(tr:first-child th:nth-child(4):last-child)
+th:first-child,
+.researcherprofiles--search-results-page
+.panelMain
+#tblSearchResults:has(tr:first-child th:nth-child(4):last-child)
+td:first-child {
     white-space: nowrap;
     width: 24rem;
 }
@@ -2590,31 +2992,55 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
     padding-bottom: 0.35rem;
 }
 
-.researcherprofiles--search-results-page .panelMain #tblSearchResults tr:hover td.linky {
+.researcherprofiles--search-results-page
+.panelMain
+#tblSearchResults
+tr:hover
+td.linky {
     text-decoration-style: solid;
 }
 
 /* only the compact 3-column search-results variant has a low-signal middle "Type" column */
-.researcherprofiles--search-results-page .panelMain #tblSearchResults:has(tr:first-child th:nth-child(3):last-child) th:nth-child(2),
-.researcherprofiles--search-results-page .panelMain #tblSearchResults:has(tr:first-child th:nth-child(3):last-child) td:nth-child(2) {
+.researcherprofiles--search-results-page
+.panelMain
+#tblSearchResults:has(tr:first-child th:nth-child(3):last-child)
+th:nth-child(2),
+.researcherprofiles--search-results-page
+.panelMain
+#tblSearchResults:has(tr:first-child th:nth-child(3):last-child)
+td:nth-child(2) {
     color: var(--text-muted-color);
     text-align: center;
 }
 
 /* "Why" stays in the last column across the different search-results table variants */
-.researcherprofiles--search-results-page .panelMain #tblSearchResults th:last-child,
-.researcherprofiles--search-results-page .panelMain #tblSearchResults td:last-child {
+.researcherprofiles--search-results-page
+.panelMain
+#tblSearchResults
+th:last-child,
+.researcherprofiles--search-results-page
+.panelMain
+#tblSearchResults
+td:last-child {
     text-align: center;
 }
 
-    .researcherprofiles--search-results-page .panelMain #tblSearchResults td:last-child a {
+    .researcherprofiles--search-results-page
+    .panelMain
+    #tblSearchResults
+    td:last-child
+    a {
         color: var(--generic-link-color);
         font-size: 0.92rem;
     }
 
 /* color header and footer rows are a little different */
 .researcherprofiles--search-results-page .panelMain .listTable tr:first-of-type,
-.researcherprofiles--search-results-page .panelMain .listTable tr:first-of-type th,
+.researcherprofiles--search-results-page
+.panelMain
+.listTable
+tr:first-of-type
+th,
 .researcherprofiles--search-results-page .panelMain .listTablePagination {
     background: #eed;
 }
@@ -2639,26 +3065,42 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
     padding: 1rem;
 }
 
-.researcherprofiles--search-results-page .profilesContentPassive .passiveSectionHead {
+.researcherprofiles--search-results-page
+.profilesContentPassive
+.passiveSectionHead {
     margin-top: 0.5rem;
     margin-bottom: 0.45rem;
 }
 
-.researcherprofiles--search-results-page .profilesContentPassive .passiveSectionBody ul {
+.researcherprofiles--search-results-page
+.profilesContentPassive
+.passiveSectionBody
+ul {
     margin: 0.2rem 0;
     padding-left: 0;
 }
 
-.researcherprofiles--search-results-page .profilesContentPassive .passiveSectionBody li {
+.researcherprofiles--search-results-page
+.profilesContentPassive
+.passiveSectionBody
+li {
     list-style-type: none;
 }
 
-.researcherprofiles--search-results-page .profilesContentPassive .passiveSectionBody li,
-.researcherprofiles--search-results-page .profilesContentPassive .panelPassive > div:last-child {
+.researcherprofiles--search-results-page
+.profilesContentPassive
+.passiveSectionBody
+li,
+.researcherprofiles--search-results-page
+.profilesContentPassive
+.panelPassive > div:last-child {
     color: var(--text-muted-color);
 }
 
-.researcherprofiles--search-results-page .profilesContentPassive .passiveSectionBody a {
+.researcherprofiles--search-results-page
+.profilesContentPassive
+.passiveSectionBody
+a {
     color: var(--generic-link-color);
 }
 
@@ -2669,14 +3111,25 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
 
 /* drop the trailing "Why" column first on narrow screens, and then let long names wrap again */
 @media only screen and (max-width: 760px) {
-
-    .researcherprofiles--search-results-page .panelMain #tblSearchResults th:last-child,
-    .researcherprofiles--search-results-page .panelMain #tblSearchResults td:last-child {
+    .researcherprofiles--search-results-page
+    .panelMain
+    #tblSearchResults
+    th:last-child,
+    .researcherprofiles--search-results-page
+    .panelMain
+    #tblSearchResults
+    td:last-child {
         display: none;
     }
 
-    .researcherprofiles--search-results-page .panelMain #tblSearchResults:has(tr:first-child th:nth-child(4):last-child) th:first-child,
-    .researcherprofiles--search-results-page .panelMain #tblSearchResults:has(tr:first-child th:nth-child(4):last-child) td:first-child {
+    .researcherprofiles--search-results-page
+    .panelMain
+    #tblSearchResults:has(tr:first-child th:nth-child(4):last-child)
+    th:first-child,
+    .researcherprofiles--search-results-page
+    .panelMain
+    #tblSearchResults:has(tr:first-child th:nth-child(4):last-child)
+    td:first-child {
         white-space: normal;
         width: auto;
     }
@@ -2685,14 +3138,16 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
         padding-right: 0;
     }
 
-    .researcherprofiles--search-results-page .profilesContentPassive .panelPassive {
+    .researcherprofiles--search-results-page
+    .profilesContentPassive
+    .panelPassive {
         margin-top: 0;
     }
 }
 
 /* hide DIRECT link from search results page. Ask Brian for advice here. */
 /* DREAM: remove from upstream */
-.researcherprofiles--search-results-page a[href*='/direct/default.aspx?'] {
+.researcherprofiles--search-results-page a[href*="/direct/default.aspx?"] {
     display: none;
 }
 
@@ -2706,20 +3161,28 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
 /* ############################################################################################ */
 
 /* List of properties/values have td's with table-row display?! normalize table cells to table-cell display, and remove hard-coded widths */
-.researcherprofiles--search-results-page #ctl00_ContentMain_rptMain_ctl00_ctl00_gvConnectionDetails td.connectionTableRow,
-.researcherprofiles--search-results-page #ctl00_ContentMain_rptMain_ctl00_ctl00_gvConnectionDetails th {
+.researcherprofiles--search-results-page
+#ctl00_ContentMain_rptMain_ctl00_ctl00_gvConnectionDetails
+td.connectionTableRow,
+.researcherprofiles--search-results-page
+#ctl00_ContentMain_rptMain_ctl00_ctl00_gvConnectionDetails
+th {
     display: table-cell;
     padding: 0.5rem;
     width: auto !important;
 }
 
 /* There's an arrow between the "Search results" and the topic. This centers the arrow, instead of having it be left-aligned by default */
-.researcherprofiles--search-results-page .connectionContainer .connectionContainerArrow {
+.researcherprofiles--search-results-page
+.connectionContainer
+.connectionContainerArrow {
     text-align: center;
 }
 
 /* In search results, click on "why" link, and list of properties/values th's should have standard background color */
-.researcherprofiles--search-results-page #ctl00_ContentMain_rptMain_ctl00_ctl00_gvConnectionDetails th {
+.researcherprofiles--search-results-page
+#ctl00_ContentMain_rptMain_ctl00_ctl00_gvConnectionDetails
+th {
     background-color: var(--highlighted-panel-background-color);
 }
 
@@ -2769,12 +3232,15 @@ next/prev row underneath the table is: .researcherprofiles--search-results-page 
 }
 
 /* when on proxy, append proxy flag to name of current web server */
-.researcherprofiles--is-being-served-via-proxy-cache #researcherprofiles--footer-collaboration--proxy-description-addon::after {
+.researcherprofiles--is-being-served-via-proxy-cache
+#researcherprofiles--footer-collaboration--proxy-description-addon::after {
     content: "+prx";
 }
 
-.researcherprofiles--is-being-served-via-proxy-cache #researcherprofiles--footer-collaboration p:last-of-type::after {
-    content: "Accelerated via proxy."
+.researcherprofiles--is-being-served-via-proxy-cache
+#researcherprofiles--footer-collaboration
+p:last-of-type::after {
+    content: "Accelerated via proxy.";
 }
 
 /* list of prominent links? make them bold, standalone, fit on a line */

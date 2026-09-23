@@ -14,7 +14,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 {
     public partial class CommunityAndPublicService : BaseUCSFModule
     {
-        private string PlugInName = "CommunityAndPublicService";
         private List<CommunityAndPublicServiceEntry> entries { get; set; }
 
 
@@ -32,6 +31,10 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             securityOptions.BubbleClick += SecurityDisplayed;
 
             litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+        }
+        protected override string GetPluginName()
+        {
+            return "CommunityAndPublicService";
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -72,7 +75,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
         protected void btnAddEdit_OnClick(object sender, EventArgs e)
         {
-            string SessionKey = "pnlImport" + this.PlugInName + ".Visible";
+            string SessionKey = "pnlImport" + this.GetPluginName() + ".Visible";
             if (Session[SessionKey] == null)
             {
                 pnlInsert.Visible = true;
@@ -178,7 +181,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         private void ResetDisplay()
         {
             phSecuritySettings.Visible = true;
-            Session["pnlImport" + this.PlugInName + ".Visible"] = null;
+            Session["pnlImport" + this.GetPluginName() + ".Visible"] = null;
             pnlAddEdit.Visible = true;
             txtInstitution.Text = string.Empty;
             txtStartYear.Text = string.Empty;
@@ -192,7 +195,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         }
         private void ReadJson()
         {
-            string data = GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.PlugInName);
+            string data = GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.GetPluginName());
             entries = JsonConvert.DeserializeObject<List<CommunityAndPublicServiceEntry>>(data);
             if (entries == null || entries.Count == 0)
             {
@@ -272,7 +275,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
             if (GridViewPlugin.Rows.Count == 1) //they just deleted their last row
             {
-                GenericRDFDataIO.RemovePluginData(this.PlugInName, this.SubjectID);
+                GenericRDFDataIO.RemovePluginData(this.GetPluginName(), this.SubjectID);
             }
             else
             {
@@ -323,9 +326,9 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             string search = "Community and Public Service";
             foreach (CommunityAndPublicServiceEntry v in this.entries)
             {
-                search += " " + v.GetSearchTerm();
+                search += " " + v.GetSearchTerm(GetBaseSearchData());
             }
-            GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), search);
+            GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), search);
         }
 
         #endregion
@@ -345,9 +348,9 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 this.role = role;
             }
 
-            public string GetSearchTerm()
+            public string GetSearchTerm(string baseData)
             {
-                return institution + " " + startDate + " " + endDate + " " + role;
+                return baseData + ", " + institution + " " + startDate + " " + endDate + " " + role;
             }
 
             public int CompareTo(CommunityAndPublicServiceEntry other)

@@ -13,7 +13,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 {
     public partial class ClinicalTrials : BaseUCSFModule
     {
-        private static string PlugInName = "ClinicalTrials";
         private static string ClinicalTrialsAPI;
         // actually store added and deleted
         private List<ClinicalTrial> entries { get; set; }
@@ -39,6 +38,11 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             securityOptions.BubbleClick += SecurityDisplayed;
 
             litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+        }
+
+        protected override string GetPluginName()
+        {
+            return "ClinicalTrials";
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -76,7 +80,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
         protected void btnAddEdit_OnClick(object sender, EventArgs e)
         {
-            string SessionKey = "pnlImport" + PlugInName + ".Visible";
+            string SessionKey = "pnlImport" + GetPluginName() + ".Visible";
             if (Session[SessionKey] == null)
             {
                 pnlInsert.Visible = true;
@@ -135,7 +139,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         private void ResetDisplay()
         {
             phSecuritySettings.Visible = true;
-            Session["pnlImport" + PlugInName + ".Visible"] = null;
+            Session["pnlImport" + GetPluginName() + ".Visible"] = null;
             pnlAddEdit.Visible = true;
             txtNct.Text = string.Empty;
 
@@ -201,7 +205,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
             if (GridViewPlugin.Rows.Count == 1) //they just deleted their last row
             {
-                GenericRDFDataIO.RemovePluginData(PlugInName, this.SubjectID);
+                GenericRDFDataIO.RemovePluginData(GetPluginName(), this.SubjectID);
             }
             else
             {
@@ -222,13 +226,13 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             (new Profiles.Edit.Utilities.DataIO()).UpsertManualClinicalTrialsEdits(this.SubjectID, manualAdds, manualRemoves);
 
             // now add the plugin JSON
-            string search = "HasClinicalTrials, Clinical Trials";
+            string search = GetBaseSearchData() + ", Clinical Trials";
             
             foreach (ClinicalTrial v in this.entries)
             {
                 search += ", " + v.GetSearchTerm();
             }
-            GenericRDFDataIO.AddEditPluginData(PlugInName, this.SubjectID, jsonFromApi, search);
+            GenericRDFDataIO.AddEditPluginData(GetPluginName(), this.SubjectID, jsonFromApi, search);
         }
 
         #endregion

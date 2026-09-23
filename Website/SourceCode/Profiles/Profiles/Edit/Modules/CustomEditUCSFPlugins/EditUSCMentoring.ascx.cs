@@ -14,7 +14,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 {
     public partial class USCMentoring : BaseUCSFModule
     {
-        private string PlugInName = "USCMentoring";
         private USCMentoringData mData = new USCMentoringData();
 
         public USCMentoring() : base() { }
@@ -32,6 +31,10 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
             litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
         }
+        protected override string GetPluginName()
+        {
+            return "USCMentoring";
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             string[] availableFor = null;
@@ -48,7 +51,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             {
                 cblContactPreferences.Items.Add(s);
             }
-            ReadJson(Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, PlugInName));
+            ReadJson(Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, GetPluginName()));
             upnlEditSection.Update();
             upnlEditMentoring.Update();
         }
@@ -64,7 +67,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             mData.availableFor = GetCheckBoxListSelectedItems(cblAvailableFor);
             mData.contactPreferences = GetCheckBoxListSelectedItems(cblContactPreferences);
 
-            GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), GetSearchData());
+            GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), GetSearchData());
             ResetDisplay();
         }
 
@@ -76,7 +79,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         protected void btnDelete_OnClick(object sender, EventArgs e)
         {
             // maybe remove this button?
-            GenericRDFDataIO.RemovePluginData(this.PlugInName, this.SubjectID);
+            GenericRDFDataIO.RemovePluginData(this.GetPluginName(), this.SubjectID);
             ResetDisplay();
         }
 
@@ -86,7 +89,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
             this.mData = null;
 
-            ReadJson(Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, PlugInName));            
+            ReadJson(Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, GetPluginName()));            
             upnlEditSection.Update();
             upnlEditMentoring.Update();
         }
@@ -119,7 +122,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
         private string GetSearchData()
         {
-            string search = "USCMentoring Mentoring ";
+            string search = GetBaseSearchData();
             foreach (String s in this.mData.availableFor)
             {
                 search += " " + s;

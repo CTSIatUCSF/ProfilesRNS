@@ -21,7 +21,10 @@ namespace Profiles.Profile.Modules.CustomViewUCSFPlugins
             LoadAssets();
 
         }
-
+        protected override string GetPluginName()
+        {
+            return "RequiredScholarlyProjectMentor";
+        }
         private void LoadAssets()
         {
             HtmlLink Displaycss = new HtmlLink();

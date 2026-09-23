@@ -25,7 +25,7 @@ UCSDFacultyMentoring.render = function (data) {
         if (data.contactPreferences && data.contactPreferences.length > 0) {
             let html = '';
             for (const pref of data.contactPreferences) {
-                if (pref === 'Assistant') {
+                if (pref === 'Via my assistant') {
                     let parts = [];
                     if (data.assistantName && data.assistantName.trim().length > 0) parts.push(data.assistantName.trim());
                     if (data.assistantEmail && data.assistantEmail.trim().length > 0) parts.push(data.assistantEmail.trim());

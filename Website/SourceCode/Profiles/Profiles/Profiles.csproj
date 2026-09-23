@@ -425,6 +425,7 @@
     <Content Include="Edit\Modules\CustomEditListProperty\CustomEditListProperty.ascx" />
     <Content Include="Edit\Modules\CustomEditResearcherRole\CustomEditResearcherRole.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditClinicalTrials.ascx" />
+    <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditUCDStudentProjects.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditUCSDFacultyMentoring.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditCollaborationInterests.ascx" />
     <Content Include="Edit\Modules\CustomEditUCSFPlugins\EditUSCMentoring.ascx" />
@@ -489,6 +490,7 @@
     <Content Include="GroupAdmin\Modules\ModuleCatalogue.xml" />
     <Content Include="GroupAdmin\PresentationXML\GroupAdminAuthFailedPresentation.xml" />
     <Content Include="GroupAdmin\PresentationXML\GroupAdminPresentation.xml" />
+    <Content Include="Insights\Default.aspx" />
     <Content Include="Login\ShibbolethSession.aspx" />
     <Content Include="Login\Images\berkeley.edu.png" />
     <Content Include="Login\Images\lbnl.gov.png" />
@@ -1076,6 +1078,13 @@
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditClinicalTrials.ascx.designer.cs">
       <DependentUpon>EditClinicalTrials.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditUCDStudentProjects.ascx.cs">
+      <DependentUpon>EditUCDStudentProjects.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditUCDStudentProjects.ascx.designer.cs">
+      <DependentUpon>EditUCDStudentProjects.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Edit\Modules\CustomEditUCSFPlugins\EditUCSDFacultyMentoring.ascx.cs">
       <DependentUpon>EditUCSDFacultyMentoring.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1235,6 +1244,13 @@
     </Compile>
     <Compile Include="History\Modules\HistoryList\HistoryList.ascx.designer.cs">
       <DependentUpon>HistoryList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Insights\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Insights\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login\ShibbolethSession.aspx.cs">
       <DependentUpon>ShibbolethSession.aspx</DependentUpon>

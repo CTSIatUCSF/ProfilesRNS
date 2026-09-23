@@ -93,7 +93,7 @@
                     </div>
                     <div class="researcherprofiles--ucsdfacultymentoring-edit--option-row">
                         <asp:CheckBox ID="cbAssistant" runat="server" OnCheckedChanged="itmChanged"
-                            Text="Via my assistant"
+                            Text="Via my assistant" 
                             aria-expanded="false"
                             aria-controls="assistantFields" />
                         <span class="researcherprofiles--ucsdfacultymentoring-edit--option-hint">— check to add their contact details</span>

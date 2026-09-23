@@ -11,7 +11,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 {
     public partial class GlobalHealthEquity : BaseUCSFModule
     {
-        private string PlugInName = "GlobalHealthEquity";
         private string data = string.Empty;
         private GlobalHealthEquityData ghData = new GlobalHealthEquityData();
 
@@ -36,9 +35,13 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             securityOptions.SecurityGroups.LoadXml(base.PresentationXML.DocumentElement.LastChild.OuterXml);
             securityOptions.BubbleClick += SecurityDisplayed;
 
-            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.PlugInName);
+            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.GetPluginName());
 
             litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+        }
+        protected override string GetPluginName()
+        {
+            return "GlobalHealthEquity";
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -140,7 +143,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                     if (ghData.centers == null) { ghData.centers = new List<string>(); }
                     ghData.centers.Add(ddl.SelectedValue);
                 }
-                Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), GetSearchData());
+                Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), GetSearchData());
             }
             ddl.Items.Remove(ddl.SelectedItem);
             ResetDisplay();
@@ -174,7 +177,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             this.data = string.Empty;
             this.ghData = null;
 
-            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.PlugInName);
+            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.GetPluginName());
             
             ReadJson();            
             upnlEditSection.Update();
@@ -227,7 +230,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
         private string GetSearchData()
         {
-            string search = "Global Health Equity";
+            string search = GetBaseSearchData() + ", Global Health Equity";
             foreach (string v in this.ghData.interests)
             {
                 search += " " + v;
@@ -686,11 +689,11 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             }
 
             //this needs to be the json desz'd
-            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), GetSearchData());
+            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), GetSearchData());
 
             if (HasNoGlobalHealthEquityData()) //they just deleted their last row
             {
-                Profiles.Framework.Utilities.GenericRDFDataIO.RemovePluginData(this.PlugInName, this.SubjectID);
+                Profiles.Framework.Utilities.GenericRDFDataIO.RemovePluginData(this.GetPluginName(), this.SubjectID);
             }
 
             ResetDisplay();
@@ -748,7 +751,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 this.ghData.centers.Insert(newIndex, item);
             }
 
-            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), GetSearchData());
+            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), GetSearchData());
 
             SerializeJson();
             ResetDisplay();
@@ -796,7 +799,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 this.ghData.centers.Insert(newIndex, item);
             }
 
-            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), GetSearchData());
+            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), GetSearchData());
 
             ResetDisplay();
         }

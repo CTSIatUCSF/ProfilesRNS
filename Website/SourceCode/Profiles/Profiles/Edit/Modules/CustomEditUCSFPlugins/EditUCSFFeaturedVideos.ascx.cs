@@ -13,7 +13,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 {
     public partial class UCSFFeaturedVideos : BaseUCSFModule
     {
-        private string PlugInName = "UCSFFeaturedVideos";
         private string data = string.Empty;
         private List<Video> Videos { get; set; }
 
@@ -31,11 +30,14 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             securityOptions.SecurityGroups.LoadXml(base.PresentationXML.DocumentElement.LastChild.OuterXml);
             securityOptions.BubbleClick += SecurityDisplayed;
 
-            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.PlugInName);
+            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.GetPluginName());
 
             litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
         }
-
+        protected override string GetPluginName()
+        {
+            return "UCSFFeaturedVideos";
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             ReadJson();
@@ -102,7 +104,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 {
                     string url = txtURL.Text.Trim();
 
-                    string search = string.Empty;
+                    string search = GetBaseSearchData();
 
                     //string youTubeId = hdnYouTubeId.Value.Trim();
 
@@ -116,10 +118,10 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
                     foreach (Video v in this.Videos)
                     {
-                        search += " " + v.title;
+                        search += ", " + v.title;
                     }
 
-                    Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), search);
+                    Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), search);
                 }
                 ResetDisplay();
             }
@@ -150,7 +152,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             this.data = string.Empty;
             this.Videos = null;
 
-            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.PlugInName);
+            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.GetPluginName());
 
             ReadJson();
             upnlEditSection.Update();
@@ -256,7 +258,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 search += " " + v.title;
             }
             //this needs to be the json desz'd
-            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), search);
+            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), search);
             ResetDisplay();
 
             GridViewVideos.EditIndex = -1;
@@ -284,9 +286,9 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 search += " " + v.title;
             }
             //this needs to be the json desz'd
-            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), search);
+            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), search);
             if (GridViewVideos.Rows.Count == 1) //they just deleted their last row
-                Profiles.Framework.Utilities.GenericRDFDataIO.RemovePluginData(this.PlugInName, this.SubjectID);
+                Profiles.Framework.Utilities.GenericRDFDataIO.RemovePluginData(this.GetPluginName(), this.SubjectID);
 
             ResetDisplay();
             base.InitUpDownArrows(ref GridViewVideos);
@@ -310,7 +312,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             {
                 search += " " + v.title;
             }
-            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), search);
+            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), search);
 
             SerializeJson();
             ResetDisplay();
@@ -334,7 +336,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             {
                 search += " " + v.title;
             }
-            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), search);
+            Profiles.Framework.Utilities.GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), search);
 
             ResetDisplay();
         }

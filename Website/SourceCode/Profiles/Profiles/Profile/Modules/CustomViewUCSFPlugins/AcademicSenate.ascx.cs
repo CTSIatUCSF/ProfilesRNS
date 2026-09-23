@@ -21,7 +21,10 @@ namespace Profiles.Profile.Modules.CustomViewUCSFPlugins
             LoadAssets();
 
         }
-
+        protected override string GetPluginName()
+        {
+            return "AcademicSenate";
+        }
         private void LoadAssets()
         {
             HtmlLink Displaycss = new HtmlLink();
@@ -38,7 +41,7 @@ namespace Profiles.Profile.Modules.CustomViewUCSFPlugins
 
             //litjs.Text = base.jsStart + "var globalHealthData = " + Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, "GlobalHealth") + "; GlobalHealth.init(globalHealthData);" + base.jsEnd;
 
-            litjs.Text = base.jsStart + "AcademicSenate.init('" + Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, "AcademicSenate").Replace("'", "\\'").Replace("\\\"", "\\\\\"") + "'); " + base.jsEnd;
+            litjs.Text = base.jsStart + "AcademicSenate.init('" + Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.GetPluginName()).Replace("'", "\\'").Replace("\\\"", "\\\\\"") + "'); " + base.jsEnd;
         }
     }
 }

@@ -15,7 +15,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 {
     public partial class EditUCSDFacultyMentoring : BaseUCSFModule
     {
-        private static string PlugInName = "UCSDFacultyMentoring";
         private UCSDFacultyMentoringData ciData = new UCSDFacultyMentoringData();
         private List<CheckBox> availableToMentor = new List<CheckBox>();
         private List<CheckBox> contactPreferences = new List<CheckBox>();
@@ -48,9 +47,13 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             contactPreferences.Add(cbPhone);
             contactPreferences.Add(cbAssistant);
         }
+        protected override string GetPluginName()
+        {
+            return "UCSDFacultyMentoring";
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            ReadJson(Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, PlugInName));
+            ReadJson(Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, GetPluginName()));
             upnlEditSection.Update();
             upnlEditUCSDFacultyMentoring.Update();
         }
@@ -69,17 +72,17 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             ciData.assistantPhone = txtAssistantPhone.Text.Trim();
             ciData.narrative = txtNarrative.Text.Trim();
 
-            if (!String.IsNullOrEmpty(ciData.assistantName + ciData.assistantEmail + ciData.assistantPhone) && !ciData.contactPreferences.Contains("Assistant"))
+            if (!String.IsNullOrEmpty(ciData.assistantName + ciData.assistantEmail + ciData.assistantPhone) && !ciData.contactPreferences.Contains("Via my assistant"))
             {
-                ciData.contactPreferences.Add("Assistant");
+                ciData.contactPreferences.Add("Via my assistant");
             }
-            else if (String.IsNullOrEmpty(ciData.assistantName + ciData.assistantEmail + ciData.assistantPhone) && ciData.contactPreferences.Contains("Assistant"))
+            else if (String.IsNullOrEmpty(ciData.assistantName + ciData.assistantEmail + ciData.assistantPhone) && ciData.contactPreferences.Contains("Via my assistant"))
             {
                 ResetDisplay("Please provide assistant contant information.");
             }
             else
             {
-                GenericRDFDataIO.AddEditPluginData(PlugInName, this.SubjectID, this.SerializeJson(), ciData.GetSearchData());
+                GenericRDFDataIO.AddEditPluginData(GetPluginName(), this.SubjectID, this.SerializeJson(), ciData.GetSearchData(GetBaseSearchData()));
                 ResetDisplay(HasNoFacultyMentoringData() ? "" : "Faculty Mentoring has been added to your profile.");
             }
         }
@@ -110,7 +113,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         protected void btnDelete_OnClick(object sender, EventArgs e)
         {
             //GenericRDFDataIO.RemovePluginData(PlugInName, this.SubjectID);
-            GenericRDFDataIO.AddEditPluginData(PlugInName, this.SubjectID, "", "");
+            GenericRDFDataIO.AddEditPluginData(GetPluginName(), this.SubjectID, "", "");
             ResetDisplay("Faculty Mentoring has been removed from your profile.");
         }
 
@@ -123,7 +126,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
             this.ciData = null;
 
-            string data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, PlugInName);
+            string data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, GetPluginName());
             lblMessage.Text = message;
 
             ReadJson(data);            
@@ -134,7 +137,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         private bool HasNoFacultyMentoringData()
         {
             // if these are blank then blank them all
-            return ciData == null || (String.IsNullOrEmpty(ciData.narrative) && ciData.availableToMentor.Count == 0);
+            return ciData == null || (String.IsNullOrEmpty(ciData.narrative) && ciData.availableToMentor.Count == 0 && ciData.contactPreferences.Count == 0);
         }
 
         private void ReadJson(string data)
@@ -191,9 +194,9 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             lastUpdated = DateTime.Today.ToString("D");
         }
 
-        public string GetSearchData()
+        public string GetSearchData(string baseData)
         {
-            return "Faculty Mentoring, " + string.Join(", ", availableToMentor) + string.Join(", ", contactPreferences) + 
+            return baseData + ", Faculty Mentoring" + string.Join(", ", availableToMentor) + string.Join(", ", contactPreferences) + 
                 ", " + narrative;
         }
     }

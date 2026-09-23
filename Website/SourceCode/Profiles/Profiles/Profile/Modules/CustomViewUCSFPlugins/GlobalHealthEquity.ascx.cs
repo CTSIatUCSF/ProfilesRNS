@@ -21,7 +21,10 @@ namespace Profiles.Profile.Modules.CustomViewUCSFPlugins
             LoadAssets();
 
         }
-
+        protected override string GetPluginName()
+        {
+            return "GlobalHealthEquity";
+        }
         private void LoadAssets()
         {
             HtmlLink Displaycss = new HtmlLink();
@@ -38,7 +41,7 @@ namespace Profiles.Profile.Modules.CustomViewUCSFPlugins
 
             //litjs.Text = base.jsStart + "var globalHealthData = " + Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, "GlobalHealth") + "; GlobalHealth.init(globalHealthData);" + base.jsEnd;
 
-            litjs.Text = base.jsStart + "GlobalHealthEquity.init('" + Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, "GlobalHealthEquity").Replace("'", "\\'") + "'); " + base.jsEnd;
+            litjs.Text = base.jsStart + "GlobalHealthEquity.init('" + Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.GetPluginName()).Replace("'", "\\'") + "'); " + base.jsEnd;
         }
     }
 }

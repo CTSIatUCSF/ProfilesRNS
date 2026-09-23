@@ -6,7 +6,7 @@ using Profiles.Framework.Utilities;
 
 namespace Profiles.Profile.Modules
 {
-    public class BaseUCSFModule : BaseModule
+    public abstract class BaseUCSFModule : BaseModule
     {
         private Profiles.Profile.Utilities.DataIO propdata;
         public BaseUCSFModule()
@@ -49,6 +49,13 @@ namespace Profiles.Profile.Modules
             set { _predicateuri = value; }
         }
         public XmlDocument PropertyListXML { get; set; }
+
+        protected abstract string GetPluginName();
+
+        protected string GetBaseSearchData()
+        {
+            return "Has" + GetPluginName();
+        }
 
     }
 }

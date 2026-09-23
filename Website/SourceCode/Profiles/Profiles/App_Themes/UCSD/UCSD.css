@@ -38,3 +38,311 @@
 .researcherprofiles--institution-header--site-logo h1 a {
     color: rgb(0, 106, 150) !important;
 }
+
+/* ############################################################################################ */
+/* UCSD FACULTY MENTORING — EDIT SCREEN */
+/* ############################################################################################ */
+
+.researcherprofiles--ucsdfacultymentoring-edit--container {
+    max-width: var(--max-main-content-width);
+    margin: 2.1rem auto;
+    padding: 2rem 2.3rem;
+}
+
+/* heading: compact section badge — breadcrumb already carries the title */
+.researcherprofiles--ucsdfacultymentoring-edit--heading {
+    margin: 0 0 0.85rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-muted-color);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* intro: callout panel with left accent stripe */
+.researcherprofiles--ucsdfacultymentoring-edit--intro {
+    margin-bottom: 1.6rem;
+    padding: 0.85rem 1rem;
+    background: var(--highlighted-panel-background-color);
+    border-left: 3px solid var(--heading-color);
+    border-radius: 0 0.3rem 0.3rem 0;
+    line-height: 1.5;
+}
+
+    .researcherprofiles--ucsdfacultymentoring-edit--intro h3 {
+        margin: 0 0 0.35rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-color);
+    }
+
+/* subheads: lighter base with a strong label inside */
+.researcherprofiles--ucsdfacultymentoring-edit--subhead {
+    margin-top: 1.4rem;
+    margin-bottom: 0.15rem;
+    font-weight: normal;
+    font-size: 0.93rem;
+    line-height: 1.4;
+    color: var(--text-muted-color);
+}
+
+    .researcherprofiles--ucsdfacultymentoring-edit--subhead strong {
+        font-weight: 700;
+        color: var(--text-color);
+    }
+
+.researcherprofiles--ucsdfacultymentoring-edit--available-group
+.researcherprofiles--ucsdfacultymentoring-edit--subhead {
+    margin-top: 0;
+}
+
+.researcherprofiles--ucsdfacultymentoring-edit--assistant-fields
+.researcherprofiles--ucsdfacultymentoring-edit--subhead {
+    margin-top: 0;
+}
+
+.researcherprofiles--ucsdfacultymentoring-edit--optional {
+    font-weight: normal;
+    color: var(--text-muted-color);
+}
+
+/* inline wrapping checkbox group */
+.researcherprofiles--ucsdfacultymentoring-edit--checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+    margin-top: 0.5rem;
+}
+
+    .researcherprofiles--ucsdfacultymentoring-edit--checkbox-group
+    .researcherprofiles--ucsdfacultymentoring-edit--option-row {
+        padding: 0.2rem 0;
+        display: flex;
+        align-items: center;
+    }
+
+.researcherprofiles--ucsdfacultymentoring-edit--option-row input[type="checkbox"] {
+    margin-right: 0.4rem;
+}
+
+.researcherprofiles--ucsdfacultymentoring-edit--option-row label {
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.researcherprofiles--ucsdfacultymentoring-edit--option-hint {
+    color: var(--text-muted-color);
+    margin-left: 0.3rem;
+}
+
+/* contact and narrative sections: subtle top separator from available section */
+.researcherprofiles--ucsdfacultymentoring-edit--contact-group,
+.researcherprofiles--ucsdfacultymentoring-edit--narrative-group {
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--striped-row-border-color);
+}
+
+/* assistant fields: left-accent expansion panel */
+.researcherprofiles--ucsdfacultymentoring-edit--assistant-fields {
+    margin-top: 0.85rem;
+    padding: 0.85rem 1rem;
+    background: var(--highlighted-panel-background-color);
+    border: none;
+    border-left: 3px solid var(--heading-color);
+    border-radius: 0;
+}
+
+.researcherprofiles--ucsdfacultymentoring-edit--assistant-field-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+    margin-top: 0.6rem;
+}
+
+.researcherprofiles--ucsdfacultymentoring-edit--assistant-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+    min-width: 10rem;
+}
+
+.researcherprofiles--ucsdfacultymentoring-edit--assistant-field-label {
+    font-weight: 700;
+    color: var(--text-muted-color);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* shared border for inline inputs and the narrative textarea */
+.researcherprofiles--ucsdfacultymentoring-edit--text-input,
+.researcherprofiles--ucsdfacultymentoring-edit--textarea {
+    border: 1px solid var(--striped-row-border-color);
+    border-radius: 0.3rem;
+}
+
+.researcherprofiles--ucsdfacultymentoring-edit--text-input {
+    width: 100%;
+    padding: 0.4rem 0.7rem;
+    font-weight: normal;
+}
+
+.researcherprofiles--ucsdfacultymentoring-edit--textarea {
+    width: 100%;
+    margin-top: 0.7rem;
+    padding: 0.7rem 0.85rem;
+    border-radius: 0.43rem;
+    resize: vertical;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: 1.6;
+}
+
+.researcherprofiles--ucsdfacultymentoring-edit--actions {
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--striped-row-border-color);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+/* feedback message: sits below the actions bar; block overrides any editBody inline-block */
+.researcherprofiles--ucsdfacultymentoring-edit--message {
+    display: block;
+}
+
+@keyframes ucsdfacultymentoring-toast-dismiss {
+    to {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+/* asp:Label renders as a <span>; floats as a fixed toast when it has text content */
+.researcherprofiles--ucsdfacultymentoring-edit--message span:not(:empty) {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    max-width: 40rem;
+    width: calc(100% - 2rem);
+    display: block;
+    padding: 0.75rem 1.25rem;
+    background: #eaf4fb;
+    border: 1px solid #b3d7ee;
+    border-left: 4px solid var(--heading-color);
+    border-radius: 0.3rem;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: 0 0.3rem 1.15rem rgba(0, 0, 0, 0.15);
+    animation: ucsdfacultymentoring-toast-dismiss 0.5s ease 4s forwards;
+}
+
+/* Delete pushed to the far right; Last Updated drops to its own metadata line below */
+.researcherprofiles--ucsdfacultymentoring-edit--actions .btn-danger {
+    margin-left: auto;
+    order: 10;
+}
+
+.researcherprofiles--ucsdfacultymentoring-edit--actions
+.researcherprofiles--ucsdfacultymentoring-edit--last-updated {
+    flex-basis: 100%;
+    order: 20;
+    margin: 0.5rem 0 0;
+    color: var(--text-muted-color);
+    font-size: 0.85rem;
+}
+
+/* ############################################################################################ */
+/* UCSD FACULTY MENTORING — PROFILE DISPLAY */
+/* ############################################################################################ */
+
+.researcherprofiles--ucsdfacultymentoring {
+    margin: 0.85rem 0;
+    line-height: 1.6;
+}
+
+.researcherprofiles--ucsdfacultymentoring--narrative {
+    line-height: 1.7;
+    margin: 0 0 1rem;
+}
+
+/* section wrappers: block with breathing room */
+.researcherprofiles--ucsdfacultymentoring--available-section,
+.researcherprofiles--ucsdfacultymentoring--contact-section {
+    margin: 0.7rem 0;
+}
+
+/* label flows inline as a bold lead-in, colon appended */
+.researcherprofiles--ucsdfacultymentoring--section-label {
+    display: inline;
+    font-weight: 700;
+    color: var(--text-muted-color);
+    margin: 0;
+}
+
+    .researcherprofiles--ucsdfacultymentoring--section-label::after {
+        content: ": ";
+        font-weight: normal;
+    }
+
+/* available list flows inline after the label — scoped to beat .profiles ul at (0,1,1) */
+.researcherprofiles--ucsdfacultymentoring .researcherprofiles--ucsdfacultymentoring--availabletomentor {
+    display: inline;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.researcherprofiles--ucsdfacultymentoring--availabletomentor--item {
+    display: inline;
+}
+
+.researcherprofiles--ucsdfacultymentoring .researcherprofiles--ucsdfacultymentoring--availabletomentor--item + .researcherprofiles--ucsdfacultymentoring--availabletomentor--item::before {
+    content: ", ";
+}
+
+/* contact list flows inline — scoped to beat .profiles ul at (0,1,1) */
+.researcherprofiles--ucsdfacultymentoring .researcherprofiles--ucsdfacultymentoring--contactformentoring {
+    display: inline;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* <li> items are block by default; force inline */
+.researcherprofiles--ucsdfacultymentoring--contactformentoring--item {
+    display: inline;
+}
+
+.researcherprofiles--ucsdfacultymentoring .researcherprofiles--ucsdfacultymentoring--contactformentoring--item + .researcherprofiles--ucsdfacultymentoring--contactformentoring--item::before {
+    content: " \00B7  ";
+    color: var(--text-muted-color);
+}
+
+/* assistant details: inline span nested inside the "Via my assistant" <li> */
+.researcherprofiles--ucsdfacultymentoring--assistant-details {
+    color: var(--text-muted-color);
+}
+
+    .researcherprofiles--ucsdfacultymentoring--assistant-details::before {
+        content: " (";
+        color: var(--text-muted-color);
+    }
+
+    .researcherprofiles--ucsdfacultymentoring--assistant-details::after {
+        content: ")";
+        color: var(--text-muted-color);
+    }
+
+/* last updated at bottom as footer metadata */
+.researcherprofiles--ucsdfacultymentoring--last-updated {
+    color: var(--text-muted-color);
+    margin: 0.85rem 0 0;
+}

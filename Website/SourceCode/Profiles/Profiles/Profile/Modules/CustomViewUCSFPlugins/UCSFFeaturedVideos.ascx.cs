@@ -20,7 +20,10 @@ namespace Profiles.Profile.Modules.CustomViewUCSFPlugins
         {   
             LoadAssets();
         }
-
+        protected override string GetPluginName()
+        {
+            return "UCSFFeaturedVideos";
+        }
 
         private void LoadAssets()
         {
@@ -44,7 +47,7 @@ namespace Profiles.Profile.Modules.CustomViewUCSFPlugins
             //TODO Obviously change this 
             //litjs.Text = base.jsStart + "FeaturedVideos.init('" + Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, "UCSFFeaturedVideos").Replace("'", "\\'") + "'); " + base.jsEnd;
             //litjs.Text = base.jsStart + "FeaturedVideos.init('" + Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, "UCSFFeaturedVideos").Replace("\\", "\\\\").Replace("'", "\\'") + "'); " + base.jsEnd;
-            litjs.Text = base.jsStart + "FeaturedVideos.init('" + HttpUtility.JavaScriptStringEncode(Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, "UCSFFeaturedVideos")) + "'); " + base.jsEnd;
+            litjs.Text = base.jsStart + "FeaturedVideos.init('" + HttpUtility.JavaScriptStringEncode(Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.GetPluginName())) + "'); " + base.jsEnd;
 
             HtmlLink Displaycss = new HtmlLink();
             Displaycss.Href = Brand.GetThemedDomain() + "/Profile/Modules/CustomViewSocialMediaPlugins/style.css";

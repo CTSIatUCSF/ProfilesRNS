@@ -21,7 +21,10 @@ namespace Profiles.Profile.Modules.CustomViewUCSFPlugins
             LoadAssets();
 
         }
-
+        protected override string GetPluginName()
+        {
+            return "Mentoring";
+        }
         private void LoadAssets()
         {
             HtmlLink Displaycss = new HtmlLink();
@@ -38,7 +41,7 @@ namespace Profiles.Profile.Modules.CustomViewUCSFPlugins
 
             //litjs.Text = base.jsStart + "var globalHealthData = " + Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, "GlobalHealth") + "; GlobalHealth.init(globalHealthData);" + base.jsEnd;
 
-            litjs.Text = base.jsStart + "Mentoring.init('" + Brand.GetCurrentBrand().GetInstitution().GetAbbreviation() + "', '" + Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, "Mentoring").Replace("'", "\\'").Replace("\\\"", "\\\\\"") + "'); " + base.jsEnd;
+            litjs.Text = base.jsStart + "Mentoring.init('" + Brand.GetCurrentBrand().GetInstitution().GetAbbreviation() + "', '" + Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.GetPluginName()).Replace("'", "\\'").Replace("\\\"", "\\\\\"") + "'); " + base.jsEnd;
         }
     }
 }

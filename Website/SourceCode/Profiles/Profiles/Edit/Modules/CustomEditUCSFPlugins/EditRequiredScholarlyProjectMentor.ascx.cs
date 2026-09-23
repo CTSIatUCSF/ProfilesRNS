@@ -15,7 +15,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 {
     public partial class RequiredScholarlyProjectMentor : BaseUCSFModule
     {
-        private string PlugInName = "RequiredScholarlyProjectMentor";
         private string data = string.Empty;
         private static string CONTENT = "Required Scholarly Project Mentor";
 
@@ -36,7 +35,10 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
             litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
         }
-
+        protected override string GetPluginName()
+        {
+            return "RequiredScholarlyProjectMentor";
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             upnlEditSection.Update();
@@ -52,7 +54,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
         protected void btnAdd_OnClick(object sender, EventArgs e)
         {
-            GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, CONTENT, CONTENT);
+            GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, CONTENT, GetBaseSearchData() + CONTENT);
             ResetDisplay(false);
         }
 
@@ -60,14 +62,14 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         {
             //GenericRDFDataIO.RemovePluginData(this.PlugInName, this.SubjectID);
             // the one below clears the data and removes the connection
-            GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, String.Empty, String.Empty);
+            GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, String.Empty, String.Empty);
             // should we also need to reset the data to blank strings? Above seems to just orphan the data
             ResetDisplay(false);
         }
 
         private void ResetDisplay(bool pageLoad)
         {
-            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.PlugInName);
+            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.GetPluginName());
             if (CONTENT.Equals(data))
             {
                 // they have it

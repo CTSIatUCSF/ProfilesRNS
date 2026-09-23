@@ -12,7 +12,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 {
     public partial class AcademicSenate : BaseUCSFModule
     {
-        private string PlugInName = "AcademicSenate";
         private string data = string.Empty;
 
         public AcademicSenate() : base() { }
@@ -28,10 +27,15 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             securityOptions.SecurityGroups.LoadXml(base.PresentationXML.DocumentElement.LastChild.OuterXml);
             securityOptions.BubbleClick += SecurityDisplayed;
 
-            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.PlugInName);
+            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.GetPluginName());
 
             litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
         }
+        protected override string GetPluginName()
+        {
+            return "AcademicSenate";
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ReadJson();

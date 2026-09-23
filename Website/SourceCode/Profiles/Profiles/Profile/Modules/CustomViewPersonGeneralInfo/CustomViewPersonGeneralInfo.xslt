@@ -42,12 +42,22 @@
 					rdf:RDF/rdf:Description[@rdf:about=$uriDepartment]/rdfs:label !='' and 
 					rdf:RDF/rdf:Description[@rdf:about= $uriOrganization]/rdfs:label != 'University of Southern California'">
       <tr>
-        <th>Title(s)</th>
-        <td>
+		  <xsl:choose>
+			  <!-- IF condition is true -->
+			  <xsl:when test="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/vivo:hrJobTitle != ''">
+				  <th>Title(s)</th>
+			  </xsl:when>
+			  <xsl:otherwise>
+				  <th>Affiliation</th>
+			  </xsl:otherwise>
+		  </xsl:choose>
+		  <td>
           <span itemprop="jobTitle">
             <xsl:value-of select="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/vivo:hrJobTitle "/>
-            <xsl:text>, </xsl:text>
-            <xsl:value-of select="rdf:RDF/rdf:Description[@rdf:about=$uriDepartment]/rdfs:label "/>
+			  <xsl:if test="rdf:RDF/rdf:Description[@rdf:about= /rdf:RDF[1]/rdf:Description[1]/prns:personInPrimaryPosition/@rdf:resource]/vivo:hrJobTitle != ''">
+    			  <xsl:text>, </xsl:text>
+			  </xsl:if>
+			  <xsl:value-of select="rdf:RDF/rdf:Description[@rdf:about=$uriDepartment]/rdfs:label "/>
           </span>
         </td>
       </tr>

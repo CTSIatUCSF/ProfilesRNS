@@ -15,7 +15,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 {
     public partial class EditCollaborationInterests : BaseUCSFModule
     {
-        private static string PlugInName = "CollaborationInterests";
         private CollaborationInterestsData ciData = new CollaborationInterestsData();
         private List<CheckBox> collaborationInterestsOptions = new List<CheckBox>();
 
@@ -44,9 +43,13 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             collaborationInterestsOptions.Add(cbPress);
             collaborationInterestsOptions.Add(cbProspectiveDonors);
         }
+        protected override string GetPluginName()
+        {
+            return "CollaborationInterests";
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            ReadJson(Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, PlugInName));
+            ReadJson(Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, GetPluginName()));
             upnlEditSection.Update();
             upnlEditCollaborationInterests.Update();
         }
@@ -74,7 +77,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 }
             }
 
-            GenericRDFDataIO.AddEditPluginData(PlugInName, this.SubjectID, this.SerializeJson(), ciData.GetSearchData());
+            GenericRDFDataIO.AddEditPluginData(GetPluginName(), this.SubjectID, this.SerializeJson(), ciData.GetSearchData(GetBaseSearchData()));
             ResetDisplay(HasNoCollaborationInterestsData() ? "" : "Collaboration Interests has been added to your profile.");
         }
 
@@ -86,7 +89,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         protected void btnDelete_OnClick(object sender, EventArgs e)
         {
             //GenericRDFDataIO.RemovePluginData(PlugInName, this.SubjectID);
-            GenericRDFDataIO.AddEditPluginData(PlugInName, this.SubjectID, "", "");
+            GenericRDFDataIO.AddEditPluginData(GetPluginName(), this.SubjectID, "", "");
             ResetDisplay("Collaboration Interests has been removed from your profile.");
         }
 
@@ -99,7 +102,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
             this.ciData = null;
 
-            string data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, PlugInName);
+            string data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, GetPluginName());
             lblMessage.Text = message;
 
             ReadJson(data);            
@@ -151,9 +154,9 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             lastUpdated = DateTime.Today.ToString("D");
         }
 
-        public string GetSearchData()
+        public string GetSearchData(string baseData)
         {
-            return "Collaboration Interest, " + string.Join(", ", collaborationInterests) + ", " + narrative;
+            return baseData + ", Collaboration Interest, " + string.Join(", ", collaborationInterests) + ", " + narrative;
         }
     }
 }

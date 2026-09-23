@@ -9,10 +9,15 @@ namespace Profiles.Framework.Utilities
     {
         private static Dictionary<string, Institution> ByAbbreviation = new Dictionary<string, Institution>();
         private static Dictionary<string, Institution> ByURI = new Dictionary<string, Institution>();
+        private static Dictionary<string, Institution> ByShibbolethIdp = new Dictionary<string, Institution>();
 
         public static Institution GetByAbbreviation(string Abbreviation) 
         {
             return String.IsNullOrEmpty(Abbreviation) ? null : ByAbbreviation[Abbreviation];
+        }
+        public static Institution GetByShibbolethIdp(string ShibbolethIdp)
+        {
+            return String.IsNullOrEmpty(ShibbolethIdp) ? null : ByShibbolethIdp[ShibbolethIdp];
         }
         public static List<Institution> GetAll()
         {
@@ -40,6 +45,7 @@ namespace Profiles.Framework.Utilities
             this.ShibbolethDisplayNameHeader = ShibbolethDisplayNameHeader;
             ByAbbreviation.Add(Abbreviation, this);
             ByURI.Add(URI, this);
+            ByShibbolethIdp.Add(ShibbolethIdP, this);
         }
 
         public int GetId()
@@ -127,6 +133,10 @@ namespace Profiles.Framework.Utilities
             else if ("UCSDFacultyMentoring".Equals(plugin))
             {
                 return "UCSD".Equals(inst.GetAbbreviation());
+            }
+            else if ("UCDStudentProjects".Equals(plugin))
+            {
+                return "UC Davis".Equals(inst.GetAbbreviation());
             }
             return true;
         }

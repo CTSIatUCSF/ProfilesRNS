@@ -14,7 +14,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 {
     public partial class Identity : BaseUCSFModule
     {
-        private string PlugInName = "Identity";
         private string data = string.Empty;
         private IdentityData iData = new IdentityData();
 
@@ -31,9 +30,13 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             securityOptions.SecurityGroups.LoadXml(base.PresentationXML.DocumentElement.LastChild.OuterXml);
             securityOptions.BubbleClick += SecurityDisplayed;
 
-            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.PlugInName);
+            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.GetPluginName());
 
             litBackLink.Text = "<a href='" + Brand.GetThemedDomain() + "/edit/default.aspx?subject=" + this.SubjectID + "'>Edit Menu</a> &gt; <b>" + PropertyListXML.SelectSingleNode("PropertyList/PropertyGroup/Property/@Label").Value + "</b>";
+        }
+        protected override string GetPluginName()
+        {
+            return "Identity";
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -83,7 +86,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             iData.genderIdentity = GetCheckBoxListSelectedItems(cblGenderIdentity);
             iData.other = GetCheckBoxListSelectedItems(cblOther);
 
-            GenericRDFDataIO.AddEditPluginData(this.PlugInName, this.SubjectID, this.SerializeJson(), GetSearchData());
+            GenericRDFDataIO.AddEditPluginData(this.GetPluginName(), this.SubjectID, this.SerializeJson(), GetSearchData());
             ResetDisplay();
         }
 
@@ -94,7 +97,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
         protected void btnDelete_OnClick(object sender, EventArgs e)
         {
-            GenericRDFDataIO.RemovePluginData(this.PlugInName, this.SubjectID);
+            GenericRDFDataIO.RemovePluginData(this.GetPluginName(), this.SubjectID);
             ResetDisplay();
         }
 
@@ -109,7 +112,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             this.data = string.Empty;
             this.iData = null;
 
-            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.PlugInName);
+            this.data = Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.GetPluginName());
             
             ReadJson();            
             upnlEditSection.Update();
@@ -145,7 +148,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
         private string GetSearchData()
         {
-            string search = "Identity " + iData.narrative;
+            string search = GetBaseSearchData() + ", Identity " + iData.narrative;
             foreach (String s in this.iData.race)
             {
                 search += " " + s;

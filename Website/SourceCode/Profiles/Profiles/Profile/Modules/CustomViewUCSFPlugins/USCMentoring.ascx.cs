@@ -21,7 +21,10 @@ namespace Profiles.Profile.Modules.CustomViewUCSFPlugins
             LoadAssets();
 
         }
-
+        protected override string GetPluginName()
+        {
+            return "USCMentoring";
+        }
         private void LoadAssets()
         {
             HtmlLink Displaycss = new HtmlLink();
@@ -36,7 +39,7 @@ namespace Profiles.Profile.Modules.CustomViewUCSFPlugins
             jsscript1.Attributes.Add("src", Brand.GetThemedDomain() + "/Profile/Modules/CustomViewUCSFPlugins/USCMentoring.js");
             Page.Header.Controls.Add(jsscript1);
 
-            litjs.Text = base.jsStart + "USCMentoring.init('" + Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, "USCMentoring").Replace("'", "\\'").Replace("\\\"", "\\\\\"") + "'); " + base.jsEnd;
+            litjs.Text = base.jsStart + "USCMentoring.init('" + Profiles.Framework.Utilities.GenericRDFDataIO.GetSocialMediaPlugInData(this.SubjectID, this.GetPluginName()).Replace("'", "\\'").Replace("\\\"", "\\\\\"") + "'); " + base.jsEnd;
         }
     }
 }

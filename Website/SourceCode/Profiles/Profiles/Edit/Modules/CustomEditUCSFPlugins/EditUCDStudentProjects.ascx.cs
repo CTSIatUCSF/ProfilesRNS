@@ -33,8 +33,6 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             typeOfResearch.Add(cbClinicalResearch);
             typeOfResearch.Add(cbBasicScience);
             typeOfResearch.Add(cbHealthDeliverPolicy);
-            typeOfResearch.Add(cbOther);
-
         }
         protected override string GetPluginName()
         {
@@ -123,15 +121,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         protected void btnSaveResearchType_OnClick(object sender, EventArgs e)
         {
             CBsToStrings(typeOfResearch, spData.typeOfResearch);
-            // add the entry for Other and also make sure Other is in the list if it is not already there
-            if (txtOther.Text.Length > 0)
-            {
-                if (!spData.typeOfResearch.Contains(cbOther.Text))
-                {
-                    spData.typeOfResearch.Add(cbOther.Text);
-                }
-                spData.typeOfResearchOther = txtOther.Text;
-            }
+            spData.typeOfResearchOther = txtOther.Text.Trim();
             SaveData();
             // is it OK not to reset the display here?  It will be reset when the page is reloaded anyway
         }

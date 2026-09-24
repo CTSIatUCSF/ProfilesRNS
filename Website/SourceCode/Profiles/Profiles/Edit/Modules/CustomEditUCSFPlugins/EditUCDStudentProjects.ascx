@@ -67,8 +67,6 @@
                                 Text="Health Delivery/Policy" />
                         </div>
                         <div class="researcherprofiles--ucdstudentprojects-edit--option-row">
-                            <asp:CheckBox ID="cbOther" runat="server" OnCheckedChanged="itmChanged"
-                                Text="Other" />
                             <label class="researcherprofiles--ucdstudentprojects-edit--other-field">
                                 <span class="researcherprofiles--ucdstudentprojects-edit--assistant-field-label">Name</span>
                                 <asp:TextBox ID="txtOther" runat="server" OnTextChanged="itmChanged" CssClass="researcherprofiles--ucdstudentprojects-edit--text-input"></asp:TextBox>

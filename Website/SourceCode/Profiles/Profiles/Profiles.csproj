@@ -640,6 +640,8 @@
     <Content Include="Profile\Modules\CustomViewListProperty\CustomViewListProperty.ascx" />
     <Content Include="Profile\Modules\CustomViewPersonGeneralInfo\vcard.aspx" />
     <Content Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\UCDStudentProjects.ascx" />
+    <Content Include="Profile\Modules\CustomViewUCSFPlugins\UCDStudentProjects.js" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\UCSDFacultyMentoring.js" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\UCSDFacultyMentoring.ascx" />
     <Content Include="Profile\Modules\CustomViewUCSFPlugins\USCMentoring.js" />
@@ -1822,6 +1824,13 @@
     </Compile>
     <Compile Include="Profile\Modules\CustomViewResearcherRole\CustomViewResearcherRole.ascx.designer.cs">
       <DependentUpon>CustomViewResearcherRole.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\UCDStudentProjects.ascx.cs">
+      <DependentUpon>UCDStudentProjects.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\Modules\CustomViewUCSFPlugins\UCDStudentProjects.ascx.designer.cs">
+      <DependentUpon>UCDStudentProjects.ascx</DependentUpon>
     </Compile>
     <Compile Include="Profile\Modules\CustomViewUCSFPlugins\UCSDFacultyMentoring.ascx.cs">
       <DependentUpon>UCSDFacultyMentoring.ascx</DependentUpon>

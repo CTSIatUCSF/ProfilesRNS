@@ -1,52 +1,154 @@
 UCDStudentProjects = {};
 
 UCDStudentProjects.init = function (data) {
-    UCDStudentProjects.render(JSON.parse(data.split('\r').join('').split('\n').join('\\n')));
+  UCDStudentProjects.render(
+    JSON.parse(data.split("\r").join("").split("\n").join("\\n")),
+  );
+};
+
+UCDStudentProjects.escapeHtml = function (value) {
+  return $("<div>")
+    .text(value == null ? "" : value)
+    .html();
 };
 
 UCDStudentProjects.render = function (data) {
-    $(document).ready(function () {
+  $(document).ready(function () {
+    // ------------------------------------------------------------
+    // Types of Research
+    // ------------------------------------------------------------
 
-        if (data.typeOfResearch && data.typeOfResearchOther.trim()) {
-            data.typeOfResearch.push(data.typeOfResearchOther)
+    if (data.typeOfResearch) {
+      if (data.typeOfResearchOther && data.typeOfResearchOther.trim()) {
+        data.typeOfResearch.push(data.typeOfResearchOther.trim());
+      }
+
+      if (data.typeOfResearch.length > 0) {
+        let html = "";
+
+        for (const item of data.typeOfResearch) {
+          html +=
+            '<li class="researcherprofiles--ucdstudentprojects--typesofresearch--item">' +
+            UCDStudentProjects.escapeHtml(item.trim()) +
+            "</li>";
         }
 
-        if (data.typeOfResearch && data.typeOfResearch.length > 0) {
-            let html = '';
-            for (const item of data.typeOfResearch) {
-                html += '<li class="researcherprofiles--ucdstudentprojects--typesofresearch--item">' + item.trim() + '</li>';
-            }
-            $('.researcherprofiles--ucdstudentprojects--typesofresearch').html(html);
-            $('.researcherprofiles--ucdstudentprojects--types-section').show();
+        $(".researcherprofiles--ucdstudentprojects--typesofresearch").html(
+          html,
+        );
+
+        $(".researcherprofiles--ucdstudentprojects--types-section").show();
+      }
+    }
+
+    // ------------------------------------------------------------
+    // Student Projects
+    // ------------------------------------------------------------
+
+    if (data.currentProjects && data.currentProjects.length > 0) {
+      let html = "";
+
+      for (const proj of data.currentProjects) {
+        html +=
+          '<li class="researcherprofiles--ucdstudentprojects--studentprojects--item">' +
+          '<article class="researcherprofiles--ucdstudentprojects--project">';
+
+        // Project name
+        if (proj.name && proj.name.trim()) {
+          html +=
+            '<h3 class="researcherprofiles--ucdstudentprojects--project-name">' +
+            UCDStudentProjects.escapeHtml(proj.name.trim()) +
+            "</h3>";
         }
 
-        if (data.currentProjects && data.currentProjects.length > 0) {
-            let html = '';
-            for (const proj of data.currentProjects) {
-                let parts = [];
-                if (proj.name && proj.name.trim().length > 0) parts.push('Name: ' + proj.name.trim());
-                if (proj.location && proj.location.trim().length > 0) parts.push('Location: ' + proj.location.trim());
-                if (proj.objectives && proj.objectives.trim().length > 0) parts.push('Objectives: ' + proj.objectives.trim());
-                if (proj.responsibilities && proj.responsibilities.trim().length > 0) parts.push('Student Responsibilities: ' + proj.responsibilities.trim());
-                if (proj.url && proj.url.trim().length > 0) parts.push('Link: <a href="' + proj.url.trim() + '" target="_blank">' + proj.url.trim() + '</a>');
-                if (proj.startDate && proj.startDate.trim().length > 0) parts.push('Estimated Start Date: ' + proj.startDate.trim());
-                if (proj.endDate && proj.endDate.trim().length > 0) parts.push('Estimated End Date: ' + proj.endDate.trim());
-                if (proj.contactinfo && proj.contactinfo.trim().length > 0) parts.push('Contact Info: ' + proj.contactinfo.trim());
-                html += '<li class="researcherprofiles--ucdstudentprojects--studentprojects--item">';
-                if (parts.length > 0) {
-                    html += '<span class="researcherprofiles--ucdstudentprojects--studentprojects-details"><span class="sr-only"></span>' + parts.join(', ') + '</span>';
-                }
-                html += '</li>';
-            }
-            $('.researcherprofiles--ucdstudentprojects--studentprojects').html(html);
-            $('.researcherprofiles--ucdstudentprojects--projects-section').show();
+        // Location
+        if (proj.location && proj.location.trim()) {
+          html +=
+            '<p class="researcherprofiles--ucdstudentprojects--project-location">' +
+            UCDStudentProjects.escapeHtml(proj.location.trim()) +
+            "</p>";
         }
 
-        if (data.lastUpdated && data.lastUpdated.trim().length > 0) {
-            $('.researcherprofiles--ucdstudentprojects--last-updated')
-                .html('Last updated: ' + data.lastUpdated)
-                .show();
+        // Project details
+        const fields = [
+          {
+            label: "Objectives",
+            value: proj.objectives,
+          },
+          {
+            label: "Student Responsibilities",
+            value: proj.responsibilities,
+          },
+          {
+            label: "Estimated Start Date",
+            value: proj.startDate,
+          },
+          {
+            label: "Estimated End Date",
+            value: proj.endDate,
+          },
+          {
+            label: "Contact Information",
+            value: proj.contactinfo,
+          },
+        ];
+
+        const populatedFields = fields.filter(function (field) {
+          return field.value && field.value.trim();
+        });
+
+        if (populatedFields.length > 0) {
+          html +=
+            '<dl class="researcherprofiles--ucdstudentprojects--project-details">';
+
+          for (const field of populatedFields) {
+            html +=
+              '<div class="researcherprofiles--ucdstudentprojects--project-field">' +
+              '<dt class="researcherprofiles--ucdstudentprojects--project-label">' +
+              UCDStudentProjects.escapeHtml(field.label) +
+              "</dt>" +
+              '<dd class="researcherprofiles--ucdstudentprojects--project-value">' +
+              UCDStudentProjects.escapeHtml(field.value.trim()) +
+              "</dd>" +
+              "</div>";
+          }
+
+          html += "</dl>";
         }
 
-    });
+        // Project link
+        if (proj.url && proj.url.trim()) {
+          const url = proj.url.trim();
+          const escapedUrl = UCDStudentProjects.escapeHtml(url);
+
+          html +=
+            '<div class="researcherprofiles--ucdstudentprojects--project-link">' +
+            '<a href="' +
+            escapedUrl +
+            '"' +
+            ' target="_blank"' +
+            ' rel="noopener noreferrer">' +
+            "Learn More" +
+            "</a>" +
+            "</div>";
+        }
+
+        html += "</article>" + "</li>";
+      }
+
+      $(".researcherprofiles--ucdstudentprojects--studentprojects").html(html);
+
+      $(".researcherprofiles--ucdstudentprojects--projects-section").show();
+    }
+
+    // ------------------------------------------------------------
+    // Last Updated
+    // ------------------------------------------------------------
+
+    if (data.lastUpdated && data.lastUpdated.trim()) {
+      $(".researcherprofiles--ucdstudentprojects--last-updated")
+        .text("Last updated: " + data.lastUpdated.trim())
+        .show();
+    }
+  });
 };

@@ -53,12 +53,28 @@ UCDStudentProjects.render = function (data) {
           '<li class="researcherprofiles--ucdstudentprojects--studentprojects--item">' +
           '<article class="researcherprofiles--ucdstudentprojects--project">';
 
-        // Project name
+        // Project name (linked to the project URL, when present)
         if (proj.name && proj.name.trim()) {
+          const name = UCDStudentProjects.escapeHtml(proj.name.trim());
+          const url = proj.url && proj.url.trim();
+
           html +=
-            '<h3 class="researcherprofiles--ucdstudentprojects--project-name">' +
-            UCDStudentProjects.escapeHtml(proj.name.trim()) +
-            "</h3>";
+            '<h3 class="researcherprofiles--ucdstudentprojects--project-name">';
+
+          if (url) {
+            html +=
+              '<a href="' +
+              UCDStudentProjects.escapeHtml(url) +
+              '"' +
+              ' target="_blank"' +
+              ' rel="noopener noreferrer">' +
+              name +
+              "</a>";
+          } else {
+            html += name;
+          }
+
+          html += "</h3>";
         }
 
         // Location
@@ -114,23 +130,6 @@ UCDStudentProjects.render = function (data) {
           }
 
           html += "</dl>";
-        }
-
-        // Project link
-        if (proj.url && proj.url.trim()) {
-          const url = proj.url.trim();
-          const escapedUrl = UCDStudentProjects.escapeHtml(url);
-
-          html +=
-            '<div class="researcherprofiles--ucdstudentprojects--project-link">' +
-            '<a href="' +
-            escapedUrl +
-            '"' +
-            ' target="_blank"' +
-            ' rel="noopener noreferrer">' +
-            "Learn More" +
-            "</a>" +
-            "</div>";
         }
 
         html += "</article>" + "</li>";

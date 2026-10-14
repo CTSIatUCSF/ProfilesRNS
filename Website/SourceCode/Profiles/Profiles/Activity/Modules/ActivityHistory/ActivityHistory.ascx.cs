@@ -56,12 +56,60 @@ namespace Profiles.Activity.Modules.ActivityHistory
                 pnlActivities.ScrollBars = ScrollBars.None;
             }
 
-            // grab a bunch of activities from the Database
+            // GetActivity reads from the shared activity cache and only goes back to the
+            // database when the cache does not contain enough records. The cache contains
+            // activities from the whole Profiles network, so the first batch is deliberately
+            // larger than the number of rows that will be displayed below.
             Profiles.Activity.Utilities.DataIO data = new Profiles.Activity.Utilities.DataIO();
             List<Profiles.Activity.Utilities.Activity> activities = new List<Profiles.Activity.Utilities.Activity>();
             try
             {
-                activities.AddRange(data.GetActivity(-1, count, true));
+                // Fetching ten times the display count, with a floor of 30 records, gives an
+                // institution-scoped brand a reasonable pool of recent network activity from
+                // which to select its own updates. This is intentionally an in-memory
+                // prioritization step; it does not change the shared activity query or cache.
+                int activityFetchCount = Math.Max(count * 10, 30);
+                activities.AddRange(data.GetActivity(-1, activityFetchCount, true));
+
+                // A brand with exactly one configured institution represents an institution-
+                // specific site such as UCSF or UCSD. A brand with zero or multiple configured
+                // institutions is intentionally left as a network-wide feed.
+                Brand currentBrand = Brand.GetCurrentBrand();
+                if (currentBrand != null && currentBrand.GetInstitution() != null)
+                {
+                    string currentInstitution = currentBrand.GetInstitution().GetAbbreviation();
+                    List<Profiles.Activity.Utilities.Activity> scopedActivities = new List<Profiles.Activity.Utilities.Activity>();
+                    List<Profiles.Activity.Utilities.Activity> fallbackActivities = new List<Profiles.Activity.Utilities.Activity>();
+
+                    // GetActivity returns records newest-first. Keeping each list in that
+                    // original order means the matching records remain newest-first, as do the
+                    // fallback records that may be used to fill any remaining display slots.
+                    foreach (Profiles.Activity.Utilities.Activity activity in activities)
+                    {
+                        if (currentInstitution.Equals(activity.Profile.InstitutionAbbreviation))
+                        {
+                            scopedActivities.Add(activity);
+                        }
+                        else
+                        {
+                            fallbackActivities.Add(activity);
+                        }
+                    }
+
+                    // Prefer updates belonging to the current brand. If there are not enough
+                    // matching updates to fill the widget, append other network updates rather
+                    // than leaving the widget empty or showing fewer rows than configured.
+                    activities = new List<Profiles.Activity.Utilities.Activity>();
+                    activities.AddRange(scopedActivities);
+                    activities.AddRange(fallbackActivities);
+                }
+
+                // The larger fetch is only a candidate pool; render no more than the number of
+                // activities configured by the presentation XML (for the search page, three).
+                if (activities.Count > count)
+                {
+                    activities.RemoveRange(count, activities.Count - count);
+                }
             }
             catch (Exception e)
             {

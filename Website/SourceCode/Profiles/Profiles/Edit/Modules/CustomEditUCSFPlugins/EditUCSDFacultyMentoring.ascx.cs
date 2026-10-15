@@ -191,7 +191,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             assistantEmail = "";
             assistantPhone = "";
             narrative = "";
-            lastUpdated = DateTime.Today.ToString("D");
+            lastUpdated = DateTime.Today.ToString("MMMM dd, yyyy");
         }
 
         public string GetSearchData(string baseData)

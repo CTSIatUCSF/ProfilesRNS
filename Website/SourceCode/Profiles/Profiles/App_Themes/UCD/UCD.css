@@ -2,21 +2,16 @@
 
 /* global variables */
 :root {
-
     /* link color used at https://marketingtoolbox.ucdavis.edu/ */
     --generic-link-color: rgb(0, 102, 204);
-
     /* UC Davis Cabernet from https://marketingtoolbox.ucdavis.edu/brand-guide/colors */
     --generic-link-visited-color: #481268;
-
     /* official 80% tint of UC Davis blue" */
-    --heading-color: #1D4776;
-
+    --heading-color: #1d4776;
     /* darkest UC Davis blue */
     --very-dark-background-color: #022851;
-
     /* official 10% tint of UC Davis blue" */
-    --menu-important-background-color: #CDD6E0;
+    --menu-important-background-color: #cdd6e0;
 }
 
 /* no need for tippy-top header */
@@ -35,6 +30,69 @@
     font-size: 2rem;
 }
 
-.researcherprofiles--institution-header--site-logo h1 a img {
-    height: 1.7rem !important;
+    .researcherprofiles--institution-header--site-logo h1 a img {
+        height: 1.7rem !important;
+    }
+
+/* Student Projects section */
+
+.researcherprofiles--ucdstudentprojects--section-label {
+    margin: 1rem 0 0.5rem;
+    color: var(--text-muted-color);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* types of research: plain comma-separated list, no pill chrome */
+
+.researcherprofiles--ucdstudentprojects--typesofresearch {
+    margin: 0 0 1.5rem;
+    padding: 0;
+    list-style: none;
+}
+
+.researcherprofiles--ucdstudentprojects--typesofresearch--item {
+    display: inline;
+}
+
+    .researcherprofiles--ucdstudentprojects--typesofresearch--item:not( :last-child )::after {
+        content: ", ";
+    }
+
+/* projects: plain spacing, no boxed cards or dividers */
+
+.researcherprofiles--ucdstudentprojects--studentprojects {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.researcherprofiles--ucdstudentprojects--studentprojects--item {
+    margin-top: 1rem;
+}
+
+    .researcherprofiles--ucdstudentprojects--studentprojects--item:first-child {
+        margin-top: 0;
+    }
+
+.researcherprofiles--ucdstudentprojects--project-name {
+    margin: 0 0 0.25rem;
+    font-weight: 600;
+}
+
+    .researcherprofiles--ucdstudentprojects--project-name a,
+    .researcherprofiles--ucdstudentprojects--project-name a:visited {
+        color: var(--generic-link-color);
+    }
+
+.researcherprofiles--ucdstudentprojects--project-location {
+    margin: 0;
+    color: var(--text-muted-color);
+}
+
+.researcherprofiles--ucdstudentprojects--last-updated {
+    margin-top: 0.5rem;
+    color: var(--text-muted-color);
+    font-style: italic;
+    text-align: right;
 }

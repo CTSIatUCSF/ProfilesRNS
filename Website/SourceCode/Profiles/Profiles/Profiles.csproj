@@ -387,6 +387,7 @@
     <Content Include="App_Themes\USC\USC.js" />
     <Content Include="Celebrating\PresentationXML\LatinxResearch.xml" />
     <Content Include="Celebrating\PresentationXML\LGBTQResearch.xml" />
+    <Content Include="CustomAPI\Secure\USCImportData.aspx" />
     <Content Include="CustomAPI\Secure\OAuthProxy.aspx" />
     <Content Include="CustomAPI\Secure\ActivityLog.aspx" />
     <Content Include="CustomAPI\Secure\Default.aspx" />
@@ -895,6 +896,13 @@
     </Compile>
     <Compile Include="Activity\Utilities\Activity.cs" />
     <Compile Include="Activity\Utilities\DataIO.cs" />
+    <Compile Include="CustomAPI\Secure\USCImportData.aspx.cs">
+      <DependentUpon>USCImportData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomAPI\Secure\USCImportData.aspx.designer.cs">
+      <DependentUpon>USCImportData.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CustomAPI\Secure\OAuthProxy.aspx.cs">
       <DependentUpon>OAuthProxy.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

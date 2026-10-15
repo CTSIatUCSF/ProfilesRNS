@@ -151,7 +151,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         {
             narrative = "";
             collaborationInterests = new List<string>();
-            lastUpdated = DateTime.Today.ToString("D");
+            lastUpdated = DateTime.Today.ToString("MMMM dd, yyyy");
         }
 
         public string GetSearchData(string baseData)

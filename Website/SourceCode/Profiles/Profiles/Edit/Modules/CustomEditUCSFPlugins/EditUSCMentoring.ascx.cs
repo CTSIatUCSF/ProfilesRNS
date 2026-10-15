@@ -165,7 +165,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             hasUSCMentoring = "";
             availableFor = new List<string>();
             contactPreferences = new List<string>();
-            lastUpdated = DateTime.Today.ToString("D");
+            lastUpdated = DateTime.Today.ToString("MMMM dd, yyyy");
         }
     }
 }

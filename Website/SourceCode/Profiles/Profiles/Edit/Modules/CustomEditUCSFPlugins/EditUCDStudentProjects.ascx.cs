@@ -268,6 +268,7 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
 
         private void SaveData()
         {
+            this.spData.SetLastUpdated();
             GenericRDFDataIO.AddEditPluginData(GetPluginName(), this.SubjectID, this.SerializeJson(), spData.GetSearchData(GetBaseSearchData()));
         }
         private void ClearData()
@@ -325,13 +326,18 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
         {
             typeOfResearch = new List<string>();
             currentProjects = new List<StudentProject>();
-            lastUpdated = DateTime.Today.ToString("D");
+            SetLastUpdated();
         }
 
         public string GetSearchData(string baseData)
         {
             return string.Join(", ", new List<string> { baseData, "Student Projects", string.Join(", ", typeOfResearch), typeOfResearchOther, string.Join(", ", currentProjects.Select(sp => sp.GetSearchData())) });
             //return baseData + ", Student Projects, " + string.Join(", ", typeOfResearch) + string.Join(", ", typeOfResearchOther) + string.Join(", ", currentProjects.Select(sp => sp.GetSearchData()));
+        }
+
+        public void SetLastUpdated()
+        {
+            this.lastUpdated = DateTime.Today.ToString("MMMM dd, yyyy");
         }
     }
 }

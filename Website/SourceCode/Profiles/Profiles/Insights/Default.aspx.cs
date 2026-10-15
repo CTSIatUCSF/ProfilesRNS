@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
@@ -15,7 +16,7 @@ namespace Profiles.Insights
     public partial class Default : BrandedPage
     {
         // Define your backend target server destination
-        private static readonly string TargetServerUrl = "https://example.com";
+        private static readonly string TargetServerUrl = "https://insights-content.researcherprofiles.org/published-papers-propel-progress/";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,7 +34,7 @@ namespace Profiles.Insights
 
             // 1. Reconstruct the destination URL with the original query string
             string queryString = context.Request.Url.Query;
-            string targetUrl = TargetServerUrl + queryString;
+            string targetUrl = TargetServerUrl + inst.ToLower() + (!String.IsNullOrEmpty(queryString) ? "/?" + queryString : "/");
 
             using (var client = new HttpClient())
             {
@@ -86,7 +87,9 @@ namespace Profiles.Insights
                         }
 
                         // 8. Stream the backend body directly to the client response
-                        string resp = proxyResponse.Content.ReadAsStringAsync().Result;
+                        var encodingCharSet = proxyResponse.Content.Headers.ContentType.CharSet;
+                        Encoding encoding = encodingCharSet != null ? Encoding.GetEncoding(encodingCharSet) : Encoding.UTF8;
+                        string resp = encoding.GetString(proxyResponse.Content.ReadAsByteArrayAsync().Result);
                         context.Response.Write(resp);
 
 

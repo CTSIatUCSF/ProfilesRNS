@@ -105,7 +105,6 @@ namespace Profiles
             routes.Add("WomenInScience", new Route("WomenInScience", new AspxHandler("~/Celebrating/Default.aspx")));
             routes.Add("LGBTQResearch", new Route("LGBTQResearch", new AspxHandler("~/Celebrating/Default.aspx")));
             routes.Add("LatinxResearch", new Route("LatinxResearch", new AspxHandler("~/Celebrating/Default.aspx")));
-//            routes.Add("Insights", new Route("insights/{*filepath}", new InsightsProxyRouteHandler()));
             foreach (string applicationName in UCSFIDSet.PrettyURLApplicationNames)
             {
                 PrettyURLRouteHandler purh = new PrettyURLRouteHandler(applicationName);
@@ -245,14 +244,6 @@ namespace Profiles
                 
             }
             Response.Redirect("~/Error/Default.aspx", true);      
-        }
-    }
-
-    public class InsightsProxyRouteHandler : IRouteHandler
-    {
-        public IHttpHandler GetHttpHandler(RequestContext requestContext)
-        {
-            return new InsightsProxy();
         }
     }
 

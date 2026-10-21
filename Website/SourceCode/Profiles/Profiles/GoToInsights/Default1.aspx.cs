@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -13,7 +14,7 @@ using System.Web.UI.WebControls;
 
 namespace Profiles.Insights
 {
-    public partial class Default : BrandedPage
+    public partial class Default1 : BrandedPage
     {
         // Define your backend target server destination
         private static readonly string TargetServerUrl = "https://insights-content.researcherprofiles.org/published-papers-propel-progress/";
@@ -30,11 +31,21 @@ namespace Profiles.Insights
                 context.Response.StatusCode = Convert.ToInt16(HttpStatusCode.Unauthorized);
                 return;
             }
-            String inst = Institution.GetByShibbolethIdp(idpServerVar).GetAbbreviation();
+
+            // Register an asynchronous task to process the proxy request
+            RegisterAsyncTask(new PageAsyncTask(ProcessProxyRequestAsync));
+        }
+
+
+        private async Task ProcessProxyRequestAsync()
+        {
+            HttpContext context = HttpContext.Current;
 
             // 1. Reconstruct the destination URL with the original query string
+            string idpServerVar = Request.ServerVariables["Shib-Identity-Provider"];
+            String inst = Institution.GetByShibbolethIdp(idpServerVar).GetAbbreviation();
             string queryString = context.Request.Url.Query;
-            string targetUrl = TargetServerUrl + inst.ToLower() + (!String.IsNullOrEmpty(queryString) ? "/?" + queryString : "/");
+            string targetUrl = TargetServerUrl + inst.ToLower() + "/" + queryString;
 
             using (var client = new HttpClient())
             {
@@ -69,7 +80,7 @@ namespace Profiles.Insights
                     }
 
                     // 5. Send the request to the backend server
-                    using (HttpResponseMessage proxyResponse = client.SendAsync(proxyRequest).Result)
+                    using (HttpResponseMessage proxyResponse = await client.SendAsync(proxyRequest, HttpCompletionOption.ResponseHeadersRead))
                     {
                         // 6. Clear default ASP.NET response settings
                         context.Response.Clear();
@@ -87,11 +98,10 @@ namespace Profiles.Insights
                         }
 
                         // 8. Stream the backend body directly to the client response
-                        var encodingCharSet = proxyResponse.Content.Headers.ContentType.CharSet;
-                        Encoding encoding = encodingCharSet != null ? Encoding.GetEncoding(encodingCharSet) : Encoding.UTF8;
-                        string resp = encoding.GetString(proxyResponse.Content.ReadAsByteArrayAsync().Result);
-                        context.Response.Write(resp);
-
+                        using (Stream responseStream = await proxyResponse.Content.ReadAsStreamAsync())
+                        {
+                            await responseStream.CopyToAsync(context.Response.OutputStream);
+                        }
 
                         // Flush and terminate the response to prevent further processing
                         context.Response.Flush();

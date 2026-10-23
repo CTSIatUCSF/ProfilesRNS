@@ -26,7 +26,7 @@ namespace Profiles.CustomAPI.Secure
             using (SqlConnection conn = new SqlConnection(profilesdb)) 
             {
                 //conn.Open();
-                using (SqlCommand command = new SqlCommand("select * from [import_usc}.[dbo].[vw_importReport]", conn))
+                using (SqlCommand command = new SqlCommand("select * from [import_usc].[dbo].[vw_importReport]", conn))
                 {
                     using (CsvWriter writer = new CsvWriter(Response.Output, CultureInfo.InvariantCulture))
                     {

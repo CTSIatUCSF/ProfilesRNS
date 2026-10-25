@@ -30,7 +30,7 @@ FeaturedVideos.getVideoMetadata = function (video, max_height, max_width, callba
         var oembedURL = oEmbedURLBase + '?maxheight=' + max_height + '&maxwidth=' + max_width + '&url=' + encodeURIComponent(video.url);
         var req = $.ajax({
             url: oembedURL,
-            dataType: "jsonp",
+            dataType: "json",
             timeout: 10000,
             success: callback
         });

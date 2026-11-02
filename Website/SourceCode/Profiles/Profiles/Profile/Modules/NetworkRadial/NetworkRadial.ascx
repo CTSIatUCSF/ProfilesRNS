@@ -120,7 +120,7 @@
  <div id="divFlashGraph" style="display:none; position: relative;" class="clusterView">
  <div style="width: 600px; font-size: 12px; line-height: 16px; border-bottom: 1px dotted #999;
             padding-bottom: 12px; margin-bottom: 6px;"></div>
-       <asp:HtmlIframe> <iframe id="iFrameFlashGraph" runat="server" width="610px" height="610px" frameborder="0" style="overflow:hidden;"></iframe></asp:HtmlIframe>
+       <asp:HtmlIframe> <iframe id="iFrameFlashGraph" runat="server" title="Radial network graph of co-authors and related people" width="610px" height="610px" style="border:0; overflow:hidden;"></iframe></asp:HtmlIframe>
                 <div style="border-top: 1px dotted #999; font-size: 12px; line-height: 16px; padding-top: 12px;
             margin-top: 8px; text-align: left;">
             Use the <span style="font-weight: bold; color: #666;">sliders</span> to 1) hide

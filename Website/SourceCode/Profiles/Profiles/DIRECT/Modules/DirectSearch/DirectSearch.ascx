@@ -200,7 +200,7 @@ function NoEnter(){
             </div>
             <%Response.Write(DrawMyTable()); %>
            <asp:HtmlIframe> <iframe name="FSAJAXFrame" id="FSAJAXFrame" src="<%Response.Write(DirectServiceURL());%>?request=outgoingcount&blank=y&r=rnd"
-                frameborder="0" scrolling="no" style="width: 0px; height: 0px;" title="Preview"/>
+                frameborder="0" scrolling="no" style="width: 0px; height: 0px;" title="Hidden helper frame for DIRECT outgoing count" aria-hidden="true" tabindex="-1"/>
             </iframe> </asp:HtmlIframe>
         </div>
     </div>

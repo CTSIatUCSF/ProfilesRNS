@@ -77,7 +77,7 @@
                <div style="padding-top:11px;padding-bottom:5px;"> <b>Slides for:</b>
         <asp:Literal runat="server" ID="lblUsername"></asp:Literal></div>
         <div id="slideshow-canvas">
-            <iframe src="" width="440" height="440" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+            <iframe src="" title="Featured presentation slideshow" width="440" height="440" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
             <div style="margin-bottom: 5px; overflow: hidden;"></div>
         </div>
     </div>

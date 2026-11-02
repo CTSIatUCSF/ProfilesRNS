@@ -69,7 +69,7 @@
 			
 			<div class="center">
 				<h2>Watch this short introduction video!</h2>
-				<iframe width="560" height="325" src="//www.youtube.com/embed/YCOA2GWyplY" frameborder="0" allowfullscreen="true"></iframe>
+				<iframe width="560" height="325" title="Short introduction to UCSF Profiles (video)" src="//www.youtube.com/embed/YCOA2GWyplY" style="border:0" allowfullscreen="true"></iframe>
 			</div>
  
 			<div class="aboutProfiles">

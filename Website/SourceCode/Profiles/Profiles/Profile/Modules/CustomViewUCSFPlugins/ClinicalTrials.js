@@ -39,14 +39,18 @@ ClinicalTrials.init = function (plugindata) {
  * Render all trial rows into the target table.
  */
 ClinicalTrials.render = function (trials) {
-    // Guard: do nothing if missing / empty data
-    if (!Array.isArray(trials) || !trials.length) return;
-
     // Find the target table in the DOM
     var table = document.querySelector(
         '.researcherprofiles--researcher-profile-page--clinical-trials--table'
     );
     if (!table) return;
+
+    // Guard: with missing / empty data, remove the empty table (an empty
+    // <table> is announced by screen readers and is invalid for WCAG)
+    if (!Array.isArray(trials) || !trials.length) {
+        table.parentNode.removeChild(table);
+        return;
+    }
 
     // Ensure a <tbody> exists (your shell HTML may omit it)
     var tbody = table.querySelector('tbody');

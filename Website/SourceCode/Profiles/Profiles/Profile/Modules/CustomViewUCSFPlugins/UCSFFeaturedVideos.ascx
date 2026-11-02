@@ -5,7 +5,7 @@
     <div class="video_option">
         <figure role="group">
             <div class="video_thumbnail_wrapper">
-                <img src="{{thumbnail_url}}" alt="">
+                {{#if thumbnail_url}}<img src="{{thumbnail_url}}" alt="">{{/if}}
             </div>
             <figcaption><a href="{{url}}">{{title}}</a></figcaption>
         </figure>

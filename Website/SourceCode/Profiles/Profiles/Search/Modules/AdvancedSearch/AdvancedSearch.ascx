@@ -42,7 +42,7 @@
                                 <table width="100%" class='searchForm'>
                                     <tr>
                                         <th style="width: 140px">
-                                            Topic
+                                            <asp:Label runat="server" AssociatedControlID="txtSearchFor" Text="Topic"></asp:Label>
                                         </th>
                                         <td class="fieldOptions">
                                             <asp:TextBox runat="server" ID="txtSearchFor" CssClass="inputText"></asp:TextBox>
@@ -62,35 +62,35 @@
 							<span id="andor">and/or</span>
                             <table width="100%" class='searchForm'>
                                 <tr>
-                                    <th>Last Name
+                                    <th><asp:Label runat="server" AssociatedControlID="txtLname" Text="Last Name"></asp:Label>
                                     </th>
                                     <td colspan="2">
                                         <asp:TextBox runat="server" ID="txtLname" CssClass="inputText"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>First Name
+                                    <th><asp:Label runat="server" AssociatedControlID="txtFname" Text="First Name"></asp:Label>
                                     </th>
                                     <td colspan="2">
                                         <asp:TextBox runat="server" ID="txtFname" CssClass="inputText"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr runat="server" id="trInstitution">
-                                    <th>Institution
+                                    <th><label for="institution">Institution</label>
                                     </th>
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litInstitution"></asp:Literal>
-                                        <asp:CheckBox runat="server" ID="institutionallexcept" />
+                                        <asp:CheckBox runat="server" ID="institutionallexcept" InputAttributes-aria-label="Institution: all except the one selected" />
                                         All <b>except</b> the one selected
                                     </td>
                                 </tr>
                                 <tr runat="server" id="trDivision">
                                     <th>
-                                        School
+                                        <label for="division">School</label>
                                     </th>
                                     <td colspan="2">
                                         <asp:Literal runat="server" ID="litDivision"></asp:Literal>
-                                        <asp:CheckBox runat="server" id="divisionallexcept"/>
+                                        <asp:CheckBox runat="server" id="divisionallexcept" InputAttributes-aria-label="School: all except the one selected" />
                                         All <b>except</b> the one selected
                                     </td>
                                 </tr>
@@ -98,11 +98,11 @@
 								<asp:Panel ID="SearchPersonFormHideUCSD" runat="server" SkinID="HideUCSD" Visible="true">
 									<tr runat="server" id="trDepartment">
 										<th>
-											Department
+											<label for="department">Department</label>
 										</th>
 										<td colspan="2">
 											<asp:Literal runat="server" ID="litDepartment"></asp:Literal>
-											<asp:CheckBox runat="server" ID="departmentallexcept" />
+											<asp:CheckBox runat="server" ID="departmentallexcept" InputAttributes-aria-label="Department: all except the one selected" />
 											All <b>except</b> the one selected
 										</td>
 									</tr>

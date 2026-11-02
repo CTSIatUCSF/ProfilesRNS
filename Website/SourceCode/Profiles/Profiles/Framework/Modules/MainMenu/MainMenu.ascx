@@ -51,7 +51,7 @@
 			<!-- next few tags have > on next line to remove space between -->
 			</li>
             <li class="search main-nav" style="width: 492px;">
-                <input name="search" id="menu-search" placeholder="e.g. Smith or HIV" type="text" style="padding-left: 5px;" class="form-control input-sm"/>
+                <input name="search" id="menu-search" aria-label="Search for people or keywords" placeholder="e.g. Smith or HIV" type="text" style="padding-left: 5px;" class="form-control input-sm"/>
             </li>
             <li id="search-drop" class="last main-nav" style="float: right !important; width: 25px;">
                 <a href="#" style="padding: 0px; padding-top: 9px; margin: 0px;">

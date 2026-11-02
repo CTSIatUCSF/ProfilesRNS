@@ -2,8 +2,8 @@
     Inherits="Profiles.Profile.Modules.CustomViewSocialMediaPlugins.FeaturedVideos" %>
 <div class="youtube">			
   <div class="yt_div">
-    <iframe class="yt_player" 
-            frameborder="0" allowfullscreen="1" 
+    <iframe class="yt_player" title="Featured YouTube video" 
+            style="border:0" allowfullscreen="1" 
             allow="autoplay; encrypted-media; picture-in-picture" 
             sandbox="allow-scripts allow-same-origin allow-presentation allow-popups allow-popups-to-escape-sandbox"
             width="500" height="400"               

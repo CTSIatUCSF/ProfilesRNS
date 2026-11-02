@@ -5,9 +5,8 @@
     <!-- ==================== START PROFILE VIEW =================== -->
     <div class="profile-view-slideshare">
         <div id="slideshow-canvas">
-            <iframe src="" height="400"
+            <iframe src="" title="Featured presentation slideshow" height="400"
                 width="550"
-                frameborder="0"
                 marginwidth="0"
                 marginheight="0" scrolling="no"
                 style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;"

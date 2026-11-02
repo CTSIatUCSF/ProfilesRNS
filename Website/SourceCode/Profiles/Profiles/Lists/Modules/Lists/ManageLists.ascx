@@ -187,7 +187,7 @@
 </asp:Panel>
 
 <asp:Panel ID="pnlCluster" CssClass="cluster-viz" runat="server" Visible="false">
-    <iframe id="iframe-cluster" scrolling="no" src="about:blank" width="100%" height="900" style="overflow: hidden; border: none"></iframe>
+    <iframe id="iframe-cluster" title="Cluster view of people in this list" scrolling="no" src="about:blank" width="100%" height="900" style="overflow: hidden; border: none"></iframe>
     <asp:Literal ID="litCluster" runat="server"></asp:Literal>
 </asp:Panel>
 <asp:Panel ID="pnlSummary" runat="server" Visible="false">
@@ -242,7 +242,7 @@
 </asp:Panel>
 
 <asp:Panel ID="pnlMap" runat="server" Visible="false">
-    <iframe id="iframe-map" scrolling="no" src="about:blank" width="100%" height="900" style="overflow: hidden; border: none"></iframe>
+    <iframe id="iframe-map" title="Map of people in this list" scrolling="no" src="about:blank" width="100%" height="900" style="overflow: hidden; border: none"></iframe>
     <asp:Literal ID="litMap" runat="server"></asp:Literal>
 </asp:Panel>
 <asp:Literal runat="server" ID="NoLists" Visible="false"></asp:Literal>

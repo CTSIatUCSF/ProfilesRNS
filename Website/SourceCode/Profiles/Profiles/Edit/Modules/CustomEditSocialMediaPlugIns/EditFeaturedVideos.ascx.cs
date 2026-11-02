@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Xml;
+using System.Web;
 using Newtonsoft.Json;
 using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
@@ -186,7 +187,7 @@ namespace Profiles.Edit.Modules.CustomEditSocialMediaPlugIns
                 lnkDelete = (ImageButton)e.Row.Cells[2].FindControl("lnkDelete");
 
 
-                litPreview.Text = "<iframe width=\"125px\" height=\"75px\"  src=\"https://www.youtube.com/embed/" + videostate.id + "?autoplay=0&rel=0\"></iframe>";
+                litPreview.Text = "<iframe width=\"125px\" height=\"75px\" title=\"" + HttpUtility.HtmlAttributeEncode(string.IsNullOrWhiteSpace(videostate.name) ? "Video preview" : videostate.name) + "\" src=\"https://www.youtube.com/embed/" + videostate.id + "?autoplay=0&rel=0\"></iframe>";
             }
 
             if (e.Row.RowType == DataControlRowType.DataRow && (e.Row.RowState & DataControlRowState.Edit) == DataControlRowState.Edit)
@@ -194,7 +195,7 @@ namespace Profiles.Edit.Modules.CustomEditSocialMediaPlugIns
                 txtVideoDescription = (TextBox)e.Row.Cells[0].FindControl("txtVideoDescription");
                 txtVideoDescription.Text = videostate.name;
 
-                litPreview.Text = "<iframe width=\"125px\" height=\"75px\" border=\"0px\"  src=\"https://www.youtube.com/embed/" + videostate.id + "?autoplay=0&rel=0\"></iframe>";
+                litPreview.Text = "<iframe width=\"125px\" height=\"75px\" style=\"border:0\" title=\"" + HttpUtility.HtmlAttributeEncode(string.IsNullOrWhiteSpace(videostate.name) ? "Video preview" : videostate.name) + "\" src=\"https://www.youtube.com/embed/" + videostate.id + "?autoplay=0&rel=0\"></iframe>";
             }
         }
         protected void GridViewVideos_RowEditing(object sender, GridViewEditEventArgs e)

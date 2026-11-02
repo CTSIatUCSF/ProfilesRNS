@@ -12,7 +12,7 @@
 	<xsl:param name="root" />
 	<xsl:template match="/">
 		<div id="view_links_table" style="padding:10px 0px 10px 20px;">
-			<table cellspacing="10" cellpadding="10" border="0" class="collapsible">
+			<table role="presentation" cellspacing="10" cellpadding="10" border="0" class="collapsible">
 				<tbody>
 					<xsl:for-each select="rdf:RDF/rdf:Description[1]/prns:mediaLinks">
 						<xsl:variable name="resource" select="@rdf:resource"></xsl:variable>
@@ -21,7 +21,7 @@
 							<xsl:variable name="l" select="//rdf:RDF/rdf:Description[@rdf:about=$resource]/rdfs:label"/>
 							<xsl:variable name="p" select="//rdf:RDF/rdf:Description[@rdf:about=$resource]/prns:publicationDate"/>
 							<td style="width:30px">
-								<img src="https://www.google.com/s2/favicons?domain={$l}" width="16" height="16" />
+								<img src="https://www.google.com/s2/favicons?domain={$l}" width="16" height="16" alt="" />
 							</td>
 							<td>
 								<a href="{$l}">

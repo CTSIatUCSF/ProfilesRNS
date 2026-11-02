@@ -40,7 +40,7 @@
                                 <legend>Topic</legend>
                                 <div class="researcherprofiles--primary-search--search-form--topic-search-container">
                                         <asp:TextBox EnableViewState="false" runat="server" ID="searchfor" CssClass="inputText" title="Topic" placeholder="e.g. HIV" />
-                                        <label><asp:CheckBox runat="server" ID="chkExactPhrase" text="&nbsp;Use exact phrase"/></label>
+                                        <asp:CheckBox runat="server" ID="chkExactPhrase" text="&nbsp;Use exact phrase"/>
                                 </div>
                                 <div class="search-button-container">
                                     <a href="JavaScript:submitEverythingSearch();" class="search-button">

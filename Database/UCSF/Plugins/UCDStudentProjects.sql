@@ -12,7 +12,7 @@ UPDATE [Ontology.].[PropertyGroupProperty] set SortOrder = 80 where PropertyURI 
 
   -- remove old gadget from all people
 -- remove filter
-  -- First remove ORNG gadget from everybody. MAKE SURE ONLY UCSD FOLKS SHOW UP!!!
+  -- First remove ORNG gadget from everybody. 
   DECLARE @PropertyNode INT
   SELECT @PropertyNode = _PropertyNode FROM [Ontology.].[ClassProperty] where Property = 'http://orng.info/ontology/orng#hasStudentProjects'
   SELECT @PropertyNode

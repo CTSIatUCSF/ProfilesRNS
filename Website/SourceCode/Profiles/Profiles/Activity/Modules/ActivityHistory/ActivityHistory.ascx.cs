@@ -75,9 +75,10 @@ namespace Profiles.Activity.Modules.ActivityHistory
                 // specific site such as UCSF or UCSD. A brand with zero or multiple configured
                 // institutions is intentionally left as a network-wide feed.
                 Brand currentBrand = Brand.GetCurrentBrand();
-                if (currentBrand != null && currentBrand.GetInstitution() != null)
+                var brandInstitution = currentBrand != null ? currentBrand.GetInstitution() : null;
+                string currentInstitution = brandInstitution != null ? brandInstitution.GetAbbreviation() : null;
+                if (currentInstitution != null)
                 {
-                    string currentInstitution = currentBrand.GetInstitution().GetAbbreviation();
                     List<Profiles.Activity.Utilities.Activity> scopedActivities = new List<Profiles.Activity.Utilities.Activity>();
                     List<Profiles.Activity.Utilities.Activity> fallbackActivities = new List<Profiles.Activity.Utilities.Activity>();
 
@@ -86,7 +87,7 @@ namespace Profiles.Activity.Modules.ActivityHistory
                     // fallback records that may be used to fill any remaining display slots.
                     foreach (Profiles.Activity.Utilities.Activity activity in activities)
                     {
-                        if (currentInstitution.Equals(activity.Profile.InstitutionAbbreviation))
+                        if (activity.Profile != null && currentInstitution.Equals(activity.Profile.InstitutionAbbreviation))
                         {
                             scopedActivities.Add(activity);
                         }
@@ -103,17 +104,18 @@ namespace Profiles.Activity.Modules.ActivityHistory
                     activities.AddRange(scopedActivities);
                     activities.AddRange(fallbackActivities);
                 }
-
-                // The larger fetch is only a candidate pool; render no more than the number of
-                // activities configured by the presentation XML (for the search page, three).
-                if (activities.Count > count)
-                {
-                    activities.RemoveRange(count, activities.Count - count);
-                }
             }
             catch (Exception e)
             {
                 Framework.Utilities.DebugLogging.Log("Error in ActivityHistory data.GetActivity " + e.Message + "; " + e.StackTrace);
+            }
+
+            // The larger fetch is only a candidate pool; render no more than the number of
+            // activities configured by the presentation XML (for the search page, three).
+            // This sits outside the try block so it still applies if scoping fails.
+            if (activities.Count > count)
+            {
+                activities.RemoveRange(count, activities.Count - count);
             }
 
             rptActivityHistory.DataSource = activities;

@@ -37,6 +37,18 @@ FeaturedVideos.getVideoMetadata = function (video, max_height, max_width, callba
     }
 };
 
+// put a video's iframe HTML in the main container, with a title for WCAG
+//   (iframes need a title attribute; alt is not valid on iframe)
+FeaturedVideos.showVideo = function (html, title) {
+    var container = $('#current_video_container');
+    container.html(html);
+    container.find('iframe').each(function () {
+        var iframe = $(this);
+        iframe.attr('title', title || iframe.attr('alt') || 'Featured video');
+        iframe.removeAttr('alt');
+    });
+};
+
 // viewing
 FeaturedVideos.renderVideos = function (videos) {
     // compile Handlebars template
@@ -59,7 +71,7 @@ FeaturedVideos.renderVideos = function (videos) {
     $.each(videos, function (i, video) {
         if (video && ("url" in video) && video.url) {
             if (video.youTubeId) {
-                video.url = "http://www.youtube.com/watch?v=" + video.youTubeId;
+                video.url = "https://www.youtube.com/watch?v=" + video.youTubeId;
             }
 
             // add an empty div for each item
@@ -69,13 +81,20 @@ FeaturedVideos.renderVideos = function (videos) {
             }
 
             FeaturedVideos.getVideoMetadata(video, max_height, max_width, function (video_data) {
-                if (!video_data.error_code && !video_data.error) {
+                // skip videos with no embed HTML, since they can't be played
+                if (!video_data.error_code && !video_data.error && video_data.html) {
 
                     // set video title to the provided label, otherwise use the native title
                     video_data.title = (video.title || video_data.title);
 
                     // use normalized video URL, or fall back to original URL
                     video_data.url = (video_data.url || video.url);
+
+                    // links need text for WCAG: if no title at all, fall back to the site name
+                    if (!video_data.title || !$.trim(video_data.title)) {
+                        var host = $('<a>').attr('href', video_data.url).prop('hostname');
+                        video_data.title = host ? 'Video on ' + host.replace(/^www\./, '') : 'Untitled video';
+                    }
 
                     if (need_to_show_list_of_videos) {
                         // run video data through Handlebars template, insert into DOM,
@@ -93,11 +112,12 @@ FeaturedVideos.renderVideos = function (videos) {
                         }
 
                         inserted_block.data('video_html', video_data.html);
+                        inserted_block.data('video_title', video_data.title);
                     }
 
                     // if this is the first video on the list, show it big and feature it
                     if (i === 0) {
-                        $('#current_video_container').html(video_data.html);
+                        FeaturedVideos.showVideo(video_data.html, video_data.title);
                         if (need_to_show_list_of_videos) {
                             $('#video_navigator').prepend(inserted_block);
                             inserted_block.addClass('selected');
@@ -118,7 +138,7 @@ FeaturedVideos.renderVideos = function (videos) {
             //ucsf.gadgetEventTrack('open_video_in_new_window', url);
 
         } else if (!$(this).hasClass('selected')) { // show video, if not shown
-            $('#current_video_container').html($(this).data('video_html'));
+            FeaturedVideos.showVideo($(this).data('video_html'), $(this).data('video_title'));
             $('#videos .video_option.selected').removeClass('selected');
             $(this).addClass('selected');
             //ucsf.gadgetEventTrack('go_to_video')

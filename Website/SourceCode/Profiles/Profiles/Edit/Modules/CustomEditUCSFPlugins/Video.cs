@@ -43,8 +43,8 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 {
                     html = $"<iframe width='640' height='360' " +
                            $"src='https://www.youtube.com/embed/{videoId}' " +
-                           $"alt='{title}' " +
-                           $"frameborder='0' allowfullscreen></iframe>";
+                           $"title='{IframeTitle()}' " +
+                           $"style='border:0' allowfullscreen></iframe>";
                     thumbnail_url = $"https://img.youtube.com/vi/{videoId}/hqdefault.jpg";
                 }
             }
@@ -55,8 +55,8 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 {
                     html = $"<iframe width='640' height='360' " +
                            $"src='https://player.vimeo.com/video/{videoId}' " +
-                           $"alt='{title}' " +
-                           $"frameborder='0' allowfullscreen></iframe>";
+                           $"title='{IframeTitle()}' " +
+                           $"style='border:0' allowfullscreen></iframe>";
                     thumbnail_url = ScrapeOgImage(url);
                 }
             }
@@ -67,8 +67,8 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 {
                     html = $"<iframe width='640' height='360' " +
                            $"src='https://embed.ted.com/talks/{talkName}' " +
-                           $"alt='{title}' " +
-                           $"frameborder='0' allowfullscreen></iframe>";
+                           $"title='{IframeTitle()}' " +
+                           $"style='border:0' allowfullscreen></iframe>";
                     thumbnail_url = ScrapeOgImage(url) ?? GetGenericThumbnail();
                 }
             }
@@ -79,8 +79,8 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 {
                     html = $"<iframe width='640' height='360' " +
                            $"src='https://www.instagram.com/reel/{reelId}/embed' " +
-                           $"alt='{title}' " +
-                           $"frameborder='0' allowfullscreen></iframe>";
+                           $"title='{IframeTitle()}' " +
+                           $"style='border:0' allowfullscreen></iframe>";
                     thumbnail_url = ScrapeOgImage(url) ?? GetGenericThumbnail();
                 }
             }
@@ -91,8 +91,8 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 {
                     html = $"<iframe width='640' height='360' " +
                            $"src='https://www.tiktok.com/embed/v2/{videoId}' " +
-                           $"alt='{title}' " +
-                           $"frameborder='0' allowfullscreen></iframe>";
+                           $"title='{IframeTitle()}' " +
+                           $"style='border:0' allowfullscreen></iframe>";
                     thumbnail_url = ScrapeOgImage(url) ?? GetGenericThumbnail();
                 }
             }
@@ -103,14 +103,14 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
                 {
                     html = $"<iframe width='640' height='360' " +
                            $"src='https://clips.twitch.tv/embed?clip={clipId}&parent=example.com' " +
-                           $"alt='{title}' " +
-                           $"frameborder='0' allowfullscreen></iframe>";
+                           $"title='{IframeTitle()}' " +
+                           $"style='border:0' allowfullscreen></iframe>";
                     thumbnail_url = $"https://clips-media-assets2.twitch.tv/{clipId}-preview.jpg";
                 }
             }
             else if (url.EndsWith(".mp4", StringComparison.OrdinalIgnoreCase) && videoUri.AbsolutePath.Split('/').Length > 1)
             {
-                html = $"<video width='640' height='360' controls>" +
+                html = $"<video width='640' height='360' controls title='{IframeTitle()}'>" +
                        $"<source src='{url}' type='video/mp4'>" +
                        "Your browser does not support the video tag.</video>";
                 thumbnail_url = GetGenericThumbnail();
@@ -121,6 +121,12 @@ namespace Profiles.Edit.Modules.CustomEditUCSFPlugIns
             }
 
             updated = DateTime.Now.ToString("yyyy-MM-dd");
+        }
+
+        // iframes need a title attribute (alt is not valid on iframe) to be accessible
+        private string IframeTitle()
+        {
+            return HttpUtility.HtmlAttributeEncode(string.IsNullOrWhiteSpace(title) ? "Embedded video" : title);
         }
 
         private static string ExtractYouTubeId(string url)

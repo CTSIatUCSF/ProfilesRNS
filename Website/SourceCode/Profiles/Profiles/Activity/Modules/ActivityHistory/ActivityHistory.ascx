@@ -32,13 +32,7 @@
             data: '{"referenceActivityId": "' + referenceActivityId + '", "count": "' + (activitySize || 100) + '", "newActivities": "' + newActivities + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: OnSuccess,
-            failure: function (response) {
-                alert(response);
-            },
-            error: function (response) {
-                alert(response.response);
-            }
+            success: OnSuccess
         });
     }
 
